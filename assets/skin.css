@@ -1352,3 +1352,510 @@ body.pha-skin [class*="-muted"],
 body.pha-skin [class*="muted"] {
   color: var(--c-ink-2) !important;
 }
+
+/* ============================================================
+   WIZARD MODAL — AdConsole "Create campaign" 5-step flow
+   The shared modal rules above were scoped for the search-triage
+   dark-theme backdrop. The wizard needs a bright white card on
+   a dimmed page so the long form content stays scannable. We
+   re-skin just the wizard modal (anything inside .mroot .modal)
+   with the original Amazon PPC chrome.
+   ============================================================ */
+body.pha-skin #modal-root .mroot .modal,
+body.pha-skin #modal-root .mroot .modal.wide {
+  background: #FFFFFF !important;
+  color: #0F1111 !important;
+  backdrop-filter: none !important;
+  border: 1px solid #E7E7E7 !important;
+  border-top: 3px solid #FF9900 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 24px 64px rgba(0,0,0,.40) !important;
+  overflow: hidden !important;
+}
+body.pha-skin #modal-root .m-h {
+  background: #FAFBFB !important;
+  color: #0F1111 !important;
+  border-bottom: 1px solid #E7E7E7 !important;
+  padding: 16px 22px !important;
+}
+body.pha-skin #modal-root .m-h h2 {
+  color: #0F1111 !important;
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  letter-spacing: -.3px !important;
+  line-height: 1.2 !important;
+}
+body.pha-skin #modal-root .m-h .sub {
+  color: #565959 !important;
+  font-size: 12.5px !important;
+  font-family: 'PT Sans', system-ui, sans-serif !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+body.pha-skin #modal-root .m-h .x {
+  color: #565959 !important;
+}
+body.pha-skin #modal-root .m-h .x:hover {
+  background: #EEF1F1 !important;
+  color: #0F1111 !important;
+}
+body.pha-skin #modal-root .m-b {
+  background: #FFFFFF !important;
+  color: #0F1111 !important;
+  padding: 22px !important;
+  overflow-y: auto !important;
+}
+body.pha-skin #modal-root .m-f {
+  background: #FAFBFB !important;
+  border-top: 1px solid #E7E7E7 !important;
+  padding: 14px 22px !important;
+  color: #0F1111 !important;
+}
+
+/* --- step indicator (5 dots + labels) --- */
+body.pha-skin #modal-root .steps {
+  margin: 0 0 22px !important;
+  gap: 0 !important;
+}
+body.pha-skin #modal-root .step {
+  color: #767B7B !important;
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: .3px !important;
+  text-transform: none !important;
+}
+body.pha-skin #modal-root .step i {
+  background: #EEF1F1 !important;
+  color: #565959 !important;
+  border: 2px solid #EEF1F1 !important;
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-size: 12px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  width: 28px !important;
+  height: 28px !important;
+  box-shadow: none !important;
+}
+body.pha-skin #modal-root .step::before {
+  background: #E4E7E7 !important;
+  top: 14px !important;
+  height: 2px !important;
+}
+body.pha-skin #modal-root .step.on {
+  color: #0F1111 !important;
+}
+body.pha-skin #modal-root .step.on i {
+  background: #FF9900 !important;
+  color: #131921 !important;
+  border-color: #FCE3C2 !important;
+  box-shadow: 0 0 0 4px rgba(255,153,0,.18) !important;
+}
+body.pha-skin #modal-root .step.done i {
+  background: #067D62 !important;
+  color: #FFFFFF !important;
+  border-color: #067D62 !important;
+  box-shadow: none !important;
+}
+body.pha-skin #modal-root .step.done::before,
+body.pha-skin #modal-root .step.on::before {
+  background: #067D62 !important;
+}
+body.pha-skin #modal-root .step > div {
+  padding: 0 3px !important;
+}
+
+/* --- primary button gradient inside wizard --- */
+body.pha-skin #modal-root .btn-p {
+  background: linear-gradient(180deg,#FFAD33,#FF9900) !important;
+  border: 1px solid #E47911 !important;
+  color: #131921 !important;
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  box-shadow: none !important;
+}
+body.pha-skin #modal-root .btn-p:hover {
+  background: linear-gradient(180deg,#FFB84D,#FFA41C) !important;
+  color: #131921 !important;
+}
+body.pha-skin #modal-root .btn-p:active {
+  background: linear-gradient(180deg,#E47911,#E47911) !important;
+  color: #FFFFFF !important;
+  transform: translateY(1px) !important;
+}
+body.pha-skin #modal-root .btn {
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  background: #FFFFFF !important;
+  border: 1px solid #D5D9D9 !important;
+  color: #0F1111 !important;
+  box-shadow: none !important;
+}
+body.pha-skin #modal-root .btn:hover {
+  background: #F7FAFA !important;
+  border-color: #8A939B !important;
+}
+
+/* --- ad-type picker cards (wizard step 1) --- */
+body.pha-skin #modal-root .typecards {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) !important;
+  gap: 12px !important;
+  align-items: stretch !important;
+}
+body.pha-skin #modal-root .tcard {
+  background: #FFFFFF !important;
+  border: 1.5px solid #D5D9D9 !important;
+  border-radius: 12px !important;
+  padding: 16px 14px 14px !important;
+  color: #0F1111 !important;
+  font-family: 'PT Sans', system-ui, sans-serif !important;
+  box-shadow: none !important;
+  position: relative !important;
+  display: block !important;
+  overflow: visible !important;
+}
+body.pha-skin #modal-root .tcard:hover {
+  border-color: #C2C8CD !important;
+  background: #FFFFFF !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 14px rgba(15,17,17,.14) !important;
+}
+body.pha-skin #modal-root .tcard.sel {
+  background: linear-gradient(180deg, #FFF8EC 0%, #FFF0D8 100%) !important;
+  border-color: #FF9900 !important;
+  box-shadow: inset 0 0 0 2.5px #FF9900, 0 8px 20px rgba(228,121,17,.20) !important;
+  transform: translateY(-2px) !important;
+}
+body.pha-skin #modal-root .tcard.sel:hover {
+  box-shadow: inset 0 0 0 2.5px #FF9900, 0 10px 24px rgba(228,121,17,.26) !important;
+}
+body.pha-skin #modal-root .tcard .tico {
+  background: #FFF4E5 !important;
+  color: #C45500 !important;
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 9px !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 18px !important;
+  margin-bottom: 10px !important;
+}
+body.pha-skin #modal-root .tcard h4 {
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  color: #0F1111 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  margin: 0 0 5px !important;
+  line-height: 1.25 !important;
+}
+body.pha-skin #modal-root .tcard p {
+  color: #565959 !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+  margin: 0 !important;
+}
+body.pha-skin #modal-root .tcard .rec {
+  background: #FF9900 !important;
+  color: #131921 !important;
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: .7px !important;
+  padding: 3px 9px 4px !important;
+  top: 0 !important;
+  left: 14px !important;
+  border-radius: 0 0 6px 6px !important;
+  box-shadow: 0 2px 5px rgba(228,121,17,.30) !important;
+  z-index: 4 !important;
+}
+
+/* --- form inputs inside wizard --- */
+body.pha-skin #modal-root .inp,
+body.pha-skin #modal-root .sel,
+body.pha-skin #modal-root .tarea {
+  background: #FFFFFF !important;
+  color: #0F1111 !important;
+  border: 1px solid #8A939B !important;
+  border-radius: 7px !important;
+  font-family: 'PT Sans', system-ui, sans-serif !important;
+  font-size: 14px !important;
+  height: 36px !important;
+  padding: 0 10px !important;
+  box-shadow: none !important;
+}
+body.pha-skin #modal-root .tarea {
+  height: auto !important;
+  padding: 8px 10px !important;
+}
+body.pha-skin #modal-root .inp:focus,
+body.pha-skin #modal-root .sel:focus,
+body.pha-skin #modal-root .tarea:focus {
+  border-color: #FF9900 !important;
+  box-shadow: 0 0 0 3px rgba(255,153,0,.28) !important;
+  outline: none !important;
+}
+body.pha-skin #modal-root .inp:disabled {
+  background: #F7F8F8 !important;
+  color: #565959 !important;
+  border-color: #D5D9D9 !important;
+}
+body.pha-skin #modal-root label.fld {
+  color: #0F1111 !important;
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  display: block !important;
+  margin: 0 0 6px !important;
+}
+body.pha-skin #modal-root .fhint {
+  color: #565959 !important;
+  font-size: 11.5px !important;
+  margin-top: 5px !important;
+  line-height: 1.4 !important;
+}
+
+/* --- radio option cards (Strategy / Targeting) --- */
+body.pha-skin #modal-root .radioc {
+  background: #FFFFFF !important;
+  border: 1.5px solid #D5D9D9 !important;
+  border-radius: 8px !important;
+  padding: 12px 14px !important;
+  color: #0F1111 !important;
+  display: flex !important;
+  gap: 11px !important;
+  align-items: flex-start !important;
+  margin-bottom: 8px !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+}
+body.pha-skin #modal-root .radioc:hover {
+  border-color: #8A939B !important;
+  background: #FAFBFB !important;
+}
+body.pha-skin #modal-root .radioc.sel {
+  border-color: #FF9900 !important;
+  background: #FFFAF2 !important;
+}
+body.pha-skin #modal-root .radioc input {
+  accent-color: #E47911 !important;
+  margin-top: 3px !important;
+  flex: none !important;
+}
+body.pha-skin #modal-root .radioc b {
+  color: #0F1111 !important;
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  display: block !important;
+  line-height: 1.3 !important;
+}
+body.pha-skin #modal-root .radioc span {
+  color: #565959 !important;
+  font-size: 11.5px !important;
+  line-height: 1.45 !important;
+  display: block !important;
+  margin-top: 2px !important;
+}
+
+/* --- product card picker (step 3) --- */
+body.pha-skin #modal-root .pgrid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)) !important;
+  gap: 10px !important;
+}
+body.pha-skin #modal-root .pcard {
+  background: #FFFFFF !important;
+  border: 1px solid #D5D9D9 !important;
+  border-radius: 9px !important;
+  padding: 12px !important;
+  color: #0F1111 !important;
+  display: flex !important;
+  gap: 11px !important;
+  align-items: flex-start !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  position: relative !important;
+}
+body.pha-skin #modal-root .pcard:hover {
+  border-color: #BFC6CC !important;
+  box-shadow: 0 4px 14px rgba(15,17,17,.14) !important;
+  transform: translateY(-1px) !important;
+}
+body.pha-skin #modal-root .pcard.sel {
+  border-color: #FF9900 !important;
+  background: #FFFBF4 !important;
+  box-shadow: 0 0 0 2.5px rgba(255,153,0,.3) !important;
+}
+body.pha-skin #modal-root .pcard b {
+  color: #0F1111 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  display: block !important;
+}
+body.pha-skin #modal-root .pcard span {
+  color: #767B7B !important;
+  font-size: 11.5px !important;
+}
+body.pha-skin #modal-root .pcard .num {
+  color: #0F1111 !important;
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* --- keyword table (step 4) --- */
+body.pha-skin #modal-root .kwrow {
+  display: grid !important;
+  grid-template-columns: 30px minmax(0,1fr) 112px 100px !important;
+  gap: 9px !important;
+  align-items: center !important;
+  padding: 8px 6px !important;
+  border-bottom: 1px solid #EEF1F1 !important;
+  color: #0F1111 !important;
+  font-size: 13px !important;
+}
+body.pha-skin #modal-root .kwrow.kwh {
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  color: #767B7B !important;
+  text-transform: uppercase !important;
+  letter-spacing: .4px !important;
+  border-bottom: 1px solid #D5D9D9 !important;
+  background: transparent !important;
+  padding-bottom: 9px !important;
+}
+body.pha-skin #modal-root .kwrow:not(.kwh):hover {
+  background: #FAFBFB !important;
+}
+body.pha-skin #modal-root .kwrow:not(.kwh):focus-within {
+  background: #FFFAF2 !important;
+  box-shadow: inset 3px 0 0 #FF9900 !important;
+}
+body.pha-skin #modal-root .ckb {
+  accent-color: #E47911 !important;
+  width: 16px !important;
+  height: 16px !important;
+  cursor: pointer !important;
+}
+
+/* --- review summary rows (step 5) --- */
+body.pha-skin #modal-root .revrow {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  padding: 9px 0 !important;
+  border-bottom: 1px dashed #E7E7E7 !important;
+  color: #565959 !important;
+  font-size: 13px !important;
+  flex-wrap: wrap !important;
+}
+body.pha-skin #modal-root .revrow b {
+  color: #0F1111 !important;
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-weight: 600 !important;
+}
+body.pha-skin #modal-root .revrow b.num {
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* --- match type chips in review --- */
+body.pha-skin #modal-root .mchip {
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+  display: inline-block !important;
+  text-transform: uppercase !important;
+  letter-spacing: .3px !important;
+}
+body.pha-skin #modal-root .m-exact {
+  background: #E7F3F4 !important;
+  color: #007185 !important;
+}
+body.pha-skin #modal-root .m-phrase {
+  background: #FDF0E0 !important;
+  color: #B12704 !important;
+}
+body.pha-skin #modal-root .m-broad {
+  background: #EEF1F1 !important;
+  color: #565959 !important;
+}
+body.pha-skin #modal-root .m-auto {
+  background: #EFEAF7 !important;
+  color: #5F3E9E !important;
+}
+
+/* --- hint bar inside wizard (auto targeting) --- */
+body.pha-skin #modal-root .hintbar {
+  background: #E7F3F4 !important;
+  border: 1px solid #B9DCE0 !important;
+  border-radius: 8px !important;
+  padding: 10px 14px !important;
+  color: #054A5A !important;
+  font-size: 12.5px !important;
+  margin-bottom: 14px !important;
+  display: flex !important;
+  gap: 9px !important;
+  align-items: center !important;
+  line-height: 1.5 !important;
+}
+body.pha-skin #modal-root .hintbar b {
+  color: #054A5A !important;
+}
+
+/* --- wizard body fade-in motion --- */
+body.pha-skin #modal-root .wzbody {
+  color: #0F1111 !important;
+  font-family: 'PT Sans', system-ui, sans-serif !important;
+}
+body.pha-skin #modal-root .wzbody p {
+  color: #565959 !important;
+  font-size: 12.5px !important;
+  line-height: 1.55 !important;
+  margin: 0 0 11px !important;
+}
+body.pha-skin #modal-root .wzbody p b {
+  color: #0F1111 !important;
+}
+body.pha-skin #modal-root .wz2col {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  margin-bottom: 14px !important;
+}
+
+/* --- focus-visible ring (keyboard a11y) --- */
+body.pha-skin #modal-root .tcard:focus-visible,
+body.pha-skin #modal-root .pcard:focus-visible,
+body.pha-skin #modal-root .radioc:focus-within {
+  outline: 2px solid #FF9900 !important;
+  outline-offset: 2px !important;
+}
+
+/* --- responsive: wizard on narrow viewports --- */
+@media (max-width: 600px) {
+  body.pha-skin #modal-root .wz2col {
+    grid-template-columns: 1fr !important;
+  }
+  body.pha-skin #modal-root .typecards {
+    grid-template-columns: 1fr !important;
+  }
+  body.pha-skin #modal-root .m-h {
+    padding: 14px 16px !important;
+  }
+  body.pha-skin #modal-root .m-b {
+    padding: 16px !important;
+  }
+  body.pha-skin #modal-root .m-f {
+    padding: 12px 16px !important;
+  }
+  body.pha-skin #modal-root .step {
+    font-size: 10px !important;
+  }
+}
