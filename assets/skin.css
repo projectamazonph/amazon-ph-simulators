@@ -1497,7 +1497,14 @@ body.pha-skin #modal-root .btn:hover {
   border-color: #8A939B !important;
 }
 
-/* --- ad-type picker cards (wizard step 1) --- */
+/* --- ad-type picker cards (wizard step 1) ---
+   Three clearly distinct states for a 1-of-3 picker:
+   - default : flat white, soft border, low shadow  (obviously clickable)
+   - hover   : bigger lift, orange-tinted border, larger shadow + halo
+   - active  : quick press-down (scale 0.98) — handled in :active
+   - selected: orange gradient, thick orange frame, prominent check,
+               bolder text, stronger shadow + halo, clear "you picked this"
+*/
 body.pha-skin #modal-root .typecards {
   display: grid !important;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) !important;
@@ -1511,44 +1518,88 @@ body.pha-skin #modal-root .tcard {
   padding: 16px 14px 14px !important;
   color: #0F1111 !important;
   font-family: 'PT Sans', system-ui, sans-serif !important;
-  box-shadow: none !important;
+  box-shadow: 0 1px 2px rgba(15,17,17,.06) !important;
   position: relative !important;
   display: block !important;
   overflow: visible !important;
+  cursor: pointer !important;
+  transition: transform .18s cubic-bezier(.2,.8,.3,1),
+              box-shadow .18s cubic-bezier(.2,.8,.3,1),
+              border-color .18s cubic-bezier(.2,.8,.3,1),
+              background .18s cubic-bezier(.2,.8,.3,1) !important;
+  will-change: transform, box-shadow !important;
 }
+/* hover (unselected only) */
 body.pha-skin #modal-root .tcard:hover {
-  border-color: #C2C8CD !important;
-  background: #FFFFFF !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 4px 14px rgba(15,17,17,.14) !important;
+  border-color: #FFB84D !important;
+  background: #FFFBF4 !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 0 0 1px #FFE3B0, 0 8px 20px rgba(228,121,17,.18) !important;
 }
+body.pha-skin #modal-root .tcard:hover .tico {
+  background: #FF9900 !important;
+  color: #FFFFFF !important;
+  transform: scale(1.1) rotate(-4deg) !important;
+}
+/* quick press feedback — short scale-down so the click feels real */
+body.pha-skin #modal-root .tcard:active {
+  transform: translateY(-1px) scale(.985) !important;
+  transition-duration: .08s !important;
+}
+/* selected — the "you picked this" state. Big, clear, unmistakable. */
 body.pha-skin #modal-root .tcard.sel {
-  background: linear-gradient(180deg, #FFF8EC 0%, #FFF0D8 100%) !important;
+  background: linear-gradient(180deg, #FFF8EC 0%, #FFE8C2 100%) !important;
   border-color: #FF9900 !important;
-  box-shadow: inset 0 0 0 2.5px #FF9900, 0 8px 20px rgba(228,121,17,.20) !important;
-  transform: translateY(-2px) !important;
+  box-shadow:
+    inset 0 0 0 3px #FF9900,
+    0 0 0 6px rgba(255,153,0,.14),
+    0 12px 28px rgba(228,121,17,.32) !important;
+  transform: translateY(-4px) !important;
+  z-index: 2 !important;
 }
 body.pha-skin #modal-root .tcard.sel:hover {
-  box-shadow: inset 0 0 0 2.5px #FF9900, 0 10px 24px rgba(228,121,17,.26) !important;
+  /* selected+hover: hold the strong frame, just nudge the shadow */
+  background: linear-gradient(180deg, #FFF8EC 0%, #FFE8C2 100%) !important;
+  border-color: #FF9900 !important;
+  box-shadow:
+    inset 0 0 0 3px #FF9900,
+    0 0 0 6px rgba(255,153,0,.18),
+    0 14px 32px rgba(228,121,17,.36) !important;
+  transform: translateY(-4px) !important;
+}
+/* when selected, the icon flips to the brand orange + white so it reads "on" */
+body.pha-skin #modal-root .tcard.sel .tico {
+  background: #FF9900 !important;
+  color: #FFFFFF !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 10px rgba(228,121,17,.35) !important;
 }
 body.pha-skin #modal-root .tcard .tico {
   background: #FFF4E5 !important;
   color: #C45500 !important;
-  width: 38px !important;
-  height: 38px !important;
-  border-radius: 9px !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 10px !important;
   display: grid !important;
   place-items: center !important;
-  font-size: 18px !important;
-  margin-bottom: 10px !important;
+  font-size: 19px !important;
+  margin-bottom: 12px !important;
+  transition: transform .18s cubic-bezier(.2,.8,.3,1),
+              background .18s cubic-bezier(.2,.8,.3,1),
+              color .18s cubic-bezier(.2,.8,.3,1) !important;
 }
 body.pha-skin #modal-root .tcard h4 {
   font-family: 'Archivo', system-ui, sans-serif !important;
   color: #0F1111 !important;
-  font-size: 14px !important;
+  font-size: 14.5px !important;
   font-weight: 700 !important;
-  margin: 0 0 5px !important;
+  margin: 0 0 6px !important;
   line-height: 1.25 !important;
+  transition: color .18s cubic-bezier(.2,.8,.3,1) !important;
+}
+body.pha-skin #modal-root .tcard.sel h4 {
+  color: #131921 !important;
+  font-size: 15px !important;
 }
 body.pha-skin #modal-root .tcard p {
   color: #565959 !important;
@@ -1556,6 +1607,10 @@ body.pha-skin #modal-root .tcard p {
   line-height: 1.45 !important;
   margin: 0 !important;
 }
+body.pha-skin #modal-root .tcard.sel p {
+  color: #3B4149 !important;
+}
+/* RECOMMENDED ribbon — only meaningful when SP isn't already selected */
 body.pha-skin #modal-root .tcard .rec {
   background: #FF9900 !important;
   color: #131921 !important;
@@ -1569,6 +1624,44 @@ body.pha-skin #modal-root .tcard .rec {
   border-radius: 0 0 6px 6px !important;
   box-shadow: 0 2px 5px rgba(228,121,17,.30) !important;
   z-index: 4 !important;
+}
+/* if the recommended card ISN'T selected, soften the ribbon a bit so it
+   reads as "our pick" rather than competing with the active selection */
+body.pha-skin #modal-root .tcard:not(.sel) .rec {
+  background: #FFFFFF !important;
+  color: #C45500 !important;
+  border: 1px solid #F2D3A0 !important;
+  box-shadow: none !important;
+  font-weight: 700 !important;
+}
+/* checkmark badge (the ::after that appears on the selected card) —
+   bigger, more weight, sits proud of the card */
+body.pha-skin #modal-root .tcard.sel::after {
+  content: '✓' !important;
+  position: absolute !important;
+  top: -10px !important;
+  right: -10px !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  background: #FF9900 !important;
+  color: #131921 !important;
+  display: grid !important;
+  place-items: center !important;
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  line-height: 1 !important;
+  box-shadow:
+    0 0 0 3px #FFFFFF,
+    0 4px 12px rgba(228,121,17,.55) !important;
+  z-index: 5 !important;
+  animation: tcardPop .32s cubic-bezier(.2,.9,.3,1.4) both !important;
+}
+@keyframes tcardPop {
+  0%   { transform: scale(.3) rotate(-30deg); opacity: 0; }
+  60%  { transform: scale(1.15) rotate(0deg);  opacity: 1; }
+  100% { transform: scale(1)    rotate(0deg);  opacity: 1; }
 }
 
 /* --- form inputs inside wizard --- */
