@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Project Amazon PH Academy — AdConsole Pro</title>
+<title>AdConsole Pro — Amazon PPC Teaching Simulator</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/400.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/500.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/600.css">
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5.1.0/600.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5.1.0/700.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/shell.css">
 <style>
 :root{
   --navy:#131921; --navy2:#232F3E; --navy3:#37475A;
@@ -542,11 +543,8 @@ kbd{background:#1B242F;border:1px solid #37475A;border-bottom-width:2px;border-r
   .empty{padding:30px 14px}
 }
 </style>
-
-<link rel="stylesheet" href="assets/shell.css">
-<script src="assets/shell.js" defer></script>
 </head>
-<body data-pha-tool="ad-console">
+<body>
 
 <header id="topbar">
   <div class="tb-left">
@@ -2133,6 +2131,7 @@ updateSimBar();
 render();
 setTimeout(()=>{if(!state.welcomed){state.welcomed=true;openModal(welcomeHTML());}},600);
 </script>
+<script src="assets/shell.js" defer></script>
+<!-- Project Amazon PH Academy shell: shared chrome injected by assets/shell.js -->
 </body>
 </html>
-<!-- Project Amazon PH Academy shell: shared chrome injected by assets/shell.js -->
