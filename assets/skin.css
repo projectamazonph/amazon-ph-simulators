@@ -1567,13 +1567,7 @@ body.pha-skin #modal-root .tcard.sel:hover {
     0 14px 32px rgba(228,121,17,.36) !important;
   transform: translateY(-4px) !important;
 }
-/* when selected, the icon flips to the brand orange + white so it reads "on" */
-body.pha-skin #modal-root .tcard.sel .tico {
-  background: #FF9900 !important;
-  color: #FFFFFF !important;
-  transform: scale(1.05) !important;
-  box-shadow: 0 4px 10px rgba(228,121,17,.35) !important;
-}
+/* default .tico - cream chip, dark orange glyph */
 body.pha-skin #modal-root .tcard .tico {
   background: #FFF4E5 !important;
   color: #C45500 !important;
@@ -1587,6 +1581,16 @@ body.pha-skin #modal-root .tcard .tico {
   transition: transform .18s cubic-bezier(.2,.8,.3,1),
               background .18s cubic-bezier(.2,.8,.3,1),
               color .18s cubic-bezier(.2,.8,.3,1) !important;
+}
+/* selected .tico - flip to brand orange + white so it reads "on".
+   Uses higher specificity (4 classes + 1 id + 1 element = (1,5,1))
+   AND comes AFTER the default rule so source order is also in our favor. */
+body.pha-skin #modal-root .mroot .tcard.sel .tico,
+body.pha-skin #modal-root .tcard.sel .tico.tico {
+  background: #FF9900 !important;
+  color: #FFFFFF !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 10px rgba(228,121,17,.35) !important;
 }
 body.pha-skin #modal-root .tcard h4 {
   font-family: 'Archivo', system-ui, sans-serif !important;
@@ -1610,7 +1614,10 @@ body.pha-skin #modal-root .tcard p {
 body.pha-skin #modal-root .tcard.sel p {
   color: #3B4149 !important;
 }
-/* RECOMMENDED ribbon — only meaningful when SP isn't already selected */
+/* RECOMMENDED ribbon - sits ABOVE the card edge so it never collides
+   with the selected card's 3px inset border. When the card is selected
+   the ribbon becomes a white pill (sticker on the orange card). When
+   unselected, it's a cream-outlined pill (our pick, but not the pick). */
 body.pha-skin #modal-root .tcard .rec {
   background: #FF9900 !important;
   color: #131921 !important;
@@ -1619,11 +1626,20 @@ body.pha-skin #modal-root .tcard .rec {
   font-weight: 700 !important;
   letter-spacing: .7px !important;
   padding: 3px 9px 4px !important;
-  top: 0 !important;
+  top: -10px !important;
   left: 14px !important;
-  border-radius: 0 0 6px 6px !important;
+  border-radius: 6px !important;
   box-shadow: 0 2px 5px rgba(228,121,17,.30) !important;
   z-index: 4 !important;
+  border: none !important;
+}
+/* if the recommended card IS selected, switch to a white sticker so it
+   reads as a label on the orange card, not as part of the orange frame */
+body.pha-skin #modal-root .tcard.sel .rec {
+  background: #FFFFFF !important;
+  color: #C45500 !important;
+  box-shadow: 0 2px 6px rgba(15,17,17,.18) !important;
+  font-weight: 700 !important;
 }
 /* if the recommended card ISN'T selected, soften the ribbon a bit so it
    reads as "our pick" rather than competing with the active selection */
@@ -1631,7 +1647,7 @@ body.pha-skin #modal-root .tcard:not(.sel) .rec {
   background: #FFFFFF !important;
   color: #C45500 !important;
   border: 1px solid #F2D3A0 !important;
-  box-shadow: none !important;
+  box-shadow: 0 1px 2px rgba(15,17,17,.06) !important;
   font-weight: 700 !important;
 }
 /* checkmark badge (the ::after that appears on the selected card) —
