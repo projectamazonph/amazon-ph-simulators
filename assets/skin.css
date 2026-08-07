@@ -1226,6 +1226,15 @@ body.pha-skin [class*="modal"] {
   backdrop-filter: blur(2px) !important;
   color: var(--c-ink) !important;
 }
+/* AdConsole Pro wizard: white card on dimmed page.
+   The wizard is the only modal where the modal element itself
+   is the visible card; everywhere else the dim is just the
+   backdrop. Override just the wizard so the card stays white. */
+body.pha-skin #modal-root .mroot .modal {
+  background: var(--c-card) !important;
+  color: var(--c-ink) !important;
+  backdrop-filter: none !important;
+}
 body.pha-skin .modal .mbox,
 body.pha-skin .modal .box,
 body.pha-skin .modal .dialog,
