@@ -1083,16 +1083,21 @@ body.pha-skin thead td {
   text-transform: uppercase !important;
   letter-spacing: 0.06em !important;
   padding: 10px 12px !important;
-  text-align: left !important;
   border-bottom: 1px solid var(--c-border) !important;
   border-top: none !important;
   border-left: none !important;
   border-right: none !important;
 }
+/* Column alignment (left/center/right) is a per-table content decision —
+   every table in this app already declares its own explicit th/td
+   text-align (numeric columns centered or right-aligned, label columns
+   left). Do not force it here, or headers stop lining up with their
+   own data (this used to happen to Keyword Lab's grid tables). */
 body.pha-skin td {
   background: var(--c-card) !important;
   color: var(--c-ink) !important;
   padding: 10px 12px !important;
+  vertical-align: middle !important;
   border-bottom: 1px solid var(--c-line-soft) !important;
   border-top: none !important;
   border-left: none !important;

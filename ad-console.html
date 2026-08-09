@@ -1304,8 +1304,14 @@ function render(){
  el.innerHTML=html;
  if(!structural){try{el.scrollTop=savedScroll;}catch(e){}}
  renderWire();
+ // Chart rendering can fail independently per canvas (bad data, a blocked
+ // CDN, a Chart.js quirk) — isolate it so one bad chart can't also take
+ // down the sidebar badges/highlighting/bell below.
+ $$('#content canvas[data-chart]').forEach(cv=>{
+  try{if(cv.dataset.chart==='perf')perfChart(cv.id,cv.dataset.camp||null);else donut(cv.id);}
+  catch(chartErr){console.error('chart render failed',chartErr);}
+ });
  try{
-  $$('#content canvas[data-chart]').forEach(cv=>{if(cv.dataset.chart==='perf')perfChart(cv.id,cv.dataset.camp||null);else donut(cv.id);});
   $$('.nv').forEach(n=>n.classList.toggle('on',n.dataset.view===((v.name==='campaign'||v.name==='adgroup')?'campaigns':v.name)));
   $('#nvCampN').textContent=state.campaigns.filter(c=>c.status!=='archived').length;
   $('#nvKwN').textContent=Object.keys(kwById).length;
