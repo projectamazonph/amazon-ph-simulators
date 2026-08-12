@@ -224,14 +224,10 @@
   50% { opacity: 0.4; }
 }
 
-/* mobile collapse */
-@media (max-width: 720px) {
-  .pha-topbar { gap: 8px; padding: 0 10px; flex-wrap: wrap; height: auto; padding: 8px 10px; }
-  .pha-tool-name b { font-size: 12px; }
-  .pha-nav { width: 100%; overflow-x: auto; }
-  .pha-nav a { white-space: nowrap; }
-  .pha-divider, .pha-status { display: none; }
-}
+/* Mobile collapse: deferred to assets/responsive.css (auto-injected
+   by shell.js). Old inline rules here intentionally removed in favor
+   of the shared responsive layer (hamburger nav, fluid type, touch
+   targets). The shell.css retains only the desktop topbar styling. */
 
 /* ---------- footer ---------- */
 .pha-footer {
@@ -254,6 +250,3 @@
 .pha-footer .pha-foot-links a { color: var(--shell-dim); text-decoration: none; }
 .pha-footer .pha-foot-links a:hover { color: var(--shell-orange); }
 .pha-footer .pha-foot-meta { margin-left: auto; color: var(--shell-faint); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; }
-@media (max-width: 600px) {
-  .pha-footer .pha-foot-meta { width: 100%; margin-left: 0; }
-}

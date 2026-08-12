@@ -58,10 +58,11 @@ webapp/
 ├── listing.html         # Tool — re-skinned via skin.css
 ├── pacing-deck.html     # Tool — re-skinned via skin.css
 └── assets/
-    ├── tokens.css       # Single source of truth (colors, fonts, spacing, shadows)
+    ├── tokens.css       # Single source of truth (colors, fonts, spacing, shadows, breakpoints, fluid type, touch targets)
     ├── skin.css         # Aggressive overrides — forces every tool onto the unified theme
+    ├── responsive.css   # Mobile-first layer (auto-injected by shell.js) — hamburger nav, fluid type, 44px touch targets, .stack-mobile + .table-scroll utilities, print + reduced-motion
     ├── shell.css        # Top bar + footer chrome (the consistent frame)
-    ├── shell.js         # Auto-injects chrome, builds nav, applies skin
+    ├── shell.js         # Auto-injects chrome + responsive layer, builds nav, wires hamburger + scrim, applies skin
     ├── hub.css          # Hub-page-specific layout (hero, tool grid, principles)
     └── (the tool HTMLs keep their original CSS, but the skin overrides win)
 ```
@@ -79,9 +80,10 @@ The flow:
 1. `tokens.css` defines the design system (CSS custom properties)
 2. The tool's original CSS loads (defines its own dark/colorful styles)
 3. `skin.css` loads last and overrides the tool's colors, fonts, surfaces
-4. `shell.css` adds the top bar + footer
-5. `hub.css` styles the hub page
-6. The result: same look on every page
+4. `responsive.css` loads after skin and applies the mobile-first layer
+5. `shell.css` adds the top bar + footer
+6. `hub.css` styles the hub page
+7. The result: same look on every page, responsive across all sizes
 
 ---
 
@@ -90,6 +92,47 @@ The flow:
 The unified theme is "**Amazon Pro**" — a clean, professional, Amazon-inspired
 design language that mirrors the real Seller Central aesthetic, so VAs feel at
 home.
+
+### Responsive breakpoints (new in v1.1)
+
+| Token        | Value  | Use |
+|--------------|--------|-----|
+| `--bp-sm`    | 480px  | small phones → large phones |
+| `--bp-md`    | 768px  | tablet portrait threshold |
+| `--bp-lg`    | 1024px | tablet landscape / small desktop |
+| `--bp-xl`    | 1280px | wide desktop |
+| `--tap`      | 44px   | WCAG 2.5.5 / Apple HIG min touch target |
+| `--nav-h`    | 56px   | shared with topbar height |
+
+### Fluid typography
+
+| Token      | Formula                                | Use |
+|------------|----------------------------------------|-----|
+| `--fs-body`| `clamp(0.875rem, 0.8rem + 0.4vw, 1rem)` | body text |
+| `--fs-h1`  | `clamp(1.75rem, 1.2rem + 2.6vw, 2.5rem)`| h1 |
+| `--fs-h2`  | `clamp(1.25rem, 1rem + 1.2vw, 1.5rem)` | h2 |
+| `--fs-h3`  | `clamp(1.0625rem, 0.95rem + 0.6vw, 1.25rem)` | h3 |
+
+### Breakpoint behaviour
+
+**Mobile (< 768px):**
+- All sections stack vertically (1 column for `.pha-tools`, `.pha-principles`, `.pha-hero`)
+- Navigation collapses into a hamburger drawer with scrim, ESC-to-close, focus-trap
+- Touch targets enforced at 44px min on buttons, inputs, nav links
+- Footer stacks vertically; meta line gets full width
+
+**Tablet (768px – 1023.98px):**
+- 2-column grid for tools and principles
+- Hero stays 2-column (main + side)
+- Nav becomes a horizontal scroll (no hamburger)
+
+**Desktop (≥ 1024px):**
+- Original layout preserved (3-column tool grid, 4-column principles)
+
+### Utilities (new in v1.1)
+
+- **`.stack-mobile`** — wrap any block to force 1-col layout at `<768px` regardless of its native grid/flex template.
+- **`.table-scroll`** — wrap any wide table to get horizontal scroll on mobile instead of overflowing the page. Pair with **`.table-scroll-wrap`** to show a fade hint when content overflows (auto-detected via JS).
 
 ### Color tokens
 

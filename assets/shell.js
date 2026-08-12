@@ -4,6 +4,8 @@
    - Injects topbar + footer if not present
    - Applies unified skin (tokens + skin.css) to tool pages
    - Wraps tool body in .pha-skin-wrap
+   - Auto-injects responsive.css (mobile-first layer)
+   - Inserts hamburger button + scrim; wires open/close
    ============================================================ */
 (function () {
   'use strict';
@@ -43,6 +45,18 @@
     head.appendChild(s);
   }
 
+  // Inject the responsive layer (mobile-first + hamburger + touch targets).
+  // Loaded AFTER skin.css so its rules win specificity ties.
+  function injectResponsive() {
+    if (document.querySelector('link[data-pha-responsive]')) return;
+    var head = document.head;
+    var r = document.createElement('link');
+    r.rel = 'stylesheet';
+    r.href = 'assets/responsive.css';
+    r.setAttribute('data-pha-responsive', '1');
+    head.appendChild(r);
+  }
+
   // Mark active nav link
   function markActive(currentId) {
     var links = document.querySelectorAll('.pha-nav a[data-pha-tool]');
@@ -58,13 +72,11 @@
   function buildNav(currentId) {
     var nav = document.querySelector('.pha-nav');
     if (!nav) return;
-    // If nav is already populated by the page author, just mark active links
     if (nav.children.length > 0) {
       nav.dataset.phaBuilt = '1';
       return;
     }
     nav.dataset.phaBuilt = '1';
-    // Don't link to the current page
     var toShow = TOOLS.filter(function (t) { return t.id !== currentId; });
     toShow.forEach(function (t) {
       var a = document.createElement('a');
@@ -73,6 +85,120 @@
       a.textContent = t.name;
       nav.appendChild(a);
     });
+  }
+
+  // Build and wire the hamburger button.
+  // Returns the button element (or null if already present).
+  function ensureBurger() {
+    if (document.querySelector('.pha-burger')) return null;
+    var topbar = document.querySelector('.pha-topbar');
+    if (!topbar) return null;
+    topbar.classList.add('pha-has-burger');
+
+    var btn = document.createElement('button');
+    btn.className = 'pha-burger';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', 'Toggle navigation');
+    btn.setAttribute('aria-controls', 'pha-primary-nav');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML =
+      '<svg class="bars" viewBox="0 0 24 24" aria-hidden="true">' +
+        '<line x1="4" y1="6"  x2="20" y2="6"/>' +
+        '<line x1="4" y1="12" x2="20" y2="12"/>' +
+        '<line x1="4" y1="18" x2="20" y2="18"/>' +
+      '</svg>' +
+      '<svg class="x" viewBox="0 0 24 24" aria-hidden="true">' +
+        '<line x1="6"  y1="6"  x2="18" y2="18"/>' +
+        '<line x1="18" y1="6"  x2="6"  y2="18"/>' +
+      '</svg>';
+    topbar.appendChild(btn);
+
+    var nav = topbar.querySelector('.pha-nav');
+    if (nav && !nav.id) nav.id = 'pha-primary-nav';
+
+    // Build scrim if not present
+    var scrim = document.querySelector('.pha-nav-scrim');
+    if (!scrim) {
+      scrim = document.createElement('div');
+      scrim.className = 'pha-nav-scrim';
+      scrim.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(scrim);
+    }
+
+    var isOpen = false;
+
+    function open() {
+      if (isOpen) return;
+      isOpen = true;
+      btn.setAttribute('aria-expanded', 'true');
+      if (nav) nav.classList.add('is-open');
+      scrim.classList.add('is-on');
+      document.body.classList.add('pha-burger-active');
+    }
+    function close() {
+      if (!isOpen) return;
+      isOpen = false;
+      btn.setAttribute('aria-expanded', 'false');
+      if (nav) nav.classList.remove('is-open');
+      scrim.classList.remove('is-on');
+      document.body.classList.remove('pha-burger-active');
+    }
+    function toggle() { isOpen ? close() : open(); }
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      toggle();
+    });
+
+    // close on scrim click
+    scrim.addEventListener('click', function () { close(); });
+
+    // close on ESC
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen) {
+        close();
+        btn.focus();
+      }
+    });
+
+    // close when navigating (any nav link click)
+    if (nav) {
+      nav.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (a) close();
+      });
+    }
+
+    // close if viewport grows past mobile breakpoint
+    var mq = window.matchMedia('(min-width: 768px)');
+    var onChange = function () { if (mq.matches) close(); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+
+    return btn;
+  }
+
+  // Annotate any .table-scroll-wrap with .has-overflow when content
+  // is wider than its container (used by the hint gradient).
+  function annotateOverflow() {
+    var wraps = document.querySelectorAll('.table-scroll-wrap');
+    for (var i = 0; i < wraps.length; i++) {
+      (function (wrap) {
+        var check = function () {
+          if (wrap.scrollWidth > wrap.clientWidth + 2) {
+            wrap.classList.add('has-overflow');
+          } else {
+            wrap.classList.remove('has-overflow');
+          }
+        };
+        check();
+        if (window.ResizeObserver) {
+          new ResizeObserver(check).observe(wrap);
+        } else {
+          window.addEventListener('resize', check);
+        }
+      })(wraps[i]);
+    }
   }
 
   // Auto-inject topbar + footer if page didn't include them
@@ -134,7 +260,6 @@
     var after = footer || null;
     var wrap = document.createElement('div');
     wrap.className = 'pha-skin-wrap';
-    // Move all children that are between topbar and footer into the wrap
     var node = before;
     var moved = [];
     while (node && node !== after) {
@@ -142,35 +267,33 @@
       node = node.nextSibling;
     }
     if (moved.length === 0) {
-      // No topbar/footer found — wrap whole body
       while (document.body.firstChild) {
         wrap.appendChild(document.body.firstChild);
       }
       document.body.appendChild(wrap);
     } else {
       moved.forEach(function (n) { wrap.appendChild(n); });
-      // Insert wrap right after the topbar (or at start of body)
       if (topbar) topbar.parentNode.insertBefore(wrap, topbar.nextSibling);
       else document.body.insertBefore(wrap, document.body.firstChild);
     }
   }
 
   // Init
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      injectSkin();
-      ensureChrome();
-      applySkin();
-      wrapContent();
-      buildNav(currentToolId());
-      markActive(currentToolId());
-    });
-  } else {
+  function init() {
     injectSkin();
+    injectResponsive();
     ensureChrome();
     applySkin();
     wrapContent();
     buildNav(currentToolId());
     markActive(currentToolId());
+    ensureBurger();
+    annotateOverflow();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
 })();
