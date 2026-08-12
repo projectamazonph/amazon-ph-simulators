@@ -78,6 +78,15 @@
   --fs-32:           32px;
   --fs-40:           40px;
 
+  /* fluid type — clamp(min, preferred, max). Min from real devices,
+     preferred scales with viewport width, max caps at desktop size.
+     Apply to body text (min ~14px desktop, ~12.25px @ 320px). */
+  --fs-body:         clamp(0.875rem, 0.8rem + 0.4vw, 1rem);
+  --fs-body-sm:      clamp(0.8125rem, 0.75rem + 0.3vw, 0.9375rem);
+  --fs-h1:           clamp(1.75rem, 1.2rem + 2.6vw, 2.5rem);
+  --fs-h2:           clamp(1.25rem, 1rem + 1.2vw, 1.5rem);
+  --fs-h3:           clamp(1.0625rem, 0.95rem + 0.6vw, 1.25rem);
+
   --fw-regular:      400;
   --fw-medium:       500;
   --fw-semibold:     600;
@@ -122,6 +131,14 @@
   --sidenav-w-mini:  64px;
   --content-px:      24px;
   --content-pb:      96px;
+
+  /* ---------- responsive ---------- */
+  --bp-sm:           480px;     /* small phones -> large phones */
+  --bp-md:           768px;     /* tablet portrait threshold */
+  --bp-lg:           1024px;    /* tablet landscape / small desktop */
+  --bp-xl:           1280px;    /* wide desktop */
+  --tap:             44px;      /* WCAG 2.5.5 / Apple HIG min touch target */
+  --nav-h:           56px;      /* shared with topbar height */
 
   /* ---------- motion ---------- */
   --ease:            cubic-bezier(.2, .7, .3, 1);
