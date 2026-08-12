@@ -404,3 +404,48 @@ body[data-pha-tool] textarea {
 @media (min-width: 1024px) {
   .pha-burger { display: none; }
 }
+
+/* ============================================================
+   ACCESSIBILITY: reduced motion (re-affirm on top of shell + skin)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .pha-burger,
+  .pha-topbar .pha-nav,
+  .pha-nav-scrim,
+  .table-scroll-wrap::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   PRINT — hide chrome, simplify layout
+   ============================================================ */
+@media print {
+  .pha-topbar,
+  .pha-footer,
+  .pha-nav-scrim,
+  .pha-burger { display: none !important; }
+  body.pha-skin,
+  body[data-pha-tool] {
+    background: #fff !important;
+    color: #000 !important;
+    overflow: visible !important;
+  }
+  .pha-skin-wrap {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  .table-scroll { overflow: visible !important; }
+}
+
+/* ============================================================
+   JS HOOKS — classes added by shell.js to coordinate state
+   ============================================================
+   .pha-has-burger       — topbar has the hamburger button injected
+   .pha-burger-active    — body class while drawer is open
+   .is-open              — applied to .pha-nav when expanded
+   .has-overflow         — applied to .table-scroll-wrap when JS
+                            detects inner content is wider than
+                            its container (hint gradient visible)
+*/
