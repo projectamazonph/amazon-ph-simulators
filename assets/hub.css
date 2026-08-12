@@ -62,7 +62,7 @@ main.pha-skin-wrap { padding-top: 28px; }
 }
 .pha-hero-main h1 {
   font-family: var(--font-disp);
-  font-size: 40px;
+  font-size: var(--fs-h1);
   line-height: 1.05;
   font-weight: var(--fw-bold);
   letter-spacing: -0.6px;
@@ -170,7 +170,7 @@ main.pha-skin-wrap { padding-top: 28px; }
 }
 .pha-sec-head h2 {
   font-family: var(--font-disp);
-  font-size: 18px;
+  font-size: var(--fs-h2);
   font-weight: var(--fw-bold);
   letter-spacing: 0.04em;
   text-transform: uppercase;
