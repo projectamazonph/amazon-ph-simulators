@@ -87,6 +87,14 @@
     });
   }
 
+  // PR #5: aria-label swap on toggle (was static "Toggle navigation")
+  function syncBurgerLabel(btn, isOpen) {
+    btn.setAttribute(
+      'aria-label',
+      isOpen ? 'Close tools menu' : 'Open tools menu'
+    );
+  }
+
   // Build and wire the hamburger button.
   // Returns the button element (or null if already present).
   function ensureBurger() {
@@ -98,9 +106,9 @@
     var btn = document.createElement('button');
     btn.className = 'pha-burger';
     btn.type = 'button';
-    btn.setAttribute('aria-label', 'Toggle navigation');
     btn.setAttribute('aria-controls', 'pha-primary-nav');
     btn.setAttribute('aria-expanded', 'false');
+    syncBurgerLabel(btn, false); // PR #5: initial label
     btn.innerHTML =
       '<svg class="bars" viewBox="0 0 24 24" aria-hidden="true">' +
         '<line x1="4" y1="6"  x2="20" y2="6"/>' +
@@ -131,6 +139,7 @@
       if (isOpen) return;
       isOpen = true;
       btn.setAttribute('aria-expanded', 'true');
+      syncBurgerLabel(btn, true); // PR #5
       if (nav) nav.classList.add('is-open');
       scrim.classList.add('is-on');
       document.body.classList.add('pha-burger-active');
@@ -139,6 +148,7 @@
       if (!isOpen) return;
       isOpen = false;
       btn.setAttribute('aria-expanded', 'false');
+      syncBurgerLabel(btn, false); // PR #5
       if (nav) nav.classList.remove('is-open');
       scrim.classList.remove('is-on');
       document.body.classList.remove('pha-burger-active');
