@@ -68,15 +68,17 @@ body[data-pha-tool] h3 {
   background: var(--shell-bg-soft);
   border: 1px solid var(--shell-line);
   color: var(--shell-ink);
-  width: var(--tap);
-  height: var(--tap);
+  width: 48px;            /* PR #5: bumped from 44px (--tap) to 48px — Apple HIG recommended */
+  height: 48px;
   border-radius: var(--shell-radius);
   cursor: pointer;
   padding: 0;
   align-items: center;
   justify-content: center;
   flex: none;
-  transition: border-color var(--d-fast) var(--ease), background var(--d-fast) var(--ease);
+  transition: border-color var(--d-fast) var(--ease),
+              background var(--d-fast) var(--ease),
+              transform var(--d-fast) var(--ease);
 }
 .pha-burger:hover,
 .pha-burger:focus-visible {
@@ -85,15 +87,24 @@ body[data-pha-tool] h3 {
   outline: 2px solid var(--shell-orange);
   outline-offset: 2px;
 }
+.pha-burger:active { transform: scale(0.96); }   /* PR #5: tactile press feedback */
 .pha-burger svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   stroke: currentColor;
   fill: none;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  transition: transform var(--d-fast) var(--ease),
+              opacity var(--d-fast) var(--ease);
 }
+/* PR #5: smooth crossfade between bars and X — instead of display:none/block */
+.pha-burger .x { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+.pha-burger .bars { opacity: 1; transform: rotate(0deg) scale(1); }
+.pha-burger[aria-expanded="true"] .bars { opacity: 0; transform: rotate(90deg) scale(0.6); }
+.pha-burger[aria-expanded="true"] .x { opacity: 1; transform: rotate(0deg) scale(1); }
+/* keep the old display-based fallback as a no-JS safety net */
 .pha-burger .x { display: none; }
 .pha-burger[aria-expanded="true"] .bars { display: none; }
 .pha-burger[aria-expanded="true"] .x { display: block; }
@@ -240,9 +251,9 @@ body[data-pha-tool] textarea {
     overflow: hidden;
     opacity: 0;
     pointer-events: none;
-    transition: max-height var(--d-base) var(--ease),
-                opacity var(--d-base) var(--ease),
-                padding var(--d-base) var(--ease);
+    transition: max-height var(--d-fast) var(--ease),   /* PR #5: was --d-base, now --d-fast */
+                opacity var(--d-fast) var(--ease),
+                padding var(--d-fast) var(--ease);
     padding-top: 0;
     padding-bottom: 0;
   }
@@ -258,6 +269,12 @@ body[data-pha-tool] textarea {
     padding: 0 12px;
     font-size: 14px;
     justify-content: flex-start;
+    border-left: 3px solid transparent;   /* PR #5: reserve space for active accent */
+    border-radius: 0 var(--shell-radius) var(--shell-radius) 0;
+  }
+  .pha-topbar .pha-nav a.is-current {   /* PR #5: active tool accent on mobile drawer */
+    border-left-color: var(--shell-orange);
+    background: rgba(255, 153, 0, 0.08);
   }
 
   .pha-nav-scrim.is-on {
@@ -279,6 +296,12 @@ body[data-pha-tool] textarea {
   }
   main.pha-skin-wrap {
     padding-top: 16px !important;
+  }
+
+  /* PR #5: body scroll lock while drawer is open (mobile only) */
+  body.pha-skin.pha-burger-active,
+  body[data-pha-tool].pha-burger-active {
+    overflow: hidden;
   }
 
   .pha-footer {
@@ -412,6 +435,7 @@ body[data-pha-tool] textarea {
   .pha-burger,
   .pha-topbar .pha-nav,
   .pha-nav-scrim,
+  .pha-burger svg,
   .table-scroll-wrap::after {
     transition: none !important;
     animation: none !important;
@@ -448,4 +472,11 @@ body[data-pha-tool] textarea {
    .has-overflow         — applied to .table-scroll-wrap when JS
                             detects inner content is wider than
                             its container (hint gradient visible)
+
+   PR #5 additions:
+   .pha-burger-active is also used as a body scroll-lock hook
+   .pha-burger .x / .bars get opacity+transform crossfade
+   .pha-burger:active gets a tactile scale(0.96)
+   .pha-topbar .pha-nav a gets a 3px transparent left border reserved
+   .pha-topbar .pha-nav a.is-current gets an orange left accent
 */
