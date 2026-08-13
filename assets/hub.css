@@ -322,7 +322,7 @@ main.pha-skin-wrap { padding-top: 28px; }
   line-height: 1.1;
 }
 /* PR #6: tool card descriptor chip (2-word label under tool name) */
-.pha-tcard-desc {
+.pha-tcard-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -340,7 +340,7 @@ main.pha-skin-wrap { padding-top: 28px; }
   line-height: 1.3;
   margin-top: -2px;
 }
-.pha-tcard:hover .pha-tcard-desc {
+.pha-tcard:hover .pha-tcard-pill {
   background: rgba(255, 153, 0, 0.14);
 }
 .pha-tcard-desc {
