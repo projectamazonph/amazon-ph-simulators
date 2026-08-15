@@ -1004,7 +1004,7 @@ function showDebrief(){
 
   const verdicts={
     A:'Textbook pacing. You saved your firepower for the evening rush — and it paid off.',
-    B:'Strong run. A little more discipline in the dead hours and you\'ll match the instructor.',
+    B:'Strong run. A little more discipline in the dead hours and you''ll match the target pattern.',
     C:'You left the auction early. The day\'s biggest buyers shop 7–10 PM — you weren\'t there.',
     D:'The budget burned before the buyers showed up. Rethink WHEN you want to be visible.',
     F:'No spend, no sales. A paused campaign is the safest campaign — and the most useless one.',
@@ -1059,7 +1059,7 @@ function showDebrief(){
   if(score>=86)
     lessons.push('You covered the peak window at full strength. <b>Log this multiplier pattern</b> and reuse it on the live account.');
   if(lessons.length===0)
-    lessons.push('Compare your grid against the instructor\'s: near-zero overnight, building through the day, 2× from 8–11 PM.');
+    lessons.push('Compare your grid against the target pattern: near-zero overnight, building through the day, 2× from 8–11 PM.');
   $('dbLessons').innerHTML=lessons.slice(0,4).map(l=>`<li>${l}</li>`).join('');
 
   if(!S.best||score>S.best.score){S.best={score,grade};bestTxt.textContent=grade+'·'+score;}
