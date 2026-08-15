@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AdConsole Pro — Amazon PPC Teaching Simulator</title>
+<title>AdConsole Pro — Amazon PPC Operator Simulator</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/400.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/500.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/600.css">
@@ -555,7 +555,7 @@ kbd{background:#1B242F;border:1px solid #37475A;border-bottom-width:2px;border-r
       <span class="logo-t">amazon<b>&nbsp;ads</b></span>
       <svg class="smile" width="46" height="12" viewBox="0 0 46 12"><path d="M2 2c8 8 26 8 36-1" stroke="#FF9900" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M38 1l5 .5-2.6 4.2" stroke="#FF9900" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
-    <span class="tb-tag">Campaign Manager<em>PPC Teaching Simulator</em></span>
+    <span class="tb-tag">Campaign Manager<em>PPC Operator</em></span>
   </div>
   <div class="tb-search">
     <input id="globalSearch" placeholder="Search campaigns, keywords, search terms…  (press Enter)">
@@ -1023,11 +1023,11 @@ function markLesson(id){
 function celebrate(){
  const colors=['#FF9900','#067D62','#007185','#E47911','#2BB673','#B12704'];
  const pieces=Array.from({length:38},()=>'<i style="left:'+rnd(0,100)+'%;background:'+pick(colors)+';animation-delay:'+rnd(0,.9)+'s;animation-duration:'+rnd(1.6,2.7)+'s"></i>').join('');
- openModal('<div class="confetti">'+pieces+'</div><div class="m-h"><h2>🏆 Academy complete!</h2><button class="x" data-act="modal-close">✕</button></div>'+
+ openModal('<div class="confetti">'+pieces+'</div><div class="m-h"><h2>🏆 All missions complete!</h2><button class="x" data-act="modal-close">✕</button></div>'+
  '<div class="m-b" style="text-align:center;padding:26px 20px">'+
  '<div style="font-size:46px">🎓</div>'+
  '<h3 style="font-size:19px;margin:8px 0 6px">All '+LESSONS.length+' missions complete</h3>'+
- '<p style="color:var(--sub);font-size:13px;max-width:400px;margin:0 auto 16px;line-height:1.55">Your class has launched campaigns, harvested terms, blocked waste, tuned placements, survived market shocks and automated budgets — the full PPC operator loop, end to end.</p>'+
+ '<p style="color:var(--sub);font-size:13px;max-width:400px;margin:0 auto 16px;line-height:1.55">You've launched campaigns, harvested terms, blocked waste, tuned placements, survived market shocks and automated budgets — the full PPC operator loop, end to end.</p>'+
  '<button class="btn btn-p" data-act="modal-close">Keep optimizing →</button></div>');
 }
 
@@ -1512,7 +1512,7 @@ function termsTableHTML(list,cfg){
  return '<div class="card"><div class="fbar" style="border-bottom:1px solid var(--border2)">'+
    '<input class="inp" placeholder="Search terms…" value="'+esc(f.q)+'" data-act="f-term-q" style="max-width:280px">'+
    '<span class="fcount">'+rows.length+' terms · sorted by spend</span></div>'+
-  '<div class="hintbar">💡 <span><b>Teaching tip:</b> terms marked <span style="color:var(--red);font-weight:700">low intent</span> rarely convert — negate them. Terms with orders and healthy ACOS should be harvested into exact-match keywords.</span></div>'+
+  '<div class="hintbar">💡 <span><b>Pro tip:</b> terms marked <span style="color:var(--red);font-weight:700">low intent</span> rarely convert — negate them. Terms with orders and healthy ACOS should be harvested into exact-match keywords.</span></div>'+
   (rows.length?'<div class="twrap"><table class="tbl"><thead><tr><th>Search term</th>'+(campScope?'':'<th>Campaign</th>')+'<th class="r">Impressions</th><th class="r">Clicks</th><th class="r">Spend</th><th class="r">Sales</th><th class="r">ACOS</th><th class="r">Orders</th><th class="r">Action</th></tr></thead><tbody>'+body+'</tbody></table></div>'
    :'<div class="empty"><span class="big">🕵️</span>No search terms recorded yet. Run the simulator — real shopper queries will appear here.</div>')+'</div>';
 }
@@ -1651,7 +1651,7 @@ function vAcademy(){
    '</div>'+
    '<div class="ls-b"><p>'+l.how+'</p><div style="margin-top:9px"><button class="btn btn-sm btn-p" data-act="lesson-go" data-go="'+l.go+'" data-view="'+(l.view||'')+'">'+l.goL+'</button></div></div>'+
   '</div>';}).join('');
- return pageHead('PPC Academy','A hands-on curriculum — complete each mission in the simulator')+
+ return pageHead('PPC Academy','Complete each mission inside the simulator')+
  '<div class="acgrid">'+
   '<div>'+
    '<div class="card rise" style="text-align:center;padding:18px 16px">'+
@@ -1841,7 +1841,7 @@ const TOURA=[
  {sel:'#simbar',t:'Time machine',txt:'Press play to run hourly auctions. Speed up to 10× or skip whole days. Budgets reset at midnight and rules fire at daybreak.'},
  {sel:'[data-act="create"]',t:'Launch campaigns',txt:'Build SP / SB / SD campaigns with budgets, bid strategies, products and keywords — just like the real console.'},
  {sel:'.nv[data-view="searchterms"]',t:'Harvest & negate',txt:'Real shopper queries stream in as time runs. Promote winners to exact match, block wasteful terms.'},
- {sel:'.nv[data-view="academy"]',t:'PPC Academy',txt:'Ten guided missions turn your class into operators. Progress is tracked automatically as you work.'},
+ {sel:'.nv[data-view="academy"]',t:'PPC Academy',txt:'Ten missions walk you through the operator workflow. Progress saves as you go.'},
 ];
 let tourI=0;
 function startTour(){
@@ -1877,8 +1877,8 @@ function welcomeHTML(){
  '<div style="margin-top:auto;display:flex;flex-direction:column;gap:7px;font-size:11px;color:#C8D0DA;font-family:Archivo;letter-spacing:.6px">'+
  '<span><i style="color:var(--orange)">▸</i> LIVE AUCTION ENGINE</span><span><i style="color:var(--orange)">▸</i> '+LESSONS.length+' GUIDED MISSIONS</span><span><i style="color:var(--orange)">▸</i> MARKET SHOCK EVENTS</span><span><i style="color:var(--orange)">▸</i> PLACEMENT & DAYPART DATA</span></div></div>'+
  '<div style="padding:22px">'+
- '<h2 style="font-family:Archivo;font-size:20px;margin-bottom:6px">Welcome, instructor.</h2>'+
- '<p style="font-size:13px;color:var(--sub);line-height:1.55;margin-bottom:12px">This is a faithful, living replica of the Amazon PPC console. Time runs hourly, auctions clear against real bid math, budgets cap out, and search terms stream in — so your class learns by doing, not by slides.</p>'+
+ '<h2 style="font-family:Archivo;font-size:20px;margin-bottom:6px">Welcome.</h2>'+
+ '<p style="font-size:13px;color:var(--sub);line-height:1.55;margin-bottom:12px">This is a faithful, living replica of the Amazon PPC console. Time runs hourly, auctions clear against real bid math, budgets cap out, and search terms stream in — so you learn by doing, not by slides.</p>'+
  feats.map(r=>'<div class="welrow"><span style="width:32px;height:32px;border-radius:8px;background:'+r[1]+';display:grid;place-items:center;font-size:15px;flex:none">'+r[0]+'</span><div><b style="font-family:Archivo;font-size:13px">'+r[2]+'</b><span style="font-size:12px;color:var(--sub)"> — '+r[3]+'</span></div></div>').join('')+
  '<div style="display:flex;gap:9px;margin-top:16px;flex-wrap:wrap"><button class="btn btn-p" data-act="wel-tour">▶ Take the 60-second tour</button><button class="btn" data-act="wel-play">Just start playing</button><button class="btn" data-act="modal-close" style="border:none;color:var(--sub)">Skip</button></div>'+
  '</div></div>';
@@ -2131,7 +2131,7 @@ for(let d=0;d<14;d++){for(let h=0;h<24;h++){state.hour=h;simHour();}state.day++;
 state.day0=state.day;
 for(let h=0;h<=9;h++){state.hour=h;simHour();}
 state.silent=false;
-log('info','Welcome to the <b>PPC Teaching Simulator</b>. Press play to run live auctions, or start with the Academy.');
+log('info','Welcome to the <b>AdConsole Pro</b>. Press play to run live auctions, or start with the Tour.');
 log('info','<b>5 campaigns</b> imported with 14 days of history. “SP | Earbuds | Core Exact” is trending near its budget cap.');
 updateSimBar();
 render();
