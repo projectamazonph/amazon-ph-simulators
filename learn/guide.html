@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student guide — PPC Coach</title>
+<meta name="description" content="A six-phase path from opening the PPC Coach app for the first time to running a real Amazon PPC account under supervision.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=PT+Sans:wght@400;700&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/skin.css">
+<link rel="stylesheet" href="../assets/shell.css">
+<link rel="stylesheet" href="../assets/hub.css">
+<style>
+  .learn-wrap { max-width: 920px; margin: 0 auto; padding: 28px 24px 64px; }
+  .learn-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-orange); margin-bottom: 8px; }
+  .learn-h1 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: var(--fs-h1); color: var(--c-ink); margin: 0 0 10px; line-height: 1.1; }
+  .learn-lede { font-size: 16px; line-height: 1.6; color: var(--c-sub); max-width: 720px; margin-bottom: 24px; }
+  .print-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 4px 10px; border: 1px solid #E7E7E7; border-radius: 999px; background: #fff; color: var(--c-sub); margin-bottom: 16px; }
+  .guide-rules { background: #FFF4E5; border: 1px solid #FFD9A8; border-radius: 12px; padding: 20px 22px; margin-bottom: 28px; }
+  .guide-rules h2 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; color: #6B3A00; margin: 0 0 12px; }
+  .guide-rules ol { margin: 0; padding-left: 22px; color: #6B3A00; }
+  .guide-rules li { font-size: 14px; line-height: 1.7; margin-bottom: 6px; }
+  .guide-rules b { color: #6B3A00; }
+  .phase { border: 1px solid #E7E7E7; border-radius: 12px; background: #fff; margin: 18px 0; overflow: hidden; }
+  .phase-h { display: flex; align-items: center; gap: 10px; padding: 14px 18px; }
+  .phase-h.week-0 { background: #F1F5F9; color: #1E293B; }
+  .phase-h.week-1 { background: #D1FAE5; color: #044D3E; }
+  .phase-h.week-2 { background: #DBEAFE; color: #0C4A6E; }
+  .phase-h.week-3 { background: #FEF3C7; color: #78350F; }
+  .phase-h.week-4 { background: #EDE9FE; color: #4C1D95; }
+  .phase-h.after { background: #FFE4E6; color: #881337; }
+  .phase-h-num { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; }
+  .phase-h-sep { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; }
+  .phase-h-title { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; }
+  .phase-h-time { margin-left: auto; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; background: rgba(255,255,255,.6); border-radius: 999px; }
+  .phase-b { padding: 16px 20px 20px; }
+  .phase-b-l { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-faint); margin: 0 0 4px; }
+  .phase-b-g { font-size: 15px; font-weight: 700; color: var(--c-ink); margin: 0 0 10px; }
+  .phase-b ul { list-style: none; margin: 0 0 12px; padding: 0; }
+  .phase-b li { font-size: 14px; line-height: 1.7; color: var(--c-ink); padding-left: 18px; position: relative; margin-bottom: 4px; }
+  .phase-b li::before { content: "▸"; color: var(--c-orange); position: absolute; left: 0; top: 0; }
+  .phase-exit { background: #E6F4F0; border: 1px solid #B6E2D2; border-radius: 8px; padding: 10px 14px; font-size: 14px; color: #044D3E; }
+  .phase-exit b { color: #044D3E; }
+  .stuck, .grad { background: #fff; border: 1px solid #E7E7E7; border-radius: 12px; padding: 20px 22px; margin-top: 28px; }
+  .stuck h2, .grad h2 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; margin: 0 0 12px; color: var(--c-ink); }
+  .stuck ol, .grad ul { margin: 0; padding-left: 22px; color: var(--c-ink); }
+  .stuck li, .grad li { font-size: 14px; line-height: 1.7; margin-bottom: 6px; }
+  .grad { background: #FFF4E5; border-color: #FFD9A8; }
+  .grad h2 { color: #6B3A00; }
+  .grad li { color: #6B3A00; }
+  .grad li b { color: #6B3A00; }
+  .check { display: flex; align-items: center; gap: 8px; padding: 4px 0; }
+  .check::before { content: ""; width: 14px; height: 14px; border-radius: 3px; border: 2px solid #FFB84D; display: inline-block; flex-shrink: 0; }
+  @media print { .phase { break-inside: avoid; } .guide-rules, .stuck, .grad { break-inside: avoid; } .print-hint { display: none; } }
+</style>
+</head>
+<body>
+
+<main class="pha-skin-wrap" style="max-width: 1040px;">
+  <div class="learn-wrap">
+
+    <header>
+      <div class="learn-eyebrow">Student guide</div>
+      <h1 class="learn-h1">From zero to operating VA</h1>
+      <p class="learn-lede">
+        A six-phase path from opening the app for the first time to running
+        a real account under supervision. About 30 hours total. Take it at
+        your own pace — but finish each phase before moving to the next.
+      </p>
+      <span class="print-hint">🖨️ Press <kbd>Ctrl</kbd>+<kbd>P</kbd> to save this page as PDF</span>
+    </header>
+
+    <section class="guide-rules">
+      <h2>The two rules that matter most</h2>
+      <ol>
+        <li><b>One change at a time.</b> Science beats vibes. Change one variable, wait a week, compare before-and-after, log it.</li>
+        <li><b>Stock, price, reviews, competitors — in that order.</b> When something breaks, check the boring four before touching any campaign setting.</li>
+      </ol>
+    </section>
+
+    <article class="phase">
+      <header class="phase-h week-0">
+        <span class="phase-h-num">Week 0</span><span class="phase-h-sep">·</span>
+        <span class="phase-h-title">Set up</span>
+        <span class="phase-h-time">~2 hours</span>
+      </header>
+      <div class="phase-b">
+        <div class="phase-b-l">Goal</div>
+        <p class="phase-b-g">Get oriented and pass the first two module quizzes.</p>
+        <div class="phase-b-l">What to do</div>
+        <ul>
+          <li>Open the app. Read the Dashboard. Skim the Glossary.</li>
+          <li>Take the Module 0 quiz (Amazon Basics) cold — see where you stand.</li>
+          <li>Read every Module 0 lesson. Mark each complete. Retake the quiz.</li>
+          <li>Read every Module 1 lesson (What is PPC?). Take the quiz.</li>
+        </ul>
+        <div class="phase-exit"><b>Exit check:</b> You can explain organic vs paid, the Buy Box, and ACOS in one sentence each.</div>
+      </div>
+    </article>
+
+    <article class="phase">
+      <header class="phase-h week-1">
+        <span class="phase-h-num">Week 1</span><span class="phase-h-sep">·</span>
+        <span class="phase-h-title">Learn the money</span>
+        <span class="phase-h-time">~6 hours</span>
+      </header>
+      <div class="phase-b">
+        <div class="phase-b-l">Goal</div>
+        <p class="phase-b-g">Own ACOS, ROAS, TACoS, and break-even.</p>
+        <div class="phase-b-l">What to do</div>
+        <ul>
+          <li>Read Modules 2 (Money Math) and 3 (Campaign Structure).</li>
+          <li>Pass both quizzes at 70%+.</li>
+          <li>Open the Report Builder, plug in fake numbers, generate a sample report.</li>
+          <li>Skim the Glossary cards for ACOS, ROAS, TACoS, break-even — copy them to a personal note.</li>
+        </ul>
+        <div class="phase-exit"><b>Exit check:</b> You can compute ACOS from spend and sales, and explain why break-even ACOS equals your margin.</div>
+      </div>
+    </article>
+
+    <article class="phase">
+      <header class="phase-h week-2">
+        <span class="phase-h-num">Week 2</span><span class="phase-h-sep">·</span>
+        <span class="phase-h-title">Practice the core loop</span>
+        <span class="phase-h-time">~6 hours</span>
+      </header>
+      <div class="phase-b">
+        <div class="phase-b-l">Goal</div>
+        <p class="phase-b-g">Confidently run the weekly search term harvest.</p>
+        <div class="phase-b-l">What to do</div>
+        <ul>
+          <li>Read Modules 4 (Keywords &amp; Match Types) and 8 (Search Terms &amp; Negatives).</li>
+          <li>Open the Search Term Trainer. Run it 3 times. Aim for 80%+ on the third.</li>
+          <li>Open the Campaign Builder. Build a starter campaign for each of the 3 practice products. Score 70+ on each.</li>
+          <li>Pass both module quizzes at 70%+.</li>
+        </ul>
+        <div class="phase-exit"><b>Exit check:</b> You can look at a search term row and pick the right action in under 30 seconds.</div>
+      </div>
+    </article>
+
+    <article class="phase">
+      <header class="phase-h week-3">
+        <span class="phase-h-num">Week 3</span><span class="phase-h-sep">·</span>
+        <span class="phase-h-title">Set up and budget</span>
+        <span class="phase-h-time">~6 hours</span>
+      </header>
+      <div class="phase-b">
+        <div class="phase-b-l">Goal</div>
+        <p class="phase-b-g">Build a four-week launch plan with safe bids and budgets.</p>
+        <div class="phase-b-l">What to do</div>
+        <ul>
+          <li>Read Modules 6 (Campaign Setup) and 7 (Bids &amp; Budgets).</li>
+          <li>Walk through the New Product Launch Plan from Module 6.</li>
+          <li>Use the Campaign Builder to mock a Week-1 → Week-4 budget split.</li>
+          <li>Pass both module quizzes at 70%+.</li>
+        </ul>
+        <div class="phase-exit"><b>Exit check:</b> You can explain why a profitable campaign running out of budget by noon is leaving money on the table.</div>
+      </div>
+    </article>
+
+    <article class="phase">
+      <header class="phase-h week-4">
+        <span class="phase-h-num">Week 4</span><span class="phase-h-sep">·</span>
+        <span class="phase-h-title">Operate and report</span>
+        <span class="phase-h-time">~8 hours</span>
+      </header>
+      <div class="phase-b">
+        <div class="phase-b-l">Goal</div>
+        <p class="phase-b-g">Run a full weekly cycle and pass the Final Exam.</p>
+        <div class="phase-b-l">What to do</div>
+        <ul>
+          <li>Read Modules 9 (Weekly Optimization) and 10 (Reporting &amp; Troubleshooting).</li>
+          <li>Open the Report Builder. Write a fake but realistic weekly report. Copy it. Critique your own writing.</li>
+          <li>Open the Search Term Trainer and the Campaign Builder one more time. Beat your previous bests.</li>
+          <li>Take the Final Exam. Aim for 85%+.</li>
+          <li>Read Module 11 (VA Workflow &amp; Capstone) for the day-one-on-the-job routine.</li>
+        </ul>
+        <div class="phase-exit"><b>Exit check:</b> You can run a complete weekly cycle (review → harvest → report) and explain each step to a manager.</div>
+      </div>
+    </article>
+
+    <article class="phase">
+      <header class="phase-h after">
+        <span class="phase-h-num">After</span><span class="phase-h-sep">·</span>
+        <span class="phase-h-title">On the job</span>
+        <span class="phase-h-time">Ongoing</span>
+      </header>
+      <div class="phase-b">
+        <div class="phase-b-l">Goal</div>
+        <p class="phase-b-g">Operate, don't panic.</p>
+        <div class="phase-b-l">What to do</div>
+        <ul>
+          <li>Follow the daily / weekly / monthly cadence from the VA Cadence handout.</li>
+          <li>Use the Permissions Ladder from Module 11 — small safe changes alone, big levers with approval.</li>
+          <li>Write every bid change in a change log. Memory lies; logs don't.</li>
+          <li>When in doubt: stock, price, reviews, competitors — in that order.</li>
+        </ul>
+        <div class="phase-exit"><b>Exit check:</b> You are operating under supervision. After 30 days of clean change logs, you earn unsupervised work.</div>
+      </div>
+    </article>
+
+    <section class="stuck">
+      <h2>What to do when you're stuck</h2>
+      <ol>
+        <li>Re-read the relevant <b>lesson</b>. Most answers are in there.</li>
+        <li>Search the <b>glossary</b> for the unfamiliar word.</li>
+        <li>Ask the <b>AI Coach</b> in plain words. Try the suggested questions first.</li>
+        <li>Run the relevant <b>practice tool</b> (Trainer, Builder, Report) — the act of doing it surfaces the gap.</li>
+        <li>Take the relevant <b>module quiz</b>. The wrong answers tell you exactly which lessons to revisit.</li>
+        <li>Only then: ask a teacher or mentor. Bring your notes and your best guess.</li>
+      </ol>
+    </section>
+
+    <section class="grad">
+      <h2>Graduation checklist</h2>
+      <p>You are ready to operate under supervision when all of these are true. Circle the date you pass each one.</p>
+      <ul>
+        <li class="check">12 module quizzes passed at 70%+</li>
+        <li class="check">Final Exam passed at 85%+</li>
+        <li class="check">Search Term Trainer best score 70%+</li>
+        <li class="check">Campaign Builder best score 70+</li>
+        <li class="check">Generated at least 1 weekly report</li>
+        <li class="check">Asked the AI Coach at least 1 question</li>
+        <li class="check">Read every lesson in the course</li>
+        <li class="check">Earned at least 4 of the 6 badges</li>
+      </ul>
+    </section>
+
+  </div>
+</main>
+
+<footer class="pha-footer">
+  <div><b>PROJECT AMAZON PH</b> &nbsp;·&nbsp; Academy SimGrid · Learn</div>
+  <div class="pha-foot-links">
+    <a href="../index.html">Hub</a>
+    <a href="../ad-console.html">AdConsole Pro</a>
+    <a href="../keyword-lab.html">Keyword Lab</a>
+    <a href="../search-triage.html">Search Term Triage</a>
+    <a href="../bulk-file.html">Bulk File Simulator</a>
+    <a href="../listing.html">BuyBox Dojo</a>
+    <a href="../pacing-deck.html">Pacing Deck</a>
+    <a href="../ppc-coach.html">PPC Coach</a>
+  </div>
+  <div class="pha-foot-meta">Student guide · v1.0</div>
+</footer>
+
+<script src="../assets/shell.js" defer></script>
+</body>
+</html>

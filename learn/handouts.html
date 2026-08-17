@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Printable handouts — PPC Coach</title>
+<meta name="description" content="Eight one-page cheat sheets for Amazon PPC: ACOS, match types, bids, search terms, launch plan, VA cadence, troubleshooting, and report format.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=PT+Sans:wght@400;700&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/skin.css">
+<link rel="stylesheet" href="../assets/shell.css">
+<link rel="stylesheet" href="../assets/hub.css">
+<style>
+  .learn-wrap { max-width: 920px; margin: 0 auto; padding: 28px 24px 64px; }
+  .learn-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-orange); margin-bottom: 8px; }
+  .learn-h1 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: var(--fs-h1); color: var(--c-ink); margin: 0 0 10px; line-height: 1.1; }
+  .learn-lede { font-size: 16px; line-height: 1.6; color: var(--c-sub); max-width: 720px; margin-bottom: 24px; }
+  .print-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 4px 10px; border: 1px solid #E7E7E7; border-radius: 999px; background: #fff; color: var(--c-sub); margin-bottom: 16px; }
+  .learn-toc { padding: 18px; border: 1px solid #E7E7E7; border-radius: 10px; background: #fff; margin-bottom: 28px; }
+  .learn-toc h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-faint); margin: 0 0 10px; }
+  .learn-toc ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; }
+  .learn-toc a { display: block; padding: 6px 8px; border-radius: 6px; font-size: 14px; font-weight: 600; color: var(--c-ink); }
+  .learn-toc a:hover { background: #FFF4E5; color: #B36B00; }
+  .learn-toc .h-oneliner { font-weight: 400; color: var(--c-sub); }
+  .ho { border: 2px solid #E7E7E7; border-radius: 12px; background: #fff; padding: 22px 24px; margin: 22px 0; break-inside: avoid; }
+  .ho-h { border-bottom: 1px solid #E7E7E7; padding-bottom: 10px; margin-bottom: 14px; }
+  .ho-h2 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 22px; color: var(--c-ink); margin: 0; }
+  .ho-oneliner { font-size: 14px; color: var(--c-sub); margin: 4px 0 0; }
+  .formula { border: 2px solid #FFD9A8; background: #FFF4E5; border-radius: 10px; padding: 14px; text-align: center; margin: 12px 0; }
+  .formula .f-f { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; color: #6B3A00; }
+  .formula .f-n { font-size: 12px; color: #8B5A1E; margin-top: 4px; }
+  .ho table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0; }
+  .ho th { background: #131921; color: #fff; text-align: left; padding: 8px 12px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .ho td { padding: 8px 12px; border-bottom: 1px solid #E7E7E7; color: var(--c-ink); vertical-align: top; }
+  .ho tr:nth-child(even) td { background: #F8FAFC; }
+  .ho ol, .ho ul { margin: 10px 0 10px 22px; padding: 0; }
+  .ho li { font-size: 14px; line-height: 1.7; color: var(--c-ink); margin-bottom: 4px; }
+  .ho p { font-size: 14px; line-height: 1.7; color: var(--c-ink); margin: 10px 0; }
+  .ho b { color: var(--c-ink); }
+  .end-note { text-align: center; font-size: 12px; color: var(--c-faint); margin-top: 28px; }
+  @media (max-width: 720px) { .learn-toc ul { grid-template-columns: 1fr; } }
+  @media print { .ho { break-inside: avoid; box-shadow: none; } .learn-toc { display: none; } .print-hint { display: none; } }
+</style>
+</head>
+<body>
+
+<main class="pha-skin-wrap" style="max-width: 1040px;">
+  <div class="learn-wrap">
+
+    <header>
+      <div class="learn-eyebrow">Handouts</div>
+      <h1 class="learn-h1">Eight one-page cheat sheets</h1>
+      <p class="learn-lede">
+        Every cheat sheet is one page, one topic, one printable artifact.
+        Click any title to jump to it. Press <kbd>Ctrl</kbd>+<kbd>P</kbd> on a single
+        handout page to save as PDF — or print this whole page to get all
+        eight as one multi-page packet.
+      </p>
+      <span class="print-hint">🖨️ Press <kbd>Ctrl</kbd>+<kbd>P</kbd> to save this page as PDF</span>
+    </header>
+
+    <nav class="learn-toc">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#acos">ACOS Cheat Sheet <span class="h-oneliner">— one page, every ACOS question you'll be asked</span></a></li>
+        <li><a href="#match-types">Match Types <span class="h-oneliner">— broad, phrase, exact, and when to use each</span></a></li>
+        <li><a href="#bids">Bids &amp; Budgets <span class="h-oneliner">— five situations, five safe responses</span></a></li>
+        <li><a href="#search-terms">Search Term Mining <span class="h-oneliner">— the weekly harvest, in seven steps</span></a></li>
+        <li><a href="#launch">4-Week Launch Plan <span class="h-oneliner">— learn, control, clean, scale</span></a></li>
+        <li><a href="#cadence">VA Cadence <span class="h-oneliner">— daily, weekly, monthly</span></a></li>
+        <li><a href="#troubleshoot">Troubleshooting <span class="h-oneliner">— the boring four, check them first</span></a></li>
+        <li><a href="#report">Weekly Report Format <span class="h-oneliner">— what every report needs, in order</span></a></li>
+      </ul>
+    </nav>
+
+    <section class="ho" id="acos">
+      <header class="ho-h">
+        <h2 class="ho-h2">ACOS Cheat Sheet</h2>
+        <p class="ho-oneliner">One page. Every ACOS question you'll be asked.</p>
+      </header>
+      <div class="formula">
+        <div class="f-f">ACOS = Spend ÷ Sales × 100</div>
+        <div class="f-n">Lower is better. Always compare to your margin.</div>
+      </div>
+      <table>
+        <thead><tr><th>ACOS</th><th>Reading</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>Under margin</td><td>Profitable</td><td>Raise bid a little, scale carefully</td></tr>
+          <tr><td>At margin</td><td>Break-even</td><td>Watch; small bid cuts are fine</td></tr>
+          <tr><td>Over margin</td><td>Losing money</td><td>Cut bid, tighten match, or negate</td></tr>
+          <tr><td>No sales</td><td>Emergency</td><td>Check relevance, listing, Buy Box</td></tr>
+        </tbody>
+      </table>
+      <p><b>Break-even ACOS = your profit margin.</b> A 30% margin means 30% ACOS is the break-even line. Anything below 30% likely makes money; anything above likely loses money. This is the single most important fact about ACOS.</p>
+    </section>
+
+    <section class="ho" id="match-types">
+      <header class="ho-h">
+        <h2 class="ho-h2">Match Types Cheat Sheet</h2>
+        <p class="ho-oneliner">Broad, phrase, exact — and when to use each.</p>
+      </header>
+      <table>
+        <thead><tr><th>Type</th><th>Reach</th><th>Control</th><th>Use it for</th></tr></thead>
+        <tbody>
+          <tr><td>Broad</td><td>High</td><td>Low</td><td>Research. Discover new search terms.</td></tr>
+          <tr><td>Phrase</td><td>Medium</td><td>Medium</td><td>Mid-funnel. Words must include your phrase.</td></tr>
+          <tr><td>Exact</td><td>Low</td><td>High</td><td>Control and scale. Use for proven winners.</td></tr>
+        </tbody>
+      </table>
+      <p><b>Rule of thumb:</b> Start tight (Exact). Use Broad and Auto only as scouts. Promote research winners into Exact. Never run a new account on Broad only.</p>
+      <p><b>Negative keywords</b> block irrelevant searches. They are the fastest profit lever in PPC. Add wasters from the search term report weekly.</p>
+    </section>
+
+    <section class="ho" id="bids">
+      <header class="ho-h">
+        <h2 class="ho-h2">Bids &amp; Budgets Cheat Sheet</h2>
+        <p class="ho-oneliner">Five situations, five safe responses.</p>
+      </header>
+      <table>
+        <thead><tr><th>Situation</th><th>Reading</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>No impressions</td><td>Bid too low or too narrow</td><td>Raise a little, widen targeting slightly</td></tr>
+          <tr><td>Clicks, no sales</td><td>Wrong terms or weak page</td><td>Add negatives, check listing</td></tr>
+          <tr><td>Sales + low ACOS</td><td>Winner</td><td>Raise bid carefully, watch for a week</td></tr>
+          <tr><td>Sales + high ACOS</td><td>Too expensive</td><td>Lower bid or tighten match</td></tr>
+          <tr><td>Budget dies early</td><td>Profitable but capped</td><td>Raise budget — you're leaving sales on the table</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="ho" id="search-terms">
+      <header class="ho-h">
+        <h2 class="ho-h2">Search Term Mining Cheat Sheet</h2>
+        <p class="ho-oneliner">The weekly harvest, in seven steps.</p>
+      </header>
+      <ol>
+        <li>Download the search term report for the last 7–14 days.</li>
+        <li>Sort by spend, highest first.</li>
+        <li>Mark each term: winner, waster, or maybe.</li>
+        <li><b>Winners</b> (sales + ACOS under margin): promote to Exact.</li>
+        <li><b>Wasters</b> (high clicks, no sales, irrelevant): add as negative.</li>
+        <li><b>Maybes</b> (under 10 clicks): watch — too little data.</li>
+        <li>Log every change. Repeat next week.</li>
+      </ol>
+    </section>
+
+    <section class="ho" id="launch">
+      <header class="ho-h">
+        <h2 class="ho-h2">4-Week New Product Launch Plan</h2>
+        <p class="ho-oneliner">Learn week 1, control week 2, clean week 3, scale week 4.</p>
+      </header>
+      <table>
+        <thead><tr><th>Week</th><th>Focus</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Learn</td><td>Auto only, small bids, watch terms</td></tr>
+          <tr><td>2</td><td>Control</td><td>Exact campaign with long-tail winners</td></tr>
+          <tr><td>3</td><td>Clean</td><td>First negatives pass; kill obvious wasters</td></tr>
+          <tr><td>4</td><td>Scale</td><td>+10–20% budget on proven winners only</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="ho" id="cadence">
+      <header class="ho-h">
+        <h2 class="ho-h2">VA Daily / Weekly / Monthly Cadence</h2>
+        <p class="ho-oneliner">What to do, when, and how often.</p>
+      </header>
+      <table>
+        <thead><tr><th>Cadence</th><th>Tasks</th></tr></thead>
+        <tbody>
+          <tr><td>Daily (5 min)</td><td>Spend, alerts, stock, accidental pauses</td></tr>
+          <tr><td>Weekly (1 hr)</td><td>Term harvest, negatives, bid review, report</td></tr>
+          <tr><td>Monthly (2 hr)</td><td>Structure review, top keywords, listing audit, cleanup</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="ho" id="troubleshoot">
+      <header class="ho-h">
+        <h2 class="ho-h2">Troubleshooting Cheat Sheet</h2>
+        <p class="ho-oneliner">The boring four — check them first, every time.</p>
+      </header>
+      <table>
+        <thead><tr><th>Problem</th><th>First check</th><th>Then</th></tr></thead>
+        <tbody>
+          <tr><td>No impressions</td><td>Campaign active? Approved?</td><td>Bid too low, budget too small, targeting too narrow</td></tr>
+          <tr><td>Low CTR</td><td>Image, price, title</td><td>Reposition hook, A/B test image</td></tr>
+          <tr><td>Clicks, no sales</td><td>Listing + term relevance</td><td>Negatives, listing pass, price check</td></tr>
+          <tr><td>High ACOS</td><td>CPC vs conversion</td><td>Lower bid, tighten match, or both</td></tr>
+          <tr><td>Sales drop</td><td>Stock, price, reviews, competitor</td><td>If all four are fine, look at the campaign structure</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="ho" id="report">
+      <header class="ho-h">
+        <h2 class="ho-h2">Weekly Report Format</h2>
+        <p class="ho-oneliner">What every report needs, in order.</p>
+      </header>
+      <ol>
+        <li><b>Numbers:</b> spend, sales, ACOS, ROAS, clicks, orders, CTR, conversion.</li>
+        <li><b>Trend vs last week.</b> One line, plus or minus X%.</li>
+        <li><b>What worked.</b> One short paragraph, 1–2 examples.</li>
+        <li><b>What did not work.</b> One short paragraph, honest.</li>
+        <li><b>Next steps.</b> 2–3 bullets, actioned in the next 7 days.</li>
+        <li><b>Prepared by.</b> Your name, date.</li>
+      </ol>
+    </section>
+
+    <p class="end-note">End of handouts. Press <kbd>Ctrl</kbd>+<kbd>P</kbd> now to print this whole page.</p>
+
+  </div>
+</main>
+
+<footer class="pha-footer">
+  <div><b>PROJECT AMAZON PH</b> &nbsp;·&nbsp; Academy SimGrid · Learn</div>
+  <div class="pha-foot-links">
+    <a href="../index.html">Hub</a>
+    <a href="../ad-console.html">AdConsole Pro</a>
+    <a href="../keyword-lab.html">Keyword Lab</a>
+    <a href="../search-triage.html">Search Term Triage</a>
+    <a href="../bulk-file.html">Bulk File Simulator</a>
+    <a href="../listing.html">BuyBox Dojo</a>
+    <a href="../pacing-deck.html">Pacing Deck</a>
+    <a href="../ppc-coach.html">PPC Coach</a>
+  </div>
+  <div class="pha-foot-meta">Handouts · v1.0</div>
+</footer>
+
+<script src="../assets/shell.js" defer></script>
+</body>
+</html>

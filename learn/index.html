@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn & Docs — Project Amazon PH Academy</title>
+<meta name="description" content="Documentation, student guide, printable handouts, and downloadable resources for the PPC Coach teaching companion.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=PT+Sans:wght@400;700&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/skin.css">
+<link rel="stylesheet" href="../assets/shell.css">
+<link rel="stylesheet" href="../assets/hub.css">
+<style>
+  .learn-wrap { max-width: 980px; margin: 0 auto; padding: 28px 24px 64px; }
+  .learn-header { margin-bottom: 32px; }
+  .learn-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-orange); margin-bottom: 8px; }
+  .learn-h1 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: var(--fs-h1); color: var(--c-ink); margin: 0 0 12px; line-height: 1.1; }
+  .learn-lede { font-size: 17px; line-height: 1.6; color: var(--c-sub); max-width: 720px; }
+  .learn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 28px 0; }
+  .learn-card { display: block; padding: 22px; border: 1px solid var(--c-card-border, #E7E7E7); border-radius: 12px; background: #fff; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
+  .learn-card:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(15,17,17,.10); border-color: var(--c-orange); }
+  .learn-card-icon { font-size: 28px; margin-bottom: 10px; }
+  .learn-card-h3 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 17px; color: var(--c-ink); margin: 0 0 6px; }
+  .learn-card-p { font-size: 14px; line-height: 1.6; color: var(--c-sub); margin: 0 0 14px; }
+  .learn-card-cta { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-orange); }
+  .learn-panel { padding: 22px; border-radius: 12px; margin-top: 18px; }
+  .learn-panel--orange { background: #FFF4E5; border: 1px solid #FFD9A8; }
+  .learn-panel--white { background: #fff; border: 1px solid #E7E7E7; }
+  .learn-panel h2 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; margin: 0 0 10px; color: var(--c-ink); }
+  .learn-panel--orange h2 { color: #6B3A00; }
+  .learn-panel p, .learn-panel li { font-size: 14px; line-height: 1.7; color: var(--c-sub); }
+  .learn-panel--orange p, .learn-panel--orange li { color: #6B3A00; }
+  .learn-panel ol, .learn-panel ul { margin: 8px 0 0; padding-left: 20px; }
+  .learn-panel li { margin-bottom: 6px; }
+  .learn-panel a { color: #B36B00; font-weight: 700; }
+  @media (max-width: 720px) { .learn-grid { grid-template-columns: 1fr; } }
+  @media print { .learn-card, .learn-panel { break-inside: avoid; box-shadow: none; } }
+</style>
+</head>
+<body>
+
+<main class="pha-skin-wrap" style="max-width: 1100px;">
+  <div class="learn-wrap">
+
+    <header class="learn-header">
+      <div class="learn-eyebrow">PPC Coach · Documentation</div>
+      <h1 class="learn-h1">Learn, practice, ship.</h1>
+      <p class="learn-lede">
+        Everything you need to go from a complete beginner to a competent
+        Amazon PPC VA manager. Pick a starting point — every page is
+        printable, every handout is a one-page cheat sheet, every
+        downloadable is yours to keep.
+      </p>
+    </header>
+
+    <div class="learn-grid">
+      <a class="learn-card" href="features.html">
+        <div class="learn-card-icon">🧩</div>
+        <h3 class="learn-card-h3">Feature documentation</h3>
+        <p class="learn-card-p">What every screen in the app does, when to use it, and the pro tips behind each one.</p>
+        <div class="learn-card-cta">Read the docs →</div>
+      </a>
+
+      <a class="learn-card" href="guide.html">
+        <div class="learn-card-icon">🎓</div>
+        <h3 class="learn-card-h3">Student guide</h3>
+        <p class="learn-card-p">A week-by-week walkthrough from day zero to your first supervised client account.</p>
+        <div class="learn-card-cta">Open the guide →</div>
+      </a>
+
+      <a class="learn-card" href="handouts.html">
+        <div class="learn-card-icon">📝</div>
+        <h3 class="learn-card-h3">Printable handouts</h3>
+        <p class="learn-card-p">Eight one-page cheat sheets — ACOS, match types, bids, search terms, the launch plan, and more.</p>
+        <div class="learn-card-cta">Browse handouts →</div>
+      </a>
+
+      <a class="learn-card" href="downloads.html">
+        <div class="learn-card-icon">📦</div>
+        <h3 class="learn-card-h3">Downloads</h3>
+        <p class="learn-card-p">Zipped source, starter kit, 4-week launch plan, and offline copies of the app.</p>
+        <div class="learn-card-cta">See downloads →</div>
+      </a>
+    </div>
+
+    <section class="learn-panel learn-panel--orange">
+      <h2>How to use this site</h2>
+      <ol>
+        <li><b>New here?</b> Start with the <a href="guide.html">Student Guide</a> — it lays out the four-week path.</li>
+        <li><b>Mid-task?</b> Skim the <a href="features.html">Feature docs</a> for the screen you're stuck on.</li>
+        <li><b>Need a refresher?</b> Open the <a href="handouts.html">Handouts</a> and print the relevant cheat sheet.</li>
+        <li><b>Going offline?</b> Grab the <a href="downloads.html">Downloads</a> — the whole app, the launch plan, and the starter kit.</li>
+      </ol>
+    </section>
+
+    <section class="learn-panel learn-panel--white">
+      <h2>What is PPC Coach?</h2>
+      <p>
+        A teaching companion for Amazon PPC. Twelve plain-language modules,
+        a 25-term glossary, a search-term grader, a campaign builder that
+        scores your work, a one-page report generator, a quiz arena with
+        13 quizzes, an AI coach, and a teacher cohort view. Progress,
+        levels, and badges are stored in your browser.
+      </p>
+      <p>
+        Built for Filipino VAs and junior strategists moving into Amazon
+        advertising roles. No fluff, no jargon, no theory without an
+        example.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="pha-footer">
+  <div><b>PROJECT AMAZON PH</b> &nbsp;·&nbsp; Academy SimGrid · Learn</div>
+  <div class="pha-foot-links">
+    <a href="../index.html">Hub</a>
+    <a href="../ad-console.html">AdConsole Pro</a>
+    <a href="../keyword-lab.html">Keyword Lab</a>
+    <a href="../search-triage.html">Search Term Triage</a>
+    <a href="../bulk-file.html">Bulk File Simulator</a>
+    <a href="../listing.html">BuyBox Dojo</a>
+    <a href="../pacing-deck.html">Pacing Deck</a>
+    <a href="../ppc-coach.html">PPC Coach</a>
+  </div>
+  <div class="pha-foot-meta">Learn · v1.0</div>
+</footer>
+
+<script src="../assets/shell.js" defer></script>
+</body>
+</html>

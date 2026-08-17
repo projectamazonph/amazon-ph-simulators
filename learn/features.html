@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feature documentation — PPC Coach</title>
+<meta name="description" content="Every feature of the PPC Coach teaching companion, documented: what each screen does, when to use it, and the pro tips behind each one.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=PT+Sans:wght@400;700&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/skin.css">
+<link rel="stylesheet" href="../assets/shell.css">
+<link rel="stylesheet" href="../assets/hub.css">
+<style>
+  .learn-wrap { max-width: 920px; margin: 0 auto; padding: 28px 24px 64px; }
+  .learn-h1 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: var(--fs-h1); color: var(--c-ink); margin: 0 0 10px; line-height: 1.1; }
+  .learn-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-orange); margin-bottom: 8px; }
+  .learn-lede { font-size: 16px; line-height: 1.6; color: var(--c-sub); max-width: 720px; margin-bottom: 28px; }
+  .learn-toc { padding: 18px; border: 1px solid #E7E7E7; border-radius: 10px; background: #fff; margin-bottom: 28px; }
+  .learn-toc h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-faint); margin: 0 0 10px; }
+  .learn-toc ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 12px; }
+  .learn-toc a { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 6px; font-size: 14px; font-weight: 600; color: var(--c-ink); }
+  .learn-toc a:hover { background: #FFF4E5; color: #B36B00; }
+  @media (max-width: 720px) { .learn-toc ul { grid-template-columns: repeat(2, 1fr); } }
+  .feat { border-top: 1px solid #E7E7E7; padding-top: 28px; margin-top: 32px; scroll-margin-top: 80px; }
+  .feat-h { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .feat-h-icon { font-size: 26px; }
+  .feat-h2 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 24px; color: var(--c-ink); margin: 0; }
+  .feat-tag { font-weight: 700; color: #B36B00; margin: 0 0 16px; }
+  .feat-block { background: #fff; border: 1px solid #E7E7E7; border-radius: 10px; padding: 16px 18px; margin: 12px 0; }
+  .feat-block h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-faint); margin: 0 0 8px; }
+  .feat-block p, .feat-block li { font-size: 14px; line-height: 1.65; color: var(--c-ink); }
+  .feat-block ul, .feat-block ol { margin: 6px 0 0; padding-left: 22px; }
+  .feat-block li { margin-bottom: 4px; }
+  .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+  .feat-pro { background: #E6F4F0; border: 1px solid #B6E2D2; border-radius: 10px; padding: 14px 16px; }
+  .feat-mistake { background: #FDEDED; border: 1px solid #F2C2BB; border-radius: 10px; padding: 14px 16px; }
+  .feat-pro h3 { color: #044D3E; }
+  .feat-mistake h3 { color: #6B1A00; }
+  .feat-pro p, .feat-pro li { color: #044D3E; }
+  .feat-mistake p, .feat-mistake li { color: #6B1A00; }
+  .feat-related { background: #FFF4E5; border: 1px solid #FFD9A8; border-radius: 8px; padding: 12px 16px; font-size: 14px; color: #6B3A00; margin-top: 12px; }
+  .feat-related b { color: #6B3A00; }
+  .print-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 4px 10px; border: 1px solid #E7E7E7; border-radius: 999px; background: #fff; color: var(--c-sub); margin-bottom: 16px; }
+  @media (max-width: 720px) { .feat-grid { grid-template-columns: 1fr; } }
+  @media print { .feat { break-inside: avoid-page; } .feat-grid, .feat-related { break-inside: avoid; } .learn-toc { display: none; } .print-hint { display: none; } }
+</style>
+</head>
+<body>
+
+<main class="pha-skin-wrap" style="max-width: 1040px;">
+  <div class="learn-wrap">
+
+    <header>
+      <div class="learn-eyebrow">Documentation</div>
+      <h1 class="learn-h1">Every feature, documented</h1>
+      <p class="learn-lede">
+        Nine views, nine docs. Each one tells you what the screen does, when
+        to open it, the exact steps to use it, the pro tips behind it, the
+        common mistakes to avoid, and where it lives in the course.
+      </p>
+      <span class="print-hint">🖨️ Press <kbd>Ctrl</kbd>+<kbd>P</kbd> to save this page as PDF</span>
+    </header>
+
+    <nav class="learn-toc">
+      <h2>Jump to</h2>
+      <ul>
+        <li><a href="#dashboard">🏠 Dashboard</a></li>
+        <li><a href="#lessons">📚 Lessons</a></li>
+        <li><a href="#glossary">📖 Glossary</a></li>
+        <li><a href="#trainer">🕵️ Search Term Trainer</a></li>
+        <li><a href="#builder">🏗️ Campaign Builder</a></li>
+        <li><a href="#report">📊 Report Builder</a></li>
+        <li><a href="#quiz">🧠 Quiz Arena</a></li>
+        <li><a href="#coach">💬 AI Coach</a></li>
+        <li><a href="#cohort">👥 Cohort (Teacher)</a></li>
+      </ul>
+    </nav>
+
+    <section class="feat" id="dashboard">
+      <div class="feat-h"><span class="feat-h-icon">🏠</span><h2 class="feat-h2">Dashboard</h2></div>
+      <p class="feat-tag">Your progress at a glance.</p>
+      <div class="feat-block"><h3>What it is</h3><p>The landing screen. Shows your level, XP, course progress, quiz pass rate, practice bests, module-by-module progress, badges, and a donut chart of overall completion.</p></div>
+      <div class="feat-block"><h3>When to use it</h3><ul><li>Start of every session to see where you left off</li><li>End of every session to log how you moved</li><li>When you want a quick proof of progress for a teacher or client</li></ul></div>
+      <div class="feat-block"><h3>Step-by-step</h3><ol><li>Open the app — Dashboard loads by default</li><li>Skim the four stat cards: Course progress, Total XP, Quizzes, Practice bests</li><li>Tap "Continue learning" if you have an unfinished lesson</li><li>Check the donut — it's the same number as Course progress, just visual</li></ol></div>
+      <div class="feat-grid">
+        <div class="feat-pro"><h3>Pro tips</h3><ul><li>XP rolls up from lessons, quizzes, and practice. One finished lesson = 20 XP.</li><li>Badges turn from grey to color when earned — six in total.</li><li>Click "Open lessons" on the module grid to jump straight into a module.</li></ul></div>
+        <div class="feat-mistake"><h3>Common mistakes</h3><ul><li>Reading the dashboard as a grade — it's a tracker, not a test.</li><li>Ignoring the donut — it's a great sanity check that progress is moving.</li></ul></div>
+      </div>
+      <div class="feat-related"><b>Related in the course:</b> M0 (intro) + M11 (capstone) · Module 0 (Amazon Basics)</div>
+    </section>
+
+    <section class="feat" id="lessons">
+      <div class="feat-h"><span class="feat-h-icon">📚</span><h2 class="feat-h2">Lessons</h2></div>
+      <p class="feat-tag">12 modules, 40 plain-language lessons.</p>
+      <div class="feat-block"><h3>What it is</h3><p>The core course. Each module is a theme (Marketplace, PPC, Money Math, etc.); each lesson is a 5–12 minute reading with goals, examples, formulas, and a quiz. Mark complete to earn 20 XP.</p></div>
+      <div class="feat-block"><h3>When to use it</h3><ul><li>First 1–2 weeks of training</li><li>When you hit a concept you don't recognize from a quiz</li><li>When a teacher assigns a module</li></ul></div>
+      <div class="feat-block"><h3>Step-by-step</h3><ol><li>Open Lessons</li><li>Pick a module — color-coded by topic</li><li>Pick a lesson — green check = done, grey number = todo</li><li>Read blocks: 🎯 goal, body text, 📊 diagrams, 💡 tips, 🧪 examples, ✏️ formulas, ⚠️ mistakes, ✅/🚫 do/don't splits</li><li>Tap "Mark complete · +20 XP" at the bottom</li><li>On the last lesson of a module, take the module quiz</li></ol></div>
+      <div class="feat-grid">
+        <div class="feat-pro"><h3>Pro tips</h3><ul><li>Read the "In this lesson" box first — it tells you what you should be able to do at the end.</li><li>Skim tables and examples first; come back to prose for depth.</li><li>The "Coach tip" at the end of each lesson is the single thing to remember.</li></ul></div>
+        <div class="feat-mistake"><h3>Common mistakes</h3><ul><li>Skipping lessons and going straight to the quiz — quizzes recycle lesson language.</li><li>Marking complete without reading — XP is worthless if you didn't learn the rule.</li></ul></div>
+      </div>
+      <div class="feat-related"><b>Related in the course:</b> All 12 modules (M0 → M11) · Final exam (Quiz Arena)</div>
+    </section>
+
+    <section class="feat" id="glossary">
+      <div class="feat-h"><span class="feat-h-icon">📖</span><h2 class="feat-h2">Glossary</h2></div>
+      <p class="feat-tag">25 terms, explained like a human.</p>
+      <div class="feat-block"><h3>What it is</h3><p>Searchable one-liner definitions for every PPC term you'll meet: CPC, CTR, ACOS, ROAS, TACoS, break-even, match types, Buy Box, harvesting, long-tail, and more. Click a card to copy it.</p></div>
+      <div class="feat-block"><h3>When to use it</h3><ul><li>Any time you read or hear a term you don't recognize</li><li>Before a quiz or a client call</li><li>When a colleague uses a word and you nod but don't quite get it</li></ul></div>
+      <div class="feat-block"><h3>Step-by-step</h3><ol><li>Open Glossary</li><li>Type a term in the search box (e.g. "ACOS")</li><li>Read the card — it's deliberately one sentence</li><li>Click the card to copy the definition to your clipboard</li></ol></div>
+      <div class="feat-grid">
+        <div class="feat-pro"><h3>Pro tips</h3><ul><li>The glossary is a reference, not a course. Don't try to memorize it — use it.</li><li>Every term in the glossary appears in at least one lesson.</li><li>Copy-to-clipboard is great for pasting into Slack replies to clients.</li></ul></div>
+        <div class="feat-mistake"><h3>Common mistakes</h3><ul><li>Memorizing jargon without understanding — "ACOS is the cost of sales" is not enough; you need the formula and the margin comparison.</li></ul></div>
+      </div>
+      <div class="feat-related"><b>Related in the course:</b> Money Math (M2) · Keywords &amp; Match Types (M4)</div>
+    </section>
+
+    <section class="feat" id="trainer">
+      <div class="feat-h"><span class="feat-h-icon">🕵️</span><h2 class="feat-h2">Search Term Trainer</h2></div>
+      <p class="feat-tag">Grade your weekly harvest.</p>
+      <div class="feat-block"><h3>What it is</h3><p>A 10-row simulator that mimics a real search term report. You pick an action for each term — promote to Exact, add as negative, lower the bid, or watch. The app grades you out of 100%.</p></div>
+      <div class="feat-block"><h3>When to use it</h3><ul><li>After every weekly search term review (every Tuesday-ish)</li><li>Before your first real harvest on a client account</li><li>When a quiz question about match types or negatives trips you up</li></ul></div>
+      <div class="feat-block"><h3>Step-by-step</h3><ol><li>Open Search Term Trainer</li><li>Read the practice product: Bamboo Cutting Board, 30% margin</li><li>For each of the 10 search terms, pick the right action</li><li>Click "Grade my decisions"</li><li>Read the per-row explanation — even on the rows you got right</li></ol></div>
+      <div class="feat-grid">
+        <div class="feat-pro"><h3>Pro tips</h3><ul><li>Margin is 30%, so break-even ACOS is 30%. Anything under 30% is profitable; anything over 30% needs a bid cut or a negative.</li><li>"Watch" is a valid choice when clicks are below 10. Small samples make loud lies.</li><li>First attempts earn 5 XP per correct decision — re-takes don't double-dip.</li></ul></div>
+        <div class="feat-mistake"><h3>Common mistakes</h3><ul><li>Negate after 2 clicks — irrelevant terms get negated, but only when you're sure.</li><li>Pause a campaign for one bad term — fix the term, not the whole structure.</li><li>Forget the search term report exists in real life — the trainer is a rehearsal, not a substitute.</li></ul></div>
+      </div>
+      <div class="feat-related"><b>Related in the course:</b> Search Terms &amp; Negatives (M8) · Money Math (M2)</div>
+    </section>
+
+    <section class="feat" id="builder">
+      <div class="feat-h"><span class="feat-h-icon">🏗️</span><h2 class="feat-h2">Campaign Builder</h2></div>
+      <p class="feat-tag">Build a starter campaign, get a score out of 100.</p>
+      <div class="feat-block"><h3>What it is</h3><p>Pick a product, name your campaign, set a daily budget, add Exact/Phrase/Broad keywords with bids, add negatives. The app scores your structure against six beginner-safe rules.</p></div>
+      <div class="feat-block"><h3>When to use it</h3><ul><li>Before launching a new product</li><li>Before restructuring an old account</li><li>When you're not sure if your naming/bid/negatives setup is sane</li></ul></div>
+      <div class="feat-block"><h3>Step-by-step</h3><ol><li>Open Campaign Builder</li><li>Pick a product (Bamboo Board, Garlic Press, or Yoga Mat)</li><li>Name your campaign: SP | Exact | Product | Purpose</li><li>Set a daily budget (start small: $10–$50)</li><li>Add at least 2 Exact keywords, bids between $0.50–$1.50</li><li>Add at least 2 negative keywords (wrong material, wrong use, etc.)</li><li>Click "Score my campaign"</li><li>Read the failures, fix, and re-score</li></ol></div>
+      <div class="feat-grid">
+        <div class="feat-pro"><h3>Pro tips</h3><ul><li>Naming follows a pattern: ad-type | match | product | purpose. Future-you will read this in 3 months.</li><li>Avoid "broad" on day one — start tight, loosen once data tells you where to spend.</li><li>Read the Grading Rules card before you start — it's the rubric.</li></ul></div>
+        <div class="feat-mistake"><h3>Common mistakes</h3><ul><li>Naming like "test1" or "final_final" — names should explain themselves.</li><li>Budgeting huge on a brand new product — start small, learn, scale.</li><li>Skipping negatives — they are the single fastest profit lever.</li></ul></div>
+      </div>
+      <div class="feat-related"><b>Related in the course:</b> Campaign Structure (M3) · Bids &amp; Budgets (M7) · Campaign Setup (M6)</div>
+    </section>
+
+    <section class="feat" id="report">
+      <div class="feat-h"><span class="feat-h-icon">📊</span><h2 class="feat-h2">Report Builder</h2></div>
+      <p class="feat-tag">Numbers in, client-ready report out.</p>
+      <div class="feat-block"><h3>What it is</h3><p>Enter the week's spend, sales, clicks, impressions, orders, and your margin. The app calculates ACOS, ROAS, CPC, CTR, conversion rate, and writes a plain-words report you can paste into Slack or email.</p></div>
+      <div class="feat-block"><h3>When to use it</h3><ul><li>End of every week (Friday, per the weekly routine)</li><li>Before a client call</li><li>When a manager asks "how did the account do this week?"</li></ul></div>
+      <div class="feat-block"><h3>Step-by-step</h3><ol><li>Open Report Builder</li><li>Enter the six numbers from the week</li><li>Watch the metric cards light up green or red</li><li>Edit the "What worked", "Problems", and "Next steps" boxes</li><li>Click "Generate report"</li><li>Click "Copy to clipboard"</li><li>Paste into your client's preferred channel</li></ol></div>
+      <div class="feat-grid">
+        <div class="feat-pro"><h3>Pro tips</h3><ul><li>ACOS green means below your margin; red means above. Always compare to margin, never to a generic target.</li><li>TACoS drops when ads are building the brand; ACOS dropping is not always the win — look at TACoS too.</li><li>End every report with next steps. Numbers inform; steps reassure.</li></ul></div>
+        <div class="feat-mistake"><h3>Common mistakes</h3><ul><li>Hiding bad numbers — they always get found. Own them with a proposed fix.</li><li>Reporting ACOS without context — always pair with margin and the trend.</li><li>Forgetting impressions — without them you can't compute CTR, and CTR is the hook signal.</li></ul></div>
+      </div>
+      <div class="feat-related"><b>Related in the course:</b> Reporting &amp; Troubleshooting (M10) · Money Math (M2)</div>
+    </section>
+
+    <section class="feat" id="quiz">
+      <div class="feat-h"><span class="feat-h-icon">🧠</span><h2 class="feat-h2">Quiz Arena</h2></div>
+      <p class="feat-tag">13 quizzes. Pass at 70% to earn the badge.</p>
+      <div class="feat-block"><h3>What it is</h3><p>A 12-module quiz (4–5 questions each) plus a 15-question Final Exam. Multiple choice, immediate feedback, XP rewards. Your best score is saved.</p></div>
+      <div class="feat-block"><h3>When to use it</h3><ul><li>After each module (the last lesson of every module links straight to its quiz)</li><li>Before a client interview</li><li>The week before you take on real client work — run the Final Exam</li></ul></div>
+      <div class="feat-block"><h3>Step-by-step</h3><ol><li>Open Quiz Arena</li><li>Pick a module or the Final Exam</li><li>Tap an answer; the right answer lights green, the wrong one lights red</li><li>Read the explanation — even on correct answers</li><li>Tap "Next"</li><li>At the end, see your score and either Retry or Back to Arena</li></ol></div>
+      <div class="feat-grid">
+        <div class="feat-pro"><h3>Pro tips</h3><ul><li>Retake as often as you want — only your best score counts.</li><li>If you score under 70% on a module, re-read that module's lessons, then retry.</li><li>The Final Exam is the closest thing to a real interview — take it cold once, then again after a week of study.</li></ul></div>
+        <div class="feat-mistake"><h3>Common mistakes</h3><ul><li>Skimming the explanation — the "why" matters more than the "what".</li><li>Treating 70% as a pass and moving on — 85%+ is the capstone target for supervised work.</li></ul></div>
+      </div>
+      <div class="feat-related"><b>Related in the course:</b> All modules (M0 → M11) · Final Exam (Quiz Arena top-right card)</div>
+    </section>
+
+    <section class="feat" id="coach">
+      <div class="feat-h"><span class="feat-h-icon">💬</span><h2 class="feat-h2">AI Coach</h2></div>
+      <p class="feat-tag">Plain-words answers, no jargon.</p>
+      <div class="feat-block"><h3>What it is</h3><p>A rule-based chat that answers the most common PPC questions in plain English. Canned replies — fast, consistent, and easy to verify. Not a real AI; don't expect it to invent answers to novel questions.</p></div>
+      <div class="feat-block"><h3>When to use it</h3><ul><li>Any time you have a quick question and don't want to scroll the glossary</li><li>When you want a one-paragraph explanation with an example</li><li>When you're stuck and just need someone to point you at the right next step</li></ul></div>
+      <div class="feat-block"><h3>Step-by-step</h3><ol><li>Open AI Coach</li><li>Tap a suggested question, or type your own in plain words</li><li>Read the answer — usually one paragraph with an example</li><li>If the answer doesn't match, try different keywords (e.g. "clicks no sales" vs "conversion low")</li></ol></div>
+      <div class="feat-grid">
+        <div class="feat-pro"><h3>Pro tips</h3><ul><li>The Coach matches keywords. If you ask "ROAS" you'll get the ROAS rule. If you ask "ROI" you'll get the fallback.</li><li>Use the suggested-question chips — they're curated to hit the most useful answers.</li></ul></div>
+        <div class="feat-mistake"><h3>Common mistakes</h3><ul><li>Asking for account-specific decisions ("should I pause this campaign?") — the Coach doesn't know your account.</li><li>Treating the Coach as a substitute for a real mentor — it's a faster glossary, not a strategist.</li></ul></div>
+      </div>
+      <div class="feat-related"><b>Related in the course:</b> Money Math (M2) · Reporting &amp; Troubleshooting (M10)</div>
+    </section>
+
+    <section class="feat" id="cohort">
+      <div class="feat-h"><span class="feat-h-icon">👥</span><h2 class="feat-h2">Cohort (Teacher View)</h2></div>
+      <p class="feat-tag">For teachers running a live class.</p>
+      <div class="feat-block"><h3>What it is</h3><p>A read-only table of 8 mock students, with progress, XP, weak area, last-active date, and status (STAR, ON TRACK, AT RISK). Top-of-page cards show cohort average, at-risk count, and top performer.</p></div>
+      <div class="feat-block"><h3>When to use it</h3><ul><li>Before a class to see who needs a check-in</li><li>After a class to identify the next week's focus area</li><li>When you're deciding which students to fast-track or pair up</li></ul></div>
+      <div class="feat-block"><h3>Step-by-step</h3><ol><li>Open Cohort (Teacher)</li><li>Skim the three summary cards at the top</li><li>Scan the Students table</li><li>Use the search box to filter by name</li><li>Click into a student's weak area to plan a 1-on-1</li></ol></div>
+      <div class="feat-grid">
+        <div class="feat-pro"><h3>Pro tips</h3><ul><li>AT RISK = inactive 3+ days or under 30% progress — those are the ones to message first.</li><li>Run the Search Term Trainer live in class — let students defend their decisions out loud. Judgment grows faster than button-clicking.</li><li>Pair STAR students with AT RISK students — peer teaching is the highest-ROI move in a small cohort.</li></ul></div>
+        <div class="feat-mistake"><h3>Common mistakes</h3><ul><li>Reading the table as a leaderboard — it's a teaching tool, not a ranking.</li><li>Pushing the top student harder while ignoring the at-risk ones — the at-risk ones are where the leverage is.</li></ul></div>
+      </div>
+      <div class="feat-related"><b>Related in the course:</b> VA Workflow &amp; Capstone (M11)</div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="pha-footer">
+  <div><b>PROJECT AMAZON PH</b> &nbsp;·&nbsp; Academy SimGrid · Learn</div>
+  <div class="pha-foot-links">
+    <a href="../index.html">Hub</a>
+    <a href="../ad-console.html">AdConsole Pro</a>
+    <a href="../keyword-lab.html">Keyword Lab</a>
+    <a href="../search-triage.html">Search Term Triage</a>
+    <a href="../bulk-file.html">Bulk File Simulator</a>
+    <a href="../listing.html">BuyBox Dojo</a>
+    <a href="../pacing-deck.html">Pacing Deck</a>
+    <a href="../ppc-coach.html">PPC Coach</a>
+  </div>
+  <div class="pha-foot-meta">Features docs · v1.0</div>
+</footer>
+
+<script src="../assets/shell.js" defer></script>
+</body>
+</html>
