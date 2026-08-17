@@ -239,6 +239,38 @@ intended to be followed in order.
     Lessons: Tasks by Cadence; The Permissions Ladder; SOPs and the Change Log;
     Client Communication and the Capstone.
 
+#### PPC Coach module screenshots
+
+The gallery below shows the learning view students use for each module. Each
+screen includes the module overview, lesson list, and module quiz entry point.
+
+<table>
+<tr>
+<td width="50%"><strong>1. Amazon Basics</strong><br><img src="assets/screenshots/ppc-coach/module-01-amazon-basics.svg" alt="PPC Coach Module 1 — Amazon Basics" width="640"></td>
+<td width="50%"><strong>2. What is PPC?</strong><br><img src="assets/screenshots/ppc-coach/module-02-what-is-ppc.svg" alt="PPC Coach Module 2 — What is PPC?" width="640"></td>
+</tr>
+<tr>
+<td><strong>3. Money Math</strong><br><img src="assets/screenshots/ppc-coach/module-03-money-math.svg" alt="PPC Coach Module 3 — Money Math" width="640"></td>
+<td><strong>4. Campaign Structure</strong><br><img src="assets/screenshots/ppc-coach/module-04-campaign-structure.svg" alt="PPC Coach Module 4 — Campaign Structure" width="640"></td>
+</tr>
+<tr>
+<td><strong>5. Keywords &amp; Match Types</strong><br><img src="assets/screenshots/ppc-coach/module-05-keywords-and-match-types.svg" alt="PPC Coach Module 5 — Keywords and Match Types" width="640"></td>
+<td><strong>6. Listing Readiness</strong><br><img src="assets/screenshots/ppc-coach/module-06-listing-readiness.svg" alt="PPC Coach Module 6 — Listing Readiness" width="640"></td>
+</tr>
+<tr>
+<td><strong>7. Campaign Setup</strong><br><img src="assets/screenshots/ppc-coach/module-07-campaign-setup.svg" alt="PPC Coach Module 7 — Campaign Setup" width="640"></td>
+<td><strong>8. Bids &amp; Budgets</strong><br><img src="assets/screenshots/ppc-coach/module-08-bids-and-budgets.svg" alt="PPC Coach Module 8 — Bids and Budgets" width="640"></td>
+</tr>
+<tr>
+<td><strong>9. Search Terms &amp; Negatives</strong><br><img src="assets/screenshots/ppc-coach/module-09-search-terms-and-negatives.svg" alt="PPC Coach Module 9 — Search Terms and Negatives" width="640"></td>
+<td><strong>10. Weekly Optimization</strong><br><img src="assets/screenshots/ppc-coach/module-10-weekly-optimization.svg" alt="PPC Coach Module 10 — Weekly Optimization" width="640"></td>
+</tr>
+<tr>
+<td><strong>11. Reporting &amp; Troubleshooting</strong><br><img src="assets/screenshots/ppc-coach/module-11-reporting-and-troubleshooting.svg" alt="PPC Coach Module 11 — Reporting and Troubleshooting" width="640"></td>
+<td><strong>12. VA Workflow &amp; Capstone</strong><br><img src="assets/screenshots/ppc-coach/module-12-va-workflow-and-capstone.svg" alt="PPC Coach Module 12 — VA Workflow and Capstone" width="640"></td>
+</tr>
+</table>
+
 ### PPC Coach workspace modules
 
 The course content is supported by these in-app work areas:
