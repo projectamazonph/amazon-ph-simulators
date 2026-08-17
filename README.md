@@ -21,6 +21,9 @@ Download `SimGrid-Setup-<version>.exe` from the GitHub Actions artifact or a
 published release and run it. The installer is per-user, creates a Start Menu
 entry and desktop shortcut, and does not require administrator access by default.
 
+Students do not need Node.js, Python, or a separate web server after installing
+the app.
+
 ### Run from source
 
 Open the static site three ways:
@@ -50,10 +53,18 @@ npm run start       # launch the desktop wrapper
 npm run dist:win   # create release\SimGrid-Setup-<version>.exe
 ```
 
+The `Build Windows Installer` workflow in
+`.github/workflows/build-windows-installer.yml` runs for pull requests targeting
+`master`, pushes to `master`, and manual dispatches. It builds on `windows-latest`
+and uploads an artifact named `simgrid-windows-installer` containing the NSIS
+installer. This is the recommended way to produce a distributable installer from
+Linux or macOS.
+
 The wrapper loads the same local HTML, CSS, JavaScript, and learning materials as
 the browser version. Student progress continues to use the browser's local storage,
 now scoped to the installed SimGrid app. The pages still use their existing CDN
-font, chart, spreadsheet, and image references when those features are available.
+font, chart, spreadsheet, and image references, so an internet connection is needed
+for those external resources when they are not already cached.
 
 ---
 
