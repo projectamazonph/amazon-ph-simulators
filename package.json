@@ -1,7 +1,7 @@
 {
   "name": "amazon-ph-simulators",
   "productName": "Project Amazon PH Academy SimGrid",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Desktop wrapper for the Project Amazon PH Academy PPC simulators.",
   "author": "Project Amazon PH Academy",
   "private": true,
