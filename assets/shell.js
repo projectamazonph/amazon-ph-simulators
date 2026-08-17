@@ -17,7 +17,8 @@
     { id: 'search-triage', name: 'Search Term Triage', tag: 'Triage',         file: 'search-triage.html' },
     { id: 'bulk-file',     name: 'Bulk File Simulator', tag: 'Bulk Ops',      file: 'bulk-file.html' },
     { id: 'listing',       name: 'BuyBox Dojo',     tag: 'Listing + PPC',    file: 'listing.html' },
-    { id: 'pacing-deck',   name: 'Pacing Deck',     tag: 'Budget + Pacing',  file: 'pacing-deck.html' }
+    { id: 'pacing-deck',   name: 'Pacing Deck',     tag: 'Budget + Pacing',  file: 'pacing-deck.html' },
+    { id: 'ppc-coach',     name: 'PPC Coach',       tag: 'Teaching Companion', file: 'ppc-coach.html' }
   ];
 
   // Detect which tool this page is (by filename or data attribute)
