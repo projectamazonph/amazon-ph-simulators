@@ -82,6 +82,197 @@ for those external resources when they are not already cached.
 
 ---
 
+## Curriculum map
+
+SimGrid is designed as a practice environment for Amazon PPC assistants and
+junior campaign managers. The tools are deliberately hands-on: students change
+inputs, make operating decisions, see the consequence, and explain the decision.
+
+### The six simulators
+
+#### 1. AdConsole Pro — operate the advertising console
+
+AdConsole Pro is the closest simulator to a day-to-day Sponsored Ads console.
+Students work across campaigns, ad groups, advertised products, keywords, and
+search terms while the auction engine advances through simulated time.
+
+- Create a campaign through a five-step setup flow.
+- Edit campaign budgets, bidding strategies, statuses, portfolios, ad-group bids,
+  and keyword bids.
+- Inspect performance charts, spend, orders, CPC, ACOS, and live activity.
+- Read search terms and decide whether to harvest them into Exact or add them as
+  negatives.
+- Use hourly day-parting, placement bid adjustments, budget rules, and market
+  events to practice reacting to changing conditions.
+- Generate reports and complete Academy missions that teach the operator workflow.
+
+#### 2. Keyword Lab — research before spending
+
+Keyword Lab teaches students how to build a keyword set before putting budget
+behind it. It combines guided lessons, a bid-and-profit simulator, reusable
+playbooks, drills, and certification.
+
+- Load and compare six sample keyword playbooks.
+- Test match types, bids, budgets, market conditions, and product economics.
+- Estimate spend, revenue, orders, CPC, CTR, ACOS, and net profit after COGS.
+- Use the max-bid and break-even calculators to connect conversion rate, AOV,
+  target ACOS, and allowable CPC.
+- Complete practice drills covering search-term decisions, keyword selection,
+  negatives, match types, bid logic, and profitability.
+- Take the 12-question certification exam, with an 80% passing target.
+
+#### 3. Search Term Triage — make the call on every query
+
+Search Term Triage is a decision-practice suite for turning a search-term report
+into a clear action. It rewards judgment, not just memorizing rules.
+
+- Work through timed or self-paced five-question triage rounds.
+- Read a search-term row and select the appropriate keep, harvest, monitor, or
+  negative action.
+- Use difficulty modes, hints, progress ranks, XP, explanations, and a rubric to
+  understand why an answer is right.
+- Practice five focused drills: Listing Autopsy, Bid Ladder, Search Term Triage,
+  Daypart Decoder, and Review Radar.
+- Learn the supporting concepts through the five-question guide, search-term
+  sources, break-even ACOS, negative exact versus negative phrase, harvesting,
+  and common traps.
+
+#### 4. Bulk File Simulator — move changes safely at scale
+
+Bulk File Simulator teaches the spreadsheet workflow behind large Amazon Ads
+changes. It grades the file like a real upload instead of treating a spreadsheet
+as a passive template.
+
+- Learn the complete Download → Edit → Upload → Process → Verify workflow.
+- Understand parent-child order: Portfolio → Campaign → Ad Group → child rows.
+- Create new entities with temporary IDs and reference those IDs from child rows.
+- Use real account IDs for Update and Delete operations rather than names.
+- Upload or load clean, broken, and update samples in the validator.
+- Receive row-level validation feedback and download templates and sample files.
+- Convert search-term decisions into a bulk file, build a launch file from a blank
+  sheet, and compare the result with a mentor model answer.
+- Use the field guide, common-mistakes reference, and glossary before touching a
+  client account.
+
+#### 5. BuyBox Dojo — improve the listing and pressure-test the PPC
+
+BuyBox Dojo joins listing quality and advertising performance on the same ASIN.
+It teaches the student to fix the page before blaming the campaign.
+
+- Edit the title, five bullets, product description, backend search terms, and
+  listing inputs with character counters and a mobile preview.
+- Reveal a model answer or reset to a flawed draft for deliberate practice.
+- Research target keywords, choose match types, add negatives, and auto-build a
+  starter campaign.
+- Run a seven-day PPC pressure test and inspect impressions, clicks, CTR, CPC,
+  spend, sales, orders, ACOS, and ROAS.
+- Complete the What Would You Do? decision drills and earn XP for safe actions.
+- Use the VA Playbook, weekly report and client-communication templates, PPC
+  dictionary, and final quiz to connect the exercise to real work.
+
+#### 6. Pacing Deck — protect budget across the day
+
+Pacing Deck is a 24-hour Sponsored Products flight simulator. Students see how
+bid, budget, demand, and day-parting interact instead of treating daily budget as
+an isolated number.
+
+- Set mission parameters such as bid and daily budget.
+- Run the day hour by hour and follow spend, remaining budget, impressions,
+  clicks, orders, CPC, and the flight log.
+- Read the hourly demand pattern and decide when to ease off or boost bids.
+- Compare the plan against the market average CPC and forecast conditions.
+- Review the end-of-day score and report, then rerun with the Night Owl scenario
+  or tune the settings for another attempt.
+
+### PPC Coach — the teaching companion
+
+PPC Coach is the structured course inside SimGrid: **12 modules, 40 plain-language
+lessons, 12 module quizzes, a 15-question final exam, a glossary, four practice
+tools, an AI Coach, badges, XP, and a teacher cohort view**. The module sequence is
+intended to be followed in order.
+
+1. **Amazon Basics** — the marketplace, product listings, visibility, organic
+   versus paid traffic, and the Buy Box.
+   Lessons: What is Amazon Marketplace?; Anatomy of a Product Listing; Organic vs
+   Paid and the Buy Box.
+2. **What is PPC?** — pay-per-click in plain language, the auction, relevance,
+   placements, and the shopper click journey.
+   Lessons: Pay Per Click in Plain Words; The Auction; The Click Journey and the
+   Funnel.
+3. **Money Math** — spend, sales, CPC, CTR, conversion rate, ACOS, ROAS, TACoS,
+   break-even, and worked examples.
+   Lessons: Spend, Sales and CPC; CTR and Conversion Rate; ACOS Deep Dive; ROAS,
+   TACoS and a Full Worked Example.
+4. **Campaign Structure** — the campaign/ad-group/targeting hierarchy, naming,
+   organization, and Sponsored Products, Sponsored Brands, and Sponsored Display.
+   Lessons: The Hierarchy: Campaign, Ad Group, Targeting; Naming and Organization;
+   The Three Ad Types.
+5. **Keywords & Match Types** — keywords versus search terms, broad, phrase,
+   exact, negatives, and a repeatable research process.
+   Lessons: Keyword vs Search Term; Match Types Deep Dive; Negative Keywords;
+   Keyword Research Starter Process.
+6. **Listing Readiness** — why PPC cannot rescue a weak product page and how to
+   diagnose conversion leaks before spending.
+   Lessons: The Listing Does the Selling; The Readiness Checklist; Diagnosing
+   Conversion Leaks.
+7. **Campaign Setup** — Auto versus Manual, a safe starter structure, and a
+   four-week new-product launch plan.
+   Lessons: Auto vs Manual Campaigns; A Safe First Structure; New Product Launch
+   Plan.
+8. **Bids & Budgets** — budget math, beginner bid rules, and a controlled bid-change
+   walkthrough.
+   Lessons: Budget Basics; Bid Rules for Beginners; A Bid Change Walkthrough.
+9. **Search Terms & Negatives** — read the search-term report, separate winners
+   from wasters, and run the weekly harvest loop.
+   Lessons: Reading the Search Term Report; Winners and Wasters; The Harvesting
+   Workflow.
+10. **Weekly Optimization** — the operating cadence, one-change-at-a-time testing,
+    and deciding when enough data has accumulated.
+    Lessons: The Weekly Routine; One Change at a Time; How Much Data is Enough?
+11. **Reporting & Troubleshooting** — write reports humans understand and diagnose
+    no impressions, low CTR, clicks without sales, high ACOS, and sales drops.
+    Lessons: The Simple Report Structure; Explaining Numbers in Human Words;
+    Troubleshooting: No Impressions and Low CTR; Troubleshooting: Clicks No Sales,
+    High ACOS, Sales Drop.
+12. **VA Workflow & Capstone** — daily/weekly/monthly cadence, permissions,
+    SOPs, change logs, client communication, and the final operating project.
+    Lessons: Tasks by Cadence; The Permissions Ladder; SOPs and the Change Log;
+    Client Communication and the Capstone.
+
+### PPC Coach workspace modules
+
+The course content is supported by these in-app work areas:
+
+- **Dashboard** — XP, level, lesson progress, quiz progress, badges, next lesson,
+  and a recommended starting point.
+- **Lessons** — the 12-module course, completion tracking, lesson XP, and a quiz
+  after each module.
+- **Glossary** — quick explanations for core PPC vocabulary and report language.
+- **Search Term Trainer** — repeated search-term classification practice with a
+  best score and feedback.
+- **Campaign Builder** — build starter campaigns for practice products and receive
+  a structured score.
+- **Report Builder** — turn sample metrics into a plain-language weekly report.
+- **Quiz Arena** — 12 module quizzes plus the 15-question Final Exam; module pass
+  mark is 70% and the final exam is the capstone assessment.
+- **AI Coach** — ask questions in plain language and receive guided prompts for
+  the concepts being practiced.
+- **Cohort (Teacher)** — review cohort average, at-risk students, top performers,
+  progress, XP, weak areas, activity recency, and status.
+
+### Learn & Docs
+
+- **Features** — an instructor-oriented reference for each major Coach capability.
+- **Student Guide** — a six-phase path from orientation to supervised on-the-job
+  operation, with exit checks and a graduation checklist.
+- **Printable Handouts** — eight one-page references: ACOS, match types, bids and
+  budgets, search-term mining, the four-week launch plan, VA cadence,
+  troubleshooting, and weekly reporting.
+- **Downloads** — the standalone PPC Coach HTML, VA Starter Kit, four-week launch
+  plan, and printable handout pack, plus instructions for saving pages as PDF.
+
+---
+
 ## Architecture
 
 ```
