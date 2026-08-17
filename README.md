@@ -13,7 +13,17 @@ whole app looks like it was built from the ground up — not stitched together.
 
 ## How to run
 
-It's plain static HTML. Open it three ways:
+The project is a plain static webapp and also ships as a Windows desktop app.
+
+### Windows installer
+
+Download `SimGrid-Setup-<version>.exe` from the GitHub Actions artifact or a
+published release and run it. The installer is per-user, creates a Start Menu
+entry and desktop shortcut, and does not require administrator access by default.
+
+### Run from source
+
+Open the static site three ways:
 
 ```powershell
 # 1. Just double-click
@@ -29,6 +39,21 @@ python -m http.server 8080
 ```
 
 No build step. No dependencies. No backend. Everything is in the page.
+
+### Build the desktop app
+
+Install Node.js 20 or newer, then run these commands from the repository root:
+
+```powershell
+npm install
+npm run start       # launch the desktop wrapper
+npm run dist:win   # create release\SimGrid-Setup-<version>.exe
+```
+
+The wrapper loads the same local HTML, CSS, JavaScript, and learning materials as
+the browser version. Student progress continues to use the browser's local storage,
+now scoped to the installed SimGrid app. The pages still use their existing CDN
+font, chart, spreadsheet, and image references when those features are available.
 
 ---
 
