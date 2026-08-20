@@ -89,3 +89,19 @@ test('recordAttempt rejects incomplete versioned attempt data', () => {
     /scenarioVersion is required/
   );
 });
+
+test('progress history preserves optional scenario identity', () => {
+  const storage = createMemoryStorage();
+  const store = StudentProgress.createProgressStore(storage);
+  store.recordAttempt({
+    simulatorId: 'bid-decisions',
+    scenarioId: 'bid-decisions-intermediate-lunchbox',
+    scenarioVersion: '1.0.0',
+    rubricVersion: '1.0.0',
+    score: 80,
+    passed: true,
+    completedAt: '2026-08-20T12:00:00.000Z'
+  });
+
+  assert.equal(store.getSimulatorProgress('bid-decisions').latestAttempt.scenarioId, 'bid-decisions-intermediate-lunchbox');
+});

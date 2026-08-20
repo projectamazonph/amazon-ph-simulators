@@ -21,6 +21,7 @@ test('graded simulator result becomes a versioned progress attempt', () => {
 
   assert.deepEqual(attempt, {
     simulatorId: 'account-audit',
+    scenarioId: 'account-audit',
     scenarioVersion: '1.0.0',
     rubricVersion: '1.0.0',
     score: 80,
@@ -37,6 +38,22 @@ test('attempt score is normalized when a simulator uses a non-100 maximum', () =
   });
 
   assert.equal(attempt.score, 72);
+});
+
+test('scenario attempts keep a stable simulator id while recording the selected scenario id', () => {
+  const attempt = SimulatorAttempt.buildAttemptRecord({
+    scenario: {
+      id: 'bid-decisions-intermediate-lunchbox',
+      simulatorId: 'bid-decisions',
+      version: '1.0.0',
+      rubricVersion: '1.0.0'
+    },
+    result: { score: 80, maxScore: 100, passed: true },
+    completedAt: '2026-08-20T12:00:00.000Z'
+  });
+
+  assert.equal(attempt.simulatorId, 'bid-decisions');
+  assert.equal(attempt.scenarioId, 'bid-decisions-intermediate-lunchbox');
 });
 
 test('shared decision renderer records completed attempts through StudentProgress', () => {
