@@ -79,6 +79,22 @@
         expectedSecondary: 'needed',
         evidence: 'Approval rules prevent surprise budget, bid, and campaign changes.',
         feedback: 'Set approval and reporting rules up front. The VA should know what can be changed directly and what needs client sign-off.'
+      },
+      {
+        id: 'measurement-gap', title: 'No reporting baseline',
+        signal: 'The client wants weekly updates, but no agreed reporting window, attribution source, or baseline period exists.',
+        metrics: { reporting: 'Requested', baseline: 'Missing', attribution: 'Undefined' },
+        expectedPrimary: 'define_primary_kpi', expectedSecondary: 'needed',
+        evidence: 'Without a baseline and attribution definition, performance changes cannot be explained consistently.',
+        feedback: 'Set the reporting baseline and attribution rules before the first report. This is needed for trustworthy decisions, even when access is ready.'
+      },
+      {
+        id: 'restricted-claim', title: 'Sensitive product claim',
+        signal: 'The client asks the VA to advertise a health benefit, but has not supplied approved claim language or compliance guidance.',
+        metrics: { category: 'Sensitive', claims: 'Unapproved', risk: 'High' },
+        expectedPrimary: 'set_approval_rules', expectedSecondary: 'blocker',
+        evidence: 'Unapproved claims create policy and account risk. Advertising copy must be reviewed before launch.',
+        feedback: 'Treat unapproved sensitive claims as a blocker. Pause the launch path until compliant language and approval ownership are clear.'
       }
     ]
   };

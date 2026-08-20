@@ -29,18 +29,18 @@ function perfectAttempt(scenario) {
 }
 
 [
-  ['Campaign Architect', CAMPAIGN_ARCHITECT_SCENARIO, gradeCampaignArchitect],
-  ['Account Audit', ACCOUNT_AUDIT_SCENARIO, gradeAccountAudit],
-  ['Client Onboarding', CLIENT_ONBOARDING_SCENARIO, gradeClientOnboarding],
-  ['Capstone Sequence', CAPSTONE_SEQUENCE_SCENARIO, gradeCapstoneSequence]
-].forEach(([name, scenario, grade]) => {
+  ['Campaign Architect', CAMPAIGN_ARCHITECT_SCENARIO, gradeCampaignArchitect, 4],
+  ['Account Audit', ACCOUNT_AUDIT_SCENARIO, gradeAccountAudit, 4],
+  ['Client Onboarding', CLIENT_ONBOARDING_SCENARIO, gradeClientOnboarding, 6],
+  ['Capstone Sequence', CAPSTONE_SEQUENCE_SCENARIO, gradeCapstoneSequence, 4]
+].forEach(([name, scenario, grade, expectedTotal]) => {
   test(`${name} awards a passing score for the expected decisions`, () => {
     const result = grade(perfectAttempt(scenario));
 
-    assert.equal(result.score, 100);
-    assert.equal(result.maxScore, 100);
-    assert.equal(result.correctDecisions, 4);
-    assert.equal(result.totalDecisions, 4);
+    assert.equal(result.score, name === 'Client Onboarding' ? 150 : 100);
+    assert.equal(result.maxScore, name === 'Client Onboarding' ? 150 : 100);
+    assert.equal(result.correctDecisions, expectedTotal);
+    assert.equal(result.totalDecisions, expectedTotal);
     assert.equal(result.passed, true);
     assert.match(result.summary, /strong/i);
   });

@@ -113,6 +113,20 @@
         expectedFollowUp: 'tighten_targeting',
         evidence: 'The query is getting exposure, but purchase share and purchase rate are weak against the market.',
         feedback: 'This is weak exposure. Tighten targeting or reduce bids until the query proves it can convert profitably.'
+      },
+      {
+        id: 'school-lunch-set', query: 'school lunch set stainless', queryVolume: 7600, marketPurchases: 290,
+        brandImpressions: 304, brandClicks: 42, brandCartAdds: 14, brandPurchases: 7,
+        expectedDiagnosis: 'scale_visibility', expectedFollowUp: 'increase_coverage',
+        evidence: 'The brand converts above the market rate, but impression share is only 4%. More qualified coverage is the clearest opportunity.',
+        feedback: 'The query is producing healthy purchase behavior when reached. Expand coverage carefully and protect the proven conversion path.'
+      },
+      {
+        id: 'lunch-box-cheap', query: 'cheap lunch box for kids', queryVolume: 10400, marketPurchases: 510,
+        brandImpressions: 2080, brandClicks: 156, brandCartAdds: 19, brandPurchases: 2,
+        expectedDiagnosis: 'fix_listing_conversion', expectedFollowUp: 'audit_pdp',
+        evidence: 'Exposure and clicks are substantial, but purchase rate is weak. The price promise and product positioning may not match the query.',
+        feedback: 'Do not buy more exposure yet. Check price competitiveness, offer fit, and whether the product actually satisfies the “cheap” intent.'
       }
     ]
   };
