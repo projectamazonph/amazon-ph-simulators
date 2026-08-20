@@ -42,12 +42,11 @@ test('Campaign Architect rejects an unknown scenario selection', () => {
 
 test('Campaign Architect page mounts the shared selector against its scenario bank', () => {
   const page = fs.readFileSync('campaign-architect.html', 'utf8');
-  const renderer = fs.readFileSync('assets/decision-simulator-page.js', 'utf8');
+  const renderer = fs.readFileSync('assets/campaign-architect-page.js', 'utf8');
 
   assert.match(page, /src="assets\/scenario-bank\.js"/);
-  assert.match(page, /scenarioBank:\s*CampaignArchitectCore\.CAMPAIGN_ARCHITECT_SCENARIO_BANK/);
-  assert.match(page, /gradeScenarioAttempt:\s*CampaignArchitectCore\.gradeScenarioAttempt/);
-  assert.match(renderer, /data-ds-scenario/);
-  assert.match(renderer, /config\.scenarioBank\.get/);
-  assert.match(renderer, /config\.gradeScenarioAttempt\(scenario\.id, currentAttempt\)/);
+  assert.match(renderer, /core\.CAMPAIGN_ARCHITECT_SCENARIO_BANK/);
+  assert.match(renderer, /bank\.get/);
+  assert.match(renderer, /core\.gradeScenarioAttempt\(scenario\.id, answers\)/);
+  assert.match(renderer, /data-pack/);
 });

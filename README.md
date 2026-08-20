@@ -15,7 +15,7 @@ unified skin, and the common application shell.
 - Shared versioned attempt history surfaces Not started, In progress, Passed, best score, and attempt count in Coach and the hub.
 - One tested beginner PPC policy aligns evidence bands, negatives, bid changes, and budget scaling across lessons and simulators.
 - Scenario-bank infrastructure preserves stable simulator progress while recording the selected scenario and rubric versions; Campaign Architect and Account Audit now ship selectable beginner and intermediate packs.
-- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **86 passing tests**.
+- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **89 passing tests**.
 
 ## Design-system architecture
 
@@ -30,6 +30,12 @@ Every simulator and learning page loads presentation in the same order:
 Simulator HTML contains structure and behavior, not page-level `<style>` blocks.
 `tests/design-system-contract.test.cjs` protects this dependency order and prevents
 the inline monoliths or disconnected shell variables from returning.
+
+The six newer graded simulators no longer share a generic page renderer. Each owns a
+function-specific view and stylesheet: diagnostic sweep, decision cockpit, blueprint
+canvas, signal lab, intake interview, or journey map. Shared view utilities are limited
+to persistence, escaping, progress recording, focus, reduced motion, and responsive
+interaction primitives; they do not define simulator layout.
 
 The shared shell also resolves nested documentation paths, provides mobile navigation,
 maintains 44px touch targets, respects reduced-motion preferences, and inserts a

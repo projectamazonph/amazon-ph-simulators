@@ -4,13 +4,13 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Project Amazon PH Academy — Bulk File Simulator</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 
 
 <script src="assets/shell.js" defer></script>
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/simulator-foundation.css">
 <link rel="stylesheet" href="assets/bulk-file.css">
 <link rel="stylesheet" href="assets/skin.css">
 <link rel="stylesheet" href="assets/shell.css">
@@ -59,7 +59,7 @@
         </div>
         <div class="sgrid spec-ann"><div></div><div>Product</div><div>Entity</div><div>Operation</div><div>Campaign ID</div><div>Campaign Name</div><div>Daily Budget</div><div>State</div></div>
       </div>
-      <p class="cell-note" id="cellNote">Hover any cell — <b>bawat column may kwento.</b></p>
+      <p class="cell-note" id="cellNote" aria-live="polite">Focus or tap any cell — <b>bawat column may kwento.</b></p>
     </div>
   </div>
 </section>
@@ -90,7 +90,7 @@
             </div>
           </div>
         </div>
-        <p class="node-note" id="nodeNote">Hover a node — <b>ito ang mapa ng bawat bulk file.</b></p>
+        <p class="node-note" id="nodeNote" aria-live="polite">Focus or tap a node — <b>ito ang mapa ng bawat bulk file.</b></p>
       </div>
     </div>
     <div class="fnotes">
@@ -964,16 +964,26 @@ document.querySelectorAll(".tryit").forEach(b=>{
 });
 
 document.querySelectorAll(".spec-cell").forEach(c=>{
-  c.addEventListener("mouseenter",()=>{
+  c.tabIndex=0;
+  c.setAttribute("role","button");
+  c.setAttribute("aria-label",c.dataset.col+": "+c.dataset.note);
+  const showSpecNote=()=>{
     document.querySelectorAll(".spec-cell").forEach(x=>x.classList.remove("hot"));
     c.classList.add("hot");
     document.getElementById("cellNote").innerHTML='<b>'+c.dataset.col+'</b> — '+c.dataset.note;
-  });
+  };
+  c.addEventListener("mouseenter",showSpecNote);
+  c.addEventListener("focus",showSpecNote);
+  c.addEventListener("click",showSpecNote);
 });
 document.querySelectorAll(".tag").forEach(t=>{
-  t.addEventListener("mouseenter",()=>{
+  t.tabIndex=0;
+  const showNodeNote=()=>{
     document.getElementById("nodeNote").innerHTML="<b>"+esc(t.textContent)+"</b> — "+esc(t.dataset.note);
-  });
+  };
+  t.addEventListener("mouseenter",showNodeNote);
+  t.addEventListener("focus",showNodeNote);
+  t.addEventListener("click",showNodeNote);
 });
 
 const HP={price:19.99,margin:0.32,tacos:0.30};

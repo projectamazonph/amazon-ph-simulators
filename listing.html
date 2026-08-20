@@ -9,6 +9,7 @@
 <script src="assets/shell.js" defer></script>
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/simulator-foundation.css">
 <link rel="stylesheet" href="assets/listing.css">
 <link rel="stylesheet" href="assets/skin.css">
 <link rel="stylesheet" href="assets/shell.css">
@@ -141,13 +142,13 @@
         <span class="tag orange" id="staleNote" hidden>Inputs changed — re-run</span>
       </div>
       <div class="card simctl">
-        <div class="ctl"><label>Daily budget</label><input type="range" id="ctlBudget" min="10" max="200" step="5"><b class="mono" id="ctlBudgetOut"></b></div>
-        <div class="ctl"><label>Target ACOS %</label><input type="number" class="inp" id="ctlTarget" min="5" max="80" style="width:78px"></div>
+        <div class="ctl"><label for="ctlBudget">Daily budget</label><input type="range" id="ctlBudget" min="10" max="200" step="5"><b class="mono" id="ctlBudgetOut"></b></div>
+        <div class="ctl"><label for="ctlTarget">Target ACOS %</label><input type="number" class="inp" id="ctlTarget" min="5" max="80" style="width:78px"></div>
         <div class="ctl"><label>Bid strategy</label><div class="seg" id="ctlStrat"></div></div>
         <div class="ctl"><label>Active keywords</label><b class="mono" id="ctlActive"></b></div>
         <button type="button" class="btn big" id="btnRun">▶ Run 7-day simulation</button>
       </div>
-      <div id="simResults"></div>
+      <div id="simResults" aria-live="polite"></div>
     </section>
 
     <!-- ============ DRILLS ============ -->
@@ -158,7 +159,7 @@
           <h2>What Would You Do?</h2>
           <p>Ten situations pulled from real VA shifts — read the data, pick the call, get coached on the reasoning.</p>
         </div>
-        <div style="display:flex;align-items:center;gap:.7rem;min-width:200px"><div class="dprog"><i id="drillFill" style="width:0%"></i></div><span class="mono" id="drillScore" style="font-size:.8rem;color:var(--slate);white-space:nowrap">0/10</span></div>
+        <div style="display:flex;align-items:center;gap:.7rem;min-width:200px"><div class="dprog"><i id="drillFill" style="width:0%"></i></div><span class="mono" id="drillScore" aria-live="polite" style="font-size:.8rem;color:var(--slate);white-space:nowrap">0/10</span></div>
       </div>
       <div id="drillList"></div>
     </section>

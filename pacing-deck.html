@@ -10,6 +10,7 @@
 <script src="assets/shell.js" defer></script>
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/simulator-foundation.css">
 <link rel="stylesheet" href="assets/pacing-deck.css">
 <link rel="stylesheet" href="assets/skin.css">
 <link rel="stylesheet" href="assets/shell.css">
@@ -61,7 +62,7 @@
     <div class="p-body">
 
       <div class="ctl">
-        <div class="ctl-label">DAILY BUDGET</div>
+        <label class="ctl-label" for="budgetRange">DAILY BUDGET</label>
         <div class="slider-row">
           <div class="big-val" id="budgetVal">$40<small>/ DAY</small></div>
         </div>
@@ -71,7 +72,7 @@
       </div>
 
       <div class="ctl">
-        <div class="ctl-label">BASE BID</div>
+        <label class="ctl-label" for="bidRange">BASE BID</label>
         <div class="slider-row">
           <div class="big-val" id="bidVal">$1.00<small>/ CLICK</small></div>
         </div>
@@ -96,7 +97,7 @@
           <span><i style="background:#8A5500"></i>1½×</span>
           <span><i style="background:var(--orange)"></i>2×</span>
         </div>
-        <div class="dp-summary" id="dpSummary"></div>
+        <div class="dp-summary" id="dpSummary" aria-live="polite"></div>
         <div class="presets">
           <button type="button" class="preset-btn" data-preset="flat">FLAT</button>
           <button type="button" class="preset-btn" data-preset="owl">NIGHT OWL</button>
@@ -440,7 +441,7 @@ function buildGrid(){
   let html='';
   [['AM',0],['PM',12]].forEach(([lab,off])=>{
     html+=`<div class="dp-row"><span class="dp-rowlab">${lab}</span>`;
-    for(let i=0;i<12;i++)html+=`<div class="dp-cell" data-h="${off+i}"></div>`;
+    for(let i=0;i<12;i++)html+=`<div class="dp-cell" data-h="${off+i}" role="button" tabindex="0" aria-label="Hour ${off+i}: change bid multiplier"></div>`;
     html+='</div>';
   });
   dpGrid.innerHTML=html;
@@ -461,6 +462,13 @@ function buildGrid(){
     const c=el&&el.closest?el.closest('.dp-cell'):null;
     if(c)applyMult(+c.dataset.h,paintLevel);
   });
+  dpGrid.addEventListener('keydown',e=>{
+    const c=e.target.closest('.dp-cell');
+    if(!c||S.running||!(e.key==='Enter'||e.key===' '))return;
+    e.preventDefault();
+    const h=+c.dataset.h;
+    applyMult(h,LEVELS[(LEVELS.indexOf(S.mults[h])+1)%LEVELS.length]);
+  });
   window.addEventListener('pointerup',()=>painting=false);
 }
 function applyMult(h,v){
@@ -472,6 +480,7 @@ function refreshCell(h){
   const el=cellEls[h],v=S.mults[h];
   el.className='dp-cell l'+LEVELS.indexOf(v);
   el.textContent=LBL[v];
+  el.setAttribute('aria-label',`Hour ${h}: ${LBL[v]} multiplier. Press Enter or Space to change.`);
 }
 function refreshCells(){for(let h=0;h<24;h++)refreshCell(h);updateDpSummary();}
 function updateDpSummary(){

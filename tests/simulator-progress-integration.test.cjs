@@ -88,11 +88,13 @@ test('shared decision renderer records completed attempts through StudentProgres
   test(`${pageFile} records its custom graded result through shared progress`, () => {
     const page = read(pageFile);
     const core = read(coreFile);
+    const rendererMatch = page.match(/src="(assets\/[^"]+-page\.js)"/);
+    const integrationSource = rendererMatch ? read(rendererMatch[1]) : page;
 
     assert.match(page, /src="assets\/student-progress\.js"/);
     assert.match(page, /src="assets\/simulator-attempt\.js"/);
-    assert.match(page, /progressStore\.recordAttempt/);
-    assert.match(page, /SimulatorAttempt\.buildAttemptRecord/);
+    assert.match(integrationSource + read('assets/simulator-view-utils.js'), /recordAttempt/);
+    assert.match(integrationSource + read('assets/simulator-view-utils.js'), /SimulatorAttempt\.buildAttemptRecord/);
     assert.match(core, /version: '1\.0\.0'/);
     assert.match(core, /rubricVersion: '1\.0\.0'/);
   });
