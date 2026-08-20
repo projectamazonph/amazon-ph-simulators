@@ -15,7 +15,7 @@ unified skin, and the common application shell.
 - Shared versioned attempt history surfaces Not started, In progress, Passed, best score, and attempt count in Coach and the hub.
 - One tested beginner PPC policy aligns evidence bands, negatives, bid changes, and budget scaling across lessons and simulators.
 - Scenario-bank infrastructure preserves stable simulator progress while recording the selected scenario and rubric versions; Campaign Architect and Account Audit now ship selectable beginner and intermediate packs.
-- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **91 passing tests**.
+- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **95 passing tests**.
 
 ## Design-system architecture
 
@@ -97,12 +97,80 @@ The project is a plain static webapp and also ships as a Windows desktop app.
 
 ### Windows installer
 
-Download `SimGrid-Setup-<version>.exe` from the GitHub Actions artifact or a
+Download `SimGrid-Setup-1.0.2.exe` from the GitHub Actions artifact or the
 published release and run it. The installer is per-user, creates a Start Menu
 entry and desktop shortcut, and does not require administrator access by default.
 
 Students do not need Node.js, Python, or a separate web server after installing
 the app.
+
+#### App details
+
+| Item | Detail |
+|---|---|
+| App name | Project Amazon PH Academy SimGrid |
+| Current release | `1.0.2` |
+| Installer | `SimGrid-Setup-1.0.2.exe` |
+| Platform | Windows 10/11, 64-bit |
+| Install type | Per-user; administrator access is not normally required |
+| App identity | `com.projectamazonph.simgrid` |
+| Release source | [GitHub Releases](https://github.com/projectamazonph/amazon-ph-simulators/releases) |
+| Web version | [projectamazonph.github.io/amazon-ph-simulators](https://projectamazonph.github.io/amazon-ph-simulators/) |
+
+#### Student installation guide
+
+1. Download the installer from the project’s GitHub Release.
+2. Review the branded SimGrid information page shown by the installer. It
+   explains the app, installation scope, updates, saved progress, and support
+   links.
+3. If Windows shows a SmartScreen warning, verify that the file came from the
+   official repository before selecting **More info** and continuing. A signed
+   release is preferred; unsigned builds may be shown as an unrecognized app.
+4. Choose the installation folder, then finish the installer.
+5. Launch **SimGrid** from the desktop shortcut or the **Project Amazon PH
+   Academy** Start Menu group.
+6. Start with **PPC Coach**, complete the lesson, then open the assigned simulator.
+
+The installed app does not require Node.js, Python, or a local web server.
+
+#### Updating the app
+
+SimGrid checks for updates when a packaged Windows build starts. When a new
+stable GitHub Release is available:
+
+1. Choose **Download update** when prompted.
+2. Wait for the download to complete.
+3. Choose **Restart and install** to apply it, or choose **Later** and install
+   when convenient.
+
+If no prompt appears, close and reopen the app while connected to the internet.
+Updates require releases to include the installer, `latest.yml`, and its
+blockmap file. Development runs launched with `npm run start` do not check for
+updates.
+
+#### Saved progress and reinstall behavior
+
+Progress is saved locally for the current Windows user. The desktop app stores
+browser storage in:
+
+```text
+%APPDATA%\Project Amazon PH Academy SimGrid
+```
+
+Normal updates and reinstalling the same app identity preserve this folder. Do
+not delete it if you want to keep progress. The in-app reset controls can still
+clear progress intentionally. Progress is local to the Windows account and is
+not automatically synchronized between different computers or browser profiles.
+
+#### Troubleshooting
+
+| Problem | Recommended action |
+|---|---|
+| App does not open | Reinstall the latest release and confirm Windows Defender did not quarantine it. |
+| SmartScreen warning | Verify the download source and file checksum; use a signed release when available. |
+| Update is not offered | Confirm the app is packaged, connected to the internet, and the new release includes `latest.yml`. |
+| Progress is missing | Confirm you are using the same Windows account and app identity; do not clear the `%APPDATA%` folder. |
+| External fonts or charts are missing | Connect to the internet; some resources are loaded from CDNs. |
 
 ### Run from source
 
@@ -130,7 +198,7 @@ Install Node.js 20 or newer, then run these commands from the repository root:
 ```powershell
 npm install
 npm run start       # launch the desktop wrapper
-npm run dist:win   # create release\SimGrid-Setup-<version>.exe
+npm run dist:win   # create release\SimGrid-Setup-1.0.2.exe
 ```
 
 The `Build Windows Installer` workflow in
@@ -139,6 +207,25 @@ The `Build Windows Installer` workflow in
 and uploads an artifact named `simgrid-windows-installer` containing the NSIS
 installer. This is the recommended way to produce a distributable installer from
 Linux or macOS.
+
+### Desktop updates
+
+The packaged Windows app checks the GitHub Releases channel for updates when it
+starts. If an update is available, it asks before downloading and asks again
+before restarting to install it. To publish an update, increment the version in
+`package.json`, build the NSIS installer, and attach the installer plus the
+generated `latest.yml` and blockmap files to a GitHub Release. Releases must use
+the `latest` stable channel and the same repository configured in
+`package.json` under `build.publish`.
+
+Auto-update is enabled only in packaged Windows builds. Development runs do not
+contact the release service.
+
+Student progress is stored in Electron's per-user data directory, separate from
+the installed application files. The installer is configured not to remove that
+directory during uninstall, so progress survives updates and reinstalling the
+same app identity on the same Windows account. Clearing Windows app data or using
+the reset controls inside SimGrid will still remove progress.
 
 The wrapper loads the same local HTML, CSS, JavaScript, and learning materials as
 the browser version. Student progress continues to use the browser's local storage,

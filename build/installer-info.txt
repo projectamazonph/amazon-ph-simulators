@@ -1,0 +1,51 @@
+PROJECT AMAZON PH ACADEMY SIMGRID
+================================
+
+Train the VAs who run Amazon PPC for a living.
+
+ABOUT THIS APP
+--------------
+SimGrid is a student-facing Amazon PPC training app from Project Amazon PH
+Academy. It includes twelve practical simulators, PPC Coach lessons, guided
+practice, scoring, feedback, and a simulator roadmap.
+
+INSTALLATION
+------------
+This is a per-user installation. You may choose the installation folder on the
+next screen. Administrator access is not normally required.
+
+The app does not require Node.js, Python, or a separate web server after it is
+installed. Some fonts, charts, and other external resources require an internet
+connection.
+
+WINDOWS SMARTSCREEN
+-------------------
+Windows may display a SmartScreen message saying that this app is unrecognized,
+especially for a new or unsigned release. This warning is a Windows reputation
+warning and does not by itself mean that SimGrid is malware.
+
+Only continue if you downloaded this installer from the official Project Amazon
+PH Academy GitHub repository or release page. If the publisher or download
+source cannot be verified, cancel the installation.
+
+UPDATES
+-------
+Installed Windows builds check the official GitHub Releases channel for stable
+updates. The app asks before downloading and before restarting to install an
+update. You can choose Later and continue using the current version.
+
+SAVED PROGRESS
+-------------
+Student progress is stored in the current Windows user's application-data
+folder, separate from the installed files. Normal updates and reinstalling the
+same app identity preserve progress. Do not clear the SimGrid app-data folder
+if you want to keep saved progress.
+
+SUPPORT
+-------
+Project Amazon PH Academy
+https://projectamazonph.github.io/amazon-ph-simulators/
+https://github.com/projectamazonph/amazon-ph-simulators/releases
+
+By continuing, you confirm that you have reviewed the information above and
+want to install Project Amazon PH Academy SimGrid.
