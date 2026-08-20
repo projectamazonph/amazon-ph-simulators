@@ -272,10 +272,10 @@
       var f = document.createElement('footer');
       f.className = 'pha-footer';
       f.innerHTML =
-        '<div><b>PROJECT AMAZON PH</b> &nbsp;·&nbsp; Academy SimGrid</div>' +
-        '<div class="pha-foot-links">' +
-          '<a href="' + root + 'index.html">Hub</a>' +
-          TOOLS.map(function (t) { return '<a href="' + root + t.file + '">' + t.name + '</a>'; }).join('') +
+        '<div class="pha-foot-brand"><b>PROJECT AMAZON PH</b><span>Academy · SimGrid</span><small>Practical Amazon PPC training for PH-based VAs.</small></div>' +
+        '<div class="pha-foot-links" data-label="Academy"><a href="' + root + 'index.html">Control Hub</a><a href="' + root + 'ppc-coach.html">PPC Coach</a><a href="' + root + 'learn/index.html">Learn &amp; Docs</a><a href="' + root + 'planned-simulators.html">Roadmap</a></div>' +
+        '<div class="pha-foot-links tools" data-label="Simulators">' +
+          TOOLS.filter(function (t) { return t.id !== 'ppc-coach'; }).map(function (t) { return '<a href="' + root + t.file + '">' + t.name + '</a>'; }).join('') +
         '</div>' +
         '<div class="pha-foot-meta">v1.0 · ' + (document.body.getAttribute('data-pha-tool') ? 'Tool module' : 'Control Hub') + '</div>';
       document.body.appendChild(f);

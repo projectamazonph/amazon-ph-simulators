@@ -218,51 +218,54 @@ body[data-pha-tool] textarea {
 @media (max-width: 767.98px) {
 
   .pha-topbar {
-    flex-wrap: wrap;
-    height: auto;
-    min-height: var(--nav-h);
-    padding: 8px 12px;
-    gap: 8px;
+    height: 72px;
+    min-height: 72px;
+    padding: 8px 14px;
+    gap: 10px;
+    flex-wrap: nowrap;
+    position: sticky;
   }
   .pha-topbar .pha-status { display: none; }
   .pha-topbar .pha-divider { display: none; }
-  .pha-topbar .pha-tool-name b { max-width: 140px; }
+  .pha-topbar .pha-tool-name { display: none; }
 
   .pha-burger {
     display: inline-flex;
     order: 4;
     margin-left: auto;
+    width: 48px;
+    height: 48px;
   }
 
   .pha-topbar .pha-nav {
-    order: 99;
-    flex-basis: 100%;
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 12px;
+    right: 12px;
     flex-direction: column;
     align-items: stretch;
     gap: 2px;
-    width: 100%;
-    margin-left: 0;
-    margin-top: 4px;
+    width: auto;
+    margin: 0;
     padding: 8px;
     background: var(--shell-navy-2);
     border: 1px solid var(--shell-line);
     border-radius: var(--shell-radius);
-    max-height: 0;
-    overflow: hidden;
+    max-height: min(72vh, 560px);
+    overflow-y: auto;
     opacity: 0;
     pointer-events: none;
     transition: max-height var(--d-fast) var(--ease),   /* PR #5: was --d-base, now --d-fast */
                 opacity var(--d-fast) var(--ease),
                 padding var(--d-fast) var(--ease);
-    padding-top: 0;
-    padding-bottom: 0;
   }
   .pha-topbar .pha-nav.is-open {
-    max-height: 80vh;
+    display: flex;
+    max-height: min(72vh, 560px);
     opacity: 1;
     pointer-events: auto;
     padding: 8px;
-    overflow-y: auto;
   }
   .pha-topbar .pha-nav a {
     height: var(--tap);
@@ -281,7 +284,7 @@ body[data-pha-tool] textarea {
     display: block;
     position: fixed;
     inset: 0;
-    top: var(--nav-h);
+    top: 72px;
     background: rgba(15, 20, 25, 0.5);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
@@ -305,25 +308,32 @@ body[data-pha-tool] textarea {
   }
 
   .pha-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 20px 14px;
+    padding: 24px 18px 20px;
     font-size: 12px;
   }
+  .pha-footer .pha-foot-brand { grid-column: 1 / -1; }
   .pha-footer .pha-foot-links {
-    flex-wrap: wrap;
-    gap: 8px 14px;
+    display: grid;
+    gap: 8px;
     font-size: 13px;
   }
+  .pha-footer .pha-foot-links::before,
+  .pha-footer .pha-foot-links.tools::before { content: attr(data-label); color: var(--shell-orange); font: 700 10px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 2px; }
   .pha-footer .pha-foot-links a {
     min-height: var(--tap);
     display: inline-flex;
     align-items: center;
   }
   .pha-footer .pha-foot-meta {
+    grid-column: 1 / -1;
     margin-left: 0;
     width: 100%;
+    padding-top: 14px;
+    border-top: 1px solid var(--shell-line);
     font-size: 11px;
   }
 
