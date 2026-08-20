@@ -42,15 +42,23 @@ test('gradeAttempt rewards correct bid decisions and confidence calls', () => {
     'wasted-spend-keyword': {
       action: 'investigate_pause',
       confidence: 'high'
+    },
+    'seasonal-winner': {
+      action: 'raise_bid',
+      confidence: 'high'
+    },
+    'expensive-but-relevant': {
+      action: 'lower_bid',
+      confidence: 'medium'
     }
   };
 
   const result = gradeAttempt(BID_DECISIONS_SCENARIO, attempt);
 
-  assert.equal(result.score, 100);
-  assert.equal(result.maxScore, 100);
-  assert.equal(result.correctDecisions, 4);
-  assert.equal(result.totalDecisions, 4);
+  assert.equal(result.score, 150);
+  assert.equal(result.maxScore, 150);
+  assert.equal(result.correctDecisions, 6);
+  assert.equal(result.totalDecisions, 6);
   assert.equal(result.passed, true);
   assert.match(result.summary, /strong bid judgment/i);
 });
@@ -69,9 +77,9 @@ test('gradeAttempt distinguishes wrong action from wrong confidence', () => {
 
   const result = gradeAttempt(BID_DECISIONS_SCENARIO, attempt);
 
-  assert.equal(result.maxScore, 100);
+  assert.equal(result.maxScore, 150);
   assert.equal(result.correctDecisions, 0);
-  assert.equal(result.totalDecisions, 4);
+  assert.equal(result.totalDecisions, 6);
   assert.equal(result.passed, false);
   assert.equal(result.items[0].earned, 5);
   assert.match(result.items[0].feedback, /profitable and has enough orders/i);
