@@ -1,6 +1,6 @@
 # Project Amazon PH Academy — SimGrid
 
-A multi-page webapp that consolidates seven live Amazon PPC training simulators, a teaching companion, and the planned VA Project PH simulator roadmap under one brand: **Project Amazon PH Academy**.
+A multi-page webapp that consolidates eight live Amazon PPC training simulators, a teaching companion, and the planned VA Project PH simulator roadmap under one brand: **Project Amazon PH Academy**.
 
 > Train the VAs who run Amazon PPC for a living.
 
@@ -18,7 +18,7 @@ The planned simulator set from `projectamazonph/va-project-ph` is now tracked in
 | Planned Simulator | SimGrid Status | Notes |
 |---|---|---|
 | S1 Search-Term Report Lab | Mostly covered | `search-triage.html` covers core search-term decisions |
-| S2 Bid Decisions | Missing standalone | Build focused bid raise/hold/lower/investigate practice |
+| S2 Bid Decisions | Live | `bid-decisions.html` teaches raise/hold/lower/investigate calls with tested scoring in `assets/bid-decisions-core.js` |
 | S3 Budget and Pacing | Covered | `pacing-deck.html` |
 | S4 Campaign Builder / Console Wizard | Partial | `ad-console.html` has setup flow; planned work adds stronger wizard/rubric |
 | S5 Listing Audit | Partial | `listing.html` covers listing + PPC pressure test |
@@ -29,7 +29,7 @@ The planned simulator set from `projectamazonph/va-project-ph` is now tracked in
 | S11 Client Onboarding | Missing | Build VA onboarding checklist and open-question workflow |
 | S12-S14 Capstone | Missing | Build after the core missing simulators are stable |
 
-Recommended remaining build order: S2 Bid Decisions, S8 Campaign Architect, S9 Account Audit, S11 Client Onboarding, then S12-S14 Capstone.
+Recommended remaining build order: S8 Campaign Architect, S9 Account Audit, S11 Client Onboarding, then S12-S14 Capstone.
 
 ---
 
@@ -103,6 +103,7 @@ for those external resources when they are not already cached.
 | 5 | **BuyBox Dojo** | `listing.html` | Listing optimizer + 7-day PPC pressure test + VA Playbook |
 | 6 | **Pacing Deck** | `pacing-deck.html` | Budget & day-parting simulator with 24-hour flight log |
 | 7 | **S10 SQP Studio** | `sqp-studio.html` | Search Query Performance simulator for visibility, conversion, uncertainty, and waste diagnosis |
+| 8 | **S2 Bid Decisions** | `bid-decisions.html` | Bid optimization simulator for raise, hold, lower, and investigate decisions |
 
 ---
 
@@ -112,7 +113,7 @@ SimGrid is designed as a practice environment for Amazon PPC assistants and
 junior campaign managers. The tools are deliberately hands-on: students change
 inputs, make operating decisions, see the consequence, and explain the decision.
 
-### The seven simulators
+### The eight simulators
 
 #### 1. AdConsole Pro — operate the advertising console
 
@@ -217,6 +218,17 @@ Key implementation notes:
 - `assets/sqp-studio-core.js` owns SQP metrics, answer keys, scoring, and feedback.
 - `sqp-studio.html` owns UI rendering, attempt storage, and interaction wiring.
 - `tests/sqp-studio-core.test.cjs` verifies the scoring behavior.
+- `tests/hub-links.test.cjs` protects the hub/nav slot.
+
+#### 8. S2 Bid Decisions (`bid-decisions.html`)
+
+Bid Decisions isolates bid judgment from the larger ad console. Students read keyword-level bid, clicks, spend, orders, ACOS, and ROAS, then choose the safest bid action and confidence level.
+
+Key implementation notes:
+
+- `assets/bid-decisions-core.js` owns bid metrics, answer keys, scoring, and feedback.
+- `bid-decisions.html` owns UI rendering, attempt storage, and interaction wiring.
+- `tests/bid-decisions-core.test.cjs` verifies the scoring behavior.
 - `tests/hub-links.test.cjs` protects the hub/nav slot.
 
 ### PPC Coach — the teaching companion

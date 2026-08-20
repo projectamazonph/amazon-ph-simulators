@@ -16,6 +16,7 @@
     { id: 'keyword-lab',   name: 'Keyword Lab',     tag: 'Keyword Research', file: 'keyword-lab.html' },
     { id: 'search-triage', name: 'Search Term Triage', tag: 'Triage',         file: 'search-triage.html' },
     { id: 'sqp-studio',    name: 'S10 SQP Studio',  tag: 'Analytics',        file: 'sqp-studio.html' },
+    { id: 'bid-decisions', name: 'S2 Bid Decisions', tag: 'Optimization',     file: 'bid-decisions.html' },
     { id: 'bulk-file',     name: 'Bulk File Simulator', tag: 'Bulk Ops',      file: 'bulk-file.html' },
     { id: 'listing',       name: 'BuyBox Dojo',     tag: 'Listing + PPC',    file: 'listing.html' },
     { id: 'pacing-deck',   name: 'Pacing Deck',     tag: 'Budget + Pacing',  file: 'pacing-deck.html' },
