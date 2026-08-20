@@ -183,6 +183,8 @@ Acceptance:
 
 ### Phase 4 — Scenario banks
 
+**Status:** In progress on `feature/scenario-bank-foundation`; the validated deterministic scenario-bank contract is complete, and progress attempts now separate stable simulator identity from selected scenario identity without invalidating older records.
+
 Expand SQP Studio, Bid Decisions, Campaign Architect, Account Audit, and Client Onboarding to:
 
 - Three difficulty levels

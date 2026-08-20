@@ -30,7 +30,8 @@
     }
 
     return {
-      simulatorId: scenario.id,
+      simulatorId: scenario.simulatorId || scenario.id,
+      scenarioId: scenario.id,
       scenarioVersion: scenario.version,
       rubricVersion: scenario.rubricVersion,
       score: Math.round((result.score / result.maxScore) * 100),

@@ -47,7 +47,7 @@
   }
 
   function copyAttempt(attempt) {
-    return {
+    var copied = {
       simulatorId: attempt.simulatorId,
       scenarioVersion: attempt.scenarioVersion,
       rubricVersion: attempt.rubricVersion,
@@ -55,6 +55,8 @@
       passed: attempt.passed,
       completedAt: attempt.completedAt
     };
+    if (attempt.scenarioId) copied.scenarioId = attempt.scenarioId;
+    return copied;
   }
 
   function createProgressStore(storage, storageKey) {
