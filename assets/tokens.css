@@ -34,6 +34,12 @@
   --c-link:          #007185;   /* amazon link */
   --c-link-h:        #C7511F;   /* amazon link hover */
 
+  /* ---------- color · shared chrome ---------- */
+  --c-shell-ink:     #E9EFF8;
+  --c-shell-dim:     #99A5B4;
+  --c-shell-faint:   #6E7B8B;
+  --c-shell-line:    #2A3543;
+
   /* ---------- color · semantic ---------- */
   --c-green:         #067D62;
   --c-green-bg:      #E6F4F0;
