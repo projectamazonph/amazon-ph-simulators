@@ -1,13 +1,35 @@
 # Project Amazon PH Academy — SimGrid
 
-A multi-page webapp that consolidates six Amazon PPC training simulators under one
-brand: **Project Amazon PH Academy**.
+A multi-page webapp that consolidates six live Amazon PPC training simulators, a teaching companion, and the planned VA Project PH simulator roadmap under one brand: **Project Amazon PH Academy**.
 
 > Train the VAs who run Amazon PPC for a living.
 
 Built from the eight chat-export JSONs in `../`. Each simulator was extracted from
 its conversation, audited, and re-skinned under a unified design system so the
 whole app looks like it was built from the ground up — not stitched together.
+
+
+---
+
+## Planned simulator roadmap imported from VA Project PH
+
+The planned simulator set from `projectamazonph/va-project-ph` is now tracked in SimGrid so future builds can happen here without losing the curriculum intent.
+
+| Planned Simulator | SimGrid Status | Notes |
+|---|---|---|
+| S1 Search-Term Report Lab | Mostly covered | `search-triage.html` covers core search-term decisions |
+| S2 Bid Decisions | Missing standalone | Build focused bid raise/hold/lower/investigate practice |
+| S3 Budget and Pacing | Covered | `pacing-deck.html` |
+| S4 Campaign Builder / Console Wizard | Partial | `ad-console.html` has setup flow; planned work adds stronger wizard/rubric |
+| S5 Listing Audit | Partial | `listing.html` covers listing + PPC pressure test |
+| S7 Bulk Operations | Covered | `bulk-file.html` |
+| S8 Campaign Architect | Missing | Build campaign-map practice from product brief to first review plan |
+| S9 Account Audit | Missing | Build synthetic account snapshot triage and prioritization |
+| S10 SQP Studio | Missing | Build search-query visibility and conversion-signal analysis |
+| S11 Client Onboarding | Missing | Build VA onboarding checklist and open-question workflow |
+| S12-S14 Capstone | Missing | Build after the core missing simulators are stable |
+
+Recommended build order: S10 SQP Studio, S2 Bid Decisions, S8 Campaign Architect, S9 Account Audit, S11 Client Onboarding, then S12-S14 Capstone.
 
 ---
 
@@ -72,7 +94,8 @@ for those external resources when they are not already cached.
 
 | # | Page | File | What it does |
 |---|------|------|--------------|
-| — | **Hub** | `index.html` | Control grid — links to all six tools, mission panel, principles |
+| — | **Hub** | `index.html` | Control grid - links to all live tools, planned simulator roadmap, mission panel, principles |
+| — | **Planned Simulators** | `planned-simulators.html` | Roadmap copied from `va-project-ph` docs 36-42 for missing simulator builds |
 | 1 | **AdConsole Pro** | `ad-console.html` | Amazon Sponsored Ads console replica — campaigns, ad groups, keywords, search terms, hour-by-hour auction simulation |
 | 2 | **Keyword Lab** | `keyword-lab.html` | Keyword research training: playbooks, practice drills, search-term audits, 12-question certification exam |
 | 3 | **Search Term Triage** | `search-triage.html` | Five-question triage rounds; read the report, decide the action, defend it. OPSDECK Practice Suite · Tool 07 |
