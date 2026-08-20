@@ -3,10 +3,23 @@
 **Audit date:** 2026-08-18
 **Scope:** UI, copy, simulator logic, state mutation, accessibility, and validation
 **Repository:** `projectamazonph/amazon-ph-simulators`
+**Live site:** https://projectamazonph.github.io/amazon-ph-simulators/
+
+> Historical baseline: this report records the repository state on 2026-08-18. It is not the current release status. Later work added automated tests, fixed parsing blockers, introduced curriculum/progress contracts, and aligned shared PPC policy. Re-verify an individual finding before treating it as open.
+
+## Current status addendum — 2026-08-20
+
+- The repository now has a Node test harness with 61 passing tests.
+- Inline-script parsing is included in delivery verification; the two P0 syntax blockers no longer describe the current baseline.
+- PPC Coach is the primary guided entry and all 12 modules have simulator assignments through `assets/curriculum-manifest.js`.
+- Six graded simulators write versioned attempts through `assets/student-progress.js` and surface progress in Coach and the hub.
+- Shared beginner PPC rules live in `assets/ppc-decision-policy.js` and are documented in `docs/ppc-decision-policy.md`.
+- Scenario-bank infrastructure and stable simulator/scenario identity are now present.
+- Remaining simulation-model, accessibility, deterministic-randomness, and legacy-regression findings below remain backlog candidates until individually closed by tests and implementation.
 
 ## Executive summary
 
-The project has a strong training concept and broad simulator coverage, but it currently has two execution-blocking JavaScript syntax errors and several places where displayed metrics do not match the underlying model. The most important next step is to establish a small validation gate before polishing the UI: parse every inline script, then test budget caps, state commits, and replayability with deterministic fixtures.
+At the audit date, the project had a strong training concept and broad simulator coverage, but also had two execution-blocking JavaScript syntax errors and several places where displayed metrics did not match the underlying model. The recommended validation gate has since been established; the detailed findings remain useful historical evidence and backlog input.
 
 The review found no source changes were required to produce this report.
 

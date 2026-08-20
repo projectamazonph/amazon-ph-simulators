@@ -282,3 +282,43 @@ body {
     padding: 24px 14px 46px;
   }
 }
+
+@media (max-width: 600px) {
+  .ds-section-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .ds-table-wrap { overflow: visible; }
+  .ds-table,
+  .ds-table tbody,
+  .ds-table tr,
+  .ds-table td {
+    display: block;
+    width: 100%;
+  }
+  .ds-table { min-width: 0; }
+  .ds-table thead { display: none; }
+  .ds-table tr {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--ds-line);
+  }
+  .ds-table td {
+    min-width: 0;
+    padding: 7px 0;
+    border: 0;
+  }
+  .ds-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 4px;
+    color: var(--ds-muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .ds-select { min-width: 0; }
+  .ds-actions .ds-btn { flex: 1 1 100%; }
+}

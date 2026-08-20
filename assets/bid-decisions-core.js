@@ -46,7 +46,7 @@
     id: 'bid-decisions',
     version: '1.0.0',
     rubricVersion: '1.0.0',
-    title: 'S2 Bid Decisions',
+    title: 'Bid Decisions',
     passingScore: 75,
     targetAcos: 35,
     actions: ACTIONS,

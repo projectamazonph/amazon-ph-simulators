@@ -10,6 +10,8 @@ Seller Central / Ads workflow (ad console, keyword research, search-term triage,
 upload, listing optimization, budget pacing). It's plain HTML/CSS/JS — no framework, no
 build step, no package manager, no backend.
 
+Live GitHub Pages site: https://projectamazonph.github.io/amazon-ph-simulators/
+
 ## Running the site
 
 No build/install step. Serve the repo root as static files:
@@ -43,12 +45,12 @@ search-triage.html   # Tool: Search Term Triage
 bulk-file.html       # Tool: Bulk File Simulator
 listing.html         # Tool: BuyBox Dojo
   pacing-deck.html       # Tool: Pacing Deck
-  sqp-studio.html        # Tool: S10 SQP Studio
-  bid-decisions.html     # Tool: S2 Bid Decisions
-  campaign-architect.html # Tool: S8 Campaign Architect
-  account-audit.html     # Tool: S9 Account Audit
-  client-onboarding.html # Tool: S11 Client Onboarding
-  capstone-sequence.html # Tool: S12-S14 Capstone Sequence
+  sqp-studio.html        # Tool: SQP Studio
+  bid-decisions.html     # Tool: Bid Decisions
+  campaign-architect.html # Tool: Campaign Architect
+  account-audit.html     # Tool: Account Audit
+  client-onboarding.html # Tool: Client Onboarding
+  capstone-sequence.html # Tool: Capstone Sequence
   assets/
   tokens.css         # Design-token single source of truth (CSS custom properties)
   skin.css            # Aggressive override layer — forces every tool onto the unified theme

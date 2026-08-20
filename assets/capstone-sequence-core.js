@@ -26,7 +26,7 @@
     id: 'capstone-sequence',
     version: '1.0.0',
     rubricVersion: '1.0.0',
-    title: 'S12-S14 Capstone Sequence',
+    title: 'Capstone Sequence',
     kicker: 'Capstone simulator',
     description: 'Make the correct stage decision across research, setup, optimization, and client reporting.',
     passingScore: 75,

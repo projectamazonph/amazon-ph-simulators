@@ -23,12 +23,12 @@ function assertSimulatorSlot({ name, file, id, category }) {
 }
 
 [
-  { name: 'S10 SQP Studio', file: 'sqp-studio.html', id: 'sqp-studio', category: 'Analytics' },
-  { name: 'S2 Bid Decisions', file: 'bid-decisions.html', id: 'bid-decisions', category: 'Bids' },
-  { name: 'S8 Campaign Architect', file: 'campaign-architect.html', id: 'campaign-architect', category: 'Planning' },
-  { name: 'S9 Account Audit', file: 'account-audit.html', id: 'account-audit', category: 'Audit' },
-  { name: 'S11 Client Onboarding', file: 'client-onboarding.html', id: 'client-onboarding', category: 'Onboarding' },
-  { name: 'S12-S14 Capstone', file: 'capstone-sequence.html', id: 'capstone-sequence', category: 'Capstone' }
+  { name: 'SQP Studio', file: 'sqp-studio.html', id: 'sqp-studio', category: 'Analytics' },
+  { name: 'Bid Decisions', file: 'bid-decisions.html', id: 'bid-decisions', category: 'Bids' },
+  { name: 'Campaign Architect', file: 'campaign-architect.html', id: 'campaign-architect', category: 'Planning' },
+  { name: 'Account Audit', file: 'account-audit.html', id: 'account-audit', category: 'Audit' },
+  { name: 'Client Onboarding', file: 'client-onboarding.html', id: 'client-onboarding', category: 'Onboarding' },
+  { name: 'Capstone', file: 'capstone-sequence.html', id: 'capstone-sequence', category: 'Capstone' }
 ].forEach((simulator) => {
   test(`${simulator.name} is slotted into the hub and shared simulator navigation`, () => {
     assertSimulatorSlot(simulator);

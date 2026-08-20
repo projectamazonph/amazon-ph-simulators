@@ -2,8 +2,14 @@
 
 **Created:** 2026-08-20  
 **Repository:** `projectamazonph/amazon-ph-simulators`  
+**Live site:** https://projectamazonph.github.io/amazon-ph-simulators/
 **Baseline:** `master` at `5c9584b`  
-**Status:** Active implementation plan — Phases 1–2 complete
+**Current delivery:** `master` through `f56d036`
+**Status:** Active implementation plan — Phases 1–3 complete; Phase 4 foundation complete
+
+## Delivery update
+
+The curriculum manifest, shared progress contract, beginner PPC policy, and versioned scenario-bank foundation are now implemented and regression-tested. The next delivery slice is selectable content packs for the fixed-scenario simulators, beginning with Campaign Architect, followed by the persistent capstone and deeper legacy simulator coverage.
 
 ## Outcome
 
