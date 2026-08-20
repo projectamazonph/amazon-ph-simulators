@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Project Amazon PH Academy — Bulk File Simulator</title>
 <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+<script src="assets/student-progress.js"></script>
+<script src="assets/simulator-attempt.js"></script>
 
 
 <script src="assets/shell.js" defer></script>
@@ -1206,6 +1208,10 @@ function renderDrillCard(d){
     d.cats.map(c=>'<div class="sc-row"><span>'+esc(c[0])+'</span><div class="sc-track"><div class="sc-fill" data-w="'+(c[2]?Math.round(c[1]/c[2]*100):0)+'"></div></div><span class="sc-pts">'+c[1]+'/'+c[2]+'</span></div>').join("")+
     '<p class="mono" style="font-size:10px;letter-spacing:.1em;color:var(--mut);margin:14px 0 0">SCORED '+ts+' · SAVE THE SCREENSHOT FOR YOUR PORTFOLIO</p>';
   requestAnimationFrame(()=>requestAnimationFrame(()=>sc.querySelectorAll(".sc-fill").forEach(f=>f.style.width=f.dataset.w+"%")));
+  StudentProgress.createLocalProgressStore().recordAttempt(SimulatorAttempt.buildAttemptRecord({
+    scenario:{id:'bulk-file-drill',simulatorId:'bulk-file',version:'1.0.0',rubricVersion:'1.0.0'},
+    result:{score:d.total,maxScore:100,passed:d.total>=75},completedAt:new Date().toISOString()
+  }));
 }
 document.getElementById("drillScoreBtn").addEventListener("click",()=>renderDrillCard(evaluateDrill()));
 document.getElementById("drillModel").addEventListener("click",()=>{

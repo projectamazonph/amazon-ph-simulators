@@ -81,6 +81,62 @@ test('shared decision renderer records completed attempts through StudentProgres
   });
 });
 
+test('Pacing Deck records its end-of-day score through shared progress', () => {
+  const page = read('pacing-deck.html');
+
+  assert.match(page, /src="assets\/student-progress\.js"/);
+  assert.match(page, /src="assets\/simulator-attempt\.js"/);
+  assert.match(page, /id:'pacing-deck',version:'1\.0\.0',rubricVersion:'1\.0\.0'/);
+  assert.match(page, /SimulatorAttempt\.buildAttemptRecord/);
+  assert.match(page, /progressStore\.recordAttempt/);
+});
+
+test('Keyword Lab records its certification result through shared progress', () => {
+  const page = read('keyword-lab.html');
+
+  assert.match(page, /src="assets\/student-progress\.js"/);
+  assert.match(page, /src="assets\/simulator-attempt\.js"/);
+  assert.match(page, /id:'keyword-lab',version:'1\.0\.0',rubricVersion:'1\.0\.0'/);
+  assert.match(page, /maxScore:12,passed:quiz\.score>=10/);
+  assert.match(page, /SimulatorAttempt\.buildAttemptRecord/);
+});
+
+test('Search Term Triage records completed rounds through shared progress', () => {
+  const page = read('search-triage.html');
+
+  assert.match(page, /src="assets\/student-progress\.js"/);
+  assert.match(page, /src="assets\/simulator-attempt\.js"/);
+  assert.match(page, /simulatorId:'search-triage'/);
+  assert.match(page, /Math\.round\(acc\*100\)/);
+  assert.match(page, /SimulatorAttempt\.buildAttemptRecord/);
+});
+
+test('AdConsole records Academy completion through shared progress', () => {
+  const page = read('ad-console.html');
+
+  assert.match(page, /src="assets\/student-progress\.js"/);
+  assert.match(page, /src="assets\/simulator-attempt\.js"/);
+  assert.match(page, /id:'ad-console-academy',simulatorId:'ad-console'/);
+  assert.match(page, /result:\{score:100,maxScore:100,passed:true\}/);
+  assert.match(page, /SimulatorAttempt\.buildAttemptRecord/);
+});
+
+test('Bulk File records its drill rubric through shared progress', () => {
+  const page = read('bulk-file.html');
+  assert.match(page, /src="assets\/student-progress\.js"/);
+  assert.match(page, /src="assets\/simulator-attempt\.js"/);
+  assert.match(page, /id:'bulk-file-drill',simulatorId:'bulk-file'/);
+  assert.match(page, /score:d\.total,maxScore:100,passed:d\.total>=75/);
+});
+
+test('BuyBox Dojo records its knowledge quiz through shared progress', () => {
+  const page = read('listing.html');
+  assert.match(page, /src="assets\/student-progress\.js"/);
+  assert.match(page, /src="assets\/simulator-attempt\.js"/);
+  assert.match(page, /id:'buybox-knowledge-quiz',simulatorId:'listing'/);
+  assert.match(page, /score:s,maxScore:tot,passed:pass/);
+});
+
 [
   ['sqp-studio.html', 'assets/sqp-studio-core.js'],
   ['bid-decisions.html', 'assets/bid-decisions-core.js']

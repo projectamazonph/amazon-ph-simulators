@@ -41,9 +41,9 @@ Validation at the start of this plan:
 | P0 | Synchronization | External simulator results do not update PPC Coach or hub progress | Completion is fragmented and graduation ignores most simulators |
 | P0 | PPC policy | Evidence thresholds and search-term actions differ between lessons and tools | Students can be rewarded for conflicting decisions |
 | P1 | Simulator depth | Campaign Architect and Account Audit have two packs; SQP Studio, Bid Decisions, and Client Onboarding now have six-row runs, while deeper multi-pack expansion remains | Continued scenario depth is needed to prevent memorization |
-| P1 | Capstone | Current capstone matches four actions to four stages | It does not prove an end-to-end operating workflow |
+| P1 | Capstone | Current capstone uses five guided stages but does not yet persist the underlying account artifacts | It does not yet prove an end-to-end operating workflow |
 | P1 | Curriculum | Module 5 is omitted from the student guide; SQP and bulk operations lack formal lessons | Important skills are not sequenced or assigned |
-| P1 | Documentation | Counts, navigation, roadmap status, and the older codebase audit have drifted | Maintainers and students receive conflicting information |
+| P1 | Documentation | Historical audit language still needs periodic reconciliation with implementation | Stale findings can misdirect future maintenance |
 | P1 | Test coverage | Current automated tests focus on the six recent simulator cores and hub links | Complex legacy simulator behavior is not protected |
 
 ## Curriculum map

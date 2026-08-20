@@ -6,6 +6,8 @@
 <title>Project Amazon PH Academy — BuyBox Dojo</title>
 
 
+<script src="assets/student-progress.js"></script>
+<script src="assets/simulator-attempt.js"></script>
 <script src="assets/shell.js" defer></script>
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/tokens.css">
@@ -1147,6 +1149,10 @@ function renderQuizResults(){
   const s=quizState.correct,tot=QUIZ.length,pass=s>=7;
   award('quiz-done',s*5,'Quiz completed — '+s+'/'+tot);
   if(s>=9)award('quiz-ace',20,'Quiz aced — ace level');
+  StudentProgress.createLocalProgressStore().recordAttempt(SimulatorAttempt.buildAttemptRecord({
+    scenario:{id:'buybox-knowledge-quiz',simulatorId:'listing',version:'1.0.0',rubricVersion:'1.0.0'},
+    result:{score:s,maxScore:tot,passed:pass},completedAt:new Date().toISOString()
+  }));
   $('#quizBox').innerHTML='<div class="qres"><div class="qres-ring">'+s+'/'+tot+'</div><h3>'+(pass?'Passed — you speak PPC.':'Keep drilling — the Academy has your back.')+'</h3><p>'+(s>=9?'Ace level. You could run a client call on this material.':pass?'Solid foundation. Revisit the ones you missed in the Glossary.':'Spend 15 minutes in the Academy, then retake it — the explanations are the real lesson.')+'</p><button type="button" class="btn" id="qRetry">↺ Retake quiz</button></div>';
   $('#qRetry').onclick=()=>{quizState={i:0,correct:0,answered:false};renderQuiz();};
 }
