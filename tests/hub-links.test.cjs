@@ -6,28 +6,31 @@ function read(path) {
   return fs.readFileSync(path, 'utf8');
 }
 
-test('SQP Studio is slotted into the hub and shared simulator navigation', () => {
+function assertSimulatorSlot({ name, file, id, category }) {
   const index = read('index.html');
   const planned = read('planned-simulators.html');
   const shell = read('assets/shell.js');
 
-  assert.match(index, /href="sqp-studio\.html"/);
-  assert.match(index, /S10 SQP Studio/);
-  assert.match(planned, /href="sqp-studio\.html"/);
-  assert.match(planned, /<span>Online<\/span><span class="ver">v1\.0<\/span><span class="cat">Analytics<\/span>/);
-  assert.match(shell, /id: 'sqp-studio'/);
-  assert.match(shell, /file: 'sqp-studio\.html'/);
-});
+  const escapedFile = file.replace('.', '\\.');
+  const categoryPattern = new RegExp('<span>Online<\\/span><span class="ver">v1\\.0<\\/span><span class="cat">' + category + '<\\/span>');
 
-test('Bid Decisions is slotted into the hub and shared simulator navigation', () => {
-  const index = read('index.html');
-  const planned = read('planned-simulators.html');
-  const shell = read('assets/shell.js');
+  assert.match(index, new RegExp('href="' + escapedFile + '"'));
+  assert.match(index, new RegExp(name));
+  assert.match(planned, new RegExp('href="' + escapedFile + '"'));
+  assert.match(planned, categoryPattern);
+  assert.match(shell, new RegExp("id: '" + id + "'"));
+  assert.match(shell, new RegExp("file: '" + escapedFile + "'"));
+}
 
-  assert.match(index, /href="bid-decisions\.html"/);
-  assert.match(index, /S2 Bid Decisions/);
-  assert.match(planned, /href="bid-decisions\.html"/);
-  assert.match(planned, /<span>Online<\/span><span class="ver">v1\.0<\/span><span class="cat">Bids<\/span>/);
-  assert.match(shell, /id: 'bid-decisions'/);
-  assert.match(shell, /file: 'bid-decisions\.html'/);
+[
+  { name: 'S10 SQP Studio', file: 'sqp-studio.html', id: 'sqp-studio', category: 'Analytics' },
+  { name: 'S2 Bid Decisions', file: 'bid-decisions.html', id: 'bid-decisions', category: 'Bids' },
+  { name: 'S8 Campaign Architect', file: 'campaign-architect.html', id: 'campaign-architect', category: 'Planning' },
+  { name: 'S9 Account Audit', file: 'account-audit.html', id: 'account-audit', category: 'Audit' },
+  { name: 'S11 Client Onboarding', file: 'client-onboarding.html', id: 'client-onboarding', category: 'Onboarding' },
+  { name: 'S12-S14 Capstone', file: 'capstone-sequence.html', id: 'capstone-sequence', category: 'Capstone' }
+].forEach((simulator) => {
+  test(`${simulator.name} is slotted into the hub and shared simulator navigation`, () => {
+    assertSimulatorSlot(simulator);
+  });
 });
