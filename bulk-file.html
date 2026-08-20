@@ -506,6 +506,9 @@ function validate(rows){
   const ok$=v=>moneyRe.test(v)&&+v>0;
   const okD=v=>/^\d{4}-\d{2}-\d{2}$/.test(v)&&!isNaN(new Date(v+"T00:00:00"));
   rows.forEach((row,idx)=>{
+    const stateBefore=new Map(Object.entries(state).map(([key,value])=>[key,new Map(value)]));
+    const namesBefore=new Set(names),seenBefore=new Set(seen);
+    const errorsBefore=errors.length;
     const r={};COLUMNS.forEach(c=>r[c]=String(row[c]==null?"":row[c]).trim());
     if(COLUMNS.every(c=>!r[c]))return;
     const line=idx+2,E=r.Entity,O=r.Operation;
@@ -693,6 +696,11 @@ function validate(rows){
     if(O==="Update"){
       const mutable=["State","Daily Budget","Ad Group Default Bid","Bid","Percentage","Campaign Name","Ad Group Name","Bidding Strategy","Start Date","End Date","SKU","ASIN","Keyword Text","Match Type","Targeting Expression","Targeting Text"];
       if(!mutable.some(f=>r[f]!==""))meh("Operation","Update row has no editable field filled.");
+    }
+    if(errors.length>errorsBefore){
+      Object.keys(state).forEach(key=>{state[key]=stateBefore.get(key);});
+      names.clear();namesBefore.forEach(value=>names.add(value));
+      seen.clear();seenBefore.forEach(value=>seen.add(value));
     }
   });
   const score=Math.max(0,100-errors.length*10-warnings.length*2);

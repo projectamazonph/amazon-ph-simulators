@@ -124,7 +124,7 @@
     <div class="stage-top">
       <span class="badge" id="simBadge">READY</span>
       <span style="font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--faint)">ONE DAY · 24 HOURS · ONE BUDGET</span>
-      <span class="fc" id="fcTag">FORECAST: US STANDARD</span>
+      <span class="fc" id="fcTag">FORECAST: PH STANDARD</span>
     </div>
     <div class="stage-mid"><div id="dialWrap"></div></div>
     <div class="meters">
@@ -210,7 +210,7 @@
 const MARKET_CPC=1.15, CTR=0.0045, BASE_CVR=0.12, AOV=26.50, DAILY_IMP=52000;
 const CVR_F=[0.35,0.30,0.28,0.28,0.30,0.40,0.55,0.75,0.95,1.05,1.00,0.95,0.90,0.85,0.85,0.90,1.00,1.15,1.35,1.60,1.65,1.50,1.15,0.70];
 const PROFILES={
-  standard:{name:'US STANDARD',desc:'Weekday curve — twin peaks, evening-heavy',w:[2,1.5,1,1,1.5,2.5,4,6,8,9.5,9,7.5,6.5,6,6.5,7,7.5,8.5,9.5,10,9,6.5,4.5,3]},
+ standard:{name:'PH STANDARD',desc:'Philippine weekday curve — twin peaks, evening-heavy',w:[2,1.5,1,1,1.5,2.5,4,6,8,9.5,9,7.5,6.5,6,6.5,7,7.5,8.5,9.5,10,9,6.5,4.5,3]},
   weekend:{name:'WEEKEND',desc:'Lazy midday plateau, long evening tail',w:[3,2.5,2,1.5,1.5,2,3,4.5,6,7.5,8.5,9,8.5,8,8,8.5,9,9.5,10,9.5,8.5,7,5.5,4]},
   deal:{name:'DEAL DAY',desc:'Lightning deals — midnight + evening spikes',w:[9,5,3,2,2,3,4,5,6,7,7.5,8,9.5,9,8.5,9,9.5,10.5,11.5,12.5,11,9,7,6]},
 };

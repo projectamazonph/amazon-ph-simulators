@@ -1,7 +1,7 @@
 # Simulator UI remake notes
 
 **Branch:** `redesign/distinct-simulator-layouts`
-**Baseline:** 86 passing tests on `master` at `7dda6cb`
+**Baseline:** 91 passing tests on `master` after PR #27 (`3f844bea`) plus the shell and replayability contracts
 
 ## Delivered layout genomes
 
@@ -26,11 +26,11 @@ versioned scored content.
 These pre-existing engine or product-copy issues were intentionally recorded rather
 than changed during the UI pass:
 
-- Search Term Triage hub copy says five questions, while the tool supports 8/12/16.
-- Pacing Deck uses the `US STANDARD` demand profile; localization needs product review.
-- Ad Console can desynchronize capped campaign totals and search-term attribution.
-- BuyBox Dojo hardcodes Amazon.com fulfillment/stock copy and describes a seven-day cap as daily.
-- Bulk File validation can commit rows that have blocking validation errors.
+- Search Term Triage now documents its supported 8/12/16-term rounds consistently.
+- Pacing Deck now labels its demand profile `PH STANDARD`; the curve remains a teaching approximation.
+- Ad Console now scales capped search-term attribution with campaign totals.
+- BuyBox Dojo now uses Amazon PH fulfillment copy and applies a daily cap per simulated day.
+- Bulk File validation now rolls back state mutations for rows with blocking validation errors.
 - Keyword Lab shows a `v1.0` badge while the hub lists `v2.2`.
 
 ## Verification requirements

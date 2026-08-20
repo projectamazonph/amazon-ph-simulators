@@ -1,21 +1,21 @@
 # Amazon PH Simulators Codebase Audit
 
-**Audit date:** 2026-08-18
+**Audit date:** 2026-08-21
 **Scope:** UI, copy, simulator logic, state mutation, accessibility, and validation
 **Repository:** `projectamazonph/amazon-ph-simulators`
 **Live site:** https://projectamazonph.github.io/amazon-ph-simulators/
 
 > Historical baseline: this report records the repository state on 2026-08-18. It is not the current release status. Later work added automated tests, fixed parsing blockers, introduced curriculum/progress contracts, and aligned shared PPC policy. Re-verify an individual finding before treating it as open.
 
-## Current status addendum — 2026-08-20
+## Current status addendum — 2026-08-21
 
-- The repository now has a Node test harness with 76 passing tests.
+- The repository now has a Node test harness with 91 passing tests.
 - Inline-script parsing is included in delivery verification; the two P0 syntax blockers no longer describe the current baseline.
 - PPC Coach is the primary guided entry and all 12 modules have simulator assignments through `assets/curriculum-manifest.js`.
 - Six graded simulators write versioned attempts through `assets/student-progress.js` and surface progress in Coach and the hub.
 - Shared beginner PPC rules live in `assets/ppc-decision-policy.js` and are documented in `docs/ppc-decision-policy.md`.
 - Scenario-bank infrastructure and stable simulator/scenario identity are now present.
-- Remaining simulation-model, accessibility, deterministic-randomness, and legacy-regression findings below remain backlog candidates until individually closed by tests and implementation.
+- The UI/accessibility foundation and distinct simulator layouts are now merged. The remaining engine/content findings below are still open backlog candidates until individually closed by tests and implementation.
 
 ## Executive summary
 
@@ -51,7 +51,7 @@ This causes the campaign dashboard and search-term report to disagree exactly wh
 
 **Fix direction:** calculate immutable result deltas first, apply the cap, then commit the final deltas to keyword, campaign, placement, and search-term state.
 
-### P1 — BuyBox Dojo models a seven-day cap but describes a daily cap
+### Resolved — BuyBox Dojo cap accounting
 
 **File:** `listing.html:1333-1337`, `listing.html:1369`, `listing.html:1393`
 
@@ -67,7 +67,7 @@ When the cap is applied, clicks, spend, and orders are scaled, but impressions a
 
 **Fix direction:** model eligible versus served impressions, or scale impressions and recompute all dependent metrics consistently.
 
-### P1 — Bulk File validation commits rows with blocking errors
+### Resolved — Bulk File transactional validation
 
 **File:** `bulk-file.html:823`, `848`, `862`, `877`, `902`, `917`, `932`, `956`, `973`
 
@@ -75,11 +75,11 @@ Create rows are inserted into simulated state even when the same row has validat
 
 **Fix direction:** build a candidate entity, collect row errors, and commit only when there are no blocking errors. Keep update/delete behavior transactional as well.
 
-### P1 — Simulations are not reproducible
+### Resolved — BuyBox Dojo simulation reproducibility
 
 **Files:** `ad-console.html`, `listing.html`, and parts of `keyword-lab.html`
 
-Core simulations use uncontrolled `Math.random()`. Re-running the same scenario can produce materially different results, which makes causal learning, grading, and bug reports difficult.
+BuyBox Dojo now derives a deterministic seed from the scenario and campaign inputs, making repeated runs replayable. Ad Console and Keyword Lab still contain non-graded ambient randomness and remain candidates for the same treatment.
 
 **Fix direction:** use a seeded PRNG keyed by scenario and run seed. Add a “replay same seed” mode and expose the seed in debug/export output.
 
@@ -103,7 +103,7 @@ PPC Coach renders user messages through `innerHTML`. Keyword Lab places a user-e
 
 ## Copy and product consistency findings
 
-- The hub says Search Term Triage has “Five questions a round,” while the simulator supports 8, 12, or 16 terms.
+- Search Term Triage now describes its 8/12/16-term rounds consistently.
 - Keyword Lab displays inconsistent versions between the hub and the simulator.
 - The course copy uses 70%, 80%, and 85% thresholds without clearly naming the difference between pass, distinction, and supervised-readiness targets.
 - The student guide says “pass both quizzes” in multiple phases even though the course contains 12 module quizzes.
@@ -116,8 +116,8 @@ PPC Coach renders user messages through `innerHTML`. Keyword Lab places a user-e
 
 - Pacing Deck describes second-price bidding, but the model uses a market-CPC approximation without competitor bids. The copy should call this an approximation or the model should expose competing bids.
 - Keyword Lab intentionally gives each keyword its own full daily budget, but aggregate charts use a budget reference that can be interpreted as a portfolio-level budget. The UI should make the per-keyword scope visually explicit.
-- Pacing Deck uses `US STANDARD` profiles and fixed US-style assumptions while the project branding is Amazon PH. Marketplace, timezone, and scenario geography should be explicit.
-- BuyBox Dojo hardcodes “In Stock,” “Ships from Amazon.com,” and “Sold by brand,” so its Buy Box drills are not connected to editable inventory or Buy Box state.
+- Pacing Deck now labels the profile `PH STANDARD`; the demand curve and timezone assumptions still need product review.
+- BuyBox Dojo now uses Amazon PH fulfillment copy; stock and Buy Box state remain simulated training data.
 - Pacing Deck reports fractional sales from expected-value calculations. Labeling these as “expected conversions” would be more precise than presenting them as actual orders.
 
 ## Validation performed

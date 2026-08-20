@@ -42,3 +42,10 @@ test('shared fonts use Fontsource CDN and never Google Fonts', () => {
   assert.match(fonts, /cdn\.jsdelivr\.net\/npm\/@fontsource/);
   assert.doesNotMatch(fonts, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
 });
+
+test('BuyBox Dojo seeds its simulation runs for replayable results', () => {
+  const listing = read('listing.html');
+  assert.match(listing, /function seededRandom\(seed\)/);
+  assert.match(listing, /simRandom=seededRandom\(seed\)/);
+  assert.match(listing, /const rnd=\(a,b\)=>a\+simRandom\(\)\*/);
+});

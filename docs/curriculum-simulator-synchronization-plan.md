@@ -3,13 +3,13 @@
 **Created:** 2026-08-20  
 **Repository:** `projectamazonph/amazon-ph-simulators`  
 **Live site:** https://projectamazonph.github.io/amazon-ph-simulators/
-**Baseline:** `master` at `5c9584b`  
-**Current delivery:** `master` through `f56d036`
-**Status:** Active implementation plan — Phases 1–3 complete; Phase 4 foundation complete
+**Baseline:** `master` after PR #27 (`3f844bea`)
+**Current delivery:** UI remake and accessibility foundation merged; 91 regression tests passing
+**Status:** Active implementation plan — Phases 1–3 complete; Phase 4 foundation and UI remake complete
 
 ## Delivery update
 
-The curriculum manifest, shared progress contract, beginner PPC policy, and versioned scenario-bank foundation are now implemented and regression-tested. Campaign Architect and Account Audit have selectable beginner and intermediate content packs. The next scenario-pack slice is Client Onboarding, followed by SQP Studio, Bid Decisions, the persistent capstone, and deeper legacy simulator coverage.
+The curriculum manifest, shared progress contract, beginner PPC policy, versioned scenario-bank foundation, distinct simulator layouts, and shared accessibility layer are implemented and regression-tested. Campaign Architect and Account Audit have selectable beginner and intermediate content packs. Remaining work is scenario depth, persistent capstone artifacts, and legacy simulator engine coverage.
 
 ## Outcome
 
