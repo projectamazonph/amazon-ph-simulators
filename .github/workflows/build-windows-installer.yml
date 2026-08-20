@@ -3,12 +3,14 @@ name: Build Windows Installer
 on:
   push:
     branches: [master]
+    tags:
+      - "v*.*.*"
   pull_request:
     branches: [master]
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -27,12 +29,35 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build NSIS installer
+      - name: Verify tag matches package version
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          test "$TAG_VERSION" = "$PACKAGE_VERSION"
+
+      - name: Build NSIS installer and updater metadata
         run: npm run dist:win
 
-      - name: Upload installer
+      - name: Upload installer artifact
+        if: github.event_name != 'push' || !startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v4
         with:
           name: simgrid-windows-installer
-          path: release/SimGrid-Setup-*.exe
+          path: |
+            release/SimGrid-Setup-*.exe
+            release/latest.yml
+            release/*.blockmap
           if-no-files-found: error
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Project Amazon PH Academy SimGrid ${{ github.ref_name }}
+          generate_release_notes: true
+          files: |
+            release/SimGrid-Setup-*.exe
+            release/latest.yml
+            release/*.blockmap
