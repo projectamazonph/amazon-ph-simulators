@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 41255)
-Total output lines: 2208
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -993,7 +990,121 @@ var COMP_REACH = {low:1.25, medium:1, high:.72};
 var SEASON_F = {normal:1, peak:1.4, low:.7};
 var MATCH_MULT = {broad:3.5, phrase:2, exact:1};
 
-/* ════════════════════ SIMULATI…1255 tokens truncated…return;
+/* ════════════════════ SIMULATION ENGINE ════════════════════ */
+function suppressed(kw){
+  var k = kw.keyword.toLowerCase();
+  for(var i=0;i<globalNegs.length;i++){ if(k.indexOf(globalNegs[i]) !== -1) return true; }
+  return false;
+}
+function simulateKeyword(kw){
+  var c = cfg();
+  var cf = COMP_F[c.comp];
+  var r = rng(hashStr(kw.keyword + '|' + kw.matchType));
+  var dailyVol = kw.volume / 30;
+  var sugg = c.avgCPC * (0.8 + cf*0.4);
+  var ratio = kw.bid / sugg;
+  var bidFactor = clamp(0.25 + ratio*0.75, .2, 1.35);
+
+  var dailyImp = dailyVol * MATCH_MULT[kw.matchType] * SEASON_F[c.season] * COMP_REACH[c.comp] * bidFactor;
+  dailyImp = Math.max(dailyImp*0.1, Math.min(dailyImp, dailyVol*MATCH_MULT[kw.matchType]*0.5));
+  if(suppressed(kw)) dailyImp *= 0.12;
+  var impressions = Math.round(dailyImp * c.days);
+
+  var top = Math.round(clamp(8 + (ratio-0.6)*55, 4, 82));
+  var rest = Math.round(clamp(62 - (top-20)*0.4, 12, 66));
+  var pages = Math.max(0, 100 - top - rest);
+
+  var relCTR = {high:1.5, medium:1, low:.5}[kw.relevance];
+  var ctr = (top/100*0.014 + rest/100*0.005 + pages/100*0.0028) * relCTR * (0.55 + listingQuality*0.15);
+  ctr *= {exact:1.2, phrase:1, broad:.75}[kw.matchType];
+  ctr = clamp(ctr, 0.0008, 0.15);
+  var clicks = Math.round(impressions * ctr);
+
+  var cpc = kw.bid * (0.55 + cf*0.25 + ratio*0.08);
+  cpc = clamp(cpc, 0.12, kw.bid);
+
+  var maxClicks = Math.floor((c.budget * c.days) / cpc);
+  var capped = clicks > maxClicks;
+  var finalClicks = Math.min(clicks, maxClicks);
+  var spend = +(finalClicks * cpc).toFixed(2);
+
+  var cvr = {high:.14, medium:.08, low:.03}[kw.relevance] * (0.5 + listingQuality*0.15) * {exact:1.2, phrase:1, broad:.8}[kw.matchType];
+  cvr = clamp(cvr, 0.005, 0.35);
+  var orders = Math.round(finalClicks * cvr);
+
+  var wasteRemoved = 0;
+  if(kw.terms && kw.negated){
+    var wSpend = 0, wOrders = 0;
+    for(var i=0;i<kw.terms.length;i++){
+      var t = kw.terms[i];
+      if(kw.negated[t.term]){ wSpend += t.w; if(t.relevant) wOrders += t.w; }
+    }
+    wasteRemoved = +(spend * wSpend).toFixed(2);
+    orders = Math.max(0, Math.round(orders * (1 - wOrders*1.1)));
+  }
+  var adjSpend = +(spend - wasteRemoved).toFixed(2);
+  var revenue = +(orders * c.price).toFixed(2);
+  var acos = revenue > 0 ? +((adjSpend/revenue)*100).toFixed(1) : 999;
+  var profit = +(revenue - adjSpend - orders*c.cost).toFixed(2);
+
+  var wts = [], sw = 0;
+  for(var d=0; d<c.days; d++){ var w = 0.7 + r()*0.6; wts.push(w); sw += w; }
+  var daily = wts.map(function(w2){ return +((adjSpend * w2 / sw)).toFixed(2); });
+  var oLeft = orders;
+  var dailyOrders = wts.map(function(w2, i){
+    if(i === c.days-1) return oLeft;
+    var o = Math.min(oLeft, Math.round(orders * w2 / sw));
+    oLeft -= o; return o;
+  });
+
+  var score = 0;
+  score += {high:35, medium:20, low:5}[kw.relevance];
+  if(acos < 15) score += 30; else if(acos < 25) score += 22; else if(acos < 40) score += 12; else if(acos < 999) score += 4;
+  if(finalClicks > 100) score += 15; else if(finalClicks > 50) score += 10; else if(finalClicks > 20) score += 5;
+  if(orders > 10) score += 20; else if(orders > 5) score += 15; else if(orders > 0) score += 8;
+  score = Math.min(score, 100);
+
+  return {impressions:impressions, clicks:finalClicks, ctr:+(ctr*100).toFixed(2), cpc:+cpc.toFixed(2), orders:orders,
+          spend:adjSpend, rawSpend:spend, revenue:revenue, acos:acos, profit:profit, score:score, capped:capped,
+          top:top, rest:rest, pages:pages, daily:daily, dailyOrders:dailyOrders, wasteRemoved:wasteRemoved, sugg:+sugg.toFixed(2)};
+}
+
+/* ════════════════════ SEARCH TERM GENERATOR ════════════════════ */
+function genTerms(kw){
+  var r = rng(hashStr(kw.keyword + '~terms'));
+  var base = kw.keyword.toLowerCase();
+  var head = base.split(' ')[0];
+  var terms = [];
+  function add(term, w, relevant){
+    for(var i=0;i<terms.length;i++){ if(terms[i].term === term) return; }
+    terms.push({term:term, w:w, relevant:relevant});
+  }
+  add(base, kw.matchType === 'exact' ? 0.88 : 0.28, true);
+  if(kw.matchType === 'exact'){ add(base + 's', 0.08, true); return terms; }
+  add(base + ' ' + pick(REL_MODS, r), 0.16, true);
+  add(pick(REL_MODS, r) + ' ' + base, 0.11, true);
+  if(kw.matchType === 'broad'){
+    add(head + ' tool', 0.08, true);
+    add(head + ' ' + pick(NOISE_NOUNS, r), 0.10, false);
+    add(pick(NOISE_ADJ, r) + ' ' + head, 0.08, false);
+    add(pick(UNRELATED, r), 0.06, false);
+  } else {
+    add(head + ' ' + pick(NOISE_NOUNS, r), 0.09, false);
+    add(pick(UNRELATED, r), 0.07, false);
+  }
+  return terms;
+}
+function ensureTerms(){
+  for(var i=0;i<keywords.length;i++){
+    var k = keywords[i];
+    if(k.matchType !== 'exact' && !k.terms) k.terms = genTerms(k);
+  }
+}
+
+/* ════════════════════ KEYWORD MANAGEMENT ════════════════════ */
+function addKeyword(){
+  var v = $('keywordInput').value.trim();
+  if(!v) return;
   var d = KEYWORD_DB[v.toLowerCase()];
   var vol, comp;
   if(d){ vol = d.vol; comp = d.comp; }
