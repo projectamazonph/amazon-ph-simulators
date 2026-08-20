@@ -107,6 +107,18 @@
         expectedConfidence: 'high',
         evidence: 'The target has enough clicks and spend with no orders, so it deserves investigation or a pause.',
         feedback: 'This is wasted spend with enough evidence. Investigate search-term fit, listing fit, and then pause or negate if the mismatch is clear.'
+      },
+      {
+        id: 'seasonal-winner', target: 'school lunch container exact', matchType: 'Exact', bid: 1.05,
+        clicks: 62, spend: 49.6, sales: 248, orders: 16, expectedAction: 'raise_bid', expectedConfidence: 'high',
+        evidence: 'The term has strong order volume and ACOS is comfortably below target during a demand window.',
+        feedback: 'This is proven profitable demand. Raise in a controlled step, then watch budget and placement performance during the seasonal window.'
+      },
+      {
+        id: 'expensive-but-relevant', target: 'insulated lunch tote phrase', matchType: 'Phrase', bid: 1.3,
+        clicks: 38, spend: 49.4, sales: 98.8, orders: 3, expectedAction: 'lower_bid', expectedConfidence: 'medium',
+        evidence: 'There are conversions, but 50% ACOS is materially above the 35% target and the sample is not yet large.',
+        feedback: 'Keep the relevant demand alive, but lower the bid and inspect the search-term mix before deciding whether the phrase deserves more budget.'
       }
     ]
   };
