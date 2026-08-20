@@ -1,6 +1,6 @@
 # Project Amazon PH Academy — SimGrid
 
-A multi-page webapp that consolidates six live Amazon PPC training simulators, a teaching companion, and the planned VA Project PH simulator roadmap under one brand: **Project Amazon PH Academy**.
+A multi-page webapp that consolidates seven live Amazon PPC training simulators, a teaching companion, and the planned VA Project PH simulator roadmap under one brand: **Project Amazon PH Academy**.
 
 > Train the VAs who run Amazon PPC for a living.
 
@@ -25,11 +25,11 @@ The planned simulator set from `projectamazonph/va-project-ph` is now tracked in
 | S7 Bulk Operations | Covered | `bulk-file.html` |
 | S8 Campaign Architect | Missing | Build campaign-map practice from product brief to first review plan |
 | S9 Account Audit | Missing | Build synthetic account snapshot triage and prioritization |
-| S10 SQP Studio | Missing | Build search-query visibility and conversion-signal analysis |
+| S10 SQP Studio | Live | `sqp-studio.html` reads SQP visibility/conversion signals with tested scoring in `assets/sqp-studio-core.js` |
 | S11 Client Onboarding | Missing | Build VA onboarding checklist and open-question workflow |
 | S12-S14 Capstone | Missing | Build after the core missing simulators are stable |
 
-Recommended build order: S10 SQP Studio, S2 Bid Decisions, S8 Campaign Architect, S9 Account Audit, S11 Client Onboarding, then S12-S14 Capstone.
+Recommended remaining build order: S2 Bid Decisions, S8 Campaign Architect, S9 Account Audit, S11 Client Onboarding, then S12-S14 Capstone.
 
 ---
 
@@ -102,6 +102,7 @@ for those external resources when they are not already cached.
 | 4 | **Bulk File Simulator** | `bulk-file.html` | Upload bulk sheets, get graded like a real Amazon bulk upload |
 | 5 | **BuyBox Dojo** | `listing.html` | Listing optimizer + 7-day PPC pressure test + VA Playbook |
 | 6 | **Pacing Deck** | `pacing-deck.html` | Budget & day-parting simulator with 24-hour flight log |
+| 7 | **S10 SQP Studio** | `sqp-studio.html` | Search Query Performance simulator for visibility, conversion, uncertainty, and waste diagnosis |
 
 ---
 
@@ -111,7 +112,7 @@ SimGrid is designed as a practice environment for Amazon PPC assistants and
 junior campaign managers. The tools are deliberately hands-on: students change
 inputs, make operating decisions, see the consequence, and explain the decision.
 
-### The six simulators
+### The seven simulators
 
 #### 1. AdConsole Pro — operate the advertising console
 
@@ -206,6 +207,17 @@ an isolated number.
 - Compare the plan against the market average CPC and forecast conditions.
 - Review the end-of-day score and report, then rerun with the Night Owl scenario
   or tune the settings for another attempt.
+
+#### 7. S10 SQP Studio (`sqp-studio.html`)
+
+SQP Studio is the first planned simulator promoted into the live hub. Students read a synthetic Search Query Performance snapshot and diagnose each query as a visibility gap, conversion gap, data-confidence limit, or wasted exposure.
+
+Key implementation notes:
+
+- `assets/sqp-studio-core.js` owns SQP metrics, answer keys, scoring, and feedback.
+- `sqp-studio.html` owns UI rendering, attempt storage, and interaction wiring.
+- `tests/sqp-studio-core.test.cjs` verifies the scoring behavior.
+- `tests/hub-links.test.cjs` protects the hub/nav slot.
 
 ### PPC Coach — the teaching companion
 
