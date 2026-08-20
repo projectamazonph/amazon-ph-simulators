@@ -1551,7 +1551,7 @@ var EX4_DATA = [
   {k:'wireless earbuds', clicks:210, spend:180, orders:9, acos:'62%', ans:'decrease', why:'ACOS 62% but it still converts — lower the bid before killing a term with real demand.'},
   {k:'earbuds for running', clicks:60, spend:32, orders:8, acos:'13%', ans:'increase', why:'13% ACOS, far under target. This is your winner — feed it.'},
   {k:'cheap earbuds under 5', clicks:95, spend:70, orders:0, acos:'∞', ans:'negate', why:'Bargain hunters who will never buy at your price. Negate "cheap" and "under 5".'},
-  {k:'bluetooth earbuds', clicks:15, spend:14, orders:0, acos:'∞', ans:'pause', why:'Tiny sample, all spend, no signal. Pause or slash the bid hard.'}
+  {k:'bluetooth earbuds', clicks:15, spend:14, orders:0, acos:'∞', ans:'hold', why:'Relevant traffic with only 15 clicks is still emerging evidence. Hold, inspect the query mix, and collect more data.'}
 ];
 var EX5_DATA = [
   {t:'garlic press stainless steel', clicks:34, spend:22.10, orders:6, harv:true, why:'34 clicks, ACOS 15% — proven converter. Graduate it.'},
@@ -1690,7 +1690,7 @@ function renderPractice(){
     h += '<div style="border:2px solid var(--steel);border-radius:7px;padding:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">'
       + '<div style="flex:1;min-width:220px"><span class="mono" style="font-weight:700;font-size:13px">' + k.k + '</span>'
       + '<div class="mono" style="font-size:10.5px;color:#64748B;margin-top:4px">' + k.clicks + ' clicks · $' + k.spend + ' spend · ' + k.orders + ' orders · ACOS ' + k.acos + '</div></div>'
-      + '<select class="sel" style="width:auto;min-width:170px" id="ex4s' + i + '"><option value="">— action —</option><option value="increase">Increase bid</option><option value="decrease">Decrease bid</option><option value="pause">Pause</option><option value="negate">Add negatives</option></select>'
+      + '<select class="sel" style="width:auto;min-width:170px" id="ex4s' + i + '"><option value="">— action —</option><option value="increase">Increase bid</option><option value="decrease">Decrease bid</option><option value="hold">Hold — collect data</option><option value="pause">Pause</option><option value="negate">Add negatives</option></select>'
       + '<span class="fb" id="ex4f' + i + '" style="flex-basis:100%;font-weight:400"></span></div>';
   });
   h += '</div><div class="check-row"><button class="btn btn-ink" onclick="checkEx4()">Check Answers</button><span class="score-line" id="ex4score"></span></div></div>';

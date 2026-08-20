@@ -167,6 +167,8 @@ Acceptance:
 
 ### Phase 3 — PPC policy alignment
 
+**Status:** In progress on `feature/ppc-policy-alignment`; the tested shared policy now covers evidence bands, relevance-based negatives, bid bounds, and profitable budget constraints. Bid Decisions and policy-covered Account Audit findings consume it; Coach, Search Triage, and Keyword Lab contradictions have been reconciled.
+
 Deliverables:
 
 1. Add decision-policy tests before changing teaching content.

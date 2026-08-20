@@ -1,10 +1,10 @@
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) {
-    module.exports = factory(require('./decision-simulator-core.js'));
+    module.exports = factory(require('./decision-simulator-core.js'), require('./ppc-decision-policy.js'));
   } else {
-    root.AccountAuditCore = factory(root.DecisionSimulatorCore);
+    root.AccountAuditCore = factory(root.DecisionSimulatorCore, root.PpcDecisionPolicy);
   }
-})(typeof self !== 'undefined' ? self : this, function (DecisionSimulatorCore) {
+})(typeof self !== 'undefined' ? self : this, function (DecisionSimulatorCore, PpcDecisionPolicy) {
   'use strict';
 
   var PRIMARY_OPTIONS = {
@@ -82,6 +82,21 @@
       }
     ]
   };
+
+  var wastePolicyAction = PpcDecisionPolicy.recommendBidAction({
+    clicks: 83,
+    orders: 0,
+    acos: 0,
+    targetAcos: 35
+  });
+  var budgetPolicyAction = PpcDecisionPolicy.recommendBudgetAction({
+    orders: 18,
+    acos: 22,
+    targetAcos: 35,
+    budgetCapped: true
+  });
+  ACCOUNT_AUDIT_SCENARIO.rows[0].expectedPrimary = wastePolicyAction === 'investigate_or_pause' ? 'cut_waste' : 'monitor';
+  ACCOUNT_AUDIT_SCENARIO.rows[1].expectedPrimary = budgetPolicyAction === 'raise_10_to_20_percent' ? 'scale_budget' : 'monitor';
 
   var simulator = DecisionSimulatorCore.createDecisionSimulator(ACCOUNT_AUDIT_SCENARIO);
 

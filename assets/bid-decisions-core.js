@@ -1,10 +1,10 @@
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) {
-    module.exports = factory();
+    module.exports = factory(require('./ppc-decision-policy.js'));
   } else {
-    root.BidDecisionsCore = factory();
+    root.BidDecisionsCore = factory(root.PpcDecisionPolicy);
   }
-})(typeof self !== 'undefined' ? self : this, function () {
+})(typeof self !== 'undefined' ? self : this, function (PpcDecisionPolicy) {
   'use strict';
 
   var ACTIONS = {
@@ -110,6 +110,24 @@
       }
     ]
   };
+
+  var POLICY_TO_SIMULATOR_ACTION = {
+    raise_10_percent: 'raise_bid',
+    lower_15_percent: 'lower_bid',
+    hold: 'hold_bid',
+    investigate_or_pause: 'investigate_pause'
+  };
+
+  BID_DECISIONS_SCENARIO.rows.forEach(function (row) {
+    var acos = row.sales ? (row.spend / row.sales) * 100 : 0;
+    var policyAction = PpcDecisionPolicy.recommendBidAction({
+      clicks: row.clicks,
+      orders: row.orders,
+      acos: acos,
+      targetAcos: BID_DECISIONS_SCENARIO.targetAcos
+    });
+    row.expectedAction = POLICY_TO_SIMULATOR_ACTION[policyAction];
+  });
 
   function round(value, digits) {
     var factor = Math.pow(10, digits || 2);
