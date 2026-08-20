@@ -25,6 +25,15 @@
     }).join('');
   }
 
+  function scenarioOptionList(scenarioBank, selectedId) {
+    return scenarioBank.list().map(function (item) {
+      var label = item.title + ' · ' + item.difficulty;
+      return '<option value="' + escapeHtml(item.id) + '"' + (item.id === selectedId ? ' selected' : '') + '>' +
+        escapeHtml(label) +
+      '</option>';
+    }).join('');
+  }
+
   function readAttempt(storageKey) {
     try {
       return JSON.parse(localStorage.getItem(storageKey) || '{}');
@@ -69,8 +78,11 @@
     var root = document.querySelector(config.root || '[data-ds-root]');
     if (!root) return;
 
-    var scenario = config.scenario;
-    var storageKey = config.storageKey || ('aph-' + scenario.id + '-attempt');
+    var scenario = config.scenarioBank
+      ? config.scenarioBank.get(config.selectedScenarioId) || config.scenarioBank.defaultScenario()
+      : config.scenario;
+    if (!scenario) return;
+    var storageKey = config.storageKey || ('aph-' + (scenario.simulatorId || scenario.id) + '-' + scenario.id + '-attempt');
     var attempt = readAttempt(storageKey);
     var progressStore = config.progressStore || StudentProgress.createLocalProgressStore();
 
@@ -82,6 +94,8 @@
             '<div class="ds-kicker">' + escapeHtml(scenario.kicker) + '</div>' +
             '<h1>' + escapeHtml(scenario.title).replace(' ', '<br><em>') + '</em></h1>' +
             '<p>' + escapeHtml(scenario.description) + '</p>' +
+            (config.scenarioBank ?
+              '<label class="ds-scenario-picker"><span>Practice scenario</span><select data-ds-scenario>' + scenarioOptionList(config.scenarioBank, scenario.id) + '</select></label>' : '') +
           '</div>' +
           '<aside class="ds-panel ds-scorecard">' +
             '<div class="ds-kicker">Score</div>' +
@@ -133,7 +147,9 @@
 
     function grade() {
       var currentAttempt = collectAttempt(root);
-      var result = config.gradeAttempt(currentAttempt);
+      var result = config.gradeScenarioAttempt
+        ? config.gradeScenarioAttempt(scenario.id, currentAttempt)
+        : config.gradeAttempt(currentAttempt);
       saveAttempt(storageKey, currentAttempt);
       progressStore.recordAttempt(SimulatorAttempt.buildAttemptRecord({
         scenario: scenario,
@@ -146,6 +162,12 @@
     }
 
     root.querySelector('[data-ds-grade]').addEventListener('click', grade);
+    var scenarioSelect = root.querySelector('[data-ds-scenario]');
+    if (scenarioSelect) {
+      scenarioSelect.addEventListener('change', function () {
+        mount(Object.assign({}, config, { selectedScenarioId: scenarioSelect.value }));
+      });
+    }
     root.querySelector('[data-ds-reset]').addEventListener('click', function () {
       localStorage.removeItem(storageKey);
       mount(config);

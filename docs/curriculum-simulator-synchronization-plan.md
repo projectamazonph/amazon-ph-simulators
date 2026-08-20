@@ -9,7 +9,7 @@
 
 ## Delivery update
 
-The curriculum manifest, shared progress contract, beginner PPC policy, and versioned scenario-bank foundation are now implemented and regression-tested. The next delivery slice is selectable content packs for the fixed-scenario simulators, beginning with Campaign Architect, followed by the persistent capstone and deeper legacy simulator coverage.
+The curriculum manifest, shared progress contract, beginner PPC policy, and versioned scenario-bank foundation are now implemented and regression-tested. Campaign Architect and Account Audit have selectable beginner and intermediate content packs. The next scenario-pack slice is Client Onboarding, followed by SQP Studio, Bid Decisions, the persistent capstone, and deeper legacy simulator coverage.
 
 ## Outcome
 
@@ -53,13 +53,13 @@ Validation at the start of this plan:
 | 0 · Amazon Basics | BuyBox Dojo introduction | Complete listing-readiness check | No guided handoff |
 | 1 · What is PPC? | AdConsole auction mission | Complete first auction mission | No guided handoff |
 | 2 · Money Math | Keyword Lab economics drill | 80% calculation accuracy | No dedicated progress event |
-| 3 · Campaign Structure | Campaign Architect | 75%+ | First-pass scenario only |
+| 3 · Campaign Structure | Campaign Architect | 75%+ | Beginner and intermediate packs live; expand toward five per level |
 | 4 · Keywords & Match Types | Keyword Lab + Search Term Triage | 75%+ | Decision thresholds need alignment |
 | 5 · Listing Readiness | BuyBox Dojo | 75%+ listing audit | Missing from student guide |
 | 6 · Campaign Setup | Campaign Architect + AdConsole | 75%+ and saved build | No shared completion |
 | 7 · Bids & Budgets | Bid Decisions + Pacing Deck | 75%+ | No shared completion |
 | 8 · Search Terms & Negatives | Search Term Triage + Bulk File | 75%+ and valid change file | No connected workflow |
-| 9 · Weekly Optimization | Account Audit workflow | 75%+ | No audit-to-action sequence |
+| 9 · Weekly Optimization | Account Audit workflow | 75%+ | Beginner and intermediate packs live; expand toward five per level |
 | 10 · Reporting & Troubleshooting | Account Audit + Report Builder | 75%+ and report generated | Reporting assessment is lightweight |
 | 11 · VA Workflow & Capstone | Client Onboarding + Capstone | 85%+ capstone | Capstone is not persistent |
 
@@ -189,7 +189,7 @@ Acceptance:
 
 ### Phase 4 — Scenario banks
 
-**Status:** In progress on `feature/scenario-bank-foundation`; the validated deterministic scenario-bank contract is complete, and progress attempts now separate stable simulator identity from selected scenario identity without invalidating older records.
+**Status:** In progress. The deterministic scenario-bank contract is complete, progress attempts separate stable simulator identity from selected scenario identity, and Campaign Architect plus Account Audit ship selectable beginner/intermediate content packs.
 
 Expand SQP Studio, Bid Decisions, Campaign Architect, Account Audit, and Client Onboarding to:
 
