@@ -2,6 +2,8 @@
 
 This document is the beginner-safe source of truth for equivalent PPC decisions across PPC Coach and simulator content. The executable contract lives in `assets/ppc-decision-policy.js`.
 
+Live simulator site: https://projectamazonph.github.io/amazon-ph-simulators/
+
 ## Evidence bands
 
 | Clicks | Band | Default posture |

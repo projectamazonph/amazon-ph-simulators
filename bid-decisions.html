@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Amazon PH Academy - S2 Bid Decisions</title>
-<meta name="description" content="S2 Bid Decisions simulator for practicing Amazon PPC bid raises, holds, reductions, and investigation calls.">
+<title>Project Amazon PH Academy - Bid Decisions</title>
+<meta name="description" content="Bid Decisions simulator for practicing Amazon PPC bid raises, holds, reductions, and investigation calls.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -296,6 +296,48 @@ body {
     position: static;
   }
 }
+
+@media (max-width: 600px) {
+  .bd-page { padding: 24px 14px 46px; }
+  .bd-section-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .bd-table-wrap { overflow: visible; }
+  .bd-table,
+  .bd-table tbody,
+  .bd-table tr,
+  .bd-table td {
+    display: block;
+    width: 100%;
+  }
+  .bd-table { min-width: 0; }
+  .bd-table thead { display: none; }
+  .bd-table tr {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--bd-line);
+  }
+  .bd-table td {
+    min-width: 0;
+    padding: 7px 0;
+    border: 0;
+    white-space: normal;
+  }
+  .bd-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 4px;
+    color: var(--bd-muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .bd-select { min-width: 0; }
+  .bd-actions .bd-btn { flex: 1 1 100%; }
+}
 </style>
 </head>
 <body data-pha-tool="bid-decisions">
@@ -304,7 +346,7 @@ body {
 
   <section class="bd-hero">
     <div class="bd-panel bd-brief">
-      <div class="bd-kicker">S2 Optimization Simulator</div>
+      <div class="bd-kicker">Optimization Simulator</div>
       <h1>Bid<br><em>Decisions</em></h1>
       <p>Read a synthetic keyword snapshot. Choose the safest bid action and confidence level before touching a campaign.</p>
     </div>
@@ -432,15 +474,15 @@ body {
       var metrics = core.calculateBidMetrics(row);
       var answer = saved[row.id] || {};
       return '<tr>' +
-        '<td class="bd-target">' + row.target + '<br><span class="bd-small">' + row.matchType + '</span></td>' +
-        '<td class="bd-metric">$' + row.bid.toFixed(2) + '</td>' +
-        '<td class="bd-metric">' + row.clicks + '</td>' +
-        '<td class="bd-metric">$' + metrics.cpc.toFixed(2) + '</td>' +
-        '<td class="bd-metric">' + row.orders + '</td>' +
-        '<td class="bd-metric">' + metrics.acos + '%</td>' +
-        '<td class="bd-metric">' + metrics.roas + '</td>' +
-        '<td><select class="bd-select" data-action-for="' + row.id + '">' + optionList(scenario.actions, answer.action) + '</select></td>' +
-        '<td><select class="bd-select" data-confidence-for="' + row.id + '">' + optionList(scenario.confidenceLevels, answer.confidence) + '</select></td>' +
+        '<td class="bd-target" data-label="Target">' + row.target + '<br><span class="bd-small">' + row.matchType + '</span></td>' +
+        '<td class="bd-metric" data-label="Bid">$' + row.bid.toFixed(2) + '</td>' +
+        '<td class="bd-metric" data-label="Clicks">' + row.clicks + '</td>' +
+        '<td class="bd-metric" data-label="CPC">$' + metrics.cpc.toFixed(2) + '</td>' +
+        '<td class="bd-metric" data-label="Orders">' + row.orders + '</td>' +
+        '<td class="bd-metric" data-label="ACOS">' + metrics.acos + '%</td>' +
+        '<td class="bd-metric" data-label="ROAS">' + metrics.roas + '</td>' +
+        '<td data-label="Action"><select class="bd-select" data-action-for="' + row.id + '">' + optionList(scenario.actions, answer.action) + '</select></td>' +
+        '<td data-label="Confidence"><select class="bd-select" data-confidence-for="' + row.id + '">' + optionList(scenario.confidenceLevels, answer.confidence) + '</select></td>' +
       '</tr>';
     }).join('');
   }

@@ -53,7 +53,7 @@
     id: 'sqp-studio',
     version: '1.0.0',
     rubricVersion: '1.0.0',
-    title: 'S10 SQP Studio',
+    title: 'SQP Studio',
     passingScore: 75,
     diagnoses: DIAGNOSES,
     followUps: FOLLOW_UPS,

@@ -8,6 +8,39 @@ Built from the eight chat-export JSONs in `../`. Each simulator was extracted fr
 its conversation, audited, and re-skinned under a unified design system so the
 whole app looks like it was built from the ground up — not stitched together.
 
+## Current platform status
+
+- **12 live simulators** plus PPC Coach and the curriculum roadmap.
+- **12 PPC Coach modules / 40 lessons**, with manifest-driven simulator assignments.
+- Shared versioned attempt history surfaces Not started, In progress, Passed, best score, and attempt count in Coach and the hub.
+- One tested beginner PPC policy aligns evidence bands, negatives, bid changes, and budget scaling across lessons and simulators.
+- Scenario-bank infrastructure preserves stable simulator progress while recording the selected scenario and rubric versions.
+- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **61 passing tests**.
+
+## Product context
+
+**Live SimGrid:** https://projectamazonph.github.io/amazon-ph-simulators/
+
+The simulator repository supports the wider Project Amazon PH course experience. The first image below is the separately hosted course home page; the remaining captures come from the verified GitHub Pages deployment of this repository.
+
+![Project Amazon PH course home page](docs/screenshots/course-home.jpg)
+
+## SimGrid gallery
+
+| Hub | Guided curriculum |
+|---|---|
+| ![SimGrid simulator hub](docs/screenshots/simgrid-hub.jpg) | ![PPC Coach curriculum](docs/screenshots/simgrid-ppc-coach.jpg) |
+
+| Bid Decisions | SQP Studio |
+|---|---|
+| ![Bid Decisions simulator](docs/screenshots/simgrid-bid-decisions.jpg) | ![SQP Studio simulator](docs/screenshots/simgrid-sqp-studio.jpg) |
+
+| AdConsole Pro | Capstone Sequence |
+|---|---|
+| ![AdConsole Pro simulator](docs/screenshots/simgrid-ad-console.jpg) | ![Capstone Sequence simulator](docs/screenshots/simgrid-capstone-sequence.jpg) |
+
+See [the screenshot guide](docs/screenshots/README.md) for source URLs and recapture standards.
+
 
 ---
 
@@ -18,18 +51,18 @@ The planned simulator set from `projectamazonph/va-project-ph` is now tracked in
 | Planned Simulator | SimGrid Status | Notes |
 |---|---|---|
 | S1 Search-Term Report Lab | Mostly covered | `search-triage.html` covers core search-term decisions |
-| S2 Bid Decisions | Live | `bid-decisions.html` teaches raise/hold/lower/investigate calls with tested scoring in `assets/bid-decisions-core.js` |
+| Bid Decisions | Live | `bid-decisions.html` teaches raise/hold/lower/investigate calls with tested scoring in `assets/bid-decisions-core.js` |
 | S3 Budget and Pacing | Covered | `pacing-deck.html` |
 | S4 Campaign Builder / Console Wizard | Partial | `ad-console.html` has setup flow; planned work adds stronger wizard/rubric |
 | S5 Listing Audit | Partial | `listing.html` covers listing + PPC pressure test |
 | S7 Bulk Operations | Covered | `bulk-file.html` |
-| S8 Campaign Architect | Live | `campaign-architect.html` teaches launch structure, targeting, negatives, and first review rules |
-| S9 Account Audit | Live | `account-audit.html` teaches account finding prioritization and safe next actions |
-| S10 SQP Studio | Live | `sqp-studio.html` reads SQP visibility/conversion signals with tested scoring in `assets/sqp-studio-core.js` |
-| S11 Client Onboarding | Live | `client-onboarding.html` teaches access, KPI, product brief, and approval requirements |
-| S12-S14 Capstone | Live | `capstone-sequence.html` teaches the full research, setup, optimization, and reporting sequence |
+| Campaign Architect | Live | `campaign-architect.html` teaches launch structure, targeting, negatives, and first review rules |
+| Account Audit | Live | `account-audit.html` teaches account finding prioritization and safe next actions |
+| SQP Studio | Live | `sqp-studio.html` reads SQP visibility/conversion signals with tested scoring in `assets/sqp-studio-core.js` |
+| Client Onboarding | Live | `client-onboarding.html` teaches access, KPI, product brief, and approval requirements |
+| Capstone | Live | `capstone-sequence.html` teaches the full research, setup, optimization, and reporting sequence |
 
-All imported planned simulators now have live first-pass implementations. Recommended improvement order: S8 Campaign Architect, S9 Account Audit, S11 Client Onboarding, then S12-S14 Capstone.
+All imported planned simulators now have live first-pass implementations. Current improvement work follows the curriculum synchronization plan: scenario banks, a persistent capstone, legacy mission/testing depth, then new simulator vertical slices.
 
 ---
 
@@ -102,12 +135,12 @@ for those external resources when they are not already cached.
 | 4 | **Bulk File Simulator** | `bulk-file.html` | Upload bulk sheets, get graded like a real Amazon bulk upload |
 | 5 | **BuyBox Dojo** | `listing.html` | Listing optimizer + 7-day PPC pressure test + VA Playbook |
 | 6 | **Pacing Deck** | `pacing-deck.html` | Budget & day-parting simulator with 24-hour flight log |
-| 7 | **S10 SQP Studio** | `sqp-studio.html` | Search Query Performance simulator for visibility, conversion, uncertainty, and waste diagnosis |
-| 8 | **S2 Bid Decisions** | `bid-decisions.html` | Bid optimization simulator for raise, hold, lower, and investigate decisions |
-| 9 | **S8 Campaign Architect** | `campaign-architect.html` | Campaign-map simulator for structure, targets, negatives, and first review plans |
-| 10 | **S9 Account Audit** | `account-audit.html` | Account snapshot simulator for prioritizing findings and safe next actions |
-| 11 | **S11 Client Onboarding** | `client-onboarding.html` | VA workflow simulator for access, goals, product facts, and approvals |
-| 12 | **S12-S14 Capstone Sequence** | `capstone-sequence.html` | Workflow simulator covering research, setup, optimization, and reporting |
+| 7 | **SQP Studio** | `sqp-studio.html` | Search Query Performance simulator for visibility, conversion, uncertainty, and waste diagnosis |
+| 8 | **Bid Decisions** | `bid-decisions.html` | Bid optimization simulator for raise, hold, lower, and investigate decisions |
+| 9 | **Campaign Architect** | `campaign-architect.html` | Campaign-map simulator for structure, targets, negatives, and first review plans |
+| 10 | **Account Audit** | `account-audit.html` | Account snapshot simulator for prioritizing findings and safe next actions |
+| 11 | **Client Onboarding** | `client-onboarding.html` | VA workflow simulator for access, goals, product facts, and approvals |
+| 12 | **Capstone Sequence** | `capstone-sequence.html` | Workflow simulator covering research, setup, optimization, and reporting |
 
 ---
 
@@ -117,7 +150,7 @@ SimGrid is designed as a practice environment for Amazon PPC assistants and
 junior campaign managers. The tools are deliberately hands-on: students change
 inputs, make operating decisions, see the consequence, and explain the decision.
 
-### The eight simulators
+### The twelve simulators
 
 #### 1. AdConsole Pro — operate the advertising console
 
@@ -213,7 +246,7 @@ an isolated number.
 - Review the end-of-day score and report, then rerun with the Night Owl scenario
   or tune the settings for another attempt.
 
-#### 7. S10 SQP Studio (`sqp-studio.html`)
+#### 7. SQP Studio (`sqp-studio.html`)
 
 SQP Studio is the first planned simulator promoted into the live hub. Students read a synthetic Search Query Performance snapshot and diagnose each query as a visibility gap, conversion gap, data-confidence limit, or wasted exposure.
 
@@ -224,7 +257,7 @@ Key implementation notes:
 - `tests/sqp-studio-core.test.cjs` verifies the scoring behavior.
 - `tests/hub-links.test.cjs` protects the hub/nav slot.
 
-#### 8. S2 Bid Decisions (`bid-decisions.html`)
+#### 8. Bid Decisions (`bid-decisions.html`)
 
 Bid Decisions isolates bid judgment from the larger ad console. Students read keyword-level bid, clicks, spend, orders, ACOS, and ROAS, then choose the safest bid action and confidence level.
 
@@ -235,7 +268,7 @@ Key implementation notes:
 - `tests/bid-decisions-core.test.cjs` verifies the scoring behavior.
 - `tests/hub-links.test.cjs` protects the hub/nav slot.
 
-#### 9. S8 Campaign Architect (`campaign-architect.html`)
+#### 9. Campaign Architect (`campaign-architect.html`)
 
 Campaign Architect turns a product brief into a campaign launch plan. Students choose the right structure, targeting, negative guardrails, and first review rule.
 
@@ -245,7 +278,7 @@ Key implementation notes:
 - The page uses the shared `assets/decision-simulator-page.js` renderer and `assets/decision-simulator-core.js` scoring contract.
 - `tests/remaining-simulators-core.test.cjs` verifies full-credit and judgment-edge cases.
 
-#### 10. S9 Account Audit (`account-audit.html`)
+#### 10. Account Audit (`account-audit.html`)
 
 Account Audit teaches account-level prioritization. Students separate urgent waste, scale opportunities, listing friction, and thin data before recommending a next action.
 
@@ -255,7 +288,7 @@ Key implementation notes:
 - The shared decision renderer provides local attempt storage and row-by-row coaching.
 - `tests/remaining-simulators-core.test.cjs` verifies waste and thin-data behavior.
 
-#### 11. S11 Client Onboarding (`client-onboarding.html`)
+#### 11. Client Onboarding (`client-onboarding.html`)
 
 Client Onboarding practices the VA handoff. Students identify access blockers, KPI guardrails, missing product facts, and approval rules before launch work starts.
 
@@ -265,7 +298,7 @@ Key implementation notes:
 - Shared scoring rewards both the onboarding move and the requirement level.
 - `tests/remaining-simulators-core.test.cjs` verifies blocker calls for access and KPI gaps.
 
-#### 12. S12-S14 Capstone Sequence (`capstone-sequence.html`)
+#### 12. Capstone Sequence (`capstone-sequence.html`)
 
 Capstone Sequence ties the simulator set together. Students choose the right action at the right stage across research, setup, optimization, and client reporting.
 

@@ -13,7 +13,8 @@ test('hub presents PPC Coach as the guided starting point before the simulator l
 
   assert.ok(learningStart >= 0, 'hub must include the guided learning start');
   assert.ok(simulatorLibrary > learningStart, 'guided learning must appear before simulators');
-  assert.match(hub, /href="ppc-coach\.html"[^>]*>Start PPC Coach/);
+  assert.match(hub, /<a class="pha-tcard[^"]*pha-tcard--ppc-coach[^"]*" href="ppc-coach\.html">/);
+  assert.match(hub, />Start PPC Coach<\/span>/);
   assert.match(hub, /href="learn\/guide\.html"/);
 });
 

@@ -103,11 +103,11 @@
                   scenario.rows.map(function (row) {
                     var saved = attempt[row.id] || {};
                     return '<tr data-ds-row="' + escapeHtml(row.id) + '">' +
-                      '<td class="ds-title">' + escapeHtml(row.title) + '</td>' +
-                      '<td class="ds-signal">' + escapeHtml(row.signal) + '</td>' +
-                      '<td>' + metricList(row.metrics) + '</td>' +
-                      '<td><select class="ds-select" data-ds-primary>' + optionList(scenario.primaryOptions, saved.primary) + '</select></td>' +
-                      '<td><select class="ds-select" data-ds-secondary>' + optionList(scenario.secondaryOptions, saved.secondary) + '</select></td>' +
+                      '<td class="ds-title" data-label="Case">' + escapeHtml(row.title) + '</td>' +
+                      '<td class="ds-signal" data-label="Signal">' + escapeHtml(row.signal) + '</td>' +
+                      '<td data-label="Metrics">' + metricList(row.metrics) + '</td>' +
+                      '<td data-label="' + escapeHtml(scenario.primaryLabel) + '"><select class="ds-select" data-ds-primary>' + optionList(scenario.primaryOptions, saved.primary) + '</select></td>' +
+                      '<td data-label="' + escapeHtml(scenario.secondaryLabel) + '"><select class="ds-select" data-ds-secondary>' + optionList(scenario.secondaryOptions, saved.secondary) + '</select></td>' +
                     '</tr>';
                   }).join('') +
                 '</tbody>' +

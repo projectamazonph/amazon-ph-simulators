@@ -26,7 +26,7 @@
     id: 'client-onboarding',
     version: '1.0.0',
     rubricVersion: '1.0.0',
-    title: 'S11 Client Onboarding',
+    title: 'Client Onboarding',
     kicker: 'VA workflow simulator',
     description: 'Convert a messy client handoff into access requests, goals, facts, approvals, and open questions.',
     passingScore: 75,

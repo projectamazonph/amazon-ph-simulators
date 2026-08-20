@@ -25,7 +25,7 @@
     id: 'campaign-architect',
     version: '1.0.0',
     rubricVersion: '1.0.0',
-    title: 'S8 Campaign Architect',
+    title: 'Campaign Architect',
     kicker: 'Planning simulator',
     description: 'Turn a product brief into launch structure, targeting, negatives, and first review rules.',
     passingScore: 75,

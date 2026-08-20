@@ -2,7 +2,19 @@
 
 Source reference: `projectamazonph/va-project-ph`, docs `36-simulators-platform.md` through `42-simulator-roadmap.md`.
 
+Live GitHub Pages site: https://projectamazonph.github.io/amazon-ph-simulators/
+
 This file copies the planned simulator set into SimGrid so the imported work can evolve inside this project without losing the curriculum intent from VA Project PH.
+
+## Current delivery status — 2026-08-20
+
+- Curriculum manifest and guided PPC Coach entry: complete.
+- Shared versioned progress and hub/Coach status: complete for six graded simulators.
+- Shared PPC decision policy alignment: complete for the covered beginner rules.
+- Scenario-bank foundation: complete; content-pack expansion is in progress.
+- Persistent multi-artifact capstone, expanded legacy regression coverage, and the new-simulator backlog remain planned.
+
+The active implementation sequence and acceptance criteria live in `docs/curriculum-simulator-synchronization-plan.md`.
 
 ## Platform contract copied from VA Project PH
 
@@ -33,9 +45,9 @@ Every future simulator should stay inside these rules:
 
 ## Recommended improvement order
 
-All imported planned simulators now have live first-pass implementations. Improve them in this order when adding depth: S8 Campaign Architect, S9 Account Audit, S11 Client Onboarding, then S12-S14 Capstone.
+All imported planned simulators now have live first-pass implementations. Add replayable beginner/intermediate scenario packs to S8, S9, S11, S10, and S2 first; then replace the lightweight S12-S14 exercise with the persistent capstone workflow.
 
-## Final batch: S8, S9, S11, and S12-S14
+## Final batch: Campaign Architect, Account Audit, Client Onboarding, and Capstone
 
 The remaining planned simulators now share a small decision-simulator architecture:
 
@@ -57,7 +69,7 @@ Regression coverage:
 - `tests/remaining-simulators-core.test.cjs` verifies perfect-score paths and focused judgment failures for the four final-batch simulators.
 - `tests/hub-links.test.cjs` verifies every new page is reachable from the hub, roadmap archive, and shared shell registry.
 
-## Second shipped simulator: S2 Bid Decisions
+## Second shipped simulator: Bid Decisions (S2)
 
 `bid-decisions.html` is the second planned simulator moved into the live SimGrid hub.
 
@@ -74,7 +86,7 @@ Regression coverage:
 - `tests/bid-decisions-core.test.cjs` verifies CPC, CVR, ACOS, ROAS, full-credit scoring, and partial action/confidence scoring.
 - `tests/hub-links.test.cjs` verifies the simulator is reachable from the main hub, the planned-simulators page, and the shared shell registry.
 
-## First shipped simulator: S10 SQP Studio
+## First shipped simulator: SQP Studio (S10)
 
 `sqp-studio.html` is the first planned simulator moved into the live SimGrid hub.
 
