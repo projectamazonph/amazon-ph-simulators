@@ -64,6 +64,26 @@ The simulator repository supports the wider Project Amazon PH course experience.
 |---|---|
 | ![AdConsole Pro simulator](docs/screenshots/simgrid-ad-console.jpg) | ![Capstone Sequence simulator](docs/screenshots/simgrid-capstone-sequence.jpg) |
 
+| Keyword Lab | Search Term Triage |
+|---|---|
+| ![Keyword Lab simulator](docs/screenshots/simgrid-keyword-lab.jpg) | ![Search Term Triage simulator](docs/screenshots/simgrid-search-triage.jpg) |
+
+| Bulk File Simulator | BuyBox Dojo |
+|---|---|
+| ![Bulk File Simulator](docs/screenshots/simgrid-bulk-file.jpg) | ![BuyBox Dojo simulator](docs/screenshots/simgrid-buybox-dojo.jpg) |
+
+| Pacing Deck | Campaign Architect |
+|---|---|
+| ![Pacing Deck simulator](docs/screenshots/simgrid-pacing-deck.jpg) | ![Campaign Architect simulator](docs/screenshots/simgrid-campaign-architect.jpg) |
+
+| Account Audit | Client Onboarding |
+|---|---|
+| ![Account Audit simulator](docs/screenshots/simgrid-account-audit.jpg) | ![Client Onboarding simulator](docs/screenshots/simgrid-client-onboarding.jpg) |
+
+| Planned Simulators | Learn & Docs |
+|---|---|
+| ![Planned Simulators](docs/screenshots/simgrid-planned-simulators.jpg) | ![Learn & Docs](docs/screenshots/simgrid-learn-docs.jpg) |
+
 See [the screenshot guide](docs/screenshots/README.md) for source URLs and recapture standards.
 
 
