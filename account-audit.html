@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Amazon PH Academy - S9 Account Audit</title>
+<meta name="description" content="S9 Account Audit simulator for ranking Amazon PPC account findings by impact, confidence, and safe next action.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=PT+Sans:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shell.css">
+<link rel="stylesheet" href="assets/decision-simulator.css">
+</head>
+<body data-pha-tool="account-audit">
+<main data-ds-root></main>
+
+<script src="assets/decision-simulator-core.js"></script>
+<script src="assets/account-audit-core.js"></script>
+<script src="assets/decision-simulator-page.js"></script>
+<script>
+DecisionSimulatorPage.mount({
+  scenario: AccountAuditCore.ACCOUNT_AUDIT_SCENARIO,
+  gradeAttempt: AccountAuditCore.gradeAttempt
+});
+</script>
+<script src="assets/shell.js" defer></script>
+</body>
+</html>

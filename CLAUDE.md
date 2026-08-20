@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-**Project Amazon PH Academy — SimGrid**: a multi-page static webapp that consolidates eight
+**Project Amazon PH Academy — SimGrid**: a multi-page static webapp that consolidates twelve
 Amazon PPC training simulators under one brand. Each tool teaches/tests a different Amazon
 Seller Central / Ads workflow (ad console, keyword research, search-term triage, bulk file
 upload, listing optimization, budget pacing). It's plain HTML/CSS/JS — no framework, no
@@ -24,8 +24,14 @@ full font/asset fidelity. Deployment is automatic: `.github/workflows/deploy.yml
 the repo root straight to GitHub Pages on every push to `master` — there is nothing to
 compile, bundle, or transpile before deploying.
 
-There is no test suite, linter, or formatter configured in this repo. Verify changes by
-opening the affected page(s) in a browser and exercising the UI.
+Core simulator behavior has a Node test suite. Run it before shipping simulator changes:
+
+```bash
+npm test
+```
+
+There is no linter or formatter configured in this repo. Also verify affected static pages
+in a browser when touching UI layout or interaction.
 
 ## Architecture
 
@@ -36,15 +42,22 @@ keyword-lab.html     # Tool: Keyword Lab
 search-triage.html   # Tool: Search Term Triage
 bulk-file.html       # Tool: Bulk File Simulator
 listing.html         # Tool: BuyBox Dojo
-  pacing-deck.html     # Tool: Pacing Deck
-  sqp-studio.html      # Tool: S10 SQP Studio
-  bid-decisions.html   # Tool: S2 Bid Decisions
+  pacing-deck.html       # Tool: Pacing Deck
+  sqp-studio.html        # Tool: S10 SQP Studio
+  bid-decisions.html     # Tool: S2 Bid Decisions
+  campaign-architect.html # Tool: S8 Campaign Architect
+  account-audit.html     # Tool: S9 Account Audit
+  client-onboarding.html # Tool: S11 Client Onboarding
+  capstone-sequence.html # Tool: S12-S14 Capstone Sequence
   assets/
   tokens.css         # Design-token single source of truth (CSS custom properties)
   skin.css            # Aggressive override layer — forces every tool onto the unified theme
   shell.css           # Top bar + footer chrome
   shell.js            # Injects chrome, builds nav, applies the skin
   hub.css              # Hub-page-only layout
+  decision-simulator-core.js # Shared scoring contract for final-batch decision simulators
+  decision-simulator-page.js # Shared browser renderer for final-batch decision simulators
+  decision-simulator.css     # Shared layout for final-batch decision simulators
 ```
 
 Each tool page is a **self-contained single-file app**: its own `<style>` block and its own
@@ -80,10 +93,12 @@ touching chrome, nav, or theming on any tool page:
 link `assets/shell.css` and `assets/shell.js`, and add an entry to the `TOOLS` array in
 `assets/shell.js` (id, name, tag, file). The shared chrome and skin pick it up automatically.
 For new simulator logic, prefer a small tested core module in `assets/*-core.js` and keep the
-HTML page focused on UI rendering, local state, and event wiring. Current reference examples:
-`sqp-studio.html` with `assets/sqp-studio-core.js`, and `bid-decisions.html` with
-`assets/bid-decisions-core.js`.
-There is also a runtime registration seam, `window.APHSimHub.register(manifest)`, mentioned
+HTML page focused on UI rendering, local state, and event wiring. Reference examples:
+`sqp-studio.html` with `assets/sqp-studio-core.js`, `bid-decisions.html` with
+`assets/bid-decisions-core.js`, and the shared final-batch pattern used by
+`campaign-architect.html`, `account-audit.html`, `client-onboarding.html`, and
+`capstone-sequence.html`.
+There is also a runtime registration point, `window.APHSimHub.register(manifest)`, mentioned
 in the hub's brand docs for dynamically-added simulators.
 
 ### Design system ("Amazon Pro")

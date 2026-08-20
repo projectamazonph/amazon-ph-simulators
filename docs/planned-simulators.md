@@ -2,7 +2,7 @@
 
 Source reference: `projectamazonph/va-project-ph`, docs `36-simulators-platform.md` through `42-simulator-roadmap.md`.
 
-This file copies the planned simulator set into SimGrid so the missing work can be built inside this project without losing the curriculum intent from VA Project PH.
+This file copies the planned simulator set into SimGrid so the imported work can evolve inside this project without losing the curriculum intent from VA Project PH.
 
 ## Platform contract copied from VA Project PH
 
@@ -25,18 +25,37 @@ Every future simulator should stay inside these rules:
 | S4 | Campaign Builder / Console Wizard | Partial in `ad-console.html` | P1 | Add a guided SP/SB/SD planning wizard or adapt the existing setup flow with stronger rubric feedback. |
 | S5 | Listing Audit | Partial in `listing.html` | P1 | Add explicit listing-readiness audit scoring before PPC pressure testing. |
 | S7 | Bulk Operations | Covered by `bulk-file.html` | Keep improving | Preserve preview, affected-row counts, and rollback guidance. |
-| S8 | Campaign Architect | Missing | P0 | Build campaign-map practice from a product brief: structure, targeting, negatives, naming, budgets, and first review plan. |
-| S9 | Account Audit | Missing | P0 | Build synthetic account snapshot triage with impact/confidence ranking and next-step recommendations. |
+| S8 | Campaign Architect | Live in `campaign-architect.html` | Keep improving | Tests campaign-map practice from product brief to structure, targeting, negatives, and first review plan. |
+| S9 | Account Audit | Live in `account-audit.html` | Keep improving | Tests synthetic account snapshot triage with impact/confidence ranking and next-step recommendations. |
 | S10 | SQP Studio | Live in `sqp-studio.html` | Keep improving | Tests query visibility and conversion-signal analysis with a separated scoring core in `assets/sqp-studio-core.js`. |
-| S11 | Client Onboarding | Missing | P1 | Build checklist practice for access boundaries, goals, product facts, constraints, cadence, approvals, and open questions. |
-| S12-S14 | Capstone Sequence | Missing | P2 | Build after S2, S8, S9, and S10 are stable; requires teacher review rules. |
+| S11 | Client Onboarding | Live in `client-onboarding.html` | Keep improving | Tests checklist practice for access boundaries, goals, product facts, constraints, cadence, approvals, and open questions. |
+| S12-S14 | Capstone Sequence | Live in `capstone-sequence.html` | Keep improving | Tests the sequence across research, setup, optimization, reporting, and client communication. |
 
-## Recommended build order
+## Recommended improvement order
 
-1. S8 Campaign Architect: turns research and bid logic into a campaign plan.
-2. S9 Account Audit: teaches prioritization across a synthetic account snapshot.
-3. S11 Client Onboarding: adds the VA workflow and communication layer.
-4. S12-S14 Capstone: combines research, setup, optimization, reporting, and client communication.
+All imported planned simulators now have live first-pass implementations. Improve them in this order when adding depth: S8 Campaign Architect, S9 Account Audit, S11 Client Onboarding, then S12-S14 Capstone.
+
+## Final batch: S8, S9, S11, and S12-S14
+
+The remaining planned simulators now share a small decision-simulator architecture:
+
+- `assets/decision-simulator-core.js` owns generic row scoring, pass/fail summary behavior, and the decision bonus model.
+- `assets/decision-simulator-page.js` owns the browser table renderer, local attempt storage, grading events, and row feedback rendering.
+- `assets/decision-simulator.css` owns the shared visual treatment for the final-batch pages.
+- Each simulator keeps its own scenario data, answer key, labels, options, and feedback in a focused `assets/*-core.js` file.
+
+Live pages:
+
+- `campaign-architect.html` covers launch structure, core targeting, prelaunch negatives, and the first review rule.
+- `account-audit.html` covers proven waste, profitable capped campaigns, listing/offer friction, and thin-data monitoring.
+- `client-onboarding.html` covers Ads access, KPI guardrails, product facts, and approval rules.
+- `capstone-sequence.html` covers research, setup, optimization, and reporting sequence decisions.
+
+Regression coverage:
+
+- `tests/decision-simulator-core.test.cjs` verifies the shared scoring contract.
+- `tests/remaining-simulators-core.test.cjs` verifies perfect-score paths and focused judgment failures for the four final-batch simulators.
+- `tests/hub-links.test.cjs` verifies every new page is reachable from the hub, roadmap archive, and shared shell registry.
 
 ## Second shipped simulator: S2 Bid Decisions
 
