@@ -55,18 +55,21 @@
 
   // Inject the unified design tokens + skin (if not already there)
   function injectSkin() {
-    if (document.querySelector('link[data-pha-tokens], link[href$="assets/tokens.css"]')) return;
     var head = document.head;
-    var t = document.createElement('link');
-    t.rel = 'stylesheet';
-    t.href = rootPrefix() + 'assets/tokens.css';
-    t.setAttribute('data-pha-tokens', '1');
-    head.appendChild(t);
-    var s = document.createElement('link');
-    s.rel = 'stylesheet';
-    s.href = rootPrefix() + 'assets/skin.css';
-    s.setAttribute('data-pha-skin', '1');
-    head.appendChild(s);
+    if (!document.querySelector('link[data-pha-tokens], link[href$="assets/tokens.css"]')) {
+      var t = document.createElement('link');
+      t.rel = 'stylesheet';
+      t.href = rootPrefix() + 'assets/tokens.css';
+      t.setAttribute('data-pha-tokens', '1');
+      head.appendChild(t);
+    }
+    if (!document.querySelector('link[data-pha-skin], link[href$="assets/skin.css"]')) {
+      var s = document.createElement('link');
+      s.rel = 'stylesheet';
+      s.href = rootPrefix() + 'assets/skin.css';
+      s.setAttribute('data-pha-skin', '1');
+      head.appendChild(s);
+    }
   }
 
   // Inject the responsive layer (mobile-first + hamburger + touch targets).

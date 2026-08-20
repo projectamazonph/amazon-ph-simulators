@@ -15,7 +15,7 @@ unified skin, and the common application shell.
 - Shared versioned attempt history surfaces Not started, In progress, Passed, best score, and attempt count in Coach and the hub.
 - One tested beginner PPC policy aligns evidence bands, negatives, bid changes, and budget scaling across lessons and simulators.
 - Scenario-bank infrastructure preserves stable simulator progress while recording the selected scenario and rubric versions; Campaign Architect and Account Audit now ship selectable beginner and intermediate packs.
-- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **89 passing tests**.
+- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **91 passing tests**.
 
 ## Design-system architecture
 
@@ -156,7 +156,7 @@ for those external resources when they are not already cached.
 | — | **Simulator Roadmap** | `planned-simulators.html` | Roadmap copied from `va-project-ph` docs 36-42 for imported simulator builds |
 | 1 | **AdConsole Pro** | `ad-console.html` | Amazon Sponsored Ads console replica — campaigns, ad groups, keywords, search terms, hour-by-hour auction simulation |
 | 2 | **Keyword Lab** | `keyword-lab.html` | Keyword research training: playbooks, practice drills, search-term audits, 12-question certification exam |
-| 3 | **Search Term Triage** | `search-triage.html` | Five-question triage rounds; read the report, decide the action, defend it. OPSDECK Practice Suite · Tool 07 |
+| 3 | **Search Term Triage** | `search-triage.html` | 8/12/16-term triage rounds; read the report, decide the action, defend it. OPSDECK Practice Suite · Tool 07 |
 | 4 | **Bulk File Simulator** | `bulk-file.html` | Upload bulk sheets, get graded like a real Amazon bulk upload |
 | 5 | **BuyBox Dojo** | `listing.html` | Listing optimizer + 7-day PPC pressure test + VA Playbook |
 | 6 | **Pacing Deck** | `pacing-deck.html` | Budget & day-parting simulator with 24-hour flight log |
@@ -213,7 +213,7 @@ playbooks, drills, and certification.
 Search Term Triage is a decision-practice suite for turning a search-term report
 into a clear action. It rewards judgment, not just memorizing rules.
 
-- Work through timed or self-paced five-question triage rounds.
+- Work through timed or self-paced 8/12/16-term triage rounds.
 - Read a search-term row and select the appropriate keep, harvest, monitor, or
   negative action.
 - Use difficulty modes, hints, progress ranks, XP, explanations, and a rubric to

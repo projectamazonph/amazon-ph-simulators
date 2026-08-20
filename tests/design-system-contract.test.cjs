@@ -87,6 +87,15 @@ test('shared shell aliases central tokens instead of duplicating brand constants
   assert.doesNotMatch(css.match(/:root\s*\{[\s\S]*?\}/)?.[0] || '', /#[0-9a-f]{3,8}/i);
 });
 
+test('shared shell repairs either missing design-system stylesheet independently', () => {
+  const shell = read('assets/shell.js');
+  const injectSkin = shell.match(/function injectSkin\(\)[\s\S]*?\n  \}/)?.[0] || '';
+
+  assert.match(injectSkin, /if \(!document\.querySelector\('link\[data-pha-tokens\]/);
+  assert.match(injectSkin, /if \(!document\.querySelector\('link\[data-pha-skin\]/);
+  assert.doesNotMatch(injectSkin, /tokens[^\n]*\) return/);
+});
+
 test('decision simulators alias the central palette instead of defining a parallel one', () => {
   const css = read('assets/decision-simulator.css');
   const rootTokens = css.match(/:root\s*\{[\s\S]*?\}/)?.[0] || '';

@@ -62,12 +62,11 @@ listing.html         # Tool: BuyBox Dojo
   decision-simulator.css     # Shared layout for final-batch decision simulators
 ```
 
-Each tool page is a **self-contained single-file app**: its own `<style>` block and its own
-`<script>` block at the bottom, originally extracted from a standalone chat-export prototype
-and then wired into this shell. Fonts and any third-party libraries (Chart.js in
-`ad-console.html`, SheetJS in `bulk-file.html`) are loaded per-page via CDN `<link>`/`<script>`
-tags in that page's own `<head>` — there's no shared bundling, so a library used by one tool
-is not available to the others unless you add it there too.
+Each tool page keeps its HTML structure and behavior in the page, while presentation is
+externalized into shared and simulator-specific stylesheets. The pages originated as
+standalone chat-export prototypes, but the design-system pass removed page-level style
+blocks and centralized brand fonts. Third-party libraries (Chart.js in `ad-console.html`,
+SheetJS in `bulk-file.html`) remain page-specific CDN dependencies.
 
 ### How the unification (shell + skin) works
 
@@ -109,9 +108,8 @@ All colors, spacing, and type live in `assets/tokens.css` as CSS custom properti
 (`--c-navy-2`, `--c-orange`, `--c-bg`, `--c-ink`, `--sp-1`…`--sp-16`, etc.) — treat this as the
 single source of truth and prefer adding/reusing a token over hard-coding a color or spacing
 value, especially in `skin.css` or `shell.css`. Typography: **Archivo** (display), **PT Sans**
-(body), **IBM Plex Mono** (technical/mono), **Barlow Condensed** (tight UI labels) — individual
-tool pages may load additional fonts for their own native styling, which `skin.css` then
-partially overrides.
+(body), **IBM Plex Mono** (technical/mono), **Barlow Condensed** (tight UI labels). Pages use
+the shared Fontsource bundle; do not add page-specific font providers or Google Fonts.
 
 ### Brand/content conventions
 

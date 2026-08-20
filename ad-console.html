@@ -368,6 +368,7 @@ function simHour(){
     const bfT=1/(1+Math.exp(-((kw.bid*(1+pl.top/100))/effM-1)*3));
     const shTop=clamp(.12+.5*bfT,.05,.62),shProd=.35,shRest=Math.max(.03,1-shTop-shProd);
     const segs=[['top',shTop,1.6,1.25,1.15],['prod',shProd,1.1,1.0,1.05],['rest',shRest,.7,.8,.9]];
+    const termBefore=Object.fromEntries(Object.entries(state.terms).map(([key,term])=>[key,{imp:term.imp,clk:term.clk,sp:term.sp,sal:term.sal,ord:term.ord}]));
     const tot=emptyM();const segOut=[];
     for(const sg of segs){
       const impi=Math.round(imp*sg[1]);
@@ -386,6 +387,14 @@ function simHour(){
       segOut.forEach(s=>{if(!s)return;s.imp=Math.floor(s.imp*f);s.clk=Math.floor(s.clk*f);s.ord=Math.floor(s.ord*f);s.sp=s.clk*(s.cpc||cpc);s.sal=s.ord*kw.price;});
       tot.imp=Math.floor(tot.imp*f);tot.clk=Math.floor(tot.clk*f);tot.ord=Math.floor(tot.ord*f);
       tot.sp=Math.min(rem,tot.sp*f);tot.sal=tot.ord*kw.price;
+      Object.entries(state.terms).forEach(([key,term])=>{
+        const before=termBefore[key]||{imp:0,clk:0,sp:0,sal:0,ord:0};
+        term.imp=before.imp+Math.floor((term.imp-before.imp)*f);
+        term.clk=before.clk+Math.floor((term.clk-before.clk)*f);
+        term.sp=before.sp+(term.sp-before.sp)*f;
+        term.sal=before.sal+Math.floor((term.sal-before.sal)*f);
+        term.ord=before.ord+Math.floor((term.ord-before.ord)*f);
+      });
     }
     addR(kw.daily,state.day,tot);
     addR(c.daily,state.day,tot);
