@@ -92,6 +92,7 @@ tailwind.config = { theme: { extend: {
 </div>
 <div id="toastRoot" class="fixed bottom-5 right-5 z-50 space-y-2 w-80"></div>
 
+<script src="assets/curriculum-manifest.js"></script>
 <script>
 /* ================= CORE ================= */
 const IMG = {
@@ -649,12 +650,18 @@ window.openModule=function(i){lessonCtx={module:i,lesson:null};RENDER.lessons();
 window.backToModules=function(){lessonCtx={module:null,lesson:null};RENDER.lessons();};
 window.openLesson=function(mi,li){lessonCtx={module:mi,lesson:li};RENDER.lessons();};
 
+function renderModulePractice(moduleId){
+ const curriculumModule=CurriculumManifest.getModule(moduleId);
+ if(!curriculumModule||!curriculumModule.practice.length)return "";
+ return '<div class="mt-4 bg-brand-50 border border-brand-200 rounded-2xl p-5 shadow-card"><div class="text-xs font-bold uppercase tracking-widest text-brand-700">Assigned simulator practice</div><div class="grid sm:grid-cols-2 gap-3 mt-3">'+curriculumModule.practice.map(a=>{const simulator=CurriculumManifest.getSimulator(a.simulatorId);return '<a href="'+simulator.file+'" class="statcard bg-white border border-brand-200 rounded-xl p-4"><span class="block font-display font-bold text-navy">'+simulator.title+'</span><span class="block text-xs text-slate-500 mt-1">Target: '+a.minimumScore+'%'+(a.required?' · Required':' · Optional')+'</span><span class="block text-xs font-bold text-brand-700 mt-3">Open simulator →</span></a>';}).join("")+'</div></div>';
+}
+
 function renderModule(el){
  const i=lessonCtx.module,m=MODULES[i],qb=state.quizScores["m"+i];
  el.innerHTML='<button onclick="backToModules()" class="text-sm font-bold text-slate-500 hover:text-navy mb-4">← All modules</button>'+
  '<div class="bg-white rounded-2p xl rounded-2xl shadow-card overflow-hidden"><div class="relative p-6 md:p-8 border-l-8" style="border-color:'+m.color+'"><div class="flex flex-wrap items-center gap-6"><div class="flex-1 min-w-[220px]"><div class="text-3xl">'+m.icon+'</div><h2 class="font-display font-bold text-xl text-navy mt-2">Module '+(i+1)+' · '+m.title+'</h2><p class="text-sm text-slate-500 mt-1">'+m.desc+'</p></div>'+(m.img?'<img src="'+m.img+'" class="w-36 h-36 rounded-2xl object-cover border border-slate-200 hidden md:block" alt="">':'')+'</div></div></div>'+
  '<div class="mt-4 space-y-3">'+m.lessons.map((l,li)=>{const done=state.done.includes(l.id);return '<button onclick="openLesson('+i+','+li+')" class="w-full statcard bg-white rounded-2xl p-4 shadow-card flex items-center gap-4 text-left"><span class="w-9 h-9 shrink-0 rounded-full flex items-center justify-center font-bold text-sm '+(done?'bg-emerald-100 text-emerald-600':'bg-slate-100 text-slate-400')+'">'+(done?'✓':li+1)+'</span><span class="flex-1"><span class="block font-bold text-navy text-sm">'+l.title+'</span><span class="block text-xs text-slate-400 mt-0.5">⏱ '+l.mins+' min · '+l.blocks.length+' learning blocks</span></span><span class="text-slate-300 text-xl">→</span></button>';}).join("")+'</div>'+
- '<div class="mt-4 bg-navy text-white rounded-2xl p-5 shadow-card flex flex-wrap items-center gap-4"><span class="text-2xl">🧠</span><div class="flex-1 min-w-[200px]"><div class="font-display font-bold">Module '+(i+1)+' quiz · '+m.quiz.length+' questions</div><div class="text-xs text-slate-300 mt-1">'+(qb!==undefined?'Best score: '+qb+'%':'Not taken yet. Pass at 70% to prove the module.')+'</div></div><button onclick="takeQuiz(\'m'+i+'\')" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-5 py-2.5 rounded-xl transition">'+(qb!==undefined?'Retake quiz':'Take quiz')+'</button></div>';
+ '<div class="mt-4 bg-navy text-white rounded-2xl p-5 shadow-card flex flex-wrap items-center gap-4"><span class="text-2xl">🧠</span><div class="flex-1 min-w-[200px]"><div class="font-display font-bold">Module '+(i+1)+' quiz · '+m.quiz.length+' questions</div><div class="text-xs text-slate-300 mt-1">'+(qb!==undefined?'Best score: '+qb+'%':'Not taken yet. Pass at 70% to prove the module.')+'</div></div><button onclick="takeQuiz(\'m'+i+'\')" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-5 py-2.5 rounded-xl transition">'+(qb!==undefined?'Retake quiz':'Take quiz')+'</button></div>'+renderModulePractice("m"+i);
 }
 
 function renderLessonReader(el){
