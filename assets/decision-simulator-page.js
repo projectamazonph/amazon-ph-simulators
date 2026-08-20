@@ -72,6 +72,7 @@
     var scenario = config.scenario;
     var storageKey = config.storageKey || ('aph-' + scenario.id + '-attempt');
     var attempt = readAttempt(storageKey);
+    var progressStore = config.progressStore || StudentProgress.createLocalProgressStore();
 
     root.innerHTML =
       '<div class="ds-page">' +
@@ -134,6 +135,11 @@
       var currentAttempt = collectAttempt(root);
       var result = config.gradeAttempt(currentAttempt);
       saveAttempt(storageKey, currentAttempt);
+      progressStore.recordAttempt(SimulatorAttempt.buildAttemptRecord({
+        scenario: scenario,
+        result: result,
+        completedAt: (config.now ? config.now() : new Date()).toISOString()
+      }));
       root.querySelector('[data-ds-score]').innerHTML = result.score + '<span>/' + result.maxScore + '</span>';
       root.querySelector('[data-ds-status]').textContent = result.passed ? 'Passed' : 'Keep practicing';
       renderFeedback(root.querySelector('[data-ds-feedback]'), result);
