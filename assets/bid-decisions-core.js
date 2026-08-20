@@ -1,0 +1,204 @@
+(function (root, factory) {
+  if (typeof module === 'object' && module.exports) {
+    module.exports = factory();
+  } else {
+    root.BidDecisionsCore = factory();
+  }
+})(typeof self !== 'undefined' ? self : this, function () {
+  'use strict';
+
+  var ACTIONS = {
+    raise_bid: {
+      label: 'Raise bid',
+      description: 'Increase carefully when volume and efficiency both support it.'
+    },
+    hold_bid: {
+      label: 'Hold bid',
+      description: 'Keep the bid steady when the signal is too thin or already balanced.'
+    },
+    lower_bid: {
+      label: 'Lower bid',
+      description: 'Reduce pressure when a target converts but misses the efficiency goal.'
+    },
+    investigate_pause: {
+      label: 'Investigate or pause',
+      description: 'Stop or investigate spend that has enough clicks but no orders.'
+    },
+    ask_review: {
+      label: 'Ask for review',
+      description: 'Escalate when the data conflicts with account goals or constraints.'
+    }
+  };
+
+  var CONFIDENCE_LEVELS = {
+    high: {
+      label: 'High confidence'
+    },
+    medium: {
+      label: 'Medium confidence'
+    },
+    low: {
+      label: 'Low confidence'
+    }
+  };
+
+  var BID_DECISIONS_SCENARIO = {
+    id: 'bid-decisions',
+    title: 'S2 Bid Decisions',
+    passingScore: 75,
+    targetAcos: 35,
+    actions: ACTIONS,
+    confidenceLevels: CONFIDENCE_LEVELS,
+    rows: [
+      {
+        id: 'exact-winner',
+        target: 'lunch box stainless steel exact',
+        matchType: 'Exact',
+        bid: 1.2,
+        clicks: 80,
+        spend: 72,
+        sales: 240,
+        orders: 12,
+        expectedAction: 'raise_bid',
+        expectedConfidence: 'high',
+        evidence: 'ACOS is below target with 12 orders, so the keyword has enough proof to test a controlled bid raise.',
+        feedback: 'This target is profitable and has enough orders. Raise carefully so you can buy more good traffic without blowing past target ACOS.'
+      },
+      {
+        id: 'high-acos-converter',
+        target: 'kids bento box phrase',
+        matchType: 'Phrase',
+        bid: 1.45,
+        clicks: 95,
+        spend: 137.75,
+        sales: 180,
+        orders: 6,
+        expectedAction: 'lower_bid',
+        expectedConfidence: 'medium',
+        evidence: 'The target has orders, but ACOS is well above the 35% goal, so the right move is proportional pressure reduction.',
+        feedback: 'Do not pause a converter too fast. Lower the bid proportionally and review whether the query mix or listing fit is causing the high ACOS.'
+      },
+      {
+        id: 'thin-data-keyword',
+        target: 'leakproof snack container broad',
+        matchType: 'Broad',
+        bid: 0.95,
+        clicks: 9,
+        spend: 8.55,
+        sales: 0,
+        orders: 0,
+        expectedAction: 'hold_bid',
+        expectedConfidence: 'low',
+        evidence: 'Only 9 clicks is not enough to prove the keyword is bad or good.',
+        feedback: 'This row is thin data. Hold the bid, keep watching search terms, and wait for enough clicks before making a bigger move.'
+      },
+      {
+        id: 'wasted-spend-keyword',
+        target: 'plastic lunch bag exact',
+        matchType: 'Exact',
+        bid: 1.1,
+        clicks: 44,
+        spend: 48.4,
+        sales: 0,
+        orders: 0,
+        expectedAction: 'investigate_pause',
+        expectedConfidence: 'high',
+        evidence: 'The target has enough clicks and spend with no orders, so it deserves investigation or a pause.',
+        feedback: 'This is wasted spend with enough evidence. Investigate search-term fit, listing fit, and then pause or negate if the mismatch is clear.'
+      }
+    ]
+  };
+
+  function round(value, digits) {
+    var factor = Math.pow(10, digits || 2);
+    return Math.round(value * factor) / factor;
+  }
+
+  function safeDivide(numerator, denominator) {
+    if (!denominator) return 0;
+    return numerator / denominator;
+  }
+
+  function calculateBidMetrics(row) {
+    return {
+      cpc: round(safeDivide(row.spend, row.clicks), 2),
+      conversionRate: round(safeDivide(row.orders, row.clicks) * 100, 2),
+      acos: row.sales ? round(safeDivide(row.spend, row.sales) * 100, 2) : 0,
+      roas: round(safeDivide(row.sales, row.spend), 2),
+      costPerOrder: round(safeDivide(row.spend, row.orders), 2)
+    };
+  }
+
+  function gradeRow(row, answer) {
+    var safeAnswer = answer || {};
+    var actionCorrect = safeAnswer.action === row.expectedAction;
+    var confidenceCorrect = safeAnswer.confidence === row.expectedConfidence;
+    var earned = 0;
+
+    if (actionCorrect) earned += 15;
+    if (confidenceCorrect) earned += 5;
+    if (actionCorrect && confidenceCorrect) earned += 5;
+
+    return {
+      rowId: row.id,
+      target: row.target,
+      earned: earned,
+      possible: 25,
+      actionCorrect: actionCorrect,
+      confidenceCorrect: confidenceCorrect,
+      expectedAction: row.expectedAction,
+      expectedConfidence: row.expectedConfidence,
+      selectedAction: safeAnswer.action || '',
+      selectedConfidence: safeAnswer.confidence || '',
+      metrics: calculateBidMetrics(row),
+      evidence: row.evidence,
+      feedback: row.feedback
+    };
+  }
+
+  function summarize(score, passingScore) {
+    if (score >= 90) {
+      return 'Strong bid judgment. You matched action size to evidence quality and account risk.';
+    }
+    if (score >= passingScore) {
+      return 'Good bid judgment. Review the missed rows and tighten how confidence changes the action.';
+    }
+    return 'Keep practicing bid decisions. Separate proven winners, expensive converters, thin data, and wasted spend before changing bids.';
+  }
+
+  function gradeAttempt(scenario, attempt) {
+    var activeScenario = scenario || BID_DECISIONS_SCENARIO;
+    var safeAttempt = attempt || {};
+    var items = activeScenario.rows.map(function (row) {
+      return gradeRow(row, safeAttempt[row.id]);
+    });
+    var score = items.reduce(function (sum, item) {
+      return sum + item.earned;
+    }, 0);
+    var maxScore = items.reduce(function (sum, item) {
+      return sum + item.possible;
+    }, 0);
+    var correctDecisions = items.filter(function (item) {
+      return item.actionCorrect && item.confidenceCorrect;
+    }).length;
+    var passingScore = activeScenario.passingScore || 75;
+
+    return {
+      score: score,
+      maxScore: maxScore,
+      correctDecisions: correctDecisions,
+      totalDecisions: items.length,
+      passed: score >= passingScore,
+      summary: summarize(score, passingScore),
+      items: items
+    };
+  }
+
+  return {
+    BID_DECISIONS_SCENARIO: BID_DECISIONS_SCENARIO,
+    ACTIONS: ACTIONS,
+    CONFIDENCE_LEVELS: CONFIDENCE_LEVELS,
+    calculateBidMetrics: calculateBidMetrics,
+    gradeAttempt: gradeAttempt
+  };
+});

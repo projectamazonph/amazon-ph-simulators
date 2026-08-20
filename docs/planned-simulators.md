@@ -20,7 +20,7 @@ Every future simulator should stay inside these rules:
 | ID | Simulator | Current SimGrid Status | Build Priority | Integration Notes |
 |---|---|---|---|---|
 | S1 | Search-Term Report Lab | Covered by `search-triage.html` | Keep improving | Align copy with VA Project PH rule: no universal zero-order negative rule. |
-| S2 | Bid Decisions | Missing standalone | P0 | Build a focused raise/hold/lower/investigate simulator using spend, clicks, sales, ACOS/ROAS, and confidence. |
+| S2 | Bid Decisions | Live in `bid-decisions.html` | Keep improving | Tests raise/hold/lower/investigate decisions with a separated scoring core in `assets/bid-decisions-core.js`. |
 | S3 | Budget and Pacing | Covered by `pacing-deck.html` | Keep improving | Keep budget pacing separate from profitability in feedback. |
 | S4 | Campaign Builder / Console Wizard | Partial in `ad-console.html` | P1 | Add a guided SP/SB/SD planning wizard or adapt the existing setup flow with stronger rubric feedback. |
 | S5 | Listing Audit | Partial in `listing.html` | P1 | Add explicit listing-readiness audit scoring before PPC pressure testing. |
@@ -33,11 +33,27 @@ Every future simulator should stay inside these rules:
 
 ## Recommended build order
 
-1. S2 Bid Decisions: isolates bid judgment from the larger Ad Console.
-2. S8 Campaign Architect: turns research and bid logic into a campaign plan.
-3. S9 Account Audit: teaches prioritization across a synthetic account snapshot.
-4. S11 Client Onboarding: adds the VA workflow and communication layer.
-5. S12-S14 Capstone: combines research, setup, optimization, reporting, and client communication.
+1. S8 Campaign Architect: turns research and bid logic into a campaign plan.
+2. S9 Account Audit: teaches prioritization across a synthetic account snapshot.
+3. S11 Client Onboarding: adds the VA workflow and communication layer.
+4. S12-S14 Capstone: combines research, setup, optimization, reporting, and client communication.
+
+## Second shipped simulator: S2 Bid Decisions
+
+`bid-decisions.html` is the second planned simulator moved into the live SimGrid hub.
+
+Implementation notes:
+
+- The page is a self-contained static simulator that uses the shared `assets/shell.js` chrome.
+- Bid metrics, answer keys, confidence scoring, and feedback live in `assets/bid-decisions-core.js`.
+- The core module exports through CommonJS for Node tests and `window.BidDecisionsCore` for the browser.
+- Student progress is stored locally under `aph-bid-decisions-attempt`.
+- The simulator focuses on action sizing and confidence: proven winners, expensive converters, thin data, and wasted spend.
+
+Regression coverage:
+
+- `tests/bid-decisions-core.test.cjs` verifies CPC, CVR, ACOS, ROAS, full-credit scoring, and partial action/confidence scoring.
+- `tests/hub-links.test.cjs` verifies the simulator is reachable from the main hub, the planned-simulators page, and the shared shell registry.
 
 ## First shipped simulator: S10 SQP Studio
 
