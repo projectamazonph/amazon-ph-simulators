@@ -1,7 +1,7 @@
 {
   "name": "amazon-ph-simulators",
   "productName": "Project Amazon PH Academy SimGrid",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Desktop wrapper for the Project Amazon PH Academy PPC simulators.",
   "homepage": "https://projectamazonph.github.io/amazon-ph-simulators/",
   "author": "Project Amazon PH Academy",
@@ -17,11 +17,13 @@
   },
   "devDependencies": {
     "electron": "^43.4.0",
-    "electron-builder": "^26.15.3"
+    "electron-builder": "^26.15.3",
+    "electron-updater": "^6.6.2"
   },
   "build": {
     "appId": "com.projectamazonph.simgrid",
     "productName": "Project Amazon PH Academy SimGrid",
+    "publisherName": "Project Amazon PH Academy",
     "artifactName": "SimGrid-Setup-${version}.${ext}",
     "directories": {
       "output": "release"
@@ -36,6 +38,12 @@
       "!**/*.map"
     ],
     "asar": true,
+    "publish": {
+      "provider": "github",
+      "owner": "projectamazonph",
+      "repo": "amazon-ph-simulators",
+      "releaseType": "release"
+    },
     "win": {
       "target": [
         {
@@ -52,7 +60,9 @@
       "createStartMenuShortcut": true,
       "shortcutName": "SimGrid",
       "runAfterFinish": true,
-      "deleteAppDataOnUninstall": false
+      "deleteAppDataOnUninstall": false,
+      "menuCategory": "Project Amazon PH Academy",
+      "license": "build/installer-info.txt"
     }
   }
 }
