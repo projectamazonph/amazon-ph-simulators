@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-**Project Amazon PH Academy — SimGrid**: a multi-page static webapp that consolidates six
+**Project Amazon PH Academy — SimGrid**: a multi-page static webapp that consolidates seven
 Amazon PPC training simulators under one brand. Each tool teaches/tests a different Amazon
 Seller Central / Ads workflow (ad console, keyword research, search-term triage, bulk file
 upload, listing optimization, budget pacing). It's plain HTML/CSS/JS — no framework, no
@@ -36,8 +36,9 @@ keyword-lab.html     # Tool: Keyword Lab
 search-triage.html   # Tool: Search Term Triage
 bulk-file.html       # Tool: Bulk File Simulator
 listing.html         # Tool: BuyBox Dojo
-pacing-deck.html     # Tool: Pacing Deck
-assets/
+  pacing-deck.html     # Tool: Pacing Deck
+  sqp-studio.html      # Tool: S10 SQP Studio
+  assets/
   tokens.css         # Design-token single source of truth (CSS custom properties)
   skin.css            # Aggressive override layer — forces every tool onto the unified theme
   shell.css           # Top bar + footer chrome
@@ -77,6 +78,10 @@ touching chrome, nav, or theming on any tool page:
 **Adding a new tool page**: drop a new HTML file with `data-pha-tool="your-id"` on `<body>`,
 link `assets/shell.css` and `assets/shell.js`, and add an entry to the `TOOLS` array in
 `assets/shell.js` (id, name, tag, file). The shared chrome and skin pick it up automatically.
+For new simulator logic, prefer a small tested core module in `assets/*-core.js` and keep the
+HTML page focused on UI rendering, local state, and event wiring. SQP Studio is the current
+reference example: `sqp-studio.html`, `assets/sqp-studio-core.js`, and
+`tests/sqp-studio-core.test.cjs`.
 There is also a runtime registration seam, `window.APHSimHub.register(manifest)`, mentioned
 in the hub's brand docs for dynamically-added simulators.
 
