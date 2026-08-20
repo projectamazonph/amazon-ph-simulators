@@ -41,15 +41,15 @@ The string contains `you''ll`. JavaScript does not escape apostrophes by doublin
 
 **Fix direction:** use valid escaping or template literals and cover inline scripts with the same parse check.
 
-### P1 — Ad Console budget caps make search-term data inconsistent
+### Resolved — Ad Console budget caps make search-term data consistent
 
 **File:** `ad-console.html`, `attributeTerms()` and `simHour()`
 
-`attributeTerms()` mutates search-term records immediately. When a campaign exceeds its remaining budget, `simHour()` scales the segment and campaign totals but does not roll back or scale the already-mutated search-term records.
+`attributeTerms()` mutates search-term records immediately. The current `simHour()` implementation snapshots those records before attribution and rolls each delta back to the final cap factor when a campaign exceeds its remaining budget.
 
 This causes the campaign dashboard and search-term report to disagree exactly when a campaign hits its cap—the moment students are expected to learn about budget pacing.
 
-**Fix direction:** calculate immutable result deltas first, apply the cap, then commit the final deltas to keyword, campaign, placement, and search-term state.
+**Verification:** capped segment, campaign, placement, keyword, and search-term deltas are all scaled from the same factor before final state is committed.
 
 ### Resolved — BuyBox Dojo cap accounting
 

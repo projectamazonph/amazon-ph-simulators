@@ -6,6 +6,8 @@
 <title>Project Amazon PH Academy — Keyword Lab</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF9900'/%3E%3Ccircle cx='14' cy='14' r='7' fill='none' stroke='%230B1F33' stroke-width='3'/%3E%3Cpath d='M19 19l5 5' stroke='%230B1F33' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
+<script src="assets/student-progress.js"></script>
+<script src="assets/simulator-attempt.js"></script>
 
 <script src="assets/shell.js" defer></script>
 <link rel="stylesheet" href="assets/fonts.css">
@@ -1764,6 +1766,11 @@ function nextQuiz(){
     quiz.state = 'done';
     if(quiz.score > bestScore()){ try { localStorage.setItem('kwlab_best', String(quiz.score)); } catch(e){} }
     addXP(quiz.score*3, 'exam completed');
+    StudentProgress.createLocalProgressStore().recordAttempt(SimulatorAttempt.buildAttemptRecord({
+      scenario:{id:'keyword-lab',version:'1.0.0',rubricVersion:'1.0.0'},
+      result:{score:quiz.score,maxScore:12,passed:quiz.score>=10},
+      completedAt:new Date().toISOString()
+    }));
   } else { quiz.i++; }
   renderQuiz();
 }

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AdConsole Pro — Amazon PPC Operator Simulator</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="assets/student-progress.js"></script>
+<script src="assets/simulator-attempt.js"></script>
 
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/tokens.css">
@@ -281,7 +283,7 @@ function seed(){
 const emptyM=()=>({imp:0,clk:0,sp:0,sal:0,ord:0});
 function addR(arr,d,r){arr[d]=arr[d]||emptyM();const t=arr[d];t.imp+=r.imp;t.clk+=r.clk;t.sp+=r.sp;t.sal+=r.sal;t.ord+=r.ord;return arr;}
 function sumDaily(arr,from,to){const a=emptyM();for(let d=Math.max(0,from);d<=to;d++){const r=arr&&arr[d];if(r){a.imp+=r.imp||0;a.clk+=r.clk||0;a.sp+=r.sp||0;a.sal+=r.sal||0;a.ord+=r.ord||0;}}return a;}
-function derive(m){m.ctr=m.imp?m.clk/m.imp:0;m.cpc=m.clk?m.sp/m.clk:0;m.cvr=m.clk?m.ord/m.clk:0;m.acos=m.sal?m.sp/m.sal:0;m.roas=m.sp?m.sal/m.sp:0;return m;}
+function derive(m){m.ctr=m.imp?m.clk/m.imp:0;m.cpc=m.clk?m.sp/m.clk:0;m.cvr=m.clk?m.ord/m.clk:0;m.acos=m.sal?m.sp/m.sal:null;m.roas=m.sp?m.sal/m.sp:null;return m;}
 function rangeBounds(){const rd=state.rangeDays;const to=state.day;const from=rd?Math.max(0,to-rd+1):0;return{from,to};}
 function priorBounds(){const b=rangeBounds();const len=b.to-b.from+1;const pTo=b.from-1;const pFrom=pTo-len+1;if(pTo<0)return null;return{from:Math.max(0,pFrom),to:pTo};}
 function campMetrics(c,b){b=b||rangeBounds();return derive(sumDaily(c.daily,b.from,b.to));}
@@ -499,6 +501,10 @@ function markLesson(id){
  if(state.lessonsDone.size===LESSONS.length)setTimeout(celebrate,700);
 }
 function celebrate(){
+ StudentProgress.createLocalProgressStore().recordAttempt(SimulatorAttempt.buildAttemptRecord({
+  scenario:{id:'ad-console-academy',simulatorId:'ad-console',version:'1.0.0',rubricVersion:'1.0.0'},
+  result:{score:100,maxScore:100,passed:true},completedAt:new Date().toISOString()
+ }));
  const colors=['#FF9900','#067D62','#007185','#E47911','#2BB673','#B12704'];
  const pieces=Array.from({length:38},()=>'<i style="left:'+rnd(0,100)+'%;background:'+pick(colors)+';animation-delay:'+rnd(0,.9)+'s;animation-duration:'+rnd(1.6,2.7)+'s"></i>').join('');
  openModal('<div class="confetti">'+pieces+'</div><div class="m-h"><h2>🏆 All missions complete!</h2><button type="button" class="x" data-act="modal-close">✕</button></div>'+

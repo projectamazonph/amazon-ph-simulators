@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Project Amazon PH Academy — Search Term Triage</title>
 
+<script src="assets/student-progress.js"></script>
+<script src="assets/simulator-attempt.js"></script>
 
 <script src="assets/shell.js" defer></script>
 <link rel="stylesheet" href="assets/fonts.css">
@@ -845,6 +847,11 @@ function finishRound(){
       <td class="mono" style="font-weight:600">${ACTIONS[r.expert.a].short}</td>
       <td class="why">${r.why}</td></tr>`;
   }).join('');
+  const progressScenario={id:'search-triage-'+S.scen.id+'-'+S.diff+'-'+S.size,simulatorId:'search-triage',version:'1.0.0',rubricVersion:'1.0.0'};
+  const progressResult={score:Math.round(acc*100),maxScore:100,passed:acc>=.75};
+  StudentProgress.createLocalProgressStore().recordAttempt(SimulatorAttempt.buildAttemptRecord({
+    scenario:progressScenario,result:progressResult,completedAt:new Date().toISOString()
+  }));
   showView('debrief');
   const el=$('#d-score'),t0=performance.now();
   (function tick(t){const p=clamp((t-t0)/900,0,1);
