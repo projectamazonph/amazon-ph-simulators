@@ -1,2 +1,13 @@
 /* Shared brand font delivery for every simulator. */
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=PT+Sans:wght@400;700&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/400.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/500.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/600.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/700.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/pt-sans@5.1.0/400.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/pt-sans@5.1.0/700.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5.1.0/500.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5.1.0/600.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5.1.0/700.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@5.1.0/400.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@5.1.0/500.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@5.1.0/600.css');

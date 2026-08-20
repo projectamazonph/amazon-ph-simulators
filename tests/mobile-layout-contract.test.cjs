@@ -70,12 +70,18 @@ test('shared decision tables expose labels for a compact mobile presentation', (
 
 test('Bid Decisions and SQP Studio expose mobile field labels', () => {
   const bid = read('bid-decisions.html');
+  const bidRenderer = read('assets/bid-decisions-page.js');
+  const bidCss = read('assets/bid-decisions.css');
   const sqp = read('sqp-studio.html');
+  const sqpRenderer = read('assets/sqp-studio-page.js');
+  const sqpCss = read('assets/sqp-studio.css');
 
-  for (const label of ['Target', 'Bid', 'Clicks', 'Action', 'Confidence']) {
-    assert.match(bid, new RegExp('data-label="' + label + '"'));
-  }
-  for (const label of ['Query', 'Volume', 'Diagnosis', 'Follow-up']) {
-    assert.match(sqp, new RegExp('data-label="' + label + '"'));
-  }
+  assert.match(bid, /data-bid-cockpit/);
+  assert.match(bidRenderer, /Evidence confidence/);
+  assert.match(bidRenderer, /aria-pressed/);
+  assert.match(bidCss, /@media \(max-width: 520px\)/);
+  assert.match(sqp, /data-signal-lab/);
+  assert.match(sqpRenderer, /role=\\?"meter/);
+  assert.match(sqpRenderer, /data-diagnosis/);
+  assert.match(sqpCss, /@media\(max-width:520px\)/);
 });

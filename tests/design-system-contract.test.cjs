@@ -22,12 +22,7 @@ const simulatorPages = [
   'sqp-studio.html'
 ];
 
-const sharedDecisionPages = new Set([
-  'account-audit.html',
-  'campaign-architect.html',
-  'capstone-sequence.html',
-  'client-onboarding.html'
-]);
+const sharedDecisionPages = new Set();
 
 const learningPages = [
   'learn/downloads.html',

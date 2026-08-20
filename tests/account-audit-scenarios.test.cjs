@@ -41,8 +41,10 @@ test('Account Audit rejects an unknown scenario selection', () => {
 
 test('Account Audit page mounts the shared selector against its scenario bank', () => {
   const page = fs.readFileSync('account-audit.html', 'utf8');
+  const renderer = fs.readFileSync('assets/account-audit-page.js', 'utf8');
 
   assert.match(page, /src="assets\/scenario-bank\.js"/);
-  assert.match(page, /scenarioBank:\s*AccountAuditCore\.ACCOUNT_AUDIT_SCENARIO_BANK/);
-  assert.match(page, /gradeScenarioAttempt:\s*AccountAuditCore\.gradeScenarioAttempt/);
+  assert.match(renderer, /core\.ACCOUNT_AUDIT_SCENARIO_BANK/);
+  assert.match(renderer, /core\.gradeScenarioAttempt\(scenario\.id, answers\)/);
+  assert.match(renderer, /data-pack/);
 });

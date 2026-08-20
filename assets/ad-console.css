@@ -140,8 +140,8 @@ input[type=range]{accent-color:var(--orange-d);height:26px;cursor:pointer}
 [data-tip]{position:relative}
 [data-tip]::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);background:var(--navy);color:#fff;font-size:11.5px;font-weight:400;font-family:var(--font-body);padding:7px 10px;border-radius:6px;white-space:normal;width:max-content;max-width:230px;opacity:0;pointer-events:none;transition:.16s;z-index:200;line-height:1.4;text-align:left;box-shadow:var(--sh2)}
 [data-tip]::before{content:'';position:absolute;bottom:calc(100% + 3px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--navy);opacity:0;transition:.16s;z-index:200}
-[data-tip]:hover::after,[data-tip]:hover::before{opacity:1;transform:translateX(-50%) translateY(0)}
-[data-tip]:hover::before{transform:translateX(-50%)}
+[data-tip]:hover::after,[data-tip]:hover::before,[data-tip]:focus-visible::after,[data-tip]:focus-visible::before{opacity:1;transform:translateX(-50%) translateY(0)}
+[data-tip]:hover::before,[data-tip]:focus-visible::before{transform:translateX(-50%)}
 .tipd{border-bottom:1px dotted #8A939B;cursor:help}
 
 .twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}

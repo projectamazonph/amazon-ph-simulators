@@ -10,6 +10,7 @@
 <script src="assets/shell.js" defer></script>
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/simulator-foundation.css">
 <link rel="stylesheet" href="assets/keyword-lab.css">
 <link rel="stylesheet" href="assets/skin.css">
 <link rel="stylesheet" href="assets/shell.css">
@@ -221,7 +222,7 @@
       <div class="tool">
         <div class="tool-title">🔬 INSTRUMENT: BID → PLACEMENT</div>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-          <input type="range" id="aucBid" min="0.10" max="3.00" step="0.05" value="0.75" oninput="runAuctionDemo()" style="flex:1;min-width:200px">
+          <input type="range" id="aucBid" min="0.10" max="3.00" step="0.05" value="0.75" oninput="runAuctionDemo()" style="flex:1;min-width:200px" aria-label="Auction demo bid">
           <span class="mono" style="font-weight:700;font-size:18px;width:64px" id="aucBidVal">$0.75</span>
         </div>
         <div class="tier-grid">
@@ -1734,7 +1735,7 @@ function renderQuiz(){
   q.o.forEach(function(o, i){
     h += '<button type="button" class="q-opt" id="qo' + i + '" onclick="answerQuiz(' + i + ')"><span class="key">' + String.fromCharCode(65+i) + '</span>' + o + '</button>';
   });
-  h += '</div><div class="q-fb hidden" id="qFeedback"></div>'
+  h += '</div><div class="q-fb hidden" id="qFeedback" aria-live="polite"></div>'
     + '<div style="text-align:right;margin-top:18px"><button type="button" class="btn btn-ink hidden" id="qNext" onclick="nextQuiz()">' + (quiz.i === 11 ? 'See Results →' : 'Next Question →') + '</button></div></div>';
   box.innerHTML = h;
 }

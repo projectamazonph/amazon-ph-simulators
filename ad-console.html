@@ -8,6 +8,7 @@
 
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/simulator-foundation.css">
 <link rel="stylesheet" href="assets/ad-console.css">
 <link rel="stylesheet" href="assets/skin.css">
 <link rel="stylesheet" href="assets/shell.css">
@@ -71,7 +72,7 @@
   <div class="sim-time"><b id="simDate">—</b><span id="simClock">—</span></div>
   <div class="sim-progress"><i id="simProg"></i></div></div>
   <div class="sim-sep"></div>
-  <button type="button" class="sim-play" id="simPlay" data-act="sim-toggle" data-tip="Play / pause (Space)"></button>
+  <button type="button" class="sim-play" id="simPlay" data-act="sim-toggle" data-tip="Play / pause (Space)" aria-label="Play or pause simulation"></button>
   <div class="sim-speed">
     <button type="button" data-act="sim-speed" data-v="1" class="on">1×</button>
     <button type="button" data-act="sim-speed" data-v="2">2×</button>
@@ -652,7 +653,7 @@ function placementsTab(c){
   return'<div class="placerow">'+
    '<div class="pl-head"><span class="plic">'+r[1]+'</span><div><b>'+r[2]+'</b><span class="pld">'+r[3]+'</span></div>'+
     '<span class="chip '+(m.acos>.35?'ch-red':m.acos>.22?'ch-amber':'ch-green')+'" style="margin-left:auto">'+(m.sal?'ACOS '+pctf(m.acos):'—')+'</span></div>'+
-   '<div class="pl-ctl"><input type="range" min="0" max="900" step="10" value="'+(c.places[k]||0)+'" data-act="place-sl" data-key="'+k+'" data-camp="'+c.id+'">'+
+   '<div class="pl-ctl"><input type="range" min="0" max="900" step="10" value="'+(c.places[k]||0)+'" data-act="place-sl" data-key="'+k+'" data-camp="'+c.id+'" aria-label="'+p.label+' placement bid adjustment">'+
     '<span class="plv" id="plv-'+k+'">+'+(c.places[k]||0)+'%</span></div>'+
    '<div class="plbar"><i style="width:'+(share*100).toFixed(1)+'%"></i></div>'+
    '<div class="pl-nums"><span>Spend '+money(ps[k].sp)+' ('+(share*100).toFixed(0)+'%)</span><span>Clicks '+kfmt(ps[k].clk)+'</span><span>Sales '+money(ps[k].sal)+'</span><span>Impressions '+kfmt(ps[k].imp)+'</span></div>'+

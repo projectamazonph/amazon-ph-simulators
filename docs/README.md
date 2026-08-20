@@ -9,5 +9,6 @@ Use this index as the current entry point for project documentation.
 | [Planned simulator roadmap](planned-simulators.md) | Simulator inventory, coverage, and improvement priorities |
 | [Codebase audit](codebase-audit.md) | Historical audit with a current-state addendum |
 | [Screenshot guide](screenshots/README.md) | Verified public captures and recapture standards |
+| [Simulator UI remake notes](simulator-ui-remake-notes.md) | Distinct layout genomes, preserved contracts, and deferred engine/copy flags |
 
 The live repository deployment is https://projectamazonph.github.io/amazon-ph-simulators/.
