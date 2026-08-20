@@ -4,12 +4,12 @@
 **Repository:** `projectamazonph/amazon-ph-simulators`  
 **Live site:** https://projectamazonph.github.io/amazon-ph-simulators/
 **Baseline:** `master` after PR #27 (`3f844bea`)
-**Current delivery:** UI remake and accessibility foundation merged; 91 regression tests passing
-**Status:** Active implementation plan — Phases 1–3 complete; Phase 4 foundation and UI remake complete
+**Current delivery:** UI remake, accessibility foundation, curriculum/progress contracts, and shared PPC policy merged; 96 regression tests passing
+**Status:** Active implementation plan — Phases 1–3 complete; Phase 4 scenario-bank foundation complete, content expansion remains active
 
 ## Delivery update
 
-The curriculum manifest, shared progress contract, beginner PPC policy, versioned scenario-bank foundation, distinct simulator layouts, and shared accessibility layer are implemented and regression-tested. Campaign Architect and Account Audit have selectable beginner and intermediate content packs. Remaining work is scenario depth, persistent capstone artifacts, and legacy simulator engine coverage.
+The curriculum manifest, shared progress contract, beginner PPC policy, versioned scenario-bank foundation, distinct simulator layouts, and shared accessibility layer are implemented and regression-tested. Campaign Architect and Account Audit have selectable beginner and intermediate content packs. Remaining work is scenario depth, persistent capstone artifacts, legacy engine coverage, and the explicitly listed accessibility/security refinements.
 
 ## Outcome
 
@@ -40,7 +40,7 @@ Validation at the start of this plan:
 | P0 | Student journey | PPC Coach appears after every simulator in the hub and no guided next action exists | Beginners can enter advanced simulators without prerequisites |
 | P0 | Synchronization | External simulator results do not update PPC Coach or hub progress | Completion is fragmented and graduation ignores most simulators |
 | P0 | PPC policy | Evidence thresholds and search-term actions differ between lessons and tools | Students can be rewarded for conflicting decisions |
-| P1 | Simulator depth | Six recent simulators contain one fixed four-row scenario each | Answers become memorization after one attempt |
+| P1 | Simulator depth | Campaign Architect and Account Audit have two packs; SQP Studio, Bid Decisions, and Client Onboarding now have six-row runs, while deeper multi-pack expansion remains | Continued scenario depth is needed to prevent memorization |
 | P1 | Capstone | Current capstone matches four actions to four stages | It does not prove an end-to-end operating workflow |
 | P1 | Curriculum | Module 5 is omitted from the student guide; SQP and bulk operations lack formal lessons | Important skills are not sequenced or assigned |
 | P1 | Documentation | Counts, navigation, roadmap status, and the older codebase audit have drifted | Maintainers and students receive conflicting information |
@@ -173,7 +173,7 @@ Acceptance:
 
 ### Phase 3 — PPC policy alignment
 
-**Status:** In progress on `feature/ppc-policy-alignment`; the tested shared policy now covers evidence bands, relevance-based negatives, bid bounds, and profitable budget constraints. Bid Decisions and policy-covered Account Audit findings consume it; Coach, Search Triage, and Keyword Lab contradictions have been reconciled.
+**Status:** Complete for the current beginner policy contract; the tested shared policy covers evidence bands, relevance-based negatives, bid bounds, and profitable budget constraints. Bid Decisions and policy-covered Account Audit findings consume it; Coach, Search Triage, and Keyword Lab contradictions have been reconciled.
 
 Deliverables:
 
@@ -189,7 +189,7 @@ Acceptance:
 
 ### Phase 4 — Scenario banks
 
-**Status:** In progress. The deterministic scenario-bank contract is complete, progress attempts separate stable simulator identity from selected scenario identity, and Campaign Architect plus Account Audit ship selectable beginner/intermediate content packs.
+**Status:** Foundation complete; content expansion remains in progress. The deterministic scenario-bank contract is complete, progress attempts separate stable simulator identity from selected scenario identity, and Campaign Architect plus Account Audit ship selectable beginner/intermediate content packs.
 
 Expand SQP Studio, Bid Decisions, Campaign Architect, Account Audit, and Client Onboarding to:
 
