@@ -37,15 +37,15 @@ Every future simulator should stay inside these rules:
 | S4 | Campaign Builder / Console Wizard | Partial in `ad-console.html` | P1 | Add a guided SP/SB/SD planning wizard or adapt the existing setup flow with stronger rubric feedback. |
 | S5 | Listing Audit | Partial in `listing.html` | P1 | Add explicit listing-readiness audit scoring before PPC pressure testing. |
 | S7 | Bulk Operations | Covered by `bulk-file.html` | Keep improving | Preserve preview, affected-row counts, and rollback guidance. |
-| S8 | Campaign Architect | Live in `campaign-architect.html` | Keep improving | Tests campaign-map practice from product brief to structure, targeting, negatives, and first review plan. |
-| S9 | Account Audit | Live in `account-audit.html` | Keep improving | Tests synthetic account snapshot triage with impact/confidence ranking and next-step recommendations. |
+| S8 | Campaign Architect | Two scenario packs live in `campaign-architect.html` | Keep expanding | Selectable beginner and intermediate campaign-map practice preserves stable progress identity and versioned rubrics. |
+| S9 | Account Audit | Two scenario packs live in `account-audit.html` | Keep expanding | Selectable beginner and intermediate account triage covers waste, scale, tracking integrity, thin evidence, and retail readiness. |
 | S10 | SQP Studio | Live in `sqp-studio.html` | Keep improving | Tests query visibility and conversion-signal analysis with a separated scoring core in `assets/sqp-studio-core.js`. |
 | S11 | Client Onboarding | Live in `client-onboarding.html` | Keep improving | Tests checklist practice for access boundaries, goals, product facts, constraints, cadence, approvals, and open questions. |
 | S12-S14 | Capstone Sequence | Live in `capstone-sequence.html` | Keep improving | Tests the sequence across research, setup, optimization, reporting, and client communication. |
 
 ## Recommended improvement order
 
-All imported planned simulators now have live first-pass implementations. Add replayable beginner/intermediate scenario packs to S8, S9, S11, S10, and S2 first; then replace the lightweight S12-S14 exercise with the persistent capstone workflow.
+All imported planned simulators now have live first-pass implementations. Campaign Architect and Account Audit have replayable beginner/intermediate packs. Add equivalent packs to S11, S10, and S2 next; then replace the lightweight S12-S14 exercise with the persistent capstone workflow.
 
 ## Final batch: Campaign Architect, Account Audit, Client Onboarding, and Capstone
 

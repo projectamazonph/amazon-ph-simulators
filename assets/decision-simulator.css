@@ -98,6 +98,31 @@ body {
   max-width: 720px;
 }
 
+.ds-scenario-picker {
+  display: grid;
+  gap: 6px;
+  margin-top: 20px;
+  max-width: 420px;
+}
+.ds-scenario-picker span {
+  color: var(--ds-muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.ds-scenario-picker select {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--ds-line);
+  border-radius: 6px;
+  padding: 9px 10px;
+  background: var(--ds-card);
+  color: var(--ds-ink);
+  font: inherit;
+}
+
 .ds-scorecard {
   display: flex;
   flex-direction: column;

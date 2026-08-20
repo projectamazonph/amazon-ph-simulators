@@ -17,14 +17,15 @@
 
 <script src="assets/decision-simulator-core.js"></script>
 <script src="assets/ppc-decision-policy.js"></script>
+<script src="assets/scenario-bank.js"></script>
 <script src="assets/account-audit-core.js"></script>
 <script src="assets/student-progress.js"></script>
 <script src="assets/simulator-attempt.js"></script>
 <script src="assets/decision-simulator-page.js"></script>
 <script>
 DecisionSimulatorPage.mount({
-  scenario: AccountAuditCore.ACCOUNT_AUDIT_SCENARIO,
-  gradeAttempt: AccountAuditCore.gradeAttempt
+  scenarioBank: AccountAuditCore.ACCOUNT_AUDIT_SCENARIO_BANK,
+  gradeScenarioAttempt: AccountAuditCore.gradeScenarioAttempt
 });
 </script>
 <script src="assets/shell.js" defer></script>

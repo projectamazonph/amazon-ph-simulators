@@ -9,7 +9,7 @@
 
 ## Current status addendum — 2026-08-20
 
-- The repository now has a Node test harness with 61 passing tests.
+- The repository now has a Node test harness with 76 passing tests.
 - Inline-script parsing is included in delivery verification; the two P0 syntax blockers no longer describe the current baseline.
 - PPC Coach is the primary guided entry and all 12 modules have simulator assignments through `assets/curriculum-manifest.js`.
 - Six graded simulators write versioned attempts through `assets/student-progress.js` and surface progress in Coach and the hub.

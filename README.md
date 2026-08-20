@@ -14,8 +14,8 @@ whole app looks like it was built from the ground up — not stitched together.
 - **12 PPC Coach modules / 40 lessons**, with manifest-driven simulator assignments.
 - Shared versioned attempt history surfaces Not started, In progress, Passed, best score, and attempt count in Coach and the hub.
 - One tested beginner PPC policy aligns evidence bands, negatives, bid changes, and budget scaling across lessons and simulators.
-- Scenario-bank infrastructure preserves stable simulator progress while recording the selected scenario and rubric versions.
-- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **61 passing tests**.
+- Scenario-bank infrastructure preserves stable simulator progress while recording the selected scenario and rubric versions; Campaign Architect and Account Audit now ship selectable beginner and intermediate packs.
+- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **76 passing tests**.
 
 ## Product context
 
@@ -270,21 +270,21 @@ Key implementation notes:
 
 #### 9. Campaign Architect (`campaign-architect.html`)
 
-Campaign Architect turns a product brief into a campaign launch plan. Students choose the right structure, targeting, negative guardrails, and first review rule.
+Campaign Architect turns a product brief into a campaign launch plan. Students choose the right structure, targeting, negative guardrails, and first review rule across selectable beginner and intermediate scenarios.
 
 Key implementation notes:
 
-- `assets/campaign-architect-core.js` owns the scenario, answer keys, and feedback.
+- `assets/campaign-architect-core.js` owns two versioned scenarios, answer keys, and feedback through the shared scenario bank.
 - The page uses the shared `assets/decision-simulator-page.js` renderer and `assets/decision-simulator-core.js` scoring contract.
 - `tests/remaining-simulators-core.test.cjs` verifies full-credit and judgment-edge cases.
 
 #### 10. Account Audit (`account-audit.html`)
 
-Account Audit teaches account-level prioritization. Students separate urgent waste, scale opportunities, listing friction, and thin data before recommending a next action.
+Account Audit teaches account-level prioritization across selectable beginner and intermediate scenarios. Students separate urgent waste, scale opportunities, tracking risk, listing friction, and thin data before recommending a next action.
 
 Key implementation notes:
 
-- `assets/account-audit-core.js` owns the audit scenario and priority rubric.
+- `assets/account-audit-core.js` owns two versioned audit scenarios and their shared priority rubric.
 - The shared decision renderer provides local attempt storage and row-by-row coaching.
 - `tests/remaining-simulators-core.test.cjs` verifies waste and thin-data behavior.
 

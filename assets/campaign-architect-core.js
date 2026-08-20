@@ -1,10 +1,13 @@
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) {
-    module.exports = factory(require('./decision-simulator-core.js'));
+    module.exports = factory(
+      require('./decision-simulator-core.js'),
+      require('./scenario-bank.js')
+    );
   } else {
-    root.CampaignArchitectCore = factory(root.DecisionSimulatorCore);
+    root.CampaignArchitectCore = factory(root.DecisionSimulatorCore, root.ScenarioBank);
   }
-})(typeof self !== 'undefined' ? self : this, function (DecisionSimulatorCore) {
+})(typeof self !== 'undefined' ? self : this, function (DecisionSimulatorCore, ScenarioBank) {
   'use strict';
 
   var PRIMARY_OPTIONS = {
@@ -22,9 +25,11 @@
   };
 
   var CAMPAIGN_ARCHITECT_SCENARIO = {
-    id: 'campaign-architect',
+    id: 'campaign-architect-launch-basics',
+    simulatorId: 'campaign-architect',
     version: '1.0.0',
     rubricVersion: '1.0.0',
+    difficulty: 'beginner',
     title: 'Campaign Architect',
     kicker: 'Planning simulator',
     description: 'Turn a product brief into launch structure, targeting, negatives, and first review rules.',
@@ -82,12 +87,87 @@
     ]
   };
 
-  var simulator = DecisionSimulatorCore.createDecisionSimulator(CAMPAIGN_ARCHITECT_SCENARIO);
+  var CAMPAIGN_ARCHITECT_INTERMEDIATE_SCENARIO = {
+    id: 'campaign-architect-brief-recovery',
+    simulatorId: 'campaign-architect',
+    version: '1.0.0',
+    rubricVersion: '1.0.0',
+    difficulty: 'intermediate',
+    title: 'Campaign Architect: Brief Recovery',
+    kicker: 'Intermediate planning simulator',
+    description: 'Recover an incomplete client brief, protect discovery spend, and set evidence-based launch controls.',
+    passingScore: 75,
+    primaryLabel: 'Architecture decision',
+    secondaryLabel: 'Risk level',
+    primaryOptions: PRIMARY_OPTIONS,
+    secondaryOptions: SECONDARY_OPTIONS,
+    summary: CAMPAIGN_ARCHITECT_SCENARIO.summary,
+    rows: [
+      {
+        id: 'missing-product-facts',
+        title: 'Incomplete hydration brief',
+        signal: 'The client supplied a title and budget but omitted material, size, margin, target ACOS, and priority ASIN.',
+        metrics: { budget: '$80/day', margin: 'Unknown', targetAcos: 'Unknown' },
+        expectedPrimary: 'ask_for_brief',
+        expectedSecondary: 'high',
+        evidence: 'Campaign structure and bids cannot be made responsibly without product economics and a clear launch target.',
+        feedback: 'Pause architecture work and recover the missing brief. Guessing margin or goals turns every later decision into unmanaged risk.'
+      },
+      {
+        id: 'controlled-discovery',
+        title: 'Discovery with a hard budget ceiling',
+        signal: 'Once the brief is complete, the client wants new query discovery but requires manual control of proven terms.',
+        metrics: { budget: '$80/day', goal: 'Discovery', control: 'Required' },
+        expectedPrimary: 'separate_auto_manual',
+        expectedSecondary: 'medium',
+        evidence: 'Separate auto and manual campaigns make discovery spend and proven-term performance independently controllable.',
+        feedback: 'Use auto for discovery and manual campaigns for controlled targets. Mixing both jobs hides where the budget is working.'
+      },
+      {
+        id: 'known-mismatch-themes',
+        title: 'Known material mismatches',
+        signal: 'The stainless-steel bottle cannot satisfy glass, disposable, or collapsible-bottle queries found during research.',
+        metrics: { themes: '3 known mismatches', relevance: 'None', timing: 'Prelaunch' },
+        expectedPrimary: 'seed_negatives',
+        expectedSecondary: 'low',
+        evidence: 'Confirmed product mismatches are safe prelaunch negatives and do not require a spend threshold.',
+        feedback: 'Add the confirmed mismatch themes as launch guardrails. This protects discovery budget without blocking relevant exploration.'
+      },
+      {
+        id: 'review-agreement',
+        title: 'Client requests daily restructuring',
+        signal: 'Forecast traffic is 20 clicks per day, but the client wants campaigns restructured after every daily report.',
+        metrics: { forecast: '20 clicks/day', firstReview: '7 days', changeRisk: 'High noise' },
+        expectedPrimary: 'review_after_7_days',
+        expectedSecondary: 'medium',
+        evidence: 'Agreeing on a seven-day or sufficient-click review window prevents noise-driven structural changes.',
+        feedback: 'Monitor daily, but schedule structural decisions for an evidence-ready review window rather than reacting to each day.'
+      }
+    ]
+  };
+
+  var CAMPAIGN_ARCHITECT_SCENARIO_BANK = ScenarioBank.createScenarioBank([
+    CAMPAIGN_ARCHITECT_SCENARIO,
+    CAMPAIGN_ARCHITECT_INTERMEDIATE_SCENARIO
+  ]);
+
+  function gradeScenarioAttempt(scenarioId, attempt) {
+    var scenario = CAMPAIGN_ARCHITECT_SCENARIO_BANK.get(scenarioId);
+    if (!scenario) throw new TypeError('Unknown Campaign Architect scenario: ' + scenarioId);
+    return DecisionSimulatorCore.gradeAttempt(scenario, attempt);
+  }
+
+  function gradeAttempt(attempt) {
+    return DecisionSimulatorCore.gradeAttempt(CAMPAIGN_ARCHITECT_SCENARIO, attempt);
+  }
 
   return {
     CAMPAIGN_ARCHITECT_SCENARIO: CAMPAIGN_ARCHITECT_SCENARIO,
+    CAMPAIGN_ARCHITECT_INTERMEDIATE_SCENARIO: CAMPAIGN_ARCHITECT_INTERMEDIATE_SCENARIO,
+    CAMPAIGN_ARCHITECT_SCENARIO_BANK: CAMPAIGN_ARCHITECT_SCENARIO_BANK,
     PRIMARY_OPTIONS: PRIMARY_OPTIONS,
     SECONDARY_OPTIONS: SECONDARY_OPTIONS,
-    gradeAttempt: simulator.gradeAttempt
+    gradeAttempt: gradeAttempt,
+    gradeScenarioAttempt: gradeScenarioAttempt
   };
 });
