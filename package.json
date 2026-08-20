@@ -37,6 +37,7 @@
       "!**/*.map"
     ],
     "asar": true,
+    "publisherName": "Project Amazon PH Academy",
     "publish": {
       "provider": "github",
       "owner": "projectamazonph",
