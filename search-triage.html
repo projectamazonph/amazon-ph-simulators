@@ -495,9 +495,10 @@ button.tool-link.here{color:var(--orange);border-color:rgba(255,153,0,.45);opaci
         <h2>The Game Plan</h2>
         <div class="rule-line"><span class="n">1</span><div><b>Read the intent first.</b> <span>Would this shopper happily buy your product? If not, a kind goodbye (negate) is best — exact for one term, phrase for a whole word family.</span></div></div>
         <div class="rule-line"><span class="n">2</span><div><b>Under 10 clicks?</b> <span>Too early to tell. Let it gather a fair sample before judging.</span></div></div>
-        <div class="rule-line"><span class="n">3</span><div><b>10+ clicks and still no orders?</b> <span>It had its chance — gently negate it at exact and move on.</span></div></div>
-        <div class="rule-line"><span class="n">4</span><div><b>Selling under break-even ACOS?</b> <span>That's a winner. Harvest it into Exact and help it grow.</span></div></div>
-        <div class="rule-line"><span class="n">5</span><div><b>Selling, but above break-even?</b> <span>Don't cut it — ease the bid down and check back in a week.</span></div></div>
+        <div class="rule-line"><span class="n">3</span><div><b>20–39 clicks, relevant, no orders?</b> <span>Diagnose the listing, offer, and query fit before making a larger targeting decision.</span></div></div>
+        <div class="rule-line"><span class="n">4</span><div><b>40+ clicks, relevant, no orders?</b> <span>Lower the bid or pause the target after confirming tracking and listing health.</span></div></div>
+        <div class="rule-line"><span class="n">5</span><div><b>Selling under break-even ACOS with proof?</b> <span>Harvest it into Exact; do not scale from one lucky sale.</span></div></div>
+        <div class="rule-line"><span class="n">6</span><div><b>Selling, but above break-even?</b> <span>Don't negate it — ease the bid down 10–20% and check back in a week.</span></div></div>
       </div>
       <div class="panel career reveal">
         <h2 style="font-size:15px;margin-bottom:10px">Your Progress</h2>
@@ -544,7 +545,7 @@ button.tool-link.here{color:var(--orange);border-color:rgba(255,153,0,.45);opaci
       <div class="panel rubric-mini">
         <p><b>INTENT</b> <span class="arr">→</span> wrong shopper? a kind negate (exact / phrase)</p>
         <p><b>DATA</b> <span class="arr">→</span> &lt;10 clicks? too early — keep it</p>
-        <p><b>SALES</b> <span class="arr">→</span> 0 orders at 10+ clicks? time to let it go</p>
+        <p><b>SALES</b> <span class="arr">→</span> relevant + 20–39 clicks? diagnose · 40+? lower or pause</p>
         <p><b>ACOS ≤ BE</b> <span class="arr">→</span> harvest it → exact</p>
         <p><b>ACOS &gt; BE</b> <span class="arr">→</span> keep it, ease the bid, revisit in 7d</p>
       </div>
@@ -981,7 +982,7 @@ function genMetrics(cls,sc,diff){
   const be=sc.margin,price=sc.price,cc=v=>clamp(v,0.35,2.4);
   let clicks,cpc,orders=0;
   if(cls==='winner'){
-    clicks=ri(12,diff==='rookie'?44:38);cpc=cc(rf(.55,1.35));
+    clicks=ri(20,diff==='rookie'?44:38);cpc=cc(rf(.55,1.35));
     let spend=clicks*cpc;
     const cap=be*(diff==='rookie'?rf(.4,.68):diff==='pro'?rf(.5,.8):rf(.55,.92))/100;
     orders=Math.max(2,Math.ceil(spend/(price*cap)));
@@ -1018,12 +1019,12 @@ function expertFor(item,sc){
     case 'winner':return A('HARVEST',`This one's a keeper: relevant shoppers and ${m.orders} orders at ${m.acos.toFixed(1)}% ACOS — comfortably under your ${be}% break-even. Graduating it to Exact lets you control the bid and let it grow.`);
     case 'head':return A('KEEP',`Good news — it sells! But ${m.acos.toFixed(1)}% ACOS sits above your ${be}% break-even, so each order costs you a little. Don't cut it; ease the bid down and check back in 7 days.`);
     case 'starved':return A('KEEP',`Only ${m.clicks} clicks so far — that's a whisper, not a verdict. Let it run a little longer and gather a fair sample.`);
-    case 'zero':return A('NEG_EXACT',`The intent was right, but ${m.clicks} clicks and ${money(m.spend)} spent with zero orders tells us it isn't converting. Kindly show it the door — negative exact.`);
+    case 'zero':return A('KEEP',`The intent is relevant, so zero orders is not an automatic negative. At ${m.clicks} clicks, diagnose the query, listing, price, and offer; keep monitoring or reduce the bid rather than blocking relevant demand.`);
     case 'irr':return A('NEG_EXACT',`This shopper was looking for something you don't sell. You can tell from the words alone — no data needed. A gentle negative exact does it.`);
     case 'pat':return A('NEG_PHRASE',`See the word "${item.word}"? It shows up in a whole family of queries you don't want. One phrase negative tidies them all up at once.`);
     case 'comp':return A('NEG_EXACT',`They searched for another brand by name. At this price point that's traffic you can't win — let it go, no hard feelings.`);
     case 'trap':return A('NEG_EXACT',`One order feels encouraging, but the intent doesn't fit your product. Traffic like this tends to turn into returns — better to close it now, kindly.`);
-    case 'early':return A('HARVEST',`A first order on a small sample — promising! Pin it into Exact with a careful bid and let it prove itself. Keeping it is also defensible here.`,'KEEP');
+    case 'early':return A('KEEP',`A first order on only ${m.clicks} clicks is promising but still thin evidence. Keep it running until the conversion signal repeats before harvesting.`);
   }
 }
 
