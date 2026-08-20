@@ -9,10 +9,10 @@ This file copies the planned simulator set into SimGrid so the imported work can
 ## Current delivery status — 2026-08-20
 
 - Curriculum manifest and guided PPC Coach entry: complete.
-- Shared versioned progress and hub/Coach status: complete for six graded simulators.
-- Shared PPC decision policy alignment: complete for the covered beginner rules.
+- Shared versioned progress and hub/Coach status: complete for the six newer graded simulators; legacy simulator integration remains a separate backlog item.
+- Shared PPC decision policy alignment: complete for the covered beginner rules and regression-tested across the policy consumers.
 - Scenario-bank foundation: complete; content-pack expansion is in progress.
-- Persistent multi-artifact capstone, expanded legacy regression coverage, and the new-simulator backlog remain planned.
+- Persistent multi-artifact capstone, expanded legacy regression coverage, and deeper multi-pack scenario expansion remain planned.
 
 The active implementation sequence and acceptance criteria live in `docs/curriculum-simulator-synchronization-plan.md`.
 
@@ -45,7 +45,7 @@ Every future simulator should stay inside these rules:
 
 ## Recommended improvement order
 
-All imported planned simulators now have live first-pass implementations. Campaign Architect and Account Audit have replayable beginner/intermediate packs. Add equivalent packs to S11, S10, and S2 next; then replace the lightweight S12-S14 exercise with the persistent capstone workflow.
+All imported planned simulators now have live first-pass implementations. Campaign Architect and Account Audit have replayable beginner/intermediate packs, while SQP Studio, Bid Decisions, and Client Onboarding now contain expanded six-row practice runs. Next content work should add selectable packs to those three tools and replace the lightweight S12-S14 exercise with the persistent capstone workflow.
 
 ## Final batch: Campaign Architect, Account Audit, Client Onboarding, and Capstone
 
