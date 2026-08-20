@@ -3,7 +3,7 @@
 **Created:** 2026-08-20  
 **Repository:** `projectamazonph/amazon-ph-simulators`  
 **Baseline:** `master` at `5c9584b`  
-**Status:** Active implementation plan
+**Status:** Active implementation plan — Phases 1–2 complete
 
 ## Outcome
 
@@ -128,6 +128,8 @@ Published scenario and rubric versions must remain stable for stored attempts.
 
 ### Phase 1 — Curriculum foundation
 
+**Status:** Complete in PR #20.
+
 **Files:** `assets/curriculum-manifest.js`, tests, `index.html`, `ppc-coach.html`, Learn documentation.
 
 Deliverables:
@@ -146,6 +148,8 @@ Acceptance:
 - Existing Coach progress remains readable.
 
 ### Phase 2 — Shared progress
+
+**Status:** Complete on `feature/shared-progress-integration`; six graded simulators emit versioned attempts and the hub/Coach surface status, best score, and attempt count. Legacy simulator event integration remains in Phase 6.
 
 Deliverables:
 
@@ -256,4 +260,3 @@ The synchronization program is complete when:
 - Capstone produces an auditable multi-stage student submission.
 - Documentation matches the live curriculum and simulator registry.
 - Relevant tests, script parsing, route checks, and mobile checks pass.
-

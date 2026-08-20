@@ -24,6 +24,8 @@
 
   var ACCOUNT_AUDIT_SCENARIO = {
     id: 'account-audit',
+    version: '1.0.0',
+    rubricVersion: '1.0.0',
     title: 'S9 Account Audit',
     kicker: 'Audit simulator',
     description: 'Rank account findings by impact and confidence, then choose the safest next action.',

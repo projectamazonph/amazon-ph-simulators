@@ -377,12 +377,15 @@ body {
 </main>
 
 <script src="assets/bid-decisions-core.js"></script>
+<script src="assets/student-progress.js"></script>
+<script src="assets/simulator-attempt.js"></script>
 <script>
 (function () {
   'use strict';
 
   var core = window.BidDecisionsCore;
   var scenario = core.BID_DECISIONS_SCENARIO;
+  var progressStore = StudentProgress.createLocalProgressStore();
   var storageKey = 'aph-bid-decisions-attempt';
   var rowsEl = document.getElementById('bidRows');
   var feedbackPanel = document.getElementById('feedbackPanel');
@@ -457,8 +460,14 @@ body {
 
   document.getElementById('submitBtn').addEventListener('click', function () {
     var attempt = currentAttempt();
+    var result = core.gradeAttempt(scenario, attempt);
     saveAttempt(attempt);
-    renderResult(core.gradeAttempt(scenario, attempt));
+    progressStore.recordAttempt(SimulatorAttempt.buildAttemptRecord({
+      scenario: scenario,
+      result: result,
+      completedAt: new Date().toISOString()
+    }));
+    renderResult(result);
   });
 
   document.getElementById('resetBtn').addEventListener('click', function () {

@@ -1,0 +1,82 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+
+const SimulatorAttempt = require('../assets/simulator-attempt.js');
+
+function read(file) {
+  return fs.readFileSync(file, 'utf8');
+}
+
+test('graded simulator result becomes a versioned progress attempt', () => {
+  const attempt = SimulatorAttempt.buildAttemptRecord({
+    scenario: {
+      id: 'account-audit',
+      version: '1.0.0',
+      rubricVersion: '1.0.0'
+    },
+    result: { score: 80, maxScore: 100, passed: true },
+    completedAt: '2026-08-20T13:00:00.000Z'
+  });
+
+  assert.deepEqual(attempt, {
+    simulatorId: 'account-audit',
+    scenarioVersion: '1.0.0',
+    rubricVersion: '1.0.0',
+    score: 80,
+    passed: true,
+    completedAt: '2026-08-20T13:00:00.000Z'
+  });
+});
+
+test('attempt score is normalized when a simulator uses a non-100 maximum', () => {
+  const attempt = SimulatorAttempt.buildAttemptRecord({
+    scenario: { id: 'example', version: '2.0.0', rubricVersion: '3.0.0' },
+    result: { score: 18, maxScore: 25, passed: false },
+    completedAt: '2026-08-20T13:00:00.000Z'
+  });
+
+  assert.equal(attempt.score, 72);
+});
+
+test('shared decision renderer records completed attempts through StudentProgress', () => {
+  const page = read('assets/decision-simulator-page.js');
+
+  assert.match(page, /StudentProgress\.createLocalProgressStore\(\)/);
+  assert.match(page, /SimulatorAttempt\.buildAttemptRecord/);
+  assert.match(page, /progressStore\.recordAttempt/);
+});
+
+[
+  ['campaign-architect.html', 'assets/campaign-architect-core.js'],
+  ['account-audit.html', 'assets/account-audit-core.js'],
+  ['client-onboarding.html', 'assets/client-onboarding-core.js'],
+  ['capstone-sequence.html', 'assets/capstone-sequence-core.js']
+].forEach(([pageFile, coreFile]) => {
+  test(`${pageFile} loads progress integration with versioned scenario content`, () => {
+    const page = read(pageFile);
+    const core = read(coreFile);
+
+    assert.match(page, /src="assets\/student-progress\.js"/);
+    assert.match(page, /src="assets\/simulator-attempt\.js"/);
+    assert.match(core, /version: '1\.0\.0'/);
+    assert.match(core, /rubricVersion: '1\.0\.0'/);
+  });
+});
+
+[
+  ['sqp-studio.html', 'assets/sqp-studio-core.js'],
+  ['bid-decisions.html', 'assets/bid-decisions-core.js']
+].forEach(([pageFile, coreFile]) => {
+  test(`${pageFile} records its custom graded result through shared progress`, () => {
+    const page = read(pageFile);
+    const core = read(coreFile);
+
+    assert.match(page, /src="assets\/student-progress\.js"/);
+    assert.match(page, /src="assets\/simulator-attempt\.js"/);
+    assert.match(page, /progressStore\.recordAttempt/);
+    assert.match(page, /SimulatorAttempt\.buildAttemptRecord/);
+    assert.match(core, /version: '1\.0\.0'/);
+    assert.match(core, /rubricVersion: '1\.0\.0'/);
+  });
+});
