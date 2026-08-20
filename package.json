@@ -23,7 +23,6 @@
   "build": {
     "appId": "com.projectamazonph.simgrid",
     "productName": "Project Amazon PH Academy SimGrid",
-    "publisherName": "Project Amazon PH Academy",
     "artifactName": "SimGrid-Setup-${version}.${ext}",
     "directories": {
       "output": "release"
@@ -45,6 +44,7 @@
       "releaseType": "release"
     },
     "win": {
+      "publisherName": "Project Amazon PH Academy",
       "target": [
         {
           "target": "nsis",
