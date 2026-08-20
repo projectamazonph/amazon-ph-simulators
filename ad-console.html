@@ -4,571 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AdConsole Pro — Amazon PPC Operator Simulator</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/400.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/500.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/600.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@5.1.0/700.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/pt-sans@5.1.0/400.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/pt-sans@5.1.0/700.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5.1.0/500.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5.1.0/600.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5.1.0/700.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/ad-console.css">
+<link rel="stylesheet" href="assets/skin.css">
 <link rel="stylesheet" href="assets/shell.css">
-<style>
-:root{
-  --navy:#131921; --navy2:#232F3E; --navy3:#37475A;
-  --bg:#EAEDED; --card:#fff; --border:#D5D9D9; --border2:#E7E7E7;
-  --ink:#0F1111; --sub:#565959; --faint:#767B7B;
-  --link:#007185; --link-h:#C7511F;
-  --orange:#FF9900; --orange-h:#FFA41C; --orange-d:#E47911;
-  --green:#067D62; --green-bg:#E6F4F0;
-  --amber:#C45500; --amber-bg:#FFF4E5;
-  --red:#B12704; --red-bg:#FDEDED;
-  --blue:#007185; --blue-bg:#E7F3F4;
-  --sh:0 1px 2px rgba(15,17,17,.10);
-  --sh2:0 4px 14px rgba(15,17,17,.14);
-}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{-webkit-text-size-adjust:100%}
-html,body{height:100%}
-body{font-family:'PT Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;overflow:hidden}
-h1,h2,h3,.num{font-family:'Archivo',sans-serif}
-.cond{font-family:'Barlow Condensed','Archivo',sans-serif}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;touch-action:manipulation}
-input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink)}
-::-webkit-scrollbar{width:10px;height:10px}
-::-webkit-scrollbar-thumb{background:#B7BEC4;border-radius:6px;border:2px solid var(--bg)}
-::-webkit-scrollbar-track{background:transparent}
-
-#topbar{height:58px;background:linear-gradient(180deg,var(--navy) 0%,var(--navy2) 100%);display:flex;align-items:center;gap:14px;padding:0 16px;position:relative;z-index:60;box-shadow:0 2px 6px rgba(0,0,0,.25)}
-.tb-left{display:flex;align-items:center;gap:12px;min-width:0}
-.tb-icon{width:38px;height:38px;border-radius:6px;display:grid;place-items:center;color:#D5D9D9;border:1px solid transparent;transition:.15s;position:relative;flex:none}
-.tb-icon:hover{border-color:#485769;color:#fff;background:rgba(255,255,255,.05)}
-.logo{display:flex;align-items:center;gap:2px;padding:6px 8px;border-radius:6px;border:1px solid transparent;cursor:pointer;transition:.15s;text-decoration:none;flex:none}
-.logo:hover{border-color:#485769}
-.logo-t{color:#fff;font-family:Archivo;font-weight:700;font-size:19px;letter-spacing:-.3px;line-height:1;white-space:nowrap}
-.logo-t b{color:var(--orange);font-weight:700}
-.smile{display:block;margin-top:1px}
-.tb-tag{font-size:11px;color:#99A5B4;border-left:1px solid #3A4553;padding-left:12px;line-height:1.25;white-space:nowrap}
-.tb-tag em{display:block;font-style:normal;color:#6E7B8B;font-size:10px;letter-spacing:.6px;text-transform:uppercase}
-.tb-search{flex:1;max-width:560px;display:flex;height:38px;border-radius:6px;overflow:hidden;background:#fff;box-shadow:0 0 0 3px transparent;transition:.15s;min-width:0}
-.tb-search:focus-within{box-shadow:0 0 0 3px rgba(255,153,0,.45)}
-.tb-search input{flex:1;border:none;outline:none;padding:0 12px;font-size:13.5px;min-width:0}
-.tb-search button{width:44px;background:var(--orange);display:grid;place-items:center;color:var(--navy);transition:.15s;flex:none}
-.tb-search button:hover{background:var(--orange-h)}
-.tb-right{display:flex;align-items:center;gap:10px;margin-left:auto;flex:none}
-#marketplace{background:var(--navy2);color:#D5D9D9;border:1px solid #3A4553;border-radius:6px;height:34px;padding:0 8px;font-size:12.5px;outline:none;cursor:pointer}
-#bellBadge{position:absolute;top:2px;right:1px;background:#E47911;color:#fff;font-size:9.5px;font-weight:700;font-family:Archivo;min-width:15px;height:15px;border-radius:8px;display:grid;place-items:center;padding:0 3px;border:2px solid var(--navy)}
-.acct{display:flex;align-items:center;gap:8px;padding:4px 8px 4px 4px;border-radius:6px;border:1px solid transparent;cursor:pointer;transition:.15s}
-.acct:hover{border-color:#485769}
-.avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#FF9900,#E47911);color:var(--navy);font-family:Archivo;font-weight:700;font-size:12px;display:grid;place-items:center;flex:none}
-.acct-t{line-height:1.15}
-.acct-t b{color:#fff;font-size:12px;display:block}
-.acct-t span{color:#99A5B4;font-size:10.5px}
-
-#shell{display:flex;height:calc(100vh - 58px);height:calc(100dvh - 58px)}
-#sidenav{width:236px;background:#fff;border-right:1px solid var(--border);overflow-y:auto;flex:none;padding:12px 0 130px;transition:width .2s,transform .25s;-webkit-overflow-scrolling:touch}
-body.nav-mini #sidenav{width:58px}
-body.nav-mini .nv-l,body.nav-mini .nv-sec,body.nav-mini .nv-badge,body.nav-mini .nv-sim{display:none}
-.nv-sec{font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:1.1px;color:var(--faint);text-transform:uppercase;padding:14px 18px 6px}
-.nv{display:flex;align-items:center;gap:11px;width:calc(100% - 14px);margin:1px 7px;padding:9.5px 11px;border-radius:6px;color:#3B4149;font-size:13.5px;font-weight:400;position:relative;transition:.13s;text-align:left;border-left:3px solid transparent}
-.nv:hover{background:#F2F4F4;color:var(--ink)}
-.nv.on{background:#FEF3E7;border-left-color:var(--orange);font-weight:700;color:var(--ink)}
-.nv svg{flex:none;color:#5B6570}
-.nv.on svg{color:var(--orange-d)}
-.nv-l{flex:1;white-space:nowrap;overflow:hidden}
-.nv-badge{font-family:Archivo;font-size:10.5px;font-weight:600;background:#EEF1F1;color:var(--sub);border-radius:9px;padding:1.5px 7px}
-.nv.on .nv-badge{background:#FCE3C2;color:#8A5300}
-.nv-sim{margin:18px 14px 4px;padding:11px 12px;border-radius:8px;background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff}
-.nv-sim b{font-family:Archivo;font-size:12px;display:flex;align-items:center;gap:6px}
-.nv-sim span{font-size:11px;color:#99A5B4;display:block;margin-top:3px}
-.dot{width:8px;height:8px;border-radius:50%;background:#5B6570;display:inline-block;flex:none}
-.dot.live{background:#2BB673;animation:pulse 1.4s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(43,182,115,.55)}70%{box-shadow:0 0 0 7px rgba(43,182,115,0)}100%{box-shadow:0 0 0 0 rgba(43,182,115,0)}}
-
-#main-col{flex:1;display:flex;flex-direction:column;min-width:0;position:relative}
-#wire-slot{padding:20px 26px 0;flex:none}
-#wire-slot:empty{display:none;padding:0}
-body.has-wire #content{padding-top:14px}
-
-#content{flex:1;overflow-y:auto;padding:22px 26px 140px;position:relative;-webkit-overflow-scrolling:touch}
-#content::before{content:'';position:fixed;pointer-events:none;inset:58px 0 0 236px;z-index:0;
- background:
-  radial-gradient(900px 300px at 70% -80px,rgba(255,153,0,.07),transparent 70%),
-  radial-gradient(760px 400px at 100% 100%,rgba(0,113,133,.055),transparent 70%),
-  radial-gradient(rgba(19,25,33,.05) 1px,transparent 1.3px);
- background-size:auto,auto,22px 22px;}
-body.nav-mini #content::before{inset:58px 0 0 58px}
-#content>*{position:relative;z-index:1}
-
-.phead{display:flex;align-items:flex-end;gap:14px;margin-bottom:16px;flex-wrap:wrap}
-.phead h1{font-size:24px;font-weight:700;letter-spacing:-.4px}
-.psub{color:var(--sub);font-size:13px;margin-top:3px}
-.phead-a{margin-left:auto;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.backlink{display:inline-flex;align-items:center;gap:5px;color:var(--link);font-size:13px;cursor:pointer;margin-bottom:8px;background:none;border:none;font-weight:700}
-.backlink:hover{color:var(--link-h);text-decoration:underline}
-.card{background:var(--card);border:1px solid var(--border);border-radius:8px;box-shadow:var(--sh)}
-.card-h{padding:14px 18px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.card-h h3{font-size:15.5px;font-weight:700;display:flex;align-items:center;gap:9px}
-.card-h h3::before{content:'';width:4px;height:15px;background:var(--orange);border-radius:2px;flex:none}
-.card-h .sub{color:var(--faint);font-size:12px}
-.card-b{padding:16px 18px}
-@keyframes riseIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.anim-on .rise{animation:riseIn .38s cubic-bezier(.2,.7,.3,1) both}
-.d1{animation-delay:.04s}.d2{animation-delay:.08s}.d3{animation-delay:.12s}.d4{animation-delay:.16s}.d5{animation-delay:.2s}
-
-.btn{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 14px;border-radius:7px;border:1px solid var(--border);background:#fff;color:var(--ink);font-size:13px;font-weight:700;font-family:Archivo;transition:.15s;white-space:nowrap}
-.btn:hover{background:#F7FAFA;box-shadow:0 1px 3px rgba(15,17,17,.12)}
-.btn:active{transform:translateY(1px)}
-.btn-p{background:linear-gradient(180deg,#FFAD33,var(--orange));border-color:#E47911;color:var(--navy);position:relative;overflow:hidden}
-.btn-p:hover{background:linear-gradient(180deg,#FFB84D,var(--orange-h))}
-.btn-p::after{content:'';position:absolute;top:0;left:-70%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .45s}
-.btn-p:hover::after{left:130%}
-.btn-danger{color:var(--red);border-color:#E6B8AE}
-.btn-danger:hover{background:var(--red-bg)}
-.btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:6px}
-.btn-xs{height:26px;padding:0 9px;font-size:11.5px;border-radius:5px}
-
-.inp,.sel,.tarea{height:34px;border:1px solid #8A939B;border-radius:7px;padding:0 10px;background:#fff;outline:none;transition:.13s;width:100%;min-width:0}
-.tarea{height:auto;padding:8px 10px;resize:vertical}
-.inp:focus,.sel:focus,.tarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,153,0,.28)}
-.sel{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23565959' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
-label.fld{display:block;font-family:Archivo;font-size:12px;font-weight:600;color:#3B4149;margin:0 0 5px}
-.fhint{font-size:11.5px;color:var(--faint);margin-top:4px}
-.rsel{height:34px;border:1px solid var(--border);border-radius:7px;padding:0 30px 0 10px;background:#fff;font-size:13px;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23565959' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;transition:.13s}
-.rsel:hover{border-color:#8A939B}
-input[type=range]{accent-color:var(--orange-d);height:26px;cursor:pointer}
-
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
-.kpi{background:#fff;border:1px solid var(--border);border-radius:8px;padding:13px 15px 10px;box-shadow:var(--sh);transition:.18s;position:relative;overflow:hidden}
-.kpi::after{content:'';position:absolute;left:0;top:0;height:3px;width:0;background:var(--orange);transition:.25s}
-.kpi:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
-.kpi:hover::after{width:100%}
-.kpi-l{font-family:Archivo;font-size:11px;font-weight:600;letter-spacing:.7px;text-transform:uppercase;color:var(--sub);display:flex;align-items:center;gap:5px}
-.kpi-v{font-family:Archivo;font-size:25px;font-weight:700;letter-spacing:-.5px;margin:5px 0 3px;font-variant-numeric:tabular-nums}
-.kpi-d{font-family:Archivo;font-size:11.5px;font-weight:600;display:inline-flex;align-items:center;gap:3px;border-radius:5px;padding:1.5px 6px}
-.kpi-d.up{color:var(--green);background:var(--green-bg)}
-.kpi-d.dn{color:var(--red);background:var(--red-bg)}
-.kpi-d.na{color:var(--faint);background:#F2F4F4}
-.spark{display:block;margin-top:7px}
-
-[data-tip]{position:relative}
-[data-tip]::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);background:var(--navy);color:#fff;font-size:11.5px;font-weight:400;font-family:'PT Sans';padding:7px 10px;border-radius:6px;white-space:normal;width:max-content;max-width:230px;opacity:0;pointer-events:none;transition:.16s;z-index:200;line-height:1.4;text-align:left;box-shadow:var(--sh2)}
-[data-tip]::before{content:'';position:absolute;bottom:calc(100% + 3px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--navy);opacity:0;transition:.16s;z-index:200}
-[data-tip]:hover::after,[data-tip]:hover::before{opacity:1;transform:translateX(-50%) translateY(0)}
-[data-tip]:hover::before{transform:translateX(-50%)}
-.tipd{border-bottom:1px dotted #8A939B;cursor:help}
-
-.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.twrap>.tbl{min-width:680px}
-.tbl.nomw{min-width:0!important}
-table.tbl{width:100%;border-collapse:collapse;font-size:13px}
-.tbl thead th{background:#F0F2F2;font-family:Archivo;font-size:11.5px;font-weight:600;letter-spacing:.4px;color:var(--sub);text-transform:uppercase;text-align:left;padding:9px 12px;border-bottom:1px solid var(--border2);white-space:nowrap;position:sticky;top:0;z-index:5;user-select:none}
-.tbl th.srt{cursor:pointer}
-.tbl th.srt:hover{color:var(--ink);background:#E7EAEB}
-.tbl th .arr{display:inline-block;margin-left:4px;opacity:.35;font-size:9px;transition:.15s}
-.tbl th.s-on .arr{opacity:1;color:var(--orange-d)}
-.tbl th.s-on.desc .arr{transform:rotate(180deg)}
-.tbl td{padding:9.5px 12px;border-bottom:1px solid #F0F2F2;vertical-align:middle}
-.tbl tbody tr{transition:background .12s}
-.anim-on .tbl tbody tr{animation:riseIn .3s both}
-.tbl tbody tr:hover{background:#F7FAFA}
-.tbl tr.click{cursor:pointer}
-.tbl .r{text-align:right;font-variant-numeric:tabular-nums;font-family:Archivo;font-size:12.5px}
-.tbl td.r{font-weight:500}
-.ckb{width:16px;height:16px;accent-color:var(--orange-d);cursor:pointer}
-.cname{font-weight:700;color:var(--link);font-size:13.5px}
-tr:hover .cname{color:var(--link-h)}
-.csub{font-size:11px;color:var(--faint);margin-top:2px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-
-.chip{display:inline-flex;align-items:center;gap:5px;font-family:Archivo;font-size:11px;font-weight:600;border-radius:999px;padding:2.5px 9px;white-space:nowrap}
-.chip::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
-.ch-green{background:var(--green-bg);color:var(--green)}
-.ch-amber{background:var(--amber-bg);color:var(--amber)}
-.ch-red{background:var(--red-bg);color:var(--red)}
-.ch-gray{background:#F0F2F2;color:var(--sub)}
-.ch-blue{background:var(--blue-bg);color:var(--blue)}
-.livechip{display:none}
-body.running .livechip{display:inline-flex}
-body.running .livechip::before{animation:pulse 1.4s infinite}
-.tchip{font-family:Archivo;font-size:10px;font-weight:700;letter-spacing:.4px;border-radius:4px;padding:1.5px 5px}
-.t-SP{background:#FFF4E5;color:#B12704}
-.t-SB{background:#E7F3F4;color:#007185}
-.t-SD{background:#EDEFF7;color:#3B4B8C}
-.mchip{font-family:Archivo;font-size:10px;font-weight:600;border-radius:4px;padding:1.5px 6px;background:#EEF1F1;color:#565959;text-transform:uppercase;letter-spacing:.3px;display:inline-block}
-.m-exact{background:#E7F3F4;color:#007185}
-.m-phrase{background:#FDF0E0;color:#B12704}
-.m-broad{background:#EEF1F1;color:#565959}
-.m-auto{background:#EFEAF7;color:#5F3E9E}
-.stbtn{display:inline-flex;align-items:center;gap:5px;background:none;border:none;cursor:pointer;padding:2px 4px;border-radius:5px}
-.stbtn:hover{background:#EEF1F1}
-.stbtn svg{color:#8A939B}
-
-.editable{cursor:pointer;white-space:nowrap}
-.editable .pen{opacity:0;transition:.13s;margin-left:5px;color:#8A939B;vertical-align:-1px}
-.editable:hover{color:var(--link)}
-.editable:hover .pen{opacity:1}
-@media(hover:none){.editable .pen{opacity:.55}}
-.inline-edit{width:88px;height:29px;border:1.5px solid var(--orange);border-radius:5px;padding:0 7px;font-family:Archivo;font-size:12.5px;outline:none;box-shadow:0 0 0 3px rgba(255,153,0,.22)}
-
-.fbar{display:flex;gap:10px;align-items:center;padding:12px 16px;flex-wrap:wrap}
-.fbar .inp{max-width:250px}
-.fbar .sel{width:auto;min-width:130px}
-.fcount{font-size:12.5px;color:var(--sub);margin-left:auto}
-.bulkbar{display:flex;align-items:center;gap:8px;background:#FFF9EF;border:1px solid #F2D3A0;border-radius:8px;padding:8px 14px;margin-bottom:12px;animation:riseIn .25s both;flex-wrap:wrap}
-.bulkbar b{font-family:Archivo;font-size:13px;color:#8A5300}
-.bulkbar .sp{flex:1}
-
-.tabs{display:flex;gap:2px;border-bottom:2px solid var(--border2);margin-bottom:16px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.tab{padding:9px 16px;font-family:Archivo;font-size:13.5px;font-weight:600;color:var(--sub);border-bottom:3px solid transparent;margin-bottom:-2px;transition:.14s;white-space:nowrap;border-radius:6px 6px 0 0;flex:none;cursor:pointer}
-.tab:hover{color:var(--ink);background:#F2F4F4}
-.tab.on{color:var(--ink);border-bottom-color:var(--orange);font-weight:700}
-.tab .n{font-size:11px;background:#EEF1F1;border-radius:8px;padding:1px 6px;margin-left:5px;color:var(--sub)}
-.tab.on .n{background:#FCE3C2;color:#8A5300}
-
-.dgrid{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:14px}
-.dgrid2{display:grid;grid-template-columns:2fr 1fr;gap:14px}
-@media(max-width:1150px){.dgrid,.dgrid2{grid-template-columns:1fr}}
-.chartbox{height:290px;position:relative;padding:8px 12px 4px}
-.legend{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
-.lchip{display:inline-flex;align-items:center;gap:6px;font-family:Archivo;font-size:11.5px;font-weight:600;border:1px solid var(--border);border-radius:999px;padding:3px 10px;transition:.13s;color:var(--ink)}
-.lchip i{width:10px;height:10px;border-radius:3px;display:inline-block}
-.lchip.off{opacity:.38;text-decoration:line-through}
-.lchip:hover{box-shadow:var(--sh)}
-
-.feed{max-height:300px;overflow-y:auto;padding:6px 0;-webkit-overflow-scrolling:touch}
-.fi{display:flex;gap:10px;padding:8px 16px;font-size:12.5px;align-items:flex-start;border-bottom:1px solid #F5F6F6}
-.anim-on .fi{animation:riseIn .3s both}
-.fi .fdot{width:8px;height:8px;border-radius:50%;margin-top:4px;flex:none}
-.fi .ft{color:var(--faint);font-size:11px;font-family:Archivo;white-space:nowrap;margin-left:auto;padding-left:8px}
-.fi.info .fdot{background:#5B9BB0}.fi.success .fdot{background:#2BB673}.fi.warn .fdot{background:#E8A13C}.fi.danger .fdot{background:#D64541}
-
-.tickerbar{display:flex;align-items:stretch;background:var(--navy);border-radius:8px;margin-bottom:14px;overflow:hidden;box-shadow:var(--sh)}
-.tk-label{font-weight:700;letter-spacing:1.6px;font-size:11px;color:var(--orange);padding:9px 14px;border-right:1px solid #37475A;white-space:nowrap;display:flex;gap:6px;align-items:center}
-.tk-wrap{flex:1;overflow:hidden;display:flex;align-items:center;min-width:0}
-.tk-track{display:inline-flex;gap:38px;white-space:nowrap;padding:9px 0;animation:marq 32s linear infinite;will-change:transform}
-.tk-wrap:hover .tk-track{animation-play-state:paused}
-@keyframes marq{to{transform:translateX(-50%)}}
-.tk-i{font-size:12px;color:#C8D0DA;font-family:Archivo}
-.tk-i b{color:#fff}
-.tk-i.warn{color:#FFB84D}
-.tk-i .tt{color:#6E7B8B;margin-right:7px;font-size:11px}
-
-.scengrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.scenbtn{border:1px solid var(--border);border-radius:8px;padding:9px 11px;text-align:left;background:#fff;transition:.14s;display:flex;flex-direction:column;gap:2px}
-.scenbtn:hover:not(:disabled){border-color:var(--orange);box-shadow:var(--sh);transform:translateY(-1px)}
-.scenbtn:disabled{opacity:.4;cursor:not-allowed}
-.scenbtn .sic{font-size:16px}
-.scenbtn b{font-family:Archivo;font-size:12.5px}
-.scenbtn .sds{font-size:10.5px;color:var(--faint);font-family:Archivo}
-.scen-active{background:#FFF9EF;border:1px solid #F2D3A0;border-radius:8px;padding:10px 12px;margin-bottom:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;animation:riseIn .25s both}
-.scen-active p{font-size:11.5px;color:var(--sub);flex:1 1 100%;order:3;margin:2px 0 0;line-height:1.45}
-
-.placerow{border:1px solid var(--border2);border-radius:9px;padding:12px 14px;margin-bottom:10px;transition:.14s;background:#fff}
-.placerow:hover{border-color:#BFC6CC;box-shadow:var(--sh)}
-.pl-head{display:flex;gap:10px;align-items:center;margin-bottom:9px}
-.plic{font-size:17px;width:34px;height:34px;background:#F5F6F6;border-radius:8px;display:grid;place-items:center;flex:none}
-.pl-head b{font-family:Archivo;font-size:13.5px;display:block}
-.pl-head .pld{font-size:11.5px;color:var(--faint)}
-.pl-ctl{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-.pl-ctl input[type=range]{flex:1}
-.plv{font-family:Archivo;font-weight:700;font-size:13px;min-width:58px;text-align:right;color:var(--orange-d)}
-.plbar{height:6px;background:#EEF1F1;border-radius:3px;overflow:hidden;margin-bottom:6px}
-.plbar i{display:block;height:100%;background:linear-gradient(90deg,#FFB84D,#E47911);border-radius:3px;transition:width .5s cubic-bezier(.2,.8,.3,1)}
-.pl-nums{display:flex;gap:16px;font-size:11.5px;color:var(--sub);font-family:Archivo;flex-wrap:wrap}
-
-.heat{display:flex;flex-direction:column;gap:3px}
-.hrow{display:grid;grid-template-columns:52px repeat(24,1fr);gap:3px;align-items:center}
-.hcell{height:16px;border-radius:3px;display:block;transition:transform .12s}
-.hcell:hover{transform:scale(1.4);box-shadow:var(--sh2);position:relative;z-index:3}
-.hlab{font-size:11px;font-family:Archivo;color:var(--faint)}
-.haxis{display:flex;justify-content:space-between;padding-left:60px;font-size:10px;color:var(--faint);font-family:Archivo;margin-top:5px}
-.pillset{display:inline-flex;background:#F0F2F2;border-radius:8px;padding:3px;gap:2px}
-.pillset button{font-family:Archivo;font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;color:var(--sub);transition:.13s}
-.pillset button.on{background:#fff;color:var(--ink);box-shadow:var(--sh)}
-
-.ptile{width:34px;height:34px;border-radius:7px;display:inline-grid;place-items:center;font-size:17px;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);transition:transform .18s}
-.ptile.lg{width:46px;height:46px;font-size:23px;border-radius:9px}
-.prow{display:flex;align-items:center;gap:11px;padding:9px 12px;border:1px solid var(--border2);border-radius:8px;transition:.14s;background:#fff}
-.prow:hover{box-shadow:var(--sh);border-color:#BFC6CC}
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px}
-.pcard{border:1px solid var(--border);border-radius:9px;padding:12px;display:flex;gap:11px;align-items:flex-start;cursor:pointer;transition:.15s;background:#fff;position:relative}
-.pcard:hover{box-shadow:var(--sh2);transform:translateY(-1px)}
-.pcard:hover .ptile.lg{transform:scale(1.07) rotate(-3deg)}
-.pcard.sel{border-color:var(--orange);background:#FFFBF4;box-shadow:0 0 0 2.5px rgba(255,153,0,.3)}
-.pcard .tick{position:absolute;top:8px;right:8px;width:19px;height:19px;border-radius:50%;background:var(--orange);color:var(--navy);display:none;place-items:center;font-size:11px;font-weight:700}
-.pcard.sel .tick{display:grid;animation:popIn .22s cubic-bezier(.2,.9,.3,1.3) both}
-.pcard b{font-size:13px;display:block;line-height:1.25}
-.pcard span{font-size:11.5px;color:var(--faint)}
-
-#simbar{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:linear-gradient(180deg,var(--navy2),var(--navy));color:#fff;border-radius:14px;display:flex;align-items:center;gap:14px;padding:9px 16px;box-shadow:0 10px 32px rgba(19,25,33,.5);z-index:80;border:1px solid #37475A;max-width:calc(100vw - 20px)}
-.sim-live{display:flex;align-items:center;gap:10px}
-.sim-time{line-height:1.15}
-.sim-time b{font-family:'Barlow Condensed';font-weight:700;font-size:15px;letter-spacing:.5px;display:block;white-space:nowrap}
-.sim-time span{font-size:11px;color:#99A5B4;font-family:Archivo}
-.sim-progress{width:74px;height:5px;background:#37475A;border-radius:3px;overflow:hidden}
-.sim-progress i{display:block;height:100%;background:linear-gradient(90deg,#FF9900,#FFB84D);width:0%;transition:width .3s;border-radius:3px}
-.sim-sep{width:1px;height:30px;background:#37475A;flex:none}
-.sim-play{width:42px;height:42px;border-radius:50%;background:linear-gradient(180deg,#FFAD33,#F08800);color:var(--navy);display:grid;place-items:center;transition:.15s;box-shadow:0 3px 10px rgba(255,153,0,.4);flex:none}
-.sim-play:hover{transform:scale(1.07)}
-.sim-play:active{transform:scale(.96)}
-.sim-speed{display:flex;background:#1B242F;border-radius:8px;padding:3px;gap:2px;flex:none}
-.sim-speed button{font-family:Archivo;font-size:11.5px;font-weight:600;color:#99A5B4;padding:5px 9px;border-radius:6px;transition:.13s}
-.sim-speed button:hover{color:#fff}
-.sim-speed button.on{background:var(--orange);color:var(--navy)}
-.sim-skip{display:flex;align-items:center;gap:6px;font-family:Archivo;font-size:12px;font-weight:600;color:#D5D9D9;border:1px solid #37475A;border-radius:8px;padding:8px 11px;transition:.14s;flex:none}
-.sim-skip:hover{border-color:#FF9900;color:#FF9900}
-.live-chip{font-family:'Barlow Condensed';font-weight:700;letter-spacing:1.4px;font-size:11px;color:#2BB673;display:none;align-items:center;gap:5px;flex:none}
-.live-chip::before{content:'';width:7px;height:7px;border-radius:50%;background:#2BB673;animation:blink 1.1s infinite}
-@keyframes blink{50%{opacity:.25}}
-body.running .live-chip{display:inline-flex}
-.scen-chip{display:none;align-items:center;gap:6px;background:#3A2F1B;border:1px solid #8A6A2F;color:#FFB84D;border-radius:999px;padding:5px 12px;font-size:12px;font-weight:600;letter-spacing:.4px;flex:none;font-family:'Barlow Condensed'}
-.kbd-hints{font-size:10.5px;color:#6E7B8B;font-family:Archivo;display:flex;gap:9px;align-items:center;flex:none}
-kbd{background:#1B242F;border:1px solid #37475A;border-bottom-width:2px;border-radius:4px;padding:1px 6px;color:#C8D0DA;font-family:Archivo;font-size:10px}
-
-#toasts{position:fixed;right:18px;bottom:86px;display:flex;flex-direction:column;gap:9px;z-index:150;align-items:flex-end}
-.toast{background:#fff;border:1px solid var(--border);border-left:4px solid var(--green);border-radius:8px;box-shadow:var(--sh2);padding:11px 15px;font-size:13px;min-width:250px;max-width:360px;animation:toastIn .3s cubic-bezier(.2,.9,.3,1.2) both;display:flex;gap:9px;align-items:flex-start}
-.toast.warn{border-left-color:#E8A13C}.toast.err{border-left-color:#D64541}.toast.info{border-left-color:#5B9BB0}
-.toast b{font-family:Archivo;display:block;font-size:12.5px}
-.toast span{color:var(--sub);font-size:12px}
-@keyframes toastIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
-.toast.out{animation:toastOut .25s both}
-@keyframes toastOut{to{opacity:0;transform:translateX(30px)}}
-
-#modal-root .mroot{position:fixed;inset:0;background:rgba(19,25,33,.55);z-index:120;display:grid;place-items:center;padding:20px;animation:fadeIn .18s both;backdrop-filter:blur(2px)}
-@keyframes fadeIn{from{opacity:0}}
-.modal{background:#fff;border-radius:10px;width:100%;max-width:640px;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.4);animation:popIn .24s cubic-bezier(.2,.9,.3,1.15) both;overflow:hidden;position:relative;border-top:3px solid var(--orange)}
-.modal.wide{max-width:860px}
-@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(12px)}to{opacity:1;transform:none}}
-.m-h{padding:16px 20px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.m-h h2{font-size:17px;font-weight:700}
-.m-h .sub{flex:1;min-width:0}
-.m-h .x{margin-left:auto;width:34px;height:34px;border-radius:6px;display:grid;place-items:center;color:var(--sub);transition:.13s;flex:none}
-.m-h .x:hover{background:#F0F2F2;color:var(--ink)}
-.m-b{padding:20px;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.m-f{padding:13px 20px;border-top:1px solid var(--border2);display:flex;gap:9px;justify-content:flex-end;background:#FAFBFB;flex-wrap:wrap}
-.confetti{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2}
-.confetti i{position:absolute;top:-14px;width:8px;height:13px;border-radius:2px;animation:cfall linear both}
-@keyframes cfall{to{transform:translateY(360px) rotate(560deg);opacity:0}}
-
-.steps{display:flex;margin:-4px 0 18px}
-.step{flex:1;text-align:center;position:relative;font-family:Archivo;font-size:11px;font-weight:600;color:var(--faint)}
-.step i{width:26px;height:26px;border-radius:50%;background:#EEF1F1;color:var(--sub);display:inline-grid;place-items:center;font-style:normal;font-size:12px;margin-bottom:4px;border:2px solid transparent;transition:.25s;position:relative;z-index:1}
-.step::before{content:'';position:absolute;top:13px;left:-50%;width:100%;height:2px;background:#E4E7E7;z-index:0;transition:background .3s}
-.step:first-child::before{display:none}
-.step.on i{background:var(--orange);color:var(--navy);border-color:#FCE3C2;box-shadow:0 0 0 4px rgba(255,153,0,.18)}
-.step.done i{background:var(--green);color:#fff}
-.step.on{color:var(--ink)}
-.step.done::before,.step.on::before{background:var(--green)}
-.step>div{padding:0 3px}
-.wzbody{animation:riseIn .28s cubic-bezier(.2,.7,.3,1) both}
-.wz2col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
-@media(max-width:600px){.wz2col{grid-template-columns:1fr}}
-
-/* ---- ad-type picker cards (wizard step 1) ----
-   The selected state uses an INSET orange frame (drawn inside the card's
-   own box) so the highlight always wraps the entire card edge-to-edge and
-   can never be clipped by an ancestor scroll container. A corner check and
-   a soft lift give clear, lively selection feedback. */
-.typecards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
-.tcard{border:1.5px solid var(--border);border-radius:12px;padding:16px 14px 14px;cursor:pointer;position:relative;background:#fff;
- transition:transform .2s cubic-bezier(.2,.8,.3,1),box-shadow .2s,border-color .2s,background .2s}
-.tcard:hover{box-shadow:var(--sh2);transform:translateY(-2px);border-color:#C2C8CD}
-.tcard.sel{border-color:var(--orange);background:linear-gradient(180deg,#FFF8EC 0%,#FFF0D8 100%);
- box-shadow:inset 0 0 0 2.5px var(--orange),0 8px 20px rgba(228,121,17,.20);transform:translateY(-2px)}
-.tcard.sel:hover{box-shadow:inset 0 0 0 2.5px var(--orange),0 10px 24px rgba(228,121,17,.26)}
-.tcard.sel::after{content:'✓';position:absolute;top:9px;right:9px;width:21px;height:21px;border-radius:50%;
- background:var(--orange);color:var(--navy);display:grid;place-items:center;font-family:Archivo;font-weight:700;
- font-size:12px;line-height:1;box-shadow:0 2px 7px rgba(228,121,17,.45);z-index:3;animation:popIn .24s cubic-bezier(.2,.9,.3,1.4) both}
-.tcard h4{font-family:Archivo;font-size:13.5px;margin:8px 0 4px}
-.tcard p{font-size:11.5px;color:var(--sub);line-height:1.4}
-.tcard .tico{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;font-size:18px;transition:transform .2s}
-.tcard:hover .tico{transform:scale(1.1) rotate(-4deg)}
-.tcard.sel .tico{transform:scale(1.06)}
-.tcard .rec{position:absolute;top:-1.5px;left:12px;background:var(--orange);color:var(--navy);font-family:Archivo;
- font-size:9px;font-weight:700;letter-spacing:.7px;padding:2px 8px 3px;border-radius:0 0 6px 6px;z-index:3}
-
-.radioc{border:1.5px solid var(--border);border-radius:8px;padding:11px 13px;cursor:pointer;display:flex;gap:10px;align-items:flex-start;transition:.14s;margin-bottom:8px}
-.radioc:hover{border-color:#8A939B}
-.radioc.sel{border-color:var(--orange);background:#FFFAF2}
-.radioc.sel::after{content:'✓';margin-left:auto;color:var(--orange-d);font-weight:700;font-family:Archivo;animation:popIn .2s both}
-.radioc input{margin-top:3px;accent-color:var(--orange-d);flex:none}
-.radioc>div{min-width:0}
-.radioc b{font-family:Archivo;font-size:13px;display:block}
-.radioc span{font-size:11.5px;color:var(--sub)}
-.kwrow{display:grid;grid-template-columns:30px minmax(0,1fr) 112px 100px;gap:9px;align-items:center;padding:7px 6px;border-bottom:1px solid #F0F2F2;border-radius:6px;transition:background .12s,box-shadow .12s}
-.kwrow:not(.kwh):hover{background:#FAFBFB}
-.kwrow:not(.kwh):focus-within{background:#FFFAF2;box-shadow:inset 3px 0 0 var(--orange)}
-.kwrow>*{min-width:0}
-.kwrow select{height:29px;font-size:12px;padding-right:24px}
-.kwrow .inp{height:29px}
-.revrow{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed #E7E7E7;font-size:13px;flex-wrap:wrap}
-.revrow b{font-family:Archivo}
-.wel{display:grid;grid-template-columns:200px 1fr}
-.wel-l{background:linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;padding:22px 18px;display:flex;flex-direction:column;gap:10px}
-.welrow{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--border2)}
-.welrow:last-of-type{border-bottom:none}
-
-#menu-root .pop{position:fixed;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:var(--sh2);z-index:140;min-width:170px;padding:5px;animation:popIn .16s both}
-.pop button{display:flex;width:100%;gap:8px;align-items:center;padding:9px 11px;font-size:13px;border-radius:6px;text-align:left;transition:.11s}
-.pop button:hover{background:#F2F4F4}
-.pop button.dngr{color:var(--red)}
-.pop button.dngr:hover{background:var(--red-bg)}
-.pop .pdiv{height:1px;background:var(--border2);margin:4px 6px}
-
-.tour-spot{position:fixed;z-index:170;border:2px solid var(--orange);border-radius:10px;box-shadow:0 0 0 9999px rgba(19,25,33,.62);pointer-events:none;transition:all .35s cubic-bezier(.2,.8,.3,1)}
-.tour-card{position:fixed;z-index:171;width:320px;max-width:calc(100vw - 20px);background:#fff;border-radius:10px;box-shadow:0 18px 48px rgba(0,0,0,.4);padding:15px 16px;border-top:3px solid var(--orange);transition:top .3s,left .3s}
-.tour-n{font-weight:700;letter-spacing:1.4px;font-size:11px;color:var(--orange-d)}
-.tour-card b{font-family:Archivo;font-size:15px;display:block;margin:3px 0 5px}
-.tour-card p{font-size:12.5px;color:var(--sub);line-height:1.5;margin-bottom:11px}
-.tour-a{display:flex;justify-content:flex-end;gap:8px}
-
-.acgrid{display:grid;grid-template-columns:300px 1fr;gap:14px}
-@media(max-width:1050px){.acgrid{grid-template-columns:1fr}}
-.ring{width:104px;height:104px;border-radius:50%;display:grid;place-items:center;margin:6px auto 10px;position:relative}
-.ring::before{content:'';position:absolute;inset:9px;background:#fff;border-radius:50%}
-.ring b{position:relative;font-family:Archivo;font-size:22px;font-weight:700}
-.ring span{position:relative;font-size:10px;color:var(--faint);font-family:Archivo;letter-spacing:.5px}
-.lesson{border:1px solid var(--border);border-radius:9px;background:#fff;margin-bottom:10px;overflow:hidden;transition:.15s}
-.lesson:hover{box-shadow:var(--sh)}
-.lesson.done{border-color:#BFE3D6;background:#FBFEFC}
-.ls-h{display:flex;gap:12px;padding:13px 15px;cursor:pointer;align-items:center}
-.ls-n{width:28px;height:28px;border-radius:50%;background:#EEF1F1;color:var(--sub);display:grid;place-items:center;font-family:Archivo;font-weight:700;font-size:12.5px;flex:none;transition:.2s}
-.lesson.done .ls-n{background:var(--green);color:#fff}
-.ls-h b{font-family:Archivo;font-size:14px;display:block}
-.ls-h .st{font-size:11px;font-family:Archivo;font-weight:600;margin-left:auto;white-space:nowrap}
-.lesson.done .st{color:var(--green)}
-.lesson:not(.done) .st{color:var(--amber)}
-.ls-b{padding:0 15px 14px 55px;font-size:12.5px;color:var(--sub);line-height:1.55;display:none}
-.lesson.open .ls-b{display:block;animation:riseIn .25s both}
-.gloss{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:11px}
-.gcard{border:1px solid var(--border);border-radius:9px;background:#fff;padding:14px 15px;transition:.15s}
-.gcard:hover{box-shadow:var(--sh2);transform:translateY(-2px);border-color:#BFC6CC}
-.gcard b{font-family:Archivo;font-size:13.5px;display:block;margin-bottom:5px;color:var(--navy2)}
-.gcard p{font-size:12px;color:var(--sub);line-height:1.5}
-.gcard .fx{font-family:Archivo;font-size:11px;background:#F0F2F2;border-radius:5px;padding:3px 7px;display:inline-block;margin-top:7px;color:#3B4149}
-
-.empty{padding:44px 20px;text-align:center;color:var(--faint)}
-.empty .big{font-size:34px;display:block;margin-bottom:8px}
-.hintbar{display:flex;gap:9px;align-items:center;background:var(--blue-bg);border:1px solid #B9DCE0;border-radius:8px;padding:9px 13px;font-size:12.5px;color:#00525E;margin-bottom:14px}
-.sumgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px;margin-bottom:16px}
-.sumcell{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 13px}
-.sumcell label{font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:4px}
-.sumcell .v{font-family:Archivo;font-size:14px;font-weight:600}
-.repgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
-.repcard{border:1px solid var(--border);border-radius:9px;background:#fff;padding:16px;transition:.16s}
-.repcard:hover{box-shadow:var(--sh2);transform:translateY(-2px)}
-.repcard .ric{width:38px;height:38px;border-radius:8px;display:grid;place-items:center;margin-bottom:10px;font-size:18px}
-.repcard b{font-family:Archivo;font-size:14px;display:block}
-.repcard p{font-size:12px;color:var(--sub);margin:5px 0 12px;line-height:1.45;min-height:34px}
-
-@media(max-width:1150px){.tb-tag{display:none}.kbd-hints{display:none}}
-@media(max-width:860px){.tb-search{display:none}}
-@media(max-width:640px){.acct-t{display:none}#marketplace{display:none}}
-@media(max-width:900px){
-  body.nav-mini .nv-l{display:inline-block}
-  body.nav-mini .nv-sec{display:block}
-  body.nav-mini .nv-badge{display:inline-block}
-  body.nav-mini .nv-sim{display:block}
-  #sidenav{position:fixed;left:0;top:58px;bottom:0;width:250px!important;z-index:66;transform:translateX(-105%);box-shadow:none;padding-bottom:150px}
-  body.nav-open #sidenav{transform:translateX(0);box-shadow:0 0 44px rgba(0,0,0,.45)}
-  body.nav-open::after{content:'';position:fixed;inset:58px 0 0 0;background:rgba(19,25,33,.55);z-index:65;animation:fadeIn .2s both}
-  #wire-slot{padding:14px 12px 0}
-  body.has-wire #content{padding-top:8px}
-  #content{padding:14px 12px 185px}
-  #content::before{inset:58px 0 0 0!important}
-  #topbar{padding:0 10px;gap:8px}
-  .logo-t{font-size:17px}
-  .smile{width:40px}
-  .inp,.sel,.tarea,.rsel,.inline-edit{font-size:16px}
-  .btn{height:38px}
-  .btn-sm{height:33px}
-  .btn-xs{height:30px}
-  .rsel{height:38px}
-  .sel{min-width:0}
-  .phead h1{font-size:20px}
-  .phead-a{width:100%;justify-content:flex-start}
-  .kpis{grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:9px}
-  .kpi{padding:11px 12px 8px}
-  .kpi-v{font-size:20px}
-  .card-h{padding:12px 14px}
-  .card-b{padding:13px 14px}
-  .chartbox{height:230px;padding:6px 6px 2px}
-  .legend{margin-left:0;width:100%}
-  .feed{max-height:240px}
-  .tbl{font-size:12.5px}
-  .tbl td,.tbl thead th{padding:8px 9px}
-  .ckb{width:18px;height:18px}
-  .fbar{padding:10px 12px}
-  .fbar .inp{max-width:none;flex:1 1 100%}
-  .fbar .sel{flex:1 1 40%}
-  .fcount{margin-left:0;width:100%}
-  .tab{padding:8px 12px;font-size:12.5px}
-  .sumgrid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
-  .mroot{padding:10px}
-  .modal{max-height:94vh}
-  .m-b{padding:14px}
-  .m-h{padding:13px 14px}
-  .m-f{padding:11px 14px}
-  .typecards{grid-template-columns:1fr;gap:10px}
-  .kwrow{grid-template-columns:28px minmax(0,1fr) minmax(0,1fr);padding:8px 4px}
-  .kwrow.kwh{display:none}
-  .kwrow>b,.kwrow .wz-ct{grid-column:2/-1}
-  .kwrow select{grid-column:2}
-  .kwrow .wz-bid{grid-column:3}
-  .toast{max-width:none;width:100%}
-  #toasts{left:10px;right:10px;bottom:128px;align-items:stretch}
-  #simbar{left:8px;right:8px;transform:none;bottom:8px;padding:8px 10px;gap:9px;flex-wrap:wrap;justify-content:center;border-radius:12px}
-  .sim-progress,.sim-sep,.sim-time span,.scen-chip{display:none!important}
-  .sim-time b{font-size:12px}
-  .sim-play{width:40px;height:40px}
-  .sim-speed button{padding:5px 8px;font-size:11px}
-  .sim-skip span{display:none}
-  .sim-skip{padding:8px 9px}
-  .ls-b{padding-left:15px}
-  .scengrid{grid-template-columns:1fr}
-  .wel{grid-template-columns:1fr}
-  .wel-l{flex-direction:row;align-items:center;padding:14px 16px;gap:14px}
-  .wel-l>div:last-child{display:none}
-  .hrow{grid-template-columns:40px repeat(24,minmax(7px,1fr))}
-  .hcell{height:12px}
-  .haxis{padding-left:46px}
-  .tk-label{padding:8px 10px;letter-spacing:1px}
-}
-@media(max-width:560px){
-  .step>div{display:none}
-  .pcard{padding:10px}
-  .ptile.lg{width:40px;height:40px;font-size:20px}
-  .empty{padding:30px 14px}
-}
-</style>
 </head>
 <body>
 
 <header id="topbar">
   <div class="tb-left">
-    <button class="tb-icon" data-act="burger" aria-label="Toggle navigation">
+    <button type="button" class="tb-icon" data-act="burger" aria-label="Toggle navigation">
       <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
     </button>
-    <a class="logo" data-act="nav" data-view="dashboard">
+    <button type="button" class="logo" data-act="nav" data-view="dashboard" aria-label="Open advertising dashboard">
       <span class="logo-t">amazon<b>&nbsp;ads</b></span>
       <svg class="smile" width="46" height="12" viewBox="0 0 46 12"><path d="M2 2c8 8 26 8 36-1" stroke="#FF9900" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M38 1l5 .5-2.6 4.2" stroke="#FF9900" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
+    </button>
     <span class="tb-tag">Campaign Manager<em>PPC Operator</em></span>
   </div>
   <div class="tb-search">
-    <input id="globalSearch" placeholder="Search campaigns, keywords, search terms…  (press Enter)">
-    <button data-act="global-search" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.8"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    <input id="globalSearch" aria-label="Search campaigns, keywords, and search terms" placeholder="Search campaigns, keywords, search terms…  (press Enter)">
+    <button type="button" data-act="global-search" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.8"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
   </div>
   <div class="tb-right">
-    <select id="marketplace" data-act="market">
+    <select id="marketplace" data-act="market" aria-label="Marketplace">
       <option>Amazon.com · US</option><option>Amazon.co.uk · UK</option><option>Amazon.de · DE</option><option>Amazon.ca · CA</option><option>Amazon.co.jp · JP</option>
     </select>
-    <button class="tb-icon" data-act="nav" data-view="glossary" data-tip="Glossary of PPC terms">
+    <button type="button" class="tb-icon" data-act="nav" data-view="glossary" data-tip="Glossary of PPC terms" aria-label="Open PPC glossary">
       <svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="8.5" cy="8.5" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M6.6 6.6a2 2 0 1 1 2.7 1.9c-.6.25-.8.7-.8 1.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="8.5" cy="12.4" r="1" fill="currentColor"/></svg>
     </button>
-    <button class="tb-icon" data-act="nav" data-view="dashboard" data-tip="Activity feed">
+    <button type="button" class="tb-icon" data-act="nav" data-view="dashboard" data-tip="Activity feed" aria-label="Open activity feed">
       <svg width="17" height="18" viewBox="0 0 17 18" fill="none"><path d="M8.5 2a5 5 0 0 0-5 5v3.5L2 13.5h13L13.5 10.5V7a5 5 0 0 0-5-5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6.5 15.5a2 2 0 0 0 4 0" stroke="currentColor" stroke-width="1.6"/></svg>
       <span id="bellBadge" style="display:none">0</span>
     </button>
@@ -579,17 +47,17 @@ kbd{background:#1B242F;border:1px solid #37475A;border-bottom-width:2px;border-r
 <div id="shell">
   <aside id="sidenav">
     <div class="nv-sec">Advertising</div>
-    <button class="nv" data-act="nav" data-view="dashboard"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/></svg><span class="nv-l">Dashboard</span></button>
-    <button class="nv" data-act="nav" data-view="campaigns"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 6v4l8 3V3L2 6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12.5 5.5a2.5 2.5 0 0 1 0 5M4 10.5V13h2v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="nv-l">Campaigns</span><span class="nv-badge" id="nvCampN">0</span></button>
-    <button class="nv" data-act="nav" data-view="adgroups"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2 14 5l-6 3-6-3 6-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 8l6 3 6-3M2 11l6 3 6-3" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="nv-l">Ad groups</span></button>
-    <button class="nv" data-act="nav" data-view="keywords"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="5.5" cy="5.5" r="3.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 8l6 6M11 11l2-2M12.5 12.5l1.5-1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="nv-l">Keywords</span><span class="nv-badge" id="nvKwN">0</span></button>
-    <button class="nv" data-act="nav" data-view="searchterms"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 3.5A1.5 1.5 0 0 1 3.5 2h9A1.5 1.5 0 0 1 14 3.5v6a1.5 1.5 0 0 1-1.5 1.5H8l-3.5 3v-3h-.5A1.5 1.5 0 0 1 2 9.5v-6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M5 6h6M5 8.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="nv-l">Search terms</span><span class="nv-badge" id="nvTermN">0</span></button>
-    <button class="nv" data-act="nav" data-view="reports"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 1.5h6L13 4.5v10H4v-13Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 8h4M6 10.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="nv-l">Reports</span></button>
-    <button class="nv" data-act="nav" data-view="rules"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h8M13 4h1M2 12h1M6 12h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="11.5" cy="4" r="1.8" stroke="currentColor" stroke-width="1.6"/><circle cx="4.5" cy="12" r="1.8" stroke="currentColor" stroke-width="1.6"/></svg><span class="nv-l">Budget rules</span></button>
-    <button class="nv" data-act="nav" data-view="portfolios"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1.5 4A1.5 1.5 0 0 1 3 2.5h3L8 4.5h5A1.5 1.5 0 0 1 14.5 6v6A1.5 1.5 0 0 1 13 13.5H3A1.5 1.5 0 0 1 1.5 12V4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="nv-l">Portfolios</span></button>
+    <button type="button" class="nv" data-act="nav" data-view="dashboard"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/></svg><span class="nv-l">Dashboard</span></button>
+    <button type="button" class="nv" data-act="nav" data-view="campaigns"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 6v4l8 3V3L2 6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12.5 5.5a2.5 2.5 0 0 1 0 5M4 10.5V13h2v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="nv-l">Campaigns</span><span class="nv-badge" id="nvCampN">0</span></button>
+    <button type="button" class="nv" data-act="nav" data-view="adgroups"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2 14 5l-6 3-6-3 6-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 8l6 3 6-3M2 11l6 3 6-3" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="nv-l">Ad groups</span></button>
+    <button type="button" class="nv" data-act="nav" data-view="keywords"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="5.5" cy="5.5" r="3.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 8l6 6M11 11l2-2M12.5 12.5l1.5-1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="nv-l">Keywords</span><span class="nv-badge" id="nvKwN">0</span></button>
+    <button type="button" class="nv" data-act="nav" data-view="searchterms"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 3.5A1.5 1.5 0 0 1 3.5 2h9A1.5 1.5 0 0 1 14 3.5v6a1.5 1.5 0 0 1-1.5 1.5H8l-3.5 3v-3h-.5A1.5 1.5 0 0 1 2 9.5v-6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M5 6h6M5 8.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="nv-l">Search terms</span><span class="nv-badge" id="nvTermN">0</span></button>
+    <button type="button" class="nv" data-act="nav" data-view="reports"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 1.5h6L13 4.5v10H4v-13Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 8h4M6 10.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="nv-l">Reports</span></button>
+    <button type="button" class="nv" data-act="nav" data-view="rules"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h8M13 4h1M2 12h1M6 12h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="11.5" cy="4" r="1.8" stroke="currentColor" stroke-width="1.6"/><circle cx="4.5" cy="12" r="1.8" stroke="currentColor" stroke-width="1.6"/></svg><span class="nv-l">Budget rules</span></button>
+    <button type="button" class="nv" data-act="nav" data-view="portfolios"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1.5 4A1.5 1.5 0 0 1 3 2.5h3L8 4.5h5A1.5 1.5 0 0 1 14.5 6v6A1.5 1.5 0 0 1 13 13.5H3A1.5 1.5 0 0 1 1.5 12V4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="nv-l">Portfolios</span></button>
     <div class="nv-sec">Learning</div>
-    <button class="nv" data-act="nav" data-view="academy"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2 1.5 5 8 8l6.5-3L8 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 6.5V10c0 1 1.8 2 4 2s4-1 4-2V6.5M14.5 5v3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="nv-l">PPC Academy</span><span class="nv-badge" id="nvLesN">0/10</span></button>
-    <button class="nv" data-act="nav" data-view="glossary"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 2.5h10v11H3a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M5 2.5v11M8 6h3M8 8.5h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="nv-l">Glossary</span></button>
+    <button type="button" class="nv" data-act="nav" data-view="academy"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2 1.5 5 8 8l6.5-3L8 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 6.5V10c0 1 1.8 2 4 2s4-1 4-2V6.5M14.5 5v3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="nv-l">PPC Academy</span><span class="nv-badge" id="nvLesN">0/10</span></button>
+    <button type="button" class="nv" data-act="nav" data-view="glossary"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 2.5h10v11H3a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M5 2.5v11M8 6h3M8 8.5h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="nv-l">Glossary</span></button>
     <div class="nv-sim"><b><span class="dot" id="nvDot"></span><span id="nvSimDay">Day 15</span></b><span id="nvSimSub">Paused · press play to run time</span></div>
   </aside>
   <div id="main-col">
@@ -603,18 +71,18 @@ kbd{background:#1B242F;border:1px solid #37475A;border-bottom-width:2px;border-r
   <div class="sim-time"><b id="simDate">—</b><span id="simClock">—</span></div>
   <div class="sim-progress"><i id="simProg"></i></div></div>
   <div class="sim-sep"></div>
-  <button class="sim-play" id="simPlay" data-act="sim-toggle" data-tip="Play / pause (Space)"></button>
+  <button type="button" class="sim-play" id="simPlay" data-act="sim-toggle" data-tip="Play / pause (Space)"></button>
   <div class="sim-speed">
-    <button data-act="sim-speed" data-v="1" class="on">1×</button>
-    <button data-act="sim-speed" data-v="2">2×</button>
-    <button data-act="sim-speed" data-v="5">5×</button>
-    <button data-act="sim-speed" data-v="10">10×</button>
+    <button type="button" data-act="sim-speed" data-v="1" class="on">1×</button>
+    <button type="button" data-act="sim-speed" data-v="2">2×</button>
+    <button type="button" data-act="sim-speed" data-v="5">5×</button>
+    <button type="button" data-act="sim-speed" data-v="10">10×</button>
   </div>
-  <button class="sim-skip" data-act="sim-skip" data-tip="Skip 24 hours (S)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l6 5-6 5V2Z" fill="currentColor"/><path d="M11 2v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Skip day</span></button>
+  <button type="button" class="sim-skip" data-act="sim-skip" data-tip="Skip 24 hours (S)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l6 5-6 5V2Z" fill="currentColor"/><path d="M11 2v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Skip day</span></button>
   <span class="live-chip">LIVE</span>
   <span class="scen-chip" id="scenChip"></span>
   <span class="kbd-hints"><kbd>Space</kbd> play <kbd>S</kbd> skip <kbd>C</kbd> create</span>
-  <button class="sim-skip" data-act="tour" data-tip="Guided tour">🎓<span>Tour</span></button>
+  <button type="button" class="sim-skip" data-act="tour" data-tip="Guided tour">🎓<span>Tour</span></button>
 </div>
 
 <div id="toasts"></div>
@@ -1023,12 +491,12 @@ function markLesson(id){
 function celebrate(){
  const colors=['#FF9900','#067D62','#007185','#E47911','#2BB673','#B12704'];
  const pieces=Array.from({length:38},()=>'<i style="left:'+rnd(0,100)+'%;background:'+pick(colors)+';animation-delay:'+rnd(0,.9)+'s;animation-duration:'+rnd(1.6,2.7)+'s"></i>').join('');
- openModal('<div class="confetti">'+pieces+'</div><div class="m-h"><h2>🏆 All missions complete!</h2><button class="x" data-act="modal-close">✕</button></div>'+
+ openModal('<div class="confetti">'+pieces+'</div><div class="m-h"><h2>🏆 All missions complete!</h2><button type="button" class="x" data-act="modal-close">✕</button></div>'+
  '<div class="m-b" style="text-align:center;padding:26px 20px">'+
  '<div style="font-size:46px">🎓</div>'+
  '<h3 style="font-size:19px;margin:8px 0 6px">All '+LESSONS.length+' missions complete</h3>'+
  '<p style="color:var(--sub);font-size:13px;max-width:400px;margin:0 auto 16px;line-height:1.55">You&apos;ve launched campaigns, harvested terms, blocked waste, tuned placements, survived market shocks and automated budgets — the full PPC operator loop, end to end.</p>'+
- '<button class="btn btn-p" data-act="modal-close">Keep optimizing →</button></div>');
+ '<button type="button" class="btn btn-p" data-act="modal-close">Keep optimizing →</button></div>');
 }
 
 /* =====================================================================
@@ -1046,15 +514,15 @@ function statusOf(c){
  if(c.outToday)return{k:'oob',l:'Out of budget',cls:'ch-red'};
  return{k:'enabled',l:'Delivering',cls:'ch-green'};
 }
-function statusChip(c){const s=statusOf(c);return'<button class="stbtn" data-act="status-menu" data-kind="camp" data-id="'+c.id+'"><span class="chip '+s.cls+'">'+s.l+'</span>'+I.caret+'</button>';}
+function statusChip(c){const s=statusOf(c);return'<button type="button" class="stbtn" data-act="status-menu" data-kind="camp" data-id="'+c.id+'"><span class="chip '+s.cls+'">'+s.l+'</span>'+I.caret+'</button>';}
 function kwStatusChip(k){
- if(k.status==='paused')return'<button class="stbtn" data-act="status-menu" data-kind="kw" data-id="'+k.id+'"><span class="chip ch-amber">Paused</span>'+I.caret+'</button>';
- if(k.status==='archived')return'<button class="stbtn" data-act="status-menu" data-kind="kw" data-id="'+k.id+'"><span class="chip ch-gray">Archived</span>'+I.caret+'</button>';
- return'<button class="stbtn" data-act="status-menu" data-kind="kw" data-id="'+k.id+'"><span class="chip ch-green">Enabled</span>'+I.caret+'</button>';
+ if(k.status==='paused')return'<button type="button" class="stbtn" data-act="status-menu" data-kind="kw" data-id="'+k.id+'"><span class="chip ch-amber">Paused</span>'+I.caret+'</button>';
+ if(k.status==='archived')return'<button type="button" class="stbtn" data-act="status-menu" data-kind="kw" data-id="'+k.id+'"><span class="chip ch-gray">Archived</span>'+I.caret+'</button>';
+ return'<button type="button" class="stbtn" data-act="status-menu" data-kind="kw" data-id="'+k.id+'"><span class="chip ch-green">Enabled</span>'+I.caret+'</button>';
 }
 function agStatusChip(ag){
  const s=ag.status==='paused'?['Paused','ch-amber']:['Enabled','ch-green'];
- return'<button class="stbtn" data-act="status-menu" data-kind="ag" data-id="'+ag.id+'"><span class="chip '+s[1]+'">'+s[0]+'</span>'+I.caret+'</button>';
+ return'<button type="button" class="stbtn" data-act="status-menu" data-kind="ag" data-id="'+ag.id+'"><span class="chip '+s[1]+'">'+s[0]+'</span>'+I.caret+'</button>';
 }
 const STRAT_L={fixed:'Fixed bids',down:'Dynamic · down only',updown:'Dynamic · up & down'};
 const TYPE_L={SP:'Sponsored Products',SB:'Sponsored Brands',SD:'Sponsored Display'};
@@ -1149,8 +617,8 @@ function scenCard(){
  const active=state.scen&&state.scen.ends>t?SCENARIOS.find(s=>s.id===state.scen.id):null;
  return'<div class="card rise d3"><div class="card-h"><h3>Market events</h3><span class="sub">inject a shock, then react</span>'+(active?'<span class="chip ch-amber" style="margin-left:auto">'+active.icon+' '+Math.max(0,state.scen.ends-t)+'h left</span>':'')+'</div>'+
  '<div class="card-b" style="padding:12px">'+
- (active?'<div class="scen-active"><b style="font-family:Archivo;font-size:13px">'+active.icon+' '+active.name+'</b><button class="btn btn-xs btn-danger" style="margin-left:auto" data-act="scen-cancel">End event</button><p>'+active.desc+'</p></div>':'')+
- '<div class="scengrid">'+SCENARIOS.map(s=>'<button class="scenbtn" data-act="scen-run" data-id="'+s.id+'" '+(active?'disabled':'')+' data-tip="'+esc(s.desc)+'"><span class="sic">'+s.icon+'</span><b>'+s.name+'</b><span class="sds">'+s.dur+'h · traffic ×'+s.vol+' · CPC ×'+s.cpc+' · CVR ×'+s.cvr+'</span></button>').join('')+'</div>'+
+ (active?'<div class="scen-active"><b style="font-family:Archivo;font-size:13px">'+active.icon+' '+active.name+'</b><button type="button" class="btn btn-xs btn-danger" style="margin-left:auto" data-act="scen-cancel">End event</button><p>'+active.desc+'</p></div>':'')+
+ '<div class="scengrid">'+SCENARIOS.map(s=>'<button type="button" class="scenbtn" data-act="scen-run" data-id="'+s.id+'" '+(active?'disabled':'')+' data-tip="'+esc(s.desc)+'"><span class="sic">'+s.icon+'</span><b>'+s.name+'</b><span class="sds">'+s.dur+'h · traffic ×'+s.vol+' · CPC ×'+s.cpc+' · CVR ×'+s.cvr+'</span></button>').join('')+'</div>'+
  '</div></div>';
 }
 function heatCard(c){
@@ -1166,7 +634,7 @@ function heatCard(c){
   return'<span class="hcell" data-tip="'+tip+'" style="background:'+bg+'"></span>';};
  const rows=days.map(d=>'<div class="hrow"><span class="hlab">'+fmtDay(d)+'</span>'+Array.from({length:24},(_,h)=>cell(d,h)).join('')+'</div>').join('');
  return'<div class="card"><div class="card-h"><h3>Dayparting — hourly pattern</h3><span class="sub">last 7 days</span>'+
-  '<div class="pillset" style="margin-left:auto"><button class="'+(mode==='sp'?'on':'')+'" data-act="heat-mode" data-v="sp">Spend</button><button class="'+(mode==='acos'?'on':'')+'" data-act="heat-mode" data-v="acos">ACOS</button></div></div>'+
+  '<div class="pillset" style="margin-left:auto"><button type="button" class="'+(mode==='sp'?'on':'')+'" data-act="heat-mode" data-v="sp">Spend</button><button type="button" class="'+(mode==='acos'?'on':'')+'" data-act="heat-mode" data-v="acos">ACOS</button></div></div>'+
   '<div class="card-b"><div class="heat">'+rows+'</div>'+
   '<div class="haxis"><span>0h</span><span>4h</span><span>8h</span><span>12h</span><span>16h</span><span>20h</span><span>23h</span></div>'+
   '<div class="fhint" style="margin-top:8px">Evening peaks drive most spend — the simulator runs hourly auctions with a realistic traffic curve.</div></div></div>';
@@ -1228,16 +696,16 @@ function campAdgroupsTab(c){
 function campKeywordsTab(c){
  const rows=[];
  c.adGroups.forEach(ag=>ag.keywords.forEach(k=>rows.push({k:k,ag:ag,c:c})));
- return kwTableHTML(rows,{scope:'camp',campId:c.id,addBtn:'<button class="btn btn-p btn-sm" data-act="add-kw" data-camp="'+c.id+'">＋ Add keyword</button>'});
+ return kwTableHTML(rows,{scope:'camp',campId:c.id,addBtn:'<button type="button" class="btn btn-p btn-sm" data-act="add-kw" data-camp="'+c.id+'">＋ Add keyword</button>'});
 }
 function campNegativesTab(c){
  const negs=c.negatives||[];
- const rowsHtml=negs.map((n,i)=>'<tr><td><b>'+esc(n.t)+'</b></td><td><span class="mchip">'+(n.m==='ne'?'Negative exact':'Negative phrase')+'</span></td><td class="r"><button class="btn btn-xs btn-danger" data-act="del-neg" data-camp="'+c.id+'" data-i="'+i+'">Remove</button></td></tr>').join('');
+ const rowsHtml=negs.map((n,i)=>'<tr><td><b>'+esc(n.t)+'</b></td><td><span class="mchip">'+(n.m==='ne'?'Negative exact':'Negative phrase')+'</span></td><td class="r"><button type="button" class="btn btn-xs btn-danger" data-act="del-neg" data-camp="'+c.id+'" data-i="'+i+'">Remove</button></td></tr>').join('');
  return '<div class="card"><div class="card-b">'+
   '<div style="display:flex;gap:9px;margin-bottom:14px;flex-wrap:wrap">'+
    '<input class="inp" id="negInput" placeholder="Add negative keyword e.g. free, used, repair" style="max-width:320px">'+
    '<select class="sel" id="negMatch" style="width:auto"><option value="ne">Negative exact</option><option value="np">Negative phrase</option></select>'+
-   '<button class="btn btn-p" data-act="add-neg" data-camp="'+c.id+'">Add negative</button></div>'+
+   '<button type="button" class="btn btn-p" data-act="add-neg" data-camp="'+c.id+'">Add negative</button></div>'+
   (negs.length?'<div class="twrap"><table class="tbl nomw"><thead><tr><th>Negative keyword</th><th>Match type</th><th></th></tr></thead><tbody>'+rowsHtml+'</tbody></table></div>'
    :'<div class="empty"><span class="big">🚫</span>No negative keywords yet. Block irrelevant queries to stop wasted spend.</div>')+
   '</div></div>';
@@ -1248,11 +716,11 @@ function campSettingsTab(c){
   '<label class="fld">Daily budget</label><input class="inp num" id="setBudget" type="number" step="1" min="1" value="'+c.budget+'" style="margin-bottom:14px">'+
   '<label class="fld">Bidding strategy</label><select class="sel" id="setStrat" style="margin-bottom:14px">'+Object.entries(STRAT_L).map(o=>'<option value="'+o[0]+'" '+(c.strategy===o[0]?'selected':'')+'>'+o[1]+'</option>').join('')+'</select>'+
   '<label class="fld">Portfolio</label><select class="sel" id="setPort" style="margin-bottom:18px"><option value="">No portfolio</option>'+state.portfolios.map(p=>'<option value="'+p.id+'" '+(c.portfolio===p.id?'selected':'')+'>'+esc(p.name)+'</option>').join('')+'</select>'+
-  '<button class="btn btn-p" data-act="save-settings" data-id="'+c.id+'">Save changes</button>'+
+  '<button type="button" class="btn btn-p" data-act="save-settings" data-id="'+c.id+'">Save changes</button>'+
   '<div style="margin-top:22px;padding-top:16px;border-top:1px dashed var(--border)">'+
    '<b style="font-family:Archivo;font-size:13px;color:var(--red)">Danger zone</b>'+
    '<p class="fhint" style="margin:4px 0 10px">Archiving permanently removes the campaign from delivery.</p>'+
-   '<button class="btn btn-danger" data-act="archive-camp" data-id="'+c.id+'">Archive campaign</button>'+
+   '<button type="button" class="btn btn-danger" data-act="archive-camp" data-id="'+c.id+'">Archive campaign</button>'+
   '</div></div></div>';
 }
 function campTabBody(c){
@@ -1270,7 +738,7 @@ function errorCard(err){
   '<div class="card-b">'+
    '<p style="font-size:13px;color:var(--sub);margin-bottom:10px">Something went wrong while drawing this view. Jump back to the Dashboard or reload — your simulation data is intact.</p>'+
    '<code style="display:block;background:#F7F8F8;border:1px solid var(--border2);border-radius:6px;padding:10px 12px;font-size:12px;color:var(--red);margin-bottom:12px;word-break:break-word;white-space:pre-wrap">'+esc(msg)+'</code>'+
-   '<div style="display:flex;gap:9px"><button class="btn btn-p" data-act="err-dashboard">Back to Dashboard</button><button class="btn" data-act="err-reload">Reload console</button></div>'+
+   '<div style="display:flex;gap:9px"><button type="button" class="btn btn-p" data-act="err-dashboard">Back to Dashboard</button><button type="button" class="btn" data-act="err-reload">Reload console</button></div>'+
   '</div></div>';
 }
 function buildView(){
@@ -1344,7 +812,7 @@ function vDashboard(){
  const rows=state.campaigns.map(c=>campRow(c)).sort((a,b2)=>b2.m.sp-a.m.sp).slice(0,5);
  const trows=rows.map((r,i)=>'<tr class="click" data-act="nav" data-view="campaign" data-id="'+r.c.id+'" style="animation-delay:'+i*40+'ms"><td><span class="cname">'+esc(r.c.name)+'</span><div class="csub"><span class="tchip t-'+r.c.type+'">'+r.c.type+'</span>'+statusOf(r.c).l+'</div></td><td class="r">'+kfmt(r.m.clk)+'</td><td class="r">'+money(r.m.sp)+'</td><td class="r">'+money(r.m.sal)+'</td><td class="r" style="color:'+(r.m.acos>.35?'var(--red)':r.m.acos>.22?'var(--amber)':'var(--green)')+';font-weight:700">'+(r.m.sal?pctf(r.m.acos):'—')+'</td></tr>').join('');
  return pageHead('Advertising Dashboard','Acme Storefront · Amazon.com · <span class="tipd" data-tip="All metrics reflect the selected date range. Hover labels for definitions.">demo data</span>',
-  rangeSelect()+'<button class="btn btn-p" data-act="create">＋ Create campaign</button>')+
+  rangeSelect()+'<button type="button" class="btn btn-p" data-act="create">＋ Create campaign</button>')+
  '<div class="kpis rise">'+
    kpiCard('Spend',money(cur.sp),d('sp'),'Total ad spend across all campaigns.',sr('sp'))+
    kpiCard('Sales',money(cur.sal),d('sal'),'Attributed sales within 7 days of a click.',sr('sal'))+
@@ -1358,9 +826,9 @@ function vDashboard(){
   '<div class="dgrid">'+
    '<div class="card rise d1"><div class="card-h"><h3>Performance over time</h3><span class="sub">'+fmtDay(b.from)+' – '+fmtDay(b.to)+'</span><span class="chip ch-green livechip">LIVE</span>'+
      '<div class="legend">'+
-      '<button class="lchip" data-act="toggle-ds" data-chart="chDash" data-idx="0"><i style="background:#067D62"></i>Sales</button>'+
-      '<button class="lchip" data-act="toggle-ds" data-chart="chDash" data-idx="1"><i style="background:#E47911"></i>Spend</button>'+
-      '<button class="lchip" data-act="toggle-ds" data-chart="chDash" data-idx="2"><i style="background:#007185"></i>ACOS</button>'+
+      '<button type="button" class="lchip" data-act="toggle-ds" data-chart="chDash" data-idx="0"><i style="background:#067D62"></i>Sales</button>'+
+      '<button type="button" class="lchip" data-act="toggle-ds" data-chart="chDash" data-idx="1"><i style="background:#E47911"></i>Spend</button>'+
+      '<button type="button" class="lchip" data-act="toggle-ds" data-chart="chDash" data-idx="2"><i style="background:#007185"></i>ACOS</button>'+
      '</div></div>'+
     '<div class="chartbox"><canvas id="chDash" data-chart="perf"></canvas></div></div>'+
    '<div style="display:flex;flex-direction:column;gap:14px;min-width:0">'+
@@ -1369,7 +837,7 @@ function vDashboard(){
    '</div>'+
   '</div>'+
   '<div class="dgrid2">'+
-   '<div class="card rise d3"><div class="card-h"><h3>Top campaigns by spend</h3><button class="btn btn-sm" style="margin-left:auto" data-act="nav" data-view="campaigns">View all</button></div>'+
+   '<div class="card rise d3"><div class="card-h"><h3>Top campaigns by spend</h3><button type="button" class="btn btn-sm" style="margin-left:auto" data-act="nav" data-view="campaigns">View all</button></div>'+
     '<div class="twrap"><table class="tbl nomw"><thead><tr><th>Campaign</th><th class="r">Clicks</th><th class="r">Spend</th><th class="r">Sales</th><th class="r">ACOS</th></tr></thead><tbody>'+trows+'</tbody></table></div></div>'+
    '<div class="card rise d4"><div class="card-h"><h3>Spend by ad type</h3></div><div class="chartbox" style="height:250px"><canvas id="chDonut" data-chart="donut"></canvas></div></div>'+
   '</div>';
@@ -1396,13 +864,13 @@ function vCampaigns(){
   '<td class="r" style="color:'+(r.m.acos>.35?'var(--red)':r.m.acos>.22?'var(--amber)':'var(--green)')+';font-weight:700">'+(r.m.sal?pctf(r.m.acos):'—')+'</td>'+
   '<td class="r">'+(r.m.sp?r.m.roas.toFixed(2)+'×':'—')+'</td></tr>';};
  const bulk=state.selCamps.size?'<div class="bulkbar"><b>'+state.selCamps.size+' selected</b>'+
-   '<button class="btn btn-sm" data-act="bulk-camp" data-v="enabled">Enable</button>'+
-   '<button class="btn btn-sm" data-act="bulk-camp" data-v="paused">Pause</button>'+
-   '<button class="btn btn-sm" data-act="bulk-camp" data-v="archived">Archive</button>'+
-   '<button class="btn btn-sm" data-act="bulk-budget" data-v="1.2">Budget +20%</button>'+
-   '<button class="btn btn-sm" data-act="bulk-budget" data-v="0.8">Budget −20%</button>'+
-   '<span class="sp"></span><button class="btn btn-sm" data-act="bulk-clear">Clear</button></div>':'';
- return pageHead('Campaigns',rows.length+' of '+state.campaigns.length+' campaigns',rangeSelect()+'<button class="btn btn-p" data-act="create">＋ Create campaign</button>')+
+   '<button type="button" class="btn btn-sm" data-act="bulk-camp" data-v="enabled">Enable</button>'+
+   '<button type="button" class="btn btn-sm" data-act="bulk-camp" data-v="paused">Pause</button>'+
+   '<button type="button" class="btn btn-sm" data-act="bulk-camp" data-v="archived">Archive</button>'+
+   '<button type="button" class="btn btn-sm" data-act="bulk-budget" data-v="1.2">Budget +20%</button>'+
+   '<button type="button" class="btn btn-sm" data-act="bulk-budget" data-v="0.8">Budget −20%</button>'+
+   '<span class="sp"></span><button type="button" class="btn btn-sm" data-act="bulk-clear">Clear</button></div>':'';
+ return pageHead('Campaigns',rows.length+' of '+state.campaigns.length+' campaigns',rangeSelect()+'<button type="button" class="btn btn-p" data-act="create">＋ Create campaign</button>')+
  '<div class="card rise" style="margin-bottom:12px"><div class="fbar">'+
    '<input class="inp" placeholder="Search campaigns…" value="'+esc(f.q)+'" data-act="f-camp-q">'+
    '<select class="sel" data-act="f-camp-status"><option value="">Status: All</option><option value="enabled" '+(f.status==='enabled'?'selected':'')+'>Delivering</option><option value="paused" '+(f.status==='paused'?'selected':'')+'>Paused</option><option value="oob" '+(f.status==='oob'?'selected':'')+'>Out of budget</option><option value="archived" '+(f.status==='archived'?'selected':'')+'>Archived</option></select>'+
@@ -1415,15 +883,15 @@ function vCampaigns(){
 
 function vCampaign(){
  const c=campById[state.view.id];
- if(!c)return '<div class="empty"><span class="big">🗂</span>Campaign not found.<br><br><button class="btn btn-p" data-act="nav" data-view="campaigns">Back to campaigns</button></div>';
+ if(!c)return '<div class="empty"><span class="big">🗂</span>Campaign not found.<br><br><button type="button" class="btn btn-p" data-act="nav" data-view="campaigns">Back to campaigns</button></div>';
  const terms=Object.values(state.terms).filter(t=>t.campId===c.id);
  const negs=c.negatives||[];
  const kwCount=c.adGroups.reduce((s,a)=>s+a.keywords.length,0);
  const tabs=[['overview','Overview'],['adgroups','Ad groups',c.adGroups.length],['keywords','Keywords',kwCount],['placements','Placements'],['searchterms','Search terms',terms.length],['negatives','Negatives',negs.length],['settings','Settings']];
- const tabsHtml=tabs.map(t=>'<button class="tab '+(state.tab===t[0]?'on':'')+'" data-act="tab" data-tab="'+t[0]+'">'+t[1]+(t[2]!==undefined?'<span class="n">'+t[2]+'</span>':'')+'</button>').join('');
- return '<button class="backlink" data-act="nav" data-view="campaigns">← All campaigns</button>'+
+ const tabsHtml=tabs.map(t=>'<button type="button" class="tab '+(state.tab===t[0]?'on':'')+'" data-act="tab" data-tab="'+t[0]+'">'+t[1]+(t[2]!==undefined?'<span class="n">'+t[2]+'</span>':'')+'</button>').join('');
+ return '<button type="button" class="backlink" data-act="nav" data-view="campaigns">← All campaigns</button>'+
  pageHead(esc(c.name),'Started '+fmtDayFull(c.startDay)+' · '+TYPE_L[c.type],
-  c.status==='paused'?'<button class="btn" data-act="quick-status" data-id="'+c.id+'" data-v="enabled">▶ Enable</button>':'<button class="btn" data-act="quick-status" data-id="'+c.id+'" data-v="paused">❚❚ Pause</button>')+
+  c.status==='paused'?'<button type="button" class="btn" data-act="quick-status" data-id="'+c.id+'" data-v="enabled">▶ Enable</button>':'<button type="button" class="btn" data-act="quick-status" data-id="'+c.id+'" data-v="paused">❚❚ Pause</button>')+
  '<div class="sumgrid rise">'+
    '<div class="sumcell"><label>Daily budget</label><div class="v editable" data-act="edit-budget" data-id="'+c.id+'">'+money(c.budget)+I.pencil+'</div></div>'+
    '<div class="sumcell"><label>Today’s spend</label><div class="v num">'+money(c.spendToday)+' <span style="font-size:11px;color:var(--faint);font-weight:400">/ '+money(c.budget)+'</span></div><div style="height:4px;background:#EEF1F1;border-radius:2px;margin-top:6px;overflow:hidden"><i style="display:block;height:100%;width:'+clamp(c.spendToday/c.budget*100,0,100)+'%;background:'+(c.outToday?'#D64541':'#FF9900')+';transition:width .4s"></i></div></div>'+
@@ -1477,11 +945,11 @@ function kwTableHTML(rows,opts){
    :'<span style="font-size:12.5px;color:var(--sub)">Click any <b>bid</b> to edit it inline · hover a bid for its suggested range. Pausing stops spend instantly.</span>')+
   '<span class="fcount">'+rows.length+' keywords</span>'+(opts.addBtn||'')+'</div>';
  const bulk=(opts.scope==='global'&&state.selKws.size)?'<div class="bulkbar"><b>'+state.selKws.size+' selected</b>'+
-  '<button class="btn btn-sm" data-act="bulk-kw" data-v="enabled">Enable</button>'+
-  '<button class="btn btn-sm" data-act="bulk-kw" data-v="paused">Pause</button>'+
-  '<button class="btn btn-sm" data-act="bulk-kwbid" data-v="1.1">Bids +10%</button>'+
-  '<button class="btn btn-sm" data-act="bulk-kwbid" data-v="0.9">Bids −10%</button>'+
-  '<span class="sp"></span><button class="btn btn-sm" data-act="bulk-clear">Clear</button></div>':'';
+  '<button type="button" class="btn btn-sm" data-act="bulk-kw" data-v="enabled">Enable</button>'+
+  '<button type="button" class="btn btn-sm" data-act="bulk-kw" data-v="paused">Pause</button>'+
+  '<button type="button" class="btn btn-sm" data-act="bulk-kwbid" data-v="1.1">Bids +10%</button>'+
+  '<button type="button" class="btn btn-sm" data-act="bulk-kwbid" data-v="0.9">Bids −10%</button>'+
+  '<span class="sp"></span><button type="button" class="btn btn-sm" data-act="bulk-clear">Clear</button></div>':'';
  const tid=opts.scope==='global'?'kwsG':'kws'+(opts.campId||opts.agId||'');
  const html=buildTable(tid,cols,rows,kwRowHtml(opts),{key:'sp',dir:-1});
  return '<div class="card">'+toolbar+bulk+html+'</div>';
@@ -1502,7 +970,7 @@ function termsTableHTML(list,cfg){
   const c=campById[r.t.campId];
   const act=r.t.status==='added'?'<span class="chip ch-blue">Added ✓</span>'
    :r.t.status==='negated'?'<span class="chip ch-gray">Negated</span>'
-   :'<button class="btn btn-xs btn-p" data-act="term-add" data-id="'+r.t.id+'">＋ Exact KW</button> <button class="btn btn-xs btn-danger" data-act="term-neg" data-id="'+r.t.id+'">Negative</button>';
+   :'<button type="button" class="btn btn-xs btn-p" data-act="term-add" data-id="'+r.t.id+'">＋ Exact KW</button> <button type="button" class="btn btn-xs btn-danger" data-act="term-neg" data-id="'+r.t.id+'">Negative</button>';
   return '<tr style="animation-delay:'+Math.min(i,14)*20+'ms">'+
    '<td><b style="font-size:13px">'+esc(r.t.text)+'</b><div class="csub">matched: '+esc(r.t.kwText)+(r.t.q<.3?' · <span style="color:var(--red);font-weight:700">low intent</span>':r.t.q>.85?' · <span style="color:var(--green);font-weight:700">high intent</span>':'')+'</div></td>'+
    (campScope?'':'<td><span style="font-size:12px;color:var(--sub)">'+esc(c?c.name:'')+'</span></td>')+
@@ -1537,14 +1005,14 @@ function vAdgroups(){
 }
 function vAdgroup(){
  const ag=agById[state.view.id];
- if(!ag)return '<div class="empty"><span class="big">🗂</span>Ad group not found.<br><br><button class="btn btn-p" data-act="nav" data-view="adgroups">Back to ad groups</button></div>';
+ if(!ag)return '<div class="empty"><span class="big">🗂</span>Ad group not found.<br><br><button type="button" class="btn btn-p" data-act="nav" data-view="adgroups">Back to ad groups</button></div>';
  const c=campOfAg(ag.id)||{id:'?',name:'—'};
  const prods=ag.products.map(pid=>{const p=prod(pid);return '<div class="prow">'+ptile(p,true)+'<div><b>'+esc(p.name)+'</b><span class="num" style="color:var(--sub);font-size:12px">'+money(p.price)+' · ASIN B0'+(hash(pid)%900000+100000)+'</span></div></div>';}).join('');
  const kwRows=ag.keywords.map(k=>({k:k,ag:ag,c:c}));
- return '<button class="backlink" data-act="nav" data-view="campaign" data-id="'+c.id+'">← '+esc(c.name)+'</button>'+
+ return '<button type="button" class="backlink" data-act="nav" data-view="campaign" data-id="'+c.id+'">← '+esc(c.name)+'</button>'+
  pageHead(esc(ag.name),'Ad group',agStatusChip(ag))+
  '<div class="card rise" style="margin-bottom:14px"><div class="card-h"><h3>Advertised products</h3></div><div class="card-b"><div class="pgrid">'+prods+'</div></div></div>'+
- '<div class="rise d1">'+kwTableHTML(kwRows,{agId:ag.id,addBtn:'<button class="btn btn-p btn-sm" data-act="add-kw" data-ag="'+ag.id+'">＋ Add keyword</button>'})+'</div>';
+ '<div class="rise d1">'+kwTableHTML(kwRows,{agId:ag.id,addBtn:'<button type="button" class="btn btn-p btn-sm" data-act="add-kw" data-ag="'+ag.id+'">＋ Add keyword</button>'})+'</div>';
 }
 
 function vReports(){
@@ -1556,7 +1024,7 @@ function vReports(){
  let out='';
  if(state.report){
   const rp=state.report;
-  out='<div class="card rise" style="margin-top:14px"><div class="card-h"><h3>'+rp.title+'</h3><span class="sub">Generated '+rp.when+' · '+(rp.rows.length-1)+' rows</span><button class="btn btn-sm" style="margin-left:auto" data-act="csv">⬇ Download CSV</button></div>'+
+  out='<div class="card rise" style="margin-top:14px"><div class="card-h"><h3>'+rp.title+'</h3><span class="sub">Generated '+rp.when+' · '+(rp.rows.length-1)+' rows</span><button type="button" class="btn btn-sm" style="margin-left:auto" data-act="csv">⬇ Download CSV</button></div>'+
    '<div class="twrap" style="max-height:420px;overflow-y:auto"><table class="tbl"><thead><tr>'+rp.rows[0].map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rp.rows.slice(1).map(r=>'<tr>'+r.map((v,i)=>'<td class="'+(i>1?'r':'')+'">'+v+'</td>').join('')+'</tr>').join('')+'</tbody></table></div></div>';
  }
  return pageHead('Reports','Generate downloadable performance reports')+
@@ -1594,16 +1062,16 @@ function vRules(){
    '<td style="font-size:12.5px">'+r.metric.toUpperCase()+' '+(r.metric==='acos'?'&lt;':'&gt;')+' '+r.value+'% <span style="color:var(--faint)">(7 days)</span></td>'+
    '<td style="font-size:12.5px">Increase budget '+r.pct+'%'+(r.cap?' · cap '+money(r.cap):'')+'</td>'+
    '<td style="font-size:12.5px;color:var(--sub)">'+(r.apply==='all'?'All campaigns':r.camps.length+' campaigns')+'</td>'+
-   '<td><button class="stbtn" data-act="rule-toggle" data-id="'+r.id+'"><span class="chip '+(r.enabled?'ch-green':'ch-gray')+'">'+(r.enabled?'Active':'Off')+'</span></button></td>'+
+   '<td><button type="button" class="stbtn" data-act="rule-toggle" data-id="'+r.id+'"><span class="chip '+(r.enabled?'ch-green':'ch-gray')+'">'+(r.enabled?'Active':'Off')+'</span></button></td>'+
    '<td style="font-size:12px;color:var(--faint)">'+(r.lastDay!=null?fmtDay(r.lastDay):'Never')+'</td>'+
-   '<td class="r"><button class="btn btn-xs btn-danger" data-act="rule-del" data-id="'+r.id+'">Delete</button></td></tr>').join('');
- return pageHead('Budget rules','Automatically scale budgets on campaigns beating your targets','<button class="btn btn-p" data-act="rule-new">＋ Create rule</button>')+
+   '<td class="r"><button type="button" class="btn btn-xs btn-danger" data-act="rule-del" data-id="'+r.id+'">Delete</button></td></tr>').join('');
+ return pageHead('Budget rules','Automatically scale budgets on campaigns beating your targets','<button type="button" class="btn btn-p" data-act="rule-new">＋ Create rule</button>')+
  '<div class="hintbar rise">⚙️ Rules evaluate at <b>midnight</b> each simulator day using the trailing 7 days of data.</div>'+
  '<div class="card rise d1">'+(state.rules.length?'<div class="twrap"><table class="tbl"><thead><tr><th>Rule</th><th>Condition</th><th>Action</th><th>Applies to</th><th>Status</th><th>Last triggered</th><th></th></tr></thead><tbody>'+rowsHtml+'</tbody></table></div>'
   :'<div class="empty"><span class="big">📏</span>No rules yet. Example: “If ACOS &lt; 25% for 7 days, raise budget 20% (max $120)”.</div>')+'</div>';
 }
 function ruleModal(){
- openModal('<div class="m-h"><h2>Create budget rule</h2><button class="x" data-act="modal-close">✕</button></div>'+
+ openModal('<div class="m-h"><h2>Create budget rule</h2><button type="button" class="x" data-act="modal-close">✕</button></div>'+
  '<div class="m-b">'+
   '<label class="fld">Rule name</label><input class="inp" id="ruleName" value="Scale winners" style="margin-bottom:13px">'+
   '<div class="wz2col" style="grid-template-columns:1fr 1fr 1fr;margin-bottom:13px">'+
@@ -1619,7 +1087,7 @@ function ruleModal(){
    state.campaigns.filter(c=>c.status!=='archived').map(c=>'<label style="display:flex;gap:8px;align-items:center;padding:4px 0 4px 24px;font-size:12.5px;color:var(--sub)"><input type="checkbox" class="ruleCamp" value="'+c.id+'"> '+esc(c.name)+'</label>').join('')+
   '</div>'+
  '</div>'+
- '<div class="m-f"><button class="btn" data-act="modal-close">Cancel</button><button class="btn btn-p" data-act="rule-save">Create rule</button></div>');
+ '<div class="m-f"><button type="button" class="btn" data-act="modal-close">Cancel</button><button type="button" class="btn btn-p" data-act="rule-save">Create rule</button></div>');
 }
 
 function vPortfolios(){
@@ -1637,7 +1105,7 @@ function vPortfolios(){
  }).join('');
  const un=state.campaigns.filter(c=>!c.portfolio);
  const unRows=un.map(c=>'<tr class="click" data-act="nav" data-view="campaign" data-id="'+c.id+'"><td><span class="cname">'+esc(c.name)+'</span></td><td>'+statusChip(c)+'</td><td class="r">'+money(campMetrics(c,b).sp)+'</td></tr>').join('');
- return pageHead('Portfolios','Group campaigns to monitor them together','<button class="btn btn-p" data-act="port-new">＋ Create portfolio</button>')+
+ return pageHead('Portfolios','Group campaigns to monitor them together','<button type="button" class="btn btn-p" data-act="port-new">＋ Create portfolio</button>')+
  cards+(un.length?'<div class="card rise d2"><div class="card-h"><h3>Unassigned campaigns</h3></div><div class="twrap"><table class="tbl nomw"><tbody>'+unRows+'</tbody></table></div></div>':'');
 }
 
@@ -1649,7 +1117,7 @@ function vAcademy(){
     '<span class="ls-n">'+(isDone?'✓':i+1)+'</span>'+
     '<div><b>'+l.t+'</b></div><span class="st">'+(isDone?'Completed':'In progress →')+'</span>'+
    '</div>'+
-   '<div class="ls-b"><p>'+l.how+'</p><div style="margin-top:9px"><button class="btn btn-sm btn-p" data-act="lesson-go" data-go="'+l.go+'" data-view="'+(l.view||'')+'">'+l.goL+'</button></div></div>'+
+   '<div class="ls-b"><p>'+l.how+'</p><div style="margin-top:9px"><button type="button" class="btn btn-sm btn-p" data-act="lesson-go" data-go="'+l.go+'" data-view="'+(l.view||'')+'">'+l.goL+'</button></div></div>'+
   '</div>';}).join('');
  return pageHead('PPC Academy','Complete each mission inside the simulator')+
  '<div class="acgrid">'+
@@ -1658,7 +1126,7 @@ function vAcademy(){
     '<div class="ring" style="background:conic-gradient(var(--orange) '+(pctv*3.6)+'deg,#EEF1F1 0)"><b>'+done+'/'+LESSONS.length+'</b><span>COMPLETE</span></div>'+
     '<b style="font-family:Archivo;font-size:15px">'+(pctv===100?'🏆 Course complete!':'Your progress')+'</b>'+
     '<p style="font-size:12px;color:var(--sub);margin:6px 0 12px">'+(pctv===100?'You have mastered the core PPC workflow. Keep optimizing!':'Work through the missions left — each one teaches a core PPC skill.')+'</p>'+
-    '<button class="btn btn-sm" data-act="lessons-reset">Reset progress</button>'+
+    '<button type="button" class="btn btn-sm" data-act="lessons-reset">Reset progress</button>'+
    '</div>'+
    '<div class="card rise d1" style="margin-top:12px;padding:14px 16px;font-size:12.5px;color:var(--sub);line-height:1.6">'+
     '<b style="font-family:Archivo;color:var(--ink);display:block;margin-bottom:5px">How this simulator works</b>'+
@@ -1766,7 +1234,7 @@ function wzStepBody(){
     '<div class="kwrow kwh" style="font-family:Archivo;font-size:10.5px;font-weight:600;color:var(--faint);text-transform:uppercase;border-bottom:1px solid var(--border2)"><span></span><span>Keyword</span><span>Match type</span><span>Bid ($)</span></div>'+
     sugRows+cusRows+
    '</div>'+
-   '<button class="btn btn-sm" data-act="wz-addkw">＋ Add custom keyword</button>';
+   '<button type="button" class="btn btn-sm" data-act="wz-addkw">＋ Add custom keyword</button>';
  }
  const prods=[...wz.products].map(pid=>prod(pid).short).join(', ');
  const kws=wz.targeting==='auto'
@@ -1786,10 +1254,10 @@ function renderWizard(){
  const stepNames=['Ad type','Settings','Products','Targeting','Review'];
  const steps='<div class="steps">'+stepNames.map((s,i)=>'<div class="step '+(wz.step===i+1?'on':'')+' '+(wz.step>i+1?'done':'')+'"><i>'+(wz.step>i+1?'✓':i+1)+'</i><div>'+s+'</div></div>').join('')+'</div>';
  const canNext=wz.step<5;
- openModal('<div class="m-h"><h2>Create campaign</h2><span class="sub" style="color:var(--faint);font-size:12px">Step '+wz.step+' of 5 · '+TYPE_L[wz.type]+'</span><button class="x" data-act="modal-close">✕</button></div>'+
+ openModal('<div class="m-h"><h2>Create campaign</h2><span class="sub" style="color:var(--faint);font-size:12px">Step '+wz.step+' of 5 · '+TYPE_L[wz.type]+'</span><button type="button" class="x" data-act="modal-close">✕</button></div>'+
   '<div class="m-b">'+steps+'<div class="wzbody">'+wzStepBody()+'</div></div>'+
-  '<div class="m-f">'+(wz.step>1?'<button class="btn" data-act="wz-back">← Back</button>':'')+'<span style="flex:1"></span>'+
-  (canNext?'<button class="btn btn-p" data-act="wz-next">Continue →</button>':'<button class="btn btn-p" data-act="wz-launch">🚀 Launch campaign</button>')+'</div>',true);
+  '<div class="m-f">'+(wz.step>1?'<button type="button" class="btn" data-act="wz-back">← Back</button>':'')+'<span style="flex:1"></span>'+
+  (canNext?'<button type="button" class="btn btn-p" data-act="wz-next">Continue →</button>':'<button type="button" class="btn btn-p" data-act="wz-launch">🚀 Launch campaign</button>')+'</div>',true);
 }
 function autoName(){const p=[...wz.products].map(pid=>prod(pid).short.split(' ')[0]).join(' & ')||'New';return wz.type+' | '+p+' | '+(wz.targeting==='auto'?'Auto':'Manual')+' '+String(state.campaigns.length+1);}
 function wzNext(){
@@ -1863,7 +1331,7 @@ function showTourStep(){
   sp.style.left=(r.left-6)+'px';sp.style.top=(r.top-6)+'px';sp.style.width=(r.width+12)+'px';sp.style.height=(r.height+12)+'px';
   const cd=$('#tCard');cd.style.top=top+'px';cd.style.left=left+'px';
   cd.innerHTML='<span class="tour-n cond">STEP '+(tourI+1)+' OF '+TOURA.length+'</span><b>'+st.t+'</b><p>'+st.txt+'</p>'+
-   '<div class="tour-a"><button class="btn btn-sm" data-act="tour-skip">Skip</button><button class="btn btn-sm btn-p" data-act="tour-next">'+(tourI===TOURA.length-1?'Finish ✓':'Next →')+'</button></div>';
+   '<div class="tour-a"><button type="button" class="btn btn-sm" data-act="tour-skip">Skip</button><button type="button" class="btn btn-sm btn-p" data-act="tour-next">'+(tourI===TOURA.length-1?'Finish ✓':'Next →')+'</button></div>';
  },380);
 }
 function endTour(){$('#tour-root').innerHTML='';}
@@ -1880,7 +1348,7 @@ function welcomeHTML(){
  '<h2 style="font-family:Archivo;font-size:20px;margin-bottom:6px">Welcome.</h2>'+
  '<p style="font-size:13px;color:var(--sub);line-height:1.55;margin-bottom:12px">This is a faithful, living replica of the Amazon PPC console. Time runs hourly, auctions clear against real bid math, budgets cap out, and search terms stream in — so you learn by doing, not by slides.</p>'+
  feats.map(r=>'<div class="welrow"><span style="width:32px;height:32px;border-radius:8px;background:'+r[1]+';display:grid;place-items:center;font-size:15px;flex:none">'+r[0]+'</span><div><b style="font-family:Archivo;font-size:13px">'+r[2]+'</b><span style="font-size:12px;color:var(--sub)"> — '+r[3]+'</span></div></div>').join('')+
- '<div style="display:flex;gap:9px;margin-top:16px;flex-wrap:wrap"><button class="btn btn-p" data-act="wel-tour">▶ Take the 60-second tour</button><button class="btn" data-act="wel-play">Just start playing</button><button class="btn" data-act="modal-close" style="border:none;color:var(--sub)">Skip</button></div>'+
+ '<div style="display:flex;gap:9px;margin-top:16px;flex-wrap:wrap"><button type="button" class="btn btn-p" data-act="wel-tour">▶ Take the 60-second tour</button><button type="button" class="btn" data-act="wel-play">Just start playing</button><button type="button" class="btn" data-act="modal-close" style="border:none;color:var(--sub)">Skip</button></div>'+
  '</div></div>';
 }
 
@@ -1928,13 +1396,13 @@ function openStatusMenu(kind,id,anchor){
  const rect=anchor.getBoundingClientRect();
  let items='';
  if(kind==='camp'){const c=campById[id];if(!c)return;
-  items=(c.status!=='enabled'?'<button data-act="set-status" data-kind="camp" data-id="'+id+'" data-v="enabled">▶ Enable</button>':'')+
-   (c.status!=='paused'?'<button data-act="set-status" data-kind="camp" data-id="'+id+'" data-v="paused">❚❚ Pause</button>':'')+
-   '<div class="pdiv"></div><button class="dngr" data-act="set-status" data-kind="camp" data-id="'+id+'" data-v="archived">🗄 Archive</button>';
+  items=(c.status!=='enabled'?'<button type="button" data-act="set-status" data-kind="camp" data-id="'+id+'" data-v="enabled">▶ Enable</button>':'')+
+   (c.status!=='paused'?'<button type="button" data-act="set-status" data-kind="camp" data-id="'+id+'" data-v="paused">❚❚ Pause</button>':'')+
+   '<div class="pdiv"></div><button type="button" class="dngr" data-act="set-status" data-kind="camp" data-id="'+id+'" data-v="archived">🗄 Archive</button>';
  }else if(kind==='ag'){const ag=agById[id];if(!ag)return;
-  items=ag.status==='paused'?'<button data-act="set-status" data-kind="ag" data-id="'+id+'" data-v="enabled">▶ Enable</button>':'<button data-act="set-status" data-kind="ag" data-id="'+id+'" data-v="paused">❚❚ Pause</button>';
+  items=ag.status==='paused'?'<button type="button" data-act="set-status" data-kind="ag" data-id="'+id+'" data-v="enabled">▶ Enable</button>':'<button type="button" data-act="set-status" data-kind="ag" data-id="'+id+'" data-v="paused">❚❚ Pause</button>';
  }else{const k=kwById[id];if(!k)return;
-  items=k.status==='paused'?'<button data-act="set-status" data-kind="kw" data-id="'+id+'" data-v="enabled">▶ Enable</button>':'<button data-act="set-status" data-kind="kw" data-id="'+id+'" data-v="paused">❚❚ Pause</button>';
+  items=k.status==='paused'?'<button type="button" data-act="set-status" data-kind="kw" data-id="'+id+'" data-v="enabled">▶ Enable</button>':'<button type="button" data-act="set-status" data-kind="kw" data-id="'+id+'" data-v="paused">❚❚ Pause</button>';
  }
  $('#menu-root').innerHTML='<div class="pop" style="left:'+clamp(rect.left,8,innerWidth-190)+'px;top:'+Math.min(rect.bottom+5,innerHeight-170)+'px">'+items+'</div>';
 }
@@ -1942,7 +1410,7 @@ function addKeywordModal(campId,agId){
  const ag=agId?agById[agId]:(campById[campId]&&campById[campId].adGroups[0]);
  if(!ag)return;
  const c=campOfAg(ag.id)||{name:'—'};
- openModal('<div class="m-h"><h2>Add keyword</h2><button class="x" data-act="modal-close">✕</button></div>'+
+ openModal('<div class="m-h"><h2>Add keyword</h2><button type="button" class="x" data-act="modal-close">✕</button></div>'+
  '<div class="m-b">'+
   '<div class="fhint" style="margin:-4px 0 12px">Adding to <b>'+esc(ag.name)+'</b> in <b>'+esc(c.name)+'</b></div>'+
   '<label class="fld">Keyword text</label><input class="inp" id="nkText" placeholder="e.g. bluetooth earbuds noise cancelling" style="margin-bottom:12px">'+
@@ -1952,7 +1420,7 @@ function addKeywordModal(campId,agId){
   '</div>'+
   '<div class="fhint" id="nkHint" style="margin-top:10px">💡 Suggested bid appears as you type.</div>'+
  '</div>'+
- '<div class="m-f"><button class="btn" data-act="modal-close">Cancel</button><button class="btn btn-p" data-act="nk-save" data-ag="'+ag.id+'">Add keyword</button></div>');
+ '<div class="m-f"><button type="button" class="btn" data-act="modal-close">Cancel</button><button type="button" class="btn btn-p" data-act="nk-save" data-ag="'+ag.id+'">Add keyword</button></div>');
  const inp=$('#nkText');
  inp.addEventListener('input',()=>{const v=inp.value.trim();if(v.length>2){$('#nkHint').innerHTML='💡 Suggested bid for “'+esc(v)+'”: <b>$'+sugBidFor(v).toFixed(2)+'</b> (based on competition).';$('#nkBid').value=sugBidFor(v);}});
  inp.focus();
@@ -2045,7 +1513,7 @@ const ACTIONS={
    markLesson('rule');closeModal();log('success','Budget rule <b>'+esc(name)+'</b> created.');toast('Rule created',name);render();},
  'rule-toggle':(el)=>{const r=state.rules.find(x=>x.id===el.dataset.id);if(r)r.enabled=!r.enabled;render();},
  'rule-del':(el)=>{state.rules=state.rules.filter(x=>x.id!==el.dataset.id);toast('Rule deleted','','warn');render();},
- 'port-new':()=>{openModal('<div class="m-h"><h2>Create portfolio</h2><button class="x" data-act="modal-close">✕</button></div><div class="m-b"><label class="fld">Portfolio name</label><input class="inp" id="portName" placeholder="e.g. Q3 Launch"></div><div class="m-f"><button class="btn" data-act="modal-close">Cancel</button><button class="btn btn-p" data-act="port-save">Create</button></div>');$('#portName').focus();},
+ 'port-new':()=>{openModal('<div class="m-h"><h2>Create portfolio</h2><button type="button" class="x" data-act="modal-close">✕</button></div><div class="m-b"><label class="fld">Portfolio name</label><input class="inp" id="portName" placeholder="e.g. Q3 Launch"></div><div class="m-f"><button type="button" class="btn" data-act="modal-close">Cancel</button><button type="button" class="btn btn-p" data-act="port-save">Create</button></div>');$('#portName').focus();},
  'port-save':()=>{const n=$('#portName').value.trim();if(!n){toast('Enter a name','','warn');return;}state.portfolios.push({id:uid(),name:n});closeModal();toast('Portfolio created',n);render();},
  'lesson-open':(el)=>el.closest('.lesson').classList.toggle('open'),
  'lesson-go':(el)=>{const go=el.dataset.go;

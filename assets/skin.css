@@ -432,7 +432,7 @@ body.pha-skin [style*="background:#"],
 body.pha-skin [style*="background: #"],
 body.pha-skin [style*="background:rgb(15"],
 body.pha-skin [style*="background: rgb(15"] {
-  color: #E9EFF8;
+  color: var(--c-shell-ink);
 }
 body.pha-skin [style*="background:#fff"]:not([class*="btn"]),
 body.pha-skin [style*="background: #fff"]:not([class*="btn"]),
@@ -482,7 +482,7 @@ body.pha-skin [class*="hour-cell"],
 body.pha-skin .day-part-cell,
 body.pha-skin .bbar-cell,
 body.pha-skin [class*="bbar-cell"] {
-  color: #E9EFF8 !important;
+  color: var(--c-shell-ink) !important;
   background-color: var(--c-navy-2) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
@@ -501,7 +501,7 @@ body.pha-skin [class*="dp-grid"] button,
 body.pha-skin [class*="dpwrap"] button,
 body.pha-skin .dp-wrap button,
 body.pha-skin #dpGrid > * {
-  color: #E9EFF8 !important;
+  color: var(--c-shell-ink) !important;
   background-color: var(--c-navy-2) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
@@ -521,17 +521,17 @@ body.pha-skin .dp-cell {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 body.pha-skin .dp-cell.l0 { color: #FFB3A8 !important; background: rgba(177, 39, 4, 0.18) !important; border-color: rgba(255, 107, 87, 0.4) !important; }
-body.pha-skin .dp-cell.l1 { color: #B8C4D1 !important; background: #1B2530 !important; border-color: #2A3543 !important; }
-body.pha-skin .dp-cell.l2 { color: #E9EFF8 !important; background: #22303F !important; border-color: #37475A !important; font-weight: 700 !important; }
-body.pha-skin .dp-cell.l3 { color: #FFD9A0 !important; background: #8A5500 !important; border-color: #E47911 !important; }
-body.pha-skin .dp-cell.l4 { color: #0F1419 !important; background: var(--c-orange) !important; border-color: #FFC24D !important; font-weight: 700 !important; box-shadow: 0 0 8px rgba(255, 153, 0, 0.4); }
+body.pha-skin .dp-cell.l1 { color: #B8C4D1 !important; background: #1B2530 !important; border-color: var(--c-shell-line) !important; }
+body.pha-skin .dp-cell.l2 { color: var(--c-shell-ink) !important; background: #22303F !important; border-color: var(--c-navy-4) !important; font-weight: 700 !important; }
+body.pha-skin .dp-cell.l3 { color: #FFD9A0 !important; background: #8A5500 !important; border-color: var(--c-orange-d) !important; }
+body.pha-skin .dp-cell.l4 { color: var(--c-navy-1) !important; background: var(--c-orange) !important; border-color: #FFC24D !important; font-weight: 700 !important; box-shadow: 0 0 8px rgba(255, 153, 0, 0.4); }
 
 /* Pacing Deck — clock dial (dark face, light text) */
 body.pha-skin .stage-mid,
 body.pha-skin #dialWrap,
 body.pha-skin [class*="dial"],
 body.pha-skin .dial {
-  color: #E9EFF8 !important;
+  color: var(--c-shell-ink) !important;
 }
 body.pha-skin #dialWrap {
   background: var(--c-navy-2) !important;
@@ -553,8 +553,8 @@ body.pha-skin .dial-sub,
 body.pha-skin [class*="dial-sub"],
 body.pha-skin .dial-subVal,
 body.pha-skin [class*="dial-subVal"] {
-  color: #E9EFF8 !important;
-  fill: #E9EFF8 !important;
+  color: var(--c-shell-ink) !important;
+  fill: var(--c-shell-ink) !important;
 }
 /* keep stage-mid's background so the clock face stays dark */
 body.pha-skin .stage-mid {
@@ -566,7 +566,7 @@ body.pha-skin .stage-mid {
 body.pha-skin #clockTime,
 body.pha-skin [class*="clock-time"],
 body.pha-skin [class*="time-display"] {
-  color: #E9EFF8 !important;
+  color: var(--c-shell-ink) !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
@@ -601,7 +601,7 @@ body.pha-skin [class*="timebar"],
 body.pha-skin [class*="sim-bar"],
 body.pha-skin [class*="run-bar"] {
   background: var(--c-navy-2) !important;
-  color: #E9EFF8 !important;
+  color: var(--c-shell-ink) !important;
   border: 1px solid var(--c-line) !important;
 }
 body.pha-skin .playbar button,
@@ -609,7 +609,7 @@ body.pha-skin .controls button,
 body.pha-skin [class*="playbar"] button,
 body.pha-skin [class*="timebar"] button,
 body.pha-skin [class*="sim-bar"] button {
-  color: #E9EFF8 !important;
+  color: var(--c-shell-ink) !important;
   background: rgba(255, 255, 255, 0.05) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
@@ -625,11 +625,11 @@ body.pha-skin .trainee-card,
 body.pha-skin .trainee,
 body.pha-skin [class*="trainee"] {
   background: var(--c-navy-2) !important;
-  color: #E9EFF8 !important;
+  color: var(--c-shell-ink) !important;
 }
 body.pha-skin .trainee-card *,
 body.pha-skin [class*="trainee"] * {
-  color: #E9EFF8 !important;
+  color: var(--c-shell-ink) !important;
 }
 body.pha-skin [class*="trainee"] [class*="lvl"],
 body.pha-skin [class*="trainee"] [class*="xp"],
@@ -652,13 +652,13 @@ body.pha-skin [class*="tooltip"]:not([class*="pha"]),
 body.pha-skin .tooltip,
 body.pha-skin [role="tooltip"] {
   background: var(--c-navy-2) !important;
-  color: #E9EFF8 !important;
+  color: var(--c-shell-ink) !important;
   border: 1px solid var(--c-line) !important;
 }
 body.pha-skin .toast,
 body.pha-skin [class*="toast"] {
   background: var(--c-navy-2) !important;
-  color: #E9EFF8 !important;
+  color: var(--c-shell-ink) !important;
   border-left-color: var(--c-cyan) !important;
 }
 

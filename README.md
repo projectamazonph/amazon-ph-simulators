@@ -4,9 +4,9 @@ A multi-page webapp that consolidates twelve live Amazon PPC training simulators
 
 > Train the VAs who run Amazon PPC for a living.
 
-Built from the eight chat-export JSONs in `../`. Each simulator was extracted from
-its conversation, audited, and re-skinned under a unified design system so the
-whole app looks like it was built from the ground up — not stitched together.
+Built from the eight chat-export JSONs in `../`. The extracted simulators now share
+one design-system cascade: central brand tokens, simulator-specific layout CSS, the
+unified skin, and the common application shell.
 
 ## Current platform status
 
@@ -15,7 +15,26 @@ whole app looks like it was built from the ground up — not stitched together.
 - Shared versioned attempt history surfaces Not started, In progress, Passed, best score, and attempt count in Coach and the hub.
 - One tested beginner PPC policy aligns evidence bands, negatives, bid changes, and budget scaling across lessons and simulators.
 - Scenario-bank infrastructure preserves stable simulator progress while recording the selected scenario and rubric versions; Campaign Architect and Account Audit now ship selectable beginner and intermediate packs.
-- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **76 passing tests**.
+- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **86 passing tests**.
+
+## Design-system architecture
+
+Every simulator and learning page loads presentation in the same order:
+
+1. `assets/fonts.css` — one shared brand-font bundle.
+2. `assets/tokens.css` — brand colors, typography, spacing, radii, and shadows.
+3. A simulator stylesheet — native layout and simulator-specific components.
+4. `assets/skin.css` — shared visual treatment without replacing simulator layout.
+5. `assets/shell.css` — shared navigation and footer, backed by the central tokens.
+
+Simulator HTML contains structure and behavior, not page-level `<style>` blocks.
+`tests/design-system-contract.test.cjs` protects this dependency order and prevents
+the inline monoliths or disconnected shell variables from returning.
+
+The shared shell also resolves nested documentation paths, provides mobile navigation,
+maintains 44px touch targets, respects reduced-motion preferences, and inserts a
+keyboard-accessible skip link. Interactive buttons declare their behavior explicitly,
+and all brand typography is delivered through the shared font tokens.
 
 ## Product context
 

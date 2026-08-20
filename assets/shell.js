@@ -36,18 +36,35 @@
     return match ? match.id : 'hub';
   }
 
+  // Nested documentation pages declare their path back to the app root.
+  function rootPrefix() {
+    return document.body.getAttribute('data-pha-root') || '';
+  }
+
+  function ensureSkipLink() {
+    if (document.querySelector('.pha-skip-link')) return;
+    var main = document.querySelector('main');
+    if (!main) return;
+    if (!main.id) main.id = 'pha-main-content';
+    var skip = document.createElement('a');
+    skip.className = 'pha-skip-link';
+    skip.href = '#' + main.id;
+    skip.textContent = 'Skip to content';
+    document.body.insertBefore(skip, document.body.firstChild);
+  }
+
   // Inject the unified design tokens + skin (if not already there)
   function injectSkin() {
-    if (document.querySelector('link[data-pha-tokens]')) return;
+    if (document.querySelector('link[data-pha-tokens], link[href$="assets/tokens.css"]')) return;
     var head = document.head;
     var t = document.createElement('link');
     t.rel = 'stylesheet';
-    t.href = 'assets/tokens.css';
+    t.href = rootPrefix() + 'assets/tokens.css';
     t.setAttribute('data-pha-tokens', '1');
     head.appendChild(t);
     var s = document.createElement('link');
     s.rel = 'stylesheet';
-    s.href = 'assets/skin.css';
+    s.href = rootPrefix() + 'assets/skin.css';
     s.setAttribute('data-pha-skin', '1');
     head.appendChild(s);
   }
@@ -55,11 +72,11 @@
   // Inject the responsive layer (mobile-first + hamburger + touch targets).
   // Loaded AFTER skin.css so its rules win specificity ties.
   function injectResponsive() {
-    if (document.querySelector('link[data-pha-responsive]')) return;
+    if (document.querySelector('link[data-pha-responsive], link[href$="assets/responsive.css"]')) return;
     var head = document.head;
     var r = document.createElement('link');
     r.rel = 'stylesheet';
-    r.href = 'assets/responsive.css';
+    r.href = rootPrefix() + 'assets/responsive.css';
     r.setAttribute('data-pha-responsive', '1');
     head.appendChild(r);
   }
@@ -87,7 +104,7 @@
     var toShow = TOOLS.filter(function (t) { return t.id !== currentId; });
     toShow.forEach(function (t) {
       var a = document.createElement('a');
-      a.href = t.file;
+      a.href = rootPrefix() + t.file;
       a.setAttribute('data-pha-tool', t.id);
       a.textContent = t.name;
       nav.appendChild(a);
@@ -220,21 +237,22 @@
 
   // Auto-inject topbar + footer if page didn't include them
   function ensureChrome() {
+    var root = rootPrefix();
     if (!document.querySelector('.pha-topbar')) {
       var toolId = currentToolId();
       var tool = TOOLS.find(function (t) { return t.id === toolId; });
       var isHub = toolId === 'hub' || !tool;
-      var toolName = isHub ? 'SimGrid' : tool.name;
-      var toolTag = isHub ? 'Control Hub' : tool.tag;
+      var toolName = document.body.getAttribute('data-pha-page-name') || (isHub ? 'SimGrid' : tool.name);
+      var toolTag = document.body.getAttribute('data-pha-page-tag') || (isHub ? 'Control Hub' : tool.tag);
       var bar = document.createElement('div');
       bar.className = 'pha-topbar';
       bar.setAttribute('role', 'banner');
       bar.innerHTML =
-        '<a class="pha-back" href="index.html" aria-label="' + (isHub ? 'Home' : 'Back to Academy Hub') + '">' +
+        '<a class="pha-back" href="' + root + 'index.html" aria-label="' + (isHub ? 'Home' : 'Back to Academy Hub') + '">' +
           '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 3 L5 8 L10 13" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
           '<span>' + (isHub ? 'Home' : 'Hub') + '</span>' +
         '</a>' +
-        '<a class="pha-brand" href="index.html" aria-label="Project Amazon PH Academy home">' +
+        '<a class="pha-brand" href="' + root + 'index.html" aria-label="Project Amazon PH Academy home">' +
           '<div class="pha-brand-mark" aria-hidden="true">PH</div>' +
           '<div class="pha-brand-text"><b>Project Amazon PH</b><span>Academy · SimGrid</span></div>' +
         '</a>' +
@@ -253,8 +271,8 @@
       f.innerHTML =
         '<div><b>PROJECT AMAZON PH</b> &nbsp;·&nbsp; Academy SimGrid</div>' +
         '<div class="pha-foot-links">' +
-          '<a href="index.html">Hub</a>' +
-          TOOLS.map(function (t) { return '<a href="' + t.file + '">' + t.name + '</a>'; }).join('') +
+          '<a href="' + root + 'index.html">Hub</a>' +
+          TOOLS.map(function (t) { return '<a href="' + root + t.file + '">' + t.name + '</a>'; }).join('') +
         '</div>' +
         '<div class="pha-foot-meta">v1.0 · ' + (document.body.getAttribute('data-pha-tool') ? 'Tool module' : 'Control Hub') + '</div>';
       document.body.appendChild(f);
@@ -300,6 +318,7 @@
     injectSkin();
     injectResponsive();
     ensureChrome();
+    ensureSkipLink();
     applySkin();
     wrapContent();
     buildNav(currentToolId());

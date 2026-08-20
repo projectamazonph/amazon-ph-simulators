@@ -15,18 +15,41 @@
 
 /* ---------- shell tokens ---------- */
 :root {
-  --shell-navy: #131921;
-  --shell-navy-2: #232F3E;
-  --shell-ink: #E9EFF8;
-  --shell-dim: #99A5B4;
-  --shell-faint: #6E7B8B;
-  --shell-orange: #FF9900;
-  --shell-orange-h: #FFA41C;
-  --shell-line: #2A3543;
+  --shell-navy: var(--c-navy-2);
+  --shell-navy-2: var(--c-navy-3);
+  --shell-ink: var(--c-shell-ink);
+  --shell-dim: var(--c-shell-dim);
+  --shell-faint: var(--c-shell-faint);
+  --shell-orange: var(--c-orange);
+  --shell-orange-h: var(--c-orange-h);
+  --shell-line: var(--c-shell-line);
   --shell-bg-soft: rgba(255, 255, 255, 0.04);
-  --shell-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  --shell-radius: 6px;
+  --shell-shadow: var(--sh-2);
+  --shell-radius: var(--r-md);
   --shell-bar-h: 56px;
+}
+
+.pha-skip-link {
+  position: fixed;
+  top: var(--sp-2);
+  left: var(--sp-2);
+  z-index: 10000;
+  padding: var(--sp-2) var(--sp-4);
+  color: var(--c-navy-2);
+  background: var(--c-orange);
+  border: 2px solid var(--c-navy-2);
+  border-radius: var(--r-md);
+  font-family: var(--font-disp);
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  transform: translateY(calc(-100% - var(--sp-4)));
+  transition: transform var(--d-fast) var(--ease);
+}
+
+.pha-skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--c-card);
+  outline-offset: 2px;
 }
 
 /* ---------- top bar ---------- */
@@ -42,7 +65,7 @@
   align-items: center;
   gap: 12px;
   padding: 0 16px;
-  font-family: 'Archivo', 'Inter', system-ui, sans-serif;
+  font-family:var(--font-disp);
   color: var(--shell-ink);
   flex-wrap: nowrap;
   min-width: 0;
@@ -95,7 +118,7 @@
   width: 30px;
   height: 30px;
   border-radius: 6px;
-  background: linear-gradient(135deg, var(--shell-orange) 0%, #E47911 100%);
+  background: linear-gradient(135deg, var(--shell-orange) 0%, var(--c-orange-d) 100%);
   display: grid;
   place-items: center;
   color: var(--shell-navy);
@@ -236,7 +259,7 @@
   background: linear-gradient(180deg, #0E1318 0%, #0A0E13 100%);
   color: var(--shell-dim);
   border-top: 1px solid #000;
-  font-family: 'Archivo', 'Inter', system-ui, sans-serif;
+  font-family:var(--font-disp);
   padding: 16px 22px;
   display: flex;
   align-items: center;

@@ -1,0 +1,23 @@
+/* ppc-coach.html — simulator-specific layout and components.
+   Brand primitives come from tokens.css; skin.css provides the shared visual layer. */
+::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:8px}::-webkit-scrollbar-track{background:transparent}
+  .view{animation:fadeUp .35s ease both}@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes popIn{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+  @keyframes slideIn{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}
+  @keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
+  @keyframes growW{from{width:0}}
+  .toast{animation:slideIn .3s ease both}.pop{animation:popIn .35s ease both}
+  .dot{width:6px;height:6px;border-radius:9999px;background:#64748b;animation:blink 1s infinite}
+  .dot:nth-child(2){animation-delay:.15s}.dot:nth-child(3){animation-delay:.3s}
+  .bar{transition:width .7s cubic-bezier(.22,1,.36,1)}
+  .funnelbar{animation:growW .8s cubic-bezier(.22,1,.36,1) both}
+  .navbtn.active{background:linear-gradient(90deg,var(--c-orange),#FFB84D);color:#0F172A;font-weight:700;box-shadow:0 6px 16px rgba(255,153,0,.35)}
+  .navbtn.active svg{stroke:#0F172A}
+  .statcard{transition:transform .25s ease, box-shadow .25s ease}.statcard:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(15,23,42,.12)}
+  .gloss{transition:all .25s ease}.gloss:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(15,23,42,.12)}
+  .lessonblock table{width:100%;border-collapse:collapse;font-size:.85rem}
+  .lessonblock th{background:#0F172A;color:#fff;text-align:left;padding:.5rem .75rem}
+  .lessonblock td{padding:.5rem .75rem;border-bottom:1px solid #e2e8f0}
+  .lessonblock tr:nth-child(even) td{background:#f8fafc}
+  .chatmsg{animation:fadeUp .3s ease both}
+  .diagstep{transition:transform .2s ease}.diagstep:hover{transform:scale(1.04)}

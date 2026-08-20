@@ -1,0 +1,343 @@
+/* sqp-studio.html — simulator-specific layout and components.
+   Brand primitives come from tokens.css; skin.css provides the shared visual layer. */
+:root {
+  --sqp-bg: #f6f4ee;
+  --sqp-ink: #18212f;
+  --sqp-muted: #667085;
+  --sqp-line: #d8d1c4;
+  --sqp-card: #fffdf8;
+  --sqp-orange: var(--c-orange);
+  --sqp-orange-dark: #b86b00;
+  --sqp-green: #137a4c;
+  --sqp-red: #ba2f2f;
+  --sqp-blue: #2563eb;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--sqp-ink);
+  background: var(--sqp-bg);
+  font-family:var(--font-body);
+}
+
+.sqp-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 34px 22px 64px;
+}
+
+.sqp-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+  gap: 18px;
+  align-items: stretch;
+  margin-bottom: 22px;
+}
+
+.sqp-panel {
+  background: var(--sqp-card);
+  border: 1px solid var(--sqp-line);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(35, 31, 25, .08);
+}
+
+.sqp-brief {
+  padding: 28px;
+}
+
+.sqp-kicker,
+.sqp-label,
+.sqp-pill,
+.sqp-small,
+.sqp-table th,
+.sqp-result-score,
+.sqp-btn {
+  font-family:var(--font-mono);
+}
+
+.sqp-kicker {
+  color: var(--sqp-orange-dark);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.sqp-brief h1 {
+  font-family:var(--font-disp);
+  font-size: clamp(36px, 6vw, 72px);
+  line-height: .94;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.sqp-brief h1 em {
+  color: var(--sqp-orange-dark);
+  font-style: normal;
+}
+
+.sqp-brief p {
+  color: var(--sqp-muted);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 720px;
+  margin: 18px 0 0;
+}
+
+.sqp-scorecard {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.sqp-result-score {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -.04em;
+}
+
+.sqp-result-score span {
+  color: var(--sqp-muted);
+  font-size: 18px;
+}
+
+.sqp-status {
+  display: inline-flex;
+  width: fit-content;
+  border: 1px solid rgba(255, 153, 0, .35);
+  border-left: 4px solid var(--sqp-orange);
+  border-radius: 4px;
+  padding: 5px 9px;
+  color: var(--sqp-orange-dark);
+  background: rgba(255, 153, 0, .08);
+  font-weight: 700;
+}
+
+.sqp-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 18px;
+  align-items: start;
+}
+
+.sqp-workspace {
+  overflow: hidden;
+}
+
+.sqp-section-head {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--sqp-line);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.sqp-section-head h2 {
+  margin: 0;
+  font-family:var(--font-disp);
+  font-size: 22px;
+}
+
+.sqp-table-wrap {
+  overflow-x: auto;
+}
+
+.sqp-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 960px;
+}
+
+.sqp-table th,
+.sqp-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--sqp-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.sqp-table th {
+  color: var(--sqp-muted);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  background: #f8f2e7;
+}
+
+.sqp-query {
+  font-weight: 700;
+  min-width: 170px;
+}
+
+.sqp-metric {
+  font-family:var(--font-mono);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.sqp-select {
+  width: 100%;
+  min-width: 170px;
+  border: 1px solid var(--sqp-line);
+  border-radius: 6px;
+  padding: 9px 10px;
+  background: #fff;
+  color: var(--sqp-ink);
+  font: inherit;
+}
+
+.sqp-sidebar {
+  padding: 20px;
+  position: sticky;
+  top: 86px;
+}
+
+.sqp-sidebar h2 {
+  margin: 0 0 12px;
+  font-family:var(--font-disp);
+  font-size: 22px;
+}
+
+.sqp-rule {
+  padding: 12px 0;
+  border-top: 1px dashed var(--sqp-line);
+}
+
+.sqp-rule b {
+  display: block;
+  margin-bottom: 3px;
+}
+
+.sqp-rule span,
+.sqp-small {
+  color: var(--sqp-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sqp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 18px 20px;
+  background: #f8f2e7;
+}
+
+.sqp-btn {
+  border: 0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.sqp-btn-primary {
+  color: #1b1203;
+  background: var(--sqp-orange);
+}
+
+.sqp-btn-secondary {
+  color: var(--sqp-ink);
+  background: #fff;
+  border: 1px solid var(--sqp-line);
+}
+
+.sqp-feedback {
+  margin-top: 18px;
+  padding: 20px;
+}
+
+.sqp-feedback h2 {
+  margin: 0 0 12px;
+  font-family:var(--font-disp);
+}
+
+.sqp-feedback-list {
+  display: grid;
+  gap: 10px;
+}
+
+.sqp-feedback-item {
+  border: 1px solid var(--sqp-line);
+  border-left: 4px solid var(--sqp-red);
+  border-radius: 6px;
+  padding: 12px;
+  background: #fff;
+}
+
+.sqp-feedback-item.is-correct {
+  border-left-color: var(--sqp-green);
+}
+
+.sqp-feedback-item b {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.sqp-back {
+  display: inline-flex;
+  margin: 0 0 18px;
+  color: var(--sqp-orange-dark);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .sqp-hero,
+  .sqp-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sqp-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .sqp-page { padding: 24px 14px 46px; }
+  .sqp-section-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .sqp-table-wrap { overflow: visible; }
+  .sqp-table,
+  .sqp-table tbody,
+  .sqp-table tr,
+  .sqp-table td {
+    display: block;
+    width: 100%;
+  }
+  .sqp-table { min-width: 0; }
+  .sqp-table thead { display: none; }
+  .sqp-table tr {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--sqp-line);
+  }
+  .sqp-table td {
+    min-width: 0;
+    padding: 7px 0;
+    border: 0;
+    white-space: normal;
+  }
+  .sqp-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 4px;
+    color: var(--sqp-muted);
+    font-family:var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .sqp-select { min-width: 0; }
+  .sqp-actions .sqp-btn { flex: 1 1 100%; }
+}
