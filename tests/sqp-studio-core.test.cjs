@@ -44,15 +44,23 @@ test('gradeAttempt rewards correct SQP diagnoses and practical follow-up checks'
     'bento-accessories': {
       diagnosis: 'reduce_waste',
       followUp: 'tighten_targeting'
+    },
+    'school-lunch-set': {
+      diagnosis: 'scale_visibility',
+      followUp: 'increase_coverage'
+    },
+    'lunch-box-cheap': {
+      diagnosis: 'fix_listing_conversion',
+      followUp: 'audit_pdp'
     }
   };
 
   const result = gradeAttempt(SQP_STUDIO_SCENARIO, attempt);
 
-  assert.equal(result.score, 100);
-  assert.equal(result.maxScore, 100);
-  assert.equal(result.correctDecisions, 4);
-  assert.equal(result.totalDecisions, 4);
+  assert.equal(result.score, 150);
+  assert.equal(result.maxScore, 150);
+  assert.equal(result.correctDecisions, 6);
+  assert.equal(result.totalDecisions, 6);
   assert.equal(result.passed, true);
   assert.match(result.summary, /strong SQP read/i);
 });
@@ -71,11 +79,11 @@ test('gradeAttempt identifies missed evidence and keeps scoring deterministic', 
 
   const result = gradeAttempt(SQP_STUDIO_SCENARIO, attempt);
 
-  assert.equal(result.maxScore, 100);
+  assert.equal(result.maxScore, 150);
   assert.equal(result.correctDecisions, 0);
-  assert.equal(result.totalDecisions, 4);
+  assert.equal(result.totalDecisions, 6);
   assert.equal(result.passed, false);
-  assert.equal(result.items.length, 4);
+  assert.equal(result.items.length, 6);
   assert.equal(result.items[0].queryId, 'stainless-lunch-box');
   assert.equal(result.items[0].earned, 0);
   assert.match(result.items[0].feedback, /visibility is the constraint/i);
