@@ -44,7 +44,6 @@
       "releaseType": "release"
     },
     "win": {
-      "publisherName": "Project Amazon PH Academy",
       "target": [
         {
           "target": "nsis",
