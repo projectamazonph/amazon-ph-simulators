@@ -10,7 +10,7 @@ test('SimHub start cards use the established full-card link interaction', () => 
   const html = read('index.html');
   const start = html.match(/<section class="pha-tools" id="learning-start">([\s\S]*?)<\/section>/)?.[1] || '';
 
-  assert.equal((start.match(/<a class="pha-tcard/g) || []).length, 2);
+  assert.equal((start.match(/<a class="pha-tcard/g) || []).length, 3);
   assert.equal(start.includes('<article class="pha-tcard'), false);
 });
 
