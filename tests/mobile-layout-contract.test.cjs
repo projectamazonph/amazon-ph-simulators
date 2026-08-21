@@ -10,7 +10,7 @@ test('SimHub start cards use the established full-card link interaction', () => 
   const html = read('index.html');
   const start = html.match(/<section class="pha-tools" id="learning-start">([\s\S]*?)<\/section>/)?.[1] || '';
 
-  assert.equal((start.match(/<a class="pha-tcard/g) || []).length, 3);
+  assert.equal((start.match(/<a class="pha-tcard/g) || []).length, 4);
   assert.equal(start.includes('<article class="pha-tcard'), false);
 });
 
@@ -51,7 +51,7 @@ test('hub progress presentation inherits the existing theme without inline color
 
 test('PPC Coach progress uses its established brand treatment instead of status palettes', () => {
   const coach = read('ppc-coach.html');
-  const practiceRenderer = coach.match(/function renderModulePractice[\s\S]*?\n}\n/)?.[0] || '';
+  const practiceRenderer = coach.match(/function renderModulePractice[\s\S]*?\r?\n}\r?\n/)?.[0] || '';
 
   assert.equal(practiceRenderer.includes("view.tone==='success'"), false);
   assert.match(practiceRenderer, /bg-brand-50 text-brand-700 border border-brand-200/);
