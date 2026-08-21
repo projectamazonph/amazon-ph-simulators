@@ -1,6 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const SearchTriageCore = require('../assets/search-triage-core.js');
 
 function read(file) {
   return fs.readFileSync(file, 'utf8');
@@ -28,12 +29,11 @@ test('Account Audit derives waste and budget findings from the shared PPC policy
 test('Search Triage separates relevant zero-order diagnosis from confirmed irrelevance', () => {
   const page = read('search-triage.html');
 
-  assert.doesNotMatch(page, /10\+ clicks and still no orders[^<]*<\/b>\s*<span>It had its chance[^<]*negate/i);
-  assert.match(page, /20–39 clicks[\s\S]{0,180}diagnose/i);
-  assert.match(page, /40\+ clicks[\s\S]{0,180}(lower|pause)/i);
-  assert.match(page, /case 'zero':return A\('KEEP'/);
-  assert.match(page, /case 'early':return A\('KEEP'/);
-  assert.doesNotMatch(page, /case 'early':return A\('HARVEST'/);
+  assert.match(page, /src="assets\/search-triage-core\.js"/);
+  assert.equal(SearchTriageCore.expertFor({ cls: 'zero', m: { clicks: 25, orders: 0 } }, { margin: 35 }).a, 'KEEP');
+  assert.equal(SearchTriageCore.expertFor({ cls: 'irr', m: {} }, { margin: 35 }).a, 'NEG_EXACT');
+  assert.equal(SearchTriageCore.expertFor({ cls: 'pat', word: 'free', m: {} }, { margin: 35 }).a, 'NEG_PHRASE');
+  assert.equal(SearchTriageCore.expertFor({ cls: 'early', m: { clicks: 6, orders: 1 } }, { margin: 35 }).a, 'KEEP');
 });
 
 test('Keyword Lab does not pause relevant zero-order traffic at fifteen clicks', () => {

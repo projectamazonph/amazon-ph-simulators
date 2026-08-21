@@ -9,7 +9,8 @@ function createMemoryStorage(initialValue) {
   return {
     getItem(key) { return values.has(key) ? values.get(key) : null; },
     setItem(key, value) { values.set(key, value); },
-    removeItem(key) { values.delete(key); }
+    removeItem(key) { values.delete(key); },
+    dump(key) { return values.get(key) || null; }
   };
 }
 
@@ -90,7 +91,56 @@ test('recordAttempt rejects incomplete versioned attempt data', () => {
   );
 });
 
-test('progress history preserves optional scenario identity', () => {
+test('progress store migrates v1 state and filters malformed historical attempts', () => {
+  const storage = createMemoryStorage(JSON.stringify({
+    version: 1,
+    attempts: [
+      {
+        simulatorId: 'account-audit',
+        scenarioVersion: '1.0.0',
+        rubricVersion: '1.0.0',
+        score: 80,
+        passed: true,
+        completedAt: '2026-08-20T13:00:00.000Z'
+      },
+      {
+        simulatorId: 'account-audit',
+        scenarioVersion: '1.0.0',
+        rubricVersion: '1.0.0',
+        score: 140,
+        passed: false,
+        completedAt: '2026-08-20T13:01:00.000Z'
+      },
+      { simulatorId: 'account-audit', score: 20 }
+    ]
+  }));
+  const store = StudentProgress.createProgressStore(storage, 'test-progress');
+
+  assert.equal(store.getSimulatorProgress('account-audit').attemptCount, 1);
+  assert.equal(store.getSimulatorProgress('account-audit').bestScore, 80);
+  assert.deepEqual(JSON.parse(storage.dump('test-progress')), {
+    version: StudentProgress.STATE_VERSION,
+    attempts: [{
+      simulatorId: 'account-audit',
+      scenarioVersion: '1.0.0',
+      rubricVersion: '1.0.0',
+      score: 80,
+      passed: true,
+      completedAt: '2026-08-20T13:00:00.000Z'
+    }]
+  });
+});
+
+test('recordAttempt rejects scores outside the normalized range', () => {
+  const store = StudentProgress.createProgressStore(createMemoryStorage(), 'test-progress');
+
+  assert.throws(() => store.recordAttempt({
+    simulatorId: 'bid-decisions', scenarioVersion: '1.0.0', rubricVersion: '1.0.0',
+    score: 101, passed: true, completedAt: '2026-08-20T13:00:00.000Z'
+  }), /score must be a finite number from 0 to 100/);
+});
+
+test('progress history preserves optional scenario and policy identity', () => {
   const storage = createMemoryStorage();
   const store = StudentProgress.createProgressStore(storage);
   store.recordAttempt({
@@ -98,10 +148,12 @@ test('progress history preserves optional scenario identity', () => {
     scenarioId: 'bid-decisions-intermediate-lunchbox',
     scenarioVersion: '1.0.0',
     rubricVersion: '1.0.0',
+    policyVersion: '1.0.0',
     score: 80,
     passed: true,
     completedAt: '2026-08-20T12:00:00.000Z'
   });
 
   assert.equal(store.getSimulatorProgress('bid-decisions').latestAttempt.scenarioId, 'bid-decisions-intermediate-lunchbox');
+  assert.equal(store.getSimulatorProgress('bid-decisions').latestAttempt.policyVersion, '1.0.0');
 });

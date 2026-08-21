@@ -8,6 +8,7 @@
 
 <script src="assets/student-progress.js"></script>
 <script src="assets/simulator-attempt.js"></script>
+<script src="assets/search-triage-core.js"></script>
 
 <script src="assets/shell.js" defer></script>
 <link rel="stylesheet" href="assets/fonts.css">
@@ -594,18 +595,7 @@ function genMetrics(cls,sc,diff){
   return{clicks,cpc,orders,spend,impr,sales,acos:sales>0?spend/sales*100:null,ctr:clicks/impr*100,cvr:clicks>0?orders/clicks*100:0};
 }
 function expertFor(item,sc){
-  const m=item.m,be=sc.margin,A=(a,why,alt)=>({a,why,alt:alt||null});
-  switch(item.cls){
-    case 'winner':return A('HARVEST',`This one's a keeper: relevant shoppers and ${m.orders} orders at ${m.acos.toFixed(1)}% ACOS — comfortably under your ${be}% break-even. Graduating it to Exact lets you control the bid and let it grow.`);
-    case 'head':return A('KEEP',`Good news — it sells! But ${m.acos.toFixed(1)}% ACOS sits above your ${be}% break-even, so each order costs you a little. Don't cut it; ease the bid down and check back in 7 days.`);
-    case 'starved':return A('KEEP',`Only ${m.clicks} clicks so far — that's a whisper, not a verdict. Let it run a little longer and gather a fair sample.`);
-    case 'zero':return A('KEEP',`The intent is relevant, so zero orders is not an automatic negative. At ${m.clicks} clicks, diagnose the query, listing, price, and offer; keep monitoring or reduce the bid rather than blocking relevant demand.`);
-    case 'irr':return A('NEG_EXACT',`This shopper was looking for something you don't sell. You can tell from the words alone — no data needed. A gentle negative exact does it.`);
-    case 'pat':return A('NEG_PHRASE',`See the word "${item.word}"? It shows up in a whole family of queries you don't want. One phrase negative tidies them all up at once.`);
-    case 'comp':return A('NEG_EXACT',`They searched for another brand by name. At this price point that's traffic you can't win — let it go, no hard feelings.`);
-    case 'trap':return A('NEG_EXACT',`One order feels encouraging, but the intent doesn't fit your product. Traffic like this tends to turn into returns — better to close it now, kindly.`);
-    case 'early':return A('KEEP',`A first order on only ${m.clicks} clicks is promising but still thin evidence. Keep it running until the conversion signal repeats before harvesting.`);
-  }
+  return SearchTriageCore.expertFor(item,sc);
 }
 
 /* ============ STATE / HEADER ============ */

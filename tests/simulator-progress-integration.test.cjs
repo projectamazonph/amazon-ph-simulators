@@ -30,6 +30,21 @@ test('graded simulator result becomes a versioned progress attempt', () => {
   });
 });
 
+test('policy version is preserved when normalizing a policy-coupled attempt', () => {
+  const attempt = SimulatorAttempt.buildAttemptRecord({
+    scenario: {
+      id: 'bid-decisions',
+      version: '1.0.0',
+      rubricVersion: '1.0.0',
+      policyVersion: '1.0.0'
+    },
+    result: { score: 25, maxScore: 25, passed: true },
+    completedAt: '2026-08-20T13:30:00.000Z'
+  });
+
+  assert.equal(attempt.policyVersion, '1.0.0');
+});
+
 test('attempt score is normalized when a simulator uses a non-100 maximum', () => {
   const attempt = SimulatorAttempt.buildAttemptRecord({
     scenario: { id: 'example', version: '2.0.0', rubricVersion: '3.0.0' },
@@ -105,10 +120,22 @@ test('Search Term Triage records completed rounds through shared progress', () =
   const page = read('search-triage.html');
 
   assert.match(page, /src="assets\/student-progress\.js"/);
+  assert.match(page, /src="assets\/search-triage-core\.js"/);
   assert.match(page, /src="assets\/simulator-attempt\.js"/);
   assert.match(page, /simulatorId:'search-triage'/);
   assert.match(page, /Math\.round\(acc\*100\)/);
   assert.match(page, /SimulatorAttempt\.buildAttemptRecord/);
+});
+
+test('policy-coupled scenarios expose a stable policy version', () => {
+  const BidDecisions = require('../assets/bid-decisions-core.js');
+  const AccountAudit = require('../assets/account-audit-core.js');
+  const Policy = require('../assets/ppc-decision-policy.js');
+
+  assert.equal(Policy.VERSION, '1.0.0');
+  assert.equal(BidDecisions.BID_DECISIONS_SCENARIO.policyVersion, Policy.VERSION);
+  assert.equal(AccountAudit.ACCOUNT_AUDIT_SCENARIO.policyVersion, Policy.VERSION);
+  assert.equal(AccountAudit.ACCOUNT_AUDIT_INTERMEDIATE_SCENARIO.policyVersion, Policy.VERSION);
 });
 
 test('AdConsole records Academy completion through shared progress', () => {
