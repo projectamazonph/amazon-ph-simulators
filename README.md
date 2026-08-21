@@ -213,7 +213,7 @@ No build step. No dependencies. No backend. Everything is in the page.
 
 ### Build the desktop app
 
-Install Node.js 20 or newer, then run these commands from the repository root:
+Install Node.js 22.12 or newer, then run these commands from the repository root:
 
 ```powershell
 npm install
