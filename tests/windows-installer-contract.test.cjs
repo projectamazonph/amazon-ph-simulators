@@ -26,7 +26,7 @@ test('Windows packaging includes every runtime directory used by the app', () =>
   assert.equal(packageJson.build.win.target[0].target, 'nsis');
   assert.equal(packageJson.build.win.target[0].arch[0], 'x64');
   assert.equal(packageJson.build.nsis.runAfterFinish, true);
-  assert.equal(packageJson.build.publisherName, 'Project Amazon PH Academy');
+  assert.equal(packageJson.author, 'Project Amazon PH Academy');
   assert.equal(packageJson.build.nsis.menuCategory, 'Project Amazon PH Academy');
   assert.equal(packageJson.build.nsis.license, 'build/installer-info.txt');
   assert.ok(fs.existsSync(path.join(root, 'build/installer-info.txt')));
