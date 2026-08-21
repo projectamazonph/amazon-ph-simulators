@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://private-us-east-1.manuscdn.com https://projectamazonph.github.io; font-src 'self' data: https://fonts.googleapis.com https://fonts.gstatic.com; connect-src 'self'; form-action 'self'">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teaching Deck Viewer — Project Amazon PH Academy</title>
+  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="assets/skin.css">
+  <link rel="stylesheet" href="assets/coach-decks.css">
+  <link rel="stylesheet" href="assets/shell.css">
+</head>
+<body>
+  <main class="deck-viewer-main">
+    <header class="deck-viewer-header">
+      <a class="deck-back" href="coach-tools.html">← Coach Tools</a>
+      <div class="deck-viewer-title"><span class="deck-kicker">Teaching deck viewer</span><h1 id="deckTitle">Marketplace, PPC &amp; Money Math</h1></div>
+      <label class="deck-select-label">Deck
+        <select id="deckSelect" aria-label="Select teaching deck">
+          <option value="1">01 · Foundations &amp; Money Math</option>
+          <option value="2">02 · Structure, Keywords &amp; Readiness</option>
+          <option value="3">03 · Launch, Bids &amp; Harvesting</option>
+          <option value="4">04 · Operations, Reporting &amp; Capstone</option>
+        </select>
+      </label>
+    </header>
+    <section class="deck-stage-wrap" aria-live="polite">
+      <div class="deck-stage" id="deckStage"><iframe id="deckFrame" title="Teaching slide" scrolling="no"></iframe></div>
+    </section>
+    <nav class="deck-controls" aria-label="Slide controls">
+      <button id="prevSlide" type="button">← Previous</button>
+      <div class="deck-progress"><span id="slideCounter">Slide 1 of 12</span><div class="deck-progress-track"><span id="deckProgress"></span></div></div>
+      <button id="nextSlide" type="button">Next →</button>
+    </nav>
+    <p class="deck-help">Use <kbd>←</kbd> and <kbd>→</kbd> to navigate. The teaching tools and downloadable worksheets are in <a href="coach-tools.html#downloads">Coach Tools</a>.</p>
+  </main>
+  <script>
+    const decks = {
+      1: { title: 'Marketplace, PPC & Money Math', folder: 'deck1', files: ['cover.html','slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html'] },
+      2: { title: 'Structure, Keywords & Listing Readiness', folder: 'deck2', files: ['cover.html','slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html'] },
+      3: { title: 'Launch, Bids & Optimization', folder: 'deck3', files: ['cover.html','slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html'] },
+      4: { title: 'Reporting, Workflow & Capstone', folder: 'deck4', files: ['cover.html','slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html'] }
+    };
+    const requestedDeck = new URLSearchParams(window.location.search).get('deck');
+    let deckId = decks[requestedDeck] ? requestedDeck : '1';
+    let slideIndex = 0;
+    const frame = document.getElementById('deckFrame');
+    const stage = document.getElementById('deckStage');
+    const title = document.getElementById('deckTitle');
+    const select = document.getElementById('deckSelect');
+    const counter = document.getElementById('slideCounter');
+    const progress = document.getElementById('deckProgress');
+    function renderSlide() {
+      const deck = decks[deckId];
+      title.textContent = deck.title;
+      select.value = deckId;
+      frame.src = `coach-decks/${deck.folder}/${deck.files[slideIndex]}`;
+      counter.textContent = `Slide ${slideIndex + 1} of ${deck.files.length}`;
+      progress.style.width = `${((slideIndex + 1) / deck.files.length) * 100}%`;
+      document.getElementById('prevSlide').disabled = slideIndex === 0;
+      document.getElementById('nextSlide').disabled = slideIndex === deck.files.length - 1;
+      history.replaceState(null, '', `?deck=${deckId}&slide=${slideIndex + 1}`);
+    }
+    function fitFrame() { frame.style.transform = `scale(${stage.clientWidth / 1280})`; }
+    document.getElementById('prevSlide').addEventListener('click', () => { if (slideIndex > 0) { slideIndex--; renderSlide(); } });
+    document.getElementById('nextSlide').addEventListener('click', () => { if (slideIndex < decks[deckId].files.length - 1) { slideIndex++; renderSlide(); } });
+    select.addEventListener('change', (event) => { deckId = event.target.value; slideIndex = 0; renderSlide(); });
+    window.addEventListener('keydown', (event) => { if (event.key === 'ArrowLeft' && slideIndex > 0) { slideIndex--; renderSlide(); } if (event.key === 'ArrowRight' && slideIndex < decks[deckId].files.length - 1) { slideIndex++; renderSlide(); } });
+    window.addEventListener('resize', fitFrame);
+    const requestedSlide = Number(new URLSearchParams(window.location.search).get('slide'));
+    if (Number.isInteger(requestedSlide) && requestedSlide > 0 && requestedSlide <= decks[deckId].files.length) slideIndex = requestedSlide - 1;
+    renderSlide(); fitFrame();
+  </script>
+</body>
+</html>

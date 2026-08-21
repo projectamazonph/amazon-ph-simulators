@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 20px 60px;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .left-col {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        /* place all info blocks side-by-side to avoid extra stacked height */
+        .left-grid {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-block {
+            background-color: #FFFFFF;
+            border: 8px solid #131921;
+            padding: 12px 18px;
+        }
+        .info-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #111111;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            border-bottom: 4px solid #FF9900;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+        .info-text {
+            font-size: 22px;
+            color: #333333;
+            line-height: 1.4;
+        }
+        .info-text ul { margin-left: 30px; margin-top: 6px; }
+        .info-text li { margin-bottom: 4px; }
+        .exit-block {
+            background-color: #131921;
+            border: 8px solid #FF9900;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .exit-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #FF9900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+        .exit-text {
+            font-size: 32px;
+            color: #FFFFFF;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .left-grid .info-block { flex: 1; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Launch-and-optimize evidence gate</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <div class="left-grid">
+                    <div class="info-block">
+                        <div class="info-title">Assignment</div>
+                        <div class="info-text">
+                            Submit a comprehensive launch-and-optimize packet:
+                            <ul>
+                                <li>Four-week plan &amp; budget split</li>
+                                <li>Three bid-change hypotheses</li>
+                                <li>Search-term harvest table</li>
+                                <li>Dated change log</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-title">Assessment</div>
+                        <div class="info-text">
+                            <ul>
+                                <li>Modules 6–9 quizzes at <span class="highlight">70%+</span></li>
+                                <li>All assigned simulators at <span class="highlight">75%+</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Rubric moved into the left grid so it shares the same row and reduces stacked height -->
+                    <div class="info-block">
+                        <div class="info-title">Rubric</div>
+                        <div class="info-text">
+                            <ul>
+                                <li>Sequencing: <span class="highlight">25%</span></li>
+                                <li>Economics: <span class="highlight">25%</span></li>
+                                <li>Evidence thresholds: <span class="highlight">25%</span></li>
+                                <li>Documentation: <span class="highlight">25%</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-col">
+                <div class="exit-block">
+                    <div class="exit-title">Exit Prompt</div>
+                    <div class="exit-text">Choose one change and one thing you would deliberately not change yet.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

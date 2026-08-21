@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px; /* keep per requirement */
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px; /* Do not change upper/title padding */
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        /* Reduced vertical padding to save height */
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 48px; /* was 60px; top/bottom reduced from 60+60=120 to 48+48=96 => saves 24px */
+        }
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 8px solid #131921;
+            background-color: #FFFFFF;
+        }
+        /* Reduced cell padding to compress rows without changing font size */
+        .diagnostic-table th, .diagnostic-table td {
+            border: 2px solid #131921;
+            padding: 12px 16px; /* was 25px 30px; reduces each row height significantly */
+            text-align: left;
+            font-size: 28px; /* unchanged */
+            color: #333333;
+        }
+        .diagnostic-table th {
+            background-color: #131921;
+            color: #FFFFFF;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .diagnostic-table tr:nth-child(even) {
+            background-color: #E2E8F0;
+        }
+        .col-symptom {
+            width: 35%;
+            font-weight: 700;
+            color: #111111;
+        }
+        .col-leak {
+            width: 25%;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            color: #0052FF;
+        }
+        .col-response {
+            width: 40%;
+        }
+        .symptom-high {
+            color: #10B981;
+        }
+        .symptom-low {
+            color: #B12704;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Diagnose conversion before raising bids</h1>
+        </div>
+        <div class="content-area">
+            <table class="diagnostic-table">
+                <thead>
+                    <tr>
+                        <th class="col-symptom">Symptom</th>
+                        <th class="col-leak">Likely Leak</th>
+                        <th class="col-response">First Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-symptom">High CTR, Low Conversion</td>
+                        <td class="col-leak">Page or price</td>
+                        <td class="col-response">Improve listing / check price</td>
+                    </tr>
+                    <tr>
+                        <td class="col-symptom">Low CTR, High Conversion</td>
+                        <td class="col-leak">Weak hook</td>
+                        <td class="col-response">Improve image and title</td>
+                    </tr>
+                    <tr>
+                        <td class="col-symptom">Low CTR, Low Conversion</td>
+                        <td class="col-leak">Targeting or offer</td>
+                        <td class="col-response">Refine targeting and page</td>
+                    </tr>
+                    <tr>
+                        <td class="col-symptom">High CTR, High Conversion</td>
+                        <td class="col-leak">Working system</td>
+                        <td class="col-response">Scale carefully</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

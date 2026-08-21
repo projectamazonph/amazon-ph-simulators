@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 40px 60px;
+            gap: 40px;
+        }
+        .left-col {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .right-col {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #E2E8F0;
+            border: 8px solid #131921;
+            padding: 30px;
+        }
+        .match-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 8px solid #131921;
+            background-color: #FFFFFF;
+        }
+        .match-table th, .match-table td {
+            border: 2px solid #131921;
+            padding: 15px 20px;
+            text-align: left;
+            font-size: 24px;
+            color: #333333;
+        }
+        .match-table th {
+            background-color: #131921;
+            color: #FFFFFF;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .match-table tr:nth-child(even) {
+            background-color: #E2E8F0;
+        }
+        .col-type {
+            font-weight: 700;
+            color: #111111;
+        }
+        .col-reach, .col-control {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            color: #0052FF;
+        }
+        .video-container {
+            width: 100%;
+            text-align: center;
+        }
+        .video-thumbnail {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border: 4px solid #131921;
+            margin-bottom: 20px;
+        }
+        .watch-label {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FF9900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .video-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #131921;
+            font-style: italic;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Match types trade reach for control</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <table class="match-table">
+                    <thead>
+                        <tr>
+                            <th>Match type</th>
+                            <th>Reach</th>
+                            <th>Control</th>
+                            <th>Core use</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-type">Broad</td>
+                            <td class="col-reach">High</td>
+                            <td class="col-control">Low</td>
+                            <td>Discover related queries</td>
+                        </tr>
+                        <tr>
+                            <td class="col-type">Phrase</td>
+                            <td class="col-reach">Medium</td>
+                            <td class="col-control">Medium</td>
+                            <td>Test phrase-contained intent</td>
+                        </tr>
+                        <tr>
+                            <td class="col-type">Exact</td>
+                            <td class="col-reach">Low</td>
+                            <td class="col-control">High</td>
+                            <td>Concentrate proven demand</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="right-col">
+                <div class="video-container">
+                    <img src="https://private-us-east-1.manuscdn.com/sessionFile/hVrvxL4ffoFjQxuD6pvSEt/sandbox/slides_resource_iljlxmwiivy9xll14yl92-67ff26ad-e2b-prod-azure-central-us_1787338839298_na1fn_L2hvbWUvdWJ1bnR1L2FtYXpvbi1waC1zaW11bGF0b3JzL2Fzc2V0cy9kZWNrL3ZpZGVvLXRodW1ibmFpbHMvbWF0Y2gtdHlwZXM.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1789430400&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvaFZydnhMNGZmb0ZqUXh1RDZwdlNFdC9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pbGpseG13aWl2eTl4bGwxNHlsOTItNjdmZjI2YWQtZTJiLXByb2QtYXp1cmUtY2VudHJhbC11c18xNzg3MzM4ODM5Mjk4X25hMWZuX0wyaHZiV1V2ZFdKMWJuUjFMMkZ0WVhwdmJpMXdhQzF6YVcxMWJHRjBiM0p6TDJGemMyVjBjeTlrWldOckwzWnBaR1Z2TFhSb2RXMWlibUZwYkhNdmJXRjBZMmd0ZEhsd1pYTS5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xNTYwLGhfMTU2MC9mb3JtYXQsd2VicCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc4OTQzMDQwMH19fV19&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEYCIQC85Gp8CBA7s91CjKXX1-fLRFIvV9jRSVrrgH~-QL-SVAIhAMKdDLcn~3WilOQ~m8HLHGYvUL-HtDHRrU1IxtcBMqhu" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="watch-label">Watch</div>
+                    <div class="video-title">Amazon PPC Keyword Match Types: Broad vs. Phrase vs. Exact</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

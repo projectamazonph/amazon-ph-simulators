@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px 20px; /* keep top padding, reduce bottom */
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 24px; /* reduced inner padding */
+            gap: 24px; /* smaller gap between columns */
+        }
+        .cadence-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #FFFFFF;
+            border: 4px solid #131921; /* thinner border */
+        }
+        .col-header {
+            background-color: #131921;
+            color: #FFFFFF;
+            padding: 12px; /* reduced padding */
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #FF9900; /* thinner divider */
+        }
+        .col-content {
+            padding: 12px; /* reduced padding */
+            flex: 1;
+        }
+        .task-list {
+            list-style: none;
+        }
+        .task-list li {
+            font-size: 26px;
+            color: #333333;
+            line-height: 1.35; /* slightly tighter spacing */
+            margin-bottom: 12px; /* reduced spacing between items */
+            position: relative;
+            padding-left: 30px;
+            font-weight: 600;
+        }
+        .task-list li::before {
+            content: "■";
+            color: #FF9900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 22px;
+        }
+        .highlight {
+            color: #0052FF;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Cadence prevents chaos</h1>
+        </div>
+        <div class="content-area">
+            <div class="cadence-col">
+                <div class="col-header">Daily</div>
+                <div class="col-content">
+                    <ul class="task-list">
+                        <li>Check spend pacing and budget exhaustion</li>
+                        <li>Monitor account alerts and suspensions</li>
+                        <li>Verify inventory stock levels</li>
+                        <li>Fix accidental pauses or errors</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cadence-col">
+                <div class="col-header">Weekly</div>
+                <div class="col-content">
+                    <ul class="task-list">
+                        <li>Harvest search terms (winners and wasters)</li>
+                        <li>Adjust bids based on <span class="highlight">statistical evidence</span></li>
+                        <li>Add negative keywords to stop leaks</li>
+                        <li>Send narrative client report</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cadence-col">
+                <div class="col-header">Monthly</div>
+                <div class="col-content">
+                    <ul class="task-list">
+                        <li>Review overall campaign structure</li>
+                        <li>Audit the top 20% of keywords driving 80% of sales</li>
+                        <li>Review listing conversion rates</li>
+                        <li>Archive dead or obsolete campaigns</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

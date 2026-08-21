@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            padding: 32px 60px; /* reduced vertical padding */
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* single row with 4 columns */
+            grid-template-rows: 1fr;
+            gap: 20px;
+        }
+        .metric-box {
+            border: 8px solid #131921;
+            background-color: #FFFFFF;
+            padding: 24px; /* reduced inner padding */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .metric-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .metric-formula {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            font-size: 32px;
+            color: #0052FF;
+            margin-bottom: 20px;
+            background-color: #E2E8F0;
+            padding: 8px 12px; /* slightly reduced padding */
+            display: inline-block;
+            align-self: flex-start;
+        }
+        .metric-desc {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 28px;
+            color: #333333;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Master the metric stack</h1>
+        </div>
+        <div class="content-area">
+            <div class="metric-box">
+                <div class="metric-title">CPC</div>
+                <div class="metric-formula">Spend ÷ Clicks</div>
+                <div class="metric-desc">It tells the price of a visit.</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-title">CTR</div>
+                <div class="metric-formula">Clicks ÷ Impressions</div>
+                <div class="metric-desc">It diagnoses the hook.</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-title">Conversion</div>
+                <div class="metric-formula">Orders ÷ Clicks</div>
+                <div class="metric-desc">It diagnoses the page and targeting.</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-title">ACOS</div>
+                <div class="metric-formula">Spend ÷ Sales</div>
+                <div class="metric-desc">Compare it with margin before calling it good or bad.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

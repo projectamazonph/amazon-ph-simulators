@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px 20px; /* keep top padding at 40px, reduce bottom to shrink overall height */
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 40px 60px 20px; /* reduce bottom padding to pull up lower elements */
+        }
+        .left-col {
+            flex: 1;
+            padding-right: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .bullet-point {
+            font-size: 32px;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 30px;
+        }
+        .bullet-point::before {
+            content: "■";
+            color: #FF9900;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+        }
+        .checks-container {
+            background-color: #FFFFFF;
+            border: 8px solid #131921;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .checks-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #131921;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .checks-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .check-item {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 22px;
+            font-weight: 600;
+            color: #333333;
+            display: flex;
+            align-items: center;
+        }
+        .check-item::before {
+            content: "✓";
+            color: #10B981;
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        .exercise-box {
+            background-color: #FF9900;
+            border: 8px solid #131921;
+            padding: 25px;
+        }
+        .exercise-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #131921;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .exercise-text {
+            font-size: 24px;
+            color: #111111;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>The listing earns the sale</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <div class="bullet-point">Ads <span class="highlight">rent attention</span>; the product detail page <span class="highlight">converts it</span>.</div>
+                <div class="bullet-point">Check image, title, price, bullets, reviews, stock, and Buy Box before increasing spend.</div>
+                <div class="bullet-point">A weak listing makes every click more expensive in practical terms.</div>
+            </div>
+            <div class="right-col">
+                <div class="checks-container">
+                    <div class="checks-title">7 Readiness Checks</div>
+                    <div class="checks-grid">
+                        <div class="check-item">Main Image</div>
+                        <div class="check-item">Reviews</div>
+                        <div class="check-item">Title</div>
+                        <div class="check-item">Stock</div>
+                        <div class="check-item">Price</div>
+                        <div class="check-item">Buy Box</div>
+                        <div class="check-item">Bullets</div>
+                    </div>
+                </div>
+                <div class="exercise-box">
+                    <div class="exercise-title">Quick Exercise</div>
+                    <div class="exercise-text">Score a flawed bamboo cutting-board listing from 0–2 on each readiness check. Identify the first repair.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

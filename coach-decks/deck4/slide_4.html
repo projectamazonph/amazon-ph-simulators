@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            /* reduced top padding and removed bottom padding to avoid overflow */
+            padding: 20px 43px 0px;
+        }
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 8px solid #131921;
+            background-color: #FFFFFF;
+        }
+        .diagnostic-table th, .diagnostic-table td {
+            border: 2px solid #131921;
+            /* reduced cell padding to lower total height (font-size unchanged) */
+            padding: 16px 20px;
+            text-align: left;
+            font-size: 28px;
+            color: #333333;
+        }
+        .diagnostic-table th {
+            background-color: #131921;
+            color: #FFFFFF;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .diagnostic-table tr:nth-child(even) {
+            background-color: #E2E8F0;
+        }
+        .col-symptom {
+            width: 30%;
+            font-weight: 700;
+            color: #B12704;
+        }
+        .col-cause {
+            width: 30%;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            color: #131921;
+        }
+        .col-action {
+            width: 40%;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Diagnose the bottom of the funnel</h1>
+        </div>
+        <div class="content-area">
+            <table class="diagnostic-table">
+                <thead>
+                    <tr>
+                        <th class="col-symptom">Symptom</th>
+                        <th class="col-cause">Likely Cause</th>
+                        <th class="col-action">Immediate Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-symptom">Clicks without sales</td>
+                        <td class="col-cause">Price, reviews, or irrelevant traffic</td>
+                        <td class="col-action">Check listing competitiveness; add negative keywords.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-symptom">High ACOS (Sales but expensive)</td>
+                        <td class="col-cause">Bids too high or low conversion rate</td>
+                        <td class="col-action">Lower bids incrementally; tighten match types.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-symptom">Sudden sales drop</td>
+                        <td class="col-cause">Out of stock, lost Buy Box, or new competitor</td>
+                        <td class="col-action">Check inventory and Buy Box status immediately.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

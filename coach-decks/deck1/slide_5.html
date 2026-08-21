@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 20px 60px; /* reduced vertical padding to save height */
+            gap: 40px;
+        }
+        .left-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .right-col {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #FFFFFF;
+            border: 8px solid #131921;
+            padding: 20px;
+        }
+        .bullet-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        .bullet-list li {
+            font-size: 28px;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 10px; /* reduced spacing between bullets */
+            position: relative;
+            padding-left: 30px;
+        }
+        .bullet-list li::before {
+            content: "■";
+            color: #FF9900;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+        }
+        .prompt-box {
+            background-color: #E2E8F0;
+            border-left: 8px solid #FF9900;
+            padding: 12px; /* slightly reduced padding */
+            margin-top: 8px; /* slightly reduced margin */
+        }
+        .prompt-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #131921;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .prompt-text {
+            font-size: 26px;
+            color: #111111;
+            font-weight: 600;
+        }
+        .metric {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 700;
+            color: #0052FF;
+        }
+        .chart-image {
+            width: 100%;
+            height: 360px; /* slightly reduced image height to help fit */
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Funnel leaks explain performance</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <ul class="bullet-list">
+                    <li>Read performance from <span class="highlight">impressions → clicks → page views → orders</span>.</li>
+                    <li><strong>Low impressions:</strong> inspect status, relevance, bid, and budget.</li>
+                    <li><strong>Low CTR:</strong> inspect the hook—image, title, and price.</li>
+                    <li><strong>Low conversion:</strong> inspect relevance, listing quality, reviews, price, and stock.</li>
+                </ul>
+                <div class="prompt-box">
+                    <div class="prompt-title">Instructor Prompt</div>
+                    <div class="prompt-text">With <span class="metric">1,000</span> impressions, <span class="metric">5</span> clicks, and <span class="metric">1</span> order, what needs investigation first?</div>
+                </div>
+            </div>
+            <div class="right-col">
+                <img src="https://private-us-east-1.manuscdn.com/sessionFile/hVrvxL4ffoFjQxuD6pvSEt/sandbox/slides_resource_iljlxmwiivy9xll14yl92-67ff26ad-e2b-prod-azure-central-us_1787338445412_na1fn_L2hvbWUvdWJ1bnR1L2FtYXpvbi1waC1zaW11bGF0b3JzL2Fzc2V0cy9kZWNrL3BwY19mdW5uZWw.png?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1789430400&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvaFZydnhMNGZmb0ZqUXh1RDZwdlNFdC9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pbGpseG13aWl2eTl4bGwxNHlsOTItNjdmZjI2YWQtZTJiLXByb2QtYXp1cmUtY2VudHJhbC11c18xNzg3MzM4NDQ1NDEyX25hMWZuX0wyaHZiV1V2ZFdKMWJuUjFMMkZ0WVhwdmJpMXdhQzF6YVcxMWJHRjBiM0p6TDJGemMyVjBjeTlrWldOckwzQndZMTltZFc1dVpXdy5wbmc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xNTYwLGhfMTU2MC9mb3JtYXQsd2VicCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc4OTQzMDQwMH19fV19&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEUCIBKyYcYg5t8yTNgAfvFwKCktmdmLwAaKknVF7FIIAnsFAiEAyCtOcueb0Ok630s3yeSYxUFG91C-Nh3DYz3UrI2O2X4_" alt="PPC Funnel Chart" class="chart-image">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

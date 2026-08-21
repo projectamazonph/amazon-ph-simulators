@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px; /* keep top padding (title consistency) */
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 24px 60px; /* reduced from 40 to save vertical space */
+            gap: 20px;
+        }
+        .columns-wrapper {
+            display: flex;
+            gap: 18px;
+            flex: 1;
+            align-items: flex-start;
+        }
+        .info-block {
+            flex: 1;
+            background-color: #FFFFFF;
+            border: 8px solid #131921;
+            padding: 12px; /* reduced from 20 */
+            display: flex;
+            flex-direction: column;
+        }
+        .info-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #111111;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            border-bottom: 4px solid #FF9900;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .check-list {
+            list-style: none;
+            margin-top: 10px;
+            /* flow list into two columns to reduce vertical length */
+            column-count: 2;
+            column-gap: 22px;
+        }
+        .check-list li {
+            font-size: 28px;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 10px; /* slightly reduced */
+            position: relative;
+            padding-left: 35px;
+            break-inside: avoid;
+        }
+        .check-list li::before {
+            content: "■";
+            color: #FF9900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 24px;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 700;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .callout-box {
+            background-color: #131921;
+            border-left: 8px solid #FF9900;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #FFFFFF;
+            flex: 0 0 320px; /* slightly reduced width to balance layout */
+        }
+        .callout-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FF9900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            white-space: nowrap;
+        }
+        .callout-text {
+            font-size: 32px;
+            color: #FFFFFF;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Supervised readiness has evidence</h1>
+        </div>
+        <div class="content-area">
+            <div class="columns-wrapper">
+                <div class="info-block">
+                    <div class="info-title">Graduation Checklist</div>
+                    <ul class="check-list">
+                        <li>All 11 module quizzes completed</li>
+                        <li>All simulator labs executed and logged</li>
+                        <li>Capstone project submitted and reviewed</li>
+                        <li>Change log and SOPs documented</li>
+                    </ul>
+                </div>
+                <div class="info-block">
+                    <div class="info-title">Assessment Thresholds</div>
+                    <ul class="check-list">
+                        <li><strong>Knowledge:</strong> Quizzes at <span class="highlight">70%+</span></li>
+                        <li><strong>Application:</strong> Simulators at <span class="highlight">75%+</span></li>
+                        <li><strong>Synthesis:</strong> Capstone graded <span class="highlight">Pass</span></li>
+                        <li><strong>Process:</strong> Adherence to permission ladder</li>
+                    </ul>
+                </div>
+                <div class="callout-box">
+                    <div class="callout-title">The Standard</div>
+                    <div class="callout-text">Graduation means you are ready for supervised account management, not solo flight.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

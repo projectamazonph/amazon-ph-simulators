@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 60px;
+            gap: 60px;
+        }
+        .left-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 40px;
+        }
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .def-box {
+            padding: 30px;
+            border: 8px solid;
+        }
+        .def-box.keyword {
+            background-color: #FFFFFF;
+            border-color: #131921;
+        }
+        .def-box.search-term {
+            background-color: #131921;
+            border-color: #FF9900;
+            color: #FFFFFF;
+        }
+        .def-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .keyword .def-title {
+            color: #111111;
+        }
+        .search-term .def-title {
+            color: #FF9900;
+        }
+        .def-text {
+            font-size: 28px;
+            line-height: 1.4;
+        }
+        .keyword .def-text {
+            color: #333333;
+        }
+        .search-term .def-text {
+            color: #FFFFFF;
+        }
+        .bullet-list {
+            list-style: none;
+        }
+        .bullet-list li {
+            font-size: 32px;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 40px;
+        }
+        .bullet-list li::before {
+            content: "■";
+            color: #0052FF;
+            position: absolute;
+            left: 0;
+            top: 5px;
+            font-size: 28px;
+        }
+        .highlight {
+            color: #131921;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Keywords are chosen; terms are revealed</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <div class="def-box keyword">
+                    <div class="def-title">Keyword</div>
+                    <div class="def-text">The advertiser’s <span class="highlight">chosen target</span>.</div>
+                </div>
+                <div class="def-box search-term">
+                    <div class="def-title">Search Term</div>
+                    <div class="def-text">What the shopper <span style="color: #FFFFFF; font-weight: 700;">actually typed</span>.</div>
+                </div>
+            </div>
+            <div class="right-col">
+                <ul class="bullet-list">
+                    <li>The search-term report shows the difference between planned targeting and real demand.</li>
+                    <li>A relevant keyword can still trigger irrelevant or low-intent terms.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

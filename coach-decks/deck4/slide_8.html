@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px; /* keep per rules */
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px; /* must keep upper padding */
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 24px 48px; /* shrink inner padding */
+            gap: 24px; /* smaller gap */
+        }
+        .left-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* avoid extra centering offsets */
+        }
+        .right-col {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 18px; /* tighten spacing */
+        }
+        .bullet-list {
+            list-style: none;
+        }
+        .bullet-list li {
+            font-size: 32px;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 12px; /* reduced spacing */
+            position: relative;
+            padding-left: 30px;
+        }
+        .bullet-list li::before {
+            content: "■";
+            color: #FF9900;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+        }
+        .msg-block {
+            background-color: #FFFFFF;
+            border: 8px solid;
+            padding: 14px; /* reduced padding */
+        }
+        .msg-block.avoid {
+            border-color: #131921;
+        }
+        .msg-block.use {
+            border-color: #067D62;
+            background-color: #E8F5E9;
+        }
+        .msg-title {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            border-bottom: 3px solid;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .avoid .msg-title {
+            color: #B12704;
+            border-color: #B12704;
+        }
+        .use .msg-title {
+            color: #067D62;
+            border-color: #067D62;
+        }
+        .msg-text {
+            font-size: 24px;
+            color: #333333;
+            line-height: 1.5;
+        }
+        .msg-text strong {
+            color: #111111;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Client communication should be short and true</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <ul class="bullet-list">
+                    <li>Clients read updates on phones — use <span class="highlight">BLUF</span>.</li>
+                    <li>Structure escalations: <strong>Situation</strong>, <strong>Impact</strong>, <strong>Recommendation</strong>.</li>
+                    <li>Don't hide bad news; explain how you'll fix it.</li>
+                    <li>Always bring a proposed solution, not just a question.</li>
+                </ul>
+            </div>
+            <div class="right-col">
+                <div class="msg-block avoid">
+                    <div class="msg-title">Avoid: The Rambling Update</div>
+                    <div class="msg-text">
+                        Too long and vague: "ACOS is high today; not sure why. What should I do?"
+                    </div>
+                </div>
+                <div class="msg-block use">
+                    <div class="msg-title">Use: The Structured Escalation</div>
+                    <div class="msg-text">
+                        <strong>Situation:</strong> ACOS spiked to 60% due to competitor bids on core terms.<br>
+                        <strong>Impact:</strong> Losing ~$20/day.<br>
+                        <strong>Recommendation:</strong> Lower bids by 15% on those terms to restore profitability. Approve?
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

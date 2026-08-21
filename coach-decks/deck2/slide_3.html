@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        /* Reduced vertical padding to bring total height below 720px */
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 38px 60px; /* was 40px 60px */
+            gap: 40px;
+        }
+        .left-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .right-col {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .bullet-list {
+            list-style: none;
+        }
+        .bullet-list li {
+            font-size: 32px;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 26px; /* slightly reduced from 30px */
+            position: relative;
+            padding-left: 30px;
+        }
+        .bullet-list li::before {
+            content: "■";
+            color: #FF9900;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+        }
+        .code-text {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #E2E8F0;
+            padding: 2px 8px;
+            font-weight: 700;
+            color: #131921;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 8px solid #131921;
+            background-color: #FFFFFF;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 2px solid #131921;
+            padding: 20px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #131921;
+            color: #FFFFFF;
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .comparison-table td {
+            font-size: 24px;
+            color: #333333;
+        }
+        .comparison-table tr:nth-child(even) {
+            background-color: #E2E8F0;
+        }
+        .bad-name {
+            color: #B12704;
+            font-weight: 700;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .good-name {
+            color: #067D62;
+            font-weight: 700;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .table-caption {
+            font-size: 20px;
+            color: #131921;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Naming is an operating system</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <ul class="bullet-list">
+                    <li>A clear name states <span class="highlight">ad type, targeting type, product, and purpose</span>.</li>
+                    <li>Avoid ambiguous labels such as <span class="code-text">test1</span>, <span class="code-text">final2</span>, and <span class="code-text">new-new</span>.</li>
+                    <li>Good naming reduces time-to-decision and prevents accidental changes.</li>
+                </ul>
+            </div>
+            <div class="right-col">
+                <div class="table-caption">Before & After Comparison</div>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Ambiguous (Avoid)</th>
+                            <th>Structured (Use)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="bad-name">test1</td>
+                            <td class="good-name">SP | Auto | Bamboo Board | Research</td>
+                        </tr>
+                        <tr>
+                            <td class="bad-name">new-new</td>
+                            <td class="good-name">SP | Exact | Bamboo Board | Kitchen</td>
+                        </tr>
+                        <tr>
+                            <td class="bad-name">final2_bamboo</td>
+                            <td class="good-name">SB | Phrase | Bamboo Set | Defense</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

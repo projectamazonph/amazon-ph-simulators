@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 10px 60px; /* reduced vertical padding to shrink total height */
+            gap: 40px;
+        }
+        .left-col {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-block {
+            background-color: #FFFFFF;
+            border: 8px solid #131921;
+            padding: 18px;
+        }
+        .info-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #111111;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            border-bottom: 4px solid #FF9900;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .info-text {
+            font-size: 26px;
+            color: #333333;
+            line-height: 1.4;
+        }
+        .info-text ul {
+            margin-left: 30px;
+            margin-top: 10px;
+        }
+        .info-text li {
+            margin-bottom: 10px;
+        }
+        .exit-block {
+            background-color: #131921;
+            border: 8px solid #FF9900;
+            padding: 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .exit-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #FF9900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        .exit-text {
+            font-size: 36px;
+            color: #FFFFFF;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Foundation evidence gate</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <div class="info-block">
+                    <div class="info-title">Assignment</div>
+                    <div class="info-text">
+                        Submit a one-page listing-readiness and economics memo for a bamboo cutting board.
+                        <ul>
+                            <li>Seven readiness checks</li>
+                            <li>Three target terms</li>
+                            <li>30% break-even ACOS</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="info-block">
+                    <div class="info-title">Assessment</div>
+                    <div class="info-text">
+                        <ul>
+                            <li>Modules 0–2 quizzes at <span class="highlight">70%+</span></li>
+                            <li>Keyword Lab at <span class="highlight">75%+</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="right-col">
+                <div class="exit-block">
+                    <div class="exit-title">Exit Question</div>
+                    <div class="exit-text">
+                        What does the ad buy, what does the listing earn, and which metric tells you whether the economics work?
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

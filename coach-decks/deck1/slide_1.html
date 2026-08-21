@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content {
+            flex: 1;
+            padding: 80px 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        .point-group {
+            display: flex;
+            align-items: flex-start;
+        }
+        .point-icon {
+            color: #FF9900;
+            font-size: 40px;
+            margin-right: 30px;
+            font-weight: bold;
+            line-height: 1;
+        }
+        .point-text {
+            color: #111111;
+            font-size: 36px;
+            line-height: 1.4;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Learn, simulate, explain, log</h1>
+        </div>
+        <div class="content">
+            <div class="point-group">
+                <div class="point-icon">></div>
+                <div class="point-text">This course develops <span class="highlight">safe PPC judgment</span>, not vocabulary recall.</div>
+            </div>
+            <div class="point-group">
+                <div class="point-icon">></div>
+                <div class="point-text">Learners progress through <span class="highlight">12 modules, 40 lessons, simulations, quizzes, and a final exam</span>.</div>
+            </div>
+            <div class="point-group">
+                <div class="point-icon">></div>
+                <div class="point-text">Every operational change needs a reason, evidence, and a record.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

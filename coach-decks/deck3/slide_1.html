@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content {
+            flex: 1;
+            /* Reduced bottom padding from 80px to 74px to avoid overflow (cuts total height by 6px) */
+            padding: 80px 100px 74px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 40px;
+        }
+        .point-group {
+            display: flex;
+            align-items: flex-start;
+        }
+        .point-icon {
+            color: #FF9900;
+            font-size: 40px;
+            margin-right: 30px;
+            font-weight: bold;
+            line-height: 1;
+        }
+        .point-text {
+            color: #111111;
+            font-size: 36px;
+            line-height: 1.4;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Launch small, learn fast</h1>
+        </div>
+        <div class="content">
+            <div class="point-group">
+                <div class="point-icon">&gt;</div>
+                <div class="point-text">Modules 6–9 treat launch as a <span class="highlight">controlled learning process</span>, not a spending event.</div>
+            </div>
+            <div class="point-group">
+                <div class="point-icon">&gt;</div>
+                <div class="point-text">Research demand before scaling it.</div>
+            </div>
+            <div class="point-group">
+                <div class="point-icon">&gt;</div>
+                <div class="point-text">Protect budget through evidence-based bid and pacing decisions.</div>
+            </div>
+            <div class="point-group">
+                <div class="point-icon">&gt;</div>
+                <div class="point-text">Review, harvest, document, and repeat.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

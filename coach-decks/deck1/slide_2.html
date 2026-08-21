@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px; /* do not shrink top padding */
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 28px; /* reduced from 60px -> saves vertical space */
+        }
+        .left-col {
+            flex: 1;
+            padding-right: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #E2E8F0;
+            border: 8px solid #131921;
+            padding: 20px; /* reduced from 40px */
+        }
+        .bullet-point {
+            font-size: 32px;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 16px; /* reduced spacing between bullets */
+            position: relative;
+            padding-left: 30px;
+        }
+        .bullet-point::before {
+            content: "■";
+            color: #FF9900;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+        }
+        .concept-box {
+            width: 100%;
+            padding: 14px; /* reduced from 30px */
+            margin-bottom: 12px; /* reduced from 20px */
+            text-align: center;
+            border: 4px solid #131921;
+        }
+        .concept-box.organic {
+            background-color: #FFFFFF;
+        }
+        .concept-box.sponsored {
+            background-color: #131921;
+            color: #FFFFFF;
+        }
+        .concept-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .concept-desc {
+            font-size: 24px;
+        }
+        .sponsored .concept-title {
+            color: #FF9900;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Visibility creates the first chance to sell</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <div class="bullet-point">Shoppers search, compare, click, and buy; visibility determines whether a listing enters that journey.</div>
+                <div class="bullet-point"><span class="highlight">Organic traffic is earned</span> through relevance and sales history; <span class="highlight">Sponsored traffic is paid</span> per click.</div>
+                <div class="bullet-point">The Buy Box and in-stock status are non-negotiable before traffic is scaled.</div>
+            </div>
+            <div class="right-col">
+                <div class="concept-box organic">
+                    <div class="concept-title">Organic Traffic</div>
+                    <div class="concept-desc">Earned via relevance & sales</div>
+                </div>
+                <div class="concept-box sponsored">
+                    <div class="concept-title">Sponsored Traffic</div>
+                    <div class="concept-desc">Purchased per click</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

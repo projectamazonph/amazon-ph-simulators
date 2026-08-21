@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 20px 60px;
+            gap: 40px;
+        }
+        .left-col {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 6px; /* reduced from 10px */
+        }
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-block {
+            background-color: #FFFFFF;
+            border: 8px solid #131921;
+            padding: 8px; /* reduced from 18px */
+        }
+        .info-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #111111;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px; /* reduced from 15px */
+            border-bottom: 4px solid #FF9900;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .info-text {
+            font-size: 24px;
+            color: #333333;
+            line-height: 1.4;
+        }
+        .info-text ul {
+            margin-left: 30px;
+            margin-top: 8px; /* reduced from 10px */
+        }
+        .info-text li {
+            margin-bottom: 6px; /* reduced from 8px */
+        }
+        .exit-block {
+            background-color: #131921;
+            border: 8px solid #FF9900;
+            padding: 8px; /* reduced from 18px */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .exit-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #FF9900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px; /* reduced from 20px */
+        }
+        .exit-text {
+            font-size: 32px;
+            color: #FFFFFF;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .exit-text ul {
+            margin-left: 30px;
+            margin-top: 10px; /* reduced from 15px */
+        }
+        .exit-text li {
+            margin-bottom: 10px; /* reduced from 15px */
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Controlled traffic evidence gate</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <div class="info-block">
+                    <div class="info-title">Assignment</div>
+                    <div class="info-text">
+                        Submit a campaign map, 15-keyword research set, and five negative candidates.
+                        <ul>
+                            <li>One Auto research campaign</li>
+                            <li>One Exact core campaign</li>
+                            <li>One optional product-targeting test</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="info-block">
+                    <div class="info-title">Assessment</div>
+                    <div class="info-text">
+                        <ul>
+                            <li>Modules 3–5 quizzes at <span class="highlight">70%+</span></li>
+                            <li>Campaign Architect &amp; Keyword Lab at <span class="highlight">75%+</span></li>
+                            <li>3rd Search Term Trainer run at <span class="highlight">80%+</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="right-col">
+                <div class="exit-block">
+                    <div class="exit-title">Exit Prompt</div>
+                    <div class="exit-text">
+                        <ul>
+                            <li>Broad is for what?</li>
+                            <li>When do you negate?</li>
+                            <li>What must be checked before increasing spend?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

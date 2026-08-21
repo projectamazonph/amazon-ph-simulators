@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            /* Reduced vertical padding to save height */
+            padding: 20px 60px;
+        }
+        .drill-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 8px solid #131921;
+            background-color: #FFFFFF;
+            /* Reduce gap between table and instruction box */
+            margin-bottom: 20px;
+        }
+        .drill-table th, .drill-table td {
+            border: 2px solid #131921;
+            padding: 15px 20px;
+            text-align: left;
+            font-size: 28px;
+            color: #333333;
+        }
+        .drill-table th {
+            background-color: #131921;
+            color: #FFFFFF;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .drill-table tr:nth-child(even) {
+            background-color: #E2E8F0;
+        }
+        .col-input {
+            width: 45%;
+        }
+        .col-solve {
+            width: 30%;
+            font-weight: 600;
+        }
+        .col-answer {
+            width: 25%;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 700;
+            color: #0052FF;
+        }
+        .instruction-box {
+            background-color: #E2E8F0;
+            border-left: 8px solid #FF9900;
+            padding: 20px;
+            margin-top: auto;
+        }
+        .instruction-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #131921;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .instruction-text {
+            font-size: 26px;
+            color: #111111;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Guided calculation drill</h1>
+        </div>
+        <div class="content-area">
+            <table class="drill-table">
+                <thead>
+                    <tr>
+                        <th class="col-input">Input</th>
+                        <th class="col-solve">Solve</th>
+                        <th class="col-answer">Answer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>$20 spend, 10 clicks</td>
+                        <td>CPC</td>
+                        <td>$2</td>
+                    </tr>
+                    <tr>
+                        <td>1,000 impressions, 5 clicks</td>
+                        <td>CTR</td>
+                        <td>0.5%</td>
+                    </tr>
+                    <tr>
+                        <td>5 clicks, 1 order</td>
+                        <td>Conversion</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>$25 spend, $100 sales</td>
+                        <td>ACOS / ROAS</td>
+                        <td>25% / 4</td>
+                    </tr>
+                    <tr>
+                        <td>35% margin</td>
+                        <td>Break-even ACOS</td>
+                        <td>35%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="instruction-box">
+                <div class="instruction-title">Instruction</div>
+                <div class="instruction-text">Students calculate first, then translate each answer into one client-ready sentence.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

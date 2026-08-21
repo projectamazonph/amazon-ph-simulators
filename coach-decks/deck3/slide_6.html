@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+        }
+        .rules-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 8px solid #131921;
+            background-color: #FFFFFF;
+        }
+        .rules-table th, .rules-table td {
+            border: 2px solid #131921;
+            padding: 18px 25px;
+            text-align: left;
+            font-size: 26px;
+            color: #333333;
+        }
+        .rules-table th {
+            background-color: #131921;
+            color: #FFFFFF;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 28px;
+        }
+        .rules-table tr:nth-child(even) {
+            background-color: #E2E8F0;
+        }
+        .col-evidence {
+            width: 30%;
+            font-weight: 700;
+            color: #111111;
+        }
+        .col-interpretation {
+            width: 35%;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            color: #0052FF;
+        }
+        .col-response {
+            width: 35%;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Bid rules protect the account</h1>
+        </div>
+        <div class="content-area">
+            <table class="rules-table">
+                <thead>
+                    <tr>
+                        <th class="col-evidence">Evidence</th>
+                        <th class="col-interpretation">Interpretation</th>
+                        <th class="col-response">Safe Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-evidence">No impressions</td>
+                        <td class="col-interpretation">Low bid or low relevance</td>
+                        <td class="col-response">Check status; raise slightly if relevant</td>
+                    </tr>
+                    <tr>
+                        <td class="col-evidence">Clicks, no sales</td>
+                        <td class="col-interpretation">Wrong terms or weak page</td>
+                        <td class="col-response">Add negatives; inspect listing</td>
+                    </tr>
+                    <tr>
+                        <td class="col-evidence">Sales, low ACOS</td>
+                        <td class="col-interpretation">Winning signal</td>
+                        <td class="col-response">Raise bid carefully</td>
+                    </tr>
+                    <tr>
+                        <td class="col-evidence">Sales, high ACOS</td>
+                        <td class="col-interpretation">Expensive signal</td>
+                        <td class="col-response">Lower bid or tighten match</td>
+                    </tr>
+                    <tr>
+                        <td class="col-evidence">Budget dies early</td>
+                        <td class="col-interpretation">Profitable but capped</td>
+                        <td class="col-response">Consider more budget</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px 20px; /* keep top padding, reduce bottom padding to save height */
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 40px 60px;
+            gap: 40px;
+        }
+        .left-col {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .bullet-list {
+            list-style: none;
+        }
+        .bullet-list li {
+            font-size: 28px;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+        }
+        .bullet-list li::before {
+            content: "■";
+            color: #FF9900;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+        }
+        .confidence-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 8px solid #131921;
+            background-color: #FFFFFF;
+        }
+        .confidence-table th, .confidence-table td {
+            border: 2px solid #131921;
+            padding: 20px 25px;
+            text-align: left;
+            font-size: 26px;
+            color: #333333;
+        }
+        .confidence-table th {
+            background-color: #131921;
+            color: #FFFFFF;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 28px;
+        }
+        .confidence-table tr:nth-child(even) {
+            background-color: #E2E8F0;
+        }
+        .col-clicks {
+            width: 35%;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 700;
+            color: #111111;
+        }
+        .col-action {
+            width: 65%;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Optimize like a scientist</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <ul class="bullet-list">
+                    <li><span class="highlight">Daily:</span> spend, alerts, stock, accidental pauses.</li>
+                    <li><span class="highlight">Weekly:</span> search terms, negatives, bids, and reporting.</li>
+                    <li><span class="highlight">Monthly:</span> structure, top keywords, listing review, and cleanup.</li>
+                    <li>Change one variable, wait for enough data, compare, and log.</li>
+                </ul>
+            </div>
+            <div class="right-col">
+                <table class="confidence-table">
+                    <thead>
+                        <tr>
+                            <th class="col-clicks">Clicks</th>
+                            <th class="col-action">Confidence Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-clicks">Under 10</td>
+                            <td class="col-action">Watch</td>
+                        </tr>
+                        <tr>
+                            <td class="col-clicks">10–20</td>
+                            <td class="col-action">Small tweak / obvious irrelevance</td>
+                        </tr>
+                        <tr>
+                            <td class="col-clicks">20–40</td>
+                            <td class="col-action">Fair bid decision</td>
+                        </tr>
+                        <tr>
+                            <td class="col-clicks">40+</td>
+                            <td class="col-action">Confident promote or pause call</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

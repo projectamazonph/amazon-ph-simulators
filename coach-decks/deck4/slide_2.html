@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 40px 60px;
+            gap: 40px;
+        }
+        .left-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .right-col {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .bullet-list {
+            list-style: none;
+        }
+        .bullet-list li {
+            font-size: 32px;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 30px;
+        }
+        .bullet-list li::before {
+            content: "■";
+            color: #FF9900;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 8px solid #131921;
+            background-color: #FFFFFF;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 2px solid #131921;
+            padding: 20px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #131921;
+            color: #FFFFFF;
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .comparison-table td {
+            font-size: 22px;
+            color: #333333;
+            line-height: 1.4;
+        }
+        .comparison-table tr:nth-child(even) {
+            background-color: #E2E8F0;
+        }
+        .bad-report {
+            color: #B12704;
+            font-weight: 600;
+        }
+        .good-report {
+            color: #067D62;
+            font-weight: 600;
+        }
+        .table-caption {
+            font-size: 20px;
+            color: #131921;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>A useful report tells a story</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <ul class="bullet-list">
+                    <li>Clients can see the dashboard; they pay you for the <span class="highlight">interpretation</span>.</li>
+                    <li>A data dump causes panic. A narrative builds trust.</li>
+                    <li>Every report must state: <strong>What happened</strong>, <strong>Why it happened</strong>, and <strong>What we are doing next</strong>.</li>
+                </ul>
+            </div>
+            <div class="right-col">
+                <div class="table-caption">Reporting Comparison</div>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Data Dump (Avoid)</th>
+                            <th>Narrative (Use)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="bad-report">"Spend was $500, sales were $1,000, ACOS is 50%."</td>
+                            <td class="good-report">"ACOS hit 50% because we tested three new terms. We paused the losers and expect ACOS to drop next week."</td>
+                        </tr>
+                        <tr>
+                            <td class="bad-report">"Impressions are down 20% this week."</td>
+                            <td class="good-report">"Impressions dropped 20% as we lowered bids on broad match to protect profitability during the slow season."</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

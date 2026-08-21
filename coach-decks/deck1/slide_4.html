@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 30px; /* reduced from 60px to save vertical space */
+        }
+        .left-col {
+            flex: 1;
+            padding-right: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #E2E8F0;
+            border: 8px solid #131921;
+            padding: 20px; /* reduced from 40px */
+        }
+        .bullet-point {
+            font-size: 32px;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 30px;
+        }
+        .bullet-point::before {
+            content: "■";
+            color: #FF9900;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+        }
+        .video-container {
+            width: 100%;
+            text-align: center;
+        }
+        .video-thumbnail {
+            width: 480px;
+            height: 303px; /* reduced from 360px to fit height budget */
+            object-fit: cover;
+            border: 4px solid #131921;
+            margin-bottom: 20px;
+        }
+        .watch-label {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FF9900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .video-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #131921;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>PPC pays for the click</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <div class="bullet-point">An <span class="highlight">impression</span> means the ad displayed; an <span class="highlight">ad click</span> triggers cost.</div>
+                <div class="bullet-point">A <span class="highlight">bid</span> is the maximum an advertiser is willing to pay for a click.</div>
+                <div class="bullet-point">Amazon matches shopper intent using bid plus relevance, then sends the shopper to the product page.</div>
+            </div>
+            <div class="right-col">
+                <div class="video-container">
+                    <img src="https://private-us-east-1.manuscdn.com/sessionFile/hVrvxL4ffoFjQxuD6pvSEt/sandbox/slides_resource_iljlxmwiivy9xll14yl92-67ff26ad-e2b-prod-azure-central-us_1787338445412_na1fn_L2hvbWUvdWJ1bnR1L2FtYXpvbi1waC1zaW11bGF0b3JzL2Fzc2V0cy9kZWNrL3ZpZGVvLXRodW1ibmFpbHMvc2V0dXA.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1789430400&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvaFZydnhMNGZmb0ZqUXh1RDZwdlNFdC9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pbGpseG13aWl2eTl4bGwxNHlsOTItNjdmZjI2YWQtZTJiLXByb2QtYXp1cmUtY2VudHJhbC11c18xNzg3MzM4NDQ1NDEyX25hMWZuX0wyaHZiV1V2ZFdKMWJuUjFMMkZ0WVhwdmJpMXdhQzF6YVcxMWJHRjBiM0p6TDJGemMyVjBjeTlrWldOckwzWnBaR1Z2TFhSb2RXMWlibUZwYkhNdmMyVjBkWEEuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODk0MzA0MDB9fX1dfQ__&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEQCIFaLXeEUjtETwsW654FdzjYdlL-ZhdLB2BS~fbLI9PgQAiBC6-dVgESg~QJfRnt43fqZ-uGT~dJuJRZrr9i8KSRGCQ__" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="watch-label">Watch</div>
+                    <div class="video-title">Beginner’s Guide: Create a Sponsored Product Campaign in MINUTES</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

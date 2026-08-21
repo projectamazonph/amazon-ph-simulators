@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px 20px; /* keep top padding (40px) but reduce bottom */
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 20px 60px; /* reduced top/bottom padding */
+            gap: 40px;
+        }
+        .left-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .right-col {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #FFFFFF;
+            border: 8px solid #131921;
+            padding: 12px; /* reduced padding to save height */
+        }
+        .bullet-list {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+        .bullet-list li {
+            font-size: 28px;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 12px; /* reduced spacing between bullets */
+            position: relative;
+            padding-left: 30px;
+        }
+        .bullet-list li::before {
+            content: "■";
+            color: #FF9900;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+        }
+        .debrief-box {
+            background-color: #E2E8F0;
+            border-left: 8px solid #FF9900;
+            padding: 12px; /* reduced padding */
+            margin-top: 6px; /* tightened gap */
+        }
+        .debrief-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #131921;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .debrief-text {
+            font-size: 26px;
+            color: #111111;
+            font-weight: 600;
+        }
+        .chart-image {
+            width: 100%;
+            height: 360px; /* reduced image height to save vertical space */
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Cut waste, not sales</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <ul class="bullet-list">
+                    <li>Before: $0.90 bid, $27 spend, $50 sales, <span class="highlight">54% ACOS</span>.</li>
+                    <li>After: $0.65 bid, $14 spend, $50 sales, <span class="highlight">29% ACOS</span>.</li>
+                    <li>The controlled change preserved sales while removing $13 of waste.</li>
+                    <li>If sales had fallen materially, reverse halfway and retest.</li>
+                </ul>
+                <div class="debrief-box">
+                    <div class="debrief-title">Debrief</div>
+                    <div class="debrief-text">What must be logged before making the next adjustment?</div>
+                </div>
+            </div>
+            <div class="right-col">
+                <img src="https://private-us-east-1.manuscdn.com/sessionFile/hVrvxL4ffoFjQxuD6pvSEt/sandbox/slides_resource_iljlxmwiivy9xll14yl92-67ff26ad-e2b-prod-azure-central-us_1787339120902_na1fn_L2hvbWUvdWJ1bnR1L2FtYXpvbi1waC1zaW11bGF0b3JzL2Fzc2V0cy9kZWNrL2JpZF9jaGFuZ2VfYmVmb3JlX2FmdGVy.png?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1789430400&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvaFZydnhMNGZmb0ZqUXh1RDZwdlNFdC9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pbGpseG13aWl2eTl4bGwxNHlsOTItNjdmZjI2YWQtZTJiLXByb2QtYXp1cmUtY2VudHJhbC11c18xNzg3MzM5MTIwOTAyX25hMWZuX0wyaHZiV1V2ZFdKMWJuUjFMMkZ0WVhwdmJpMXdhQzF6YVcxMWJHRjBiM0p6TDJGemMyVjBjeTlrWldOckwySnBaRjlqYUdGdVoyVmZZbVZtYjNKbFgyRm1kR1Z5LnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE1NjAsaF8xNTYwL2Zvcm1hdCx3ZWJwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzg5NDMwNDAwfX19XX0_&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEUCIQCB6FpmnjOGJrl8640ctSaPfc8EjTvXOKwIHnH8LAFUDQIgXKFh8oMjhfGhIWB3sPuJMtDQjbLG5nyKXtNlwVUSYFY_" alt="Bid Change Chart" class="chart-image">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

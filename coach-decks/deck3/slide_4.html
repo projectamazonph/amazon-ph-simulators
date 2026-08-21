@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 24px 60px; /* reduced vertical padding to save height */
+        }
+        .launch-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 8px solid #131921;
+            background-color: #FFFFFF;
+            margin-bottom: 40px;
+        }
+        .launch-table th, .launch-table td {
+            border: 2px solid #131921;
+            padding: 14px 20px; /* reduced inner padding */
+            text-align: left;
+            font-size: 28px;
+            color: #333333;
+        }
+        .launch-table th {
+            background-color: #131921;
+            color: #FFFFFF;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .launch-table tr:nth-child(even) {
+            background-color: #E2E8F0;
+        }
+        .col-week {
+            width: 15%;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 700;
+            color: #0052FF;
+            text-align: center !important;
+        }
+        .col-focus {
+            width: 25%;
+            font-weight: 700;
+            color: #111111;
+        }
+        .col-move {
+            width: 60%;
+        }
+        .rule-box {
+            background-color: #131921;
+            border-left: 8px solid #FF9900;
+            padding: 20px; /* reduced padding */
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FF9900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-right: 20px;
+            white-space: nowrap;
+        }
+        .rule-text {
+            font-size: 32px;
+            color: #FFFFFF;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Learn before you scale</h1>
+        </div>
+        <div class="content-area">
+            <table class="launch-table">
+                <thead>
+                    <tr>
+                        <th class="col-week">Week</th>
+                        <th class="col-focus">Focus</th>
+                        <th class="col-move">Operating Move</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-week">1</td>
+                        <td class="col-focus">Learn</td>
+                        <td class="col-move">Auto, small bids, observe terms</td>
+                    </tr>
+                    <tr>
+                        <td class="col-week">2</td>
+                        <td class="col-focus">Control</td>
+                        <td class="col-move">Add long-tail Exact winners</td>
+                    </tr>
+                    <tr>
+                        <td class="col-week">3</td>
+                        <td class="col-focus">Clean</td>
+                        <td class="col-move">First negative pass</td>
+                    </tr>
+                    <tr>
+                        <td class="col-week">4</td>
+                        <td class="col-focus">Scale</td>
+                        <td class="col-move">Increase proven winners 10–20%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="rule-box">
+                <div class="rule-title">Rule</div>
+                <div class="rule-text">Week 1 buys data, not a performance verdict.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

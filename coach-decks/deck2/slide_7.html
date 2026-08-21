@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 40px 60px;
+            gap: 40px;
+        }
+        .left-col {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .bullet-list {
+            list-style: none;
+        }
+        .bullet-list li {
+            font-size: 28px;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+        }
+        .bullet-list li::before {
+            content: "■";
+            color: #FF9900;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .highlight {
+            color: #0052FF;
+            font-weight: 600;
+        }
+        .drill-box {
+            background-color: #FFFFFF;
+            border: 8px solid #131921;
+            padding: 40px;
+            text-align: center;
+        }
+        .drill-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #131921;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-bottom: 4px solid #FF9900;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .drill-text {
+            font-size: 32px;
+            color: #111111;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Negatives close waste loops</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <ul class="bullet-list">
+                    <li>A negative blocks the ad from showing for a term that cannot convert.</li>
+                    <li>Negate <span class="highlight">clearly irrelevant terms</span> such as wrong material, use, or product type.</li>
+                    <li>Do not negate a relevant term merely because it has two or three clicks and no sale.</li>
+                    <li>Choose <span class="highlight">negative phrase</span> for a whole family; use <span class="highlight">negative exact</span> when only one query is bad.</li>
+                </ul>
+            </div>
+            <div class="right-col">
+                <div class="drill-box">
+                    <div class="drill-title">Decision Drill</div>
+                    <div class="drill-text">Defend negative phrase, negative exact, lower bid, or watch.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

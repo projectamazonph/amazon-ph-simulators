@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #F4F7F6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #131921;
+            padding: 40px 60px;
+            border-bottom: 8px solid #FF9900;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 60px;
+        }
+        .left-col {
+            flex: 1.5;
+            padding-right: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .metric-block {
+            margin-bottom: 30px;
+            border-left: 8px solid #0052FF;
+            padding-left: 20px;
+        }
+        .metric-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 10px;
+        }
+        .metric-desc {
+            font-size: 28px;
+            color: #333333;
+            line-height: 1.4;
+        }
+        .highlight {
+            color: #FF9900;
+            font-weight: 600;
+        }
+        .callout-box {
+            background-color: #131921;
+            color: #FFFFFF;
+            padding: 40px;
+            border: 8px solid #FF9900;
+            text-align: center;
+        }
+        .callout-text {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1>Metrics become decisions</h1>
+        </div>
+        <div class="content-area">
+            <div class="left-col">
+                <div class="metric-block">
+                    <div class="metric-title">ROAS = Sales ÷ Spend</div>
+                    <div class="metric-desc">It is the inverse expression of ACOS.</div>
+                </div>
+                <div class="metric-block">
+                    <div class="metric-title">TACoS = Ad Spend ÷ Total Revenue</div>
+                    <div class="metric-desc">It connects ads to the whole business.</div>
+                </div>
+                <div class="metric-block">
+                    <div class="metric-title">Break-even ACOS = Profit Margin</div>
+                    <div class="metric-desc">In the simplified training model.</div>
+                </div>
+            </div>
+            <div class="right-col">
+                <div class="callout-box">
+                    <div class="callout-text">Good economics require the <span class="highlight">right query</span>, not merely lower bids.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
