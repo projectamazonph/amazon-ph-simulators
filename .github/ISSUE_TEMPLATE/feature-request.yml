@@ -1,0 +1,107 @@
+name: Feature or roadmap task
+description: Propose a scoped platform improvement based on the implementation roadmap.
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for learner experience, architecture, content operations, reliability, offline capability, analytics, synchronization, or release improvements. Review the [implementation roadmap](../../blob/master/platform-implementation-plan.md) before submitting.
+
+  - type: input
+    id: workstream
+    attributes:
+      label: Roadmap workstream
+      description: Identify the workstream, such as A — Contracts, C — Testing, E — Offline, or F — Learner Experience.
+      placeholder: "Example: Workstream C — Test and quality foundation"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0 — Reliability, security, or release blocker
+        - P1 — High-value platform or learning improvement
+        - P2 — Scale, analytics, or future capability
+    validations:
+      required: true
+
+  - type: dropdown
+    id: release
+    attributes:
+      label: Target release
+      options:
+        - R1 — Reliability baseline
+        - R2 — Architecture consolidation
+        - R3 — Learning effectiveness
+        - R4 — Distribution hardening
+        - R5 — Optional cloud platform
+        - Unscheduled / discovery
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What user, maintainer, instructor, or release problem should be solved?
+      placeholder: Describe the current limitation and who is affected.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed outcome
+      description: Describe the smallest useful outcome without prescribing unnecessary implementation details.
+      placeholder: Describe what should be possible after this issue is completed.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and non-goals
+      description: State what this issue includes and what it deliberately excludes.
+      placeholder: |
+        In scope:
+        - 
+
+        Out of scope:
+        - 
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and risks
+      description: Reference prerequisite issues, contracts, migrations, privacy decisions, or release constraints.
+      placeholder: "Depends on #123. Risk: ..."
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Write observable, testable conditions for completion.
+      placeholder: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: readiness
+    attributes:
+      label: Readiness checklist
+      options:
+        - label: I checked the implementation roadmap for related work.
+          required: true
+        - label: I have identified the target simulator, layer, or workflow where applicable.
+          required: true
+        - label: I have separated the desired outcome from optional implementation ideas.
+          required: true

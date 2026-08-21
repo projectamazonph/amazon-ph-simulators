@@ -1,0 +1,99 @@
+name: Technical debt or architecture
+description: Track maintainability, modularization, testability, dependency, or architecture work from the roadmap.
+title: "[Tech Debt] "
+labels:
+  - enhancement
+body:
+  - type: dropdown
+    id: workstream
+    attributes:
+      label: Roadmap workstream
+      options:
+        - A — Contracts and success metrics
+        - B — Content and grading foundation
+        - C — Test and quality foundation
+        - D — Inline simulator migration
+        - E — Offline capability and data durability
+        - F — Learner experience and content operations
+        - G — Security, CI/CD, and releases
+        - H — Synchronization and instructor platform
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0 — Blocks safe delivery or data integrity
+        - P1 — Material maintenance or reliability cost
+        - P2 — Important scale or future-readiness improvement
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_state
+    attributes:
+      label: Current state
+      description: Describe the implementation constraint, duplication, coupling, or missing test boundary.
+      placeholder: The current implementation ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: target_state
+    attributes:
+      label: Target state
+      description: Describe the maintainable design or testable contract that should replace it.
+      placeholder: The target implementation ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected_files
+    attributes:
+      label: Affected areas
+      description: List likely modules, pages, workflows, or schemas. This is an initial inventory, not a binding implementation plan.
+      placeholder: |
+        - `assets/...`
+        - `...html`
+        - `.github/workflows/...`
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and migration strategy
+      placeholder: |
+        Prerequisites:
+        - 
+
+        Migration approach:
+        - 
+
+        Compatibility considerations:
+        - 
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Existing behavior is covered before migration.
+        - [ ] New contract or module is documented.
+        - [ ] Regression tests pass.
+        - [ ] Dead or duplicated implementation is removed.
+        - [ ] Documentation and roadmap links are updated.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Engineering checklist
+      options:
+        - label: I checked whether this work affects stored progress or historical grading.
+          required: true
+        - label: I have identified a safe incremental migration boundary.
+          required: true
+        - label: I have avoided bundling unrelated refactors into this issue.
+          required: true

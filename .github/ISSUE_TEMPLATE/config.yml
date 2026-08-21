@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Platform implementation roadmap
+    url: https://github.com/projectamazonph/amazon-ph-simulators/blob/master/platform-implementation-plan.md
+    about: Review the roadmap, workstreams, dependencies, release gates, and acceptance criteria before opening an issue.
+  - name: Usage and learner-support questions
+    url: https://github.com/projectamazonph/amazon-ph-simulators/discussions
+    about: Use Discussions for questions that do not describe a reproducible defect or a scoped implementation task.

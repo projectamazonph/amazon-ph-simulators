@@ -1,0 +1,111 @@
+name: Release, security, or operations
+description: Track CI/CD, installer, updater, offline, security, observability, or production-release work.
+title: "[Ops] "
+labels:
+  - enhancement
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Operations area
+      options:
+        - CI permissions or workflow
+        - Windows installer
+        - Electron updater
+        - Offline asset delivery
+        - GitHub Pages deployment
+        - Security or privacy
+        - Monitoring or diagnostics
+        - Release versioning
+        - Packaging or signing
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0 — Security, data-loss, or release blocker
+        - P1 — Major reliability or delivery risk
+        - P2 — Hardening or future improvement
+    validations:
+      required: true
+
+  - type: dropdown
+    id: release
+    attributes:
+      label: Target release
+      options:
+        - R1 — Reliability baseline
+        - R2 — Architecture consolidation
+        - R3 — Learning effectiveness
+        - R4 — Distribution hardening
+        - R5 — Optional cloud platform
+        - Unscheduled / discovery
+    validations:
+      required: true
+
+  - type: textarea
+    id: incident
+    attributes:
+      label: Problem or operational risk
+      description: Describe the failure mode, exposure, or reliability gap.
+      placeholder: |
+        What can fail?
+        Who is affected?
+        How would it be detected?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed control or improvement
+      description: Describe the safeguard, workflow, test, or release change.
+      placeholder: The platform should ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: security
+    attributes:
+      label: Security and privacy considerations
+      description: Identify permissions, secrets, learner data, customer data, external services, and retention concerns.
+      placeholder: No sensitive information is required in this issue.
+
+  - type: textarea
+    id: validation
+    attributes:
+      label: Verification plan
+      description: Define the CI job, smoke test, offline test, package test, or rollback test that proves the change.
+      placeholder: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Control is implemented with least privilege.
+        - [ ] Failure or rollback behavior is tested.
+        - [ ] Documentation and runbooks are updated.
+        - [ ] Release evidence is attached.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Operations checklist
+      options:
+        - label: I have not included secrets or private learner/customer data.
+          required: true
+        - label: I have identified whether this affects pull requests, trusted tags, or production artifacts.
+          required: true
+        - label: I have included a verification or rollback path.
+          required: true
