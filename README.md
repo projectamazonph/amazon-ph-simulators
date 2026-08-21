@@ -117,7 +117,7 @@ The project is a plain static webapp and also ships as a Windows desktop app.
 
 ### Windows installer
 
-Download `SimGrid-Setup-1.0.2.exe` from the GitHub Actions artifact or the
+Download `SimGrid-Setup-1.0.3.exe` from the GitHub Actions artifact or the
 published release and run it. The installer is per-user, creates a Start Menu
 entry and desktop shortcut, and does not require administrator access by default.
 
@@ -129,8 +129,8 @@ the app.
 | Item | Detail |
 |---|---|
 | App name | Project Amazon PH Academy SimGrid |
-| Current release | `1.0.2` |
-| Installer | `SimGrid-Setup-1.0.2.exe` |
+| Current release | `1.0.3` |
+| Installer | `SimGrid-Setup-1.0.3.exe` |
 | Platform | Windows 10/11, 64-bit |
 | Install type | Per-user; administrator access is not normally required |
 | App identity | `com.projectamazonph.simgrid` |
@@ -218,7 +218,7 @@ Install Node.js 20 or newer, then run these commands from the repository root:
 ```powershell
 npm install
 npm run start       # launch the desktop wrapper
-npm run dist:win   # create release\SimGrid-Setup-1.0.2.exe
+npm run dist:win   # create release\SimGrid-Setup-1.0.3.exe
 ```
 
 The `Build Windows Installer` workflow in
