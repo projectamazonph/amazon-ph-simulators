@@ -13,6 +13,7 @@
       id: scenario.id,
       version: scenario.version,
       rubricVersion: scenario.rubricVersion,
+      policyVersion: scenario.policyVersion || null,
       difficulty: scenario.difficulty,
       title: scenario.title
     });
