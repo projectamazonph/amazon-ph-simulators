@@ -53,6 +53,7 @@ test('crawl and AI-readable files point to the curated public discovery surface'
 test('shared footer exposes concise grouped paths to learning, practice, coaching, and project information', () => {
   const shell = read('assets/shell.js');
   const css = read('assets/shell.css');
+  const responsive = read('assets/responsive.css');
 
   ['Learn', 'Practice', 'Coach', 'Project'].forEach(label => {
     assert.match(shell, new RegExp(`data-label=\\"${label}\\"`), `footer includes ${label} group`);
@@ -61,4 +62,7 @@ test('shared footer exposes concise grouped paths to learning, practice, coachin
   assert.match(shell, /Source Repository/);
   assert.match(css, /grid-template-columns: minmax\(240px, 1\.45fr\) repeat\(4, minmax\(120px, \.8fr\)\)/);
   assert.match(css, /\.pha-footer \.pha-foot-meta \{ grid-column: 1 \/ -1/);
+  assert.match(responsive, /@media \(max-width: 767\.98px\)[\s\S]*?\.pha-footer \{[\s\S]*?grid-template-columns: 1fr 1fr/);
+  assert.match(responsive, /@media \(min-width: 768px\) and \(max-width: 1023\.98px\)[\s\S]*?\.pha-footer \{[\s\S]*?grid-template-columns: 1fr 1fr/);
+  assert.match(responsive, /\.pha-footer \.pha-foot-links a \{ min-height: 40px; \}/);
 });

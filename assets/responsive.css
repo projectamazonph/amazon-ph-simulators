@@ -493,6 +493,7 @@ body[data-pha-tool] textarea {
     padding: 26px 24px 20px;
   }
   .pha-footer .pha-foot-brand { grid-column: 1 / -1; }
+  .pha-footer .pha-foot-links a { min-height: 40px; }
   .pha-skin-wrap {
     padding-left: 18px !important;
     padding-right: 18px !important;
