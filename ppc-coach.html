@@ -88,6 +88,15 @@ const IMG = {
 const LEVELS=[{xp:0,name:"Trainee"},{xp:100,name:"PPC Learner"},{xp:250,name:"PPC Helper"},{xp:450,name:"Junior Assistant"},{xp:700,name:"Campaign Assistant"},{xp:1000,name:"Competent Manager"}];
 const ASSESSMENT_BANDS="Module pass 70% · Simulator proficiency 75% · Supervised readiness 85%";
 const SKEY="ppcCoachState_v2";
+const SIMHUB_BRIDGE_PARAMS=new URLSearchParams(window.location.search);
+function publishSimHubQuizReceipt(quizId,score){
+ try{
+  const token=SIMHUB_BRIDGE_PARAMS.get("simhubQuizToken"),returnOrigin=SIMHUB_BRIDGE_PARAMS.get("simhubReturnOrigin"),moduleId=SIMHUB_BRIDGE_PARAMS.get("simhubModule");
+  if(!token||!returnOrigin||!moduleId||!(quizId===moduleId||(moduleId==="m11"&&quizId==="final"))||!window.opener)return;
+  if(new URL(returnOrigin).origin!==returnOrigin)return;
+  window.opener.postMessage({source:"simhub-static-bridge",kind:"quiz_result",token:token,moduleId:moduleId,quizId:quizId,score:score},returnOrigin);
+ }catch(error){ /* Preserve PPC Coach if the optional SimHub bridge cannot post. */ }
+}
 let state=loadState();
 function loadState(){ try{const s=JSON.parse(localStorage.getItem(SKEY)); if(s) return s;}catch(e){} return {xp:0,done:[],quizScores:{},trainerBest:0,trainerDone:false,builderBest:0,builderDone:false,reportDone:false,coachAsked:false}; }
 function save(){ localStorage.setItem(SKEY,JSON.stringify(state)); }
@@ -763,7 +772,7 @@ function paintQuizPlayer(el){
   el.innerHTML='<div class="max-w-xl mx-auto bg-white rounded-2xl p-8 shadow-card text-center"><div class="pop mx-auto w-24 h-24 rounded-3xl flex items-center justify-center font-display font-bold text-3xl text-white '+(pct>=70?'bg-emerald-500':'bg-amber-500')+'">'+pct+'%</div><h2 class="font-display font-bold text-xl text-navy mt-4">'+qz.icon+' '+qz.score+' of '+qz.questions.length+' correct</h2><p class="text-sm text-slate-500 mt-2">'+(pct>=90?"Outstanding — manager material.":pct>=70?"Passed! Solid understanding.":"Review the module lessons and retry.")+'</p><div class="flex justify-center gap-3 mt-6"><button type="button" onclick="takeQuiz(\''+qz.id+'\')" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-5 py-2.5 rounded-xl">Retry</button><button type="button" onclick="qz=null;showView(\'quiz\')" class="bg-slate-100 hover:bg-slate-200 text-navy font-bold text-sm px-5 py-2.5 rounded-xl">Back to Arena</button></div></div>';
   if(first){ state.quizScores[qz.id]=pct; save(); addXp(qz.score*(qz.id==='final'?4:5),"Quiz: "+qz.title.split("·")[0].trim()); }
   else if(pct>state.quizScores[qz.id]){ state.quizScores[qz.id]=pct; save(); toast("New best: "+pct+"%","info"); }
-  updateTopbar(); return;
+  publishSimHubQuizReceipt(qz.id,pct); updateTopbar(); return;
  }
  const q=qz.questions[qz.idx];
  el.innerHTML='<div class="max-w-2xl mx-auto"><div class="flex items-center justify-between mb-3 text-xs font-bold text-slate-400"><span>'+qz.icon+' '+qz.title+'</span><span>Q '+(qz.idx+1)+'/'+qz.questions.length+' · Score '+qz.score+'</span></div><div class="h-2 rounded-full bg-slate-200 overflow-hidden mb-5"><div class="bar h-full bg-brand-500" style="width:'+((qz.idx/qz.questions.length)*100)+'%"></div></div><div class="bg-white rounded-2xl p-6 md:p-8 shadow-card"><h2 class="font-display font-bold text-lg text-navy">'+q.q+'</h2><div class="mt-5 space-y-2.5">'+q.o.map((o,i)=>'<button type="button" onclick="answerQuiz('+i+')" class="quizopt w-full text-left rounded-xl border-2 border-slate-200 hover:border-brand-400 hover:bg-brand-50 px-4 py-3 text-sm font-semibold text-slate-600 transition">'+o+'</button>').join("")+'</div><div id="quizFb" class="hidden mt-5 rounded-xl p-4 text-sm"></div><div class="mt-5 text-right"><button type="button" id="quizNext" onclick="qz.idx++;qz.locked=false;paintQuizPlayer(document.getElementById(\'view-quiz\'))" class="hidden bg-navy text-white font-bold text-sm px-6 py-2.5 rounded-xl hover:bg-navy-800 transition">Next →</button></div></div></div>';

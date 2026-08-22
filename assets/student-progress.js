@@ -4,7 +4,7 @@
   } else {
     root.StudentProgress = factory();
   }
-})(typeof self !== 'undefined' ? self : this, function () {
+})(typeof self !== 'undefined' ? self : this, function (root) {
   'use strict';
 
   var DEFAULT_KEY = 'aph-student-progress-v1';
@@ -101,6 +101,26 @@
       storage.setItem(key, JSON.stringify(state));
     }
 
+    function publishToSimHub(attempt) {
+      try {
+        if (!root || !root.location || !root.opener) return;
+        var params = new URLSearchParams(root.location.search || '');
+        var token = params.get('simhubBridgeToken');
+        var returnOrigin = params.get('simhubReturnOrigin');
+        if (!token || !returnOrigin) return;
+        var parsedOrigin = new URL(returnOrigin);
+        if (parsedOrigin.origin !== returnOrigin) return;
+        root.opener.postMessage({
+          source: 'simhub-static-bridge',
+          kind: 'simulator_attempt',
+          token: token,
+          attempt: attempt
+        }, returnOrigin);
+      } catch (error) {
+        // SimHub bridge failures must never interrupt the existing local simulator flow.
+      }
+    }
+
     function loadState() {
       var loaded = readState(storage, key);
       if (loaded.migrated) writeState(loaded.state);
@@ -114,6 +134,7 @@
       var storedAttempt = copyAttempt(safeAttempt);
       state.attempts.push(storedAttempt);
       writeState(state);
+      publishToSimHub(storedAttempt);
       return storedAttempt;
     }
 
@@ -150,4 +171,3 @@
     }
   };
 });
-
