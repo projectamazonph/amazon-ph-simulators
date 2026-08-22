@@ -1,110 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=1280, initial-scale=1.0">
-<style>
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;background:#f7f8fa}
-.slide-container{width:1280px;min-height:720px;background:#f7f8fa;color:#131921;font-family:Arial,Helvetica,sans-serif;position:relative;overflow:hidden;padding-top:42px;padding-left:60px;padding-right:60px}
-.eyebrow{font-size:14px;letter-spacing:1.8px;text-transform:uppercase;color:#ff9900;font-weight:700;margin-top:0;margin-bottom:9px}
-.title{font-size:40px;font-weight:800;line-height:1.08;margin-top:0;margin-bottom:0}
-.rule{height:3px;background:#131921;margin-top:18px}
-
-.layout{display:grid;grid-template-columns:1.8fr 1fr;gap:32px;margin-top:30px}
-
-/* Left Column: Table */
-.table-wrap{background:#fff;border:1px solid #d7dce2;padding-top:16px;padding-left:16px;padding-right:16px;padding-bottom:16px}
-.table{width:100%;border-collapse:collapse;font-size:17px;text-align:left}
-.table th{background:#131921;color:#fff;padding-top:14px;padding-left:14px;padding-right:14px;padding-bottom:14px}
-.table td{padding-top:16px;padding-left:14px;padding-right:14px;padding-bottom:16px;border-bottom:1px solid #d7dce2;color:#4b5563;line-height:1.4}
-.table td strong{color:#131921}
-.table tr:nth-child(even) td{background:#f1f3f5}
-
-/* Right Column: Content */
-.right-col{display:flex;flex-direction:column;gap:24px}
-
-.mistakes-box{background:#fff;border:1px solid #d7dce2;border-top:6px solid #de350b;padding-top:24px;padding-left:24px;padding-right:24px;padding-bottom:24px}
-.mistakes-title{font-size:20px;font-weight:700;color:#131921;margin-top:0;margin-bottom:16px;display:flex;align-items:center}
-.mistakes-title::before{content:"⚠️";margin-right:10px}
-.mistakes-list{list-style:none;padding-left:0;margin:0}
-.mistakes-list li{font-size:18px;color:#131921;line-height:1.4;margin-bottom:16px;display:flex;align-items:flex-start}
-.mistakes-list li:last-child{margin-bottom:0}
-.mistakes-list li::before{content:"✕";color:#de350b;font-weight:bold;margin-right:12px}
-
-.callout{background:#fff8f0;border-left:4px solid #ff9900;padding-top:20px;padding-left:20px;padding-right:20px;padding-bottom:20px}
-.callout-title{font-size:18px;font-weight:700;color:#8a5300;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
-.callout-text{font-size:20px;color:#131921;line-height:1.4;margin:0}
-
-.footer{position:absolute;left:60px;top:672px;font-size:13px;color:#64748b}
-.page{position:absolute;right:60px;top:672px;font-size:13px;color:#64748b}
-</style>
-<style>@keyframes moduleMotionIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}.slide-container>*{animation:moduleMotionIn .52s ease-out both}.slide-container>*:nth-child(2){animation-delay:.08s}.slide-container>*:nth-child(3){animation-delay:.16s}@media(prefers-reduced-motion:reduce){.slide-container>*{animation:none}}</style></head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1.0">
+  <style>
+    *{box-sizing:border-box} body{margin:0}.slide-container{width:1280px;min-height:720px;background:#f7f8fa;color:#152238;font-family:Arial,Helvetica,sans-serif;padding:54px 72px;position:relative;overflow:hidden}.eyebrow{font-size:15px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#a56508}.title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:32px}.title{max-width:890px;margin:12px 0 18px;font-size:52px;line-height:1.05;letter-spacing:-1.4px}.stage{font-size:16px;font-weight:800;color:#64748b;white-space:nowrap;margin-top:18px}.rule{height:5px;width:170px;background:linear-gradient(90deg,#ff9900 0 33%,#00875a 33% 66%,#de350b 66%);margin:0 0 22px}.grid{display:grid;grid-template-columns:0.9fr 1.35fr;gap:18px}.panel{min-height:232px;padding:24px 26px;background:#fff;border:1px solid #d8dee8}.label{display:block;margin-bottom:12px;color:#a56508;font-size:14px;letter-spacing:1.4px;font-weight:800;text-transform:uppercase}.term{font-size:32px;line-height:1.08;font-weight:800}.body-copy{font-size:24px;line-height:1.36;margin:0}.example{border-top:5px solid #00875a}.action{margin-top:18px;padding:17px 22px;background:#152238;color:#fff;font-size:21px;line-height:1.35}.action strong{color:#ffbf55}.footer{position:absolute;left:72px;right:72px;bottom:22px;display:flex;justify-content:space-between;color:#64748b;font-size:13px}.reveal{opacity:0;transform:translateY(12px);animation:reveal .48s ease-out both}.d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}@keyframes reveal{to{opacity:1;transform:none}}@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;animation:none}}
+  </style>
+</head>
 <body>
-<div class="slide-container">
-  <div class="eyebrow">Module 7 · Lesson 7.2</div>
-  <div class="title">Bid Rules for Beginners</div>
-  <div class="rule"></div>
-  
-  <div class="layout">
-    <div class="table-wrap">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Situation</th>
-            <th>Reading</th>
-            <th>Safe Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>No impressions</strong></td>
-            <td>Too low or irrelevant</td>
-            <td>Raise a little, check relevance</td>
-          </tr>
-          <tr>
-            <td><strong>Clicks, no sales</strong></td>
-            <td>Wrong terms or weak page</td>
-            <td>Negatives + listing check</td>
-          </tr>
-          <tr>
-            <td><strong>Sales + low ACOS</strong></td>
-            <td>Winning</td>
-            <td><span style="color:#00875a;font-weight:700">Raise bid a little, watch</span></td>
-          </tr>
-          <tr>
-            <td><strong>Sales + high ACOS</strong></td>
-            <td>Too expensive</td>
-            <td><span style="color:#de350b;font-weight:700">Lower bid</span></td>
-          </tr>
-          <tr>
-            <td><strong>Budget dies early</strong></td>
-            <td>Winning but capped</td>
-            <td><span style="color:#00875a;font-weight:700">Raise budget if profitable</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <div class="right-col">
-      <div class="mistakes-box">
-        <div class="mistakes-title">Common Mistakes</div>
-        <ul class="mistakes-list">
-          <li>Bidding high on everything just to "get data".</li>
-          <li>Cutting bids on a proven winner because of one quiet day.</li>
-          <li>Never revisiting bids after the initial launch.</li>
-        </ul>
-      </div>
-      
-      <div class="callout">
-        <div class="callout-title">Coach Tip</div>
-        <p class="callout-text">Bids are dials, not switches. Make small turns, then wait for the data to settle.</p>
-      </div>
-    </div>
+  <div class="slide-container">
+    <div class="eyebrow reveal">Module 7 · One idea at a time</div>
+    <div class="title-row"><h1 class="title reveal d1">Daily budget</h1><span class="stage reveal d1">3 / 12</span></div>
+    <div class="rule reveal d1"></div>
+    <main class="grid">
+      <section class="panel reveal d2"><span class="label">Word to know</span><div class="term">Daily budget</div></section>
+      <section class="panel example reveal d3"><span class="label">Plain meaning</span><p class="body-copy">A daily budget is the most the campaign may spend in one day.</p><span class="label" style="margin-top:18px">Small example</span><p class="body-copy">A $20 daily budget protects the campaign from spending more than $20 that day.</p></section>
+    </main>
+    <div class="action reveal d3"><strong>Your next step:</strong> do not confuse a daily budget with a bid.</div>
+    <footer class="footer"><span>Project Amazon PH Academy · Bids &amp; Budgets</span><span>Beginner-first teaching series</span></footer>
   </div>
-  
-  <div class="footer">Source: PPC Coach · Bids & Budgets · 7.2 Bid Rules for Beginners</div>
-  <div class="page">06 / 11</div>
-</div>
 </body>
 </html>

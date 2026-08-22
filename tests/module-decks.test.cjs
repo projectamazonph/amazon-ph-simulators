@@ -36,3 +36,24 @@ test('every final module deck has its expected slide sequence and permanent loca
     }
   });
 });
+
+test('every final module deck keeps the beginner-first teaching structure', () => {
+  modules.forEach(([moduleId, slideCount]) => {
+    for (let index = 1; index <= slideCount; index += 1) {
+      const slide = read(path.join('coach-decks', 'modules', moduleId, `slide_${index}.html`));
+      const text = slide
+        .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      const words = text.match(/\b[\w'-]+\b/g) || [];
+
+      assert.match(slide, /Word to know/, `${moduleId} slide ${index} has a defined term`);
+      assert.match(slide, /Plain meaning/, `${moduleId} slide ${index} has a plain-language explanation`);
+      assert.match(slide, /Small example/, `${moduleId} slide ${index} has a concrete example`);
+      assert.match(slide, /Your next step:/, `${moduleId} slide ${index} gives a clear learner action`);
+      assert.match(slide, /prefers-reduced-motion:reduce/, `${moduleId} slide ${index} supports reduced motion`);
+      assert.ok(words.length <= 115, `${moduleId} slide ${index} keeps learner copy short`);
+    }
+  });
+});
