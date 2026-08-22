@@ -1,139 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        .slide-container {
-            width: 1280px;
-            min-height: 720px;
-            background-color: #F4F7F6;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            background-color: #131921;
-            padding: 40px 60px;
-            border-bottom: 8px solid #FF9900;
-        }
-        .header h1 {
-            color: #FFFFFF;
-            font-size: 48px;
-            font-weight: 700;
-        }
-        .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 24px 60px; /* reduced vertical padding to save height */
-        }
-        .launch-table {
-            width: 100%;
-            border-collapse: collapse;
-            border: 8px solid #131921;
-            background-color: #FFFFFF;
-            margin-bottom: 40px;
-        }
-        .launch-table th, .launch-table td {
-            border: 2px solid #131921;
-            padding: 14px 20px; /* reduced inner padding */
-            text-align: left;
-            font-size: 28px;
-            color: #333333;
-        }
-        .launch-table th {
-            background-color: #131921;
-            color: #FFFFFF;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .launch-table tr:nth-child(even) {
-            background-color: #E2E8F0;
-        }
-        .col-week {
-            width: 15%;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: 700;
-            color: #0052FF;
-            text-align: center !important;
-        }
-        .col-focus {
-            width: 25%;
-            font-weight: 700;
-            color: #111111;
-        }
-        .col-move {
-            width: 60%;
-        }
-        .rule-box {
-            background-color: #131921;
-            border-left: 8px solid #FF9900;
-            padding: 20px; /* reduced padding */
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-        }
-        .rule-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #FF9900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-right: 20px;
-            white-space: nowrap;
-        }
-        .rule-text {
-            font-size: 32px;
-            color: #FFFFFF;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<style>
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:#f7f8fa}
+.slide-container{width:1280px;min-height:720px;background:#f7f8fa;color:#131921;font-family:Arial,Helvetica,sans-serif;position:relative;overflow:hidden;padding-top:42px;padding-left:60px;padding-right:60px}
+.eyebrow{font-size:14px;letter-spacing:1.8px;text-transform:uppercase;color:#ff9900;font-weight:700;margin-bottom:9px}
+.title{font-size:40px;font-weight:800;line-height:1.08}
+.rule{height:3px;background:#131921;margin-top:18px}
+
+.layout{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;margin-top:30px}
+
+/* Left Column: Table */
+.table-wrap{background:#fff;border:1px solid #d7dce2;padding-top:20px;padding-left:20px;padding-right:20px;padding-bottom:20px}
+.table-title{font-size:22px;font-weight:700;color:#131921;margin-bottom:16px}
+.table{width:100%;border-collapse:collapse;font-size:18px;text-align:left}
+.table th{background:#131921;color:#fff;padding-top:14px;padding-left:14px;padding-right:14px;padding-bottom:14px}
+.table td{padding-top:16px;padding-left:14px;padding-right:14px;padding-bottom:16px;border-bottom:1px solid #d7dce2;color:#4b5563;line-height:1.4}
+.table td strong{color:#131921}
+.table tr:nth-child(even) td{background:#f1f3f5}
+
+/* Right Column: Example & Tip */
+.right-col{display:flex;flex-direction:column;gap:24px}
+.example-box{background:#fff;border:1px solid #d7dce2;border-top:6px solid #131921;padding-top:24px;padding-left:24px;padding-right:24px;padding-bottom:24px}
+.example-title{font-size:20px;font-weight:700;color:#131921;margin-bottom:16px}
+.example-text{font-size:18px;line-height:1.5;color:#4b5563}
+.example-text strong{color:#131921}
+.example-highlight{background:#f1f3f5;padding-top:12px;padding-left:12px;padding-right:12px;padding-bottom:12px;margin-top:16px;border-left:4px solid #00875a;font-size:18px;font-weight:700;color:#131921}
+
+.callout{background:#fff8f0;border-left:4px solid #ff9900;color:#8a5300;padding-top:20px;padding-left:20px;padding-right:20px;padding-bottom:20px;font-size:20px;line-height:1.4}
+
+.footer{position:absolute;left:60px;top:672px;font-size:13px;color:#64748b}
+.page{position:absolute;right:60px;top:672px;font-size:13px;color:#64748b}
+</style>
 </head>
 <body>
-    <div class="slide-container">
-        <div class="header">
-            <h1>Learn before you scale</h1>
-        </div>
-        <div class="content-area">
-            <table class="launch-table">
-                <thead>
-                    <tr>
-                        <th class="col-week">Week</th>
-                        <th class="col-focus">Focus</th>
-                        <th class="col-move">Operating Move</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="col-week">1</td>
-                        <td class="col-focus">Learn</td>
-                        <td class="col-move">Auto, small bids, observe terms</td>
-                    </tr>
-                    <tr>
-                        <td class="col-week">2</td>
-                        <td class="col-focus">Control</td>
-                        <td class="col-move">Add long-tail Exact winners</td>
-                    </tr>
-                    <tr>
-                        <td class="col-week">3</td>
-                        <td class="col-focus">Clean</td>
-                        <td class="col-move">First negative pass</td>
-                    </tr>
-                    <tr>
-                        <td class="col-week">4</td>
-                        <td class="col-focus">Scale</td>
-                        <td class="col-move">Increase proven winners 10–20%</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="rule-box">
-                <div class="rule-title">Rule</div>
-                <div class="rule-text">Week 1 buys data, not a performance verdict.</div>
-            </div>
-        </div>
+<div class="slide-container">
+  <div class="eyebrow">Module 6 · Lesson 6.3</div>
+  <div class="title">New Product Launch Plan</div>
+  <div class="rule"></div>
+  
+  <div class="layout">
+    <div class="table-wrap">
+      <div class="table-title">The 4-Week Timeline</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Focus</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td>
+            <td><span style="color:#ff9900;font-weight:700">Learn</span></td>
+            <td>Auto only, small bids, watch terms</td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td><span style="color:#131921;font-weight:700">Control</span></td>
+            <td>Exact campaign with long-tail winners</td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td><span style="color:#de350b;font-weight:700">Clean</span></td>
+            <td>First negatives pass</td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td><span style="color:#00875a;font-weight:700">Scale</span></td>
+            <td>+10–20% budget on proven winners only</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    
+    <div class="right-col">
+      <div class="example-box">
+        <div class="example-title">Worked Example: $20/day Budget</div>
+        <div class="example-text">
+          <strong>Week 1:</strong> All $20 to Auto.<br><br>
+          <strong>Week 2:</strong> $8 Auto + $12 Exact.<br><br>
+          <strong>Week 4:</strong> Shift more budget to what converts.
+        </div>
+        <div class="example-highlight">
+          Launching is not spending fast. It is learning fast with small money.
+        </div>
+      </div>
+      
+      <div class="callout">
+        <strong>Coach tip:</strong> Week 1's goal is data, not profit. Follow a plan that learns before it scales.
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">Source: PPC Coach · Campaign Setup · 6.3 New Product Launch Plan</div>
+  <div class="page">04 / 11</div>
+</div>
 </body>
 </html>

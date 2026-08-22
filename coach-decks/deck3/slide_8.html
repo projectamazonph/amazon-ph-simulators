@@ -1,122 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        .slide-container {
-            width: 1280px;
-            min-height: 720px;
-            background-color: #F4F7F6;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            background-color: #131921;
-            padding: 40px 60px;
-            border-bottom: 8px solid #FF9900;
-        }
-        .header h1 {
-            color: #FFFFFF;
-            font-size: 48px;
-            font-weight: 700;
-        }
-        .content-area {
-            flex: 1;
-            display: flex;
-            padding: 60px;
-            gap: 60px;
-        }
-        .left-col {
-            flex: 1.2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .right-col {
-            flex: 0.8;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #E2E8F0;
-            border: 8px solid #131921;
-            padding: 30px;
-        }
-        .bullet-list {
-            list-style: none;
-        }
-        .bullet-list li {
-            font-size: 32px;
-            color: #333333;
-            line-height: 1.4;
-            margin-bottom: 30px;
-            position: relative;
-            padding-left: 40px;
-        }
-        .bullet-list li::before {
-            content: "■";
-            color: #FF9900;
-            position: absolute;
-            left: 0;
-            top: 5px;
-            font-size: 28px;
-        }
-        .highlight {
-            color: #0052FF;
-            font-weight: 600;
-        }
-        .video-container {
-            width: 100%;
-            text-align: center;
-        }
-        .video-thumbnail {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            border: 4px solid #131921;
-            margin-bottom: 20px;
-        }
-        .watch-label {
-            font-size: 24px;
-            font-weight: 700;
-            color: #FF9900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-        .video-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #131921;
-            font-style: italic;
-            line-height: 1.4;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<style>
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:#f7f8fa}
+.slide-container{width:1280px;min-height:720px;background:#f7f8fa;color:#131921;font-family:Arial,Helvetica,sans-serif;position:relative;overflow:hidden;padding-top:42px;padding-left:60px;padding-right:60px}
+.eyebrow{font-size:14px;letter-spacing:1.8px;text-transform:uppercase;color:#ff9900;font-weight:700;margin-top:0;margin-bottom:9px}
+.title{font-size:40px;font-weight:800;line-height:1.08;margin-top:0;margin-bottom:0}
+.rule{height:3px;background:#131921;margin-top:18px}
+
+.layout{display:grid;grid-template-columns:450px 1fr;gap:40px;margin-top:30px}
+
+/* Left Column: Steps */
+.step-list{display:flex;flex-direction:column;gap:16px}
+.step-list-title{font-size:22px;font-weight:700;color:#131921;margin-bottom:8px}
+.step-item{background:#fff;border:1px solid #d7dce2;border-left:6px solid #131921;padding-top:16px;padding-left:20px;padding-right:20px;padding-bottom:16px}
+.step-item.highlight{border-left-color:#ff9900;background:#fff8f0}
+.step-header{display:flex;align-items:center;margin-bottom:8px}
+.step-num{font-size:16px;font-weight:700;color:#ff9900;margin-right:12px;text-transform:uppercase;letter-spacing:1px}
+.step-item.highlight .step-num{color:#131921}
+.step-desc{font-size:18px;color:#131921;line-height:1.4;margin:0;font-weight:700}
+
+/* Right Column: Table & Tip */
+.right-col{display:flex;flex-direction:column;gap:24px}
+.table-wrap{background:#fff;border:1px solid #d7dce2;padding-top:20px;padding-left:20px;padding-right:20px;padding-bottom:20px}
+.table-title{font-size:22px;font-weight:700;color:#131921;margin-top:0;margin-bottom:16px}
+.table{width:100%;border-collapse:collapse;font-size:18px;text-align:left}
+.table th{background:#131921;color:#fff;padding-top:12px;padding-left:14px;padding-right:14px;padding-bottom:12px}
+.table td{padding-top:14px;padding-left:14px;padding-right:14px;padding-bottom:14px;border-bottom:1px solid #d7dce2;color:#4b5563}
+.table td strong{color:#131921}
+.table tr:nth-child(even) td{background:#f1f3f5}
+
+.callout{background:#fff8f0;border-left:4px solid #ff9900;color:#8a5300;padding-top:18px;padding-left:18px;padding-right:18px;padding-bottom:18px;font-size:18px;line-height:1.4}
+.callout strong{color:#131921}
+
+.footer{position:absolute;left:60px;top:672px;font-size:13px;color:#64748b}
+.page{position:absolute;right:60px;top:672px;font-size:13px;color:#64748b}
+</style>
 </head>
 <body>
-    <div class="slide-container">
-        <div class="header">
-            <h1>Harvest the report every week</h1>
+<div class="slide-container">
+  <div class="eyebrow">Module 8 · Lesson 8.1</div>
+  <div class="title">Reading the Search Term Report</div>
+  <div class="rule"></div>
+  
+  <div class="layout">
+    <div class="step-list">
+      <div class="step-list-title">The 4-Step Reading Method</div>
+      <div class="step-item">
+        <div class="step-header">
+          <span class="step-num">Step 01</span>
         </div>
-        <div class="content-area">
-            <div class="left-col">
-                <ul class="bullet-list">
-                    <li>Download the report and sort by spend.</li>
-                    <li>Mark each term as <span class="highlight">winner, waster, or maybe</span>.</li>
-                    <li>Promote profitable winners to Exact; block clearly irrelevant wasters.</li>
-                    <li>Log the action, rationale, and result before the next review.</li>
-                </ul>
-            </div>
-            <div class="right-col">
-                <div class="video-container">
-                    <img src="https://private-us-east-1.manuscdn.com/sessionFile/hVrvxL4ffoFjQxuD6pvSEt/sandbox/slides_resource_iljlxmwiivy9xll14yl92-67ff26ad-e2b-prod-azure-central-us_1787339195167_na1fn_L2hvbWUvdWJ1bnR1L2FtYXpvbi1waC1zaW11bGF0b3JzL2Fzc2V0cy9kZWNrL3ZpZGVvLXRodW1ibmFpbHMvc2VhcmNoLXRlcm1z.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1789430400&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvaFZydnhMNGZmb0ZqUXh1RDZwdlNFdC9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pbGpseG13aWl2eTl4bGwxNHlsOTItNjdmZjI2YWQtZTJiLXByb2QtYXp1cmUtY2VudHJhbC11c18xNzg3MzM5MTk1MTY3X25hMWZuX0wyaHZiV1V2ZFdKMWJuUjFMMkZ0WVhwdmJpMXdhQzF6YVcxMWJHRjBiM0p6TDJGemMyVjBjeTlrWldOckwzWnBaR1Z2TFhSb2RXMWlibUZwYkhNdmMyVmhjbU5vTFhSbGNtMXouanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODk0MzA0MDB9fX1dfQ__&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEUCIAMBWBz14B2O1x8RLn-4e6lxhgq-Z~o3bgf5-uVArvPBAiEAnz~2O0BwFWpCKsSbZTLwAjg-qO~SgHmoYBOJxdOTe8g_" alt="Video Thumbnail" class="video-thumbnail">
-                    <div class="watch-label">Watch</div>
-                    <div class="video-title">Analyzing Search Term Reports</div>
-                </div>
-            </div>
+        <p class="step-desc">Download the report for the last 7–14 days</p>
+      </div>
+      <div class="step-item highlight">
+        <div class="step-header">
+          <span class="step-num">Step 02</span>
         </div>
+        <p class="step-desc">Sort by spend, highest first</p>
+      </div>
+      <div class="step-item">
+        <div class="step-header">
+          <span class="step-num">Step 03</span>
+        </div>
+        <p class="step-desc">Read clicks, sales and ACOS per term</p>
+      </div>
+      <div class="step-item">
+        <div class="step-header">
+          <span class="step-num">Step 04</span>
+        </div>
+        <p class="step-desc">Mark each term: winner, waster or maybe</p>
+      </div>
     </div>
+    
+    <div class="right-col">
+      <div class="table-wrap">
+        <h2 class="table-title">Column Dictionary</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Column</th>
+              <th>Question it answers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Search term</strong></td>
+              <td>What did the shopper type?</td>
+            </tr>
+            <tr>
+              <td><strong>Clicks</strong></td>
+              <td>How much attention did it buy?</td>
+            </tr>
+            <tr>
+              <td><strong>Spend</strong></td>
+              <td>What did it cost?</td>
+            </tr>
+            <tr>
+              <td><strong>Sales</strong></td>
+              <td>What came back?</td>
+            </tr>
+            <tr>
+              <td><strong>ACOS</strong></td>
+              <td>Was the trade worth it?</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="callout">
+        <strong>Coach tip:</strong> Start at the top of the spend column. That is where your money is deciding.
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">Source: PPC Coach · Search Terms & Negatives · 8.1 Reading the Search Term Report</div>
+  <div class="page">08 / 11</div>
+</div>
 </body>
 </html>

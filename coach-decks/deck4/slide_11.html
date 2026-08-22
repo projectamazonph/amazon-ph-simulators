@@ -1,146 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        .slide-container {
-            width: 1280px;
-            min-height: 720px;
-            background-color: #F4F7F6;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            background-color: #131921;
-            padding: 40px 60px; /* DO NOT change upper padding */
-            border-bottom: 8px solid #FF9900;
-        }
-        .header h1 {
-            color: #FFFFFF;
-            font-size: 48px;
-            font-weight: 700;
-        }
-        .content-area {
-            flex: 1;
-            display: flex;
-            padding: 10px 40px; /* reduced vertical padding to save height */
-            gap: 24px;
-        }
-        .left-col {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .right-col {
-            flex: 1.2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .bullet-list {
-            list-style: none;
-        }
-        .bullet-list li {
-            font-size: 32px;
-            color: #333333;
-            line-height: 1.4;
-            margin-bottom: 10px; /* reduced from 30px */
-            position: relative;
-            padding-left: 30px;
-        }
-        .bullet-list li::before {
-            content: "■";
-            color: #FF9900;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-        .highlight {
-            color: #0052FF;
-            font-weight: 600;
-        }
-        .resource-table {
-            width: 100%;
-            border-collapse: collapse;
-            border: 6px solid #131921; /* slightly reduced */
-            background-color: #FFFFFF;
-        }
-        .resource-table th, .resource-table td {
-            border: 2px solid #131921;
-            padding: 12px; /* reduced from 20px */
-            text-align: left;
-        }
-        .resource-table th {
-            background-color: #131921;
-            color: #FFFFFF;
-            font-size: 28px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .resource-table td {
-            font-size: 24px;
-            color: #333333;
-            line-height: 1.4;
-        }
-        .resource-table tr:nth-child(even) {
-            background-color: #E2E8F0;
-        }
-        .table-caption {
-            font-size: 20px;
-            color: #131921;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 6px; /* reduced */
-            letter-spacing: 1px;
-        }
-        .col-topic { width: 35%; font-weight: 700; color: #111111; }
-        .col-link { width: 65%; font-family: 'Courier New', Courier, monospace; color: #0052FF; font-weight: 600; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.slide-container {
+    width: 1280px;
+    min-height: 720px;
+    background: #f7f8fa;
+    color: #131921;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    overflow: hidden;
+    padding-top: 42px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.eyebrow {
+    font-size: 14px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #ff9900;
+    font-weight: 700;
+    margin-top: 0;
+}
+.title {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.08;
+    margin-top: 9px;
+}
+.rule {
+    height: 3px;
+    background: #131921;
+    margin-top: 18px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 450px 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+/* Left Column: Path */
+.path-wrap {
+    display: flex;
+    flex-direction: column;
+}
+.path-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #131921;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+.path-step {
+    background: #fff;
+    border: 1px solid #d7dce2;
+    padding-top: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-height: 100px;
+}
+.path-step.s1 { border-left: 6px solid #131921; }
+.path-step.s2 { border-left: 6px solid #ff9900; }
+.path-step.s3 { border-left: 6px solid #00875a; }
+
+.step-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: #131921;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.step-desc {
+    font-size: 18px;
+    color: #4b5563;
+    line-height: 1.4;
+    margin: 0;
+}
+.path-arrow {
+    text-align: center;
+    font-size: 24px;
+    color: #64748b;
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+/* Right Column: Capstone */
+.right-col {
+    display: flex;
+    flex-direction: column;
+}
+.capstone-card {
+    background: #131921;
+    color: #fff;
+    border-top: 6px solid #ff9900;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    min-height: 360px;
+}
+.capstone-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ff9900;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.capstone-intro {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 24px;
+    line-height: 1.4;
+}
+.capstone-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+.capstone-list li {
+    font-size: 20px;
+    color: #dbe2ea;
+    line-height: 1.4;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-start;
+}
+.capstone-list li::before {
+    content: "■";
+    color: #00875a;
+    font-size: 14px;
+    margin-right: 16px;
+    margin-top: 6px;
+}
+
+.callout {
+    margin-top: 24px;
+    background: #eef8f3;
+    border-left: 4px solid #00875a;
+    color: #145c43;
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    min-height: 80px;
+    font-size: 18px;
+    line-height: 1.4;
+}
+.callout strong {
+    color: #131921;
+}
+
+.footer {
+    position: absolute;
+    left: 60px;
+    top: 672px;
+    font-size: 13px;
+    color: #64748b;
+}
+.page {
+    position: absolute;
+    right: 60px;
+    top: 672px;
+    font-size: 13px;
+    color: #64748b;
+}
+</style>
 </head>
 <body>
-    <div class="slide-container">
-        <div class="header">
-            <h1>Run a predictable teaching lab</h1>
-        </div>
-        <div class="content-area">
-            <div class="left-col">
-                <ul class="bullet-list">
-                    <li><span class="highlight">Timebox</span> simulator labs to maintain momentum.</li>
-                    <li>Require students to verbally defend their actions before executing them.</li>
-                    <li>Use the provided rubrics for objective, evidence-based grading.</li>
-                    <li>Enforce the standard: safe action matters more than aggressive action.</li>
-                </ul>
-            </div>
-            <div class="right-col">
-                <div class="table-caption">Media Resource Links</div>
-                <table class="resource-table">
-                    <thead>
-                        <tr>
-                            <th class="col-topic">Topic</th>
-                            <th class="col-link">Resource Link</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="col-topic">Campaign Setup</td>
-                            <td class="col-link">youtube.com/watch?v=Qufxz0T6UmU</td>
-                        </tr>
-                        <tr>
-                            <td class="col-topic">Match Types</td>
-                            <td class="col-link">youtube.com/watch?v=match-types</td>
-                        </tr>
-                        <tr>
-                            <td class="col-topic">Search Terms</td>
-                            <td class="col-link">youtube.com/watch?v=search-terms</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<div class="slide-container">
+  <div class="eyebrow">Module 11 · Lesson 11.4</div>
+  <div class="title">The Capstone Journey</div>
+  <div class="rule"></div>
+  
+  <div class="layout">
+    <div class="path-wrap">
+      <div class="path-title">The Readiness Path</div>
+      
+      <div class="path-step s1">
+        <div class="step-header">Phase 1: Theory</div>
+        <p class="step-desc">Master the concepts. Pass all module quizzes with 70%+.</p>
+      </div>
+      <div class="path-arrow">↓</div>
+      
+      <div class="path-step s2">
+        <div class="step-header">Phase 2: Simulators</div>
+        <p class="step-desc">Practice without risk. Pass all SimGrid scenarios with 75%+.</p>
+      </div>
+      <div class="path-arrow">↓</div>
+      
+      <div class="path-step s3">
+        <div class="step-header">Phase 3: Shadowing</div>
+        <p class="step-desc">Supervised live account access. Draft changes for manager approval.</p>
+      </div>
     </div>
+    
+    <div class="right-col">
+      <div class="capstone-card">
+        <div class="capstone-title">The Final Exam</div>
+        <div class="capstone-intro">
+          To graduate to independent management, you must complete a full account audit and present a 30-day strategy:
+        </div>
+        <ul class="capstone-list">
+          <li>Identify the top 3 wasted spend leaks.</li>
+          <li>Propose a new campaign structure for the top seller.</li>
+          <li>Calculate the break-even ACOS and target margins.</li>
+          <li>Present the plan as a client-facing narrative report.</li>
+        </ul>
+      </div>
+      
+      <div class="callout">
+        <strong>Coach tip:</strong> The capstone proves you can make decisions, not just click buttons. It is the bridge from student to professional.
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">Source: PPC Coach · Operations & Capstone · 11.4 The Capstone Journey</div>
+  <div class="page">11 / 12</div>
+</div>
 </body>
 </html>

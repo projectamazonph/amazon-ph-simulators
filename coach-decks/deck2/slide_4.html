@@ -1,142 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        .slide-container {
-            width: 1280px;
-            min-height: 720px;
-            background-color: #F4F7F6;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            background-color: #131921;
-            padding: 40px 60px;
-            border-bottom: 8px solid #FF9900;
-        }
-        .header h1 {
-            color: #FFFFFF;
-            font-size: 48px;
-            font-weight: 700;
-        }
-        .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            /* Shrunk inner padding to reduce vertical space */
-            padding: 24px 40px;
-        }
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            border: 8px solid #131921;
-            background-color: #FFFFFF;
-            /* reduced bottom margin */
-            margin-bottom: 24px;
-        }
-        .comparison-table th, .comparison-table td {
-            border: 2px solid #131921;
-            /* Reduced cell padding to cut down table height (keeps font sizes) */
-            padding: 12px 16px;
-            text-align: left;
-            font-size: 28px;
-            color: #333333;
-        }
-        .comparison-table th {
-            background-color: #131921;
-            color: #FFFFFF;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .comparison-table tr:nth-child(even) {
-            background-color: #E2E8F0;
-        }
-        .col-type {
-            width: 30%;
-            font-weight: 700;
-            color: #111111;
-        }
-        .col-role {
-            width: 45%;
-        }
-        .col-priority {
-            width: 25%;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: 700;
-        }
-        .priority-high {
-            color: #10B981;
-        }
-        .priority-low {
-            color: #64748B;
-        }
-        .key-idea-box {
-            background-color: #131921;
-            border-left: 8px solid #FF9900;
-            /* reduced padding to save vertical space */
-            padding: 18px;
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-        }
-        .key-idea-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #FF9900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-right: 16px;
-            white-space: nowrap;
-        }
-        .key-idea-text {
-            font-size: 32px;
-            color: #FFFFFF;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<style>
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:#f7f8fa}
+.slide-container{width:1280px;min-height:720px;background:#f7f8fa;color:#131921;font-family:Arial,Helvetica,sans-serif;position:relative;overflow:hidden;padding-top:42px;padding-left:60px;padding-right:60px}
+.eyebrow{font-size:14px;letter-spacing:1.8px;text-transform:uppercase;color:#ff9900;font-weight:700;margin-bottom:9px}
+.title{font-size:40px;font-weight:800;line-height:1.08}
+.rule{height:3px;background:#131921;margin-top:18px}
+
+/* Three Column Layout */
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:30px}
+.ad-card{background:#fff;border:1px solid #d7dce2;padding-top:24px;padding-left:24px;padding-right:24px;padding-bottom:24px;min-height:280px}
+.ad-card.primary{border-top:6px solid #ff9900;background:#fffcf5}
+.ad-card.secondary{border-top:6px solid #131921}
+.ad-title{font-size:24px;font-weight:700;color:#131921;margin-bottom:20px}
+.ad-card.primary .ad-title{color:#ff9900}
+.ad-section{margin-bottom:16px}
+.ad-label{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:#64748b;font-weight:700;margin-bottom:6px}
+.ad-desc{font-size:18px;line-height:1.4;color:#131921}
+
+/* Bottom Section */
+.bottom-section{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.rules-list{list-style:none;padding-left:0;margin:0}
+.rules-list li{font-size:18px;margin-bottom:12px;display:flex;align-items:flex-start;line-height:1.4}
+.rules-list li::before{content:"■";margin-right:12px;color:#131921;font-size:12px;margin-top:4px}
+
+.callout{background:#fff8f0;border-left:4px solid #ff9900;color:#8a5300;padding-top:16px;padding-left:16px;padding-right:16px;padding-bottom:16px;font-size:18px;line-height:1.4}
+
+.footer{position:absolute;left:60px;top:672px;font-size:13px;color:#64748b}
+.page{position:absolute;right:60px;top:672px;font-size:13px;color:#64748b}
+</style>
 </head>
 <body>
-    <div class="slide-container">
-        <div class="header">
-            <h1>Start with Sponsored Products</h1>
-        </div>
-        <div class="content-area">
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th class="col-type">Ad Type</th>
-                        <th class="col-role">Primary Role</th>
-                        <th class="col-priority">Beginner Priority</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="col-type">Sponsored Products</td>
-                        <td class="col-role">Individual product sales</td>
-                        <td class="col-priority priority-high">Start here</td>
-                    </tr>
-                    <tr>
-                        <td class="col-type">Sponsored Brands</td>
-                        <td class="col-role">Brand and multi-product visibility</td>
-                        <td class="col-priority priority-low">Later</td>
-                    </tr>
-                    <tr>
-                        <td class="col-type">Sponsored Display</td>
-                        <td class="col-role">Retargeting and awareness</td>
-                        <td class="col-priority priority-low">Later</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="key-idea-box">
-                <div class="key-idea-title">Key Idea</div>
-                <div class="key-idea-text">Master the core product ad before expanding the channel mix.</div>
-            </div>
-        </div>
+<div class="slide-container">
+  <div class="eyebrow">Module 3 · Lesson 3.3</div>
+  <div class="title">The Three Ad Types</div>
+  <div class="rule"></div>
+  
+  <div class="grid-3">
+    <div class="ad-card primary">
+      <div class="ad-title">Sponsored Products</div>
+      <div class="ad-section">
+        <div class="ad-label">Shows as</div>
+        <div class="ad-desc">Single product in search and product pages</div>
+      </div>
+      <div class="ad-section">
+        <div class="ad-label">Best for</div>
+        <div class="ad-desc"><strong>Core sales — start here</strong></div>
+      </div>
     </div>
+    
+    <div class="ad-card secondary">
+      <div class="ad-title">Sponsored Brands</div>
+      <div class="ad-section">
+        <div class="ad-label">Shows as</div>
+        <div class="ad-desc">Brand banner with logo and several products</div>
+      </div>
+      <div class="ad-section">
+        <div class="ad-label">Best for</div>
+        <div class="ad-desc">Brand-registered sellers, defense</div>
+      </div>
+    </div>
+    
+    <div class="ad-card secondary">
+      <div class="ad-title">Sponsored Display</div>
+      <div class="ad-section">
+        <div class="ad-label">Shows as</div>
+        <div class="ad-desc">On and off Amazon, retargeting</div>
+      </div>
+      <div class="ad-section">
+        <div class="ad-label">Best for</div>
+        <div class="ad-desc">Remarketing and awareness</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bottom-section">
+    <ul class="rules-list">
+      <li>Beginners: 90% of learning happens in Sponsored Products.</li>
+      <li>Add Brands and Display only after Sponsored Products is stable.</li>
+    </ul>
+    
+    <div class="callout">
+      <b>Coach tip:</b> Master one ad type deeply before touching the others.
+    </div>
+  </div>
+  
+  <div class="footer">Source: PPC Coach · Campaign Structure · 3.3 The Three Ad Types</div>
+  <div class="page">04 / 12</div>
+</div>
 </body>
 </html>

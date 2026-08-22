@@ -1,146 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        .slide-container {
-            width: 1280px;
-            min-height: 720px;
-            background-color: #F4F7F6;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            background-color: #131921;
-            padding: 40px 60px; /* keep top padding (title consistency) */
-            border-bottom: 8px solid #FF9900;
-        }
-        .header h1 {
-            color: #FFFFFF;
-            font-size: 48px;
-            font-weight: 700;
-        }
-        .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 24px 60px; /* reduced from 40 to save vertical space */
-            gap: 20px;
-        }
-        .columns-wrapper {
-            display: flex;
-            gap: 18px;
-            flex: 1;
-            align-items: flex-start;
-        }
-        .info-block {
-            flex: 1;
-            background-color: #FFFFFF;
-            border: 8px solid #131921;
-            padding: 12px; /* reduced from 20 */
-            display: flex;
-            flex-direction: column;
-        }
-        .info-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #111111;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            border-bottom: 4px solid #FF9900;
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        .check-list {
-            list-style: none;
-            margin-top: 10px;
-            /* flow list into two columns to reduce vertical length */
-            column-count: 2;
-            column-gap: 22px;
-        }
-        .check-list li {
-            font-size: 28px;
-            color: #333333;
-            line-height: 1.4;
-            margin-bottom: 10px; /* slightly reduced */
-            position: relative;
-            padding-left: 35px;
-            break-inside: avoid;
-        }
-        .check-list li::before {
-            content: "■";
-            color: #FF9900;
-            position: absolute;
-            left: 0;
-            top: 2px;
-            font-size: 24px;
-        }
-        .highlight {
-            color: #0052FF;
-            font-weight: 700;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        .callout-box {
-            background-color: #131921;
-            border-left: 8px solid #FF9900;
-            padding: 18px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            color: #FFFFFF;
-            flex: 0 0 320px; /* slightly reduced width to balance layout */
-        }
-        .callout-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #FF9900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-            white-space: nowrap;
-        }
-        .callout-text {
-            font-size: 32px;
-            color: #FFFFFF;
-            font-weight: 600;
-            line-height: 1.25;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.slide-container {
+    width: 1280px;
+    min-height: 720px;
+    background: #f7f8fa;
+    color: #131921;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    overflow: hidden;
+    padding-top: 42px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.eyebrow {
+    font-size: 14px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #ff9900;
+    font-weight: 700;
+    margin-top: 0;
+}
+.title {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.08;
+    margin-top: 9px;
+}
+.rule {
+    height: 3px;
+    background: #131921;
+    margin-top: 18px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+/* Panels */
+.panel {
+    background: #fff;
+    border: 1px solid #d7dce2;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    min-height: 380px;
+}
+.panel.sop {
+    border-top: 6px solid #131921;
+}
+.panel.log {
+    border-top: 6px solid #ff9900;
+}
+
+.panel-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #131921;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+.panel-text {
+    font-size: 20px;
+    color: #4b5563;
+    line-height: 1.4;
+    margin-bottom: 24px;
+}
+
+/* SOP Example Box */
+.sop-example {
+    background: #f1f3f5;
+    border-left: 4px solid #131921;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.sop-label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #64748b;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.sop-rule {
+    font-size: 20px;
+    font-weight: 700;
+    color: #131921;
+    margin-bottom: 16px;
+}
+.sop-action {
+    font-size: 20px;
+    font-weight: 700;
+    color: #00875a;
+    margin-top: 16px;
+}
+
+/* Log Table */
+.log-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    text-align: left;
+}
+.log-table th {
+    background: #131921;
+    color: #fff;
+    padding-top: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.log-table td {
+    padding-top: 14px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-bottom: 1px solid #d7dce2;
+    color: #131921;
+}
+.log-table tr:nth-child(even) td {
+    background: #f1f3f5;
+}
+
+/* Callout */
+.callout {
+    margin-top: 30px;
+    background: #eef8f3;
+    border-left: 4px solid #00875a;
+    color: #145c43;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    line-height: 1.4;
+}
+.callout strong {
+    color: #131921;
+}
+
+.footer {
+    position: absolute;
+    left: 60px;
+    top: 672px;
+    font-size: 13px;
+    color: #64748b;
+}
+.page {
+    position: absolute;
+    right: 60px;
+    top: 672px;
+    font-size: 13px;
+    color: #64748b;
+}
+</style>
 </head>
 <body>
-    <div class="slide-container">
-        <div class="header">
-            <h1>Supervised readiness has evidence</h1>
-        </div>
-        <div class="content-area">
-            <div class="columns-wrapper">
-                <div class="info-block">
-                    <div class="info-title">Graduation Checklist</div>
-                    <ul class="check-list">
-                        <li>All 11 module quizzes completed</li>
-                        <li>All simulator labs executed and logged</li>
-                        <li>Capstone project submitted and reviewed</li>
-                        <li>Change log and SOPs documented</li>
-                    </ul>
-                </div>
-                <div class="info-block">
-                    <div class="info-title">Assessment Thresholds</div>
-                    <ul class="check-list">
-                        <li><strong>Knowledge:</strong> Quizzes at <span class="highlight">70%+</span></li>
-                        <li><strong>Application:</strong> Simulators at <span class="highlight">75%+</span></li>
-                        <li><strong>Synthesis:</strong> Capstone graded <span class="highlight">Pass</span></li>
-                        <li><strong>Process:</strong> Adherence to permission ladder</li>
-                    </ul>
-                </div>
-                <div class="callout-box">
-                    <div class="callout-title">The Standard</div>
-                    <div class="callout-text">Graduation means you are ready for supervised account management, not solo flight.</div>
-                </div>
-            </div>
-        </div>
+<div class="slide-container">
+  <div class="eyebrow">Module 11 · Lesson 11.3</div>
+  <div class="title">SOPs and the Change Log</div>
+  <div class="rule"></div>
+  
+  <div class="layout">
+    <div class="panel sop">
+      <h2 class="panel-title">Standard Operating Procedures</h2>
+      <p class="panel-text">Stop guessing every week. Turn judgment into a repeatable, documented process. If X happens, do Y.</p>
+      
+      <div class="sop-example">
+        <div class="sop-label">Trigger (The "If")</div>
+        <div class="sop-rule">ACOS > 40% AND Clicks > 20</div>
+        <div style="height: 1px; background: #d7dce2; margin-top: 12px; margin-bottom: 12px;"></div>
+        <div class="sop-label">Action (The "Then")</div>
+        <div class="sop-action">Decrease bid by 15%</div>
+      </div>
     </div>
+    
+    <div class="panel log">
+      <h2 class="panel-title">The Change Log</h2>
+      <p class="panel-text">Memory lies, logs do not. When performance suddenly drops, the log tells you exactly what broke it.</p>
+      
+      <table class="log-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Target</th>
+            <th>Change</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Oct 12</td>
+            <td>[bamboo board]</td>
+            <td>Bid $1.00 → $0.85</td>
+            <td>ACOS was 45%</td>
+          </tr>
+          <tr>
+            <td>Oct 12</td>
+            <td>"plastic board"</td>
+            <td>Added Negative</td>
+            <td>15 clicks, 0 sales</td>
+          </tr>
+          <tr>
+            <td>Oct 19</td>
+            <td>Auto Campaign</td>
+            <td>Budget $20 → $25</td>
+            <td>Capping out at 2pm</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="callout">
+    <strong>Coach tip:</strong> If you didn't log it, it didn't happen. The change log is your only defense when a client asks why sales dropped on a Tuesday.
+  </div>
+  
+  <div class="footer">Source: PPC Coach · Operations & Capstone · 11.3 SOPs and the Change Log</div>
+  <div class="page">10 / 12</div>
+</div>
 </body>
 </html>

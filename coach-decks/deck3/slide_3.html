@@ -1,133 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        .slide-container {
-            width: 1280px;
-            min-height: 720px;
-            background-color: #F4F7F6;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            background-color: #131921;
-            padding: 40px 60px;
-            border-bottom: 8px solid #FF9900;
-        }
-        .header h1 {
-            color: #FFFFFF;
-            font-size: 48px;
-            font-weight: 700;
-        }
-        .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 40px 60px;
-        }
-        .allocation-table {
-            width: 100%;
-            border-collapse: collapse;
-            border: 8px solid #131921;
-            background-color: #FFFFFF;
-            margin-bottom: 40px;
-        }
-        .allocation-table th, .allocation-table td {
-            border: 2px solid #131921;
-            padding: 20px 25px;
-            text-align: left;
-            font-size: 28px;
-            color: #333333;
-        }
-        .allocation-table th {
-            background-color: #131921;
-            color: #FFFFFF;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .allocation-table tr:nth-child(even) {
-            background-color: #E2E8F0;
-        }
-        .col-job {
-            width: 35%;
-            font-weight: 700;
-            color: #111111;
-        }
-        .col-share {
-            width: 25%;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: 700;
-            color: #0052FF;
-        }
-        .col-rule {
-            width: 40%;
-        }
-        .exercise-box {
-            background-color: #131921;
-            border-left: 8px solid #FF9900;
-            padding: 30px;
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-        }
-        .exercise-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #FF9900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-right: 30px;
-            white-space: nowrap;
-        }
-        .exercise-text {
-            font-size: 32px;
-            color: #FFFFFF;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<style>
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:#f7f8fa}
+.slide-container{width:1280px;min-height:720px;background:#f7f8fa;color:#131921;font-family:Arial,Helvetica,sans-serif;position:relative;overflow:hidden;padding-top:42px;padding-left:60px;padding-right:60px}
+.eyebrow{font-size:14px;letter-spacing:1.8px;text-transform:uppercase;color:#ff9900;font-weight:700;margin-bottom:9px}
+.title{font-size:40px;font-weight:800;line-height:1.08}
+.rule{height:3px;background:#131921;margin-top:18px}
+
+/* Top Section: Skeleton Diagram */
+.skeleton-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:30px}
+.skeleton-node{background:#fff;border:1px solid #d7dce2;padding-top:20px;padding-left:20px;padding-right:20px;padding-bottom:20px;min-height:160px}
+.skeleton-node.auto{border-top:6px solid #ff9900}
+.skeleton-node.exact{border-top:6px solid #00875a}
+.skeleton-node.pt{border-top:6px solid #4f8c9a}
+.node-title{font-size:20px;font-weight:700;color:#131921;margin-bottom:12px}
+.node-desc{font-size:16px;color:#4b5563;line-height:1.4}
+.harvest-arrow{display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#131921;margin-top:12px;margin-bottom:12px}
+.harvest-arrow::before, .harvest-arrow::after{content:"";flex:1;height:1px;background:#d7dce2;margin:0 12px}
+
+/* Bottom Section: Table & Tip */
+.bottom-layout{display:grid;grid-template-columns:2fr 1fr;gap:30px;margin-top:30px}
+.table-wrap{background:#fff;border:1px solid #d7dce2;padding-top:16px;padding-left:16px;padding-right:16px;padding-bottom:16px}
+.table{width:100%;border-collapse:collapse;font-size:18px;text-align:left}
+.table th{background:#131921;color:#fff;padding-top:12px;padding-left:14px;padding-right:14px;padding-bottom:12px}
+.table td{padding-top:14px;padding-left:14px;padding-right:14px;padding-bottom:14px;border-bottom:1px solid #d7dce2;color:#4b5563}
+.table td strong{color:#131921}
+.table tr:nth-child(even) td{background:#f1f3f5}
+
+.callout{background:#fff8f0;border-left:4px solid #ff9900;color:#8a5300;padding-top:20px;padding-left:20px;padding-right:20px;padding-bottom:20px;font-size:20px;line-height:1.4;display:flex;align-items:center}
+
+.footer{position:absolute;left:60px;top:672px;font-size:13px;color:#64748b}
+.page{position:absolute;right:60px;top:672px;font-size:13px;color:#64748b}
+</style>
 </head>
 <body>
-    <div class="slide-container">
-        <div class="header">
-            <h1>Build a safe starter skeleton</h1>
-        </div>
-        <div class="content-area">
-            <table class="allocation-table">
-                <thead>
-                    <tr>
-                        <th class="col-job">Campaign Job</th>
-                        <th class="col-share">Starting Share</th>
-                        <th class="col-rule">Operating Rule</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="col-job">Auto research</td>
-                        <td class="col-share">30–40%</td>
-                        <td class="col-rule">Discover queries</td>
-                    </tr>
-                    <tr>
-                        <td class="col-job">Exact core</td>
-                        <td class="col-share">50–60%</td>
-                        <td class="col-rule">Convert proven demand</td>
-                    </tr>
-                    <tr>
-                        <td class="col-job">Product targeting</td>
-                        <td class="col-share">0–10%</td>
-                        <td class="col-rule">Run controlled experiments</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="exercise-box">
-                <div class="exercise-title">Exercise</div>
-                <div class="exercise-text">Split a $20 daily budget and defend the trade-off.</div>
-            </div>
-        </div>
+<div class="slide-container">
+  <div class="eyebrow">Module 6 · Lesson 6.2</div>
+  <div class="title">A Safe First Structure</div>
+  <div class="rule"></div>
+  
+  <div class="skeleton-wrap">
+    <div class="skeleton-node auto">
+      <div class="node-title">SP | Auto | Research</div>
+      <div class="node-desc">Small budget, learns what the product matches.</div>
+      <div class="harvest-arrow">Harvest Winners Weekly</div>
     </div>
+    <div class="skeleton-node exact">
+      <div class="node-title">SP | Exact | Core</div>
+      <div class="node-desc">Proven words only. Tight bids, tight control.</div>
+    </div>
+    <div class="skeleton-node pt">
+      <div class="node-title">SP | Product Targeting</div>
+      <div class="node-desc">Competitor pages and related categories. Test later.</div>
+    </div>
+  </div>
+  
+  <div class="bottom-layout">
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th>Budget Share</th>
+            <th>Job</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Auto</strong></td>
+            <td>30–40%</td>
+            <td>Discover search terms</td>
+          </tr>
+          <tr>
+            <td><strong>Exact</strong></td>
+            <td><span style="color:#00875a;font-weight:700">50–60%</span></td>
+            <td><span style="color:#00875a;font-weight:700">Convert proven demand</span></td>
+          </tr>
+          <tr>
+            <td><strong>Product Targeting</strong></td>
+            <td>0–10% at first</td>
+            <td>Optional experiments</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="callout">
+      <div>
+        <strong>Coach tip:</strong><br><br>Structure follows purpose: research, convert, expand. In that order.
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">Source: PPC Coach · Campaign Setup · 6.2 A Safe First Structure</div>
+  <div class="page">03 / 11</div>
+</div>
 </body>
 </html>

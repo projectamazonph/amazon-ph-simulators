@@ -1,147 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        .slide-container {
-            width: 1280px;
-            min-height: 720px;
-            background-color: #F4F7F6;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            background-color: #131921;
-            padding: 40px 60px;
-            border-bottom: 8px solid #FF9900;
-        }
-        .header h1 {
-            color: #FFFFFF;
-            font-size: 48px;
-            font-weight: 700;
-        }
-        .content-area {
-            flex: 1;
-            display: flex;
-            padding: 40px 60px;
-            gap: 40px;
-        }
-        .left-col {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .right-col {
-            flex: 1.2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .bullet-list {
-            list-style: none;
-        }
-        .bullet-list li {
-            font-size: 32px;
-            color: #333333;
-            line-height: 1.4;
-            margin-bottom: 30px;
-            position: relative;
-            padding-left: 30px;
-        }
-        .bullet-list li::before {
-            content: "■";
-            color: #FF9900;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-        .highlight {
-            color: #0052FF;
-            font-weight: 600;
-        }
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            border: 8px solid #131921;
-            background-color: #FFFFFF;
-        }
-        .comparison-table th, .comparison-table td {
-            border: 2px solid #131921;
-            padding: 20px;
-            text-align: left;
-        }
-        .comparison-table th {
-            background-color: #131921;
-            color: #FFFFFF;
-            font-size: 28px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .comparison-table td {
-            font-size: 22px;
-            color: #333333;
-            line-height: 1.4;
-        }
-        .comparison-table tr:nth-child(even) {
-            background-color: #E2E8F0;
-        }
-        .bad-report {
-            color: #B12704;
-            font-weight: 600;
-        }
-        .good-report {
-            color: #067D62;
-            font-weight: 600;
-        }
-        .table-caption {
-            font-size: 20px;
-            color: #131921;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<style>
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:#f7f8fa}
+.slide-container{width:1280px;min-height:720px;background:#f7f8fa;color:#131921;font-family:Arial,Helvetica,sans-serif;position:relative;overflow:hidden;padding-top:42px;padding-left:60px;padding-right:60px}
+.eyebrow{font-size:14px;letter-spacing:1.8px;text-transform:uppercase;color:#ff9900;font-weight:700;margin-top:0;margin-bottom:9px}
+.title{font-size:40px;font-weight:800;line-height:1.08;margin-top:0;margin-bottom:0}
+.rule{height:3px;background:#131921;margin-top:18px}
+
+.layout{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;margin-top:30px}
+
+/* Left Column: Calendar Table */
+.table-wrap{background:#fff;border:1px solid #d7dce2;padding-top:16px;padding-left:16px;padding-right:16px;padding-bottom:16px}
+.table{width:100%;border-collapse:collapse;font-size:18px;text-align:left}
+.table th{background:#131921;color:#fff;padding-top:14px;padding-left:14px;padding-right:14px;padding-bottom:14px}
+.table td{padding-top:16px;padding-left:14px;padding-right:14px;padding-bottom:16px;border-bottom:1px solid #d7dce2;color:#4b5563;line-height:1.4}
+.table td strong{color:#131921;text-transform:uppercase;letter-spacing:1px;font-size:16px}
+.table tr:nth-child(even) td{background:#f1f3f5}
+
+/* Right Column: Cadence & Tip */
+.right-col{display:flex;flex-direction:column;gap:16px}
+
+.cadence-box{background:#fff;border:1px solid #d7dce2;padding-top:16px;padding-left:20px;padding-right:20px;padding-bottom:16px;border-left:6px solid #131921}
+.cadence-box.daily{border-left-color:#131921}
+.cadence-box.weekly{border-left-color:#ff9900}
+.cadence-box.monthly{border-left-color:#00875a}
+.cadence-title{font-size:20px;font-weight:700;margin-top:0;margin-bottom:8px;color:#131921}
+.cadence-box.daily .cadence-title{color:#131921}
+.cadence-box.weekly .cadence-title{color:#ff9900}
+.cadence-box.monthly .cadence-title{color:#00875a}
+.cadence-text{font-size:18px;color:#4b5563;line-height:1.4;margin:0}
+
+.callout{background:#eef8f3;border-left:4px solid #00875a;color:#145c43;padding-top:20px;padding-left:20px;padding-right:20px;padding-bottom:20px;font-size:20px;line-height:1.4;margin-top:auto}
+
+.footer{position:absolute;left:60px;top:672px;font-size:13px;color:#64748b}
+.page{position:absolute;right:60px;top:672px;font-size:13px;color:#64748b}
+</style>
 </head>
 <body>
-    <div class="slide-container">
-        <div class="header">
-            <h1>A useful report tells a story</h1>
-        </div>
-        <div class="content-area">
-            <div class="left-col">
-                <ul class="bullet-list">
-                    <li>Clients can see the dashboard; they pay you for the <span class="highlight">interpretation</span>.</li>
-                    <li>A data dump causes panic. A narrative builds trust.</li>
-                    <li>Every report must state: <strong>What happened</strong>, <strong>Why it happened</strong>, and <strong>What we are doing next</strong>.</li>
-                </ul>
-            </div>
-            <div class="right-col">
-                <div class="table-caption">Reporting Comparison</div>
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Data Dump (Avoid)</th>
-                            <th>Narrative (Use)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="bad-report">"Spend was $500, sales were $1,000, ACOS is 50%."</td>
-                            <td class="good-report">"ACOS hit 50% because we tested three new terms. We paused the losers and expect ACOS to drop next week."</td>
-                        </tr>
-                        <tr>
-                            <td class="bad-report">"Impressions are down 20% this week."</td>
-                            <td class="good-report">"Impressions dropped 20% as we lowered bids on broad match to protect profitability during the slow season."</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<div class="slide-container">
+  <div class="eyebrow">Module 9 · Lesson 9.1</div>
+  <div class="title">The Weekly Routine</div>
+  <div class="rule"></div>
+  
+  <div class="layout">
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Core Task</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Monday</strong></td>
+            <td>Spend, budgets, urgent alerts</td>
+          </tr>
+          <tr>
+            <td><strong>Tuesday</strong></td>
+            <td>Search term review</td>
+          </tr>
+          <tr>
+            <td><strong>Wednesday</strong></td>
+            <td>Negatives + promote winners</td>
+          </tr>
+          <tr>
+            <td><strong>Thursday</strong></td>
+            <td>Bid and ACOS review</td>
+          </tr>
+          <tr>
+            <td><strong>Friday</strong></td>
+            <td>Simple weekly report</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    
+    <div class="right-col">
+      <div class="cadence-box daily">
+        <div class="cadence-title">Daily</div>
+        <p class="cadence-text">5-minute checks: spend, stock, accidental pauses.</p>
+      </div>
+      <div class="cadence-box weekly">
+        <div class="cadence-title">Weekly</div>
+        <p class="cadence-text">Deep pass: The 5-day schedule on the left.</p>
+      </div>
+      <div class="cadence-box monthly">
+        <div class="cadence-title">Monthly</div>
+        <p class="cadence-text">Structure review, top keywords, listing review, cleanup.</p>
+      </div>
+      
+      <div class="callout">
+        <b>Coach tip:</b> A boring routine is a professional routine. Cadence prevents both neglect and over-tinkering.
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">Source: PPC Coach · Weekly Optimization · 9.1 The Weekly Routine</div>
+  <div class="page">02 / 12</div>
+</div>
 </body>
 </html>

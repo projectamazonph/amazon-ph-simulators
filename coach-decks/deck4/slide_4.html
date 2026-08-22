@@ -1,107 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        .slide-container {
-            width: 1280px;
-            min-height: 720px;
-            background-color: #F4F7F6;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            background-color: #131921;
-            padding: 40px 60px;
-            border-bottom: 8px solid #FF9900;
-        }
-        .header h1 {
-            color: #FFFFFF;
-            font-size: 48px;
-            font-weight: 700;
-        }
-        .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            /* reduced top padding and removed bottom padding to avoid overflow */
-            padding: 20px 43px 0px;
-        }
-        .diagnostic-table {
-            width: 100%;
-            border-collapse: collapse;
-            border: 8px solid #131921;
-            background-color: #FFFFFF;
-        }
-        .diagnostic-table th, .diagnostic-table td {
-            border: 2px solid #131921;
-            /* reduced cell padding to lower total height (font-size unchanged) */
-            padding: 16px 20px;
-            text-align: left;
-            font-size: 28px;
-            color: #333333;
-        }
-        .diagnostic-table th {
-            background-color: #131921;
-            color: #FFFFFF;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .diagnostic-table tr:nth-child(even) {
-            background-color: #E2E8F0;
-        }
-        .col-symptom {
-            width: 30%;
-            font-weight: 700;
-            color: #B12704;
-        }
-        .col-cause {
-            width: 30%;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: 600;
-            color: #131921;
-        }
-        .col-action {
-            width: 40%;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<style>
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:#f7f8fa}
+.slide-container{width:1280px;min-height:720px;background:#f7f8fa;color:#131921;font-family:Arial,Helvetica,sans-serif;position:relative;overflow:hidden;padding-top:42px;padding-left:60px;padding-right:60px}
+.eyebrow{font-size:14px;letter-spacing:1.8px;text-transform:uppercase;color:#ff9900;font-weight:700;margin-top:0;margin-bottom:9px}
+.title{font-size:40px;font-weight:800;line-height:1.08;margin-top:0;margin-bottom:0}
+.rule{height:3px;background:#131921;margin-top:18px}
+
+.layout{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;margin-top:40px}
+
+/* Left Column: Ladder */
+.ladder-wrap{display:flex;flex-direction:column;gap:16px;padding-top:20px}
+.ladder-title{font-size:24px;font-weight:700;color:#131921;margin-bottom:16px}
+
+.ladder-step{padding-top:20px;padding-left:24px;padding-right:24px;padding-bottom:20px;border:1px solid #d7dce2;min-height:110px;display:flex;flex-direction:column;justify-content:center}
+.step-1{width:70%;background:#f1f3f5;border-left:6px solid #64748b}
+.step-2{width:85%;background:#fff8f0;border-left:6px solid #ff9900}
+.step-3{width:100%;background:#fef2f2;border-left:6px solid #de350b}
+
+.step-clicks{font-size:22px;font-weight:800;margin-bottom:8px}
+.step-1 .step-clicks{color:#131921}
+.step-2 .step-clicks{color:#8a5300}
+.step-3 .step-clicks{color:#de350b}
+
+.step-action{font-size:18px;color:#4b5563;line-height:1.4}
+.step-3 .step-action{color:#131921;font-weight:700}
+
+/* Right Column: Explanation & Tip */
+.right-col{display:flex;flex-direction:column;gap:24px}
+
+.text-panel{background:#fff;border:1px solid #d7dce2;border-top:6px solid #131921;padding-top:30px;padding-left:30px;padding-right:30px;padding-bottom:30px}
+.panel-title{font-size:22px;font-weight:700;color:#131921;margin-top:0;margin-bottom:16px}
+.panel-text{font-size:20px;color:#4b5563;line-height:1.5;margin-bottom:16px}
+.panel-text:last-child{margin-bottom:0}
+.panel-text strong{color:#131921}
+
+.callout{background:#eef8f3;border-left:4px solid #00875a;color:#145c43;padding-top:20px;padding-left:20px;padding-right:20px;padding-bottom:20px;font-size:20px;line-height:1.4;margin-top:auto}
+.callout strong{color:#131921}
+
+.footer{position:absolute;left:60px;top:672px;font-size:13px;color:#64748b}
+.page{position:absolute;right:60px;top:672px;font-size:13px;color:#64748b}
+</style>
 </head>
 <body>
-    <div class="slide-container">
-        <div class="header">
-            <h1>Diagnose the bottom of the funnel</h1>
-        </div>
-        <div class="content-area">
-            <table class="diagnostic-table">
-                <thead>
-                    <tr>
-                        <th class="col-symptom">Symptom</th>
-                        <th class="col-cause">Likely Cause</th>
-                        <th class="col-action">Immediate Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="col-symptom">Clicks without sales</td>
-                        <td class="col-cause">Price, reviews, or irrelevant traffic</td>
-                        <td class="col-action">Check listing competitiveness; add negative keywords.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-symptom">High ACOS (Sales but expensive)</td>
-                        <td class="col-cause">Bids too high or low conversion rate</td>
-                        <td class="col-action">Lower bids incrementally; tighten match types.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-symptom">Sudden sales drop</td>
-                        <td class="col-cause">Out of stock, lost Buy Box, or new competitor</td>
-                        <td class="col-action">Check inventory and Buy Box status immediately.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div class="slide-container">
+  <div class="eyebrow">Module 9 · Lesson 9.3</div>
+  <div class="title">How Much Data is Enough?</div>
+  <div class="rule"></div>
+  
+  <div class="layout">
+    <div class="ladder-wrap">
+      <div class="ladder-title">The Click-Confidence Ladder</div>
+      
+      <div class="ladder-step step-1">
+        <div class="step-clicks">1–5 Clicks</div>
+        <div class="step-action">Noise. Do nothing.</div>
+      </div>
+      
+      <div class="ladder-step step-2">
+        <div class="step-clicks">10–15 Clicks</div>
+        <div class="step-action">Emerging pattern. Watch closely.</div>
+      </div>
+      
+      <div class="ladder-step step-3">
+        <div class="step-clicks">20+ Clicks (0 Sales)</div>
+        <div class="step-action">Clear failure. Negate or lower bid.</div>
+      </div>
     </div>
+    
+    <div class="right-col">
+      <div class="text-panel">
+        <h2 class="panel-title">Premature Optimization</h2>
+        <p class="panel-text">
+          Reacting to 2 or 3 clicks is reacting to randomness. 
+        </p>
+        <p class="panel-text">
+          A normal conversion rate is <strong>10%</strong>. That means <strong>9 out of 10 clicks will not buy</strong>. 
+        </p>
+        <p class="panel-text">
+          If you pause a keyword after 3 clicks, you kill potential winners before the math has a chance to work.
+        </p>
+      </div>
+      
+      <div class="callout">
+        <strong>Coach tip:</strong> Patience saves profit. Wait for statistical significance (usually 15–20 clicks) before declaring a keyword a waster.
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">Source: PPC Coach · Weekly Optimization · 9.3 How Much Data is Enough?</div>
+  <div class="page">04 / 12</div>
+</div>
 </body>
 </html>

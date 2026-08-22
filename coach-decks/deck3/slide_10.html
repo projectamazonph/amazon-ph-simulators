@@ -1,130 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        .slide-container {
-            width: 1280px;
-            min-height: 720px;
-            background-color: #F4F7F6;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            background-color: #131921;
-            padding: 40px 60px 20px;
-            border-bottom: 8px solid #FF9900;
-        }
-        .header h1 {
-            color: #FFFFFF;
-            font-size: 48px;
-            font-weight: 700;
-        }
-        .content-area {
-            flex: 1;
-            display: flex;
-            padding: 40px 60px 20px;
-            gap: 40px;
-        }
-        .left-col {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .right-col {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .bullet-list {
-            list-style: none;
-            margin-top: 10px;
-        }
-        .bullet-list li {
-            font-size: 28px;
-            color: #333333;
-            line-height: 1.4;
-            margin-bottom: 24px;
-            position: relative;
-            padding-left: 30px;
-        }
-        .bullet-list li::before {
-            content: "■";
-            color: #FF9900;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-        .highlight {
-            color: #0052FF;
-            font-weight: 600;
-        }
-        .prompt-box {
-            background-color: #E2E8F0;
-            border-left: 8px solid #FF9900;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .prompt-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #131921;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-        .prompt-text {
-            font-size: 26px;
-            color: #111111;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-        .image-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 15px;
-        }
-        .screenshot {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            object-position: top;
-            border: 6px solid #131921;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.slide-container {
+    width: 1280px;
+    min-height: 720px;
+    background: #f7f8fa;
+    color: #131921;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    overflow: hidden;
+    padding-top: 42px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.eyebrow {
+    font-size: 14px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #ff9900;
+    font-weight: 700;
+    margin-top: 0;
+}
+.title {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.08;
+    margin-top: 9px;
+}
+.rule {
+    height: 3px;
+    background: #131921;
+    margin-top: 18px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 450px 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+/* Left Column: Flow */
+.flow-wrap {
+    background: #fff;
+    border: 1px solid #d7dce2;
+    padding-top: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+    min-height: 460px;
+}
+.flow-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #131921;
+    margin-bottom: 16px;
+}
+.flow-step {
+    background: #f1f3f5;
+    border-left: 6px solid #131921;
+    padding-top: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #131921;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+}
+.flow-step.action-green {
+    border-left-color: #00875a;
+    background: #eef8f3;
+    color: #145c43;
+}
+.flow-step.action-red {
+    border-left-color: #de350b;
+    background: #fef2f2;
+    color: #9e2608;
+}
+.flow-step.action-orange {
+    border-left-color: #ff9900;
+    background: #fff8f0;
+    color: #8a5300;
+}
+.flow-arrow {
+    text-align: center;
+    font-size: 20px;
+    color: #64748b;
+    font-weight: bold;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+/* Right Column: Example & Tip */
+.right-col {
+    display: flex;
+    flex-direction: column;
+}
+.example-box {
+    background: #fff;
+    border: 1px solid #d7dce2;
+    border-top: 6px solid #131921;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    min-height: 280px;
+}
+.example-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #131921;
+    margin-bottom: 20px;
+}
+.example-text {
+    font-size: 20px;
+    line-height: 1.5;
+    color: #4b5563;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 24px;
+    border-top: 1px solid #d7dce2;
+    padding-top: 24px;
+}
+.stat-item {
+    text-align: center;
+}
+.stat-value {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+.stat-value.green { color: #00875a; }
+.stat-value.red { color: #de350b; }
+.stat-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #131921;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.callout {
+    margin-top: 30px;
+    background: #fff8f0;
+    border-left: 4px solid #ff9900;
+    color: #8a5300;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    line-height: 1.4;
+    min-height: 80px;
+}
+
+.footer {
+    position: absolute;
+    left: 60px;
+    top: 672px;
+    font-size: 13px;
+    color: #64748b;
+}
+.page {
+    position: absolute;
+    right: 60px;
+    top: 672px;
+    font-size: 13px;
+    color: #64748b;
+}
+</style>
 </head>
 <body>
-    <div class="slide-container">
-        <div class="header">
-            <h1>Simulator lab: operate the loop</h1>
-        </div>
-        <div class="content-area">
-            <div class="left-col">
-                <ul class="bullet-list">
-                    <li>Run a 24-hour scenario in <span class="highlight">Pacing Deck</span>.</li>
-                    <li>Make one evidence-based action in <span class="highlight">Bid Decisions</span>.</li>
-                    <li>Triage a report in <span class="highlight">Search Term Triage</span>.</li>
-                    <li>Convert one approved action into a row in <span class="highlight">Bulk File Simulator</span>.</li>
-                </ul>
-                <div class="prompt-box">
-                    <div class="prompt-title">Instructor Check</div>
-                    <div class="prompt-text">Safe action matters more than aggressive action.</div>
-                </div>
-            </div>
-            <div class="right-col">
-                <div class="image-grid">
-                    <img src="https://private-us-east-1.manuscdn.com/sessionFile/hVrvxL4ffoFjQxuD6pvSEt/sandbox/slides_resource_iljlxmwiivy9xll14yl92-67ff26ad-e2b-prod-azure-central-us_1787339120902_na1fn_L2hvbWUvdWJ1bnR1L2FtYXpvbi1waC1zaW11bGF0b3JzL2RvY3Mvc2NyZWVuc2hvdHMvc2ltZ3JpZC1wYWNpbmctZGVjaw.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1789430400&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvaFZydnhMNGZmb0ZqUXh1RDZwdlNFdC9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pbGpseG13aWl2eTl4bGwxNHlsOTItNjdmZjI2YWQtZTJiLXByb2QtYXp1cmUtY2VudHJhbC11c18xNzg3MzM5MTIwOTAyX25hMWZuX0wyaHZiV1V2ZFdKMWJuUjFMMkZ0WVhwdmJpMXdhQzF6YVcxMWJHRjBiM0p6TDJSdlkzTXZjMk55WldWdWMyaHZkSE12YzJsdFozSnBaQzF3WVdOcGJtY3RaR1ZqYXcuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODk0MzA0MDB9fX1dfQ__&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEUCIBgRWR6FPXQ~kCWKhFTYaff8w5WuX5Ivjy-ZsOz65HZgAiEAgC6WvUpTTZXWM1b0nruZkVVG5PZtClhQnBwANhhkXZo_" alt="Pacing Deck Simulator" class="screenshot">
-                    <img src="https://private-us-east-1.manuscdn.com/sessionFile/hVrvxL4ffoFjQxuD6pvSEt/sandbox/slides_resource_iljlxmwiivy9xll14yl92-67ff26ad-e2b-prod-azure-central-us_1787339262337_na1fn_L2hvbWUvdWJ1bnR1L2FtYXpvbi1waC1zaW11bGF0b3JzL2RvY3Mvc2NyZWVuc2hvdHMvc2ltZ3JpZC1iaWQtZGVjaXNpb25z.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1789430400&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvaFZydnhMNGZmb0ZqUXh1RDZwdlNFdC9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pbGpseG13aWl2eTl4bGwxNHlsOTItNjdmZjI2YWQtZTJiLXByb2QtYXp1cmUtY2VudHJhbC11c18xNzg3MzM5MjYyMzM3X25hMWZuX0wyaHZiV1V2ZFdKMWJuUjFMMkZ0WVhwdmJpMXdhQzF6YVcxMWJHRjBiM0p6TDJSdlkzTXZjMk55WldWdWMyaHZkSE12YzJsdFozSnBaQzFpYVdRdFpHVmphWE5wYjI1ei5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xNTYwLGhfMTU2MC9mb3JtYXQsd2VicCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc4OTQzMDQwMH19fV19&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEYCIQD1Wz5kUQJ3qAc7VFOeFljRUrVpRyT-AiGDaXeskeVPvgIhAPe5OyTN-pKy18Lkaj8pXer57ShAo2EzeJQ27Refqobm" alt="Bid Decisions Simulator" class="screenshot">
-                    <img src="https://private-us-east-1.manuscdn.com/sessionFile/hVrvxL4ffoFjQxuD6pvSEt/sandbox/slides_resource_iljlxmwiivy9xll14yl92-67ff26ad-e2b-prod-azure-central-us_1787339262337_na1fn_L2hvbWUvdWJ1bnR1L2FtYXpvbi1waC1zaW11bGF0b3JzL2RvY3Mvc2NyZWVuc2hvdHMvc2ltZ3JpZC1zZWFyY2gtdHJpYWdl.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1789430400&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvaFZydnhMNGZmb0ZqUXh1RDZwdlNFdC9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pbGpseG13aWl2eTl4bGwxNHlsOTItNjdmZjI2YWQtZTJiLXByb2QtYXp1cmUtY2VudHJhbC11c18xNzg3MzM5MjYyMzM3X25hMWZuX0wyaHZiV1V2ZFdKMWJuUjFMMkZ0WVhwdmJpMXdhQzF6YVcxMWJHRjBiM0p6TDJSdlkzTXZjMk55WldWdWMyaHZkSE12YzJsdFozSnBaQzF6WldGeVkyZ3RkSEpwWVdkbC5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xNTYwLGhfMTU2MC9mb3JtYXQsd2VicCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc4OTQzMDQwMH19fV19&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEYCIQDoKPXqiIcfMZULlAayx7bWe61DzSn6lNEIjJCiIoDj3wIhAKLYV4~vkkRCqx7xegw1NeYHntpva6D2q-hPgAERDCx9" alt="Search Term Triage Simulator" class="screenshot">
-                    <img src="https://private-us-east-1.manuscdn.com/sessionFile/hVrvxL4ffoFjQxuD6pvSEt/sandbox/slides_resource_iljlxmwiivy9xll14yl92-67ff26ad-e2b-prod-azure-central-us_1787339262337_na1fn_L2hvbWUvdWJ1bnR1L2FtYXpvbi1waC1zaW11bGF0b3JzL2RvY3Mvc2NyZWVuc2hvdHMvc2ltZ3JpZC1idWxrLWZpbGU.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1789430400&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvaFZydnhMNGZmb0ZqUXh1RDZwdlNFdC9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pbGpseG13aWl2eTl4bGwxNHlsOTItNjdmZjI2YWQtZTJiLXByb2QtYXp1cmUtY2VudHJhbC11c18xNzg3MzM5MjYyMzM3X25hMWZuX0wyaHZiV1V2ZFdKMWJuUjFMMkZ0WVhwdmJpMXdhQzF6YVcxMWJHRjBiM0p6TDJSdlkzTXZjMk55WldWdWMyaHZkSE12YzJsdFozSnBaQzFpZFd4ckxXWnBiR1UuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODk0MzA0MDB9fX1dfQ__&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEUCIQDxZZ-5iUprCjsuuA9CorC6SwdazU14uHtOGkF9F7IHBwIgM7I0eBUjQSUimJBBxRrVpnI3ZBAERQMxBGBrDCFAukM_" alt="Bulk File Simulator" class="screenshot">
-                </div>
-            </div>
-        </div>
+<div class="slide-container">
+  <div class="eyebrow">Module 8 · Lesson 8.3</div>
+  <div class="title">The Harvesting Workflow</div>
+  <div class="rule"></div>
+  
+  <div class="layout">
+    <div class="flow-wrap">
+      <div class="flow-title">The Weekly Loop</div>
+      <div class="flow-step">1. Download search term report</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">2. Sort by spend</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">3. Mark winners and wasters</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step action-green">4. Move winners to Exact</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step action-red">5. Add negatives for wasters</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step action-orange">6. Log every change</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step action-orange">7. Repeat next week</div>
     </div>
+    
+    <div class="right-col">
+      <div class="example-box">
+        <div class="example-title">The Power of Accumulation</div>
+        <div class="example-text">
+          One harvest a week: <strong>2 winners promoted</strong> and <strong>3 negatives added</strong>.
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value green">16</div>
+            <div class="stat-label">Winners Promoted</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value red">24</div>
+            <div class="stat-label">Leaks Closed</div>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:16px; font-size:16px; color:#64748b; font-weight:700; text-transform:uppercase; letter-spacing:1px;">
+          (In just 8 weeks)
+        </div>
+      </div>
+      
+      <div class="callout">
+        <strong>Coach tip:</strong> Small weekly harvests beat big monthly cleanups. Consistency is the actual job.
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">Source: PPC Coach · Search Terms & Negatives · 8.3 The Harvesting Workflow</div>
+  <div class="page">10 / 11</div>
+</div>
 </body>
 </html>

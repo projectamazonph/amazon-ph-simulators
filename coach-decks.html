@@ -15,13 +15,13 @@
   <main class="deck-viewer-main">
     <header class="deck-viewer-header">
       <a class="deck-back" href="coach-tools.html">← Coach Tools</a>
-      <div class="deck-viewer-title"><span class="deck-kicker">Teaching deck viewer</span><h1 id="deckTitle">Marketplace, PPC &amp; Money Math</h1></div>
+      <div class="deck-viewer-title"><span class="deck-kicker">Final animated teaching series</span><h1 id="deckTitle">Amazon PPC Foundations</h1></div>
       <label class="deck-select-label">Deck
         <select id="deckSelect" aria-label="Select teaching deck">
-          <option value="1">01 · Foundations &amp; Money Math</option>
-          <option value="2">02 · Structure, Keywords &amp; Readiness</option>
-          <option value="3">03 · Launch, Bids &amp; Harvesting</option>
-          <option value="4">04 · Operations, Reporting &amp; Capstone</option>
+          <option value="1">01 · PPC Foundations</option>
+          <option value="2">02 · Structure &amp; Intent</option>
+          <option value="3">03 · Launch &amp; Harvest</option>
+          <option value="4">04 · Operations &amp; Capstone</option>
         </select>
       </label>
     </header>
@@ -37,10 +37,10 @@
   </main>
   <script>
     const decks = {
-      1: { title: 'Marketplace, PPC & Money Math', folder: 'deck1', files: ['cover.html','slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html'] },
-      2: { title: 'Structure, Keywords & Listing Readiness', folder: 'deck2', files: ['cover.html','slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html'] },
-      3: { title: 'Launch, Bids & Optimization', folder: 'deck3', files: ['cover.html','slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html'] },
-      4: { title: 'Reporting, Workflow & Capstone', folder: 'deck4', files: ['cover.html','slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html'] }
+      1: { title: 'Amazon PPC Foundations', folder: 'deck1', files: ['slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html','slide_12.html'] },
+      2: { title: 'Amazon PPC: Structure & Intent', folder: 'deck2', files: ['slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html','slide_12.html'] },
+      3: { title: 'Amazon PPC: Launch & Harvest', folder: 'deck3', files: ['slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html'] },
+      4: { title: 'Amazon PPC: Operations & Capstone', folder: 'deck4', files: ['slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html','slide_12.html'] }
     };
     const requestedDeck = new URLSearchParams(window.location.search).get('deck');
     let deckId = decks[requestedDeck] ? requestedDeck : '1';
