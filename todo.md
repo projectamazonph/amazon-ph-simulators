@@ -17,4 +17,4 @@
 - [x] Validate metadata, public discovery files, footer links, and static-site regressions before publishing.
 - [x] Review the organized footer at phone, tablet, and desktop viewport sizes for wrapping, spacing, and readable hierarchy.
 - [x] Adjust responsive footer styling where the viewport QA identifies layout or touch-target issues.
-- [ ] Rerun the footer and static regression checks, publish any responsive fix, and verify the live result.
+- [x] Rerun the footer and static regression checks, publish any responsive fix, and verify the live result.

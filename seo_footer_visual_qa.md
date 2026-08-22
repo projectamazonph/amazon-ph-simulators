@@ -11,3 +11,5 @@ Exact Chrome DevTools captures confirmed the live footer at **375 × 812** and *
 At **1440 × 900**, the footer uses one project-summary column and four navigation columns. The five-column grid is balanced, the footer remains 205 px high, and all groups sit on one clear scan line above the separate status row. No clipping or unintended wrapping was observed.
 
 The initial tablet capture exposed 24 px high navigation rows. The tablet stylesheet was refined to provide a 40 px minimum footer-link target while preserving the two-column layout. The phone layout already provided 44 px targets, so no phone-specific change was needed.
+
+After GitHub Pages published the refinement, a cache-bypassed Chrome DevTools capture confirmed the live **768 × 900** footer uses the intended two 340 px columns and 40 px high navigation targets. The increased touch area remains visually balanced, with no clipping, collision, or horizontal overflow.
