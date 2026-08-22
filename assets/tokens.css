@@ -137,6 +137,19 @@
   --sidenav-w-mini:  64px;
   --content-px:      24px;
   --content-pb:      96px;
+  --content-wrap-max:      1100px;
+  --content-wrap-narrow:   1040px;
+
+  /* ---------- legacy/legacy ---------- */
+  /* Secondary token system aliases for migration compatibility */
+  --primary:        var(--c-orange);
+  --primary-dark:   var(--c-orange-d);
+  --success:         var(--c-green);
+  --surface:        var(--c-card);
+  --surface-alt:    var(--c-bg);
+  --text:           var(--c-ink);
+  --text-muted:     var(--c-sub);
+  --border:         var(--c-border);
 
   /* ---------- responsive ---------- */
   --bp-sm:           480px;     /* small phones -> large phones */
