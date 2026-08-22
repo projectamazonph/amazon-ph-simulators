@@ -15,14 +15,9 @@
   <main class="deck-viewer-main">
     <header class="deck-viewer-header">
       <a class="deck-back" href="coach-tools.html">← Coach Tools</a>
-      <div class="deck-viewer-title"><span class="deck-kicker">Final animated teaching series</span><h1 id="deckTitle">Amazon PPC Foundations</h1></div>
-      <label class="deck-select-label">Deck
-        <select id="deckSelect" aria-label="Select teaching deck">
-          <option value="1">01 · PPC Foundations</option>
-          <option value="2">02 · Structure &amp; Intent</option>
-          <option value="3">03 · Launch &amp; Harvest</option>
-          <option value="4">04 · Operations &amp; Capstone</option>
-        </select>
+      <div class="deck-viewer-title"><span class="deck-kicker">Final animated module series</span><h1 id="deckTitle">Amazon Basics</h1></div>
+      <label class="deck-select-label">Module deck
+        <select id="deckSelect" aria-label="Select module teaching deck"></select>
       </label>
     </header>
     <section class="deck-stage-wrap" aria-live="polite">
@@ -35,15 +30,13 @@
     </nav>
     <p class="deck-help">Use <kbd>←</kbd> and <kbd>→</kbd> to navigate. The teaching tools and downloadable worksheets are in <a href="coach-tools.html#downloads">Coach Tools</a>.</p>
   </main>
+  <script src="coach-decks/module-decks.js"></script>
   <script>
-    const decks = {
-      1: { title: 'Amazon PPC Foundations', folder: 'deck1', files: ['slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html','slide_12.html'] },
-      2: { title: 'Amazon PPC: Structure & Intent', folder: 'deck2', files: ['slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html','slide_12.html'] },
-      3: { title: 'Amazon PPC: Launch & Harvest', folder: 'deck3', files: ['slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html'] },
-      4: { title: 'Amazon PPC: Operations & Capstone', folder: 'deck4', files: ['slide_1.html','slide_2.html','slide_3.html','slide_4.html','slide_5.html','slide_6.html','slide_7.html','slide_8.html','slide_9.html','slide_10.html','slide_11.html','slide_12.html'] }
-    };
-    const requestedDeck = new URLSearchParams(window.location.search).get('deck');
-    let deckId = decks[requestedDeck] ? requestedDeck : '1';
+    const decks = Object.fromEntries((window.ModuleDecks || []).map(module => [module.id, { title: `Module ${module.number} · ${module.title}`, folder: `modules/${module.id}`, files: module.files, number: module.number }]));
+    const legacyDecks = { 1: 'm0', 2: 'm3', 3: 'm6', 4: 'm9' };
+    const params = new URLSearchParams(window.location.search);
+    const requestedDeck = params.get('module') || legacyDecks[params.get('deck')];
+    let deckId = decks[requestedDeck] ? requestedDeck : 'm0';
     let slideIndex = 0;
     const frame = document.getElementById('deckFrame');
     const stage = document.getElementById('deckStage');
@@ -51,6 +44,12 @@
     const select = document.getElementById('deckSelect');
     const counter = document.getElementById('slideCounter');
     const progress = document.getElementById('deckProgress');
+    Object.entries(decks).forEach(([id, deck]) => {
+      const option = document.createElement('option');
+      option.value = id;
+      option.textContent = `M${String(deck.number).padStart(2, '0')} · ${deck.title.split(' · ')[1]}`;
+      select.appendChild(option);
+    });
     function renderSlide() {
       const deck = decks[deckId];
       title.textContent = deck.title;
@@ -60,7 +59,7 @@
       progress.style.width = `${((slideIndex + 1) / deck.files.length) * 100}%`;
       document.getElementById('prevSlide').disabled = slideIndex === 0;
       document.getElementById('nextSlide').disabled = slideIndex === deck.files.length - 1;
-      history.replaceState(null, '', `?deck=${deckId}&slide=${slideIndex + 1}`);
+      history.replaceState(null, '', `?module=${deckId}&slide=${slideIndex + 1}`);
     }
     function fitFrame() { frame.style.transform = `scale(${stage.clientWidth / 1280})`; }
     document.getElementById('prevSlide').addEventListener('click', () => { if (slideIndex > 0) { slideIndex--; renderSlide(); } });
