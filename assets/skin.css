@@ -699,6 +699,8 @@ body.pha-skin input[type="checkbox"]:checked + label {
 
 /* ---------- PHA page shell — wraps tool body ---------- */
 .pha-skin-wrap {
+  box-sizing: border-box !important;
+  width: 100% !important;
   max-width: 1480px !important;
   margin: 0 auto !important;
   padding: 20px var(--content-px) 96px !important;
@@ -706,6 +708,7 @@ body.pha-skin input[type="checkbox"]:checked + label {
   min-height: 60vh;
   position: relative;
   z-index: 1;
+  overflow-x: hidden;
 }
 
 /* ---------- neutralize tool body wrapper backgrounds ---------- */

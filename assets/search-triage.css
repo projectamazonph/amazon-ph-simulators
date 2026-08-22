@@ -413,6 +413,9 @@ button.tool-link.here{color:var(--orange);border-color:rgba(255,153,0,.45);opaci
   .dp-grid{grid-template-columns:44px repeat(6,1fr)}
 }
 @media(max-width:640px){
+  header{height:auto;min-height:62px;padding-top:12px;padding-bottom:12px;align-items:center}
+  header nav{order:3;flex:1 1 100%;width:100%;min-width:0;margin-left:0;overflow-x:auto;overflow-y:hidden;padding-bottom:2px}
+  header nav button{flex:0 0 auto;white-space:nowrap}
   .mgrid{grid-template-columns:repeat(2,1fr)}
   .hstats .stat.rk{display:none}
   nav button{padding:9px 6px;font-size:10px}

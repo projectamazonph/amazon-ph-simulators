@@ -85,3 +85,36 @@ test('Bid Decisions and SQP Studio expose mobile field labels', () => {
   assert.match(sqpRenderer, /data-diagnosis/);
   assert.match(sqpCss, /@media\(max-width:520px\)/);
 });
+
+test('shared skin wrappers include padding inside the mobile viewport', () => {
+  const skin = read('assets/skin.css');
+  assert.match(skin, /\.pha-skin-wrap\s*\{[\s\S]*?box-sizing:\s*border-box\s*!important;[\s\S]*?width:\s*100%\s*!important;/);
+});
+
+test('Coach Tools and Coach Library mobile media queries are valid and reachable', () => {
+  const coach = read('assets/coach-tools.css');
+  const library = read('assets/coach-library.css');
+  assert.doesNotMatch(coach, /\}\.@media/);
+  assert.doesNotMatch(library, /\}\.@media/);
+  assert.match(coach, /@media \(max-width:620px\)/);
+  assert.match(library, /@media \(max-width:620px\)/);
+});
+
+test('legacy shell pages have mobile containment overrides', () => {
+  const responsive = read('assets/responsive.css');
+  assert.match(responsive, /body\.pha-skin \.shell\s*\{[\s\S]*?grid-template-columns:\s*1fr\s*!important;/);
+  assert.match(responsive, /body\.pha-skin \.shell > \.side\s*\{[\s\S]*?overflow-x:\s*auto\s*!important;/);
+  assert.match(responsive, /body\.pha-skin \.suite \.chip:not\(\.on\)\s*\{\s*display:\s*none\s*!important;/);
+});
+
+test('Learn Handouts tables use the shared mobile scroll utility', () => {
+  const html = read('learn/handouts.html');
+  assert.equal((html.match(/class="table-scroll-wrap"/g) || []).length, 6);
+  assert.equal((html.match(/class="table-scroll"/g) || []).length, 6);
+});
+
+test('legacy mobile pages contain padded grid children and native panels', () => {
+  const responsive = read('assets/responsive.css');
+  assert.match(responsive, /body\.pha-skin \.card\s*\{[\s\S]*?min-width:\s*0\s*!important;[\s\S]*?box-sizing:\s*border-box\s*!important;/);
+  assert.match(responsive, /body\.pha-skin \.ca-layout\s*> \*\s*,[\s\S]*?box-sizing:\s*border-box\s*!important;/);
+});

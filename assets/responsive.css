@@ -372,6 +372,72 @@ body[data-pha-tool] textarea {
   }
   .pha-ribbon .pipe { display: none; }
 
+  /* legacy page shells: keep native rails and content inside the mobile viewport */
+  body.pha-skin .shell {
+    grid-template-columns: 1fr !important;
+    min-width: 0 !important;
+  }
+  body.pha-skin .shell > .side {
+    position: static !important;
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    box-sizing: border-box !important;
+  }
+  body.pha-skin .shell > .side .navbtn {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    white-space: nowrap !important;
+  }
+  body.pha-skin .shell > main {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  body.pha-skin .side-foot { display: none !important; }
+
+  /* Keyword Lab: allow grid children to shrink around scrollable tables. */
+  body.pha-skin .grid2 > *,
+  body.pha-skin .grid3 > *,
+  body.pha-skin .grid4 > *,
+  body.pha-skin .calc-grid > *,
+  body.pha-skin .gloss-grid > *,
+  body.pha-skin .tier-grid > *,
+  body.pha-skin .card {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  body.pha-skin .card {
+    box-sizing: border-box !important;
+  }
+
+  /* Campaign Architect: skin padding must stay inside the native layout. */
+  body.pha-skin .ca-header,
+  body.pha-skin .ca-layout,
+  body.pha-skin .ca-layout > *,
+  body.pha-skin .ca-canvas,
+  body.pha-skin .ca-palette,
+  body.pha-skin .ca-inspector,
+  body.pha-skin .ca-campaign {
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Pacing Deck: the unified chip styling otherwise defeats the native hide rule. */
+  body.pha-skin .suite {
+    max-width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    overflow-x: auto;
+  }
+  body.pha-skin .suite .chip:not(.on) { display: none !important; }
+
   /* generic simulator surfaces */
   pre {
     overflow-x: auto;
