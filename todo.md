@@ -6,3 +6,6 @@
 - [x] Add a plain-language glossary cue whenever an essential Amazon PPC term first appears.
 - [x] Validate all twelve decks for beginner clarity, motion safety, slide count, readable layout, assessment gates, and viewer routing.
 - [x] Publish the simplified twelve-module series to GitHub Pages and verify the live Coach Tools experience.
+- [x] Do not create a retrospective pull request: the verified beginner-first deck rewrite is already the live default-branch release.
+- [x] Do not create an artificial merge workflow: the release is already included in `master` and GitHub Pages.
+- [x] Record and verify the selected direct-release state on the default branch and public GitHub Pages site.
