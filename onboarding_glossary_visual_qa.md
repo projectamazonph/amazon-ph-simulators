@@ -11,3 +11,7 @@ After the initial-count fix, a clean page load displayed “Showing 25 terms,”
 At **375 × 812**, the header collapsed to a compact brand-and-menu row, the hero stacked cleanly, and the primary and secondary actions remained separately tappable. At **768 × 900**, the hero and first-30-minutes plan used a readable single-column sequence with no horizontal page overflow. Exact metrics confirm the glossary table intentionally enables local horizontal scrolling at phone and tablet widths while the page body remains contained.
 
 At **1440 × 900**, the hero uses balanced two-column content and the four first-session cards align on a single readable row. The desktop page also has no horizontal overflow.
+
+## Public GitHub Pages verification
+
+After deployment, the public [VA Start Here](https://projectamazonph.github.io/amazon-ph-simulators/start-here.html) page showed the beginner hero, first-30-minutes plan, safety rule, all **25** glossary terms, direct practice links, and the new shared-footer link.
