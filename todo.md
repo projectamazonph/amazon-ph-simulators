@@ -21,3 +21,8 @@
 - [x] Map the visible footer groups and links to accurate structured-data navigation entities.
 - [x] Add footer navigation structured data to the core public pages without duplicating or contradicting existing page schema.
 - [x] Validate footer structured data, run regressions, publish the update, and verify the live markup.
+- [x] Audit all module slides for missing visual aids, worked examples, learning tables, illustrations, and learner interaction.
+- [x] Create a module-by-module enrichment storyboard that preserves each lesson objective and adds a clear visual aid plus learner action.
+- [x] Build enriched diagrams, comparison tables, worked examples, and interactive exercises into the twelve module decks.
+- [x] Validate enriched slides for beginner clarity, lesson coverage, layout safety, motion accessibility, and simulator-aligned practice.
+- [ ] Publish and verify the enriched teaching-deck series on GitHub Pages.

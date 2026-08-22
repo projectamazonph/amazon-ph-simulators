@@ -43,17 +43,40 @@ test('every final module deck keeps the beginner-first teaching structure', () =
       const slide = read(path.join('coach-decks', 'modules', moduleId, `slide_${index}.html`));
       const text = slide
         .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+        .replace(/<script[\s\S]*?<\/script>/gi, ' ')
         .replace(/<[^>]+>/g, ' ')
         .replace(/\s+/g, ' ')
         .trim();
       const words = text.match(/\b[\w'-]+\b/g) || [];
 
-      assert.match(slide, /Word to know/, `${moduleId} slide ${index} has a defined term`);
-      assert.match(slide, /Plain meaning/, `${moduleId} slide ${index} has a plain-language explanation`);
-      assert.match(slide, /Small example/, `${moduleId} slide ${index} has a concrete example`);
+      assert.match(slide, /data-learning-aid=/, `${moduleId} slide ${index} has a visible learning aid`);
       assert.match(slide, /Your next step:/, `${moduleId} slide ${index} gives a clear learner action`);
       assert.match(slide, /prefers-reduced-motion:reduce/, `${moduleId} slide ${index} supports reduced motion`);
-      assert.ok(words.length <= 115, `${moduleId} slide ${index} keeps learner copy short`);
+      assert.ok(words.length <= 140, `${moduleId} slide ${index} keeps learner copy short`);
+
+      if (index >= 2 && index <= 8) {
+        assert.match(slide, /Word to know/, `${moduleId} concept slide ${index} has a defined term`);
+        assert.match(slide, /Plain meaning/, `${moduleId} concept slide ${index} has a plain-language explanation`);
+        assert.match(slide, /Worked situation/, `${moduleId} concept slide ${index} has a concrete example`);
+      }
+      if (index === 9) {
+        assert.match(slide, /Try the decision/, `${moduleId} practice slide includes an interactive exercise`);
+        assert.match(slide, /choice-btn/, `${moduleId} practice slide includes selectable learner choices`);
+        assert.match(slide, /Debrief:/, `${moduleId} practice slide keeps the answer visible without interaction`);
+      }
     }
+  });
+});
+
+test('enriched decks retain authentic local cover illustrations and one testable correct choice per practice exercise', () => {
+  modules.forEach(([moduleId]) => {
+    const folder = path.join('coach-decks', 'modules', moduleId);
+    const cover = read(path.join(folder, 'slide_1.html'));
+    const exercise = read(path.join(folder, 'slide_9.html'));
+    const image = cover.match(/<img src="([^"]+)"[^>]*alt="[^"]+course illustration"/);
+
+    assert.ok(image, `${moduleId} cover has an authentic course illustration`);
+    assert.ok(fs.existsSync(path.resolve(folder, image[1])), `${moduleId} cover illustration resolves locally`);
+    assert.equal((exercise.match(/data-correct="true"/g) || []).length, 1, `${moduleId} exercise marks one evidence-based choice as correct`);
   });
 });
