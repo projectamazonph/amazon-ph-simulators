@@ -8,6 +8,8 @@
      - Touch-target enforcement (44px min on interactive elements)
      - .stack-mobile utility (force 1-col at <768px)
      - .table-scroll utility (horizontal scroll for dense data)
+     - .overflow-break utility (break long words)
+     - .truncate utility (ellipsis on overflow)
      - prefers-reduced-motion respect
    All rules are scoped to body.pha-skin OR body[data-pha-tool] so
    the hub page (which opts out of pha-skin) is also covered.
@@ -34,6 +36,56 @@ body[data-pha-tool] object {
 body.pha-skin,
 body[data-pha-tool] {
   overflow-x: hidden;
+}
+
+/* ---------- overflow protection utilities ---------- */
+/* Break long words that would overflow container */
+body.pha-skin .overflow-break,
+body[data-pha-tool] .overflow-break {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Truncate text with ellipsis (single line) */
+body.pha-skin .truncate,
+body[data-pha-tool] .truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Truncate text with ellipsis (multi-line) */
+body.pha-skin .line-clamp-2,
+body[data-pha-tool] .line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+body.pha-skin .line-clamp-3,
+body[data-pha-tool] .line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Card overflow protection */
+body.pha-skin .card,
+body[data-pha-tool] .card,
+body.pha-skin [class*="card"],
+body[data-pha-tool] [class*="card"] {
+  overflow: hidden;
+}
+
+/* Button overflow protection */
+body.pha-skin button,
+body.pha-skin .btn,
+body[data-pha-tool] button,
+body[data-pha-tool] .btn {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ---------- fluid body type ---------- */
