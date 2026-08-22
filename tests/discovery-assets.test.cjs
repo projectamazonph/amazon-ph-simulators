@@ -30,6 +30,12 @@ test('core public pages expose canonical, social, and structured discovery metad
     assert.match(html, /<link rel="describedby" type="text\/markdown" href="https:\/\/projectamazonph\.github\.io\/amazon-ph-simulators\/llms\.txt"/, `${file} links the AI-readable guide`);
     assert.ok(jsonMatch, `${file} has JSON-LD`);
     assert.doesNotThrow(() => JSON.parse(jsonMatch[1]), `${file} JSON-LD is valid JSON`);
+    const schema = JSON.parse(jsonMatch[1]);
+    const footerNavigation = schema['@graph'].find(item => item['@type'] === 'SiteNavigationElement');
+    assert.ok(footerNavigation, `${file} includes footer navigation structured data`);
+    assert.equal(footerNavigation.name, 'Project Amazon PH Academy footer navigation');
+    assert.deepEqual(footerNavigation.hasPart.map(group => group.name), ['Learn footer links', 'Practice footer links', 'Coach footer links', 'Project footer links']);
+    assert.equal(footerNavigation.hasPart.flatMap(group => group.itemListElement).length, 12, `${file} exposes all visible footer navigation destinations`);
   });
 });
 

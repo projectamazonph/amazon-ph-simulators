@@ -18,3 +18,6 @@
 - [x] Review the organized footer at phone, tablet, and desktop viewport sizes for wrapping, spacing, and readable hierarchy.
 - [x] Adjust responsive footer styling where the viewport QA identifies layout or touch-target issues.
 - [x] Rerun the footer and static regression checks, publish any responsive fix, and verify the live result.
+- [x] Map the visible footer groups and links to accurate structured-data navigation entities.
+- [x] Add footer navigation structured data to the core public pages without duplicating or contradicting existing page schema.
+- [ ] Validate footer structured data, run regressions, publish the update, and verify the live markup.

@@ -10,6 +10,40 @@ const organization = {
   url: baseUrl,
   sameAs: ["https://github.com/projectamazonph/amazon-ph-simulators"]
 };
+const footerGroups = [
+  {
+    name: "Learn",
+    links: [
+      ["PPC Coach", "ppc-coach.html"],
+      ["Student Guide", "learn/guide.html"],
+      ["Module Decks", "coach-decks.html"]
+    ]
+  },
+  {
+    name: "Practice",
+    links: [
+      ["Simulator Library", "index.html#simulator-library"],
+      ["Campaign Architect", "campaign-architect.html"],
+      ["Account Audit", "account-audit.html"]
+    ]
+  },
+  {
+    name: "Coach",
+    links: [
+      ["Coach Tools", "coach-tools.html"],
+      ["Resource Library", "coach-resource-library.html"],
+      ["Learning Docs", "learn/index.html"]
+    ]
+  },
+  {
+    name: "Project",
+    links: [
+      ["Roadmap", "planned-simulators.html"],
+      ["Source Repository", "https://github.com/projectamazonph/amazon-ph-simulators"],
+      ["Project Guide", "site-guide.md"]
+    ]
+  }
+];
 
 const corePages = [
   ["index.html", "Project Amazon PH Academy | Amazon PPC Training Simulators", "Practice Amazon PPC fundamentals with 12 browser-based simulators, a guided PPC Coach path, and instructor resources for Filipino virtual assistants.", "WebSite", "Amazon PPC training, simulator practice, Filipino virtual assistants"],
@@ -39,6 +73,30 @@ const corePages = [
 
 const escapeHtml = value => value.replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[character]));
 
+function footerNavigationSchema(url) {
+  return {
+    "@type": "SiteNavigationElement",
+    "@id": `${url}#footer-navigation`,
+    name: "Project Amazon PH Academy footer navigation",
+    description: "Visible footer links to Project Amazon PH Academy learning, practice, coaching, and project resources.",
+    hasPart: footerGroups.map(group => ({
+      "@type": "ItemList",
+      name: `${group.name} footer links`,
+      numberOfItems: group.links.length,
+      itemListElement: group.links.map(([name, href], position) => ({
+        "@type": "ListItem",
+        position: position + 1,
+        name,
+        item: {
+          "@type": "WebPage",
+          name,
+          url: new URL(href, baseUrl).href
+        }
+      }))
+    }))
+  };
+}
+
 function pageSchema(page, url) {
   const webPage = {
     "@type": "WebPage",
@@ -50,7 +108,9 @@ function pageSchema(page, url) {
     isPartOf: { "@type": "WebSite", name: "Project Amazon PH Academy", url: baseUrl },
     about: page.keywords.split(", ").map(name => ({ "@type": "Thing", name }))
   };
-  const graph = [webPage];
+  const footerNavigation = footerNavigationSchema(url);
+  webPage.hasPart = { "@id": footerNavigation["@id"] };
+  const graph = [webPage, footerNavigation];
   if (page.file === "index.html") {
     graph.push({
       "@type": "WebSite",
