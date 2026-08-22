@@ -9,3 +9,9 @@
 - [x] Do not create a retrospective pull request: the verified beginner-first deck rewrite is already the live default-branch release.
 - [x] Do not create an artificial merge workflow: the release is already included in `master` and GitHub Pages.
 - [x] Record and verify the selected direct-release state on the default branch and public GitHub Pages site.
+- [x] Audit the current reusable footer, canonical metadata, robots guidance, sitemap coverage, and public page structure.
+- [x] Build a clearer reusable footer with grouped learner, simulator, coach, and project links.
+- [x] Add accurate title, description, canonical, Open Graph, and social metadata to primary public pages.
+- [x] Add structured data and a maintained XML sitemap for core public resources.
+- [x] Add AI-readable project guidance and crawl directives without making unsupported discoverability claims.
+- [x] Validate metadata, public discovery files, footer links, and static-site regressions before publishing.

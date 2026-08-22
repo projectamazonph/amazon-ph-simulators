@@ -488,9 +488,11 @@ body[data-pha-tool] textarea {
   .pha-hero-main { padding: 30px 32px; }
 
   .pha-footer {
-    flex-wrap: wrap;
-    gap: 10px 18px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 24px;
+    padding: 26px 24px 20px;
   }
+  .pha-footer .pha-foot-brand { grid-column: 1 / -1; }
   .pha-skin-wrap {
     padding-left: 18px !important;
     padding-right: 18px !important;

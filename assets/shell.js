@@ -238,15 +238,36 @@
     }
   }
 
+  function footerMarkup(root, pageName) {
+    return '<div class="pha-foot-brand">' +
+        '<a class="pha-foot-home" href="' + root + 'index.html"><b>PROJECT AMAZON PH</b><span>Academy · SimGrid</span></a>' +
+        '<small>Practical Amazon PPC learning for Filipino virtual assistants.</small>' +
+        '<div class="pha-foot-discovery"><a href="' + root + 'llms.txt">AI site guide</a><span aria-hidden="true">·</span><a href="' + root + 'sitemap.xml">Site map</a></div>' +
+      '</div>' +
+      '<nav class="pha-foot-links" aria-label="Learn" data-label="Learn">' +
+        '<a href="' + root + 'ppc-coach.html">PPC Coach</a><a href="' + root + 'learn/guide.html">Student Guide</a><a href="' + root + 'coach-decks.html">Module Decks</a>' +
+      '</nav>' +
+      '<nav class="pha-foot-links" aria-label="Practice" data-label="Practice">' +
+        '<a href="' + root + 'index.html#simulator-library">Simulator Library</a><a href="' + root + 'campaign-architect.html">Campaign Architect</a><a href="' + root + 'account-audit.html">Account Audit</a>' +
+      '</nav>' +
+      '<nav class="pha-foot-links" aria-label="Coach" data-label="Coach">' +
+        '<a href="' + root + 'coach-tools.html">Coach Tools</a><a href="' + root + 'coach-resource-library.html">Resource Library</a><a href="' + root + 'learn/index.html">Learning Docs</a>' +
+      '</nav>' +
+      '<nav class="pha-foot-links" aria-label="Project" data-label="Project">' +
+        '<a href="' + root + 'planned-simulators.html">Roadmap</a><a href="https://github.com/projectamazonph/amazon-ph-simulators" target="_blank" rel="noopener noreferrer">Source Repository</a><a href="' + root + 'site-guide.md">Project Guide</a>' +
+      '</nav>' +
+      '<div class="pha-foot-meta"><span>Public learning resources</span><span>' + pageName + '</span></div>';
+  }
+
   // Auto-inject topbar + footer if page didn't include them
   function ensureChrome() {
     var root = rootPrefix();
+    var toolId = currentToolId();
+    var tool = TOOLS.find(function (t) { return t.id === toolId; });
+    var isHub = toolId === 'hub' || !tool;
+    var toolName = document.body.getAttribute('data-pha-page-name') || (isHub ? 'Control Hub' : tool.name);
+    var toolTag = document.body.getAttribute('data-pha-page-tag') || (isHub ? 'Learning Hub' : tool.tag);
     if (!document.querySelector('.pha-topbar')) {
-      var toolId = currentToolId();
-      var tool = TOOLS.find(function (t) { return t.id === toolId; });
-      var isHub = toolId === 'hub' || !tool;
-      var toolName = document.body.getAttribute('data-pha-page-name') || (isHub ? 'SimGrid' : tool.name);
-      var toolTag = document.body.getAttribute('data-pha-page-tag') || (isHub ? 'Control Hub' : tool.tag);
       var bar = document.createElement('div');
       bar.className = 'pha-topbar';
       bar.setAttribute('role', 'banner');
@@ -268,18 +289,15 @@
         '<div class="pha-status" role="status" aria-label="Academy status: online"><span class="dot" aria-hidden="true"></span><span>Academy · online</span></div>';
       document.body.insertBefore(bar, document.body.firstChild);
     }
-    if (!document.querySelector('.pha-footer')) {
+    var footer = document.querySelector('.pha-footer');
+    if (!footer) {
       var f = document.createElement('footer');
       f.className = 'pha-footer';
-      f.innerHTML =
-        '<div class="pha-foot-brand"><b>PROJECT AMAZON PH</b><span>Academy · SimGrid</span><small>Practical Amazon PPC training for PH-based VAs.</small></div>' +
-        '<div class="pha-foot-links" data-label="Academy"><a href="' + root + 'index.html">Control Hub</a><a href="' + root + 'ppc-coach.html">PPC Coach</a><a href="' + root + 'learn/index.html">Learn &amp; Docs</a><a href="' + root + 'planned-simulators.html">Roadmap</a></div>' +
-        '<div class="pha-foot-links tools" data-label="Simulators">' +
-          TOOLS.filter(function (t) { return t.id !== 'ppc-coach'; }).map(function (t) { return '<a href="' + root + t.file + '">' + t.name + '</a>'; }).join('') +
-        '</div>' +
-        '<div class="pha-foot-meta">v1.0 · ' + (document.body.getAttribute('data-pha-tool') ? 'Tool module' : 'Control Hub') + '</div>';
       document.body.appendChild(f);
+      footer = f;
     }
+    footer.setAttribute('data-pha-footer-version', '2');
+    footer.innerHTML = footerMarkup(root, toolName);
   }
 
   // Apply pha-skin class to body (skips hub; hub has its own styles)
