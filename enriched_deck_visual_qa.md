@@ -13,3 +13,7 @@ The selectable-answer behavior was also tested directly after the rebuilt deck f
 ## Module 00 cover illustration
 
 The rebuilt Module 00 cover was reviewed with its local PPC Coach course illustration. The learning map, authentic course screenshot, objective text, action prompt, and footer all remain within the canvas, and the screenshot is contained at a fixed size without stretching or overlap.
+
+## Public GitHub Pages verification
+
+After the enriched-series deployment completed, the public Module 00 cover showed the learning map and authentic course illustration in the teaching-deck viewer. The public Module 00 decision-practice slide also showed three selectable choices, a visible evidence-based debrief, and the learner next action without layout regression.

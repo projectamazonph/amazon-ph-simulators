@@ -25,4 +25,4 @@
 - [x] Create a module-by-module enrichment storyboard that preserves each lesson objective and adds a clear visual aid plus learner action.
 - [x] Build enriched diagrams, comparison tables, worked examples, and interactive exercises into the twelve module decks.
 - [x] Validate enriched slides for beginner clarity, lesson coverage, layout safety, motion accessibility, and simulator-aligned practice.
-- [ ] Publish and verify the enriched teaching-deck series on GitHub Pages.
+- [x] Publish and verify the enriched teaching-deck series on GitHub Pages.
