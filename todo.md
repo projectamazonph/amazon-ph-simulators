@@ -26,3 +26,8 @@
 - [x] Build enriched diagrams, comparison tables, worked examples, and interactive exercises into the twelve module decks.
 - [x] Validate enriched slides for beginner clarity, lesson coverage, layout safety, motion accessibility, and simulator-aligned practice.
 - [x] Publish and verify the enriched teaching-deck series on GitHub Pages.
+- [x] Audit current learning paths and beginner language to define the onboarding glossary entry point.
+- [x] Write the plain-English Amazon and PPC quick glossary with module and simulator references.
+- [x] Build the onboarding glossary page and connect it to the shared navigation, footer, Coach Tools, sitemap, and AI-readable guide.
+- [x] Validate glossary accuracy, beginner readability, responsive layout, local links, structured discovery metadata, and regressions.
+- [ ] Publish and verify the beginner onboarding glossary on GitHub Pages.

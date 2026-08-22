@@ -245,7 +245,7 @@
         '<div class="pha-foot-discovery"><a href="' + root + 'llms.txt">AI site guide</a><span aria-hidden="true">·</span><a href="' + root + 'sitemap.xml">Site map</a></div>' +
       '</div>' +
       '<nav class="pha-foot-links" aria-label="Learn" data-label="Learn">' +
-        '<a href="' + root + 'ppc-coach.html">PPC Coach</a><a href="' + root + 'learn/guide.html">Student Guide</a><a href="' + root + 'coach-decks.html">Module Decks</a>' +
+        '<a href="' + root + 'start-here.html">VA Start Here</a><a href="' + root + 'ppc-coach.html">PPC Coach</a><a href="' + root + 'learn/guide.html">Student Guide</a><a href="' + root + 'coach-decks.html">Module Decks</a>' +
       '</nav>' +
       '<nav class="pha-foot-links" aria-label="Practice" data-label="Practice">' +
         '<a href="' + root + 'index.html#simulator-library">Simulator Library</a><a href="' + root + 'campaign-architect.html">Campaign Architect</a><a href="' + root + 'account-audit.html">Account Audit</a>' +

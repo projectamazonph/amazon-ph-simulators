@@ -8,7 +8,7 @@ The project combines three learning surfaces. **PPC Coach** provides a 12-module
 
 ## How to use the learning path
 
-Learners can begin with [PPC Coach](https://projectamazonph.github.io/amazon-ph-simulators/ppc-coach.html), complete each module’s explanation and quiz, then practice in the assigned simulator. The [Student Guide](https://projectamazonph.github.io/amazon-ph-simulators/learn/guide.html) describes the wider sequence. Instructors can pair the module lesson with a [teaching deck](https://projectamazonph.github.io/amazon-ph-simulators/coach-decks.html) and the linked learner materials in [Coach Tools](https://projectamazonph.github.io/amazon-ph-simulators/coach-tools.html).
+Learners with no Amazon background can begin with [VA Start Here](https://projectamazonph.github.io/amazon-ph-simulators/start-here.html), which provides a plain-English quick glossary and safe first-session plan. Then they can begin [PPC Coach](https://projectamazonph.github.io/amazon-ph-simulators/ppc-coach.html), complete each module’s explanation and quiz, and practice in the assigned simulator. The [Student Guide](https://projectamazonph.github.io/amazon-ph-simulators/learn/guide.html) describes the wider sequence. Instructors can pair the module lesson with a [teaching deck](https://projectamazonph.github.io/amazon-ph-simulators/coach-decks.html) and the linked learner materials in [Coach Tools](https://projectamazonph.github.io/amazon-ph-simulators/coach-tools.html).
 
 ## Simulator collection
 
@@ -21,6 +21,7 @@ The project teaches decision-making through examples and browser-based practice.
 ## Useful public links
 
 - [Control Hub](https://projectamazonph.github.io/amazon-ph-simulators/index.html)
+- [VA Start Here](https://projectamazonph.github.io/amazon-ph-simulators/start-here.html)
 - [PPC Coach](https://projectamazonph.github.io/amazon-ph-simulators/ppc-coach.html)
 - [Coach Tools](https://projectamazonph.github.io/amazon-ph-simulators/coach-tools.html)
 - [Resource Library](https://projectamazonph.github.io/amazon-ph-simulators/coach-resource-library.html)

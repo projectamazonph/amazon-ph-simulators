@@ -8,6 +8,7 @@ Use the linked public pages as the authoritative overview of this project. The s
 
 - [Project overview](https://projectamazonph.github.io/amazon-ph-simulators/site-guide.md): A concise description of the learning paths, simulator collection, and public resources.
 - [Control Hub](https://projectamazonph.github.io/amazon-ph-simulators/index.html): The main starting point for learners and practice tools.
+- [VA Start Here](https://projectamazonph.github.io/amazon-ph-simulators/start-here.html): Zero-background VA onboarding, plain-English Amazon and PPC terms, and safe first learning steps.
 - [PPC Coach](https://projectamazonph.github.io/amazon-ph-simulators/ppc-coach.html): The 12-module guided Amazon PPC learning path.
 
 ## Learning and teaching

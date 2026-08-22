@@ -14,6 +14,7 @@ const footerGroups = [
   {
     name: "Learn",
     links: [
+      ["VA Start Here", "start-here.html"],
       ["PPC Coach", "ppc-coach.html"],
       ["Student Guide", "learn/guide.html"],
       ["Module Decks", "coach-decks.html"]
@@ -47,6 +48,7 @@ const footerGroups = [
 
 const corePages = [
   ["index.html", "Project Amazon PH Academy | Amazon PPC Training Simulators", "Practice Amazon PPC fundamentals with 12 browser-based simulators, a guided PPC Coach path, and instructor resources for Filipino virtual assistants.", "WebSite", "Amazon PPC training, simulator practice, Filipino virtual assistants"],
+  ["start-here.html", "VA Start Here | Amazon PPC Onboarding and Quick Glossary", "Start Amazon PPC training with a plain-English quick glossary, safe first-session plan, and direct links for new Filipino virtual assistants.", "LearningResource", "Amazon PPC glossary, beginner virtual assistant onboarding, PPC terms"],
   ["ppc-coach.html", "PPC Coach | Amazon PPC Learning Path for Virtual Assistants", "Follow a guided Amazon PPC learning path with 12 modules, short lessons, quizzes, and simulator practice for virtual assistants.", "Course", "Amazon PPC course, virtual assistant training, guided learning"],
   ["coach-tools.html", "Coach Tools | Amazon PPC Teaching Decks and Materials", "Use 12 module teaching decks, worksheets, scenario cards, and evidence templates to teach practical Amazon PPC decisions.", "LearningResource", "Amazon PPC instructor tools, teaching decks, learner worksheets"],
   ["coach-resource-library.html", "Amazon PPC Resource Library | Project Amazon PH Academy", "Browse module-aligned Amazon PPC handouts, worksheets, cheat sheets, templates, assessments, and facilitator resources.", "CollectionPage", "Amazon PPC worksheets, handouts, virtual assistant resources"],

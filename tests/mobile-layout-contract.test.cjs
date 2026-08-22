@@ -6,11 +6,12 @@ const assert = require('node:assert/strict');
 const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 
-test('SimHub start cards use the established full-card link interaction', () => {
+test('SimHub start cards include the onboarding entry and use the established full-card link interaction', () => {
   const html = read('index.html');
   const start = html.match(/<section class="pha-tools" id="learning-start">([\s\S]*?)<\/section>/)?.[1] || '';
 
-  assert.equal((start.match(/<a class="pha-tcard/g) || []).length, 4);
+  assert.equal((start.match(/<a class="pha-tcard/g) || []).length, 5);
+  assert.match(start, /href="start-here\.html"/);
   assert.equal(start.includes('<article class="pha-tcard'), false);
 });
 
