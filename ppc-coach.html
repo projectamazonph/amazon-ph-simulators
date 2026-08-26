@@ -351,10 +351,20 @@ const MODULES=[
 {title:"Amazon Advertising Foundations",icon:"🛒",color:"#FF9900",img:IMG.market,desc:"Marketplace basics, ad types, the listing, and why retail readiness comes first.",
 lessons:[
 {id:"m1l1",title:"What is the Amazon Marketplace?",mins:5,blocks:[
-{t:"goal",x:"Explain what Amazon is, who the seller is, and why paid ads are not the only thing that matters."},
-{t:"p",x:"Amazon is a marketplace, not a store. Customers come to search, not to browse. The seller (your client, your future employer, or you) pays Amazon a fee for every product sold and can pay extra to show up at the top of a search."},
-{t:"p",x:"Most sellers never see a customer in person. The listing is the product. Photos, title, bullets, price, reviews, and stock are the experience."},
-{t:"tip",x:"Your job as a PPC manager is to buy visibility. The listing's job is to earn the sale. If the listing is weak, more ads only burn money faster."}
+{t:"goal",x:"Build the mental model of Amazon as a marketplace (not a store), explain who the seller is, and show why paid ads are only one piece of the system."},
+{t:"p",x:"Amazon is a marketplace, not a store. A store is owned and stocked by one company; you walk in, you see what they decided to put on the shelves, and you buy it or you leave. A marketplace is a building that anyone can rent shelf space in. The building charges rent, attracts the foot traffic, and runs the cash registers. The seller — your client, your future employer, or one day you — pays for the shelf, ships the inventory into Amazon's warehouses, and competes with every other seller on the same page for the shopper's attention."},
+{t:"p",x:"This is the single most important fact about Amazon for a PPC manager: shoppers come to search, not to browse. They have typed something into the search bar. They are not looking at the home page. They are not scrolling categories for fun. They have a problem or a want, and they want the answer in the next 30 seconds. Every product detail page is a search result, not a destination — and the search results page is a paid auction, even when the rows say 'Sponsored' only on a few of them."},
+{t:"p",x:"Most sellers never meet a customer. There is no in-person interaction, no chance to recover a bad first impression with a friendly smile, no physical display that 'just feels right'. The listing is the entire product experience. Photos, title, bullets, price, reviews, stock — that is the product. If the listing is weak, the seller has a weak product, no matter how good the actual item in the box is."},
+{t:"example",x:"Bamboo Cutting Board, $24.99. A shopper searches 'bamboo cutting board large' on her phone. Amazon shows 8 rows: 4 sponsored (labeled 'Sponsored'), 4 organic. She clicks row 3 — a sponsored ad. She lands on a product page with 5 photos, a 4.6-star rating, and 312 reviews. The price is shown next to a $19.99 competitor. She adds to cart. The seller pays Amazon a referral fee (about 15% of $24.99 = $3.75) and pays the seller who clicked the ad roughly $0.85. Net to the seller: $20.39 before cost of goods. The marketplace owns the shopper, owns the page, and took a fee for matching them. The seller owns the listing, the inventory, the reviews, and the ad that earned the click."},
+{t:"p",x:"Your job as a PPC manager is to buy visibility. The listing's job is to earn the sale. These are two different jobs, owned by two different parts of the business, and they have to win together. A great ad into a weak listing wastes money; a great listing with no ad sits invisible next to a competitor who is buying the top of the page. PPC is the lever that connects a finished product to the shopper who is actively looking for it."},
+{t:"formula",f:"Amazon = marketplace + listing + ads. The marketplace brings the shopper. The listing earns the sale. The ad buys the click that connects them.",note:"A 15% referral fee and a 5–10% FBA fee are normal. Plan your margin against gross revenue, not against price."},
+{t:"mistake",items:[
+"Treating Amazon like a store the seller controls end-to-end — they do not control the page, the search algorithm, or the buyer's first impression",
+"Reading 'Sponsored' rows as different from 'organic' rows — they are both auction results, and the shopper does not care which is which",
+"Believing a great product is enough — Amazon does not surface great products that nobody clicks; ads are part of how great gets found",
+"Skipping the listing because the product is 'obviously good' — the shopper has 30 seconds and 7 other options; the listing does the convincing"
+]},
+{t:"tip",x:"Open Amazon in your browser. Pick any product category. Notice how many of the first 8 results say 'Sponsored'. Notice how different each listing is. That page is the battlefield your ads will be fighting on."}
 ]},
 {id:"m1l2",title:"Sponsored Products, Brands, and Display",mins:5,blocks:[
 {t:"goal",x:"Name the three Amazon ad types and pick the right one for a simple objective."},
@@ -367,22 +377,29 @@ lessons:[
 {t:"tip",x:"Match the ad type to the objective, not to your skill. Beginners start with SP because it is the most controllable and has the lowest setup barrier."}
 ]},
 {id:"m1l3",title:"Retail-Readiness Checklist",mins:7,blocks:[
-{t:"goal",x:"Score a product's retail readiness and decide whether PPC pressure is safe."},
-{t:"p",x:"PPC cannot compensate for a weak offer. If the listing is not ready, more ads only burn money faster. The retail-readiness checklist is the first thing to look at before turning on a campaign."},
-{t:"table",head:["Item","Pass","Fail"],rows:[
-["Title","Clear, scannable, has the main keyword","Vague, no keyword, jammed with symbols"],
-["Images","7+ images, white background + lifestyle","3 or fewer, low quality, no main image"],
-["Price","Competitive for the category","Way above or way below the field"],
-["Inventory","Healthy stock (14+ days)","Low stock, going out of stock soon"],
-["Buy Box","Owned","Suppressed or shared with no control"],
-["Reviews","Recent, 4+ stars, 25+ reviews","Few reviews, recent negative, below 4"]
+{t:"goal",x:"Score a product's retail readiness and decide whether PPC pressure is safe before you turn on a campaign."},
+{t:"p",x:"PPC does not create demand. It borrows demand that already exists on Amazon and steers it to a listing. If the listing is not ready to convert that borrowed demand, every click you buy is a small loan with no repayment: money leaves, no sale arrives. The retail-readiness checklist is the simple scorecard you run before you spend anything."},
+{t:"p",x:"The reason readiness matters more than bid strategy is the auction math. Amazon charges you for every click, but only a fraction of clicks become orders. If your listing converts 2% of clicks and your competitor's converts 8%, the competitor pays four times your CPC and still walks away with more profit. The auction is not a bid contest — it is a profitability contest, and the listing does most of the work."},
+{t:"table",head:["Item","What a pass looks like","What a fail looks like"],rows:[
+["Title","Reads naturally. Main keyword in the first 60 characters. Clear size, count, or use case in the first 90.","Buried under symbols (®, ™, ‼), vague ('Best Thing Ever'), or stacks 5 keywords and reads like a search-term dump."],
+["Images","7+ images. Pure white main image, 1500×1500 minimum, plus 3+ lifestyle or scale images.","3 images or fewer, low resolution, lifestyle missing, or the main image is not pure white (it gets suppressed)."],
+["Price","Within ±15% of the median for the category at this quality tier.","Far above every comparable offer, or far below (which signals low quality and tanks conversion)."],
+["Inventory","14+ days of cover at current sales velocity, with restock confirmed.","Under 7 days of cover, going out of stock in the next reorder, or already stockout-suppressed."],
+["Buy Box","Owned, with 95%+ of recent orders routed to you.","Shared with no control, suppressed, or 0% Buy Box for the past week."],
+["Reviews","4.0+ stars, 25+ reviews, with the most recent reviews in the past 90 days.","Below 4.0, fewer than 10 reviews, or the most recent batch is 1–2 stars."],
+["Parent ASIN / variations","Listed under a parent with healthy siblings (the page has more to buy).","Standalone ASIN, or a parent whose siblings are all stockout-suppressed."],
+["Brand & content","Brand Registry active, A+ Content live (if registered), and a working brand store.","No brand story, no A+, no store, or all three are placeholders."]
 ]},
-{t:"p",x:"If any one of those is failing, fix it before adding budget. The fastest path to a profitable account is not a better bid — it is a better offer."},
+{t:"p",x:"Score each row as Pass, Watch, or Fail. Watch means 'it works but it is fragile' — a 3.8-star average, 4 days of cover, or a price sitting 16% above the median. Fail means 'do not turn on ads yet'."},
+{t:"example",x:"Bamboo Cutting Board, your first test product. Title: 'Bamboo Cutting Board, Large 16×12 with Deep Juice Groove, Eco-Friendly' — Pass (keyword front, attributes clear, no symbol spam). Images: 8, with a pure white main and 5 lifestyle shots — Pass. Price: $24.99, median for the category is $22–28 — Pass. Inventory: 9 days of cover, restock 12 days out — Watch (Fail in 2 weeks if restock slips). Buy Box: 100% owned — Pass. Reviews: 4.6 stars, 312 reviews, most recent 5 days ago — Pass. Parent: 3 sibling sizes, all in stock — Pass. Brand: not registered, no A+ — Watch. Result: 6 Pass, 2 Watch, 0 Fail. Safe to spend up to ~$30/day while you fix the inventory and brand content. Do not push to $100/day until the inventory and brand are Pass."},
+{t:"formula",f:"If any row is Fail → fix it before spending. If two or more rows are Watch → cap daily budget at $20–30 until they harden. If all rows are Pass → you can scale with confidence.",note:"The checklist is a gate, not a wishlist. A 'Watch' is permission to spend carefully, not permission to scale."},
 {t:"mistake",items:[
-"Pushing budget into a product that is out of stock",
-"Raise the bid when price is the real problem",
-"Reading 'ACOS is high' as a bid problem when reviews are the cause"
-]}
+"Scoring the listing on vibes instead of the rows ('It looks fine to me' is not a Pass)",
+"Treating price as the only readiness signal — a great price on a 3.5-star listing still loses money to a slightly worse price on a 4.6-star listing",
+"Ranking the most 'fixable' Fail as a Pass because you plan to fix it next week (the fix is not in the account yet; the check has to be honest)",
+"Running ads on a stockout-suppressed ASIN 'just to keep the data warm' — there is no data to keep, and Amazon's quality score drops the listing further"
+]},
+{t:"tip",x:"Run the checklist on three ASINs from your training data this week. Score each honestly. For every Fail, write a one-sentence fix. The fix is your first project; the ads come after."}
 ]},
 {id:"m1l4",title:"Paid, Organic, and the Buy Box",mins:6,blocks:[
 {t:"goal",x:"Explain organic vs paid sales, what the Buy Box is, and why PPC feeds both."},
