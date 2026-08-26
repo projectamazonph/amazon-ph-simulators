@@ -170,6 +170,7 @@ test('mobile shell keeps navigation out of header flow and groups footer links',
   assert.match(responsive, /\.pha-topbar \{[\s\S]*?height: 72px/);
   assert.match(responsive, /\.pha-topbar \.pha-nav \{[\s\S]*?display: none/);
   assert.match(responsive, /\.pha-topbar \.pha-nav\.is-open \{[\s\S]*?display: flex/);
-  assert.match(shell, /data-label="Academy"/);
-  assert.match(shell, /data-label="Simulators"/);
+  ['Learn', 'Practice', 'Coach', 'Project'].forEach(label => {
+    assert.match(shell, new RegExp(`data-label="${label}"`));
+  });
 });

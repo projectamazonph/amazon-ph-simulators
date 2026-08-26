@@ -1,0 +1,119 @@
+name: Assessment or content change
+description: Propose or report a simulator scenario, rubric, policy, feedback, or curriculum-content change.
+title: "[Assessment] "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when the issue changes what learners are asked, how answers are graded, what feedback is shown, or how a simulator maps to the curriculum. Assessment changes require explicit versioning and regression coverage.
+
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: Change type
+      options:
+        - New scenario
+        - Scenario correction
+        - Rubric or scoring change
+        - PPC policy change
+        - Feedback or misconception change
+        - Curriculum sequencing change
+        - Learning resource change
+    validations:
+      required: true
+
+  - type: input
+    id: simulator
+    attributes:
+      label: Simulator or curriculum module
+      placeholder: "Example: Bid Decisions / m7 — Bids & Budgets"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Difficulty
+      options:
+        - Beginner
+        - Intermediate
+        - Advanced
+        - Not applicable
+    validations:
+      required: true
+
+  - type: input
+    id: versions
+    attributes:
+      label: Version impact
+      description: Provide current and proposed scenario, rubric, and policy versions.
+      placeholder: "Current: scenario 1.0.0 / rubric 1.0.0. Proposed: ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: learning_objective
+    attributes:
+      label: Learning objective
+      description: What learner competency should this content teach or assess?
+      placeholder: The learner should be able to ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and rationale
+      description: Explain the PPC principle, source material, learner data, or instructional reason for the change.
+      placeholder: Include references, examples, or observed learner confusion.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Scenario or question design
+      description: Describe the learner signal, available choices, expected answer, and meaningful distractors.
+      placeholder: |
+        Signal:
+        Options:
+        Expected answer:
+        Distractors:
+    validations:
+      required: true
+
+  - type: textarea
+    id: misconceptions
+    attributes:
+      label: Misconceptions and feedback
+      description: Map likely wrong answers to misconception codes and actionable feedback.
+      placeholder: |
+        - Wrong answer: ...
+          Misconception: ...
+          Feedback: ...
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Scenario content validates against the schema.
+        - [ ] Scenario/rubric/policy versions are updated where required.
+        - [ ] Perfect, partial, and representative wrong attempts have tests.
+        - [ ] Learner-facing feedback is reviewed.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Assessment checklist
+      options:
+        - label: I have identified whether this changes a scenario, rubric, policy, or curriculum mapping.
+          required: true
+        - label: I have considered historical attempts and score comparability.
+          required: true
+        - label: I have avoided using real customer account data or personally identifiable information.
+          required: true

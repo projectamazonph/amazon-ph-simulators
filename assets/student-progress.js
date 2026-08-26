@@ -4,25 +4,14 @@
   } else {
     root.StudentProgress = factory();
   }
-})(typeof self !== 'undefined' ? self : this, function () {
+})(typeof self !== 'undefined' ? self : this, function (root) {
   'use strict';
 
   var DEFAULT_KEY = 'aph-student-progress-v1';
+  var STATE_VERSION = 2;
 
   function emptyState() {
-    return { version: 1, attempts: [] };
-  }
-
-  function readState(storage, storageKey) {
-    try {
-      var parsed = JSON.parse(storage.getItem(storageKey) || 'null');
-      if (parsed && parsed.version === 1 && Array.isArray(parsed.attempts)) {
-        return parsed;
-      }
-    } catch (error) {
-      return emptyState();
-    }
-    return emptyState();
+    return { version: STATE_VERSION, attempts: [] };
   }
 
   function requireValue(attempt, field) {
@@ -38,11 +27,20 @@
     requireValue(attempt, 'score');
     requireValue(attempt, 'completedAt');
 
-    if (typeof attempt.score !== 'number' || attempt.score < 0 || attempt.score > 100) {
-      throw new TypeError('score must be a number from 0 to 100');
+    if (typeof attempt.score !== 'number' || !Number.isFinite(attempt.score) || attempt.score < 0 || attempt.score > 100) {
+      throw new TypeError('score must be a finite number from 0 to 100');
     }
     if (typeof attempt.passed !== 'boolean') {
       throw new TypeError('passed must be a boolean');
+    }
+    if (typeof attempt.completedAt !== 'string') {
+      throw new TypeError('completedAt must be a string');
+    }
+    if (attempt.scenarioId !== undefined && typeof attempt.scenarioId !== 'string') {
+      throw new TypeError('scenarioId must be a string');
+    }
+    if (attempt.policyVersion !== undefined && typeof attempt.policyVersion !== 'string') {
+      throw new TypeError('policyVersion must be a string');
     }
   }
 
@@ -56,7 +54,40 @@
       completedAt: attempt.completedAt
     };
     if (attempt.scenarioId) copied.scenarioId = attempt.scenarioId;
+    if (attempt.policyVersion) copied.policyVersion = attempt.policyVersion;
     return copied;
+  }
+
+  function sanitizeAttempts(attempts) {
+    return (Array.isArray(attempts) ? attempts : []).reduce(function (safeAttempts, attempt) {
+      try {
+        validateAttempt(attempt || {});
+        safeAttempts.push(copyAttempt(attempt));
+      } catch (error) {
+        // Ignore malformed historical records during migration. New writes are
+        // still rejected by recordAttempt below.
+      }
+      return safeAttempts;
+    }, []);
+  }
+
+  function readState(storage, storageKey) {
+    var parsed;
+    try {
+      parsed = JSON.parse(storage.getItem(storageKey) || 'null');
+    } catch (error) {
+      return { state: emptyState(), migrated: true };
+    }
+
+    if (!parsed || !Array.isArray(parsed.attempts) || (parsed.version !== 1 && parsed.version !== STATE_VERSION)) {
+      return { state: emptyState(), migrated: true };
+    }
+
+    var attempts = sanitizeAttempts(parsed.attempts);
+    return {
+      state: { version: STATE_VERSION, attempts: attempts },
+      migrated: parsed.version !== STATE_VERSION || attempts.length !== parsed.attempts.length
+    };
   }
 
   function createProgressStore(storage, storageKey) {
@@ -70,18 +101,45 @@
       storage.setItem(key, JSON.stringify(state));
     }
 
+    function publishToSimHub(attempt) {
+      try {
+        if (!root || !root.location || !root.opener) return;
+        var params = new URLSearchParams(root.location.search || '');
+        var token = params.get('simhubBridgeToken');
+        var returnOrigin = params.get('simhubReturnOrigin');
+        if (!token || !returnOrigin) return;
+        var parsedOrigin = new URL(returnOrigin);
+        if (parsedOrigin.origin !== returnOrigin) return;
+        root.opener.postMessage({
+          source: 'simhub-static-bridge',
+          kind: 'simulator_attempt',
+          token: token,
+          attempt: attempt
+        }, returnOrigin);
+      } catch (error) {
+        // SimHub bridge failures must never interrupt the existing local simulator flow.
+      }
+    }
+
+    function loadState() {
+      var loaded = readState(storage, key);
+      if (loaded.migrated) writeState(loaded.state);
+      return loaded.state;
+    }
+
     function recordAttempt(attempt) {
       var safeAttempt = attempt || {};
       validateAttempt(safeAttempt);
-      var state = readState(storage, key);
+      var state = loadState();
       var storedAttempt = copyAttempt(safeAttempt);
       state.attempts.push(storedAttempt);
       writeState(state);
+      publishToSimHub(storedAttempt);
       return storedAttempt;
     }
 
     function getSimulatorProgress(simulatorId) {
-      var attempts = readState(storage, key).attempts.filter(function (attempt) {
+      var attempts = loadState().attempts.filter(function (attempt) {
         return attempt.simulatorId === simulatorId;
       });
       var bestScore = attempts.reduce(function (best, attempt) {
@@ -106,6 +164,7 @@
 
   return {
     DEFAULT_KEY: DEFAULT_KEY,
+    STATE_VERSION: STATE_VERSION,
     createProgressStore: createProgressStore,
     createLocalProgressStore: function () {
       return createProgressStore(localStorage, DEFAULT_KEY);

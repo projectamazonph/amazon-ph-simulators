@@ -25,11 +25,17 @@
     requireValue(result.maxScore, 'result.maxScore');
     requireValue(safeInput.completedAt, 'completedAt');
 
-    if (result.maxScore <= 0) {
-      throw new TypeError('result.maxScore must be greater than zero');
+    if (typeof result.score !== 'number' || !Number.isFinite(result.score)) {
+      throw new TypeError('result.score must be a finite number');
+    }
+    if (typeof result.maxScore !== 'number' || !Number.isFinite(result.maxScore) || result.maxScore <= 0) {
+      throw new TypeError('result.maxScore must be a finite number greater than zero');
+    }
+    if (result.score < 0 || result.score > result.maxScore) {
+      throw new TypeError('result.score must be between zero and result.maxScore');
     }
 
-    return {
+    var record = {
       simulatorId: scenario.simulatorId || scenario.id,
       scenarioId: scenario.id,
       scenarioVersion: scenario.version,
@@ -38,6 +44,8 @@
       passed: Boolean(result.passed),
       completedAt: safeInput.completedAt
     };
+    if (scenario.policyVersion) record.policyVersion = scenario.policyVersion;
+    return record;
   }
 
   return {

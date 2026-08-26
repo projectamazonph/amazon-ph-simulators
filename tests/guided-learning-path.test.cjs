@@ -18,6 +18,18 @@ test('hub presents PPC Coach as the guided starting point before the simulator l
   assert.match(hub, /href="learn\/guide\.html"/);
 });
 
+test('hub links students to the Amazon PPC Student Wiki from the guided learning start', () => {
+  const hub = read('index.html');
+  const learningStart = hub.match(/<section class="pha-tools" id="learning-start">([\s\S]*?)<\/section>/)?.[1] || '';
+
+  assert.match(
+    learningStart,
+    /href="https:\/\/projectamazonph\.github\.io\/Amazon-PPC-Student-Wiki\/" target="_blank" rel="noopener noreferrer"/
+  );
+  assert.match(learningStart, /<div class="pha-tcard-name">PPC Student Wiki<\/div>/);
+  assert.match(learningStart, />Open student wiki<\/span>/);
+});
+
 test('Coach module pages render simulator assignments from the curriculum manifest', () => {
   const coach = read('ppc-coach.html');
 

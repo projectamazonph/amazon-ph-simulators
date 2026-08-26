@@ -46,6 +46,7 @@
     id: 'bid-decisions',
     version: '1.0.0',
     rubricVersion: '1.0.0',
+    policyVersion: PpcDecisionPolicy.VERSION,
     title: 'Bid Decisions',
     passingScore: 75,
     targetAcos: 35,

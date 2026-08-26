@@ -7,6 +7,8 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
+  var VERSION = '1.0.0';
+
   function evidenceBand(clicks) {
     if (clicks < 10) return 'thin';
     if (clicks < 20) return 'emerging';
@@ -43,6 +45,7 @@
   }
 
   return {
+    VERSION: VERSION,
     evidenceBand: evidenceBand,
     recommendSearchTermAction: recommendSearchTermAction,
     recommendBidAction: recommendBidAction,

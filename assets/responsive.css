@@ -8,6 +8,8 @@
      - Touch-target enforcement (44px min on interactive elements)
      - .stack-mobile utility (force 1-col at <768px)
      - .table-scroll utility (horizontal scroll for dense data)
+     - .overflow-break utility (break long words)
+     - .truncate utility (ellipsis on overflow)
      - prefers-reduced-motion respect
    All rules are scoped to body.pha-skin OR body[data-pha-tool] so
    the hub page (which opts out of pha-skin) is also covered.
@@ -34,6 +36,56 @@ body[data-pha-tool] object {
 body.pha-skin,
 body[data-pha-tool] {
   overflow-x: hidden;
+}
+
+/* ---------- overflow protection utilities ---------- */
+/* Break long words that would overflow container */
+body.pha-skin .overflow-break,
+body[data-pha-tool] .overflow-break {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Truncate text with ellipsis (single line) */
+body.pha-skin .truncate,
+body[data-pha-tool] .truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Truncate text with ellipsis (multi-line) */
+body.pha-skin .line-clamp-2,
+body[data-pha-tool] .line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+body.pha-skin .line-clamp-3,
+body[data-pha-tool] .line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Card overflow protection */
+body.pha-skin .card,
+body[data-pha-tool] .card,
+body.pha-skin [class*="card"],
+body[data-pha-tool] [class*="card"] {
+  overflow: hidden;
+}
+
+/* Button overflow protection */
+body.pha-skin button,
+body.pha-skin .btn,
+body[data-pha-tool] button,
+body[data-pha-tool] .btn {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ---------- fluid body type ---------- */
@@ -372,6 +424,72 @@ body[data-pha-tool] textarea {
   }
   .pha-ribbon .pipe { display: none; }
 
+  /* legacy page shells: keep native rails and content inside the mobile viewport */
+  body.pha-skin .shell {
+    grid-template-columns: 1fr !important;
+    min-width: 0 !important;
+  }
+  body.pha-skin .shell > .side {
+    position: static !important;
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    box-sizing: border-box !important;
+  }
+  body.pha-skin .shell > .side .navbtn {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    white-space: nowrap !important;
+  }
+  body.pha-skin .shell > main {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  body.pha-skin .side-foot { display: none !important; }
+
+  /* Keyword Lab: allow grid children to shrink around scrollable tables. */
+  body.pha-skin .grid2 > *,
+  body.pha-skin .grid3 > *,
+  body.pha-skin .grid4 > *,
+  body.pha-skin .calc-grid > *,
+  body.pha-skin .gloss-grid > *,
+  body.pha-skin .tier-grid > *,
+  body.pha-skin .card {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  body.pha-skin .card {
+    box-sizing: border-box !important;
+  }
+
+  /* Campaign Architect: skin padding must stay inside the native layout. */
+  body.pha-skin .ca-header,
+  body.pha-skin .ca-layout,
+  body.pha-skin .ca-layout > *,
+  body.pha-skin .ca-canvas,
+  body.pha-skin .ca-palette,
+  body.pha-skin .ca-inspector,
+  body.pha-skin .ca-campaign {
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Pacing Deck: the unified chip styling otherwise defeats the native hide rule. */
+  body.pha-skin .suite {
+    max-width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    overflow-x: auto;
+  }
+  body.pha-skin .suite .chip:not(.on) { display: none !important; }
+
   /* generic simulator surfaces */
   pre {
     overflow-x: auto;
@@ -422,9 +540,12 @@ body[data-pha-tool] textarea {
   .pha-hero-main { padding: 30px 32px; }
 
   .pha-footer {
-    flex-wrap: wrap;
-    gap: 10px 18px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 24px;
+    padding: 26px 24px 20px;
   }
+  .pha-footer .pha-foot-brand { grid-column: 1 / -1; }
+  .pha-footer .pha-foot-links a { min-height: 40px; }
   .pha-skin-wrap {
     padding-left: 18px !important;
     padding-right: 18px !important;

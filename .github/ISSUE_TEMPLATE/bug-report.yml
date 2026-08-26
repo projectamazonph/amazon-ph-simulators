@@ -1,0 +1,123 @@
+name: Bug report
+description: Report a reproducible defect in a simulator, learning page, desktop build, or release workflow.
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please search existing issues first. For security-sensitive reports, do not include secrets, personal data, or private customer information in a public issue.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Simulator grading
+        - Progress or persistence
+        - Curriculum or learning flow
+        - Accessibility or mobile layout
+        - Offline web experience
+        - Electron desktop app
+        - Windows installer or updater
+        - GitHub Pages deployment
+        - CI or release workflow
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Severity
+      options:
+        - P0 — Blocks learning, data safety, or release delivery
+        - P1 — Major defect with a workaround or limited scope
+        - P2 — Minor defect, polish issue, or edge case
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Application or commit version
+      description: Provide the release version, branch, commit, or installer version.
+      placeholder: "Example: master @ abc1234 or SimGrid 1.0.3"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Web — desktop browser
+        - Web — mobile browser
+        - Windows packaged app
+        - Local development
+        - GitHub Actions
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the observed behavior and the expected behavior.
+      placeholder: |
+        Observed:
+
+        Expected:
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Give the smallest reliable reproduction path.
+      placeholder: |
+        1. Open ...
+        2. Select ...
+        3. Submit ...
+        4. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Add screenshots, console output, test output, or a minimal data fixture. Redact sensitive content.
+      placeholder: Paste logs or links here.
+
+  - type: textarea
+    id: regression
+    attributes:
+      label: Regression and impact
+      description: State whether this worked previously, the first known affected version, and who is blocked.
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Fix verification
+      description: Define how the fix should be tested.
+      placeholder: |
+        - [ ] Reproduction no longer fails.
+        - [ ] Regression test added or updated.
+        - [ ] Offline, mobile, or packaged behavior verified where applicable.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Reporter checklist
+      options:
+        - label: I searched for duplicate issues.
+          required: true
+        - label: I removed secrets and personal or customer data from this report.
+          required: true
+        - label: I included enough information for another person to reproduce the issue.
+          required: true
