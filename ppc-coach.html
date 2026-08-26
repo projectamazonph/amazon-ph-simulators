@@ -1079,7 +1079,7 @@ function closeSidebar(){document.getElementById("sidebar").classList.add("-trans
 
 /* ================= BLOCK RENDERER ================= */
 function renderBlock(b){
- if(b.t==="p") return '<p class="text-[15px] leading-7 text-slate-600">'+b.x+'</p>';
+ if(b.t==="p") return '<p class="lessonprose">'+b.x+'</p>';
  if(b.t==="goal") return '<div class="flex gap-3 rounded-xl bg-brand-50 border border-brand-200 p-4 text-sm text-brand-700"><span class="text-lg">🎯</span><span><b>In this lesson:</b> '+b.x+'</span></div>';
  if(b.t==="list") return '<ul class="space-y-2">'+b.items.map(i=>'<li class="flex gap-2 text-[15px] text-slate-600"><span class="text-brand-500 font-bold">•</span>'+i+'</li>').join("")+'</ul>';
  if(b.t==="table") return '<div class="overflow-x-auto rounded-xl border border-slate-200"><table><thead><tr>'+b.head.map(h=>'<th>'+h+'</th>').join("")+'</tr></thead><tbody>'+b.rows.map(r=>'<tr>'+r.map(c=>'<td>'+c+'</td>').join("")+'</tr>').join("")+'</tbody></table></div>';

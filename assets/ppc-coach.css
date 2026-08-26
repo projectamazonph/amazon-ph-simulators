@@ -21,3 +21,10 @@
   .lessonblock tr:nth-child(even) td{background:#f8fafc}
   .chatmsg{animation:fadeUp .3s ease both}
   .diagstep{transition:transform .2s ease}.diagstep:hover{transform:scale(1.04)}
+  /* Lesson body: give sequential <p> blocks a sequence, not a wall.
+     Visual rhythm: bigger gap between <p>s, a touch of lead-in on the
+     first paragraph, and hyphens so lines wrap cleanly on mobile. */
+  .lessonblock .lessonprose{font-size:15.5px;line-height:1.7;color:var(--c-ink-2);margin:0 0 1.1rem 0;hyphens:auto;-webkit-hyphens:auto}
+  .lessonblock .lessonprose + .lessonprose{margin-top:1.35rem}
+  .lessonblock > .lessonprose:first-of-type{font-size:1.0625rem;line-height:1.75;color:var(--c-ink)}
+  .lessonblock .lessonprose + div{margin-top:.25rem}
