@@ -1523,7 +1523,7 @@ function checkEx1(){
     $('ex1f' + i).innerHTML = (ok ? '<span style="color:var(--profit)">✓</span> ' : '<span style="color:var(--loss)">✗</span> ') + '<span class="why">' + t.why + '</span>';
     $('ex1r' + i).className = ok ? 'row-good' : 'row-bad';
   });
-  $('ex1score').innerHTML = score + '/7 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 7 ? '— flawless audit.' : score >= 5 ? '— solid. Re-read the misses.' : '— review Module 5 and try again.') + '</span>';
+  $('ex1score').innerHTML = score + '/7 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 7 ? '— flawless audit.' : score >= 5 ? '— solid. Re-read the misses.' : '— review Module 9 and try again.') + '</span>';
   if(!exDone.ex1){ exDone.ex1 = true; addXP(score*3, 'search term audit completed'); }
 }
 function checkEx2(){
@@ -1541,7 +1541,7 @@ function checkEx3(){
     if(ok) score++;
     $('ex3f' + i).innerHTML = ok ? '<span style="color:var(--profit)">✓ correct</span>' : '<span style="color:var(--loss)">✗ not quite</span>';
   });
-  $('ex3score').innerHTML = score + '/3 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 3 ? '— you speak match type fluently.' : '— review Module 2.') + '</span>';
+  $('ex3score').innerHTML = score + '/3 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 3 ? '— you speak match type fluently.' : '— review Module 4.') + '</span>';
   if(!exDone.ex3){ exDone.ex3 = true; addXP(score*8, 'match type drill'); }
 }
 function checkEx4(){
