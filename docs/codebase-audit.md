@@ -106,7 +106,6 @@ PPC Coach renders user messages through `innerHTML`. Keyword Lab places a user-e
 - Search Term Triage now describes its 8/12/16-term rounds consistently.
 - Keyword Lab displays inconsistent versions between the hub and the simulator.
 - The course copy uses 70%, 80%, and 85% thresholds without clearly naming the difference between pass, distinction, and supervised-readiness targets.
-- The student guide says “pass both quizzes” in multiple phases even though the course contains 12 module quizzes.
 - “AI Coach” is presented as a product label, while the implementation is a deterministic keyword-rule matcher. The feature documentation correctly describes it as rule-based; the primary labels should match that reality.
 - The marketplace selector is cosmetic. Its handler explicitly reports that the demo data remains on Amazon.com.
 - The hub claims the simulator has the “same layout, same controls, same copy” as Seller Central. This should be reframed as a training approximation to avoid overpromising fidelity.

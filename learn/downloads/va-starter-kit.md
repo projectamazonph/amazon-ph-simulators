@@ -59,7 +59,7 @@ A copy-paste checklist for your first 30 days on a real Amazon PPC account.
 | Thursday | Bid and ACOS review |
 | Friday | Simple report |
 
-## Permission ladder (from Module 11)
+## Permission ladder (from Module 12 — Capstone)
 
 | Task | You alone | Needs approval |
 | --- | --- | --- |

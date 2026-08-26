@@ -31,48 +31,56 @@
   }
 
   var MODULES = [
-    { id: 'm0', title: 'Amazon Basics', practice: [assignment('listing', 75)] },
-    { id: 'm1', title: 'What is PPC?', practice: [assignment('ad-console', 75)] },
-    { id: 'm2', title: 'Money Math', practice: [assignment('keyword-lab', 75)] },
+    { id: 'm0', title: 'Amazon Advertising Foundations', practice: [assignment('listing', 75)] },
+    { id: 'm1', title: 'PPC Language, Metrics, and Math', practice: [assignment('keyword-lab', 75)] },
     {
-      id: 'm3',
-      title: 'Campaign Structure',
+      id: 'm2',
+      title: 'Campaign Structure and Naming',
       practice: [assignment('campaign-architect', 75)]
     },
     {
-      id: 'm4',
-      title: 'Keywords & Match Types',
+      id: 'm3',
+      title: 'Keyword Research and Search Intent',
       practice: [assignment('keyword-lab', 75), assignment('search-triage', 75)]
     },
-    { id: 'm5', title: 'Listing Readiness', practice: [assignment('listing', 75)] },
+    {
+      id: 'm4',
+      title: 'Automatic Targeting',
+      practice: [assignment('ad-console', 75), assignment('listing', 75)]
+    },
+    {
+      id: 'm5',
+      title: 'Manual Keyword Targeting',
+      practice: [assignment('ad-console', 75), assignment('search-triage', 75)]
+    },
     {
       id: 'm6',
-      title: 'Campaign Setup',
-      practice: [assignment('campaign-architect', 75), assignment('ad-console', 75)]
+      title: 'Product Targeting',
+      practice: [assignment('ad-console', 75), assignment('campaign-architect', 75)]
     },
     {
       id: 'm7',
-      title: 'Bids & Budgets',
+      title: 'Bidding, Placements, and Budgets',
       practice: [assignment('bid-decisions', 75), assignment('pacing-deck', 75)]
     },
     {
       id: 'm8',
-      title: 'Search Terms & Negatives',
+      title: 'Search-Term Analysis and Negatives',
       practice: [assignment('search-triage', 75), assignment('bulk-file', 75)]
     },
     {
       id: 'm9',
-      title: 'Weekly Optimization',
+      title: 'Performance Diagnosis',
       practice: [assignment('account-audit', 75), assignment('search-triage', 75)]
     },
     {
       id: 'm10',
-      title: 'Reporting & Troubleshooting',
-      practice: [assignment('account-audit', 75)]
+      title: 'Optimization, Scaling, and Operating Rhythm',
+      practice: [assignment('account-audit', 75), assignment('ad-console', 75)]
     },
     {
       id: 'm11',
-      title: 'VA Workflow & Capstone',
+      title: 'Reporting, Strategy, and Capstone',
       practice: [assignment('client-onboarding', 75), assignment('capstone-sequence', 85)]
     }
   ];

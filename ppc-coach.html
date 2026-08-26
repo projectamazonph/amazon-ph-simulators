@@ -342,375 +342,617 @@ function toast(msg,type){ const root=document.getElementById("toastRoot"); const
 function addXp(n,why){ const b=levelFor(state.xp).i; state.xp+=n; save(); toast("+"+n+" XP · "+why,"xp"); const a=levelFor(state.xp); if(a.i>b) setTimeout(()=>toast("Level up! You are now "+a.name,"level"),450); updateTopbar(); }
 function updateTopbar(){ const L=levelFor(state.xp); document.getElementById("xpPill").textContent="⚡ "+state.xp+" XP"; document.getElementById("lvlPill").textContent="🎓 "+L.name; document.getElementById("sideLevel").textContent=L.name; document.getElementById("sideXpBar").style.width=L.pct+"%"; document.getElementById("sideXpTxt").textContent=L.next?state.xp+" / "+L.next.xp+" XP to "+L.next.name:state.xp+" XP · Top level!"; }
 
-/* ================= COURSE CONTENT (12 modules, 40 lessons, 12 module quizzes + final exam) ================= */
+/* ================= COURSE CONTENT (12 modules, 60 lessons, 12 module quizzes + final exam) ================= */
+// Lesson ID map migrated from prior structure on 2026-08-26.
+// Old IDs m0l1..m11l4 remap to m1l1..m12l6 in the new 12-module layout.
+const LESSON_ID_MIGRATION={"m0l1":"m1l1","m0l2":"m1l3","m0l3":"m1l4","m1l1":"m2l1","m1l2":"m2l2","m1l3":"m2l3","m2l1":"m2l4","m2l2":"m2l4","m2l3":"m2l5","m2l4":"m2l6","m3l1":"m3l1","m3l2":"m3l2","m3l3":"m3l4","m4l1":"m4l1","m4l2":"m4l2","m4l3":"m4l2","m4l4":"m4l4","m5l1":"m1l2","m5l2":"m1l3","m5l3":"m10l2","m6l1":"m5l3","m6l2":"m6l2","m6l3":"m6l4","m7l1":"m8l1","m7l2":"m6l4","m7l3":"m8l6","m8l1":"m9l1","m8l2":"m9l3","m8l3":"m9l5","m9l1":"m11l1","m9l2":"m11l2","m9l3":"m2l6","m10l1":"m12l1","m10l2":"m12l2","m10l3":"m10l2","m10l4":"m10l3","m11l1":"m12l5","m11l2":"m12l5","m11l3":"m11l6","m11l4":"m12l6"};
+function migrateState(){ try{ const old=JSON.parse(localStorage.getItem("ppccoach.doneBackup")||"null"); if(!old){ localStorage.setItem("ppccoach.doneBackup",JSON.stringify(state.done)); const newDone=[]; state.done.forEach(id=>{ const mapped=LESSON_ID_MIGRATION[id]||id; if(!newDone.includes(mapped)) newDone.push(mapped); }); state.done=newDone; saveState(); } }catch(e){} }
 const MODULES=[
-{title:"Amazon Basics",icon:"🛒",color:"#FF9900",img:IMG.market,desc:"The marketplace, the listing, and why visibility is everything.",
+{title:"Amazon Advertising Foundations",icon:"🛒",color:"#FF9900",img:IMG.market,desc:"Marketplace basics, ad types, the listing, and why retail readiness comes first.",
 lessons:[
-{id:"m0l1",title:"What is Amazon Marketplace?",mins:6,blocks:[
- {t:"goal",x:"Understand what Amazon is, how shoppers find products, and why visibility is the whole game."},
- {t:"p",x:"Amazon is a giant online store. Every day, millions of shoppers type what they want into a search bar, and Amazon instantly shows pages of products."},
- {t:"p",x:"Shoppers rarely scroll past page one. So selling on Amazon is one simple game: be visible at the exact moment the right shopper searches."},
- {t:"list",items:["Shopper searches for a product","Amazon ranks and shows results","Shopper clicks a few products","Shopper buys one (or leaves)"]},
- {t:"table",head:["Who","Role"],rows:[["Shopper","Types words, clicks, buys"],["Seller","Wants the product seen and bought"],["Amazon","Decides what gets shown, collects ad fees"],["Ad","A paid shortcut to being seen"]]},
- {t:"example",x:"Search for a bamboo cutting board. You will see free results mixed with results marked Sponsored. Sponsored means ad: the seller pays only when someone clicks."},
- {t:"tip",x:"Before thinking about ads, think like a shopper. Search your product type and study the page. That page is your battlefield."}
+{id:"m1l1",title:"What is the Amazon Marketplace?",mins:5,blocks:[
+{t:"goal",x:"Explain what Amazon is, who the seller is, and why paid ads are not the only thing that matters."},
+{t:"p",x:"Amazon is a marketplace, not a store. Customers come to search, not to browse. The seller (your client, your future employer, or you) pays Amazon a fee for every product sold and can pay extra to show up at the top of a search."},
+{t:"p",x:"Most sellers never see a customer in person. The listing is the product. Photos, title, bullets, price, reviews, and stock are the experience."},
+{t:"tip",x:"Your job as a PPC manager is to buy visibility. The listing's job is to earn the sale. If the listing is weak, more ads only burn money faster."}
 ]},
-{id:"m0l2",title:"Anatomy of a Product Listing",mins:8,blocks:[
- {t:"goal",x:"Learn the seven parts of a listing and why each one changes ad performance."},
- {t:"p",x:"The listing is the product page. Ads bring shoppers to it, but the page does the selling."},
- {t:"table",head:["Part","Why it matters"],rows:[["Main image","First thing seen in search and on the page"],["Title","Tells the shopper and Amazon what this is"],["Price","Compared instantly with competitors"],["Bullets","Answer the question: what is in it for me?"],["Reviews and rating","Social proof, the silent salesperson"],["Description / A+","Removes doubt and builds trust"],["Stock and Buy Box","No stock or no Buy Box means ads are wasted"]]},
- {t:"p",x:"Shoppers decide in seconds. If any part is weak, clicks leak away without sales — and you paid for every one of them."},
- {t:"example",x:"Two identical cutting boards. One has a blurry photo, zero reviews and a high price. The other has a sharp photo, 4.7 stars and a fair price. Same ad spend, very different results."},
- {t:"tip",x:"When a campaign performs badly, always look at the listing before blaming the ads."}
+{id:"m1l2",title:"Sponsored Products, Brands, and Display",mins:5,blocks:[
+{t:"goal",x:"Name the three Amazon ad types and pick the right one for a simple objective."},
+{t:"table",head:["Type","What it shows","Best for"],rows:[
+["Sponsored Products (SP)","A single product in search and on product pages","Beginners. Most spend. The default starting point."],
+["Sponsored Brands (SB)","A banner of 3 products with a brand logo","Mid-funnel discovery and brand lift. Needs Brand Registry."],
+["Sponsored Display (SD)","Product-targeted ads on and off Amazon","Retargeting, competitor pages, audiences. Needs Brand Registry."]
 ]},
-{id:"m0l3",title:"Organic vs Paid and the Buy Box",mins:7,blocks:[
- {t:"goal",x:"Understand free vs paid visibility, and the one button that matters most."},
- {t:"table",head:["Type","Meaning","How you get it"],rows:[["Organic","Free result","Earned by relevance, sales and reviews"],["Paid (Sponsored)","Ad result","You pay per click"]]},
- {t:"p",x:"The Buy Box is the area with the Add to Cart button. Most sales go through it. If you do not win the Buy Box, your ads can send shoppers to a button that sells a competitor."},
- {t:"list",items:["Appear faster than waiting for organic rank","Discover which search words actually sell","Protect your page from competitor ads","Grow sales velocity, which also lifts organic rank"]},
- {t:"diagram",kind:"flow",title:"The visibility loop",steps:["Shopper searches","Results page: organic + sponsored","Shopper clicks","Landing page convinces (or not)","Buy or leave"]},
- {t:"tip",x:"Ads buy visibility. The listing earns the sale. Both must work."}
-]}],
+{t:"p",x:"This course focuses on Sponsored Products, because that is where 80%+ of beginner spend happens. Sponsored Brands and Display are extensions, not the starting point."},
+{t:"tip",x:"Match the ad type to the objective, not to your skill. Beginners start with SP because it is the most controllable and has the lowest setup barrier."}
+]},
+{id:"m1l3",title:"Retail-Readiness Checklist",mins:7,blocks:[
+{t:"goal",x:"Score a product's retail readiness and decide whether PPC pressure is safe."},
+{t:"p",x:"PPC cannot compensate for a weak offer. If the listing is not ready, more ads only burn money faster. The retail-readiness checklist is the first thing to look at before turning on a campaign."},
+{t:"table",head:["Item","Pass","Fail"],rows:[
+["Title","Clear, scannable, has the main keyword","Vague, no keyword, jammed with symbols"],
+["Images","7+ images, white background + lifestyle","3 or fewer, low quality, no main image"],
+["Price","Competitive for the category","Way above or way below the field"],
+["Inventory","Healthy stock (14+ days)","Low stock, going out of stock soon"],
+["Buy Box","Owned","Suppressed or shared with no control"],
+["Reviews","Recent, 4+ stars, 25+ reviews","Few reviews, recent negative, below 4"]
+]},
+{t:"p",x:"If any one of those is failing, fix it before adding budget. The fastest path to a profitable account is not a better bid — it is a better offer."},
+{t:"mistake",items:[
+"Pushing budget into a product that is out of stock",
+"Raise the bid when price is the real problem",
+"Reading 'ACOS is high' as a bid problem when reviews are the cause"
+]}
+]},
+{id:"m1l4",title:"Paid, Organic, and the Buy Box",mins:6,blocks:[
+{t:"goal",x:"Explain organic vs paid sales, what the Buy Box is, and why PPC feeds both."},
+{t:"p",x:"Organic sales are sales the listing earns on its own — usually because of good rank, reviews, and relevance. Paid sales are sales the listing earns because an ad was clicked. Total sales is the sum."},
+{t:"p",x:"The Buy Box is the box on a product page that says 'Add to Cart'. Most ads assume the seller owns the Buy Box. If the seller does not own it, clicks are wasted — there is no Buy Box to add to."},
+{t:"tip",x:"Ads buy visibility. The listing earns the sale. The best PPC work makes the listing more visible to the right shoppers, so organic and paid both grow."},
+{t:"split",a:{title:"Do",items:["Track total sales, not just ad sales","Check the Buy Box first when something is off"]},b:{title:"Don't",items:["Read ACOS as a verdict on the listing","Run ads on a product without Buy Box ownership"]}}
+]},
+{id:"m1l5",title:"Lab: Shopper Journey and Readiness Audit",mins:5,blocks:[
+{t:"goal",x:"Map a shopper from search to purchase and score a product's readiness."},
+{t:"p",x:"Trace a shopper: types a search → sees search results → clicks an ad or organic result → lands on a product page → reads, scrolls, looks at reviews → adds to cart → checks out. Every step leaks shoppers; ads buy traffic into the top of the funnel, the listing converts them at the bottom."},
+{t:"example",x:"Bamboo Cutting Board. A shopper searches 'bamboo cutting board'. Sees search results. Clicks an ad. Lands on the listing. Sees 4.6 stars and 200+ reviews. Adds to cart. PPC bought the click, the listing earned the cart."},
+{t:"tip",x:"Run the retail-readiness checklist on one ASIN in your account or training data. If any line is a fail, that is your first project before you touch any campaign."}
+]}
+],
 quiz:[
-{q:"What is a product listing?",o:["The warehouse location","The product page where it is sold","The ad dashboard","A type of campaign"],a:1,e:"The listing is the product page. Ads send shoppers there; the page sells."},
-{q:"Organic results are…",o:["Paid ads","Free results earned by relevance and sales","Always the top row","Results from social media"],a:1,e:"Organic = free, earned. Paid = Sponsored."},
-{q:"The Buy Box is…",o:["A storage box","The main Add to Cart area","A report type","A match type"],a:1,e:"Most sales flow through the Buy Box button."},
-{q:"Before spending on ads, the most important check is…",o:["Logo colors","Whether the listing is ready to convert","The campaign name","The time zone"],a:1,e:"A weak page turns ad budget into wasted clicks."}
+{q:"Why start with retail readiness?",o:["It is required by Amazon","PPC cannot fix a weak offer","Listings are easier to change","It improves ad reach"],a:1,e:"Ads buy visibility, the listing earns the sale."},
+{q:"The Buy Box is…",o:["An ad placement","The Add-to-Cart area on a product page","A keyword research tool","A bid"],a:1,e:"If you do not own it, clicks are wasted."},
+{q:"Sponsored Products are best for…",o:["Brand lift","Single-product promotion in search and on product pages","Retargeting","Off-Amazon display"],a:1,e:"SP is the default starting ad type."}
 ]},
-{title:"What is PPC?",icon:"🖱️",color:"#0EA5E9",img:IMG.auction,desc:"Pay per click, the auction, and the click journey.",
+
+{title:"PPC Language, Metrics, and Math",icon:"💰",color:"#0EA5E9",img:IMG.coach,desc:"Clicks, sales, ACOS, ROAS, and the danger of small samples.",
 lessons:[
-{id:"m1l1",title:"Pay Per Click in Plain Words",mins:6,blocks:[
- {t:"goal",x:"Understand the only payment model you need to know."},
- {t:"p",x:"PPC means Pay Per Click. Showing the ad is free. You pay when a shopper clicks it."},
- {t:"list",items:["Impression = the ad was shown (free)","Click = a shopper clicked (you pay)","Bid = the most you are willing to pay per click"]},
- {t:"formula",f:"CPC = Spend ÷ Clicks",note:"The average price of one click."},
- {t:"example",x:"You spend 20 dollars on 20 clicks, so your average CPC is 1 dollar. If 2 of those clicks buy your 25 dollar product, those clicks produced 50 dollars of sales."},
- {t:"tip",x:"Clicks cost money whether they buy or not. That is why targeting and listing quality decide profit."}
+{id:"m2l1",title:"Pay Per Click in Plain Words",mins:5,blocks:[
+{t:"goal",x:"Explain the basic flow of a PPC click and the metric terms that follow it."},
+{t:"p",x:"The seller bids a maximum cost per click. The ad is shown for free (impression). When a shopper clicks, the seller pays — but not necessarily the bid amount. The seller pays the smallest amount needed to beat the next competitor, which is usually much less than the bid."},
+{t:"diagram",kind:"flow",title:"From ad to sale",steps:["Impression (free)","Click (seller pays)","Landing page view","Add to cart","Order (sale)"]},
+{t:"tip",x:"CPC is the average you paid per click, not the bid. A $1.00 bid often shows as a $0.40 CPC because the auction clears below the bid."}
 ]},
-{id:"m1l2",title:"The Auction",mins:8,blocks:[
- {t:"goal",x:"See what happens in the split second after a shopper searches."},
- {t:"p",x:"Every search starts a silent auction. Sellers bid for the chance to show, and Amazon also scores how relevant your product is to that exact search."},
- {t:"diagram",kind:"flow",title:"One search, one auction",steps:["Shopper types a search","Interested sellers enter the auction","Amazon weighs bid + relevance","Winning ads get placements","Seller pays only if clicked"]},
- {t:"list",items:["A high bid with a bad match loses to a fair bid with a great match","Relevance = keyword fit + listing quality + history","You never pay more than your bid"]},
- {t:"example",x:"You sell bamboo boards. For the search bamboo cutting board you are highly relevant. For knife set you are irrelevant — no bid can save you."},
- {t:"tip",x:"Relevance is free leverage. Tight keywords and a good listing lower what you pay over time."}
+{id:"m2l2",title:"How the Auction Works",mins:6,blocks:[
+{t:"goal",x:"Explain why two sellers with the same bid can pay different CPCs."},
+{t:"p",x:"Amazon runs a second-price auction. The winner pays one cent more than the second-highest bidder, multiplied by a quality factor. A higher bid does not always win, and winning does not always mean paying that bid."},
+{t:"list",items:[
+"Relevance score: how well your ad matches the search term",
+"Historical performance: past click-through and conversion rates",
+"Listing quality: image, title, price, reviews",
+"Ad type and placement: top of search costs more than product pages"
 ]},
-{id:"m1l3",title:"The Click Journey and the Funnel",mins:7,blocks:[
- {t:"goal",x:"Learn the funnel every PPC manager reads."},
- {t:"diagram",kind:"funnel",title:"The PPC funnel",items:[["Impressions — ad shown",100],["Clicks — shopper interested",45],["Page views — listing loads",40],["Orders — shopper buys",8]]},
- {t:"table",head:["Stage","What can go wrong"],rows:[["Impressions","Bid too low, targeting too narrow"],["Clicks","Weak image, price or title"],["Page views","Out of stock, slow page"],["Orders","Bad reviews, high price, weak bullets"]]},
- {t:"p",x:"Every stage leaks. Your job is to find the biggest leak and fix that one first."},
- {t:"mistake",items:["Judging a campaign from one day of data","Changing many things at once so nothing can be learned","Blaming the ads when the listing is the leak"]},
- {t:"tip",x:"Read the funnel top to bottom: impressions, CTR, conversion, ACOS."}
-]}],
+{t:"example",x:"You bid $1.00. Your competitor bids $0.90 but their CTR is half yours. Amazon may show your ad first and charge you $0.55."},
+{t:"tip",x:"A high bid does not guarantee a placement. Relevance and quality still matter."}
+]},
+{id:"m2l3",title:"Spend, Sales, CPC, CTR, Conversion",mins:7,blocks:[
+{t:"goal",x:"Compute the core traffic and conversion metrics and know what each one proves."},
+{t:"formula",f:"CPC = Spend ÷ Clicks",note:"Average you paid for one click. Lower is not always better — cheap clicks with no sales lose money."},
+{t:"formula",f:"CTR = Clicks ÷ Impressions × 100",note:"How often viewers click your ad. Hook signal — affected by relevance and offer appeal."},
+{t:"formula",f:"Conversion rate = Orders ÷ Clicks × 100",note:"How often clicks become attributed orders. Listing-quality signal."},
+{t:"diagram",kind:"funnel",title:"The click funnel",items:[["Impressions",100],["Clicks",20],["Add to cart",4],["Orders",2]]},
+{t:"tip",x:"Each metric answers one question. CTR answers 'do I look clickable?'. CVR answers 'does the listing convert?'. Don't read a CTR drop as a CVR problem."}
+]},
+{id:"m2l4",title:"ACOS, ROAS, TACoS, and Break-Even",mins:8,blocks:[
+{t:"goal",x:"Compute ACOS, ROAS, TACoS, and break-even ACOS, and know what each proves."},
+{t:"formula",f:"ACOS = Spend ÷ Ad Sales × 100",note:"Ad spend as a percentage of attributed ad revenue. Compare to your margin, not to a target."},
+{t:"formula",f:"ROAS = Ad Sales ÷ Spend",note:"Dollars back per ad dollar. ROAS = 1 ÷ ACOS. If ACOS is 25%, ROAS is 4.0."},
+{t:"formula",f:"TACoS = Ad Spend ÷ Total Sales × 100",note:"Ad spend relative to total revenue. Shows whether ads are lifting the whole business."},
+{t:"formula",f:"Break-even ACOS = Pre-ad contribution margin × 100",note:"The maximum ACOS before ads consume pre-ad profit. A 30% margin means 30% ACOS is the break-even line."},
+{t:"table",head:["Metric","Formula","What it proves","What it does NOT prove"],rows:[
+["ACOS","Spend ÷ Sales","Whether ad sales are profitable on their own","Whether the product is profitable overall"],
+["ROAS","Sales ÷ Spend","How many dollars back per ad dollar","Whether the product is profitable"],
+["TACoS","Spend ÷ Total Sales","Whether ads lift the whole business","Whether the ad sales themselves are profitable"],
+["Break-even ACOS","Margin × 100","The ACOS ceiling for profitability","What the right bid or budget should be"]
+]},
+{t:"tip",x:"Lower ACOS is not always better if it destroys profitable volume or conflicts with launch goals. A 60% ACOS during launch is fine; a 60% ACOS at maturity is a problem."}
+]},
+{id:"m2l5",title:"Attribution Windows and Leading vs Lagging",mins:6,blocks:[
+{t:"goal",x:"Explain why two reports show different numbers, and which metrics are leading versus lagging."},
+{t:"p",x:"Amazon attributes an order to an ad if the shopper clicked within an attribution window (typically 7 days for SP). Two reports can show the same numbers and disagree because their windows or filters are different."},
+{t:"list",items:[
+"Impressions, clicks, and CTR are leading indicators — they change within hours",
+"Add-to-carts, sales, and ACOS are lagging indicators — they can take 7–14 days to settle",
+"Always compare the same date range, attribution logic, and currency",
+"Trust the report with the wider window for decision-making, the narrower for speed"
+]},
+{t:"split",a:{title:"Trust the lagging",items:["Sales and ACOS at 7+ days","Comparing weeks, not days"]},b:{title:"Use the leading",items:["Click and CTR trends inside a day","Diagnosing a sudden drop"]}}
+]},
+{id:"m2l6",title:"Data Sufficiency: Don't Decide from Tiny Samples",mins:6,blocks:[
+{t:"goal",x:"Recognize when a data sample is too small to support a confident decision."},
+{t:"p",x:"A search term with 3 clicks and 1 sale is not 'profitable' — it is 3 clicks. A campaign with 200 impressions and no sales is not 'failing' — it is too early. Decisions from tiny samples create loud lies."},
+{t:"table",head:["Sample size","Confidence","Action"],rows:[
+["Under 10 clicks","Low","Watch. Don't act."],
+["10–30 clicks","Medium","One careful change, give it a week."],
+["30+ clicks","High","Trust the trend. Act on it."],
+["100+ clicks","Very high","Treat as a fact about that target."]
+]},
+{t:"example",x:"3 clicks, 1 sale → ACOS shown as 33% but the next 30 clicks could easily drop the average. A 60% ACOS on 30+ clicks is a real signal."},
+{t:"tip",x:"When in doubt, give it one more week. Under-reacting beats over-reacting in PPC."}
+]}
+],
 quiz:[
-{q:"PPC stands for…",o:["Pay Per Customer","Pay Per Click","Price Per Click","Pay Per Conversion"],a:1,e:"You pay per click, not per view or per sale."},
-{q:"The seller pays when…",o:["The ad is shown","A shopper clicks the ad","A shopper buys","Each month"],a:1,e:"Impressions are free; clicks cost money."},
-{q:"A bid is…",o:["A fee to Amazon","The most you will pay per click","A discount code","A report"],a:1,e:"The bid caps what you pay in the auction."},
-{q:"The auction chooses ads using…",o:["Bid only","Alphabetical order","Bid plus relevance","Random luck"],a:1,e:"Bid and relevance together decide the winners."}
+{q:"If margin is 25%, break-even ACOS is…",o:["75%","25%","50%","10%"],a:1,e:"Break-even ACOS equals the margin."},
+{q:"Which is a lagging indicator?",o:["Impressions","Clicks","ACOS","CTR"],a:2,e:"Sales and ACOS need 7+ days to settle."},
+{q:"10 clicks on a search term is enough to…",o:["Pause the campaign","Trust the ACOS completely","Decide cautiously, give it a week","Negate it"],a:2,e:"Small samples create loud lies."}
 ]},
-{title:"Money Math",icon:"🧮",color:"#10B981",desc:"CPC, CTR, ACOS, ROAS, TACoS and break-even — with worked examples.",
+
+{title:"Campaign Structure and Naming",icon:"🏗️",color:"#10B981",img:IMG.builder,desc:"The hierarchy, naming standards, portfolios, and budget isolation.",
 lessons:[
-{id:"m2l1",title:"Spend, Sales and CPC",mins:7,blocks:[
- {t:"goal",x:"Master the three base numbers everything else is built on."},
- {t:"table",head:["Metric","Plain meaning","Formula"],rows:[["Spend","Money the ads consumed","Total cost"],["Sales","Revenue the ads produced","Attributed sales"],["CPC","Average price of one click","Spend ÷ Clicks"]]},
- {t:"example",x:"30 dollars spend, 120 dollars sales, 30 clicks. CPC = 30 ÷ 30 = 1 dollar per click."},
- {t:"tip",x:"Spend alone tells you nothing. Always compare spend against sales and clicks."}
+{id:"m3l1",title:"The Hierarchy: Campaign, Ad Group, Targeting",mins:6,blocks:[
+{t:"goal",x:"Trace any target back to its campaign, ad group, and product."},
+{t:"diagram",kind:"tree",title:"Sponsored Products hierarchy",nodes:[
+[0,"Campaign (holds budget, bidding, placements)"],
+[1,"Ad group (holds products and targeting)"],
+[2,"Product A · Bid $0.80 · Match Exact"],
+[2,"Product B · Bid $0.95 · Match Phrase"]
 ]},
-{id:"m2l2",title:"CTR and Conversion Rate",mins:8,blocks:[
- {t:"goal",x:"Learn the two rates that tell you where the leak is."},
- {t:"formula",f:"CTR = Clicks ÷ Impressions × 100",note:"Of people who saw the ad, how many clicked?"},
- {t:"formula",f:"Conversion Rate = Orders ÷ Clicks × 100",note:"Of clicks, how many bought?"},
- {t:"table",head:["CTR reading","Likely meaning"],rows:[["Under 0.3%","Image, price or title not appealing"],["0.3% – 0.7%","Decent hook"],["Over 0.7%","Strong hook"]]},
- {t:"example",x:"1,000 impressions and 5 clicks is a 0.5% CTR. 5 clicks and 1 order is a 20% conversion. Story: decent hook, good page."},
- {t:"tip",x:"Low CTR means fix the hook (image, price, title). Low conversion means fix the page or the targeting."}
+{t:"p",x:"Campaign is where budget and bid strategy live. Ad group is where products and targeting share an audience. The target is the keyword or ASIN you are bidding on."},
+{t:"tip",x:"If you cannot trace a target back to a campaign and a product, the structure is too messy to optimize."}
 ]},
-{id:"m2l3",title:"ACOS Deep Dive",mins:10,blocks:[
- {t:"goal",x:"Own the most important number in Amazon PPC."},
- {t:"formula",f:"ACOS = Spend ÷ Sales × 100",note:"How much of the ad sales went to paying for ads."},
- {t:"example",x:"Spend 20, sales 100 gives ACOS 20%. For every dollar of ad sales, 20 cents went to ads."},
- {t:"table",head:["ACOS vs 30% margin","Reading"],rows:[["15%","Profitable — room to scale"],["30%","Break-even — ads pay for themselves"],["45%","Losing money — fix bids or targeting"],["No sales","Emergency — check relevance and listing"]]},
- {t:"p",x:"ACOS has a twin called break-even ACOS: your profit margin. Below it, likely profit. Above it, likely loss."},
- {t:"tip",x:"Never say good ACOS without asking: good compared to which margin?"}
+{id:"m3l2",title:"Naming and Organization",mins:5,blocks:[
+{t:"goal",x:"Build a naming standard that survives three months from now."},
+{t:"p",x:"A name should answer four questions without opening the campaign: ad type, match, product, purpose."},
+{t:"example",x:"SP | Exact | BambooBoard | LongTail. Read it in 3 months and you know exactly what it is."},
+{t:"split",a:{title:"Do",items:["Use pipes or dashes as separators","Keep product codes short","Document the convention somewhere"]},b:{title:"Don't",items:["Use 'final_final_v3'","Use dates in the name","Use the same name across markets"]}}
 ]},
-{id:"m2l4",title:"ROAS, TACoS and a Full Worked Example",mins:12,blocks:[
- {t:"goal",x:"Complete the money vocabulary and run one full calculation."},
- {t:"formula",f:"ROAS = Sales ÷ Spend",note:"The mirror of ACOS. Higher is better."},
- {t:"formula",f:"TACoS = Ad Spend ÷ Total Revenue × 100",note:"Ads compared to the whole business, including organic sales."},
- {t:"table",head:["Metric","Use it when"],rows:[["ACOS","Judging individual campaigns"],["ROAS","Quick comparisons"],["TACoS","Checking whether ads grow the whole brand"]]},
- {t:"p",x:"Worked example. Bamboo board, 25 dollars, profit after all costs 7.50, so margin is 30%."},
- {t:"table",head:["Scenario","CPC","Conversion","Cost per sale","ACOS","Verdict"],rows:[["Broad keyword","1.00","10%","10.00","40%","Loses money"],["Long-tail keyword","0.60","15%","4.00","16%","Profitable"]]},
- {t:"p",x:"Same product, same page — different keyword economics. That is why choosing keywords is money management."},
- {t:"tip",x:"When ACOS is too high, do not only cut bids. A more specific keyword is often the cheaper fix."}
-]}],
+{id:"m3l3",title:"One-ASIN vs Multi-ASIN, Portfolios, Cannibalization Myths",mins:6,blocks:[
+{t:"goal",x:"Decide when to use a one-ASIN campaign, when to combine, and when to use a portfolio."},
+{t:"p",x:"One-ASIN campaigns give clean reporting and tight control — recommended for beginners. Multi-ASIN campaigns save time when ASINs are similar in margin and performance."},
+{t:"p",x:"Portfolios are folders across campaigns. Use them to group by objective (defense, growth, brand) or by product line. They make budget and reporting easier across many campaigns."},
+{t:"tip",x:"Cannibalization between your own ads is mostly a myth for beginners. Worry about it when you have three campaigns bidding on the same keyword with significant overlap and contradictory bids — not before."}
+]},
+{id:"m3l4",title:"Budget Isolation and Match-Type Separation",mins:7,blocks:[
+{t:"goal",x:"Use match-type separation and budget isolation to keep learning clean."},
+{t:"p",x:"Match-type separation means running one campaign per match type (Broad, Phrase, Exact) so the data is not mixed. Without it, an Exact winner can be hidden by Broad noise."},
+{t:"p",x:"Budget isolation means giving a research campaign its own small budget so its spending does not crowd out a proven Exact campaign. Each campaign's job gets its own dollars."},
+{t:"table",head:["Match type","Reach","Control","Use for"],rows:[
+["Broad","High","Low","Discovery"],
+["Phrase","Medium","Medium","Mid-funnel phrase targeting"],
+["Exact","Low","High","Proven winners, control, scale"]
+]},
+{t:"tip",x:"If a Broad campaign is eating 80% of the budget and Exact is starved, the data is telling you the bid is too high on Broad, or the budget is too small overall."}
+]}
+],
 quiz:[
-{q:"CPC is calculated as…",o:["Clicks ÷ Spend","Spend ÷ Clicks","Sales ÷ Clicks","Spend ÷ Sales"],a:1,e:"CPC = Spend ÷ Clicks."},
-{q:"Spend 20, clicks 10. CPC?",o:["1 dollar","2 dollars","10 dollars","0.5 dollars"],a:1,e:"20 ÷ 10 = 2 dollars per click."},
-{q:"CTR measures…",o:["How often viewers click","How often clicks buy","How much you spend","Your margin"],a:0,e:"CTR = Clicks ÷ Impressions."},
-{q:"Spend 25, sales 100. ACOS?",o:["4%","25%","40%","75%"],a:1,e:"25 ÷ 100 × 100 = 25%."},
-{q:"Margin 35%. Break-even ACOS?",o:["35%","65%","50%","17%"],a:0,e:"Break-even ACOS equals your profit margin."}
+{q:"Match-type separation means…",o:["One campaign per match type","All match types in one ad group","No match types","Negatives only"],a:0,e:"Separation keeps the data clean per match."},
+{q:"A good campaign name answers…",o:["The date only","Ad type, match, product, purpose","The budget","The CPC"],a:1,e:"A name should make the campaign self-explanatory."},
+{q:"A portfolio is best for…",o:["Hiding campaigns","Grouping campaigns by objective or product line","Increasing bids","Replacing ad groups"],a:1,e:"Portfolios are folders for shared reporting and budget views."}
 ]},
-{title:"Campaign Structure",icon:"🗂️",color:"#8B5CF6",desc:"Hierarchy, naming, and the three ad types.",
+
+{title:"Keyword Research and Search Intent",icon:"🔍",color:"#8B5CF6",img:IMG.lab,desc:"Seed keywords, modifiers, intent, clustering, and Brand Analytics.",
 lessons:[
-{id:"m3l1",title:"The Hierarchy: Campaign, Ad Group, Targeting",mins:8,blocks:[
- {t:"goal",x:"Know exactly where every setting lives."},
- {t:"diagram",kind:"tree",title:"One account, organized like folders",nodes:[[0,"CAMPAIGN — budget and schedule live here"],[1,"AD GROUP — holds the product"],[2,"TARGETING — keywords or products"],[2,"BIDS — per keyword or per group"],[1,"AD GROUP 2 — another theme"],[2,"TARGETING — its own keywords"]]},
- {t:"table",head:["Level","Controls"],rows:[["Campaign","Daily budget, dates, bidding strategy"],["Ad Group","Which product and which theme"],["Targeting","When the ad can show"],["Bid","How much per click for that target"]]},
- {t:"tip",x:"One clear purpose per campaign. A campaign doing two jobs does neither well."}
+{id:"m4l1",title:"Keyword vs Search Term",mins:5,blocks:[
+{t:"goal",x:"Tell keywords from search terms, and explain why the distinction matters."},
+{t:"p",x:"A keyword is a word or phrase YOU target. A search term is what the CUSTOMER actually typed. Amazon matches your keyword (your targeting) against the customer's search term (the reality). The search-term report shows the reality."},
+{t:"tip",x:"The search-term report is where the truth lives. The keyword view is where the intent lives. Always read both."}
 ]},
-{id:"m3l2",title:"Naming and Organization",mins:6,blocks:[
- {t:"goal",x:"Build an account your future self can read."},
- {t:"example",x:"SP | Auto | Bamboo Board | Research — and — SP | Exact | Bamboo Board | Kitchen. The name says the type, the product and the job."},
- {t:"split",a:{title:"Do",items:["Include the ad type (SP, SB, SD)","Include the targeting type","Include the product name","Include the purpose"]},b:{title:"Don't",items:["Names like test1, final2, new-new","Names only you can guess","One giant campaign for everything"]}},
- {t:"tip",x:"Good naming is not cosmetic. It is how you move fast without breaking things."}
+{id:"m4l2",title:"Match Types Deep Dive",mins:7,blocks:[
+{t:"goal",x:"Pick the right match type for research versus control."},
+{t:"table",head:["Match","Behavior","Use it for"],rows:[
+["Broad","Includes close variants, loose order, plurals","Discovery. Initial research only."],
+["Phrase","Customer's phrase must include your phrase","Mid-funnel. Words in any order outside the phrase."],
+["Exact","Customer's phrase must be very close to yours","Proven winners. Highest control."]
 ]},
-{id:"m3l3",title:"The Three Ad Types",mins:7,blocks:[
- {t:"goal",x:"Know the family and where to start."},
- {t:"table",head:["Type","Shows as","Best for"],rows:[["Sponsored Products","Single product in search and product pages","Core sales — start here"],["Sponsored Brands","Brand banner with logo and several products","Brand-registered sellers, defense"],["Sponsored Display","On and off Amazon, retargeting","Remarketing and awareness"]]},
- {t:"list",items:["Beginners: 90% of learning happens in Sponsored Products","Add Brands and Display only after Sponsored Products is stable"]},
- {t:"tip",x:"Master one ad type deeply before touching the others."}
-]}],
+{t:"p",x:"Exact match is not literal character-for-character. Amazon treats it as a tight match with close variants. A single keyword in Exact is rarely tight enough for a serious product."},
+{t:"example",x:"Keyword 'bamboo cutting board' Exact. Customers searching 'bamboo cutting board large' or 'bamboo cutting board set' may still match. Exact is tight, not strict."}
+]},
+{id:"m4l3",title:"Seed Keywords, Modifiers, Synonyms, Use Cases",mins:6,blocks:[
+{t:"goal",x:"Build a seed list of customer-language keywords from product facts."},
+{t:"p",x:"Start with the product. Name the product, the material, the size, the use case, the audience, the problem it solves. Each one is a seed direction."},
+{t:"list",items:[
+"Product name: 'bamboo cutting board'",
+"Material or attribute: 'bamboo', 'eco friendly', 'large'",
+"Use case: 'for kitchen', 'for meat', 'for bread'",
+"Synonyms: 'chopping board', 'serving board', 'butcher block'",
+"Audience: 'for chefs', 'for small kitchens', 'gift for cooks'"
+]},
+{t:"tip",x:"A 50-term keyword bank is the right starting size for a single product. Bigger lists come from data, not from guessing."}
+]},
+{id:"m4l4",title:"Volume vs Relevance, Brand Analytics, Clustering",mins:8,blocks:[
+{t:"goal",x:"Prioritize relevance over estimated volume, and cluster terms by intent."},
+{t:"p",x:"Search volume tells you how many shoppers search. Relevance tells you whether they will buy your product. A high-volume irrelevant term is more dangerous than a low-volume relevant one — it burns budget."},
+{t:"list",items:[
+"Amazon suggestions: autocomplete and 'related searches' on the search page",
+"Brand Analytics: search-term and market-basket data (needs Brand Registry)",
+"Prior search-term reports: your own data is the best predictor",
+"Competitor observation: what do the top 3 competitors target?"
+]},
+{t:"p",x:"Cluster by intent, not by spelling. Group terms by what the shopper wants — a long cutting board, a gift, an eco option. Then decide which cluster deserves the most budget."},
+{t:"tip",x:"A term with no estimated volume is not a useless term. If it is in your search-term report with sales, it is real."}
+]}
+],
 quiz:[
-{q:"Which level holds the daily budget?",o:["Ad group","Keyword","Campaign","Placement"],a:2,e:"Budget lives at campaign level."},
-{q:"An ad group holds…",o:["The invoice","Products and targeting","The login","The billing card"],a:1,e:"Ad groups connect products to targeting and bids."},
-{q:"Best ad type for a beginner?",o:["Sponsored Display","Sponsored Brands","Sponsored Products","Video ads"],a:2,e:"Sponsored Products is the core learning ground."},
-{q:"Why does naming matter?",o:["It changes the algorithm","It keeps the account readable for you and your team","Amazon requires it","It lowers CPC"],a:1,e:"Clear names prevent expensive mistakes."}
+{q:"A search term is…",o:["Your keyword","What the customer typed","A bid","A budget"],a:1,e:"Customer language, not yours."},
+{q:"Exact match is…",o:["Character-for-character literal","A tight match with close variants","Random","Only plurals"],a:1,e:"Exact is tight, not strict."},
+{q:"Prioritize…",o:["Volume over relevance","Relevance over volume","The longest keyword","Negatives first"],a:1,e:"High-volume irrelevant terms burn budget."}
 ]},
-{title:"Keywords & Match Types",icon:"🔑",color:"#F43F5E",img:IMG.keywords,desc:"Keywords vs search terms, match types, negatives, and research.",
+
+{title:"Automatic Targeting",icon:"🤖",color:"#EC4899",img:IMG.console,desc:"Four auto groups, bid segmentation, and reading the search-term report.",
 lessons:[
-{id:"m4l1",title:"Keyword vs Search Term",mins:6,blocks:[
- {t:"goal",x:"Never confuse your words with the customer's words again."},
- {t:"p",x:"A keyword is what you choose. A search term is what the customer actually typed."},
- {t:"table",head:["Words","Whose are they?"],rows:[["bamboo cutting board","Your keyword"],["large bamboo cutting board","Customer search term"],["plastic cutting board","Customer search term — and your problem"]]},
- {t:"example",x:"Your keyword bamboo cutting board can trigger searches you never imagined. The search term report shows the truth."},
- {t:"tip",x:"The search term report is the only place where truth lives. Read it weekly."}
+{id:"m5l1",title:"The Four Auto Groups",mins:6,blocks:[
+{t:"goal",x:"Name the four automatic-targeting groups and what each one does."},
+{t:"table",head:["Group","What it targets","Use it for"],rows:[
+["Close match","Searches closely related to your product","Core research, tightest auto group"],
+["Loose match","Searches loosely related to your product","Discovery, broader research"],
+["Substitutes","Competitor products similar to yours","Competitive research"],
+["Complements","Products shoppers buy alongside yours","Cross-sell research"]
 ]},
-{id:"m4l2",title:"Match Types Deep Dive",mins:9,blocks:[
- {t:"goal",x:"Control how loosely Amazon matches you to searches."},
- {t:"table",head:["Type","Meaning","Reach","Control"],rows:[["Broad","Related searches","High","Low"],["Phrase","Searches containing your phrase","Medium","Medium"],["Exact","Very close matches","Low","High"]]},
- {t:"table",head:["Your keyword","May show for","Unlikely to show for"],rows:[["bamboo cutting board (broad)","cutting board bamboo large, bamboo kitchen board","—"],["bamboo cutting board (phrase)","large bamboo cutting board","bamboo serving tray"],["bamboo cutting board (exact)","bamboo cutting board","bamboo cutting board set"]]},
- {t:"split",a:{title:"Do",items:["Start tight with Exact on proven words","Use Broad and Auto as research nets","Promote research winners into Exact"]},b:{title:"Don't",items:["Broad everything on day one","Exact on untested guesses","Forget to check what Broad actually matched"]}},
- {t:"tip",x:"Broad and Auto are scouts. Exact is the army. Scouts find, the army conquers."}
+{t:"tip",x:"A common mistake is to leave all four groups at the same bid. Each group has a different job and deserves its own bid."}
 ]},
-{id:"m4l3",title:"Negative Keywords",mins:7,blocks:[
- {t:"goal",x:"Stop paying for shoppers who can never buy."},
- {t:"p",x:"A negative keyword tells Amazon: never show my ad for this."},
- {t:"list",items:["Find terms with clicks but zero sales","Confirm they are truly irrelevant","Add as negative (phrase or exact)","Log the change and move on"]},
- {t:"example",x:"A bamboo board getting clicks for plastic cutting board is paying to show the wrong product to the wrong shopper. Negate plastic."},
- {t:"tip",x:"Negatives are the fastest profit lever in PPC. Five minutes a week saves real money."}
+{id:"m5l2",title:"Auto Bid Segmentation by Group",mins:6,blocks:[
+{t:"goal",x:"Set a different bid for each auto group based on its job."},
+{t:"p",x:"Start with the close-match group at your normal bid, loose match lower, substitutes lower, complements low. As data comes in, raise the bid on whichever group is producing sales and lower the bid on the rest."},
+{t:"example",x:"Close $0.80, Loose $0.50, Substitutes $0.60, Complements $0.30. After two weeks, if close and substitutes are profitable, raise those; lower the rest."},
+{t:"tip",x:"If a group produces nothing in 14 days, do not pause it — that is research, not a verdict. Lower its bid and keep watching."}
 ]},
-{id:"m4l4",title:"Keyword Research Starter Process",mins:8,blocks:[
- {t:"goal",x:"Find words worth bidding on, even without paid tools."},
- {t:"list",items:["Write seed words: product, material, use, size","Think like the shopper: problems, gifts, rooms","Prefer long-tail: more words, clearer intent","Prioritize relevance first, then volume"]},
- {t:"table",head:["Type","Example","Volume","Cost","Intent"],rows:[["Short-tail","cutting board","Huge","Expensive","Vague"],["Long-tail","bamboo cutting board for vegetables","Small","Cheap","Clear buyer"]]},
- {t:"example",x:"cutting board burns budget on browsers. large bamboo cutting board for kitchen finds buyers."},
- {t:"tip",x:"A small budget should buy only clear intent."}
-]}],
+{id:"m5l3",title:"Auto as Research: Reading the Report",mins:6,blocks:[
+{t:"goal",x:"Read the search-term report from an auto campaign and decide what to do with each term."},
+{t:"p",x:"An auto campaign's main job is to surface real customer search terms. Read the search-term report weekly. Each term is a row that needs a decision: promote, negate, lower, or watch."},
+{t:"split",a:{title:"Use the report for",items:["Discovering customer language","Finding long-tail winners","Spotting irrelevant spend"]},b:{title:"Don't use it for",items:["Verdict on the auto campaign itself","Permanent negatives from 3 clicks","Pausing auto entirely after one bad week"]}}
+]},
+{id:"m5l4",title:"Overlap and Negative Controls",mins:6,blocks:[
+{t:"goal",x:"Manage overlap between auto and manual campaigns."},
+{t:"p",x:"Auto and manual campaigns can both bid on the same customer search. The auction picks one. To learn what works in manual without auto competition, add negative exact for the proven manual terms inside the auto campaign."},
+{t:"list",items:[
+"Promote an auto winner to a manual Exact campaign",
+"Add the term as negative exact inside the auto campaign",
+"Now the manual campaign owns the term cleanly",
+"Auto continues to discover new terms"
+]},
+{t:"tip",x:"Overlap is not a bug — it is how you graduate a discovered term into a controlled campaign. The negatives are the tool, not a problem to avoid."}
+]}
+],
 quiz:[
-{q:"A search term is…",o:["Your target word","What the customer actually typed","A bid type","A report setting"],a:1,e:"Keywords are yours; search terms are the customer's."},
-{q:"Most control over matching?",o:["Broad","Phrase","Exact","Auto"],a:2,e:"Exact shows only for very close matches."},
-{q:"Broad match means…",o:["Loose matching, high reach","Exact copies only","No spend","Only brand searches"],a:0,e:"Broad reaches far but with low control."},
-{q:"A negative keyword…",o:["Raises your bid","Blocks your ad for that word","Adds budget","Boosts relevance"],a:1,e:"Negatives stop wasted spend."},
-{q:"plastic cutting board clicks on a bamboo product. Action?",o:["Raise bid","Add negative","Add to Exact","Do nothing"],a:1,e:"Irrelevant clicks are waste — negate them."}
+{q:"The 'substitutes' auto group targets…",o:["Customers searching for your brand","Competitor products similar to yours","Random terms","Top of search only"],a:1,e:"Substitutes is competitive research."},
+{q:"Best practice for auto bids by group is…",o:["Same bid for all groups","Different bids, tuned over time","Zero on all","Highest on loose match"],a:1,e:"Each group has a different job."},
+{q:"When a manual Exact wins, you should…",o:["Delete the auto campaign","Negate the term in auto, keep auto running","Raise the auto bid","Pause the manual campaign"],a:1,e:"Negatives in auto let manual own the term."}
 ]},
-{title:"Listing Readiness",icon:"📄",color:"#F59E0B",img:IMG.listing,desc:"Why PPC cannot fix a weak page, and how to check yours.",
+
+{title:"Manual Keyword Targeting",icon:"🎯",color:"#F59E0B",img:IMG.console,desc:"Match types in practice, research vs performance, and launch bids.",
 lessons:[
-{id:"m5l1",title:"The Listing Does the Selling",mins:7,blocks:[
- {t:"goal",x:"Accept the first law of PPC: ads rent attention, listings convert it."},
- {t:"p",x:"A weak page turns ad budget into tuition. You pay for clicks that never had a chance."},
- {t:"example",x:"100 clicks at 1 dollar is 100 dollars. One sale of 25 dollars. Before touching bids, ask: would a stranger buy from this page?"},
- {t:"list",items:["Shoppers compare you with 15 other results in seconds","Reviews are borrowed trust","Price is judged relative to neighbors, not in absolute terms"]},
- {t:"tip",x:"Fix the page first. Then advertise. Always in that order."}
+{id:"m6l1",title:"Match Types in Practice",mins:6,blocks:[
+{t:"goal",x:"Pick a match type based on the data you have, not on a default."},
+{t:"p",x:"No data: start with Phrase to learn what the customer types. Some data: keep Phrase and add Exact for proven winners. Lots of data: tighten to Exact for control, keep a small Broad campaign for ongoing discovery."},
+{t:"split",a:{title:"Choose Exact when",items:["The term is proven profitable","You need to control spend tightly","You are scaling a winner"]},b:{title:"Choose Broad when",items:["You have no data and want discovery","You want to find new variations","You can afford some waste"]}}
 ]},
-{id:"m5l2",title:"The Readiness Checklist",mins:8,blocks:[
- {t:"goal",x:"Score a listing honestly before spending."},
- {t:"table",head:["Check","Passes if…"],rows:[["Main image","Crisp, white background, fills the frame"],["Title","Says what it is in the first five words"],["Price","Inside the normal band for the category"],["Reviews","Enough count and 4+ stars"],["Bullets","Benefits, not just specs"],["Stock","30+ days of cover"],["Buy Box","You win it"]]},
- {t:"p",x:"Every failed check is a leak you pay for per click."},
- {t:"tip",x:"Three or more failed checks means pause scaling, fix, then relaunch."}
+{id:"m6l2",title:"Research vs Performance Campaigns",mins:6,blocks:[
+{t:"goal",x:"Run research and performance in separate campaigns with different jobs."},
+{t:"p",x:"A research campaign's job is discovery — auto and Broad with small bids, separate budget, separate naming. A performance campaign's job is control — Phrase and Exact, with bid rules tied to ACOS targets."},
+{t:"tip",x:"Mixing research and performance in one campaign makes both worse. The performance campaign gets polluted by research noise; the research campaign gets starved by performance spend."}
 ]},
-{id:"m5l3",title:"Diagnosing Conversion Leaks",mins:9,blocks:[
- {t:"goal",x:"Use symptoms to find the leak before prescribing fixes."},
- {t:"table",head:["Symptom","Suspect","Fix"],rows:[["High CTR + low conversion","Page or price","Improve image, reviews, price"],["Low CTR + high conversion","Weak hook, strong page","Better image and title"],["Low CTR + low conversion","Wrong targeting or weak offer","Refine keywords and page"],["High CTR + high conversion","It works","Scale carefully"]]},
- {t:"mistake",items:["Raising bids to fix a listing problem","Adding more keywords to a page that cannot convert","Copying a competitor price without their reviews"]},
- {t:"tip",x:"The symptom table is your stethoscope. Diagnose, then prescribe."}
-]}],
+{id:"m6l3",title:"Single-Keyword vs Grouped Ad Groups",mins:6,blocks:[
+{t:"goal",x:"Decide when one keyword per ad group is useful, and when it is excessive."},
+{t:"p",x:"Single-keyword ad groups give maximum control and clean data. They are useful for high-spend terms where you want to tune the bid precisely. They are excessive for long-tail clusters where the spend does not justify the structure."},
+{t:"table",head:["Approach","Best for","Cost"],rows:[
+["Single keyword ad group","High-spend winners, exact control","More campaigns to manage"],
+["Grouped ad group","Long-tail clusters, similar intent","Less work, slightly less data clarity"]
+]},
+{t:"tip",x:"Default to grouped ad groups. Split out a single keyword only when the spend is meaningful and the bid needs surgical control."}
+]},
+{id:"m6l4",title:"Launch Bids and Placement Expectations",mins:6,blocks:[
+{t:"goal",x:"Set a safe launch bid and know what to expect in week 1."},
+{t:"p",x:"A safe launch bid is around the suggested bid Amazon shows, or slightly below. Do not start above it — you have no data to justify a high bid yet. Expect the first week to produce mostly learning, not profit."},
+{t:"list",items:[
+"Day 1–3: low impressions, low clicks, almost no orders",
+"Day 4–7: search-term report starts to look like real shopper language",
+"Week 2: you have enough data to make one careful change",
+"Week 4: structure decisions are starting to compound"
+]},
+{t:"tip",x:"The most common beginner mistake is reading week 1 silence as failure. It is not. It is the auction learning who you are."}
+]}
+],
 quiz:[
-{q:"Ads bring shoppers. What sells?",o:["The bid","The listing","The logo","The budget"],a:1,e:"The page converts the attention the ad rented."},
-{q:"100 clicks, 1 sale. First suspect?",o:["The campaign name","Listing quality and search relevance","The time of day","Amazon support"],a:1,e:"Check the page and the terms before the bids."},
-{q:"Which is NOT a listing readiness check?",o:["Main image","Review count","Campaign naming","Buy Box"],a:2,e:"Naming helps you, not the shopper."},
-{q:"You lose the Buy Box. Ads will…",o:["Perform better","Likely waste money","Stop charging","Auto-pause"],a:1,e:"Ads can send shoppers to a competitor's button."}
+{q:"Best default for a beginner with no data?",o:["Exact only","Phrase or Exact","Broad only","No targeting"],a:1,e:"Tight enough to learn, loose enough to discover."},
+{q:"Research and performance campaigns should be…",o:["Mixed together","Separate, with different jobs","The same campaign","Paired with the same budget"],a:1,e:"Separation keeps the data clean."},
+{q:"A safe launch bid is…",o:["3× the suggested bid","Around the suggested bid, slightly below","Zero","Whatever wins top of search"],a:1,e:"No data means no justification for a high bid."}
 ]},
-{title:"Campaign Setup",icon:"🏗️",color:"#06B6D4",desc:"Auto vs manual, a safe first structure, and a launch plan.",
+
+{title:"Product Targeting",icon:"📦",color:"#0EA5E9",img:IMG.market,desc:"ASIN and category targeting, defensive plays, and the retail-readiness check.",
 lessons:[
-{id:"m6l1",title:"Auto vs Manual Campaigns",mins:7,blocks:[
- {t:"goal",x:"Know which campaign does which job."},
- {t:"table",head:["Campaign","Who picks targeting","Role"],rows:[["Auto","Amazon","Research scout"],["Manual keywords","You","Control and scale"],["Manual product targeting","You","Competitor and category attacks"]]},
- {t:"example",x:"Auto is a question: Amazon, what do you think my product is? The search term report is the answer."},
- {t:"tip",x:"Auto is a research tool. Manual is where proven winners live."}
+{id:"m7l1",title:"ASIN Targeting vs Category Targeting",mins:6,blocks:[
+{t:"goal",x:"Pick between targeting individual ASINs and targeting a whole category."},
+{t:"p",x:"ASIN targeting is precise — you choose the exact product your ad appears next to. Category targeting is broad — your ad appears on any product in a chosen department. ASIN targeting is usually the safer starting point."},
+{t:"split",a:{title:"Use ASIN targeting for",items:["Specific competitors","Defending a category position","Cross-sell on complementary ASINs"]},b:{title:"Use category targeting for",items:["Quick, broad coverage","Discovery in a new category","Scale where individual ASINs are not yet known"]}}
 ]},
-{id:"m6l2",title:"A Safe First Structure",mins:8,blocks:[
- {t:"goal",x:"Build the three-campaign starter skeleton."},
- {t:"diagram",kind:"tree",title:"Starter skeleton",nodes:[[0,"SP | Auto | Research — small budget, learns"],[1,"Harvest winners weekly"],[0,"SP | Exact | Core — proven words only"],[1,"Tight bids, tight control"],[0,"SP | Product Targeting — test later"],[1,"Competitor pages and related categories"]]},
- {t:"table",head:["Campaign","Budget share","Job"],rows:[["Auto","30–40%","Discover search terms"],["Exact","50–60%","Convert proven demand"],["Product targeting","0–10% at first","Optional experiments"]]},
- {t:"tip",x:"Structure follows purpose: research, convert, expand. In that order."}
+{id:"m7l2",title:"Competitor, Defensive, Cross-Sell, Complementary",mins:7,blocks:[
+{t:"goal",x:"Pick a product-targeting strategy that matches a clear intent."},
+{t:"table",head:["Strategy","Target type","Intent"],rows:[
+["Competitor","ASINs of rival products","Steal share from a comparable offer"],
+["Defensive","Your own ASINs and your brand","Prevent competitors from showing on your pages"],
+["Cross-sell","Complementary products","Reach shoppers buying something adjacent"],
+["Category","A category node","Broad exposure"]
 ]},
-{id:"m6l3",title:"New Product Launch Plan",mins:10,blocks:[
- {t:"goal",x:"Follow a four-week plan that learns before it scales."},
- {t:"table",head:["Week","Focus","Actions"],rows:[["1","Learn","Auto only, small bids, watch terms"],["2","Control","Exact campaign with long-tail winners"],["3","Clean","First negatives pass"],["4","Scale","+10–20% budget on proven winners only"]]},
- {t:"example",x:"20 dollars a day: week 1 all Auto. Week 2: 8 Auto + 12 Exact. Week 4: shift more to what converts."},
- {t:"p",x:"Launching is not spending fast. It is learning fast with small money."},
- {t:"tip",x:"Week 1's goal is data, not profit."}
-]}],
+{t:"tip",x:"Defensive product targeting often has a lower ACOS because the shopper is already deep in the funnel."}
+]},
+{id:"m7l3",title:"Retail-Readiness Comparison and Risk of Stronger Offers",mins:6,blocks:[
+{t:"goal",x:"Reject product targets where the offer is unlikely to win."},
+{t:"p",x:"Before targeting a competitor ASIN, compare five things: price, rating, review count, image quality, and offer. If you lose on three of five, the click becomes a comparison shopper for the competitor — you paid for the click and the competitor got the sale."},
+{t:"example",x:"Your product: $24.99, 4.5 stars, 150 reviews. Competitor: $19.99, 4.7 stars, 4,000 reviews. You are likely the comparison; the click is wasted."},
+{t:"tip",x:"Target competitors where you are roughly comparable. Use category targeting to cast a wider net when you are still building the offer."}
+]},
+{id:"m7l4",title:"Lab: Product-Targeting Matrix",mins:6,blocks:[
+{t:"goal",x:"Build an ASIN target list and a category target list with rationale."},
+{t:"p",x:"For one product, build two lists. List A: 5–10 ASINs you would target, with one-line rationale each. List B: 1–2 category nodes you would target, with one-line rationale. For each, score on price, rating, reviews, image, and offer. Reject any target where you lose on three or more."},
+{t:"tip",x:"The list is not done when it is long. It is done when every entry has a reason and a comparator score."}
+]}
+],
 quiz:[
-{q:"An Auto campaign is mainly a…",o:["Profit machine","Research tool","Brand builder","Punishment"],a:1,e:"Auto discovers search terms for you."},
-{q:"A safe first structure is…",o:["Ten Broad campaigns","Small Auto + Exact long-tail","One campaign, 500 keywords","Display ads only"],a:1,e:"Small research plus tight control."},
-{q:"The main goal for a brand-new product is…",o:["Profit on day one","Learning what converts","Maximum impressions","Copying competitors"],a:1,e:"Learning first, scaling second."},
-{q:"Winners found in Auto should move to…",o:["A negative list","A manual Exact campaign","Sponsored Display","The trash"],a:1,e:"Promote winners into Exact for control."}
+{q:"Product targeting on a stronger offer usually…",o:["Wins on the click","Pays for the competitor's comparison shopper","Improves TACoS","Beats organic"],a:1,e:"You pay for the click, the competitor gets the sale."},
+{q:"Defensive product targeting is bidding on…",o:["Competitor ASINs","Your own brand and ASINs","Categories only","Top of search only"],a:1,e:"Defensive = protect your own pages."},
+{q:"Before ASIN-targeting a competitor, you should compare…",o:["Color only","Price, rating, reviews, images, offer","Reviews only","Bid only"],a:1,e:"Five signals, not one."}
 ]},
-{title:"Bids & Budgets",icon:"💰",color:"#84CC16",desc:"Budget math, bid rules, and a live bid-change walkthrough.",
+
+{title:"Bidding, Placements, and Budgets",icon:"💸",color:"#EF4444",img:IMG.deck,desc:"Dynamic bids, placements, effective exposure, and budget pacing.",
 lessons:[
-{id:"m7l1",title:"Budget Basics",mins:6,blocks:[
- {t:"goal",x:"See how budget and bid decide your daily clicks."},
- {t:"p",x:"Budget is the daily cap. Bid is what you offer per click. Together they set how many clicks you can afford."},
- {t:"table",head:["Budget","Avg CPC","Max clicks/day"],rows:[["10","0.50","20"],["10","1.00","10"],["20","1.00","20"],["50","1.25","40"]]},
- {t:"example",x:"Budget gone by noon? You are invisible all evening — often the best shopping hours."},
- {t:"tip",x:"A profitable campaign out of budget is a shop closing at noon."}
+{id:"m8l1",title:"Budget Basics",mins:5,blocks:[
+{t:"goal",x:"Set a daily budget that supports learning without overcommitting."},
+{t:"p",x:"Daily budget is the cap, not the target. Set it high enough to get enough clicks to learn (a beginner campaign needs at least 10–20 clicks per day per cluster) and low enough that a bad week does not blow the account."},
+{t:"tip",x:"If a profitable campaign is out of budget by 9am, the budget is too low, not the campaign. But first confirm the campaign is actually profitable — 'out of budget' is not automatically a budget problem."}
 ]},
-{id:"m7l2",title:"Bid Rules for Beginners",mins:8,blocks:[
- {t:"goal",x:"Learn the five situations and their safe responses."},
- {t:"table",head:["Situation","Reading","Action"],rows:[["No impressions","Too low or irrelevant","Raise a little, check relevance"],["Clicks, no sales","Wrong terms or weak page","Negatives + listing check"],["Sales + low ACOS","Winning","Raise bid a little, watch"],["Sales + high ACOS","Too expensive","Lower bid"],["Budget dies early","Winning but capped","Raise budget if profitable"]]},
- {t:"mistake",items:["Bidding high on everything to get data","Cutting bids on a winner because one quiet day","Never revisiting bids after launch"]},
- {t:"tip",x:"Bids are dials, not switches. Small turns, then wait."}
+{id:"m8l2",title:"Top of Search, Rest of Search, Product Pages",mins:6,blocks:[
+{t:"goal",x:"Explain the three placements and what each is worth."},
+{t:"table",head:["Placement","Where","What it tends to deliver"],rows:[
+["Top of Search","Above the organic results","High intent clicks, higher CPC, often better CVR"],
+["Rest of Search","Mixed in the organic results","Mid-intent clicks, average CPC"],
+["Product Pages","On competitor and category pages","Browsing intent, mixed CVR, lower CPC"]
 ]},
-{id:"m7l3",title:"A Bid Change Walkthrough",mins:9,blocks:[
- {t:"goal",x:"Watch one real bid decision, before and after."},
- {t:"p",x:"Keyword bamboo cutting board, margin 30%."},
- {t:"table",head:["Moment","Bid","Clicks","Spend","Sales","ACOS"],rows:[["Before","0.90","30","27","50","54%"],["After cut","0.65","22","14","50","29%"]]},
- {t:"p",x:"Same two sales, 13 dollars less spend. The cut did not kill sales — it killed waste."},
- {t:"example",x:"If the cut had also killed sales, you would raise back halfway and retest. That is the rhythm: adjust, observe, adjust."},
- {t:"tip",x:"Write every bid change with date and reason. Memory lies, logs do not."}
-]}],
+{t:"tip",x:"Top of Search is not always the most profitable placement. It is the most expensive. Read the placement-level report before raising a placement adjustment."}
+]},
+{id:"m8l3",title:"Placement Adjustments and Effective Bid Exposure",mins:7,blocks:[
+{t:"goal",x:"Compute the effective bid after a placement adjustment."},
+{t:"formula",f:"Effective bid = base bid × (1 + placement adjustment)",note:"A 50% top-of-search adjustment on a $0.80 base bid = $1.20 effective at top of search."},
+{t:"example",x:"Base $0.60. Top of Search +100% → effective $1.20. Product Pages +0% → effective $0.60."},
+{t:"p",x:"A placement adjustment is a multiplier on the base bid, applied only when the ad wins that placement. It is the most direct way to express 'I value this placement more.'"},
+{t:"tip",x:"Set placement adjustments based on data, not on intuition. Run a placement report for 14 days first."}
+]},
+{id:"m8l4",title:"Dynamic Bids: Down Only / Up and Down / Fixed",mins:6,blocks:[
+{t:"goal",x:"Pick the right bid strategy for the campaign's job."},
+{t:"table",head:["Strategy","Behavior","Use for"],rows:[
+["Dynamic bids — down only","Amazon lowers your bid when a click is unlikely to convert","Defensive. Safe default for beginners."],
+["Dynamic bids — up and down","Amazon raises and lowers your bid based on conversion likelihood","Growth. Use when you have conversion data and want more volume."],
+["Fixed bids","Your bid is the bid, period","Strict control. Use for tight, manual control."]
+]},
+{t:"tip",x:"Beginners should default to 'down only' for the first 4 weeks. Move to 'up and down' only after the campaign has 30+ conversions."}
+]},
+{id:"m8l5",title:"Budget Pacing and 'Out of Budget ≠ Budget Problem'",mins:6,blocks:[
+{t:"goal",x:"Diagnose why a campaign is out of budget before raising the budget."},
+{t:"p",x:"Three reasons a campaign can be out of budget: (1) the campaign is profitable and capped — raise the budget; (2) the campaign is unprofitable and burning — lower bids or add negatives; (3) the day is front-loaded — pacing will fix it."},
+{t:"split",a:{title:"Raise the budget when",items:["ACOS is below margin and stable","The campaign hits budget by 4–6pm","You have 14+ days of clean data"]},b:{title:"Don't raise the budget when",items:["ACOS is above margin","The campaign just launched","Spend is being driven by irrelevant terms"]}}
+]},
+{id:"m8l6",title:"Bid Change Walkthrough (Worked)",mins:6,blocks:[
+{t:"goal",x:"Walk through a bid change with reason, old, new, expected, review date."},
+{t:"example",x:"Target: 'bamboo cutting board' Exact. 14 days. 35 clicks, 4 sales, ACOS 22%, margin 30%. Decision: raise bid 15% to $0.92. Expected: more impressions, slightly lower ACOS. Review: 14 days."},
+{t:"tip",x:"Every bid change needs five things: reason, old value, new value, expected result, review date. No exceptions."}
+]}
+],
 quiz:[
-{q:"A daily budget is…",o:["A monthly cap","The daily spend limit","A bid","A fee"],a:1,e:"Budget caps daily spend."},
-{q:"Budget runs out at noon on a profitable campaign. You…",o:["Pause it","Raise the budget","Delete it","Lower bids"],a:1,e:"Profitable and capped = raise budget."},
-{q:"Good sales and low ACOS. You…",o:["Pause","Raise the bid carefully","Negate it","Do nothing forever"],a:1,e:"Feed winners carefully and watch."},
-{q:"How many changes at once?",o:["As many as possible","One","Ten","Fifty"],a:1,e:"One change, one verdict."}
+{q:"Top of Search placement adjustment is…",o:["A flat fee","A multiplier on the base bid","A budget","A negative"],a:1,e:"Placement adjustment multiplies the base bid."},
+{q:"Beginner default bid strategy?",o:["Up and down","Down only","Fixed at max","No bid"],a:1,e:"Down only is the safe default for the first 4 weeks."},
+{q:"A campaign is out of budget. You should first…",o:["Raise the budget","Check whether it is profitable","Pause it","Double the bid"],a:1,e:"Out of budget is not automatically a budget problem."}
 ]},
-{title:"Search Terms & Negatives",icon:"🕵️",color:"#EF4444",desc:"Read the report, pick winners and wasters, run the harvest loop.",
+
+{title:"Search-Term Analysis and Negatives",icon:"🕵️",color:"#0EA5E9",img:IMG.triage,desc:"Targeting vs search-term report, harvesting, and click thresholds.",
 lessons:[
-{id:"m8l1",title:"Reading the Search Term Report",mins:8,blocks:[
- {t:"goal",x:"Turn a raw report into decisions in four steps."},
- {t:"list",items:["Download the report for the last 7–14 days","Sort by spend, highest first","Read clicks, sales and ACOS per term","Mark each term: winner, waster or maybe"]},
- {t:"table",head:["Column","Question it answers"],rows:[["Search term","What did the shopper type?"],["Clicks","How much attention did it buy?"],["Spend","What did it cost?"],["Sales","What came back?"],["ACOS","Was the trade worth it?"]]},
- {t:"tip",x:"Start at the top of the spend column. That is where your money is deciding."}
+{id:"m9l1",title:"Reading the Search Term Report",mins:6,blocks:[
+{t:"goal",x:"Read a search-term report and tell winners from wasters from maybes."},
+{t:"table",head:["Pattern","Clicks","Sales","Read","Action"],rows:[
+["Waster","High","Zero or 1","Irrelevant term","Add as negative"],
+["Winner","Any","Steady, ACOS under margin","Strong term","Promote to Exact"],
+["Maybe","Under 10","Unclear","Too little data","Watch for another week"],
+["Mixed","Medium","Some","Relevant but expensive","Lower bid, keep"]
 ]},
-{id:"m8l2",title:"Winners and Wasters",mins:8,blocks:[
- {t:"goal",x:"Match each pattern to its safe action."},
- {t:"table",head:["Pattern","Verdict","Action"],rows:[["Sales + ACOS under margin","Winner","Promote to Exact"],["Sales + ACOS over margin","Expensive winner","Lower bid"],["No sales, many clicks, irrelevant","Waster","Negative"],["No sales, few clicks","Too early","Watch"],["No sales, many clicks, relevant","Leak","Fix page or price"]]},
- {t:"split",a:{title:"Do",items:["Decide with 7+ days of data","Negate irrelevant terms fast","Promote winners into Exact"]},b:{title:"Don't",items:["Negate after 2 clicks","Pause a campaign for one bad term","Let wasters run just in case"]}},
- {t:"tip",x:"Every week, money flows to wasters unless you redirect it."}
+{t:"tip",x:"Sort the report by spend, highest first. The biggest spend is the biggest decision."}
 ]},
-{id:"m8l3",title:"The Harvesting Workflow",mins:7,blocks:[
- {t:"goal",x:"Memorize the weekly loop that is the actual job."},
- {t:"diagram",kind:"flow",title:"The harvest loop",steps:["Download search term report","Sort by spend","Mark winners and wasters","Move winners to Exact","Add negatives for wasters","Log every change","Repeat next week"]},
- {t:"example",x:"One harvest a week: 2 winners promoted, 3 negatives added. In 8 weeks that is 16 winners promoted and 24 leaks closed."},
- {t:"tip",x:"Small weekly harvests beat big monthly cleanups."}
-]}],
+{id:"m9l2",title:"Targeting Report vs Search-Term Report",mins:5,blocks:[
+{t:"goal",x:"Tell the targeting report from the search-term report and use both."},
+{t:"p",x:"Targeting report shows the keywords or ASINs YOU targeted and how they performed. Search-term report shows the actual customer queries that triggered your ads. The targeting report tells you what you asked for; the search-term report tells you what you got."},
+{t:"tip",x:"If you optimize only the targeting report, you miss discovery. The search-term report is where new keywords come from."}
+]},
+{id:"m9l3",title:"Winners, Wasters, and Click Thresholds",mins:7,blocks:[
+{t:"goal",x:"Apply a click threshold before deciding on a search term."},
+{t:"p",x:"A click threshold is the minimum clicks you want before making a confident call. Common thresholds: 10 clicks for a 'maybe' to be judged, 30 clicks for a verdict. Below the threshold, you are reading noise."},
+{t:"table",head:["Clicks","Confidence","Action"],rows:[
+["Under 10","Low","Watch. Do not act."],
+["10–30","Medium","One careful change, give it a week."],
+["30+","High","Trust the trend. Act on it."]
+]},
+{t:"mistake",items:[
+"Negating a term after 3 clicks and 1 sale",
+"Promoting a term with 1 sale on 4 clicks as a 'winner'",
+"Reading one week of data as a verdict"
+]}
+]},
+{id:"m9l4",title:"Negative Exact vs Negative Phrase",mins:5,blocks:[
+{t:"goal",x:"Pick the right negative match type for the situation."},
+{t:"p",x:"Negative exact blocks the single term. Negative phrase blocks the phrase and any search that contains it. Use negative exact for surgical blocking; use negative phrase for a cluster of irrelevant searches."},
+{t:"example",x:"'free bamboo board' is irrelevant → negative exact. 'free cutting board' (any free) → negative phrase."}
+]},
+{id:"m9l5",title:"The Harvesting Workflow",mins:6,blocks:[
+{t:"goal",x:"Run a weekly harvesting loop that ends in a clean change log."},
+{t:"diagram",kind:"flow",title:"Weekly harvest",steps:["Download search-term report","Sort by spend","Decide each row","Apply changes in the console","Log every change with reason","Schedule next review"]},
+{t:"tip",x:"The loop is the same every week. The data changes, the workflow does not."}
+]},
+{id:"m9l6",title:"Using Queries to Improve Listings",mins:5,blocks:[
+{t:"goal",x:"Treat the search-term report as a listing-improvement source, not just a negatives source."},
+{t:"p",x:"If shoppers keep searching for an attribute you do not mention in the title or bullets, your listing is missing that signal. Add it to the copy. If shoppers keep searching for a use case your images do not show, add an image that shows it."},
+{t:"tip",x:"The search-term report is the cheapest listing-research tool you have. It is the customer's own words."}
+]}
+],
 quiz:[
-{q:"The search term report shows…",o:["Your keywords only","What customers actually typed","Your bids","Your budget"],a:1,e:"It is the truth of what shoppers typed."},
-{q:"High clicks, no sales, clearly irrelevant. Action?",o:["Promote","Negative","Raise bid","Watch for a year"],a:1,e:"Irrelevant wasters get negated."},
-{q:"A winner with ACOS under margin should…",o:["Be paused","Move to Exact","Be negated","Be ignored"],a:1,e:"Promote winners into Exact for control."},
-{q:"Only 3 clicks and no sales on a relevant term. You…",o:["Negate it","Pause the campaign","Watch — too little data","Raise the bid"],a:2,e:"Small samples make loud lies. Watch."}
+{q:"Search-term report shows…",o:["Keywords you targeted","What the customer typed","Bids","Budgets"],a:1,e:"Customer language, not yours."},
+{q:"Under 10 clicks on a term means…",o:["Negate it","Trust the ACOS","Watch, do not act","Raise the bid"],a:2,e:"Below the threshold, it is noise."},
+{q:"Negative phrase blocks…",o:["The single term","Any search containing the phrase","The campaign","The placement"],a:1,e:"Phrase negatives are cluster-level blocks."}
 ]},
-{title:"Weekly Optimization",icon:"🔄",color:"#3B82F6",desc:"The routine, the one-change rule, and how much data is enough.",
+
+{title:"Performance Diagnosis",icon:"🔬",color:"#10B981",img:IMG.console,desc:"Diagnose the cause before changing bids, budgets, targeting, or listings.",
 lessons:[
-{id:"m9l1",title:"The Weekly Routine",mins:7,blocks:[
- {t:"goal",x:"Adopt a boring, professional rhythm."},
- {t:"table",head:["Day","Task"],rows:[["Monday","Spend, budgets, urgent alerts"],["Tuesday","Search term review"],["Wednesday","Negatives + promote winners"],["Thursday","Bid and ACOS review"],["Friday","Simple report"]]},
- {t:"list",items:["Daily 5-minute checks: spend, stock, accidental pauses","Weekly deep pass: the table above","Monthly: structure and strategy review"]},
- {t:"tip",x:"A boring routine is a professional routine."}
+{id:"m10l1",title:"Diagnostic Order: Delivery → Engagement → Conversion → Economics",mins:6,blocks:[
+{t:"goal",x:"Use a fixed diagnostic order before changing anything."},
+{t:"diagram",kind:"flow",title:"Diagnostic order",steps:["Delivery (impressions, budget, targeting)","Engagement (CTR, hook quality)","Conversion (CVR, listing relevance)","Economics (ACOS, margin, contribution)"]},
+{t:"p",x:"Always start at delivery. If impressions are too low, the rest of the funnel does not exist. Only move to engagement when delivery is healthy. Only move to conversion when engagement is healthy. Economics is the verdict, not the first stop."},
+{t:"tip",x:"The most common beginner mistake is starting at economics ('ACOS is high, cut bid') without checking the stages above it."}
 ]},
-{id:"m9l2",title:"One Change at a Time",mins:6,blocks:[
- {t:"goal",x:"Learn the rule that separates managers from gamblers."},
- {t:"split",a:{title:"Do",items:["Change one variable","Wait about a week","Compare before and after","Log it"]},b:{title:"Don't",items:["20 bid changes on Monday","New keywords + new bids + new budget same day","Judging on overnight data"]}},
- {t:"example",x:"You raise bids and add keywords the same day. Sales jump. Which change worked? Nobody knows — and that is the problem."},
- {t:"tip",x:"Science beats vibes: one variable, one verdict."}
+{id:"m10l2",title:"Low Impressions, Low CTR, High CPC",mins:7,blocks:[
+{t:"goal",x:"Diagnose the top of the funnel — delivery and engagement."},
+{t:"table",head:["Symptom","First check","Then"],rows:[
+["Low impressions","Campaign active? Approved? Budget?","Bid too low, targeting too narrow"],
+["Low CTR","Image, price, title","Hook signal; ad creative; relevance"],
+["High CPC","Bid too high","Auction competition; quality score"]
 ]},
-{id:"m9l3",title:"How Much Data is Enough?",mins:7,blocks:[
- {t:"goal",x:"Use click thresholds instead of feelings."},
- {t:"table",head:["Clicks on a term","What you can do"],rows:[["Under 10","Watch only"],["10–20","Small tweaks, negate obvious irrelevance"],["20–40","Fair bid decisions"],["40+","Confident promote or pause calls"]]},
- {t:"p",x:"Data is a sample. Small samples make loud lies."},
- {t:"mistake",items:["Pausing a keyword after 3 clicks","Scaling a keyword after 1 lucky sale","Ignoring a term forever at 15 clicks and zero sales"]},
- {t:"tip",x:"A week of time plus enough clicks. Then decide."}
-]}],
+{t:"split",a:{title:"Healthy",items:["Stable impressions, stable CTR","CTR above the category benchmark","CPC near the suggested bid"]},b:{title:"Unhealthy",items:["Impressions dropping week over week","CTR below 0.3%","CPC above the suggested bid by 2×"]}}
+]},
+{id:"m10l3",title:"Low CVR, High ACOS, Sales Drop",mins:7,blocks:[
+{t:"goal",x:"Diagnose the bottom of the funnel — conversion and economics."},
+{t:"table",head:["Symptom","First check","Then"],rows:[
+["Low CVR","Listing + term relevance","Negatives, listing pass, price check"],
+["High ACOS","CPC vs CVR","Lower bid, tighten match, or both"],
+["Sales drop","Stock, price, reviews, competitor","If all four are fine, look at structure"]
+]},
+{t:"p",x:"Before changing a bid, answer one question: is the click the problem, or is the click turning into a sale at a bad rate? The two have very different fixes."},
+{t:"tip",x:"A sales drop with stable traffic and a sudden drop in CVR is almost always a listing or retail-readiness issue, not a campaign issue."}
+]},
+{id:"m10l4",title:"Traffic-Quality vs Offer-Quality Problems",mins:6,blocks:[
+{t:"goal",x:"Tell a targeting problem from an offer problem."},
+{t:"p",x:"Traffic-quality problem: the wrong shoppers are clicking. Fix with negatives, tighter match, or different keywords. Offer-quality problem: the right shoppers are clicking but not buying. Fix with the listing, price, images, or reviews."},
+{t:"example",x:"Many clicks, no sales, with irrelevant search terms → traffic-quality. Many clicks, no sales, with relevant search terms → offer-quality."},
+{t:"tip",x:"Read the search-term report at the same time as the listing. The combination tells you which problem you have."}
+]},
+{id:"m10l5",title:"Lab: Root-Cause Tree for Six Cases",mins:8,blocks:[
+{t:"goal",x:"Build a root-cause tree for an underperforming account."},
+{t:"p",x:"For each of six cases, draw the diagnostic tree from symptom to root cause. Cases: (1) low impressions, (2) high clicks no sales, (3) profitable but capped, (4) high CPC at top of search, (5) high-ACOS competitor conquest, (6) seasonality shock."},
+{t:"example",x:"Symptom: high clicks, no sales. Branches: traffic-quality (irrelevant terms?), offer-quality (listing, price, reviews, Buy Box?), data delay (less than 7 days?), stock/availability?"},
+{t:"tip",x:"Every action should connect to an observed symptom. State uncertainty and required follow-up data on every diagnosis."}
+]}
+],
 quiz:[
-{q:"How often should the deep optimization pass happen?",o:["Every hour","Weekly","Once a year","Never"],a:1,e:"A safe weekly routine beats chaos."},
-{q:"Why one change at a time?",o:["It is faster","So you know what worked","Amazon requires it","It lowers CPC"],a:1,e:"One variable, one verdict."},
-{q:"Before judging a keyword you need…",o:["1 click","Enough clicks and about a week","A feeling","Permission"],a:1,e:"Small samples make loud lies."},
-{q:"Sales suddenly drop. First checks?",o:["Stock, price, reviews, competitors","The logo","The campaign name","The office wifi"],a:0,e:"Check the boring four first."}
+{q:"First step in any diagnosis?",o:["Cut the bid","Check delivery (impressions, budget, targeting)","Pause the campaign","Add negatives"],a:1,e:"Always start at delivery."},
+{q:"High clicks, no sales, irrelevant search terms suggests…",o:["Offer-quality problem","Traffic-quality problem","Budget problem","Placement problem"],a:1,e:"Wrong shoppers, fix with targeting."},
+{q:"A change log should record…",o:["The bid","Reason, old, new, expected, review date","Only successful changes","The date only"],a:1,e:"Five things, every change."}
 ]},
-{title:"Reporting & Troubleshooting",icon:"📈",color:"#6366F1",img:IMG.reporting,desc:"Reports humans understand, and fixing the five classic problems.",
+
+{title:"Optimization, Scaling, and Operating Rhythm",icon:"🔁",color:"#8B5CF6",img:IMG.deck,desc:"The weekly cycle, scaling without inflating marginal ACOS, and the change log.",
 lessons:[
-{id:"m10l1",title:"The Simple Report Structure",mins:7,blocks:[
- {t:"goal",x:"Write reports that busy clients actually read."},
- {t:"list",items:["Numbers: spend, sales, ACOS, clicks, orders, CTR, conversion","Trend vs last week","What worked","What did not work","Next steps"]},
- {t:"example",x:"Spend 210, sales 950, ACOS 22% (was 28%). Winner: exact bamboo keyword. Problem: plastic term waste. Next: negatives plus one new promotion."},
- {t:"tip",x:"A report is a story with numbers, not a number dump."}
+{id:"m11l1",title:"The Weekly Routine",mins:5,blocks:[
+{t:"goal",x:"Run the same weekly routine every week."},
+{t:"diagram",kind:"flow",title:"Weekly routine",steps:["Pull the search-term report","Promote winners, negate wasters","Review bids","Check budgets and pacing","Write the report","Log every change"]},
+{t:"tip",x:"The routine is the same when things are good and when they are bad. The discipline is the value."}
 ]},
-{id:"m10l2",title:"Explaining Numbers in Human Words",mins:7,blocks:[
- {t:"goal",x:"Translate every metric into one plain sentence."},
- {t:"table",head:["Metric","Say it like this"],rows:[["ACOS","Of every sales dollar, this much went to ads"],["CTR","Of people who saw us, this many clicked"],["Conversion","Of clicks, this many bought"],["TACoS","Ad cost vs the whole business, not just ad sales"]]},
- {t:"p",x:"Clients remember sentences, not spreadsheets."},
- {t:"tip",x:"Always end with next steps. Numbers inform; steps reassure."}
+{id:"m11l2",title:"One Change at a Time",mins:5,blocks:[
+{t:"goal",x:"Make one change per variable per week."},
+{t:"p",x:"Change one variable, give it a week, compare before-and-after, log it. If you change bid, budget, and match in the same week, you do not know which one worked."},
+{t:"mistake",items:[
+"Changing bid and adding negatives on the same day",
+"Pausing a campaign and changing the budget in the same week",
+"Trusting 'vibes' instead of the change log"
+]}
 ]},
-{id:"m10l3",title:"Troubleshooting: No Impressions and Low CTR",mins:8,blocks:[
- {t:"goal",x:"Fix the top of the funnel."},
- {t:"table",head:["Problem","First check","Then"],rows:[["No impressions","Campaign active? In review?","Raise bid, widen targeting slightly"],["No impressions","Budget near zero?","Fix budget"],["Low CTR","Main image on white background?","Improve image"],["Low CTR","Price vs neighbors?","Reposition price or title"]]},
- {t:"tip",x:"Fix the cheapest thing first: bids and image before strategy."}
+{id:"m11l3",title:"Bid Increase vs Bid Decrease Decision Tree",mins:7,blocks:[
+{t:"goal",x:"Use a small tree to pick between raise, hold, and cut."},
+{t:"diagram",kind:"tree",title:"Bid change tree",nodes:[
+[0,"Bid review"],
+[1,"ACOS below margin and stable?"],
+[2,"Yes: raise 10–15%, log, review 7 days"],
+[2,"No: ACOS above margin?"],
+[2,"Above: cut 10–15%, log, review 7 days"],
+[2,"At margin: hold and watch for another week"]
 ]},
-{id:"m10l4",title:"Troubleshooting: Clicks No Sales, High ACOS, Sales Drop",mins:9,blocks:[
- {t:"goal",x:"Fix the bottom of the funnel without panic."},
- {t:"table",head:["Problem","Suspects","Actions"],rows:[["Clicks, no sales","Irrelevant terms, weak page, price","Negatives, listing pass, price check"],["High ACOS","CPC too high, conversion low","Lower bids, tighten matches"],["Sales suddenly drop","Stock, price change, review hit, competitor promo","Check the boring four first"]]},
- {t:"mistake",items:["Rebuilding the account when the product was simply out of stock","Panic-pausing everything after one bad week"]},
- {t:"tip",x:"When in doubt: stock, price, reviews, competitors — in that order."}
-]}],
+{t:"tip",x:"A 10–15% change is small enough to be safe, large enough to learn. Anything more is gambling."}
+]},
+{id:"m11l4",title:"Budget Reallocation and Placement Optimization",mins:7,blocks:[
+{t:"goal",x:"Reallocate budget to where the data says it works."},
+{t:"p",x:"Reallocation means moving budget from underperforming campaigns to overperforming ones, not adding total spend. The account's total budget may stay flat."},
+{t:"list",items:[
+"Identify the campaign with the worst ACOS at meaningful spend",
+"Identify the campaign with the best ACOS at meaningful spend",
+"Move 20–30% of the worst campaign's budget to the best one",
+"Log the move, watch for two weeks, repeat if it holds"
+]},
+{t:"tip",x:"Reallocation is more powerful than raising total budget. The first dollar in a campaign is more expensive than the fifth."}
+]},
+{id:"m11l5",title:"Scaling Winners Without Inflating Marginal ACOS",mins:7,blocks:[
+{t:"goal",x:"Scale a winning campaign in a way that holds the marginal ACOS."},
+{t:"p",x:"Scaling means adding budget or raising bids. Every new click is more expensive than the last, because the easy wins were already taken. The marginal ACOS — the ACOS of the most recent click — tells you when to stop."},
+{t:"split",a:{title:"Safe to scale when",items:["Marginal ACOS is still under margin","Conversion rate is stable","The auction is not saturated"]},b:{title:"Stop scaling when",items:["Marginal ACOS rises above margin","Conversion rate is dropping","Top of search is becoming crowded"]}}
+]},
+{id:"m11l6",title:"Change Log, Guardrails, Rollback Conditions",mins:6,blocks:[
+{t:"goal",x:"Run every change through a log with rollback conditions."},
+{t:"p",x:"A change log records: date, campaign, target, change, reason, expected outcome, review date. A guardrail is a rule that triggers a rollback (e.g. 'if ACOS exceeds 50% for 7 days, revert the change')."},
+{t:"example",x:"Change: raise bid on 'bamboo board' Exact from $0.80 to $0.92. Reason: 14-day ACOS 18%, margin 30%. Expected: more impressions, ACOS stays under 25%. Rollback: if ACOS exceeds 35% for 7 days, revert."},
+{t:"tip",x:"A change without a rollback condition is a guess with a deadline. Always write the condition before you click Save."}
+]}
+],
 quiz:[
-{q:"A report must always include…",o:["Only spend","Next steps","Every single keyword","Emojis"],a:1,e:"Numbers inform; steps reassure."},
-{q:"No impressions. First check?",o:["Campaign status and bid","The logo","Reviews","The moon phase"],a:0,e:"Status, review state, then bid and budget."},
-{q:"Low CTR usually points to…",o:["Image, price or title","The bid being too high","Too many negatives","Stock levels"],a:0,e:"The hook is the image, price and title."},
-{q:"High ACOS on a relevant term means…",o:["Raise the bid","Lower the bid or tighten match","Add budget","Celebrate"],a:1,e:"Relevant but expensive = lower bid."}
+{q:"Scaling means…",o:["Adding total budget always","Adding budget or bids where the data supports it","Pausing losing campaigns","Lowering bids"],a:1,e:"Scale where the data says it works."},
+{q:"A rollback condition is…",o:["A date to delete the campaign","A rule that triggers a revert","A bid cap","A budget cut"],a:1,e:"Always write the condition before saving."},
+{q:"One change at a time exists to…",o:["Slow you down","Let you know which variable worked","Save clicks","Help Amazon"],a:1,e:"One variable, one verdict."}
 ]},
-{title:"VA Workflow & Capstone",icon:"🎓",color:"#14B8A6",img:IMG.va,desc:"Cadence, permissions, SOPs, communication and the final project.",
+
+{title:"Reporting, Strategy, and Capstone",icon:"📣",color:"#F59E0B",img:IMG.report,desc:"Reports, business metrics, the 30/60/90 roadmap, and the capstone defense.",
 lessons:[
-{id:"m11l1",title:"Tasks by Cadence",mins:7,blocks:[
- {t:"goal",x:"Know what daily, weekly and monthly mean for a VA."},
- {t:"table",head:["Cadence","Tasks"],rows:[["Daily","Spend, alerts, stock, paused campaigns"],["Weekly","Term harvest, negatives, bids, report"],["Monthly","Structure, top keywords, listing review, cleanup"]]},
- {t:"tip",x:"Cadence prevents both neglect and over-tinkering."}
+{id:"m12l1",title:"The Simple Report Structure",mins:5,blocks:[
+{t:"goal",x:"Write a one-page weekly report in a fixed order."},
+{t:"list",items:[
+"Numbers: spend, sales, ACOS, ROAS, clicks, orders, CTR, CVR",
+"Trend: vs last week, plus or minus X%",
+"What worked: 1–2 examples",
+"What did not work: 1 honest paragraph",
+"Next steps: 2–3 bullets, in the next 7 days",
+"Prepared by: name, date"
 ]},
-{id:"m11l2",title:"The Permissions Ladder",mins:8,blocks:[
- {t:"goal",x:"Know what you may do alone and what needs approval."},
- {t:"table",head:["Task","VA alone","Needs approval"],rows:[["Download and clean reports","Yes","—"],["Add negatives from rules","Yes","—"],["Small bid moves (plus or minus 20%)","Yes","—"],["Promote winners to Exact","Yes","—"],["Budget changes","No","Manager"],["New campaign structure","No","Manager"],["Pausing a whole campaign","No","Manager"],["Strategy shifts","No","Manager"]]},
- {t:"p",x:"Trust is built by doing the small things flawlessly for weeks."},
- {t:"tip",x:"When unsure, ask. A question costs a minute; a mistake costs a client."}
+{t:"tip",x:"The structure is the same every week. The numbers change, the structure does not."}
 ]},
-{id:"m11l3",title:"SOPs and the Change Log",mins:7,blocks:[
- {t:"goal",x:"Turn judgment into repeatable process."},
- {t:"list",items:["SOP 1: download report, save with date","SOP 2: mark winners and wasters, act, log","SOP 3: budget alert, check profitability, notify","SOP 4: weekly report template"]},
- {t:"table",head:["Date","Campaign","Change","Reason","Result"],rows:[["Jun 3","SP Auto","Negated plastic","8 clicks, 0 sales, irrelevant","Spend down 12% next week"]]},
- {t:"tip",x:"The change log is your memory, your proof and your teacher."}
+{id:"m12l2",title:"Explaining Numbers in Human Words",mins:6,blocks:[
+{t:"goal",x:"Translate metrics into owner-friendly language."},
+{t:"p",x:"Owners do not think in ACOS. They think in 'are we making money on this product, and is it growing?' Translate ACOS into margin comparison, ROAS into 'every dollar spent, we get X back', and TACoS into 'this product's whole-business health'."},
+{t:"example",x:"'ACOS is 22%' is true. 'On every $100 of sales from ads, we keep $78 after ad cost, and our margin covers it' is human."},
+{t:"tip",x:"If the owner has to ask what the number means, the report has failed. The job is translation."}
 ]},
-{id:"m11l4",title:"Client Communication and the Capstone",mins:9,blocks:[
- {t:"goal",x:"Communicate like a professional and finish the final project."},
- {t:"example",x:"Weekly update: Spend 45, sales 180, ACOS 25%. Added 2 negatives, promoted 1 winner. Next: watch the new exact keyword. Short, true, forward-looking."},
- {t:"list",items:["Ask approval with data + suggestion + risk","Report problems early with a proposed fix","Never hide bad numbers"]},
- {t:"list",items:["Capstone: build a starter campaign in the Builder tool","Pass all 12 module quizzes at 70%+","Score 70%+ in the Search Term Trainer","Write one weekly report in the Report tool","Pass the Final Exam in the Quiz Arena"]},
- {t:"tip",x:"You are not done when you know. You are done when you can do it weekly, calmly, and explain it."}
-]}],
+{id:"m12l3",title:"Performance Narrative: Outcome, Drivers, Actions, Risks, Next Steps",mins:6,blocks:[
+{t:"goal",x:"Write a report that tells a story, not just a number."},
+{t:"list",items:[
+"Outcome: what happened (numbers + trend)",
+"Drivers: why it happened (one or two named causes)",
+"Actions: what we did about it (with the change log)",
+"Risks: what could go wrong (stock, competition, seasonality)",
+"Next steps: what we will do this week, in measurable terms"
+]},
+{t:"tip",x:"Owners remember the drivers and the next steps. They glance at the numbers. Write accordingly."}
+]},
+{id:"m12l4",title:"PPC Metrics vs Business Metrics, and 30/60/90 Roadmap",mins:7,blocks:[
+{t:"goal",x:"Distinguish PPC metrics from business metrics, and build a 30/60/90 roadmap."},
+{t:"table",head:["Frame","Question","Examples"],rows:[
+["PPC","Did the ad do its job?","ACOS, ROAS, CTR, CVR, placement share"],
+["Business","Did the product grow?","Total sales, profit, TACoS, inventory turn"]
+]},
+{t:"p",x:"A 30/60/90 roadmap is a forward-looking plan. 30 days: launch or stabilize. 60 days: optimize. 90 days: scale or document. Each phase has an owner, a metric, and a review date."},
+{t:"tip",x:"A 30/60/90 plan without owners and review dates is a wish list, not a roadmap."}
+]},
+{id:"m12l5",title:"Tasks by Cadence and the Permissions Ladder",mins:6,blocks:[
+{t:"goal",x:"Match tasks to a cadence and a permission level."},
+{t:"table",head:["Cadence","Tasks","Permission"],rows:[
+["Daily (5 min)","Spend, alerts, stock, accidental pauses","Self-managed"],
+["Weekly (1 hr)","Term harvest, negatives, bid review, report","Self-managed"],
+["Biweekly (1 hr)","Structure review, naming, portfolio review","With manager"],
+["Monthly (2 hr)","Listing audit, unit-economics refresh, 30/60/90 review","With manager"]
+]},
+{t:"p",x:"The permissions ladder says: small safe changes alone, big levers with approval. Adding a negative is small. Pausing a campaign is big. Raising a budget 50% is big."}
+]},
+{id:"m12l6",title:"Client Communication and the Capstone",mins:7,blocks:[
+{t:"goal",x:"Communicate a campaign plan, defend optimization decisions, and complete the capstone."},
+{t:"list",items:[
+"Open every client call with the headline number, not the data dump",
+"Defend each decision with the change log and the data",
+"Translate metrics into owner language without hiding bad news",
+"End with measurable next steps and the next review date"
+]},
+{t:"p",x:"The capstone brings it all together: a product brief, unit economics, a campaign portfolio, search-term analysis, a 30-day plan, a one-page report, and a 7–10 minute defense (recorded or written). Pass level for supervised work is 85%+."},
+{t:"tip",x:"Capstone rubric: commercial objective 10% · targeting relevance 20% · structure 15% · bids and budgets 15% · diagnosis 20% · optimization plan 10% · communication 10%."}
+]}
+],
 quiz:[
-{q:"Which needs manager approval?",o:["Adding a negative from rules","A whole-campaign pause","Downloading a report","A small bid move"],a:1,e:"Big levers need approval; small safe ones do not."},
-{q:"A change log is…",o:["A password list","A record of every change with reason","A client invoice","A keyword list"],a:1,e:"Memory lies, logs do not."},
-{q:"A client update should include…",o:["Only good news","Data, actions and next steps","Every raw number","Excuses"],a:1,e:"Short, true, forward-looking."},
-{q:"Capstone pass level for supervised work is…",o:["10%","50%","85%+","0%"],a:2,e:"85+ means ready for supervised client work."}
+{q:"A good report ends with…",o:["Raw data only","Measurable next steps","An apology","A joke"],a:1,e:"Steps reassure; data informs."},
+{q:"PPC metrics answer…",o:["Did the product grow?","Did the ad do its job?","Did the customer like the brand?","Is the Buy Box owned?"],a:1,e:"PPC is one slice of business."},
+{q:"Capstone pass level for supervised work?",o:["50%","70%","85%+","100%"],a:2,e:"85%+ means ready for supervised client work."}
 ]}
 ];
 const TOTAL_LESSONS=MODULES.reduce((a,m)=>a+m.lessons.length,0);
@@ -854,7 +1096,7 @@ RENDER.dashboard=function(){
  const quizzesTaken=Object.keys(state.quizScores).length, quizzesPassed=Object.values(state.quizScores).filter(v=>v>=70).length;
  const badges=getBadges();
  el.innerHTML='<div class="grid gap-6 xl:grid-cols-4">'+
- '<div class="xl:col-span-4 relative overflow-hidden rounded-2xl bg-navy text-white shadow-card"><div class="relative z-10 p-6 md:p-8 max-w-xl"><div class="text-brand-400 text-xs font-bold tracking-widest uppercase">Teaching companion</div><h2 class="font-display font-bold text-2xl md:text-3xl mt-2">Welcome back, future PPC Manager 👋</h2><p class="text-slate-300 text-sm mt-2">40 plain-words lessons, 12 module quizzes, a final exam, and four practice simulators. From zero to competent VA manager.</p><div class="mt-5"><div class="flex justify-between text-xs font-semibold text-slate-300 mb-1"><span>'+L.name+'</span><span>'+(L.next?L.next.name+" at "+L.next.xp+" XP":"Top level")+'</span></div><div class="h-3 rounded-full bg-white/15 overflow-hidden"><div class="bar h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-400" style="width:'+L.pct+'%"></div></div></div><div class="flex flex-wrap gap-2 mt-5"><button type="button" onclick="showView(\'lessons\')" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-4 py-2.5 rounded-xl transition">📚 '+(next?"Continue learning":"Review lessons")+'</button><button type="button" onclick="showView(\'quiz\')" class="bg-white/10 hover:bg-white/20 font-bold text-sm px-4 py-2.5 rounded-xl transition">🧠 Quiz Arena</button><button type="button" onclick="showView(\'trainer\')" class="bg-white/10 hover:bg-white/20 font-bold text-sm px-4 py-2.5 rounded-xl transition">🕵️ Practice search terms</button><button type="button" onclick="showView(\'coach\')" class="bg-white/10 hover:bg-white/20 font-bold text-sm px-4 py-2.5 rounded-xl transition">💬 Ask the coach</button></div></div><img src="'+IMG.hero+'" alt="" class="absolute right-0 bottom-0 h-full w-auto max-w-none opacity-90 hidden md:block pointer-events-none" style="mask-image:linear-gradient(to right,transparent,black 30%)"></div>'+
+ '<div class="xl:col-span-4 relative overflow-hidden rounded-2xl bg-navy text-white shadow-card"><div class="relative z-10 p-6 md:p-8 max-w-xl"><div class="text-brand-400 text-xs font-bold tracking-widest uppercase">Teaching companion</div><h2 class="font-display font-bold text-2xl md:text-3xl mt-2">Welcome back, future PPC Manager 👋</h2><p class="text-slate-300 text-sm mt-2">60 plain-words lessons, 12 module quizzes, a final exam, and four practice simulators. From zero to competent VA manager.</p><div class="mt-5"><div class="flex justify-between text-xs font-semibold text-slate-300 mb-1"><span>'+L.name+'</span><span>'+(L.next?L.next.name+" at "+L.next.xp+" XP":"Top level")+'</span></div><div class="h-3 rounded-full bg-white/15 overflow-hidden"><div class="bar h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-400" style="width:'+L.pct+'%"></div></div></div><div class="flex flex-wrap gap-2 mt-5"><button type="button" onclick="showView(\'lessons\')" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-4 py-2.5 rounded-xl transition">📚 '+(next?"Continue learning":"Review lessons")+'</button><button type="button" onclick="showView(\'quiz\')" class="bg-white/10 hover:bg-white/20 font-bold text-sm px-4 py-2.5 rounded-xl transition">🧠 Quiz Arena</button><button type="button" onclick="showView(\'trainer\')" class="bg-white/10 hover:bg-white/20 font-bold text-sm px-4 py-2.5 rounded-xl transition">🕵️ Practice search terms</button><button type="button" onclick="showView(\'coach\')" class="bg-white/10 hover:bg-white/20 font-bold text-sm px-4 py-2.5 rounded-xl transition">💬 Ask the coach</button></div></div><img src="'+IMG.hero+'" alt="" class="absolute right-0 bottom-0 h-full w-auto max-w-none opacity-90 hidden md:block pointer-events-none" style="mask-image:linear-gradient(to right,transparent,black 30%)"></div>'+
  '<div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Course progress</div><div class="font-display font-bold text-3xl text-navy mt-2">'+pct+'%</div><div class="text-xs text-slate-500 mt-1">'+doneCount+' of '+TOTAL_LESSONS+' lessons</div><div class="h-2.5 mt-4 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full bg-emerald-500 rounded-full" style="width:'+pct+'%"></div></div></div>'+
  '<div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Total XP</div><div class="font-display font-bold text-3xl text-brand-600 mt-2">⚡ '+state.xp+'</div><div class="text-xs text-slate-500 mt-1">Level: '+L.name+'</div><div class="h-2.5 mt-4 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full bg-brand-500 rounded-full" style="width:'+L.pct+'%"></div></div></div>'+
  '<div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Quizzes</div><div class="font-display font-bold text-3xl text-navy mt-2">'+quizzesPassed+'<span class="text-base text-slate-400">/'+(MODULES.length+1)+' passed</span></div><div class="text-xs text-slate-500 mt-1">'+quizzesTaken+' taken · pass mark 70%</div><div class="h-2.5 mt-4 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full bg-sky-500 rounded-full" style="width:'+Math.round(quizzesPassed/(MODULES.length+1)*100)+'%"></div></div></div>'+
@@ -1059,6 +1301,25 @@ document.getElementById("burger").addEventListener("click",openSidebar);
 document.getElementById("overlay").addEventListener("click",closeSidebar);
 document.getElementById("resetBtn").addEventListener("click",()=>{ if(confirm("Reset ALL progress, XP and badges? This cannot be undone.")){ localStorage.removeItem(SKEY); location.reload(); } });
 buildNav(); updateTopbar(); showView("dashboard");
+(function(){
+  // Deep-link: ../ppc-coach.html#m1 .. #m12 opens that module in the Lessons view.
+  // Also #m1l1 .. opens a specific lesson. Additive — runs after first render.
+  function applyHash(){
+    var h=location.hash||"";
+    var m=h.match(/^#m(\d+)(?:l(\d+))?$/i);
+    if(!m)return;
+    var mi=parseInt(m[1],10)-1, li=m[2]?parseInt(m[2],10)-1:null;
+    if(isNaN(mi)||mi<0||mi>=MODULES.length)return;
+    showView("lessons");
+    if(li!==null && !isNaN(li) && li>=0 && li<MODULES[mi].lessons.length){
+      openLesson(mi,li);
+    } else {
+      openModule(mi);
+    }
+  }
+  if(document.readyState==="loading"){ document.addEventListener("DOMContentLoaded",applyHash); } else { applyHash(); }
+  window.addEventListener("hashchange",applyHash);
+})();
 </script>
 <script src="assets/shell.js" defer></script>
 </body>

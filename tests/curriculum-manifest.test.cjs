@@ -29,10 +29,10 @@ test('every simulator in the curriculum manifest points to a live page', () => {
   });
 });
 
-test('Listing Readiness assigns BuyBox Dojo as required practice', () => {
-  const module = CurriculumManifest.getModule('m5');
+test('Module 1 (Amazon Advertising Foundations) assigns BuyBox Dojo as required practice', () => {
+  const module = CurriculumManifest.getModule('m0');
 
-  assert.equal(module.title, 'Listing Readiness');
+  assert.equal(module.title, 'Amazon Advertising Foundations');
   assert.deepEqual(module.practice, [
     {
       simulatorId: 'listing',

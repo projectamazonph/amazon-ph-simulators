@@ -11,7 +11,7 @@ unified skin, and the common application shell.
 ## Current platform status
 
 - **12 live simulators** plus PPC Coach and the curriculum roadmap.
-- **12 PPC Coach modules / 40 lessons**, with manifest-driven simulator assignments.
+- **12 PPC Coach modules / 60 lessons / 36 quiz items / 1 capstone**, with manifest-driven simulator assignments.
 - Shared versioned attempt history surfaces Not started, In progress, Passed, best score, and attempt count in Coach and the hub.
 - One tested beginner PPC policy aligns evidence bands, negatives, bid changes, and budget scaling across lessons and simulators.
 - Scenario-bank infrastructure preserves stable simulator progress while recording the selected scenario and rubric versions; Campaign Architect and Account Audit now ship selectable beginner and intermediate packs.
@@ -442,58 +442,65 @@ Key implementation notes:
 
 ### PPC Coach — the teaching companion
 
-PPC Coach is the structured course inside SimGrid: **12 modules, 40 plain-language
+PPC Coach is the structured course inside SimGrid: **12 modules, 60 plain-language
 lessons, 12 module quizzes, a 15-question final exam, a glossary, four practice
 tools, an AI Coach, badges, XP, and a teacher cohort view**. The module sequence is
 intended to be followed in order.
 
-1. **Amazon Basics** — the marketplace, product listings, visibility, organic
-   versus paid traffic, and the Buy Box.
-   Lessons: What is Amazon Marketplace?; Anatomy of a Product Listing; Organic vs
-   Paid and the Buy Box.
-2. **What is PPC?** — pay-per-click in plain language, the auction, relevance,
-   placements, and the shopper click journey.
-   Lessons: Pay Per Click in Plain Words; The Auction; The Click Journey and the
-   Funnel.
-3. **Money Math** — spend, sales, CPC, CTR, conversion rate, ACOS, ROAS, TACoS,
-   break-even, and worked examples.
-   Lessons: Spend, Sales and CPC; CTR and Conversion Rate; ACOS Deep Dive; ROAS,
-   TACoS and a Full Worked Example.
-4. **Campaign Structure** — the campaign/ad-group/targeting hierarchy, naming,
-   organization, and Sponsored Products, Sponsored Brands, and Sponsored Display.
-   Lessons: The Hierarchy: Campaign, Ad Group, Targeting; Naming and Organization;
-   The Three Ad Types.
-5. **Keywords & Match Types** — keywords versus search terms, broad, phrase,
-   exact, negatives, and a repeatable research process.
-   Lessons: Keyword vs Search Term; Match Types Deep Dive; Negative Keywords;
-   Keyword Research Starter Process.
-6. **Listing Readiness** — why PPC cannot rescue a weak product page and how to
-   diagnose conversion leaks before spending.
-   Lessons: The Listing Does the Selling; The Readiness Checklist; Diagnosing
-   Conversion Leaks.
-7. **Campaign Setup** — Auto versus Manual, a safe starter structure, and a
-   four-week new-product launch plan.
-   Lessons: Auto vs Manual Campaigns; A Safe First Structure; New Product Launch
-   Plan.
-8. **Bids & Budgets** — budget math, beginner bid rules, and a controlled bid-change
-   walkthrough.
-   Lessons: Budget Basics; Bid Rules for Beginners; A Bid Change Walkthrough.
-9. **Search Terms & Negatives** — read the search-term report, separate winners
-   from wasters, and run the weekly harvest loop.
-   Lessons: Reading the Search Term Report; Winners and Wasters; The Harvesting
-   Workflow.
-10. **Weekly Optimization** — the operating cadence, one-change-at-a-time testing,
-    and deciding when enough data has accumulated.
-    Lessons: The Weekly Routine; One Change at a Time; How Much Data is Enough?
-11. **Reporting & Troubleshooting** — write reports humans understand and diagnose
-    no impressions, low CTR, clicks without sales, high ACOS, and sales drops.
-    Lessons: The Simple Report Structure; Explaining Numbers in Human Words;
-    Troubleshooting: No Impressions and Low CTR; Troubleshooting: Clicks No Sales,
-    High ACOS, Sales Drop.
-12. **VA Workflow & Capstone** — daily/weekly/monthly cadence, permissions,
-    SOPs, change logs, client communication, and the final operating project.
-    Lessons: Tasks by Cadence; The Permissions Ladder; SOPs and the Change Log;
-    Client Communication and the Capstone.
+1. **Amazon Advertising Foundations** — marketplace basics, the three ad types,
+   the retail-readiness checklist, and the paid-versus-organic split.
+   Lessons: Amazon Marketplace Basics; The Three Ad Types; The Retail-Readiness
+   Checklist; Organic vs Paid and the Buy Box; The Big Picture.
+2. **PPC Language, Metrics, and Math** — CPC, CTR, conversion rate, ACOS, ROAS,
+   TACoS, break-even, attribution, and data sufficiency.
+   Lessons: Spend, Sales, and CPC; CTR, Conversion, and the Funnel; ACOS, ROAS,
+   TACoS, and Break-Even; Attribution Windows and the Time Lag; How Much Data is
+   Enough; The Full Worked Example.
+3. **Campaign Structure and Naming** — the hierarchy, naming standards, portfolios,
+   match-type separation, and budget isolation.
+   Lessons: The Campaign, Ad Group, Targeting Hierarchy; Naming and Organization;
+   Portfolios and Budget Isolation; Match-Type and Ad-Type Separation.
+4. **Keyword Research and Search Intent** — keywords versus search terms, match
+   types in depth, seed building, and volume versus relevance.
+   Lessons: Keyword vs Search Term; Match Types Deep Dive; Building a Keyword Seed;
+   Volume, Relevance, and Intent.
+5. **Automatic Targeting** — the four auto groups, bid segmentation, reading the
+   search-term report, and overlap controls.
+   Lessons: The Four Auto Groups; Bid Segmentation Across Auto Groups; Reading the
+   Auto Search-Term Report; Managing Auto and Manual Overlap.
+6. **Manual Keyword Targeting** — match types in practice, research versus
+   performance campaigns, and single versus grouped ad groups.
+   Lessons: Match Types in Practice; Research vs Performance Campaigns; Single
+   vs Grouped Ad Groups; The Match-Type Ladder and Harvesting.
+7. **Product Targeting** — ASIN versus category, competitor and defensive plays,
+   and the retail-readiness comparison.
+   Lessons: ASIN vs Category Targeting; Competitor Plays; Defensive Plays; Are
+   You Ready for Product Targeting?
+8. **Bidding, Placements, and Budgets** — budget math, the three placements,
+   placement adjustments, dynamic bidding, and pacing.
+   Lessons: Budget Math and Daily Caps; The Three Placements; Placement
+   Adjustments and Modifiers; Dynamic Bidding: Up, Down, Fixed; Out-of-Budget is
+   Not Always a Budget Problem; Pacing, Daily Caps, and Top-of-Search.
+9. **Search-Term Analysis and Negatives** — winners, wasters, click thresholds,
+   negative exact versus phrase, and the weekly harvest.
+   Lessons: Reading the Search-Term Report; Winners, Wasters, and Click
+   Thresholds; Negative Exact vs Negative Phrase; Negative Product Targets; The
+   Weekly Harvest Loop; When a "Bad" Term is Actually a Good Signal.
+10. **Performance Diagnosis** — a fixed diagnostic order: delivery, engagement,
+    conversion, economics, then act.
+    Lessons: The Fixed Diagnostic Order; Delivery: Low Impressions, Low CTR;
+    Engagement: High CPC, No Sales; Economics: High ACOS, Sales Drop; Data
+    Quality, Attribution, and the Time Lag.
+11. **Optimization, Scaling, and Operating Rhythm** — the weekly routine, one
+    change at a time, the bid decision tree, scaling, change log, and guardrails.
+    Lessons: The Weekly Optimization Routine; One Change at a Time; The Bid
+    Decision Tree; Scaling Winners and Cutting Wasters; Change Log, SOPs, and
+    Guardrails; Rollback Conditions and Escalations.
+12. **Reporting, Strategy, and Capstone** — the simple report structure, explaining
+    numbers in human words, the weekly client report, and the operating project.
+    Lessons: The Simple Report Structure; Explaining Numbers in Human Words; The
+    Weekly Client Report; Strategy, Margin, and Lifetime Value; Tasks by Cadence
+    and the Permissions Ladder; Client Communication and the Capstone.
 
 #### PPC Coach module screenshots
 
@@ -502,28 +509,28 @@ screen includes the module overview, lesson list, and module quiz entry point.
 
 <table>
 <tr>
-<td width="50%"><strong>1. Amazon Basics</strong><br><img src="assets/screenshots/ppc-coach/module-01-amazon-basics.svg" alt="PPC Coach Module 1 — Amazon Basics" width="640"></td>
-<td width="50%"><strong>2. What is PPC?</strong><br><img src="assets/screenshots/ppc-coach/module-02-what-is-ppc.svg" alt="PPC Coach Module 2 — What is PPC?" width="640"></td>
+<td width="50%"><strong>1. Amazon Advertising Foundations</strong><br><img src="assets/screenshots/ppc-coach/module-01-amazon-basics.svg" alt="PPC Coach Module 1 — Amazon Advertising Foundations" width="640"></td>
+<td width="50%"><strong>2. PPC Language, Metrics, and Math</strong><br><img src="assets/screenshots/ppc-coach/module-02-what-is-ppc.svg" alt="PPC Coach Module 2 — PPC Language, Metrics, and Math" width="640"></td>
 </tr>
 <tr>
-<td><strong>3. Money Math</strong><br><img src="assets/screenshots/ppc-coach/module-03-money-math.svg" alt="PPC Coach Module 3 — Money Math" width="640"></td>
-<td><strong>4. Campaign Structure</strong><br><img src="assets/screenshots/ppc-coach/module-04-campaign-structure.svg" alt="PPC Coach Module 4 — Campaign Structure" width="640"></td>
+<td><strong>3. Campaign Structure and Naming</strong><br><img src="assets/screenshots/ppc-coach/module-03-money-math.svg" alt="PPC Coach Module 3 — Campaign Structure and Naming" width="640"></td>
+<td><strong>4. Keyword Research and Search Intent</strong><br><img src="assets/screenshots/ppc-coach/module-04-campaign-structure.svg" alt="PPC Coach Module 4 — Keyword Research and Search Intent" width="640"></td>
 </tr>
 <tr>
-<td><strong>5. Keywords &amp; Match Types</strong><br><img src="assets/screenshots/ppc-coach/module-05-keywords-and-match-types.svg" alt="PPC Coach Module 5 — Keywords and Match Types" width="640"></td>
-<td><strong>6. Listing Readiness</strong><br><img src="assets/screenshots/ppc-coach/module-06-listing-readiness.svg" alt="PPC Coach Module 6 — Listing Readiness" width="640"></td>
+<td><strong>5. Automatic Targeting</strong><br><img src="assets/screenshots/ppc-coach/module-05-keywords-and-match-types.svg" alt="PPC Coach Module 5 — Automatic Targeting" width="640"></td>
+<td><strong>6. Manual Keyword Targeting</strong><br><img src="assets/screenshots/ppc-coach/module-06-listing-readiness.svg" alt="PPC Coach Module 6 — Manual Keyword Targeting" width="640"></td>
 </tr>
 <tr>
-<td><strong>7. Campaign Setup</strong><br><img src="assets/screenshots/ppc-coach/module-07-campaign-setup.svg" alt="PPC Coach Module 7 — Campaign Setup" width="640"></td>
-<td><strong>8. Bids &amp; Budgets</strong><br><img src="assets/screenshots/ppc-coach/module-08-bids-and-budgets.svg" alt="PPC Coach Module 8 — Bids and Budgets" width="640"></td>
+<td><strong>7. Product Targeting</strong><br><img src="assets/screenshots/ppc-coach/module-07-campaign-setup.svg" alt="PPC Coach Module 7 — Product Targeting" width="640"></td>
+<td><strong>8. Bidding, Placements, and Budgets</strong><br><img src="assets/screenshots/ppc-coach/module-08-bids-and-budgets.svg" alt="PPC Coach Module 8 — Bidding, Placements, and Budgets" width="640"></td>
 </tr>
 <tr>
-<td><strong>9. Search Terms &amp; Negatives</strong><br><img src="assets/screenshots/ppc-coach/module-09-search-terms-and-negatives.svg" alt="PPC Coach Module 9 — Search Terms and Negatives" width="640"></td>
-<td><strong>10. Weekly Optimization</strong><br><img src="assets/screenshots/ppc-coach/module-10-weekly-optimization.svg" alt="PPC Coach Module 10 — Weekly Optimization" width="640"></td>
+<td><strong>9. Search-Term Analysis and Negatives</strong><br><img src="assets/screenshots/ppc-coach/module-09-search-terms-and-negatives.svg" alt="PPC Coach Module 9 — Search-Term Analysis and Negatives" width="640"></td>
+<td><strong>10. Performance Diagnosis</strong><br><img src="assets/screenshots/ppc-coach/module-10-weekly-optimization.svg" alt="PPC Coach Module 10 — Performance Diagnosis" width="640"></td>
 </tr>
 <tr>
-<td><strong>11. Reporting &amp; Troubleshooting</strong><br><img src="assets/screenshots/ppc-coach/module-11-reporting-and-troubleshooting.svg" alt="PPC Coach Module 11 — Reporting and Troubleshooting" width="640"></td>
-<td><strong>12. VA Workflow &amp; Capstone</strong><br><img src="assets/screenshots/ppc-coach/module-12-va-workflow-and-capstone.svg" alt="PPC Coach Module 12 — VA Workflow and Capstone" width="640"></td>
+<td><strong>11. Optimization, Scaling, and Operating Rhythm</strong><br><img src="assets/screenshots/ppc-coach/module-11-reporting-and-troubleshooting.svg" alt="PPC Coach Module 11 — Optimization, Scaling, and Operating Rhythm" width="640"></td>
+<td><strong>12. Reporting, Strategy, and Capstone</strong><br><img src="assets/screenshots/ppc-coach/module-12-va-workflow-and-capstone.svg" alt="PPC Coach Module 12 — Reporting, Strategy, and Capstone" width="640"></td>
 </tr>
 </table>
 

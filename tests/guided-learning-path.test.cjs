@@ -52,9 +52,9 @@ test('hub annotates simulator cards from shared student progress', () => {
   assert.match(hub, /src="assets\/hub-progress\.js"/);
 });
 
-test('student guide assigns Listing Readiness and its simulator practice', () => {
+test('student guide assigns Module 1 retail-readiness and its simulator practice', () => {
   const guide = read('learn/guide.html');
 
-  assert.match(guide, /Module 5 \(Listing Readiness\)/);
+  assert.match(guide, /Module 1 \(Amazon Advertising Foundations\)/);
   assert.match(guide, /href="\.\.\/listing\.html"/);
 });

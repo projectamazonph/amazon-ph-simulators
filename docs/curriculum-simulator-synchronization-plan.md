@@ -24,7 +24,7 @@ Turn SimGrid from a collection of independently useful tools into one guided aca
 
 ## Baseline audit
 
-The current project contains 12 simulator pages plus PPC Coach. PPC Coach contains 12 modules, 40 lessons, 50 module-quiz questions, a 15-question final exam, and four embedded practice tools.
+The current project contains 12 simulator pages plus PPC Coach. PPC Coach contains 12 modules, 60 lessons, 36 module-quiz questions, a 15-question final exam, and four embedded practice tools.
 
 Validation at the start of this plan:
 

@@ -17,6 +17,13 @@ function read(file) {
   return fs.readFileSync(file, 'utf8');
 }
 
+// Text files committed with LF may be checked out with CRLF on Windows
+// runners (git's default `core.autocrlf=true`). Normalize to LF before
+// regex assertions that anchor on line breaks.
+function readNormalized(file) {
+  return read(file).replace(/\r\n/g, '\n');
+}
+
 test('core public pages expose canonical, social, and structured discovery metadata', () => {
   corePages.forEach(file => {
     const html = read(file);
@@ -40,10 +47,10 @@ test('core public pages expose canonical, social, and structured discovery metad
 });
 
 test('crawl and AI-readable files point to the curated public discovery surface', () => {
-  const robots = read('robots.txt');
+  const robots = readNormalized('robots.txt');
   const sitemap = read('sitemap.xml');
-  const llms = read('llms.txt');
-  const guide = read('site-guide.md');
+  const llms = readNormalized('llms.txt');
+  const guide = readNormalized('site-guide.md');
 
   assert.match(robots, /^User-agent: \*\nAllow: \/\n/m);
   assert.match(robots, /Sitemap: https:\/\/projectamazonph\.github\.io\/amazon-ph-simulators\/sitemap\.xml/);
