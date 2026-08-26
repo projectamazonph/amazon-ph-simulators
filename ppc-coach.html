@@ -367,22 +367,29 @@ lessons:[
 {t:"tip",x:"Match the ad type to the objective, not to your skill. Beginners start with SP because it is the most controllable and has the lowest setup barrier."}
 ]},
 {id:"m1l3",title:"Retail-Readiness Checklist",mins:7,blocks:[
-{t:"goal",x:"Score a product's retail readiness and decide whether PPC pressure is safe."},
-{t:"p",x:"PPC cannot compensate for a weak offer. If the listing is not ready, more ads only burn money faster. The retail-readiness checklist is the first thing to look at before turning on a campaign."},
-{t:"table",head:["Item","Pass","Fail"],rows:[
-["Title","Clear, scannable, has the main keyword","Vague, no keyword, jammed with symbols"],
-["Images","7+ images, white background + lifestyle","3 or fewer, low quality, no main image"],
-["Price","Competitive for the category","Way above or way below the field"],
-["Inventory","Healthy stock (14+ days)","Low stock, going out of stock soon"],
-["Buy Box","Owned","Suppressed or shared with no control"],
-["Reviews","Recent, 4+ stars, 25+ reviews","Few reviews, recent negative, below 4"]
+{t:"goal",x:"Score a product's retail readiness and decide whether PPC pressure is safe before you turn on a campaign."},
+{t:"p",x:"PPC does not create demand. It borrows demand that already exists on Amazon and steers it to a listing. If the listing is not ready to convert that borrowed demand, every click you buy is a small loan with no repayment: money leaves, no sale arrives. The retail-readiness checklist is the simple scorecard you run before you spend anything."},
+{t:"p",x:"The reason readiness matters more than bid strategy is the auction math. Amazon charges you for every click, but only a fraction of clicks become orders. If your listing converts 2% of clicks and your competitor's converts 8%, the competitor pays four times your CPC and still walks away with more profit. The auction is not a bid contest — it is a profitability contest, and the listing does most of the work."},
+{t:"table",head:["Item","What a pass looks like","What a fail looks like"],rows:[
+["Title","Reads naturally. Main keyword in the first 60 characters. Clear size, count, or use case in the first 90.","Buried under symbols (®, ™, ‼), vague ('Best Thing Ever'), or stacks 5 keywords and reads like a search-term dump."],
+["Images","7+ images. Pure white main image, 1500×1500 minimum, plus 3+ lifestyle or scale images.","3 images or fewer, low resolution, lifestyle missing, or the main image is not pure white (it gets suppressed)."],
+["Price","Within ±15% of the median for the category at this quality tier.","Far above every comparable offer, or far below (which signals low quality and tanks conversion)."],
+["Inventory","14+ days of cover at current sales velocity, with restock confirmed.","Under 7 days of cover, going out of stock in the next reorder, or already stockout-suppressed."],
+["Buy Box","Owned, with 95%+ of recent orders routed to you.","Shared with no control, suppressed, or 0% Buy Box for the past week."],
+["Reviews","4.0+ stars, 25+ reviews, with the most recent reviews in the past 90 days.","Below 4.0, fewer than 10 reviews, or the most recent batch is 1–2 stars."],
+["Parent ASIN / variations","Listed under a parent with healthy siblings (the page has more to buy).","Standalone ASIN, or a parent whose siblings are all stockout-suppressed."],
+["Brand & content","Brand Registry active, A+ Content live (if registered), and a working brand store.","No brand story, no A+, no store, or all three are placeholders."]
 ]},
-{t:"p",x:"If any one of those is failing, fix it before adding budget. The fastest path to a profitable account is not a better bid — it is a better offer."},
+{t:"p",x:"Score each row as Pass, Watch, or Fail. Watch means 'it works but it is fragile' — a 3.8-star average, 4 days of cover, or a price sitting 16% above the median. Fail means 'do not turn on ads yet'."},
+{t:"example",x:"Bamboo Cutting Board, your first test product. Title: 'Bamboo Cutting Board, Large 16×12 with Deep Juice Groove, Eco-Friendly' — Pass (keyword front, attributes clear, no symbol spam). Images: 8, with a pure white main and 5 lifestyle shots — Pass. Price: $24.99, median for the category is $22–28 — Pass. Inventory: 9 days of cover, restock 12 days out — Watch (Fail in 2 weeks if restock slips). Buy Box: 100% owned — Pass. Reviews: 4.6 stars, 312 reviews, most recent 5 days ago — Pass. Parent: 3 sibling sizes, all in stock — Pass. Brand: not registered, no A+ — Watch. Result: 6 Pass, 2 Watch, 0 Fail. Safe to spend up to ~$30/day while you fix the inventory and brand content. Do not push to $100/day until the inventory and brand are Pass."},
+{t:"formula",f:"If any row is Fail → fix it before spending. If two or more rows are Watch → cap daily budget at $20–30 until they harden. If all rows are Pass → you can scale with confidence.",note:"The checklist is a gate, not a wishlist. A 'Watch' is permission to spend carefully, not permission to scale."},
 {t:"mistake",items:[
-"Pushing budget into a product that is out of stock",
-"Raise the bid when price is the real problem",
-"Reading 'ACOS is high' as a bid problem when reviews are the cause"
-]}
+"Scoring the listing on vibes instead of the rows ('It looks fine to me' is not a Pass)",
+"Treating price as the only readiness signal — a great price on a 3.5-star listing still loses money to a slightly worse price on a 4.6-star listing",
+"Ranking the most 'fixable' Fail as a Pass because you plan to fix it next week (the fix is not in the account yet; the check has to be honest)",
+"Running ads on a stockout-suppressed ASIN 'just to keep the data warm' — there is no data to keep, and Amazon's quality score drops the listing further"
+]},
+{t:"tip",x:"Run the checklist on three ASINs from your training data this week. Score each honestly. For every Fail, write a one-sentence fix. The fix is your first project; the ads come after."}
 ]},
 {id:"m1l4",title:"Paid, Organic, and the Buy Box",mins:6,blocks:[
 {t:"goal",x:"Explain organic vs paid sales, what the Buy Box is, and why PPC feeds both."},
