@@ -549,40 +549,92 @@ quiz:[
 {title:"Campaign Structure and Naming",icon:"🏗️",color:"#10B981",img:IMG.builder,desc:"The hierarchy, naming standards, portfolios, and budget isolation.",
 lessons:[
 {id:"m3l1",title:"The Hierarchy: Campaign, Ad Group, Targeting",mins:6,blocks:[
-{t:"goal",x:"Trace any target back to its campaign, ad group, and product."},
+{t:"goal",x:"Trace any target back to its campaign, ad group, and product, and explain what lives at each level."},
+{t:"p",x:"Amazon's Sponsored Products structure is a tree with three levels. The campaign is the trunk — it holds the budget, the bid strategy, the placements you allow, the start and end dates. The ad group is a branch — it groups products with shared targeting, so all of them get the same keyword or product target. The target is the leaf — the actual keyword or ASIN you are bidding on. A shopper never sees any of this; it is purely how you organize the work."},
+{t:"p",x:"The cardinal rule: one target lives in exactly one place at a time. If the same keyword exists in two ad groups inside two campaigns, the auction still produces one ad, but you have split your own data, and you will not be able to tell which campaign the sale came from. The new manager's first instinct is to 'be safe' and add the same keyword to a second campaign. The right instinct is to keep it in one place, watch the data, and graduate it when ready."},
 {t:"diagram",kind:"tree",title:"Sponsored Products hierarchy",nodes:[
-[0,"Campaign (holds budget, bidding, placements)"],
-[1,"Ad group (holds products and targeting)"],
-[2,"Product A · Bid $0.80 · Match Exact"],
-[2,"Product B · Bid $0.95 · Match Phrase"]
+[0,"Campaign (budget, bid strategy, placements)"],
+[1,"Ad group A (products 1, 2, 3 — same targeting)"],
+[2,"Keyword 'bamboo board' · Bid $0.80 · Match Exact"],
+[2,"Product A · Bid by keyword"],
+[2,"Product B · Bid by keyword"],
+[1,"Ad group B (products 4, 5 — different targeting)"],
+[2,"Product 'eco kitchen' · Bid $0.95 · Match Phrase"]
 ]},
-{t:"p",x:"Campaign is where budget and bid strategy live. Ad group is where products and targeting share an audience. The target is the keyword or ASIN you are bidding on."},
-{t:"tip",x:"If you cannot trace a target back to a campaign and a product, the structure is too messy to optimize."}
+{t:"example",x:"Bamboo Cutting Board lives in one campaign, in one ad group, alongside other kitchen SKUs, targeting 'bamboo cutting board' on Exact. If you later want to bid a higher amount for the hero SKU only, that hero gets its own ad group inside the same campaign — same budget, same placements, separate bid control. If you want a separate budget for research, that goes in a different campaign."},
+{t:"mistake",items:[
+"Duplicating the same keyword across two campaigns to 'double the chance' — you don't, and you split the data",
+"Putting unrelated products in the same ad group because they share a theme — same theme does not mean same targeting, and you cannot bid them differently",
+"Treating the campaign as 'just a folder' — campaign-level settings (budget, placements, strategy) apply to every ad group inside it, and you cannot set them per ad group",
+"Adding a new ad group for a single new product when the existing ad group has room — every ad group is overhead, and the structure should earn its keep"
+]},
+{t:"tip",x:"If you cannot draw the tree on paper in 60 seconds, the structure is too messy to optimize. A clean account is one you can sketch from memory."}
 ]},
 {id:"m3l2",title:"Naming and Organization",mins:5,blocks:[
-{t:"goal",x:"Build a naming standard that survives three months from now."},
-{t:"p",x:"A name should answer four questions without opening the campaign: ad type, match, product, purpose."},
-{t:"example",x:"SP | Exact | BambooBoard | LongTail. Read it in 3 months and you know exactly what it is."},
-{t:"split",a:{title:"Do",items:["Use pipes or dashes as separators","Keep product codes short","Document the convention somewhere"]},b:{title:"Don't",items:["Use 'final_final_v3'","Use dates in the name","Use the same name across markets"]}}
+{t:"goal",x:"Build a naming standard that survives three months from now, when you have forgotten why you made the choices you made."},
+{t:"p",x:"A name has one job: tell you what a campaign is without opening it. Three months from now, you will have 40 campaigns, you will be tired, and you will not remember which 'BCB-Exact-v2' was the working one. The name should answer four questions, in this order: ad type, match type, product, and purpose. Use a separator — pipe, dash, underscore — so each piece is searchable and parseable."},
+{t:"example",x:"SP | Exact | BambooBoard | LongTail. Three months later, you can filter by SP, by Exact, by BambooBoard, or by LongTail, in any order. Each piece means something."},
+{t:"split",a:{title:"Do",items:[
+"Use pipes or dashes as separators",
+"Keep product codes short — 'BCB' or 'BambooBoard', not 'bamboo_cutting_board_SKU_3'",
+"Document the convention somewhere your team can read",
+"Use the same convention across markets (US, UK, CA) — change the prefix for the market, not the structure"
+]},b:{title:"Don't",items:[
+"Use 'final_final_v3' or anything that tells you about the past instead of the present",
+"Use dates in the name — campaigns live for months; the date lies",
+"Use the same name across two markets — they will be merged in your mental model and produce silent mistakes",
+"Rename campaigns on a whim — your old naming is in old reports; pick a standard and hold it"
+]}},
+{t:"table",head:["Position","Means","Example"],rows:[
+["1","Ad type","SP, SB, SD"],
+["2","Match type","Exact, Phrase, Broad, Auto, Product"],
+["3","Product or line","BambooBoard, KitchenKnife, PhoneCase-X"],
+["4","Purpose","LongTail, Hero, Research, Defense, Brand"]
+]},
+{t:"tip",x:"Pick a standard, write it down, and never rename a campaign to fix a bad name — pause it and create a new one with the right name. Old names are in old reports."}
 ]},
 {id:"m3l3",title:"One-ASIN vs Multi-ASIN, Portfolios, Cannibalization Myths",mins:6,blocks:[
-{t:"goal",x:"Decide when to use a one-ASIN campaign, when to combine, and when to use a portfolio."},
-{t:"p",x:"One-ASIN campaigns give clean reporting and tight control — recommended for beginners. Multi-ASIN campaigns save time when ASINs are similar in margin and performance."},
-{t:"p",x:"Portfolios are folders across campaigns. Use them to group by objective (defense, growth, brand) or by product line. They make budget and reporting easier across many campaigns."},
-{t:"tip",x:"Cannibalization between your own ads is mostly a myth for beginners. Worry about it when you have three campaigns bidding on the same keyword with significant overlap and contradictory bids — not before."}
+{t:"goal",x:"Decide when to use a one-ASIN campaign, when to combine, and when a portfolio earns its complexity."},
+{t:"p",x:"A one-ASIN campaign is a single product in its own campaign. The data is clean, the bid is surgical, the report tells you one story. A multi-ASIN campaign is several products in one campaign, sharing budget and targeting. The data is mixed, the bid is average, the report tells you a story with a chorus. Beginners should default to one-ASIN because the data is the only thing they have, and clean data is worth more than saved clicks. Multi-ASIN earns its keep when the SKUs are close in margin, close in performance, and you have learned what each one does alone."},
+{t:"p",x:"Portfolios are folders that span campaigns, with shared reporting and budget controls. They are not folders in the file-system sense — they are a reporting layer above campaigns. Use them to group by objective (defense, growth, brand) or by product line (Kitchen, Phone Cases, Outdoor), so you can read performance at a higher level. The trap is creating a portfolio for every campaign because the UI lets you. Each portfolio should answer a question you actually ask — 'how is the kitchen line doing as a whole?' — not a question you will never ask."},
+{t:"p",x:"Cannibalization between your own ads is the most over-diagnosed problem in PPC. Yes, if three of your campaigns are bidding $0.80, $1.20, and $0.40 on the same exact keyword, the auction picks one, and the other two are wasted spend. Yes, that is real. But beginners see this and panic — they think any two ads on the same keyword is a problem. It is not. Cannibalization only matters when the bids are meaningfully different and the spend is meaningful enough to recover. Until you have three campaigns on the same term with conflicting bids, do not optimize for cannibalization. Optimize for scale."},
+{t:"split",a:{title:"Default to one-ASIN when",items:[
+"You are learning — clean data beats efficiency",
+"Margins differ a lot between SKUs",
+"The hero product deserves surgical bid control"
+]},b:{title:"Use a portfolio when",items:[
+"You want to read performance at a product-line level",
+"You have 5+ campaigns on the same objective",
+"You need a shared budget cap across campaigns"
+]}},
+{t:"mistake",items:[
+"Defaulting to multi-ASIN to 'save time' — the time you save at setup you spend forever in confused reports",
+"Creating a portfolio per campaign — the portfolio layer should compress signal, not duplicate it",
+"Panicking about cannibalization on day 3 — wait for meaningful overlap with conflicting bids",
+"Putting SKUs with different margins in one campaign — a single bid cannot serve both"
+]},
+{t:"tip",x:"One-ASIN campaigns are the boring default that wins. The fancy structure you can build later; the clean data you need now."}
 ]},
 {id:"m3l4",title:"Budget Isolation and Match-Type Separation",mins:7,blocks:[
-{t:"goal",x:"Use match-type separation and budget isolation to keep learning clean."},
-{t:"p",x:"Match-type separation means running one campaign per match type (Broad, Phrase, Exact) so the data is not mixed. Without it, an Exact winner can be hidden by Broad noise."},
-{t:"p",x:"Budget isolation means giving a research campaign its own small budget so its spending does not crowd out a proven Exact campaign. Each campaign's job gets its own dollars."},
-{t:"table",head:["Match type","Reach","Control","Use for"],rows:[
-["Broad","High","Low","Discovery"],
-["Phrase","Medium","Medium","Mid-funnel phrase targeting"],
-["Exact","Low","High","Proven winners, control, scale"]
+{t:"goal",x:"Use match-type separation and budget isolation to keep the data clean and the campaigns from competing with themselves."},
+{t:"p",x:"Match-type separation means running one campaign per match type for a given product: one Broad, one Phrase, one Exact. The reason is data, not aesthetics. When all three match types share a campaign, the auction picks one, the report shows a single row per keyword, and you cannot tell which match type produced the click. With three campaigns, each match type has its own row, its own CPC, its own CTR, its own CVR, and you can tune each one independently. Beginners do not need this. As soon as spend is meaningful, they do."},
+{t:"p",x:"Budget isolation is the same principle one level up: each campaign's job gets its own dollars. The Exact-winner campaign has its own budget, and the Broad-research campaign has its own smaller budget, and they do not compete for the same pool. The reason is that Broad eats money; if Broad and Exact share a budget, Broad wins on most days because Broad is broader, and Exact is starved. When Exact is starved, your proven terms are not serving, and your profitable keywords are not getting the impressions they have earned."},
+{t:"table",head:["Separation","What it solves","When you need it"],rows:[
+["Match type","Which match type is performing","As soon as you have data worth reading"],
+["Product","Different margins need different bids","When two SKUs share a campaign but not a margin"],
+["Purpose","Research spends without starving winners","From day 1 if research and performance share a budget"]
 ]},
-{t:"tip",x:"If a Broad campaign is eating 80% of the budget and Exact is starved, the data is telling you the bid is too high on Broad, or the budget is too small overall."}
-]}
-],
+{t:"formula",f:"Without separation: ACOS_aggregate = (sum spend) / (sum sales). One number, no story.",note:"With separation: ACOS_exact, ACOS_phrase, ACOS_broad. Three numbers, three decisions."},
+{t:"example",x:"Bamboo Cutting Board has 200 sales a month from PPC. You run one campaign, $400/day, all match types. After 30 days, ACOS is 32%. Looks fine. But inside the report, the 5% of clicks from Exact are doing 18% ACOS, and the 60% from Broad are doing 47% ACOS. You cannot see this from one campaign. Split it into three, and now you know to cut the Broad budget and double the Exact bid."},
+{t:"mistake",items:[
+"Mixing match types in one campaign when spend is over a few hundred a day — you are losing signal",
+"Sharing a budget between research and performance — research always wins, performance is starved",
+"Adding a new match-type campaign without a budget — it will inherit, and steal from the others",
+"Believing separation is overhead — separation is the only way to read the data clearly"
+]},
+{t:"tip",x:"If a Broad campaign is eating 80% of the budget and your Exact campaign is starved, the data is telling you the bid is too high on Broad, or the budget is too small overall. Either lower Broad or raise the total. Don't leave them sharing."}
+]},
+]},
 quiz:[
 {q:"Match-type separation means…",o:["One campaign per match type","All match types in one ad group","No match types","Negatives only"],a:0,e:"Separation keeps the data clean per match."},
 {q:"A good campaign name answers…",o:["The date only","Ad type, match, product, purpose","The budget","The CPC"],a:1,e:"A name should make the campaign self-explanatory."},
@@ -592,45 +644,92 @@ quiz:[
 {title:"Keyword Research and Search Intent",icon:"🔍",color:"#8B5CF6",img:IMG.lab,desc:"Seed keywords, modifiers, intent, clustering, and Brand Analytics.",
 lessons:[
 {id:"m4l1",title:"Keyword vs Search Term",mins:5,blocks:[
-{t:"goal",x:"Tell keywords from search terms, and explain why the distinction matters."},
-{t:"p",x:"A keyword is a word or phrase YOU target. A search term is what the CUSTOMER actually typed. Amazon matches your keyword (your targeting) against the customer's search term (the reality). The search-term report shows the reality."},
-{t:"tip",x:"The search-term report is where the truth lives. The keyword view is where the intent lives. Always read both."}
+{t:"goal",x:"Tell keywords from search terms, and explain why the distinction is the most important data concept in PPC."},
+{t:"p",x:"A keyword is a word or phrase that you target. A search term is what the customer actually typed into the search bar. You set the keyword; the customer types the search term; Amazon matches them inside the auction. The keyword is your hypothesis about what shoppers will type. The search term is the reality of what they typed. Most of the work in PPC is the gap between those two things."},
+{t:"p",x:"The search-term report shows every search term that triggered your ad, how many clicks it produced, what it cost, and whether it converted. This is the only report that tells you what shoppers really typed. Beginners optimize the keyword view (their own targeting); experienced managers optimize the search-term view (the customer's reality) and use it to update the keyword view. The lesson inside this lesson: a manager who never opens the search-term report is managing a guess."},
+{t:"table",head:["","Keyword","Search term"],rows:[
+["Who decides","You","The customer"],
+["What it is","Your targeting","Their actual query"],
+["Where to see it","Campaign view","Search-term report"],
+["Changes","When you edit","Every minute"]
+]},
+{t:"example",x:"You target the keyword 'bamboo cutting board large' on Phrase. The search-term report shows: 'bamboo cutting board large' (12 clicks, 4 sales), 'large bamboo cutting board set' (3 clicks, 0 sales), 'bamboo chopping board' (8 clicks, 1 sale), 'cutting board wood' (1 click, 0 sales). Three of those four terms are variants; one is unrelated. The keyword view would have shown you one row; the search-term report shows you four."},
+{t:"mistake",items:[
+"Optimizing the keyword view and never opening the search-term report — you are managing a guess",
+"Reading the keyword's CVR instead of the search term's CVR — they can differ by 5x",
+"Confusing the search-term report with the keyword report — the search-term report is downstream of the keyword report, and you need both",
+"Trusting the suggested keywords panel as a verdict — it is a starting point, not a final list"
+]},
+{t:"tip",x:"The search-term report is where the truth lives. The keyword view is where the intent lives. Read both, in that order, every week."}
 ]},
 {id:"m4l2",title:"Match Types Deep Dive",mins:7,blocks:[
-{t:"goal",x:"Pick the right match type for research versus control."},
-{t:"table",head:["Match","Behavior","Use it for"],rows:[
-["Broad","Includes close variants, loose order, plurals","Discovery. Initial research only."],
-["Phrase","Customer's phrase must include your phrase","Mid-funnel. Words in any order outside the phrase."],
-["Exact","Customer's phrase must be very close to yours","Proven winners. Highest control."]
+{t:"goal",x:"Pick the right match type for the job, and explain what 'Exact' actually means on Amazon."},
+{t:"p",x:"Match types are the most-misunderstood control in PPC. The common belief is that 'Broad is loose, Phrase is medium, Exact is strict', and this is roughly true. The common mistake is reading 'Exact' as a literal character-for-character match. Amazon's Exact is a tight match with close variants: plurals, common misspellings, related stems, and — controversially — some interpretive matches the system thinks are equivalent. A single keyword in Exact is rarely tight enough for a serious product. The right pattern is one keyword per Exact, with negatives around it."},
+{t:"p",x:"Broad is the loosest match Amazon allows. It will trigger on close variants, related phrases, and anything Amazon's system considers similar to your keyword. This is exactly what you want during discovery and exactly what you do not want during scale. Phrase is in between: the customer's phrase must contain your phrase, in any order, with words before or after. Phrase is the workhorse match type for a mid-funnel campaign. Exact is for control. The trap is to start with Exact because it sounds safe; with no data, Exact is also blind, and you will learn slowly."},
+{t:"table",head:["Match","Behavior","Use it for","Don't use it for"],rows:[
+["Broad","Includes close variants, loose order, plurals, related phrases","Discovery, initial research, ongoing horizon-scanning","Control, scale, profit-targeting"],
+["Phrase","Customer's phrase must include your phrase; words in any order outside","Mid-funnel, learning the customer's exact wording","Proven winners where you need surgical bids"],
+["Exact","Customer's phrase is a tight match with close variants","Proven winners, scale, surgical bid control","Discovery, learning, or any term with fewer than 30 clicks"]
 ]},
-{t:"p",x:"Exact match is not literal character-for-character. Amazon treats it as a tight match with close variants. A single keyword in Exact is rarely tight enough for a serious product."},
-{t:"example",x:"Keyword 'bamboo cutting board' Exact. Customers searching 'bamboo cutting board large' or 'bamboo cutting board set' may still match. Exact is tight, not strict."}
+{t:"example",x:"Keyword 'bamboo cutting board' on Exact. Shoppers searching 'bamboo cutting board large' or 'bamboo cutting board set' may still match — close variants, same intent. A shopper searching 'chopping board' will not match — different phrase, different intent, even if it means the same thing. Exact is tight, not strict. Treat it as 'I trust this keyword to convert; I am willing to pay more for it than I would for a guess.'" },
+{t:"formula",f:"Reach: Broad > Phrase > Exact. Control: Exact > Phrase > Broad. Cost per click: Exact > Phrase > Broad. Match type is a dial, not a switch.",note:"Pick by data state, not by default. No data = Phrase. Some data = Phrase + Exact winners. Lots of data = Exact + small Broad for discovery."},
+{t:"mistake",items:[
+"Believing Exact is character-for-character — it is a tight match with variants, and you need negatives around it",
+"Starting on Exact with no data — you will be right, slowly, instead of wrong, fast",
+"Running Phrase and Broad at the same bid as Exact — the bid should reflect the risk of each match type",
+"Skipping negatives around Exact — the variants that match Exact are also your main waste source"
+]},
+{t:"tip",x:"No data: Phrase. Some data: Phrase + Exact on the winners. Lots of data: Exact + a small Broad campaign for ongoing discovery. Match type is a dial, not a switch."}
 ]},
 {id:"m4l3",title:"Seed Keywords, Modifiers, Synonyms, Use Cases",mins:6,blocks:[
-{t:"goal",x:"Build a seed list of customer-language keywords from product facts."},
-{t:"p",x:"Start with the product. Name the product, the material, the size, the use case, the audience, the problem it solves. Each one is a seed direction."},
+{t:"goal",x:"Build a 50-term seed keyword bank from product facts, and grow it from there with data, not guessing."},
+{t:"p",x:"A seed keyword bank is the starting list you hand to Amazon's data before you have any search-term report to mine. It is built from product facts, not from search volume estimates. Name the product, name the material, name the size, name the use case, name the audience, name the problem it solves. Each fact is a seed direction. From each direction, generate 5-10 phrases. A 50-term list is the right size for a single product. Bigger lists come from data — from your own search-term report, from Brand Analytics, from competitor observation."},
+{t:"p",x:"The mistake is to build a 500-term list from autocomplete and call it research. It is not. It is guessing at scale. The right way: 50 terms from product facts, run them, see what shoppers actually type, mine the search-term report for the terms that work, and grow the list from real data. The 50 becomes 80 becomes 200, and every term past 50 is earned, not invented."},
 {t:"list",items:[
-"Product name: 'bamboo cutting board'",
-"Material or attribute: 'bamboo', 'eco friendly', 'large'",
-"Use case: 'for kitchen', 'for meat', 'for bread'",
-"Synonyms: 'chopping board', 'serving board', 'butcher block'",
-"Audience: 'for chefs', 'for small kitchens', 'gift for cooks'"
+"Product name: 'bamboo cutting board', 'bamboo chopping board'",
+"Material or attribute: 'bamboo', 'eco friendly', 'large', 'wooden', 'plastic-free'",
+"Size or spec: 'large', 'small', 'set of 2', 'with handle'",
+"Use case: 'for kitchen', 'for meat', 'for bread', 'for vegetables'",
+"Synonyms: 'chopping board', 'serving board', 'butcher block', 'carving board'",
+"Audience: 'for chefs', 'for small kitchens', 'gift for cooks'",
+"Problem solved: 'eco friendly', 'plastic free', 'non toxic'"
 ]},
-{t:"tip",x:"A 50-term keyword bank is the right starting size for a single product. Bigger lists come from data, not from guessing."}
+{t:"example",x:"Bamboo Cutting Board, large, 16x12, eco-friendly, gift-boxed. From product facts, a 50-term seed list: 'bamboo cutting board', 'bamboo chopping board', 'large cutting board', 'bamboo serving board', 'eco friendly cutting board', 'wooden cutting board', 'cutting board for meat', 'cutting board for bread', 'cutting board gift', 'butcher block bamboo', 'plastic free cutting board', 'non toxic cutting board', 'cutting board with handle', 'bamboo board set', 'large bamboo board'... The list is built from product truth, not from autocomplete."},
+{t:"mistake",items:[
+"Building a 500-term list from autocomplete and calling it research — it is guessing at scale",
+"Shipping a 50-term list to a campaign without grouping by intent — you will mix intent, and the bid will lie",
+"Skipping synonyms — shoppers call the same thing 4-5 different ways, and missing the synonym is missing the sale",
+"Using the same seed list for two unrelated products — each product deserves its own seed"
+]},
+{t:"tip",x:"A 50-term keyword bank is the right starting size for a single product. Bigger lists come from data, not from guessing. Build the seed, then let the data grow it."}
 ]},
 {id:"m4l4",title:"Volume vs Relevance, Brand Analytics, Clustering",mins:8,blocks:[
-{t:"goal",x:"Prioritize relevance over estimated volume, and cluster terms by intent."},
-{t:"p",x:"Search volume tells you how many shoppers search. Relevance tells you whether they will buy your product. A high-volume irrelevant term is more dangerous than a low-volume relevant one — it burns budget."},
+{t:"goal",x:"Prioritize relevance over estimated volume, use the right data sources, and cluster by intent."},
+{t:"p",x:"Search volume tells you how many shoppers search. Relevance tells you whether they will buy your product. The two are not the same. A high-volume irrelevant term is more dangerous than a low-volume relevant one — it burns budget on clicks that will never convert. A 200-volume term that converts at 30% ACOS is worth 10x more than a 20,000-volume term that converts at 80% ACOS. Beginners optimize for volume because volume is the number Amazon shows first. Experienced managers optimize for relevance because relevance is the number that pays the rent."},
+{t:"p",x:"The four data sources for keyword research, in order of trust: your own search-term report (the truth, because it is your data, on your product, with your conversion rate); Brand Analytics search-term and market-basket data (needs Brand Registry; aggregated, anonymized, and useful for top-of-funnel direction); competitor observation (look at the top 3 in the category and read their titles and bullets); Amazon autocomplete and 'related searches' (lowest trust, but free and always available). Your own data is the best predictor of your own future. Other people's data is a hint."},
+{t:"p",x:"Cluster by intent, not by spelling. A cluster is a group of terms that mean the same thing to the shopper — a long cutting board, a gift, an eco option, a meat-specific board. The cluster gets a single bid, a single landing page (when possible), and a single performance review. Clustering by spelling ('all the ones with 'bamboo'') is wrong because it mixes intent. A 'bamboo cutting board large' and a 'bamboo cutting board gift' are different intents; they want different things, they convert differently, they deserve different bids."},
 {t:"list",items:[
-"Amazon suggestions: autocomplete and 'related searches' on the search page",
-"Brand Analytics: search-term and market-basket data (needs Brand Registry)",
-"Prior search-term reports: your own data is the best predictor",
-"Competitor observation: what do the top 3 competitors target?"
+"Amazon suggestions: autocomplete and 'related searches' on the search page — free, lowest trust",
+"Brand Analytics: search-term and market-basket data — needs Brand Registry, more trustworthy",
+"Prior search-term reports: your own data — the best predictor of your own future",
+"Competitor observation: top-3 titles, bullets, and any visible targeting — directional"
 ]},
-{t:"p",x:"Cluster by intent, not by spelling. Group terms by what the shopper wants — a long cutting board, a gift, an eco option. Then decide which cluster deserves the most budget."},
-{t:"tip",x:"A term with no estimated volume is not a useless term. If it is in your search-term report with sales, it is real."}
+{t:"table",head:["Cluster","Sample terms","Intent","Bid posture"],rows:[
+["Long / large","bamboo cutting board large, big cutting board","Size intent","Mid bid, high volume"],
+["Gift","cutting board gift, gift for cooks","Occasion intent","Mid bid, seasonal"],
+["Eco","eco friendly cutting board, plastic free board","Value intent","Low to mid bid, niche"],
+["Material","wooden cutting board, bamboo board","Attribute intent","Mid bid, broad match"]
+]},
+{t:"example",x:"A term with no estimated volume — 'bamboo board for charcuterie' — is not a useless term. If it shows in your search-term report with 2 sales and 5 clicks, it is real, it is converting, and it deserves its own bid. Estimated volume is a forecast; your own conversions are a fact."},
+{t:"mistake",items:[
+"Picking a high-volume irrelevant term because volume is the number Amazon shows first — relevance is the number that pays",
+"Clustering by spelling instead of intent — the cluster needs to share an intent, not a substring",
+"Trusting autocomplete as a complete list — autocomplete is what Amazon wants you to bid on, not necessarily what converts",
+"Ignoring Brand Analytics because it is hard to read — it is one of the most underused, most accurate data sources"
+]},
+{t:"tip",x:"A term with no estimated volume is not a useless term. If it is in your search-term report with sales, it is real. Trust your own data over Amazon's forecast."}
 ]}
-],
+]},
 quiz:[
 {q:"A search term is…",o:["Your keyword","What the customer typed","A bid","A budget"],a:1,e:"Customer language, not yours."},
 {q:"Exact match is…",o:["Character-for-character literal","A tight match with close variants","Random","Only plurals"],a:1,e:"Exact is tight, not strict."},
@@ -640,77 +739,168 @@ quiz:[
 {title:"Automatic Targeting",icon:"🤖",color:"#EC4899",img:IMG.console,desc:"Four auto groups, bid segmentation, and reading the search-term report.",
 lessons:[
 {id:"m5l1",title:"The Four Auto Groups",mins:6,blocks:[
-{t:"goal",x:"Name the four automatic-targeting groups and what each one does."},
-{t:"table",head:["Group","What it targets","Use it for"],rows:[
-["Close match","Searches closely related to your product","Core research, tightest auto group"],
-["Loose match","Searches loosely related to your product","Discovery, broader research"],
-["Substitutes","Competitor products similar to yours","Competitive research"],
-["Complements","Products shoppers buy alongside yours","Cross-sell research"]
+{t:"goal",x:"Name the four automatic-targeting groups, and explain what each one actually targets and what it is good for."},
+{t:"p",x:"Amazon's automatic targeting is one campaign with four ad groups, each running on a different segment of shopper behavior. The four groups are Close match, Loose match, Substitutes, and Complements. They share the same product ads, but each group targets a different kind of shopper search. Treating them as one campaign is a mistake; treating them as four separate research streams is the right mental model."},
+{t:"p",x:"Close match targets searches that are tightly related to your product — same category, same intent, often the same words. Loose match targets searches loosely related to your product — adjacent categories, nearby intent, often with different words but a similar shopper. Substitutes targets competitor products similar to yours — the shopper is on a competitor's page or searching a competitor's brand. Complements targets products that shoppers buy alongside yours — the shopper is on a complementary page, often in a different category."},
+{t:"table",head:["Group","Targets","Shopper intent","Research value"],rows:[
+["Close match","Tightly related searches","Looking for what you sell","High — close to your core"],
+["Loose match","Loosely related searches","Open, comparing options","Medium — discovers adjacent intent"],
+["Substitutes","Competitor products","Already on a competitor's page","High — competitive data"],
+["Complements","Adjacent products","Already bought, considering more","Medium — cross-sell data"]
 ]},
-{t:"tip",x:"A common mistake is to leave all four groups at the same bid. Each group has a different job and deserves its own bid."}
+{t:"example",x:"Bamboo Cutting Board. Close match fires on 'bamboo cutting board', 'wooden chopping board'. Loose match fires on 'kitchen cutting board', 'serving board'. Substitutes fires on searches for competitor brands and on competitor product pages. Complements fires on 'kitchen knife set', 'cutting board oil', 'chef's apron'. The four groups are not the same audience, and they are not the same value to you."},
+{t:"mistake",items:[
+"Setting all four groups at the same bid — each group has a different job and a different cost-per-click reality",
+"Pausing the substitutes group because it 'looks competitive' — that is where the competitor's customers are",
+"Reading zero impressions on complements as 'this group doesn't work' — it works for some products, not for others, and the first two weeks are the learning period",
+"Treating auto as a finished campaign — auto is a research tool, not a destination"
+]},
+{t:"tip",x:"The four groups are four research streams. Read the search-term report for each one separately. The data will tell you which group deserves which bid."}
 ]},
 {id:"m5l2",title:"Auto Bid Segmentation by Group",mins:6,blocks:[
-{t:"goal",x:"Set a different bid for each auto group based on its job."},
-{t:"p",x:"Start with the close-match group at your normal bid, loose match lower, substitutes lower, complements low. As data comes in, raise the bid on whichever group is producing sales and lower the bid on the rest."},
-{t:"example",x:"Close $0.80, Loose $0.50, Substitutes $0.60, Complements $0.30. After two weeks, if close and substitutes are profitable, raise those; lower the rest."},
-{t:"tip",x:"If a group produces nothing in 14 days, do not pause it — that is research, not a verdict. Lower its bid and keep watching."}
+{t:"goal",x:"Set a different bid for each auto group based on its job, and tune the bids as the data comes in."},
+{t:"p",x:"The right starting bid structure for the four groups depends on your product's economics and the auction. A workable default: close match at your normal bid, loose match lower (looser intent, more waste), substitutes at the same level as close (the competitor's shopper is high-intent), complements low (cross-sell, lower intent, lower bid). Tune from there. The principle: each group gets the bid that reflects its risk and its reward."},
+{t:"p",x:"The data will move the bids over time. After two weeks, look at the search-term report per group. If close and substitutes are producing sales at a healthy ACOS, raise those bids. If loose is burning money on irrelevant terms, lower it. If complements is silent, leave it low — it may be that your product has no complementary category, or it may be that the bid is too low to surface data. Either way, do not pause it yet; you are still learning."},
+{t:"example",x:"Bamboo Cutting Board, default: close $0.80, loose $0.50, substitutes $0.60, complements $0.30. After 14 days, close produced 12 sales at 28% ACOS, loose produced 4 sales at 65% ACOS, substitutes produced 6 sales at 22% ACOS, complements produced 0 sales. New bids: close $0.90, loose $0.30, substitutes $0.85, complements $0.20. Substitutes jumped because competitor shoppers convert well; loose dropped because the terms were not converting."},
+{t:"formula",f:"Initial bid posture: Close = base bid, Substitutes = base bid, Loose = base × 0.6, Complements = base × 0.4",note:"These are starting points, not rules. Let the data move the bids."},
+{t:"mistake",items:[
+"Setting the same bid on all four groups — they have different intent, different cost, different reward",
+"Lowering a group to zero when it produces no sales in 7 days — that is research, not a verdict",
+"Raising a group because it produced sales — the question is not 'did it sell' but 'was the ACOS acceptable'",
+"Pausing a group because the ACOS is high — high ACOS in a research group is expected; what matters is the data it produces"
+]},
+{t:"tip",x:"If a group produces nothing in 14 days, do not pause it — that is research, not a verdict. Lower its bid and keep watching. The data is the answer; you are still waiting for the data."}
 ]},
 {id:"m5l3",title:"Auto as Research: Reading the Report",mins:6,blocks:[
 {t:"goal",x:"Read the search-term report from an auto campaign and decide what to do with each term."},
-{t:"p",x:"An auto campaign's main job is to surface real customer search terms. Read the search-term report weekly. Each term is a row that needs a decision: promote, negate, lower, or watch."},
-{t:"split",a:{title:"Use the report for",items:["Discovering customer language","Finding long-tail winners","Spotting irrelevant spend"]},b:{title:"Don't use it for",items:["Verdict on the auto campaign itself","Permanent negatives from 3 clicks","Pausing auto entirely after one bad week"]}}
+{t:"p",x:"An auto campaign's main job is to surface real customer search terms. The search-term report is the deliverable. Read it weekly. Each row is a search term that triggered your ad, with clicks, spend, sales, and ACOS. Each row needs a decision. The four decisions, in order of frequency: keep watching (small sample, let it run); promote to manual (the term is converting and deserves its own controlled bid); negate (the term is irrelevant and burning money); lower the bid (the term is converting but at an unacceptable ACOS, and a lower bid will still capture some sales at a better cost)."},
+{t:"p",x:"The biggest mistake is to use the search-term report as a verdict on the auto campaign. The auto campaign is the research tool; the search-term report is its output. A 'bad' auto campaign that produces 30 irrelevant search terms and 3 winners is a great auto campaign — it found 3 winners. An 'amazing' auto campaign with 5% ACOS that produces no new terms is a bad auto campaign — it is not generating learning. Judge auto by the quality of its search-term rows, not by its own ACOS."},
+{t:"split",a:{title:"Use the report for",items:[
+"Discovering customer language — what they actually type",
+"Finding long-tail winners that the seed list would have missed",
+"Spotting irrelevant spend before it becomes a problem",
+"Building the seed list for a manual campaign"
+]},b:{title:"Don't use it for",items:[
+"Verdict on the auto campaign itself — judge by the rows, not the ACOS",
+"Permanent negatives from 3 clicks — one term on 3 clicks is not enough data",
+"Pausing auto entirely after one bad week — one bad week is one week, not a verdict",
+"Reading 7-day ACOS on a research campaign — research needs 30+ days to be meaningful"
+]}},
+{t:"mistake",items:[
+"Negating a term after 2 clicks because the ACOS is high — 2 clicks is not data",
+"Promoting a term after 1 sale out of 4 clicks — a sample of one is not a trend",
+"Negating terms the auto campaign already learned from — if the campaign is not spending on the term, the negative is redundant",
+"Reading the report once a month — by then, irrelevant spend has had 30 days to accumulate"
+]},
+{t:"tip",x:"Read the search-term report every week, every auto campaign. If you can read it every Monday morning, you will catch problems on Tuesday instead of next month."}
 ]},
 {id:"m5l4",title:"Overlap and Negative Controls",mins:6,blocks:[
-{t:"goal",x:"Manage overlap between auto and manual campaigns."},
-{t:"p",x:"Auto and manual campaigns can both bid on the same customer search. The auction picks one. To learn what works in manual without auto competition, add negative exact for the proven manual terms inside the auto campaign."},
+{t:"goal",x:"Manage overlap between auto and manual campaigns so each campaign owns its terms cleanly."},
+{t:"p",x:"Auto and manual campaigns can both bid on the same customer search. The auction picks one. The ad shows; the shopper clicks; the click is attributed to one campaign, not both. The result: the campaign that did not win the auction has no data on that term. This is not a bug; it is how the system is built. The way to manage it is with negatives."},
+{t:"p",x:"The pattern: when a manual Exact campaign proves a term profitable, promote it to its own row in the manual campaign and add the term as a negative exact inside the auto campaign. Now the manual campaign owns the term cleanly, and the auto campaign continues to discover new terms. The auto campaign's job is to find; the manual campaign's job is to control. The negative is the handoff."},
 {t:"list",items:[
-"Promote an auto winner to a manual Exact campaign",
+"Run a manual Exact campaign on a proven term",
 "Add the term as negative exact inside the auto campaign",
-"Now the manual campaign owns the term cleanly",
-"Auto continues to discover new terms"
+"Now the manual campaign owns the term without auction competition from auto",
+"Auto continues to discover new terms and surface new winners"
+]},
+{t:"example",x:"Bamboo Cutting Board, auto campaign surfaces 'bamboo cutting board large' with 14 sales at 22% ACOS. Promote it: create a manual Exact campaign, add the term, bid $0.90. Then in the auto campaign, add 'bamboo cutting board large' as a negative exact. The auto campaign no longer bids on that term; the manual campaign owns it. The auto campaign's search-term report will surface new terms, some of which will become the next promoted winners."},
+{t:"mistake",items:[
+"Running auto and manual on the same term with no negatives — the auction picks one, and the other campaign has no data on that term",
+"Negating the term in the manual campaign instead of the auto — auto is the research tool, and it should keep discovering",
+"Adding a negative before the manual campaign is set up — the term spends a few days in limbo, neither owned nor discovered",
+"Believing overlap is a bug to avoid — overlap is how you graduate a term into a controlled campaign, and the negatives are the tool"
 ]},
 {t:"tip",x:"Overlap is not a bug — it is how you graduate a discovered term into a controlled campaign. The negatives are the tool, not a problem to avoid."}
 ]}
-],
-quiz:[
-{q:"The 'substitutes' auto group targets…",o:["Customers searching for your brand","Competitor products similar to yours","Random terms","Top of search only"],a:1,e:"Substitutes is competitive research."},
-{q:"Best practice for auto bids by group is…",o:["Same bid for all groups","Different bids, tuned over time","Zero on all","Highest on loose match"],a:1,e:"Each group has a different job."},
-{q:"When a manual Exact wins, you should…",o:["Delete the auto campaign","Negate the term in auto, keep auto running","Raise the auto bid","Pause the manual campaign"],a:1,e:"Negatives in auto let manual own the term."}
 ]},
-
-{title:"Manual Keyword Targeting",icon:"🎯",color:"#F59E0B",img:IMG.console,desc:"Match types in practice, research vs performance, and launch bids.",
-lessons:[
 {id:"m6l1",title:"Match Types in Practice",mins:6,blocks:[
-{t:"goal",x:"Pick a match type based on the data you have, not on a default."},
-{t:"p",x:"No data: start with Phrase to learn what the customer types. Some data: keep Phrase and add Exact for proven winners. Lots of data: tighten to Exact for control, keep a small Broad campaign for ongoing discovery."},
-{t:"split",a:{title:"Choose Exact when",items:["The term is proven profitable","You need to control spend tightly","You are scaling a winner"]},b:{title:"Choose Broad when",items:["You have no data and want discovery","You want to find new variations","You can afford some waste"]}}
+{t:"goal",x:"Pick a match type based on the data you have, not on a default, and explain how the choice changes as the data grows."},
+{t:"p",x:"Match type is a function of data state, not of personal preference. No data: you do not know what shoppers will type, so you need a match type that surfaces variety — Phrase gives you that, because it will trigger on phrases that contain your seed term, in any order, with words before or after. Some data: you know which terms convert; promote those to Exact, keep Phrase running for the long tail. Lots of data: you know your winners; tighten to Exact for control, and run a small Broad campaign for ongoing discovery so the account keeps learning new terms."},
+{t:"p",x:"The trap is to choose a match type and leave it. Beginners either default to Exact (because it sounds safe) or default to Broad (because it sounds exciting). Both defaults are wrong. The right default is a function of time on the account: the longer you have run, the more you should be on Exact; the less time you have run, the more you should be on Phrase. Broad is for an active discovery campaign, not for the workhorse targeting of an established account."},
+{t:"split",a:{title:"Choose Exact when",items:[
+"The term is proven profitable (30+ clicks, healthy ACOS)",
+"You need to control spend tightly to hit a target ACOS",
+"You are scaling a winner and the bid matters",
+"The shopper intent is clear and the term is short"
+]},b:{title:"Choose Broad when",items:[
+"You have no data and want to discover the customer's wording",
+"You want to find new variations of a known term",
+"You can afford some waste in exchange for breadth",
+"You run a small ongoing discovery campaign alongside Exact"
+]}},
+{t:"example",x:"Bamboo Cutting Board, day 1: run Phrase on the seed list of 50 terms. Day 30: review the search-term report. The 8 terms that converted are now promoted to Exact with their own bids. The 12 terms that produced clicks but no sales are negated. Phrase continues with the remaining 30. Day 60: another 4 terms earn promotion. Day 90: the workhorse is mostly Exact, with a small Broad campaign running on the most general term for ongoing discovery."},
+{t:"mistake",items:[
+"Defaulting to Exact because it sounds safe — with no data, you will be right slowly instead of wrong fast",
+"Defaulting to Broad because it sounds exciting — you will burn budget on terms you should not be bidding on",
+"Leaving the match type alone after the first choice — match type is a function of data state, and the data state changes",
+"Promoting a term to Exact after 5 clicks — promote after 30, with healthy ACOS"
+]},
+{t:"tip",x:"Match type is a function of data state, not of personal preference. No data: Phrase. Some data: Phrase + Exact winners. Lots of data: Exact + small Broad for discovery."}
 ]},
 {id:"m6l2",title:"Research vs Performance Campaigns",mins:6,blocks:[
-{t:"goal",x:"Run research and performance in separate campaigns with different jobs."},
-{t:"p",x:"A research campaign's job is discovery — auto and Broad with small bids, separate budget, separate naming. A performance campaign's job is control — Phrase and Exact, with bid rules tied to ACOS targets."},
-{t:"tip",x:"Mixing research and performance in one campaign makes both worse. The performance campaign gets polluted by research noise; the research campaign gets starved by performance spend."}
+{t:"goal",x:"Run research and performance in separate campaigns with different jobs, and explain what each one is for."},
+{t:"p",x:"A research campaign's job is discovery. It runs auto and Broad match with small bids, in a separate campaign with a separate budget, with a separate name (something like 'SP-Research'). The expected output is a stream of new search terms, some winners, some irrelevant. The expected ACOS is high, because the goal is data, not profit. The right time horizon is 30+ days. The right metric is 'how many new terms did this surface?' not 'what was the ACOS?'."},
+{t:"p",x:"A performance campaign's job is control. It runs Phrase and Exact on proven terms, with bid rules tied to ACOS targets, in a separate campaign with a separate name (something like 'SP-Performance'). The expected output is profit. The expected ACOS is at or below break-even. The right time horizon is weekly. The right metric is the ACOS and the volume of attributable sales. Mixing research and performance in one campaign makes both worse — performance gets polluted by research noise, research gets starved by performance spend."},
+{t:"p",x:"The right way to bridge them: the research campaign surfaces winners; promote them to the performance campaign; negate them in the research campaign. Now the performance campaign owns the term cleanly, and the research campaign continues to discover. Two campaigns, two jobs, two budgets, two names, one stream of learning. The auto/manual split is the same idea, applied to the auto vs manual boundary."},
+{t:"split",a:{title:"Research campaign",items:[
+"Auto and Broad",
+"Small bid, separate budget",
+"Goal is terms, not profit",
+"30+ day horizon",
+"Judged by quality of search-term rows"
+]},b:{title:"Performance campaign",items:[
+"Phrase and Exact on proven terms",
+"Optimized bid, separate budget",
+"Goal is profit at target ACOS",
+"Weekly horizon",
+"Judged by ACOS and volume"
+]}},
+{t:"mistake",items:[
+"Mixing research and performance in one campaign — performance gets polluted, research gets starved",
+"Reading the research campaign's ACOS as a verdict — high ACOS in research is expected and informative",
+"Stopping the research campaign when the performance campaign is profitable — research is the source of next quarter's winners",
+"Promoting a term from research to performance on 4 clicks — promote on 30+ with healthy ACOS"
+]},
+{t:"tip",x:"Two campaigns, two jobs, two budgets, two names. The research campaign finds; the performance campaign controls. The handoff is the promotion."}
 ]},
 {id:"m6l3",title:"Single-Keyword vs Grouped Ad Groups",mins:6,blocks:[
-{t:"goal",x:"Decide when one keyword per ad group is useful, and when it is excessive."},
-{t:"p",x:"Single-keyword ad groups give maximum control and clean data. They are useful for high-spend terms where you want to tune the bid precisely. They are excessive for long-tail clusters where the spend does not justify the structure."},
-{t:"table",head:["Approach","Best for","Cost"],rows:[
-["Single keyword ad group","High-spend winners, exact control","More campaigns to manage"],
-["Grouped ad group","Long-tail clusters, similar intent","Less work, slightly less data clarity"]
+{t:"goal",x:"Decide when one keyword per ad group is useful, and when it is excessive overhead."},
+{t:"p",x:"A single-keyword ad group is a manual ad group with one keyword. The benefit is maximum control: the bid is surgical, the data is clean, the term is observable in isolation. The cost is overhead: every ad group is a unit of management, and ten single-keyword ad groups take ten times the management of one ten-keyword ad group. The right time for single-keyword ad groups is when the term is high-spend and the bid needs to be tuned precisely — a top-3 term for your product, where a $0.05 bid change is real money."},
+{t:"p",x:"A grouped ad group is a manual ad group with several keywords that share intent. The benefit is less management overhead; the cost is the bid is average, and you cannot tune individual terms without the others. The right time for grouped ad groups is when the spend is too small to justify the structure — a long-tail cluster of similar-intent terms where individual bid control does not matter. The right default for most campaigns: grouped ad groups, with single-keyword ad groups created only for terms that earn them."},
+{t:"table",head:["Approach","Best for","Cost","When to use"],rows:[
+["Single keyword","High-spend winners, exact control","More campaigns to manage","Term is in top-3 by spend and bid matters"],
+["Grouped ad group","Long-tail clusters, similar intent","Less work, slightly less data clarity","Default for most campaigns and most terms"]
 ]},
-{t:"tip",x:"Default to grouped ad groups. Split out a single keyword only when the spend is meaningful and the bid needs surgical control."}
+{t:"example",x:"Bamboo Cutting Board. The 5 terms that produce 70% of the spend (top-3 terms plus two close variants) are split into 5 single-keyword ad groups with surgical bids. The remaining 30 terms (long tail) sit in 2 grouped ad groups by intent cluster — one cluster for size-related, one for use-case-related. Total ad groups: 7, not 35. The structure is earned by the spend, not applied uniformly."},
+{t:"mistake",items:[
+"Creating single-keyword ad groups for every term — overhead will eat the time you save on tuning",
+"Refusing to split out a top-3 term because 'all ad groups should look the same' — the structure should match the spend, not the philosophy",
+"Grouping terms with different intents into one ad group — the bid becomes a compromise, and a compromise is a lie",
+"Restructuring mid-flight because the data shifted — wait 30 days before changing the structure"
+]},
+{t:"tip",x:"Default to grouped ad groups. Split out a single keyword only when the spend is meaningful and the bid needs surgical control. The structure should earn its keep."}
 ]},
 {id:"m6l4",title:"Launch Bids and Placement Expectations",mins:6,blocks:[
-{t:"goal",x:"Set a safe launch bid and know what to expect in week 1."},
-{t:"p",x:"A safe launch bid is around the suggested bid Amazon shows, or slightly below. Do not start above it — you have no data to justify a high bid yet. Expect the first week to produce mostly learning, not profit."},
+{t:"goal",x:"Set a safe launch bid, and know what to expect in week 1, week 2, and week 4 of a new campaign."},
+{t:"p",x:"A safe launch bid is around the suggested bid Amazon shows in the campaign creation flow, or slightly below. The reasoning: you have no data to justify a high bid yet. Starting above the suggested bid is a bet that you know better than Amazon's estimate, and most new managers do not. Start at or slightly below; let the data tell you whether to raise. The most common beginner mistake is reading week 1 silence as failure. It is not. It is the auction learning who you are."},
+{t:"p",x:"The four-week arc: Day 1-3, low impressions, low clicks, almost no orders. The auction is figuring out your relevance; the data is not yet meaningful. Day 4-7, the search-term report starts to look like real shopper language. Your data is starting to mean something. Week 2, you have enough data to make one careful change. Week 4, the structure decisions are starting to compound — match type, bid, negative list, the campaign is taking shape. The trap is to act on day-2 silence. The right move is to wait. Patience in week 1 is the price of good decisions in week 4."},
 {t:"list",items:[
-"Day 1–3: low impressions, low clicks, almost no orders",
-"Day 4–7: search-term report starts to look like real shopper language",
-"Week 2: you have enough data to make one careful change",
-"Week 4: structure decisions are starting to compound"
+"Day 1-3: low impressions, low clicks, almost no orders — the auction is learning",
+"Day 4-7: search-term report starts to look like real shopper language — data is starting to mean something",
+"Week 2: enough data to make one careful change — one change, not five",
+"Week 4: structure decisions are starting to compound — match type, bid, negatives"
 ]},
-{t:"tip",x:"The most common beginner mistake is reading week 1 silence as failure. It is not. It is the auction learning who you are."}
+{t:"example",x:"Bamboo Cutting Board, day 1, $0.85 suggested bid. You launch at $0.75. Day 1-3: 800 impressions, 12 clicks, 1 sale, $9 spend. Day 4-7: 4,200 impressions, 96 clicks, 8 sales, $72 spend. Search-term report shows 'bamboo cutting board large', 'eco cutting board', 'wooden chopping board' as the top 3. Week 2 decision: promote 'bamboo cutting board large' to Exact, negate 'cutting board plastic'. One change, not five."},
+{t:"mistake",items:[
+"Starting the bid above the suggested bid because 'I want top of search' — you have no data to justify that bet",
+"Reading day 1-3 silence as a failure — it is the auction learning, not the auction rejecting",
+"Making 5 changes in week 2 because the data is finally interesting — one careful change per week, not five",
+"Killing the campaign at day 7 because the ACOS is high — high ACOS in week 1 is the noise of small samples; wait for week 4"
+]},
+{t:"tip",x:"The most common beginner mistake is reading week 1 silence as failure. It is not. It is the auction learning who you are. Patience in week 1 is the price of good decisions in week 4."}
 ]}
-],
+]},
 quiz:[
 {q:"Best default for a beginner with no data?",o:["Exact only","Phrase or Exact","Broad only","No targeting"],a:1,e:"Tight enough to learn, loose enough to discover."},
 {q:"Research and performance campaigns should be…",o:["Mixed together","Separate, with different jobs","The same campaign","Paired with the same budget"],a:1,e:"Separation keeps the data clean."},
