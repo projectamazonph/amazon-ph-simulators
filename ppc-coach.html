@@ -1105,50 +1105,96 @@ quiz:[
 {title:"Search-Term Analysis and Negatives",icon:"🕵️",color:"#0EA5E9",img:IMG.triage,desc:"Targeting vs search-term report, harvesting, and click thresholds.",
 lessons:[
 {id:"m9l1",title:"Reading the Search Term Report",mins:6,blocks:[
-{t:"goal",x:"Read a search-term report and tell winners from wasters from maybes."},
+{t:"goal",x:"Read a search-term report and tell winners from wasters from maybes, and explain the four patterns that cover 90% of decisions."},
+{t:"p",x:"The search-term report is the customer telling you what they typed. Sort by spend, highest first — the biggest spend is the biggest decision. Then walk each row through four patterns. A waster: high clicks, zero or 1 sale, irrelevant term. A winner: any clicks, steady sales, ACOS below margin. A maybe: under 10 clicks, unclear. A mixed: medium clicks, some sales, relevant but expensive. The patterns overlap at the edges, but the four cover the bulk of decisions and stop you from inventing a new category every week."},
+{t:"p",x:"The action is not on the row — the action is on the campaign. A waster gets added as a negative at the ad-group or campaign level (one click and the negative is in force for the whole campaign). A winner gets promoted to Exact (so the spend is concentrated on a high-confidence match). A maybe gets watched for another week. A mixed gets a lower bid and stays. The four actions, the four patterns, the same workflow every week."},
 {t:"table",head:["Pattern","Clicks","Sales","Read","Action"],rows:[
 ["Waster","High","Zero or 1","Irrelevant term","Add as negative"],
 ["Winner","Any","Steady, ACOS under margin","Strong term","Promote to Exact"],
 ["Maybe","Under 10","Unclear","Too little data","Watch for another week"],
 ["Mixed","Medium","Some","Relevant but expensive","Lower bid, keep"]
 ]},
-{t:"tip",x:"Sort the report by spend, highest first. The biggest spend is the biggest decision."}
+{t:"example",x:"Bamboo Cutting Board, 30-day report, sorted by spend. Top: 'free cutting board' — 28 clicks, 0 sales, $24 spend. Waster. Negative exact. Second: 'bamboo cutting board' — 18 clicks, 4 sales, $14 spend, 19% ACOS. Winner. Promote to Exact. Third: 'eco friendly board' — 9 clicks, 0 sales, $7 spend. Maybe. Watch. Fourth: 'wooden board large' — 12 clicks, 1 sale, $9 spend, 86% ACOS. Mixed. Lower bid 25%, keep."},
+{t:"mistake",items:[
+"Reading the report by impression count instead of spend — spend is the real risk; impressions are free",
+"Treating 'maybe' as 'waster' and negating it — the term has not had a chance; give it another week",
+"Treating 'winner' as 'scale to high bid' — promote to Exact first; raising the bid comes later if the data holds",
+"Optimizing once a month instead of once a week — the data is the same every 7 days, but the actions compound weekly"
+]},
+{t:"tip",x:"Sort by spend, highest first. The biggest spend is the biggest decision. The report is a list of decisions, not a list of terms."}
 ]},
 {id:"m9l2",title:"Targeting Report vs Search-Term Report",mins:5,blocks:[
-{t:"goal",x:"Tell the targeting report from the search-term report and use both."},
-{t:"p",x:"Targeting report shows the keywords or ASINs YOU targeted and how they performed. Search-term report shows the actual customer queries that triggered your ads. The targeting report tells you what you asked for; the search-term report tells you what you got."},
-{t:"tip",x:"If you optimize only the targeting report, you miss discovery. The search-term report is where new keywords come from."}
+{t:"goal",x:"Tell the targeting report from the search-term report and explain which report answers which question."},
+{t:"p",x:"Two reports, two questions. The targeting report shows the keywords or ASINs you asked for and how each performed — did the match you chose work? The search-term report shows the actual customer queries that triggered your ads — what did the shopper actually type? The targeting report tells you what you asked for; the search-term report tells you what you got. The two reports together tell you whether to adjust the targets (you asked wrong), adjust the queries (the customers surprised you), or both."},
+{t:"p",x:"Optimizing the targeting report alone is a half-optimization. You see that 'bamboo cutting board' Broad has 18% ACOS and you raise the bid, but you never see the 14 irrelevant phrases Broad let in. The search-term report is the one that produces new keywords (the harvest) and new negatives (the cleanup). The targeting report is the one that confirms the harvest worked after you have promoted. The order is: search-term first, targeting second."},
+{t:"example",x:"Targeting report, 30 days. 'bamboo cutting board' Broad: 80 clicks, 9 sales, 24% ACOS. 'cutting board' Broad: 200 clicks, 14 sales, 31% ACOS. Both look healthy. Now the search-term report, 30 days, on the same campaign. 'free cutting board' 28 clicks, 0 sales (waster). 'bamboo cheese board' 18 clicks, 4 sales, 19% ACOS (winner, should be Exact). 'cutting board plastic' 30 clicks, 0 sales (waster). The targeting report said everything was fine. The search-term report said two terms should be negated and one should be promoted. The two reports are not the same report."},
+{t:"mistake",items:[
+"Optimizing the targeting report and never looking at the search-term report — you will miss the discovery and the wasters",
+"Optimizing the search-term report without ever reading the targeting report — the targeting report is the one that tells you whether your match types are working",
+"Assuming Broad match is broken because it has more wasters than Exact — Broad lets more in, and more wasters is the cost of the discovery; the net of discovery minus cleanup is positive when the workflow runs weekly",
+"Conflating 'keyword' and 'search term' — keyword is what you targeted; search term is what the customer typed. The two are not the same word"
+]},
+{t:"tip",x:"Search-term first, targeting second. The search-term report is where new keywords come from. The targeting report is where you confirm the harvest worked."}
 ]},
 {id:"m9l3",title:"Winners, Wasters, and Click Thresholds",mins:7,blocks:[
-{t:"goal",x:"Apply a click threshold before deciding on a search term."},
-{t:"p",x:"A click threshold is the minimum clicks you want before making a confident call. Common thresholds: 10 clicks for a 'maybe' to be judged, 30 clicks for a verdict. Below the threshold, you are reading noise."},
+{t:"goal",x:"Apply a click threshold before deciding on a search term, and explain why under-10 is noise and 30+ is signal."},
+{t:"p",x:"A click threshold is the minimum number of clicks a search term needs before you make a confident call. The reason is statistical: a 2-click sample has a 50% chance of being all-or-nothing by luck. A 10-click sample is at the edge of meaningful. A 30-click sample is the smallest that gives you a stable conversion rate. Below 10 clicks, you are reading noise, and the noise will mislead you. Above 30 clicks, you are reading signal, and the signal is a verdict. The threshold is not a rule; it is a confidence level."},
+{t:"p",x:"The three zones of confidence. Under 10 clicks: low confidence, watch, do not act. 10-30 clicks: medium confidence, one careful change, give it a week. 30+ clicks: high confidence, trust the trend, act on it. The most common beginner error is to treat 10 clicks as a verdict. It is the bottom edge of meaningful, not the end of a useful sample. Another common error is the opposite — refusing to act on 200 clicks because the ACOS is stable. The data is telling you the truth; the data is not changing next week."},
 {t:"table",head:["Clicks","Confidence","Action"],rows:[
 ["Under 10","Low","Watch. Do not act."],
 ["10–30","Medium","One careful change, give it a week."],
 ["30+","High","Trust the trend. Act on it."]
 ]},
+{t:"example",x:"Bamboo Cutting Board, 30-day report. Term A: 'eco cutting board' — 4 clicks, 1 sale, 22% ACOS. Looks like a winner. Under 10 clicks. Watch. Term B: 'eco cutting board' — 28 clicks, 4 sales, 26% ACOS. Under 30. Medium confidence. One careful change (promote to Exact), review in 7 days. Term C: 'eco cutting board' — 65 clicks, 9 sales, 24% ACOS. High confidence. Promote to Exact, raise bid 10%, log the change. Three rows, three different actions, all on the same term at different sample sizes."},
 {t:"mistake",items:[
-"Negating a term after 3 clicks and 1 sale",
-"Promoting a term with 1 sale on 4 clicks as a 'winner'",
-"Reading one week of data as a verdict"
-]}
+"Negating a term after 3 clicks and 1 sale — the 1 sale is a sample of 1, the 0 is a sample of 2, neither is the trend",
+"Promoting a term with 1 sale on 4 clicks as a 'winner' — promoting noise is worse than waiting, because the bid compounds",
+"Reading one week of data as a verdict — a 7-day sample is half a normal click threshold; the verdict needs 14-30 days",
+"Refusing to act on 100+ clicks because the data might change — it will not change much; 100+ is high confidence"
+]},
+{t:"tip",x:"Under 10 clicks is noise. 10-30 is medium — one careful change, give it a week. 30+ is signal — trust the trend. The threshold is not a rule; it is a confidence level."}
 ]},
 {id:"m9l4",title:"Negative Exact vs Negative Phrase",mins:5,blocks:[
-{t:"goal",x:"Pick the right negative match type for the situation."},
-{t:"p",x:"Negative exact blocks the single term. Negative phrase blocks the phrase and any search that contains it. Use negative exact for surgical blocking; use negative phrase for a cluster of irrelevant searches."},
-{t:"example",x:"'free bamboo board' is irrelevant → negative exact. 'free cutting board' (any free) → negative phrase."}
+{t:"goal",x:"Pick the right negative match type for the situation, and explain the cost of over-negating with phrase."},
+{t:"p",x:"Two flavors of negative. Negative exact blocks the single term — 'free bamboo board' gets blocked, but 'bamboo board free' still gets through. Negative phrase blocks the phrase and any search that contains it in order — 'free bamboo board' blocks 'bamboo board free' and 'best free bamboo board for kids' and every other variant with the words in that order. The two are different tools for different problems: exact is surgical, phrase is cluster-level."},
+{t:"p",x:"The default is negative exact. The reason is the cost of over-negating with phrase: phrase blocks more searches than you usually want, and the blocked searches sometimes include a relevant variant you have not yet seen. Use negative exact when you have one specific term to block. Use negative phrase when a whole cluster is irrelevant (every search with 'free', every search with a brand you do not sell, every search with a wrong material). When in doubt, use exact; you can always broaden to phrase next week if the term keeps coming back."},
+{t:"example",x:"Bamboo Cutting Board, search-term report, last 14 days. 'free bamboo board' (4 clicks, 0 sales) → negative exact. 'free cutting board' (3 clicks, 0 sales) → negative exact. 'free' (1 click, 0 sales — too small to act) → watch. 'plastic cutting board' (12 clicks, 0 sales) → negative exact (you sell bamboo, not plastic). 'Ikea cutting board' (8 clicks, 0 sales) → negative exact (a brand you do not want to defend). A phrase-level 'free' is too broad — it would also block 'gluten-free bamboo board' which is a real, relevant search."},
+{t:"mistake",items:[
+"Defaulting to negative phrase because 'it blocks more' — phrase also blocks the variant you wanted to keep",
+"Negating 'free' as a phrase and accidentally blocking 'gluten-free', 'cruelty-free', 'BPA-free' — three relevant terms down the drain",
+"Negating a brand you do not sell with phrase when a single exact is enough — phrase blocks the brand across word orders you do not need to block",
+"Refusing to negate and waiting for the data to settle — by week 2, the waster has cost you another $20; the data was already clear at week 1"
+]},
+{t:"tip",x:"Default to negative exact. The cost of over-negating with phrase is the relevant search you accidentally blocked. When in doubt, use exact; you can broaden to phrase next week if the term keeps coming back."}
 ]},
 {id:"m9l5",title:"The Harvesting Workflow",mins:6,blocks:[
-{t:"goal",x:"Run a weekly harvesting loop that ends in a clean change log."},
-{t:"diagram",kind:"flow",title:"Weekly harvest",steps:["Download search-term report","Sort by spend","Decide each row","Apply changes in the console","Log every change with reason","Schedule next review"]},
-{t:"tip",x:"The loop is the same every week. The data changes, the workflow does not."}
+{t:"goal",x:"Run a weekly harvesting loop that ends in a clean change log, and explain why the workflow is the deliverable, not the data."},
+{t:"p",x:"The weekly harvesting workflow is six steps. Download the search-term report. Sort by spend, highest first. Decide each row (waster, winner, maybe, mixed). Apply the changes in the console (negatives, promotions, bid changes). Log every change with reason, old value, new value, expected result, review date. Schedule next week's review. The whole loop should take 30-60 minutes on a small account, 2-3 hours on a large one. The discipline is the same either way: the loop runs every week, the data changes, the actions are the four patterns, the log is the audit trail."},
+{t:"p",x:"The point of the workflow is not the report. The point is the change log. The change log is what lets you read the account in 6 months and answer: 'Why is this bid $0.92? What was it before? What did we expect? What happened?' The report is a snapshot. The log is a story. The story is what teaches you and your client (or future you) what the account does and why."},
+{t:"diagram",kind:"flow",title:"Weekly harvest",steps:["Download search-term report","Sort by spend","Decide each row (waster / winner / maybe / mixed)","Apply changes in the console","Log every change with reason, old, new, expected, review date","Schedule next review"]},
+{t:"example",x:"Monday 9am. Pull report. 187 rows. Sort by spend. 12 wasters, 8 winners, 35 maybes, 22 mixed. Apply 12 negatives, promote 8 winners to Exact, lower 22 mixed bids by 15%. Total spend moved: $4.50/day down on wasters, $3.20/day up on winners. Log all 42 changes in a single sheet. Schedule next Monday. 35 minutes total. ACOS next Monday: 28% (down from 32%). The loop is the deliverable."},
+{t:"mistake",items:[
+"Pulling the report without logging the changes — the report is a snapshot; the log is the story; the log is what survives",
+"Making the change and skipping the review — the review is where the data either confirms the action or corrects it",
+"Skipping a week because 'nothing changed' — nothing changed is itself a verdict, and the next week will be different",
+"Running the workflow in 4 hours every 4 weeks instead of 1 hour every week — same total time, but the weekly cadence is the discipline that produces the compounding"
+]},
+{t:"tip",x:"The loop is the same every week. The data changes, the workflow does not. The change log is the deliverable; the report is a snapshot; the log is the story."}
 ]},
 {id:"m9l6",title:"Using Queries to Improve Listings",mins:5,blocks:[
-{t:"goal",x:"Treat the search-term report as a listing-improvement source, not just a negatives source."},
-{t:"p",x:"If shoppers keep searching for an attribute you do not mention in the title or bullets, your listing is missing that signal. Add it to the copy. If shoppers keep searching for a use case your images do not show, add an image that shows it."},
-{t:"tip",x:"The search-term report is the cheapest listing-research tool you have. It is the customer's own words."}
+{t:"goal",x:"Treat the search-term report as a listing-improvement source, not just a negatives source, and explain which query patterns map to which listing fixes."},
+{t:"p",x:"The search-term report is the customer's own words, sorted by what they care about enough to type. The report is not just a negatives source — it is a listing-research source. Three patterns and three fixes. Pattern 1: shoppers keep searching for an attribute you do not mention in the title or bullets (size, material, use case). Fix: add the attribute to the copy. Pattern 2: shoppers keep searching for a use case your images do not show. Fix: add an image that shows the use case. Pattern 3: shoppers keep searching for a question your bullet points do not answer. Fix: add the answer to A+ content or the description."},
+{t:"p",x:"The cheapest listing-research tool you have is the search-term report. The data is the customer's intent, free, in your console, every week. The PPC account pays for itself twice: once in sales, once in listing intelligence. Read the report with one eye on negatives and the other on what the listing is missing. Both eyes work."},
+{t:"example",x:"Bamboo Cutting Board, 90 days of search terms. Top recurring pattern: 'large bamboo cutting board' (12 distinct queries, 60+ clicks). The current title says 'Bamboo Cutting Board' — no size. Fix: add 'Large' to the title. New title: 'Large Bamboo Cutting Board'. CTR +18%, sales +12% in the next 14 days. The listing was missing what the shoppers were looking for; the report told you; the change was a 2-minute edit. The other pattern: 'cutting board with juice groove' (8 queries). The product has a groove. The images do not show it. Fix: add a close-up image of the groove. Conversion +9%. The report was the listing team's free research."},
+{t:"mistake",items:[
+"Reading the report only for negatives and never for listing signals — you are paying for data and using half of it",
+"Adding every recurring search term to the title — relevance matters; the title is a sentence, not a list of every keyword you found",
+"Skipping the use-case images because the product page 'looks complete' — the report tells you what the customer wants to see, and the customer does not always see what is on the page",
+"Updating the listing and not the ad — the ad and the listing should match; if the title changes, the keywords and the messaging should change with it"
+]},
+{t:"tip",x:"The search-term report is the cheapest listing-research tool you have. It is the customer's own words. Read it with one eye on negatives and one eye on what the listing is missing. Both eyes work."}
 ]}
-],
+]},
 quiz:[
 {q:"Search-term report shows…",o:["Keywords you targeted","What the customer typed","Bids","Budgets"],a:1,e:"Customer language, not yours."},
 {q:"Under 10 clicks on a term means…",o:["Negate it","Trust the ACOS","Watch, do not act","Raise the bid"],a:2,e:"Below the threshold, it is noise."},
@@ -1158,43 +1204,91 @@ quiz:[
 {title:"Performance Diagnosis",icon:"🔬",color:"#10B981",img:IMG.console,desc:"Diagnose the cause before changing bids, budgets, targeting, or listings.",
 lessons:[
 {id:"m10l1",title:"Diagnostic Order: Delivery → Engagement → Conversion → Economics",mins:6,blocks:[
-{t:"goal",x:"Use a fixed diagnostic order before changing anything."},
+{t:"goal",x:"Use a fixed diagnostic order before changing anything, and explain why the order itself is the value."},
+{t:"p",x:"Every PPC problem lives in one of four stages. Delivery: are the ads showing up at all (impressions, budget, targeting, approval)? Engagement: when the ad shows, does the shopper click (CTR, image, price, title, relevance)? Conversion: when the shopper clicks, do they buy (CVR, listing, reviews, Buy Box)? Economics: when they buy, is the math profitable (ACOS, margin, contribution)? The four stages stack: each one depends on the one above. Fixing stage 4 (ACOS) when stage 1 (impressions) is broken wastes time. Fixing stage 3 (CVR) when stage 2 (CTR) is broken hides the real problem."},
+{t:"p",x:"The diagnostic order is fixed: delivery first, then engagement, then conversion, then economics. Always. The reason is that a symptom at one stage is often a problem at the stage above. High ACOS at stage 4 may be a low CVR at stage 3, which may be a low CTR at stage 2, which may be a low impression share at stage 1. Without the order, you treat the symptom. With the order, you find the cause. The most common beginner mistake is to start at economics ('ACOS is high, cut bid') without checking the stages above it. The cut-bid fix is a guess; the diagnostic-order fix is an answer."},
 {t:"diagram",kind:"flow",title:"Diagnostic order",steps:["Delivery (impressions, budget, targeting)","Engagement (CTR, hook quality)","Conversion (CVR, listing relevance)","Economics (ACOS, margin, contribution)"]},
-{t:"p",x:"Always start at delivery. If impressions are too low, the rest of the funnel does not exist. Only move to engagement when delivery is healthy. Only move to conversion when engagement is healthy. Economics is the verdict, not the first stop."},
-{t:"tip",x:"The most common beginner mistake is starting at economics ('ACOS is high, cut bid') without checking the stages above it."}
+{t:"example",x:"Bamboo Cutting Board, ACOS 42%, sales flat. Beginner instinct: cut bid. Diagnostic order, instead. Stage 1: 12,000 impressions last 30 days (low for the category, healthy for a niche product — keep going). Stage 2: CTR 0.35% (low — below 0.5% benchmark). Stage 3: CVR 9% (decent for the category). Stage 4: ACOS 42% (high, but the math is downstream of CTR). Root cause: stage 2 (engagement). Fix: title, main image, price comparison. The bid is not the problem. The cut-bid instinct was a guess; the diagnostic order found the cause."},
+{t:"mistake",items:[
+"Starting at economics ('ACOS is high, cut bid') without checking the stages above it — the cut is a guess",
+"Stopping at the first 'problem' you find — the most visible problem is often a symptom of a deeper one",
+"Diagnosing once and never re-diagnosing — the order is a habit, not a one-time checklist",
+"Skipping stage 1 because 'the campaign is approved' — approved is not the same as delivered; budget, bid, and targeting can all collapse delivery"
+]},
+{t:"tip",x:"Delivery → Engagement → Conversion → Economics. Always. The order is the value; without the order, you are guessing. The most common beginner mistake is to start at economics ('ACOS is high, cut bid') without checking the stages above it."}
 ]},
 {id:"m10l2",title:"Low Impressions, Low CTR, High CPC",mins:7,blocks:[
-{t:"goal",x:"Diagnose the top of the funnel — delivery and engagement."},
+{t:"goal",x:"Diagnose the top of the funnel — delivery and engagement — and explain which metric to look at first for each symptom."},
+{t:"p",x:"Three symptoms and three checks. Low impressions: is the campaign active, approved, in budget, and the targeting broad enough? Low CTR: is the image, price, or title unappealing, and is the ad creative / keyword relevance strong? High CPC: is the bid too high, is the auction unusually competitive, and is the quality score (CTR history) dragging the auction? The three symptoms are at the top of the funnel, before conversion. Fixing them is cheaper than fixing conversion, because the wasted click never happened."},
+{t:"p",x:"The right way to read the three is together. Low impressions, low CTR, and high CPC are not three separate problems — they are usually one. A campaign that is not delivering enough will not generate the click history that lowers CPC, and a low CTR at low impressions is a small sample that will look like noise. The fix is to attack the lowest stage first: get the impressions, then look at CTR, then look at CPC. The order is the same as the diagnostic order: delivery first, then engagement, then the cost."},
 {t:"table",head:["Symptom","First check","Then"],rows:[
 ["Low impressions","Campaign active? Approved? Budget?","Bid too low, targeting too narrow"],
 ["Low CTR","Image, price, title","Hook signal; ad creative; relevance"],
 ["High CPC","Bid too high","Auction competition; quality score"]
 ]},
-{t:"split",a:{title:"Healthy",items:["Stable impressions, stable CTR","CTR above the category benchmark","CPC near the suggested bid"]},b:{title:"Unhealthy",items:["Impressions dropping week over week","CTR below 0.3%","CPC above the suggested bid by 2×"]}}
+{t:"split",a:{title:"Healthy",items:[
+"Stable impressions, stable CTR",
+"CTR above the category benchmark",
+"CPC near the suggested bid"
+],b:{title:"Unhealthy",items:[
+"Impressions dropping week over week",
+"CTR below 0.3%",
+"CPC above the suggested bid by 2×"
+]}},
+{t:"example",x:"Bamboo Cutting Board, 14-day data. Impressions: 1,800 (low — was 4,200 in the previous 14 days). CTR: 0.22% (low). CPC: $1.20 (high — suggested bid is $0.65). Three symptoms. Diagnostic order: stage 1 — impressions halved. Check budget pacing. Budget was $15/day, hit cap by 2pm most days. Either raise budget or pause. CTR is low because volume is low (small sample, but consistent with low CTR). CPC is high because the auction is competitive on a small budget. Fix: raise budget to $30/day, give it 7 days, then re-diagnose."},
+{t:"mistake",items:[
+"Cutting the bid on a high-CPC campaign before checking impressions — the high CPC may be small sample + competitive auction, not a bid problem",
+"Refusing to raise the budget on a low-impression campaign because 'budget is risky' — the budget is the cause, not the problem",
+"Diagnosing CTR in isolation from volume — 5 clicks is not a CTR verdict; wait for the data",
+"Optimizing the hook (image, title) before checking budget — the most common cause of low CTR is actually low volume, not the creative"
+]},
+{t:"tip",x:"The three top-of-funnel symptoms (low impressions, low CTR, high CPC) are usually one problem, not three. Get the impressions first, then re-read CTR and CPC. The order is the same as the diagnostic order."}
 ]},
 {id:"m10l3",title:"Low CVR, High ACOS, Sales Drop",mins:7,blocks:[
-{t:"goal",x:"Diagnose the bottom of the funnel — conversion and economics."},
+{t:"goal",x:"Diagnose the bottom of the funnel — conversion and economics — and explain which cause maps to which symptom."},
+{t:"p",x:"Three symptoms and three checks, again, but at the bottom of the funnel. Low CVR: is the listing aligned with the search term, are the bullets and images answering the buyer's question, is the price competitive, is the Buy Box owned? High ACOS: is CPC too high, is CVR too low, or both — the math is downstream. Sales drop: is the stock available, has the price changed, have the reviews or the competitor's offer shifted, or is the structure (campaign, ad group, match type) the issue? The three are connected: a low CVR drives a high ACOS, and the high ACOS plus a small stock-out is a sales drop."},
+{t:"p",x:"Before changing a bid, answer one question: is the click the problem, or is the click turning into a sale at a bad rate? The two have very different fixes. Click is the problem → lower the bid, tighten the match, add negatives. Click is converting at a bad rate → fix the listing (image, price, bullets, reviews) or fix the relevance (the search term and the listing are out of sync). The bid change is a guess; the diagnosis is an answer."},
 {t:"table",head:["Symptom","First check","Then"],rows:[
 ["Low CVR","Listing + term relevance","Negatives, listing pass, price check"],
 ["High ACOS","CPC vs CVR","Lower bid, tighten match, or both"],
 ["Sales drop","Stock, price, reviews, competitor","If all four are fine, look at structure"]
 ]},
-{t:"p",x:"Before changing a bid, answer one question: is the click the problem, or is the click turning into a sale at a bad rate? The two have very different fixes."},
-{t:"tip",x:"A sales drop with stable traffic and a sudden drop in CVR is almost always a listing or retail-readiness issue, not a campaign issue."}
+{t:"example",x:"Bamboo Cutting Board, 30-day data. CVR: 6% (was 11% last quarter, low). ACOS: 48% (high). Sales: 28 (was 42, down). Three symptoms. Diagnostic order: stage 3 first (CVR). Listing pass: image is unchanged, but a new competitor launched at $19.99 (you are $24.99). Reviews: 4.6 stars, 220 reviews (you have 4.5 stars, 350 reviews). The competitor is winning on price and on star rating slightly. Stage 4 (ACOS): high, but downstream of CVR. Stage 1+2 are healthy. Root cause: stage 3, listing + competitor. Fix options: lower price to $22.99, add a comparison image, add a price-anchored bullet, OR shift budget to a search term where the competitor is weaker. The bid is not the lever."},
+{t:"mistake",items:[
+"Cutting the bid when the problem is the listing — the bid change hides the real issue and leaves the conversion broken",
+"Diagnosing a sales drop as a campaign problem without checking stock — out-of-stock campaigns sell zero, and the campaign is not the cause",
+"Refusing to adjust price on a price-led category — sometimes the fix is a price, not a bid",
+"Adding a competitor's brand as a negative instead of dealing with the comparison — the shopper who searched the brand is the highest-intent shopper in the category; negate them and you have given up"
+]},
+{t:"tip",x:"A sales drop with stable traffic and a sudden drop in CVR is almost always a listing or retail-readiness issue, not a campaign issue. The campaign is the messenger; the listing is the cause."}
 ]},
 {id:"m10l4",title:"Traffic-Quality vs Offer-Quality Problems",mins:6,blocks:[
-{t:"goal",x:"Tell a targeting problem from an offer problem."},
-{t:"p",x:"Traffic-quality problem: the wrong shoppers are clicking. Fix with negatives, tighter match, or different keywords. Offer-quality problem: the right shoppers are clicking but not buying. Fix with the listing, price, images, or reviews."},
-{t:"example",x:"Many clicks, no sales, with irrelevant search terms → traffic-quality. Many clicks, no sales, with relevant search terms → offer-quality."},
-{t:"tip",x:"Read the search-term report at the same time as the listing. The combination tells you which problem you have."}
+{t:"goal",x:"Tell a targeting problem from an offer problem, and explain which symptom pattern points to which."},
+{t:"p",x:"Two different problems, two different fixes, two different owners. A traffic-quality problem: the wrong shoppers are clicking. The data shows it — the search terms are irrelevant, the CTR is high but the CVR is low, the ACOS is high because the click never had a chance to convert. The fix is targeting: negatives, tighter match type, different keywords, sometimes a different campaign structure. An offer-quality problem: the right shoppers are clicking but not buying. The data shows it — the search terms are relevant, the CVR is low because the listing is not closing, the ACOS is high because the click is wasted at the listing level. The fix is the offer: listing, price, images, reviews, A+ content."},
+{t:"p",x:"The two require different reads. Read the search-term report at the same time as the listing. If the search terms are irrelevant, you have a traffic-quality problem — fix the targeting. If the search terms are relevant, you have an offer-quality problem — fix the listing. The temptation is to fix both at once. Resist. Fix the traffic first (negatives, match types), let the campaign settle for 7 days, then look at the offer. The two fixes compound, and changing both at once makes it impossible to know which one worked."},
+{t:"example",x:"Bamboo Cutting Board, 30-day report. 240 clicks, 6 sales, 2.5% CVR, 84% ACOS. Search-term report: 'Ikea cutting board' (8 clicks, 0 sales), 'cutting board plastic' (30 clicks, 0 sales), 'free cutting board' (12 clicks, 0 sales), 'small wooden board' (15 clicks, 0 sales). Traffic-quality problem — half the clicks are irrelevant. Fix: negate the four clusters. New CVR (filtered): 5%, still low. Now look at the listing: relevant terms like 'bamboo cutting board' convert at 4%. Below benchmark but not zero. Offer-quality secondary problem. Fix the listing after the traffic is clean. Two problems, two fixes, two weeks."},
+{t:"mistake",items:[
+"Reading only the targeting report and assuming the listing is fine — the listing can be the cause even when the targeting looks healthy",
+"Reading only the search-term report and assuming the listing is the cause — many of the irrelevant terms are the cause, and the listing is fine",
+"Fixing both traffic and offer in the same week — the two fixes compound, but they need separate review periods to learn from",
+"Refusing to look at the listing because 'we already optimized it' — listings decay, competitors ship, and what was true last month is not true this month"
+]},
+{t:"tip",x:"Read the search-term report at the same time as the listing. The combination tells you which problem you have. Irrelevant terms = traffic-quality. Relevant terms = offer-quality. The two have different fixes, and the fixes need separate weeks."}
 ]},
 {id:"m10l5",title:"Lab: Root-Cause Tree for Six Cases",mins:8,blocks:[
-{t:"goal",x:"Build a root-cause tree for an underperforming account."},
-{t:"p",x:"For each of six cases, draw the diagnostic tree from symptom to root cause. Cases: (1) low impressions, (2) high clicks no sales, (3) profitable but capped, (4) high CPC at top of search, (5) high-ACOS competitor conquest, (6) seasonality shock."},
-{t:"example",x:"Symptom: high clicks, no sales. Branches: traffic-quality (irrelevant terms?), offer-quality (listing, price, reviews, Buy Box?), data delay (less than 7 days?), stock/availability?"},
-{t:"tip",x:"Every action should connect to an observed symptom. State uncertainty and required follow-up data on every diagnosis."}
+{t:"goal",x:"Build a root-cause tree for an underperforming account, and explain why the tree is a habit, not a one-time exercise."},
+{t:"p",x:"For each of six common cases, draw the diagnostic tree from symptom to root cause. (1) Low impressions: budget, bid, targeting, approval, day-parting. (2) High clicks, no sales: traffic-quality, offer-quality, data delay, Buy Box, stock. (3) Profitable but capped: ACOS healthy, budget too small, scale-up decision. (4) High CPC at top of search: bid, competition, quality score, placement adjustment. (5) High-ACOS competitor conquest: comparable check, listing gap, five-signal score. (6) Seasonality shock: data window, year-over-year, structural vs cyclical. The tree is the same every time: symptom, branches, root cause, action, review date."},
+{t:"p",x:"The tree is a habit, not a one-time exercise. The same six cases appear in every account, every quarter. The data is different; the tree is the same. After you have drawn the tree twenty times, the diagnosis takes a few minutes instead of a few hours. The skill is not in the case — the case is always one of six — the skill is in the discipline of not skipping a branch. State the uncertainty. State the follow-up data. State the review date. The diagnosis is not a guess; it is a structured argument."},
+{t:"example",x:"Case 2, high clicks, no sales. Symptom: 240 clicks, 4 sales, ACOS 92%, CVR 1.7%. Branches: (a) Traffic-quality? Search-term report shows 40% of clicks are on irrelevant terms. Yes, partial. (b) Offer-quality? Listing has 4.4 stars, 95 reviews, price in line. Listing is weak but not the primary cause. (c) Data delay? 30 days of data. No. (d) Buy Box? Owned. No. (e) Stock? In stock. No. Root cause: traffic-quality, with a secondary offer-quality issue. Action: negate the irrelevant clusters, give it 14 days, then re-read the CVR. If CVR is still below 5%, fix the listing next. State the uncertainty: 30 days is solid but not 60. State the follow-up data: re-diagnose in 14 days. State the review date: 14 days from now."},
+{t:"mistake",items:[
+"Diagnosing from a single symptom without checking the branches — single-symptom diagnosis is guessing",
+"Stopping at the first branch that 'explains' the problem — the first branch is often partial; the full tree is the answer",
+"Skipping the review date — the diagnosis is a hypothesis; the review is where the hypothesis is confirmed or rejected",
+"Using the same root cause for every campaign in the account — campaigns fail for different reasons; the tree is per-campaign, not per-account"
+]},
+{t:"tip",x:"Every action should connect to an observed symptom. State uncertainty and required follow-up data on every diagnosis. The diagnosis is not a guess; it is a structured argument. The tree is a habit, not a one-time exercise."}
 ]}
-],
+]},
 quiz:[
 {q:"First step in any diagnosis?",o:["Cut the bid","Check delivery (impressions, budget, targeting)","Pause the campaign","Add negatives"],a:1,e:"Always start at delivery."},
 {q:"High clicks, no sales, irrelevant search terms suggests…",o:["Offer-quality problem","Traffic-quality problem","Budget problem","Placement problem"],a:1,e:"Wrong shoppers, fix with targeting."},
@@ -1204,54 +1298,110 @@ quiz:[
 {title:"Optimization, Scaling, and Operating Rhythm",icon:"🔁",color:"#8B5CF6",img:IMG.deck,desc:"The weekly cycle, scaling without inflating marginal ACOS, and the change log.",
 lessons:[
 {id:"m11l1",title:"The Weekly Routine",mins:5,blocks:[
-{t:"goal",x:"Run the same weekly routine every week."},
-{t:"diagram",kind:"flow",title:"Weekly routine",steps:["Pull the search-term report","Promote winners, negate wasters","Review bids","Check budgets and pacing","Write the report","Log every change"]},
-{t:"tip",x:"The routine is the same when things are good and when they are bad. The discipline is the value."}
+{t:"goal",x:"Run the same weekly routine every week, and explain why the routine is the value rather than the data."},
+{t:"p",x:"The weekly routine has six steps, in this order, every week. Pull the search-term report. Promote winners to Exact. Negate wasters. Review bids on the surviving targets. Check budgets and pacing on the surviving campaigns. Write the report. Log every change. The order matters: search-term report first (it is the source of new keywords and new negatives), then bid review (it is downstream of the report), then budget review (it is downstream of bid), then report and log (it is downstream of everything). The routine is the same when the account is healthy and when the account is in trouble. The discipline is the value; the data is the input."},
+{t:"p",x:"The most common reason operators skip the routine is 'the account is fine.' The account is never fine forever. The week you skip is the week the data drifts and you do not notice. The week you skip is the week a waster compounds, a winner is not harvested, and the next week starts with stale decisions. Run the routine when the data is good, so the routine is habit when the data is bad."},
+{t:"diagram",kind:"flow",title:"Weekly routine",steps:["Pull the search-term report","Promote winners, negate wasters","Review bids on surviving targets","Check budgets and pacing","Write the one-page report","Log every change with reason, old, new, expected, review date"]},
+{t:"example",x:"Bamboo Cutting Board, Monday 9am. 45 minutes. Pull report (5 min). 8 winners to promote (10 min), 12 wasters to negate (5 min), 22 mixed to lower bid (5 min). 6 bid reviews on Exact targets (5 min). Budget check: 2 campaigns capped by 2pm (5 min). Report: 1 page, 12 lines (8 min). Log: 42 changes in the change log (5 min). 45 minutes total. ACOS Monday next week: 27% (down from 32%). The routine is the value."},
+{t:"mistake",items:[
+"Skipping a week because 'nothing changed' — nothing changed is itself a verdict, and the next week will be different",
+"Reordering the steps (bids first, report second) — the order is the discipline; reordering it loses the data the next step needs",
+"Running the routine once and expecting to maintain the account — the routine is a habit, not a one-time sweep",
+"Doing the routine in 4 hours once a month instead of 45 minutes every week — same total time, but the weekly cadence is what produces the compounding"
+]},
+{t:"tip",x:"The routine is the same when things are good and when they are bad. The discipline is the value. The week you skip is the week the data drifts and you do not notice. Run the routine when the account is healthy, so the routine is habit when the account is in trouble."}
 ]},
 {id:"m11l2",title:"One Change at a Time",mins:5,blocks:[
-{t:"goal",x:"Make one change per variable per week."},
-{t:"p",x:"Change one variable, give it a week, compare before-and-after, log it. If you change bid, budget, and match in the same week, you do not know which one worked."},
+{t:"goal",x:"Make one change per variable per week, and explain why two changes at the same time is the same as zero changes."},
+{t:"p",x:"The one-change rule is a rule about learning, not about speed. Change one variable, give it a week, compare before-and-after, log it. If you change bid, budget, and match in the same week, you do not know which one worked — and you do not know which one hurt. The data is the same in both cases; only the operator can tell the difference. The operator who changed three things does not know. The operator who changed one does."},
+{t:"p",x:"Two changes at the same time is the same as zero changes. The work is wasted because the learning is destroyed. A week is not a long time to wait for an answer; a year of three-change weeks is a long time to wait for nothing."},
+{t:"example",x:"Bamboo Cutting Board, 'bamboo cutting board' Exact, week 14. Bid $0.80, 14-day ACOS 22%, margin 30%. Decision: cut bid to $0.72. Wait. Week 15, ACOS 19%, sales flat. One change, one verdict — cut worked. Alternative: change bid to $0.72 AND add 3 negatives AND raise budget 20% in the same week. ACOS drops to 18%. Did the bid cut work? Did the negatives help? Did the budget raise dilute them? No operator can answer. Three changes, zero learning. The week 15 verdict is a guess."},
 {t:"mistake",items:[
-"Changing bid and adding negatives on the same day",
-"Pausing a campaign and changing the budget in the same week",
-"Trusting 'vibes' instead of the change log"
-]}
+"Changing bid and adding negatives on the same day — the verdict is uninterpretable; the work is wasted",
+"Pausing a campaign and changing the budget in the same week — the pause and the budget are two levers, not one",
+"Trusting 'vibes' instead of the change log — vibes is a guess with no data; the change log is a verdict with data",
+"Stacking 4-5 'small' changes in one week because 'they are all small' — five small changes in one week is one big experiment with no controls"
+]},
+{t:"tip",x:"One change per variable per week. Two changes at the same time is the same as zero changes. The work is wasted because the learning is destroyed. A week is not a long time to wait for an answer; a year of three-change weeks is a long time to wait for nothing."}
 ]},
 {id:"m11l3",title:"Bid Increase vs Bid Decrease Decision Tree",mins:7,blocks:[
-{t:"goal",x:"Use a small tree to pick between raise, hold, and cut."},
+{t:"goal",x:"Use a small tree to pick between raise, hold, and cut, and explain why the tree is a habit rather than a calculator."},
+{t:"p",x:"The bid-change tree has three branches. ACOS below margin and stable: raise 10-15%, log, review in 7 days. ACOS above margin: cut 10-15%, log, review in 7 days. ACOS at margin: hold and watch for another week. The tree is the same every week; the data is different. The reason to use a tree is not the answer (the answer is simple) — the reason is the discipline. The tree forces you to look at the data before you act, to commit to a change size (10-15% is the safe learning range), to log the reason, and to set a review date. The tree is a habit, not a calculator."},
+{t:"p",x:"A 10-15% change is small enough to be safe, large enough to learn. Anything less is below the noise floor — you will not be able to tell whether the ACOS change is the change or the random week. Anything more is gambling — if you cut 50% and ACOS drops, you do not know if 25% would have done the same job, and you have given up half the volume for a margin you did not need to give up. 10-15% is the sweet spot. Most weeks, that is the only change you make."},
 {t:"diagram",kind:"tree",title:"Bid change tree",nodes:[
 [0,"Bid review"],
 [1,"ACOS below margin and stable?"],
-[2,"Yes: raise 10–15%, log, review 7 days"],
+[2,"Yes: raise 10-15%, log, review 7 days"],
 [2,"No: ACOS above margin?"],
-[2,"Above: cut 10–15%, log, review 7 days"],
+[2,"Above: cut 10-15%, log, review 7 days"],
 [2,"At margin: hold and watch for another week"]
 ]},
-{t:"tip",x:"A 10–15% change is small enough to be safe, large enough to learn. Anything more is gambling."}
+{t:"example",x:"Bamboo Cutting Board, 7-day data. Target A: 'bamboo cutting board' Exact, ACOS 18%, margin 30%, stable. Tree: raise. Bid $0.80 → $0.90. Log: raise 12.5%, reason stable ACOS below margin, expected ACOS under 25%, review 7 days. Target B: 'cutting board for kitchen' Phrase, ACOS 41%, margin 30%. Tree: cut. Bid $0.65 → $0.56. Log: cut 14%, reason ACOS above margin, expected ACOS under 35%, review 7 days. Target C: 'large bamboo cutting board' Phrase, ACOS 28%, margin 30%. Tree: hold. Bid unchanged. Log: hold, reason ACOS at margin, expected confirm trend in 7 days. Three targets, three branches, three logs. The tree is the same; the data is different."},
+{t:"mistake",items:[
+"Raising or cutting 50%+ because 'the data is clear' — the data is rarely that clear, and a 50% change is too large to learn from",
+"Skipping the 'hold' branch and cutting on margin — sometimes the right answer is to wait, and patience is a verifiable action",
+"Trusting a 3-day trend — the tree runs on 7-day or 14-day data; a 3-day ACOS is noise dressed up as a verdict",
+"Applying the tree without a logged rollback condition — a bid change without a 'if X then revert' rule is a guess with a deadline"
+]},
+{t:"tip",x:"A 10-15% change is small enough to be safe, large enough to learn. Anything more is gambling. The tree is a habit, not a calculator. The reason to use a tree is the discipline — the tree forces you to look at the data, commit to a size, log the reason, and set a review date."}
 ]},
 {id:"m11l4",title:"Budget Reallocation and Placement Optimization",mins:7,blocks:[
-{t:"goal",x:"Reallocate budget to where the data says it works."},
-{t:"p",x:"Reallocation means moving budget from underperforming campaigns to overperforming ones, not adding total spend. The account's total budget may stay flat."},
+{t:"goal",x:"Reallocate budget to where the data says it works, and explain why reallocation is more powerful than raising total budget."},
+{t:"p",x:"Reallocation means moving budget from underperforming campaigns to overperforming ones, not adding total spend. The account's total budget may stay flat. The reason: the first dollar in a campaign is more expensive than the fifth, and a campaign that is already capped at 2pm is not asking for more money — it is asking for the money that another campaign is wasting. Move 20-30% of the worst campaign's budget to the best one, log the move, watch for two weeks, repeat if it holds. Reallocation is more powerful than raising total budget because the data is already there — you are not generating new data, you are redistributing the data you have."},
+{t:"p",x:"Placement optimization is the same logic at a finer grain. The three placements are top of search, product pages, and rest of search. Top of search costs the most and converts the best. Product pages costs less and converts worst. Rest of search is in the middle. Read the placement report, identify the placement with the worst ACOS at meaningful spend, identify the placement with the best ACOS at meaningful spend, and use placement adjustments (positive or negative percentages) to move spend from the weak to the strong. The same 10-20% adjustment, the same 7-day review, the same log."},
 {t:"list",items:[
-"Identify the campaign with the worst ACOS at meaningful spend",
+"Identify the campaign with the worst ACOS at meaningful spend (at least 14 days of data, 30+ clicks)",
 "Identify the campaign with the best ACOS at meaningful spend",
-"Move 20–30% of the worst campaign's budget to the best one",
-"Log the move, watch for two weeks, repeat if it holds"
+"Move 20-30% of the worst campaign's budget to the best one (do not pause the worst — pause is a verdict, reallocation is a hypothesis)",
+"Log the move: campaign, old budget, new budget, reason, expected outcome, review date",
+"Watch for 14 days (not 7 — reallocation takes longer than a bid change to settle)",
+"Repeat if it holds; revert if the worst campaign's metrics improve (reallocation works in both directions)"
 ]},
-{t:"tip",x:"Reallocation is more powerful than raising total budget. The first dollar in a campaign is more expensive than the fifth."}
+{t:"example",x:"Bamboo Cutting Board, monthly view. Campaign A: Auto, $15/day, ACOS 38%, 12 sales. Campaign B: Exact, $20/day, ACOS 19%, 18 sales. Worst at meaningful spend: A. Best: B. Reallocate: cut A to $10/day, raise B to $25/day. Total budget unchanged. 14 days later: A ACOS 32% (improved — less waste), B ACOS 21% (slightly higher — more volume, more wasters, but still profitable). Total sales: 38 (was 30). ACOS blended: 26% (was 28%). Same total spend, better outcome. Reallocation is more powerful than raising total budget."},
+{t:"mistake",items:[
+"Raising total budget instead of reallocating — the first dollar in a good campaign is more expensive than the fifth, and the bad campaign is still wasting the rest",
+"Pausing the worst campaign instead of reallocating — pause is a verdict; reallocation is a hypothesis. Pause loses the data the campaign was generating",
+"Reallocating without a review date — the reallocation is the change; the review is the learning",
+"Moving budget based on 3-day data — reallocation needs 14+ days to settle; 3 days is a sample of one weekend"
+]},
+{t:"tip",x:"Reallocation is more powerful than raising total budget. The first dollar in a campaign is more expensive than the fifth. The data is already there — reallocation is redistributing it, not generating it. 20-30% at a time, 14-day review, log the move."}
 ]},
 {id:"m11l5",title:"Scaling Winners Without Inflating Marginal ACOS",mins:7,blocks:[
-{t:"goal",x:"Scale a winning campaign in a way that holds the marginal ACOS."},
-{t:"p",x:"Scaling means adding budget or raising bids. Every new click is more expensive than the last, because the easy wins were already taken. The marginal ACOS — the ACOS of the most recent click — tells you when to stop."},
-{t:"split",a:{title:"Safe to scale when",items:["Marginal ACOS is still under margin","Conversion rate is stable","The auction is not saturated"]},b:{title:"Stop scaling when",items:["Marginal ACOS rises above margin","Conversion rate is dropping","Top of search is becoming crowded"]}}
+{t:"goal",x:"Scale a winning campaign in a way that holds the marginal ACOS, and explain why the marginal click is the only click that tells you whether to keep scaling."},
+{t:"p",x:"Scaling means adding budget or raising bids. Every new click is more expensive than the last, because the easy wins were already taken. The marginal ACOS — the ACOS of the most recent click, not the campaign average — tells you when to stop. A campaign can show a 22% blended ACOS while the marginal ACOS is 35%, and the next $100 will be sold at 35%, not 22%. The blended ACOS is the past; the marginal ACOS is the future."},
+{t:"p",x:"Read the marginal ACOS by sorting recent clicks by time (last 7 days vs the prior 7 days) and watching the trend. If the marginal ACOS is rising as spend rises, you are saturating the auction. If the marginal ACOS is flat or falling as spend rises, the auction is not saturated and you can keep scaling. The three signals to watch: marginal ACOS (the verdict), conversion rate stability (the quality), and top-of-search crowding (the ceiling). The scaling decision is safe when all three are healthy; the scaling decision is stop when any one breaks."},
+{t:"split",a:{title:"Safe to scale when",items:[
+"Marginal ACOS is still under margin (compare last 7 days vs prior 7 days)",
+"Conversion rate is stable (no drop in last 7 days vs prior 7 days)",
+"The auction is not saturated (top-of-search placement share is not crowded)"
+],b:{title:"Stop scaling when",items:[
+"Marginal ACOS rises above margin (the new spend is unprofitable)",
+"Conversion rate is dropping (the new clicks are not as qualified as the old)",
+"Top of search is becoming crowded (placement share is at 80%+; the next dollar fights for scraps)"
+]}},
+{t:"example",x:"Bamboo Cutting Board, Exact campaign, 30 days. Week 1-2: $20/day, 18 sales, 19% ACOS. Week 3-4: $20/day, 17 sales, 22% ACOS (small drift, still healthy). Week 5: raise budget to $30/day. Week 5-6: 26 sales, 24% ACOS. Marginal ACOS: was 19% in week 3-4, is 24% in week 5-6. Rising. The new $10/day is sold at a higher marginal ACOS than the old $20. Still under margin. Continue. Week 7: $30/day, 28 sales, 28% ACOS. Marginal ACOS approaching margin. Stop. The 28% blended is past; the 28% marginal is the future. Do not raise again. The data is telling you the ceiling."},
+{t:"mistake",items:[
+"Scaling on the blended ACOS instead of the marginal ACOS — the blended ACOS is the past; the marginal ACOS is the future",
+"Raising the budget in 100% jumps instead of 20-30% — a 100% jump dilutes the experiment and confuses the next decision",
+"Refusing to scale because the marginal ACOS is 'a little high' — a little high is still under margin, and the volume is profitable",
+"Refusing to stop when the marginal ACOS is at margin — at margin is the ceiling, not the floor; the next click loses money"
+]},
+{t:"tip",x:"The marginal ACOS is the only ACOS that tells you whether to keep scaling. The blended ACOS is the past; the marginal is the future. Compare last 7 days vs prior 7 days. If marginal is rising, you are saturating. If marginal is flat or falling, the auction has room."}
 ]},
 {id:"m11l6",title:"Change Log, Guardrails, Rollback Conditions",mins:6,blocks:[
-{t:"goal",x:"Run every change through a log with rollback conditions."},
-{t:"p",x:"A change log records: date, campaign, target, change, reason, expected outcome, review date. A guardrail is a rule that triggers a rollback (e.g. 'if ACOS exceeds 50% for 7 days, revert the change')."},
-{t:"example",x:"Change: raise bid on 'bamboo board' Exact from $0.80 to $0.92. Reason: 14-day ACOS 18%, margin 30%. Expected: more impressions, ACOS stays under 25%. Rollback: if ACOS exceeds 35% for 7 days, revert."},
-{t:"tip",x:"A change without a rollback condition is a guess with a deadline. Always write the condition before you click Save."}
+{t:"goal",x:"Run every change through a log with rollback conditions, and explain why a change without a rollback is a guess with a deadline."},
+{t:"p",x:"A change log records seven things: date, campaign, target, the change itself, the reason, the expected outcome, and the review date. A guardrail is a rule that triggers a rollback (e.g. 'if ACOS exceeds 50% for 7 days, revert the change'). A rollback condition is the answer to 'how will I know this change was wrong?' Every change needs a reason, an expected outcome, and a rollback condition. Without all three, the change is a guess with a deadline. With all three, the change is a hypothesis with a verdict."},
+{t:"p",x:"The guardrail and the rollback condition are not the same thing. A guardrail is a pre-set rule (e.g. 'no bid change above 30% in one week'). A rollback condition is a per-change rule (e.g. 'this specific bid raise reverts if ACOS exceeds 35% for 7 days'). The guardrail is a policy; the rollback is a contract. Both belong in the change log. The log is not a record of what you did — the log is a record of what you did, why, what you expected, and how you will know it worked. The log is the audit trail; the audit trail is the deliverable."},
+{t:"example",x:"Change: raise bid on 'bamboo board' Exact from $0.80 to $0.92. Date: 2026-08-30. Campaign: Exact-1. Target: 'bamboo board'. Change: bid $0.80 → $0.92 (+15%). Reason: 14-day ACOS 18%, margin 30%, conversion stable. Expected: more impressions, ACOS stays under 25%. Review date: 2026-09-06. Guardrail: any bid change over 30% needs manager approval (this is under). Rollback: if ACOS exceeds 35% for 7 days, revert to $0.80. Logged. One line, seven fields, one contract. The change is a hypothesis, not a guess."},
+{t:"mistake",items:[
+"Logging the change but skipping the reason — the reason is the field that teaches you in 6 months what the data was telling you",
+"Logging the change but skipping the rollback condition — a change without a rollback is a guess with a deadline; the data will tell you it was wrong, but you will not be ready to listen",
+"Setting the rollback condition so tight it triggers on a 3-day noise — the rollback needs 7+ days of data to fire; a 3-day rollback is reactive, not analytical",
+"Skipping the log because 'the change is small' — small changes still need a log; the log is the audit trail; small is the most common change"
+]},
+{t:"tip",x:"A change without a rollback condition is a guess with a deadline. Always write the condition before you click Save. The log is not a record of what you did — it is a record of what you did, why, what you expected, and how you will know it worked. The log is the deliverable."}
 ]}
-],
+]},
 quiz:[
 {q:"Scaling means…",o:["Adding total budget always","Adding budget or bids where the data supports it","Pausing losing campaigns","Lowering bids"],a:1,e:"Scale where the data says it works."},
 {q:"A rollback condition is…",o:["A date to delete the campaign","A rule that triggers a revert","A bid cap","A budget cut"],a:1,e:"Always write the condition before saving."},
@@ -1261,65 +1411,115 @@ quiz:[
 {title:"Reporting, Strategy, and Capstone",icon:"📣",color:"#F59E0B",img:IMG.report,desc:"Reports, business metrics, the 30/60/90 roadmap, and the capstone defense.",
 lessons:[
 {id:"m12l1",title:"The Simple Report Structure",mins:5,blocks:[
-{t:"goal",x:"Write a one-page weekly report in a fixed order."},
+{t:"goal",x:"Write a one-page weekly report in a fixed order, and explain why the structure is the same every week regardless of what the data is."},
+{t:"p",x:"A weekly PPC report has six sections, in this order, every week. Numbers: spend, sales, ACOS, ROAS, clicks, orders, CTR, CVR. Trend: vs last week, plus or minus X%. What worked: 1-2 examples. What did not work: 1 honest paragraph. Next steps: 2-3 bullets, in the next 7 days, measurable. Prepared by: name, date. The structure is the same whether the week was a 5% ACOS improvement or a 12% ACOS regression. The structure is not the data; the structure is the wrapper that lets the data be read."},
+{t:"p",x:"The reason the structure is fixed is the reader. The reader (the owner, the manager, the client) does not re-learn the report every week. They learn the report once, and the report fits the same template. The cognitive load is on the numbers, not the layout. A report that is structurally different every week forces the reader to re-orient before they can read the data. A report that is structurally the same every week lets the reader go straight to the numbers. The structure is the value."},
 {t:"list",items:[
-"Numbers: spend, sales, ACOS, ROAS, clicks, orders, CTR, CVR",
-"Trend: vs last week, plus or minus X%",
-"What worked: 1–2 examples",
-"What did not work: 1 honest paragraph",
-"Next steps: 2–3 bullets, in the next 7 days",
-"Prepared by: name, date"
+"Numbers: spend, sales, ACOS, ROAS, clicks, orders, CTR, CVR (this week's actuals)",
+"Trend: vs last week, plus or minus X% on each number (the comparison is the meaning)",
+"What worked: 1-2 examples with the change log reference (the wins the routine produced)",
+"What did not work: 1 honest paragraph with the data and the next step (no spin, no hiding)",
+"Next steps: 2-3 bullets, in the next 7 days, measurable (the report ends in motion, not in numbers)",
+"Prepared by: name, date (the audit trail)"
 ]},
-{t:"tip",x:"The structure is the same every week. The numbers change, the structure does not."}
+{t:"example",x:"Bamboo Cutting Board, week 14, 1-page report. Numbers: spend $142, sales $498, ACOS 28.5%, ROAS 3.51, clicks 1,180, orders 20, CTR 0.31%, CVR 1.7%. Trend: spend -8% (less wasters negated), sales +12%, ACOS -3.5 pts, CTR +0.04 pts, CVR flat. What worked: promoted 8 search terms to Exact (sales +$58). Negated 12 wasters (wasted spend -$22). What did not work: 'cutting board for kitchen' Phrase is still 41% ACOS despite a bid cut last week; one more cut or a move to Exact is the next step. Next steps: (1) re-cut 'cutting board for kitchen' bid by 15% on Friday; (2) re-read CTR after 7 days; (3) raise 'bamboo board' Exact bid by 12% on Monday. Prepared by: AM, 2026-08-30. One page, six sections, twelve minutes to write."},
+{t:"mistake",items:[
+"Writing a 4-page report when 1 page will do — the owner reads the headline, the trend, and the next steps; everything else is supporting",
+"Reordering the sections to match what was good this week — the structure is the same whether the week was good or bad",
+"Hiding the bad week in the trend line — 'what did not work' gets its own section, in plain language",
+"Skipping the next steps because 'we will see next week' — the next steps are the report's reason for existing"
+]},
+{t:"tip",x:"The structure is the same every week. The numbers change, the structure does not. The structure is the wrapper that lets the data be read. A report that is structurally different every week forces the reader to re-orient before they can read the data."}
 ]},
 {id:"m12l2",title:"Explaining Numbers in Human Words",mins:6,blocks:[
-{t:"goal",x:"Translate metrics into owner-friendly language."},
-{t:"p",x:"Owners do not think in ACOS. They think in 'are we making money on this product, and is it growing?' Translate ACOS into margin comparison, ROAS into 'every dollar spent, we get X back', and TACoS into 'this product's whole-business health'."},
-{t:"example",x:"'ACOS is 22%' is true. 'On every $100 of sales from ads, we keep $78 after ad cost, and our margin covers it' is human."},
-{t:"tip",x:"If the owner has to ask what the number means, the report has failed. The job is translation."}
+{t:"goal",x:"Translate metrics into owner-friendly language, and explain why the job of the report is translation, not data."},
+{t:"p",x:"Owners do not think in ACOS. They think in 'are we making money on this product, and is it growing?' The job of the report is to translate. ACOS becomes 'on every $100 of ad sales, we keep $X after ad cost, and our margin covers it.' ROAS becomes 'every dollar spent, we get $X back.' TACoS becomes 'this product's whole-business health, including the organic sales the ads helped build.' CTR becomes 'out of every 1,000 shoppers who saw the ad, Y clicked.' CVR becomes 'out of every 100 shoppers who clicked, Z bought.' The metric is the data; the translation is the meaning."},
+{t:"p",x:"The test is simple: if the owner has to ask what the number means, the report has failed. The job is translation. The temptation is to deliver the metric and let the owner translate. The cost is the owner's confidence — an owner who is not sure what the numbers mean will not be sure the operator is doing the right job. The cost is also the operator's leverage — an owner who can read the report makes faster, more confident decisions. Translate before you deliver."},
+{t:"example",x:"'ACOS is 22%' is true. 'On every $100 of sales from ads, we keep $78 after ad cost, and our margin covers it' is human. The same number; the second sentence is the meaning. 'TACoS is 8%' is true. '8% of our total revenue is paying for ads, and 92% of revenue is organic or untracked — ads are building a brand, not just renting sales' is human. The same number; the second sentence is the strategic story. Three sentences, three different translations, three different conversations with the owner."},
+{t:"mistake",items:[
+"Delivering the metric and expecting the owner to translate — the report's job is translation; if the owner is doing it, the report failed",
+"Translating ACOS into 'efficiency' without telling the owner whether the ads are profitable — efficiency is not the question; profitability is",
+"Translating every metric the same way every week — the translation should match the owner's question, not a template",
+"Skipping the translation when the news is bad — bad news translated well is recoverable; bad news in metric form is a panic"
+]},
+{t:"tip",x:"If the owner has to ask what the number means, the report has failed. The job is translation. Translate before you deliver. The cost of not translating is the owner's confidence and the operator's leverage. Bad news translated well is recoverable; bad news in metric form is a panic."}
 ]},
 {id:"m12l3",title:"Performance Narrative: Outcome, Drivers, Actions, Risks, Next Steps",mins:6,blocks:[
-{t:"goal",x:"Write a report that tells a story, not just a number."},
+{t:"goal",x:"Write a report that tells a story, not just a number, and explain why the narrative is what the owner remembers."},
+{t:"p",x:"A performance narrative has five parts, in this order. Outcome: what happened (numbers + trend). Drivers: why it happened (one or two named causes, with the data). Actions: what we did about it (with the change log reference). Risks: what could go wrong (stock, competition, seasonality, auction). Next steps: what we will do this week, in measurable terms. The narrative is not the numbers; the narrative is the meaning the numbers carry. A report with only numbers is a spreadsheet. A report with a narrative is a story the owner can repeat to a partner, an investor, or themselves."},
+{t:"p",x:"The reason the narrative matters: owners remember the drivers and the next steps. They glance at the numbers. Write accordingly. The numbers are the data; the drivers are the explanation; the next steps are the motion. A report that has only numbers is a fact; a report that has a narrative is a decision. The decision is what the owner makes. The decision is what the operator's job enables. The narrative is the value the operator adds on top of the data."},
 {t:"list",items:[
-"Outcome: what happened (numbers + trend)",
-"Drivers: why it happened (one or two named causes)",
-"Actions: what we did about it (with the change log)",
-"Risks: what could go wrong (stock, competition, seasonality)",
-"Next steps: what we will do this week, in measurable terms"
+"Outcome: what happened (numbers + trend, in 2-3 sentences)",
+"Drivers: why it happened (one or two named causes, with the data — the search-term report, the listing change, the competitor)",
+"Actions: what we did about it (with the change log reference — bid cut, negatives added, listing edited)",
+"Risks: what could go wrong (stock, competition, seasonality, auction, dependency on one keyword)",
+"Next steps: what we will do this week, in measurable terms (the report ends in motion)"
 ]},
-{t:"tip",x:"Owners remember the drivers and the next steps. They glance at the numbers. Write accordingly."}
+{t:"example",x:"Bamboo Cutting Board, week 14 narrative. Outcome: 'Spend down 8%, sales up 12%, ACOS down 3.5 points to 28.5%.' Drivers: 'Two drivers. First, we negated 12 search-term wasters (free, plastic, Ikea) which reduced wasted spend by $22/day. Second, we promoted 8 winners to Exact, which concentrated spend on high-confidence terms and lifted CVR slightly.' Actions: 'Per the change log: 12 negatives added 2026-08-23, 8 promotions to Exact 2026-08-23, 22 bid cuts on mixed terms 2026-08-25.' Risks: 'One dependency: 'bamboo cutting board' Exact is now 38% of sales. Stock is in (4 weeks at current velocity). Competition: a new seller at $19.99 is gaining share on 'large bamboo board'.' Next steps: '(1) Cut 'cutting board for kitchen' Phrase bid 15% Friday. (2) Re-read CTR 7 days after title change. (3) Raise 'bamboo board' Exact bid 12% Monday.' Five sections, one story, twelve minutes."},
+{t:"mistake",items:[
+"Writing the numbers and skipping the drivers — the drivers are the explanation; without them, the numbers are noise",
+"Writing the drivers without the data — a driver without the data is an opinion; a driver with the data is a diagnosis",
+"Skipping the risks because the week was good — the risks are what the operator sees that the owner does not; skipping them is hiding",
+"Ending the narrative on the outcome instead of the next steps — the next steps are the motion; the report ends in motion, not in past tense"
+]},
+{t:"tip",x:"Owners remember the drivers and the next steps. They glance at the numbers. Write accordingly. The numbers are the data; the drivers are the explanation; the next steps are the motion. A report that has only numbers is a fact; a report that has a narrative is a decision. The narrative is the value the operator adds."}
 ]},
 {id:"m12l4",title:"PPC Metrics vs Business Metrics, and 30/60/90 Roadmap",mins:7,blocks:[
-{t:"goal",x:"Distinguish PPC metrics from business metrics, and build a 30/60/90 roadmap."},
+{t:"goal",x:"Distinguish PPC metrics from business metrics, build a 30/60/90 roadmap, and explain why the roadmap is a contract, not a wish list."},
+{t:"p",x:"Two frames, two questions. PPC metrics answer 'did the ad do its job?' — ACOS, ROAS, CTR, CVR, placement share, marginal ACOS. Business metrics answer 'did the product grow?' — total sales, profit, TACoS, inventory turn, organic rank, brand searches. The two frames are not interchangeable. A campaign can have 18% ACOS and the product can be losing money (margin compression elsewhere). A campaign can have 32% ACOS and the product can be growing (ads are funding organic rank). The operator reads the PPC frame; the owner reads the business frame. The report needs both."},
+{t:"p",x:"The 30/60/90 roadmap is a forward-looking plan with three phases. 30 days: launch or stabilize. 60 days: optimize. 90 days: scale or document. Each phase has an owner, a metric, and a review date. A roadmap without owners and review dates is a wish list, not a roadmap. The roadmap is the contract between the operator and the owner. The 30-day phase ends in a verdict (did we launch? did we stabilize?); the 60-day phase ends in a verdict (did we optimize? did the ACOS drop? did the CVR rise?); the 90-day phase ends in a verdict (did we scale? did we document the play?). Each verdict is a decision point. The roadmap is the decision tree."},
 {t:"table",head:["Frame","Question","Examples"],rows:[
 ["PPC","Did the ad do its job?","ACOS, ROAS, CTR, CVR, placement share"],
 ["Business","Did the product grow?","Total sales, profit, TACoS, inventory turn"]
 ]},
-{t:"p",x:"A 30/60/90 roadmap is a forward-looking plan. 30 days: launch or stabilize. 60 days: optimize. 90 days: scale or document. Each phase has an owner, a metric, and a review date."},
-{t:"tip",x:"A 30/60/90 plan without owners and review dates is a wish list, not a roadmap."}
+{t:"example",x:"Bamboo Cutting Board, 30/60/90. 30 days (Aug-Sep): launch and stabilize. Owner: AM. Metric: ACOS under 35% by end of week 4. Review date: 2026-09-27. 60 days (Oct-Nov): optimize. Owner: AM. Metric: ACOS under 28% by end of week 8, organic rank for 'bamboo cutting board' top 20. Review date: 2026-11-22. 90 days (Dec): scale or document. Owner: AM + manager. Metric: total revenue +30% vs 60-day baseline, OR document the SOP if the product is at ceiling. Review date: 2026-12-27. Three phases, three owners, three metrics, three review dates. The roadmap is a contract, not a wish list."},
+{t:"mistake",items:[
+"Building a roadmap without owners — the owner is the field that makes the roadmap a contract; without it, the roadmap is a slide",
+"Building a roadmap without metrics — the metric is the verdict; without a metric, the phase has no end",
+"Building a roadmap without review dates — the review date is the deadline; without one, the phase is open-ended and the contract is unenforceable",
+"Confusing PPC metrics with business metrics in the roadmap — the 30/60/90 should include both frames, because the owner is reading the business frame"
+]},
+{t:"tip",x:"PPC metrics ask 'did the ad do its job?' Business metrics ask 'did the product grow?' The two frames are not interchangeable; the report needs both. A 30/60/90 without owners and review dates is a wish list, not a roadmap. The roadmap is the contract between the operator and the owner."}
 ]},
 {id:"m12l5",title:"Tasks by Cadence and the Permissions Ladder",mins:6,blocks:[
-{t:"goal",x:"Match tasks to a cadence and a permission level."},
+{t:"goal",x:"Match tasks to a cadence and a permission level, and explain why the ladder protects the account from the operator's own over-confidence."},
+{t:"p",x:"The cadence table maps tasks to time. Daily (5 min): spend, alerts, stock, accidental pauses — the operator does this alone. Weekly (1 hr): term harvest, negatives, bid review, report — the operator does this alone. Biweekly (1 hr): structure review, naming, portfolio review — the operator does this with a manager. Monthly (2 hr): listing audit, unit-economics refresh, 30/60/90 review — the operator does this with a manager. The cadence is not negotiable; the cadence is the discipline that keeps the account in shape without the account taking over the operator's week."},
+{t:"p",x:"The permissions ladder says: small safe changes alone, big levers with approval. Adding a negative is small. Raising a bid 10% is small. Cutting a bid 15% is small. Pausing a campaign is big. Raising a budget 50% is big. Restructuring an ad group is big. Adding new keywords is medium. The ladder protects the account from the operator's own over-confidence. A junior operator with senior permissions will make senior mistakes. A senior operator with junior permissions will move slowly. The right permission for the right operator at the right tenure is the discipline. The ladder is not a control problem; it is a learning problem."},
 {t:"table",head:["Cadence","Tasks","Permission"],rows:[
 ["Daily (5 min)","Spend, alerts, stock, accidental pauses","Self-managed"],
 ["Weekly (1 hr)","Term harvest, negatives, bid review, report","Self-managed"],
 ["Biweekly (1 hr)","Structure review, naming, portfolio review","With manager"],
 ["Monthly (2 hr)","Listing audit, unit-economics refresh, 30/60/90 review","With manager"]
 ]},
-{t:"p",x:"The permissions ladder says: small safe changes alone, big levers with approval. Adding a negative is small. Pausing a campaign is big. Raising a budget 50% is big."}
+{t:"example",x:"Bamboo Cutting Board, weekly cadence. Monday 9am (45 min): term harvest + bid review + report. Tuesday (5 min): spend and stock check. Wednesday (5 min): same. Thursday (5 min): same. Friday 9am (15 min): log the week's changes, plan next week, schedule Monday. Total: 80 minutes/week. The cadence is the discipline; the report is the deliverable. The permissions ladder: junior operator can add negatives, raise or cut bids 10-15%, raise budget 10% — all alone. Junior operator cannot pause a campaign, restructure an ad group, or raise budget 50% — needs manager approval. The ladder protects the account and the operator."},
+{t:"mistake",items:[
+"Doing biweekly work weekly (or vice versa) — the cadence is a time budget, not a guideline; over-cadence work burns time, under-cadence work misses the routine",
+"Skipping the biweekly structure review because 'the structure is fine' — structure is the highest-leverage thing to review; a wrong structure costs more than a wrong bid",
+"Giving junior operators senior permissions because 'they are capable' — capability is not the question; tenure and exposure to error is the question",
+"Refusing to delegate the daily check to a junior operator — the daily check is a 5-minute task; the operator's job is the weekly work, not the daily"
+]},
+{t:"tip",x:"The cadence is the discipline that keeps the account in shape without the account taking over the operator's week. The permissions ladder protects the account from the operator's own over-confidence. The ladder is not a control problem; it is a learning problem. The right permission for the right operator at the right tenure is the discipline."}
 ]},
 {id:"m12l6",title:"Client Communication and the Capstone",mins:7,blocks:[
-{t:"goal",x:"Communicate a campaign plan, defend optimization decisions, and complete the capstone."},
+{t:"goal",x:"Communicate a campaign plan, defend optimization decisions, and complete the capstone, and explain why the capstone is the proof of every lesson in the program."},
+{t:"p",x:"The capstone brings the program together into a single deliverable. A product brief (what is the product, who is the shopper, what is the margin). Unit economics (price, COGS, fees, contribution, break-even ACOS). A campaign portfolio (Auto for research, Phrase for discovery, Exact for control, the budget split and the reason). A search-term analysis (the 4-pattern triage of the current data, with the change log). A 30-day plan (the cadence, the permissions, the owners). A one-page report (the structure, the narrative, the next steps). A 7-10 minute defense (recorded or written) explaining every decision. Pass level for supervised work is 85%+. The capstone is the proof."},
+{t:"p",x:"The capstone is not a test of memorization. The capstone is a test of judgment under constraint. The product is real (or real-enough). The data is real (or real-enough). The decision is yours. The defense is your reasoning, in plain words, with the data, in front of a manager or a client. The capstone is where the lessons stop being lessons and start being practice. The 12 modules, 60 lessons, the trainer, the builder, the report builder, the AI coach, the cohort — all of it converges on the capstone. The capstone is the program."},
 {t:"list",items:[
-"Open every client call with the headline number, not the data dump",
-"Defend each decision with the change log and the data",
-"Translate metrics into owner language without hiding bad news",
-"End with measurable next steps and the next review date"
+"Open every client call with the headline number, not the data dump — the owner wants the verdict, then the data, then the next steps",
+"Defend each decision with the change log and the data — 'I cut the bid because 14-day ACOS was above margin' is a defense; 'I cut the bid because it felt right' is not",
+"Translate metrics into owner language without hiding bad news — bad news in plain words is recoverable; bad news in metric form is a panic",
+"End with measurable next steps and the next review date — the call ends in motion, with a deadline"
 ]},
-{t:"p",x:"The capstone brings it all together: a product brief, unit economics, a campaign portfolio, search-term analysis, a 30-day plan, a one-page report, and a 7–10 minute defense (recorded or written). Pass level for supervised work is 85%+."},
-{t:"tip",x:"Capstone rubric: commercial objective 10% · targeting relevance 20% · structure 15% · bids and budgets 15% · diagnosis 20% · optimization plan 10% · communication 10%."}
+{t:"example",x:"Capstone, Bamboo Cutting Board, week 14. Product brief: bamboo cutting board, $24.99, 30% margin. Unit economics: COGS $8, FBA fees $7, ad spend budget $7, contribution $2.99 per unit. Break-even ACOS 30%. Campaign portfolio: Auto $10/day (research), Phrase $10/day (discovery), Exact $20/day (control). Search-term analysis: 8 winners promoted, 12 wasters negated, 22 mixed bid cuts. Change log: 42 entries. 30-day plan: ACOS under 28% by end of week 8. One-page report: week 14, ACOS 28.5%, sales +12%, three next steps. Defense (8 minutes): explain each section, defend each decision, answer two follow-up questions. Pass level 85%+. The capstone is the proof."},
+{t:"mistake",items:[
+"Treating the capstone as a checkbox — the capstone is the proof of every lesson; a checkbox capstone is a missed program",
+"Skipping the defense because 'the deliverable is the report' — the defense is where the judgment is tested; the report is a record, the defense is the judgment",
+"Hiding bad data in the capstone — the capstone is graded on judgment, not on whether the account is healthy; a well-defended bad week is a higher score than a hidden bad week",
+"Skipping the unit economics because 'I know them' — the unit economics are the foundation; without them, the bid and budget decisions are guesses"
+]},
+{t:"tip",x:"The capstone is the proof of every lesson in the program. The 12 modules, 60 lessons, the trainer, the builder, the report builder, the AI coach, the cohort — all of it converges on the capstone. The capstone is not a test of memorization. The capstone is a test of judgment under constraint. Pass level 85%+ means ready for supervised client work."}
 ]}
-],
+]},
 quiz:[
 {q:"A good report ends with…",o:["Raw data only","Measurable next steps","An apology","A joke"],a:1,e:"Steps reassure; data informs."},
 {q:"PPC metrics answer…",o:["Did the product grow?","Did the ad do its job?","Did the customer like the brand?","Is the Buy Box owned?"],a:1,e:"PPC is one slice of business."},
