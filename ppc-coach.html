@@ -910,32 +910,82 @@ quiz:[
 {title:"Product Targeting",icon:"📦",color:"#0EA5E9",img:IMG.market,desc:"ASIN and category targeting, defensive plays, and the retail-readiness check.",
 lessons:[
 {id:"m7l1",title:"ASIN Targeting vs Category Targeting",mins:6,blocks:[
-{t:"goal",x:"Pick between targeting individual ASINs and targeting a whole category."},
-{t:"p",x:"ASIN targeting is precise — you choose the exact product your ad appears next to. Category targeting is broad — your ad appears on any product in a chosen department. ASIN targeting is usually the safer starting point."},
-{t:"split",a:{title:"Use ASIN targeting for",items:["Specific competitors","Defending a category position","Cross-sell on complementary ASINs"]},b:{title:"Use category targeting for",items:["Quick, broad coverage","Discovery in a new category","Scale where individual ASINs are not yet known"]}}
+{t:"goal",x:"Pick between targeting individual ASINs and targeting a whole category, and explain the trade-off in spend, intent, and risk."},
+{t:"p",x:"ASIN targeting is precise. You choose the exact products your ad appears next to — usually a competitor you want to challenge, a complement you want to sit beside, or your own ASINs (defensive). The cost is research: you have to know which ASINs to target, you have to maintain the list, and you have to refresh it as the category changes. The benefit is control: every click happens next to a product you have chosen, and the rationale is a sentence."},
+{t:"p",x:"Category targeting is broad. You pick a category node and Amazon places your ad on any product in that node. The cost is relevance: your ad will appear on products that have nothing to do with yours. The benefit is reach: with zero research, you can cast a wide net and let the data tell you which ASINs deserve attention. The two are not interchangeable. ASIN targeting is the workhorse; category targeting is the discovery tool."},
+{t:"split",a:{title:"Use ASIN targeting for",items:[
+"Specific competitors you have a plan against",
+"Defending a category position (your own ASINs and your brand)",
+"Cross-sell on complementary products you have chosen",
+"High-spend products where the bid matters and the rationale must be sharp"
+]},b:{title:"Use category targeting for",items:[
+"Quick, broad coverage before you know the competitive map",
+"Discovery in a new category you are still learning",
+"Scale where the ASIN list is not yet built",
+"Budgeting a research spend on a category you do not yet understand"
+]}},
+{t:"example",x:"Bamboo Cutting Board. ASIN targets: top-3 competitor cutting boards in your price band, plus 2 high-end wooden boards (for the gift cluster), plus 1 chef's-knife set (cross-sell). Category target: 'Cutting Boards & Chopping Blocks' node, narrow leaf. ASIN list = controlled, defensible, audit-able. Category list = broad, noisy, useful for finding new ASIN targets."},
+{t:"mistake",items:[
+"Defaulting to category targeting because it is easy — it is easy, and it is expensive, because it is also the least controllable",
+"Targeting a single ASIN with a single bid and waiting for the data — a 1-ASIN list will not teach you anything; build at least 10 before you read the report",
+"Refusing to ever use category targeting — category is the discovery tool that finds your next ASIN targets",
+"Targeting ASINs without comparing the offer — paying for a click that goes to a stronger competitor is paying to lose"
+]},
+{t:"tip",x:"ASIN targeting is the workhorse; category targeting is the discovery tool. The right pattern: use category to find candidates, promote the winners to ASIN targeting, retire the losers."}
 ]},
 {id:"m7l2",title:"Competitor, Defensive, Cross-Sell, Complementary",mins:7,blocks:[
-{t:"goal",x:"Pick a product-targeting strategy that matches a clear intent."},
-{t:"table",head:["Strategy","Target type","Intent"],rows:[
-["Competitor","ASINs of rival products","Steal share from a comparable offer"],
-["Defensive","Your own ASINs and your brand","Prevent competitors from showing on your pages"],
-["Cross-sell","Complementary products","Reach shoppers buying something adjacent"],
-["Category","A category node","Broad exposure"]
+{t:"goal",x:"Pick a product-targeting strategy that matches a clear intent, and explain what each strategy is for and what it costs."},
+{t:"p",x:"The four common product-targeting strategies, and the intent behind each. Competitor targeting: your ad appears next to a rival's product, and your goal is to convince the shopper to choose you instead. Defensive targeting: your ad appears on your own product pages and your own brand searches, and your goal is to prevent competitors from showing up there. Cross-sell targeting: your ad appears next to a complementary product, and your goal is to reach the shopper at the moment of adjacent need. Category targeting: your ad appears on a node, and your goal is broad discovery."},
+{t:"p",x:"Each strategy has a different economic profile. Competitor targeting tends to be mid-cost, mid-intent — the shopper is already on a comparison page, the click is worth real money, and the conversion rate depends on whether your offer wins. Defensive targeting tends to be the lowest ACOS in the account — the shopper is already deep in your funnel, and the bid can be conservative because the goal is not to convert, it is to deny the page to competitors. Cross-sell targeting is mid-cost, mid-intent, and seasonal — it works best when the complementary product is in a related buy (knife set + cutting board, water bottle + gym bag). Category targeting is the costliest per click and the lowest-intent by default."},
+{t:"table",head:["Strategy","Target type","Intent","Cost","When to use"],rows:[
+["Competitor","Rival ASINs","Steal share from a comparable offer","Mid","When your offer is roughly comparable"],
+["Defensive","Your own ASINs and brand","Prevent competitors on your pages","Low","Always. The cost of defense is usually lower than the cost of offense"],
+["Cross-sell","Complementary ASINs","Reach shoppers buying something adjacent","Mid","When the complementary category is in a real buy pattern"],
+["Category","A category node","Broad discovery","High per click","When you do not yet know the ASIN landscape"]
 ]},
-{t:"tip",x:"Defensive product targeting often has a lower ACOS because the shopper is already deep in the funnel."}
+{t:"example",x:"Bamboo Cutting Board. Competitor targets: 5 cutting-board rivals at the same price point ($20-$30). Defensive: own ASIN, brand name 'Project Amazon', 1 product family. Cross-sell: 3 high-end knife sets, 1 butcher block, 1 charcuterie set. Category: 'Cutting Boards' node. Each has a separate bid and a separate expected outcome. The defensive line gets the lowest bid and the highest impression share; the competitor line gets the highest bid; the category line gets a small discovery bid."},
+{t:"mistake",items:[
+"Building a competitor list without comparing offers — paying to lose the click is paying to advertise for the competitor",
+"Forgetting the defensive line — the lowest-cost spend in the account is often the most forgotten",
+"Mixing competitor and cross-sell in one ad group — they have different intent and deserve different bids",
+"Setting the same bid on all four strategies — the bid should reflect the cost and the intent of each"
+]},
+{t:"tip",x:"Defensive targeting often has the lowest ACOS in the account because the shopper is already deep in your funnel. The cost of defense is usually lower than the cost of offense."}
 ]},
 {id:"m7l3",title:"Retail-Readiness Comparison and Risk of Stronger Offers",mins:6,blocks:[
-{t:"goal",x:"Reject product targets where the offer is unlikely to win."},
-{t:"p",x:"Before targeting a competitor ASIN, compare five things: price, rating, review count, image quality, and offer. If you lose on three of five, the click becomes a comparison shopper for the competitor — you paid for the click and the competitor got the sale."},
-{t:"example",x:"Your product: $24.99, 4.5 stars, 150 reviews. Competitor: $19.99, 4.7 stars, 4,000 reviews. You are likely the comparison; the click is wasted."},
-{t:"tip",x:"Target competitors where you are roughly comparable. Use category targeting to cast a wider net when you are still building the offer."}
+{t:"goal",x:"Reject product targets where your offer is unlikely to win, and explain how to score the comparison quickly."},
+{t:"p",x:"Before you target a competitor ASIN, you have to compare five things: price, rating, review count, image quality, and the offer itself (variants, bundle, sustainability claim, brand story). If you lose on three of five, the click becomes a comparison shopper for the competitor. You pay for the click; the competitor gets the sale. This is the most expensive mistake in product targeting, because it does not look like a mistake. The click looked fine. The conversion was just low. The customer quietly bought the better product."},
+{t:"p",x:"The five-signal score is fast, not exhaustive. Walk through price first (within 20% of competitor?), then rating (within 0.3 stars?), then review count (within 5x?), then image (clean, white-background, comparable?), then offer (a real differentiator or a me-too?). If you lose on three, the target is a discovery spend at best, and an advertising loss at worst. If you win on three, you have a real shot and the bid can reflect that. The score is not a verdict on the product; it is a verdict on the click's expected conversion rate."},
+{t:"table",head:["Signal","Within range","Out of range","What to do"],rows:[
+["Price","Within 20% of competitor","Much higher or much lower","Compete on price or accept loss"],
+["Rating","Within 0.3 stars","Much lower","Improve product or skip this target"],
+["Reviews","Within 5x of competitor","Much fewer","Build reviews or skip this target"],
+["Image","Clean, comparable quality","Worse","Reshoot or skip this target"],
+["Offer","Real differentiator","Me-too copycat","Find a differentiator or skip this target"]
+]},
+{t:"example",x:"Your product: $24.99, 4.5 stars, 150 reviews, 4 white-background images, eco-friendly bamboo. Competitor: $19.99, 4.7 stars, 4,000 reviews, 7 lifestyle images, plastic. Price: you lose. Rating: you lose. Reviews: you lose. Image: you tie. Offer: you tie (eco vs plastic is a real differentiator). Score: 1 win, 2 ties, 2 losses. The click will go to the competitor 70% of the time. Skip or run a defensive bid only."},
+{t:"mistake",items:[
+"Targeting every top-10 ASIN in the category because they are top-10 — top-10 is the leaderboard, not the target list",
+"Comparing only price — a $5 cheaper competitor with 10x your reviews and a better image is not a target, it is a learning opportunity",
+"Refusing to skip a target because 'every click is a chance' — a click you lose is a click that costs you money and trains the auction",
+"Updating the comparison once and never again — your offer improves, the competitor's improves; the scorecard shifts monthly"
+]},
+{t:"tip",x:"If you lose on three of five, skip the target. The click will go to the better offer 70% of the time, and you will have paid for the comparison shopper's education."}
 ]},
 {id:"m7l4",title:"Lab: Product-Targeting Matrix",mins:6,blocks:[
-{t:"goal",x:"Build an ASIN target list and a category target list with rationale."},
-{t:"p",x:"For one product, build two lists. List A: 5–10 ASINs you would target, with one-line rationale each. List B: 1–2 category nodes you would target, with one-line rationale. For each, score on price, rating, reviews, image, and offer. Reject any target where you lose on three or more."},
-{t:"tip",x:"The list is not done when it is long. It is done when every entry has a reason and a comparator score."}
+{t:"goal",x:"Build an ASIN target list and a category target list with rationale, and apply the five-signal score before going live."},
+{t:"p",x:"For one product, build two lists. List A: 5-10 ASINs you would target, with one-line rationale each (this competitor is comparable on price, this one is a strong cross-sell, this one is the obvious defensive target). List B: 1-2 category nodes you would target, with one-line rationale (this node is where my shopper actually browses, this one is the discovery net). For each entry, score on price, rating, reviews, image, and offer. Reject any target where you lose on three or more."},
+{t:"p",x:"The list is not done when it is long. The list is done when every entry has a reason and a comparator score. The score is the gate; the rationale is the audit trail. Six months from now, when the data tells you the bid is wrong on entry 7, you will look at the rationale to remember why you targeted it, and you will look at the score to know whether to keep targeting. The structure of the list is the structure of the campaign's learning."},
+{t:"example",x:"Bamboo Cutting Board, list A: 5 cutting-board rivals at $20-$30 (each scored and one line of rationale), 2 high-end wooden boards for the gift cluster, 1 chef's-knife set for cross-sell, 1 butcher block, 1 charcuterie set. List B: 'Cutting Boards' narrow node, 'Kitchen Boards & Trays' broader node. Each entry has a row in a single spreadsheet: target ASIN, price, rating, reviews, image quality, offer, score, rationale, starting bid. The list is auditable and revisable."},
+{t:"mistake",items:[
+"Building a 50-ASIN list without rationale — a 50-ASIN list with no rationale is a list of guesses",
+"Skipping the score because the target 'looks like a good competitor' — looking comparable is not the same as being comparable",
+"Refreshing the list once a year — the competitor's offer improves, your offer improves, the scorecard shifts",
+"Targeting an ASIN because it is the bestseller without checking your offer — the bestseller is the hardest target, not the easiest"
+]},
+{t:"tip",x:"The list is not done when it is long. It is done when every entry has a reason and a comparator score. The reason is the rationale; the score is the gate. Both matter."}
 ]}
-],
+]},
 quiz:[
 {q:"Product targeting on a stronger offer usually…",o:["Wins on the click","Pays for the competitor's comparison shopper","Improves TACoS","Beats organic"],a:1,e:"You pay for the click, the competitor gets the sale."},
 {q:"Defensive product targeting is bidding on…",o:["Competitor ASINs","Your own brand and ASINs","Categories only","Top of search only"],a:1,e:"Defensive = protect your own pages."},
@@ -945,46 +995,107 @@ quiz:[
 {title:"Bidding, Placements, and Budgets",icon:"💸",color:"#EF4444",img:IMG.deck,desc:"Dynamic bids, placements, effective exposure, and budget pacing.",
 lessons:[
 {id:"m8l1",title:"Budget Basics",mins:5,blocks:[
-{t:"goal",x:"Set a daily budget that supports learning without overcommitting."},
-{t:"p",x:"Daily budget is the cap, not the target. Set it high enough to get enough clicks to learn (a beginner campaign needs at least 10–20 clicks per day per cluster) and low enough that a bad week does not blow the account."},
+{t:"goal",x:"Set a daily budget that supports learning without overcommitting, and explain why 'budget' is a cap, not a target."},
+{t:"p",x:"A daily budget is the cap on what you will spend in a day, not a target of what you should spend. The right number is the smallest budget that lets the campaign produce enough clicks to learn. For a beginner campaign, that is at least 10-20 clicks per day per cluster, which usually means a $10-30 daily budget for the first few weeks. The cap is what protects you from a bad week; the lower you can keep it, the smaller the bad week can be."},
+{t:"p",x:"The principle: budget is the speed limit, not the destination. A campaign that consistently hits its budget by 4pm and produces profitable sales is capped — raise the budget. A campaign that hits its budget by 10am and produces unprofitable sales is over-funded — lower the budget, lower the bid, or add negatives. The right budget is the one that matches the campaign's job. Research campaigns get small budgets; performance campaigns get bigger ones; scale campaigns get the most."},
+{t:"formula",f:"Learning budget = target clicks per day × expected CPC. Profit budget = (target daily sales / CVR) × AOV",note:"For a $0.75 CPC and 20 clicks/day target, the learning budget is ~$15/day. The profit budget scales with the math, not the hope."},
+{t:"example",x:"Bamboo Cutting Board, new manual campaign. $0.85 suggested bid. Target: 20 clicks/day. Learning budget: $17/day. After 30 days, the campaign has 40 sales at 24% ACOS. Now scale: target $200/day in sales. At 8% CVR and $25 AOV, profit budget = ($200 / 0.08) = $2,500/day gross sales, with $600/day in ad spend at 30% ACoS. The math replaces the guess."},
+{t:"mistake",items:[
+"Setting a $100/day budget on a campaign with no data — a $100/day spend on a bad campaign is a $700/week hole",
+"Setting a $5/day budget because the campaign is new — a $5/day budget on 20-click learning is not enough clicks to learn",
+"Refusing to raise the budget on a profitable campaign because 'spend is risky' — profitable spend is the point, not the problem",
+"Setting the same budget on every campaign — the budget should match the job"
+]},
 {t:"tip",x:"If a profitable campaign is out of budget by 9am, the budget is too low, not the campaign. But first confirm the campaign is actually profitable — 'out of budget' is not automatically a budget problem."}
 ]},
 {id:"m8l2",title:"Top of Search, Rest of Search, Product Pages",mins:6,blocks:[
-{t:"goal",x:"Explain the three placements and what each is worth."},
-{t:"table",head:["Placement","Where","What it tends to deliver"],rows:[
-["Top of Search","Above the organic results","High intent clicks, higher CPC, often better CVR"],
-["Rest of Search","Mixed in the organic results","Mid-intent clicks, average CPC"],
-["Product Pages","On competitor and category pages","Browsing intent, mixed CVR, lower CPC"]
+{t:"goal",x:"Explain the three placements, what each tends to deliver in cost and conversion, and how to read the placement report."},
+{t:"p",x:"The three placements are where your ad can show up. Top of Search is above the organic results — the shopper has just searched, the page is the search results, your ad is at the top. The shopper is high-intent (they are looking) but the position is contested (every advertiser wants top of search) and the CPC is the highest of the three. Rest of Search is mixed in with the organic results on a search page — still search intent, but lower position, lower CPC, often lower conversion. Product Pages is the placement on competitor product detail pages and on category browse pages — the shopper is browsing, the intent is mixed, the CPC is usually the lowest of the three."},
+{t:"p",x:"The right way to read the placements is the placement-level report, not intuition. For 14 days, run the campaign without placement adjustments and let the report show what each placement actually delivered. Top of Search may have a higher CVR, or it may not. Product Pages may have a lower ACOS, or it may not. The data answers; your assumption does not. Once you have 14 days of placement data, you can adjust. Before that, you are guessing."},
+{t:"table",head:["Placement","Where","Typical CPC","Typical CVR","Typical ACOS"],rows:[
+["Top of Search","Above the organic results","High","High to mid","Mid to high"],
+["Rest of Search","Mixed in the organic results","Mid","Mid","Mid"],
+["Product Pages","On competitor and category pages","Low","Low to mid","Low to high (varies most)"]
 ]},
-{t:"tip",x:"Top of Search is not always the most profitable placement. It is the most expensive. Read the placement-level report before raising a placement adjustment."}
+{t:"example",x:"Bamboo Cutting Board, 14 days, no adjustments. Top of Search: 2,400 impressions, 110 clicks, 9 sales, $0.92 CPC, 33% ACOS. Rest of Search: 5,200 impressions, 80 clicks, 5 sales, $0.55 CPC, 35% ACOS. Product Pages: 8,400 impressions, 95 clicks, 4 sales, $0.38 CPC, 36% ACOS. All three placements have similar ACOS in this case. The decision is volume vs cost: Top of Search costs more but converts more, Product Pages costs less but converts less. Adjustments are small here."},
+{t:"mistake",items:[
+"Assuming Top of Search is always the best placement — sometimes the data shows Product Pages has a better ACOS, and the bid should reflect that",
+"Refusing to advertise on Product Pages because 'browsers don't convert' — some products convert on Product Pages because the comparison page is the moment of decision",
+"Raising the Top of Search adjustment before reading the report — a 100% adjustment on a placement that does not convert is a fast way to lose money",
+"Setting the same placement adjustment on every campaign — the data is per-campaign, and so are the adjustments"
+]},
+{t:"tip",x:"Top of Search is not always the most profitable placement. It is the most expensive. Read the placement-level report before raising a placement adjustment. The data is the answer; your assumption is the question."}
 ]},
 {id:"m8l3",title:"Placement Adjustments and Effective Bid Exposure",mins:7,blocks:[
-{t:"goal",x:"Compute the effective bid after a placement adjustment."},
-{t:"formula",f:"Effective bid = base bid × (1 + placement adjustment)",note:"A 50% top-of-search adjustment on a $0.80 base bid = $1.20 effective at top of search."},
-{t:"example",x:"Base $0.60. Top of Search +100% → effective $1.20. Product Pages +0% → effective $0.60."},
-{t:"p",x:"A placement adjustment is a multiplier on the base bid, applied only when the ad wins that placement. It is the most direct way to express 'I value this placement more.'"},
-{t:"tip",x:"Set placement adjustments based on data, not on intuition. Run a placement report for 14 days first."}
+{t:"goal",x:"Compute the effective bid after a placement adjustment, and explain what placement adjustments actually do to your spend."},
+{t:"p",x:"A placement adjustment is a multiplier on the base bid, applied only when your ad wins a particular placement. A +50% top-of-search adjustment on a $0.80 base bid means the effective bid is $1.20 if the auction is for a top-of-search slot. A 0% adjustment means the effective bid is $0.80 in that slot. The adjustment is the way to say 'I value this placement more' (positive adjustment) or 'I do not want to pay for this placement' (negative adjustment, including -100% which means 'never show in this placement')."},
+{t:"p",x:"The effective bid is what matters, not the adjustment percentage. A 100% adjustment on a $0.30 base bid is $0.60 — modest. A 100% adjustment on a $1.20 base bid is $2.40 — a serious premium. Always compute the effective bid before setting an adjustment, especially on a high-base campaign. The right adjustment is the one that produces the right effective bid, not the one that produces the most aggressive percentage."},
+{t:"formula",f:"Effective bid = base bid × (1 + placement adjustment). A +50% top-of-search adjustment on a $0.80 base bid = $1.20 effective. A -100% adjustment = $0 effective (never show in this placement).",note:"Adjustments are not free; they are multipliers on real money. Compute the effective bid before you set the percentage."},
+{t:"example",x:"Base bid $0.60. Top of Search +100% → effective $1.20. Product Pages +0% → effective $0.60. Rest of Search -50% → effective $0.30. The campaign will fight hard for Top of Search, accept Product Pages, and largely avoid Rest of Search. The CPC will reflect the priorities: top slots are most expensive, the rest are cheaper, and the campaign's mix of placements will follow the adjustments."},
+{t:"mistake",items:[
+"Setting +100% on Top of Search without computing the effective bid — a $1.50 base becomes a $3.00 effective, and the spend goes up before the conversions do",
+"Setting -100% on Product Pages because 'browsers don't convert' — sometimes the placement is profitable; -100% removes the chance to find out",
+"Setting the same adjustment on every campaign — each campaign has its own base bid and its own data, and the adjustments should match",
+"Changing the adjustment more than once a week — the placement data needs at least 14 days to be meaningful"
+]},
+{t:"tip",x:"Set placement adjustments based on data, not on intuition. Run a placement report for 14 days first. The adjustment is a multiplier on the base bid; the effective bid is the real number you are paying."}
 ]},
 {id:"m8l4",title:"Dynamic Bids: Down Only / Up and Down / Fixed",mins:6,blocks:[
-{t:"goal",x:"Pick the right bid strategy for the campaign's job."},
-{t:"table",head:["Strategy","Behavior","Use for"],rows:[
-["Dynamic bids — down only","Amazon lowers your bid when a click is unlikely to convert","Defensive. Safe default for beginners."],
-["Dynamic bids — up and down","Amazon raises and lowers your bid based on conversion likelihood","Growth. Use when you have conversion data and want more volume."],
-["Fixed bids","Your bid is the bid, period","Strict control. Use for tight, manual control."]
+{t:"goal",x:"Pick the right bid strategy for the campaign's job, and explain why 'down only' is the safe default for a beginner."},
+{t:"p",x:"Dynamic bids are Amazon's automated bid adjustments. Down only: Amazon may lower your bid (never raise) when a click is unlikely to convert. Up and down: Amazon may raise or lower your bid based on conversion likelihood. Fixed: your bid is the bid, period. Each strategy is a different amount of control traded for a different amount of automation. Down only is the safest because it can never spend more than you set; Up and Down is the most aggressive because it can spend up to 100% more than you set; Fixed is the most predictable because nothing is automated."},
+{t:"p",x:"The right choice depends on the campaign's data and the campaign's job. Beginners with no data should default to 'down only' for the first 4 weeks — the strategy protects you from overpaying on low-conversion clicks while the auction learns your relevance. Campaigns with 30+ conversions can move to 'up and down' for growth, because Amazon now has signal to spend more on likely-converting clicks. Campaigns that need surgical control (a launch with a strict budget, a high-stakes scale campaign) should run Fixed."},
+{t:"table",head:["Strategy","Behavior","Bid range","Use for","Don't use for"],rows:[
+["Down only","Amazon may lower your bid, never raise","Up to -100% of base","Beginner, defensive, scale with limited budget","Aggressive growth where you want Amazon to spend more"],
+["Up and down","Amazon may raise or lower your bid","Up to +100% / -100% of base","Growth, when you have 30+ conversions and want volume","Strict budget control, surgical bid management"],
+["Fixed","Your bid is the bid, period","Exact base bid","Launches, tight control, predictable spend","Discovery where automation could help"]
 ]},
-{t:"tip",x:"Beginners should default to 'down only' for the first 4 weeks. Move to 'up and down' only after the campaign has 30+ conversions."}
+{t:"example",x:"Bamboo Cutting Board, 4 weeks. Week 1-4: down only. The campaign produced 24 sales at 28% ACOS. Week 5: switch to up and down, keep the same base bid. Two weeks later, the campaign is producing 35% more sales at 32% ACOS — slightly worse ACOS, but more volume and the data says the spend is worth it. Week 7: review; if ACOS stays above target, switch back to down only. The strategy is a dial, not a switch."},
+{t:"mistake",items:[
+"Defaulting to up and down because 'more volume' — without conversion data, Amazon does not know when to spend more",
+"Defaulting to fixed because 'I want control' — fixed is the right choice for surgical control, not for every campaign",
+"Switching strategies more than once a month — each switch restarts the learning period, and the data becomes noise",
+"Believing dynamic bids are a magic growth tool — they are an amplifier, not a strategy; bad data amplified is bad spend amplified"
+]},
+{t:"tip",x:"Beginners should default to 'down only' for the first 4 weeks. Move to 'up and down' only after the campaign has 30+ conversions. Bid strategy is a function of data state, just like match type."}
 ]},
 {id:"m8l5",title:"Budget Pacing and 'Out of Budget ≠ Budget Problem'",mins:6,blocks:[
-{t:"goal",x:"Diagnose why a campaign is out of budget before raising the budget."},
-{t:"p",x:"Three reasons a campaign can be out of budget: (1) the campaign is profitable and capped — raise the budget; (2) the campaign is unprofitable and burning — lower bids or add negatives; (3) the day is front-loaded — pacing will fix it."},
-{t:"split",a:{title:"Raise the budget when",items:["ACOS is below margin and stable","The campaign hits budget by 4–6pm","You have 14+ days of clean data"]},b:{title:"Don't raise the budget when",items:["ACOS is above margin","The campaign just launched","Spend is being driven by irrelevant terms"]}}
+{t:"goal",x:"Diagnose why a campaign is out of budget before raising the budget, and explain the three reasons a campaign can be capped."},
+{t:"p",x:"'Out of budget' is a symptom, not a diagnosis. Three different problems can produce the same alert. First, the campaign is profitable and capped — sales are coming in, ACOS is healthy, but the budget is too small to capture all the demand. Raise the budget. Second, the campaign is unprofitable and burning — sales are weak, ACOS is bad, and the spend is going to waste. Lower the budget, lower the bid, add negatives. Third, the day is front-loaded — the campaign spends fast in the morning and is out by 2pm, but the spend is healthy. Adjust the pacing, not the budget."},
+{t:"p",x:"The diagnostic is the placement report, the search-term report, and the ACOS. If ACOS is below margin and stable, the campaign is profitable and capped — raise the budget. If ACOS is above margin, the campaign is unprofitable and burning — fix the campaign before the budget. If the campaign is consistently out of budget by 4-6pm, the budget is too small for the demand. The right move depends on which of the three reasons you are seeing. The wrong move is always to raise the budget."},
+{t:"split",a:{title:"Raise the budget when",items:[
+"ACOS is below margin and stable",
+"The campaign hits budget by 4-6pm consistently",
+"You have 14+ days of clean data showing the campaign is healthy",
+"The day's spend pattern is steady, not front-loaded"
+],b:{title:"Don't raise the budget when",items:[
+"ACOS is above margin and rising",
+"The campaign just launched and is still in the learning period",
+"Spend is being driven by irrelevant search terms you have not yet negated",
+"You cannot tell from the data whether the spend is profitable"
+]}},
+{t:"example",x:"Bamboo Cutting Board, performance campaign, day 14. ACOS 24%, margin 30%, profitable. Out of budget by 11am. Diagnosis: profitable and capped. Move: raise daily budget from $20 to $40. Day 21, ACOS 26%, sales up 60%, still profitable. Move: raise to $60. Day 28, ACOS 30%, sales up 90%, at the margin line. Stop. The budget found the ceiling. The next move is bid adjustment, not more budget."},
+{t:"mistake",items:[
+"Raising the budget every time a campaign hits its cap — sometimes the cap is the campaign telling you it has found its ceiling",
+"Lowering the budget on a profitable campaign because 'spend is scary' — profitable spend is the goal, not the threat",
+"Raising the budget on an unprofitable campaign because 'more spend will fix it' — more unprofitable spend is more loss, not more data",
+"Diagnosing the budget problem from the alert alone — the alert is a symptom; the report is the diagnosis"
+]},
+{t:"tip",x:"'Out of budget' is a symptom, not a diagnosis. The right move depends on which of the three reasons you are seeing. The wrong move is always to raise the budget without looking."}
 ]},
 {id:"m8l6",title:"Bid Change Walkthrough (Worked)",mins:6,blocks:[
-{t:"goal",x:"Walk through a bid change with reason, old, new, expected, review date."},
-{t:"example",x:"Target: 'bamboo cutting board' Exact. 14 days. 35 clicks, 4 sales, ACOS 22%, margin 30%. Decision: raise bid 15% to $0.92. Expected: more impressions, slightly lower ACOS. Review: 14 days."},
-{t:"tip",x:"Every bid change needs five things: reason, old value, new value, expected result, review date. No exceptions."}
+{t:"goal",x:"Walk through a bid change with reason, old value, new value, expected result, and review date, and explain why every bid change needs all five."},
+{t:"p",x:"Every bid change should answer five questions: Why am I changing it? What was the old bid? What is the new bid? What do I expect to happen? When will I review the result? If any of the five is missing, the change is a guess. If the change is a guess, the result is hard to interpret. If the result is hard to interpret, the next change is also a guess. The five-question template is the structure that turns guessing into learning."},
+{t:"p",x:"The walkthrough example below shows the five-question template applied to a real bid change. The reason came from data, the old and new bids are explicit, the expected result is a number, and the review date is concrete. Six months from now, when you look back at the change, you will know exactly what you were trying to do and exactly what happened. That is the difference between a PPC account that learns and a PPC account that just runs."},
+{t:"example",x:"Target: 'bamboo cutting board' Exact. 14 days. 35 clicks, 4 sales, ACOS 22%, margin 30%. Decision: raise bid 15% from $0.80 to $0.92. Reason: 14 days, healthy ACOS, sales steady, room under margin. Expected: more impressions, slightly lower ACOS, more sales. Review date: 14 days from now. On the review date: 70 clicks, 9 sales, ACOS 24%, sales up 125%, ACOS up 2 points. Decision: keep the bid; raise the budget. The change worked. The next change is informed by it."},
+{t:"mistake",items:[
+"Changing a bid without a written reason — six weeks from now, you will not remember why, and the data will be uninterpretable",
+"Raising a bid by 100% because 'I want more sales' — large changes are hard to learn from; small changes compound",
+"Reviewing the change after 3 days — 3 days is noise; 14 days is signal; review on the date you set",
+"Making 5 bid changes in the same week — each change needs its own review period, and stacked changes make attribution impossible"
+]},
+{t:"tip",x:"Every bid change needs five things: reason, old value, new value, expected result, review date. No exceptions. The template is the structure; the structure is the learning."}
 ]}
-],
+]},
 quiz:[
 {q:"Top of Search placement adjustment is…",o:["A flat fee","A multiplier on the base bid","A budget","A negative"],a:1,e:"Placement adjustment multiplies the base bid."},
 {q:"Beginner default bid strategy?",o:["Up and down","Down only","Fixed at max","No bid"],a:1,e:"Down only is the safe default for the first 4 weeks."},
