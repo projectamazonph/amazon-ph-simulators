@@ -425,68 +425,121 @@ quiz:[
 lessons:[
 {id:"m2l1",title:"Pay Per Click in Plain Words",mins:5,blocks:[
 {t:"goal",x:"Explain the basic flow of a PPC click and the metric terms that follow it."},
-{t:"p",x:"The seller bids a maximum cost per click. The ad is shown for free (impression). When a shopper clicks, the seller pays — but not necessarily the bid amount. The seller pays the smallest amount needed to beat the next competitor, which is usually much less than the bid."},
-{t:"diagram",kind:"flow",title:"From ad to sale",steps:["Impression (free)","Click (seller pays)","Landing page view","Add to cart","Order (sale)"]},
-{t:"tip",x:"CPC is the average you paid per click, not the bid. A $1.00 bid often shows as a $0.40 CPC because the auction clears below the bid."}
+{t:"p",x:"PPC stands for pay-per-click. The seller does not pay to show an ad — showing an ad is free. The seller pays only when a shopper clicks. This is the only fact that makes PPC different from every other kind of advertising, and it is the only fact you need to remember about the name."},
+{t:"p",x:"The full chain, in five steps: an ad appears (impression, free), a shopper clicks (the seller pays), the shopper lands on the product page, the shopper adds to cart, the shopper buys. Three of those five steps are free; two cost money. The cost is the click and, downstream, the fee Amazon takes on the sale. Everything a PPC manager does is about making the click and the sale happen at a price the seller can afford."},
+{t:"p",x:"The seller sets a maximum bid — the most they are willing to pay for a click, in theory. The actual cost is almost always lower, because the ad auction clears below the bid. A $1.00 bid often produces a $0.40 click. The bid is a ceiling, not a price. New managers tend to set their bid too high because they read it as a price; experienced managers set the bid above their target CPC and let the auction find the floor."},
+{t:"example",x:"Bamboo Cutting Board again. Bid set at $1.20. The ad shows 8,400 times this month, free. Shoppers click it 168 times (2% CTR). On the auction, the second-highest competitor was bidding $0.85 with weaker relevance, so the seller paid $0.62 per click on average. Total spend: 168 × $0.62 = $104.16. The $1.20 bid never mattered — it was the ceiling, not the price."},
+{t:"formula",f:"Spend = Clicks × Actual CPC. Actual CPC ≤ Bid. Bid is a ceiling; the auction sets the real price.",note:"ACOS and ROAS use Spend and Sales. Both flow from clicks × CPC. Get CPC right and everything else is math."},
+{t:"mistake",items:[
+"Reading a high bid as 'I will pay this much' — you almost never will, because the auction clears below the bid",
+"Setting the bid equal to the target CPC — this leaves no headroom; the auction will eat into your target and you will overpay",
+"Confusing the bid (a number you set) with the budget (a total you are willing to spend) — bid is per-click, budget is per-period",
+"Calling PPC 'paying to show up' — you pay to be clicked, not to be seen"
+]},
+{t:"tip",x:"Open any Sponsored Products campaign in your training data. Find the bid column. Find the actual CPC column. Notice the gap. The gap is the auction working for you."}
 ]},
 {id:"m2l2",title:"How the Auction Works",mins:6,blocks:[
-{t:"goal",x:"Explain why two sellers with the same bid can pay different CPCs."},
-{t:"p",x:"Amazon runs a second-price auction. The winner pays one cent more than the second-highest bidder, multiplied by a quality factor. A higher bid does not always win, and winning does not always mean paying that bid."},
+{t:"goal",x:"Explain why two sellers with the same bid can pay different CPCs and reach different placements."},
+{t:"p",x:"Amazon runs a second-price auction, but it is not a pure second-price auction — it is a second-price auction multiplied by a quality factor. The highest bidder wins, but the price they pay is just enough to beat the second-place bidder, scaled by how relevant the ad and listing look to Amazon. This means three things at once: bid matters, relevance matters, and you do not know in advance which will dominate on a given search."},
+{t:"p",x:"The quality factor is a number Amazon computes from your ad's historical performance and your listing's perceived quality. Amazon does not publish the formula, but the inputs are well-known: click-through rate, conversion rate, image quality, review count, review rating, and whether the search term matches the title and bullets. A new ad starts with a neutral score; it earns relevance by performing well on the search terms it gets shown for. Relevance compounds. A week of strong CTR on a search term improves your score, which lowers your CPC, which improves placement, which keeps CTR strong."},
 {t:"list",items:[
-"Relevance score: how well your ad matches the search term",
-"Historical performance: past click-through and conversion rates",
-"Listing quality: image, title, price, reviews",
-"Ad type and placement: top of search costs more than product pages"
+"Relevance score: how well your ad and listing match the search term. The most controllable input.",
+"Historical performance: past CTR and CVR on the same or similar searches. New ads start fresh.",
+"Listing quality: images, title, bullets, price, reviews. Affects both the auction and the post-click conversion.",
+"Ad type and placement: top of search costs more than product pages; SP costs less than SB; video costs differently from text."
 ]},
-{t:"example",x:"You bid $1.00. Your competitor bids $0.90 but their CTR is half yours. Amazon may show your ad first and charge you $0.55."},
-{t:"tip",x:"A high bid does not guarantee a placement. Relevance and quality still matter."}
+{t:"example",x:"You and a competitor both bid $1.00 on 'bamboo cutting board large'. Your CTR is 2.4%; theirs is 0.9%. Amazon's auction sees you as the better clicker and lowers your effective CPC. You win the top placement and pay $0.61 per click. The competitor, with the same bid, pays $0.89 and lands in slot 3. Same bid, very different outcome. Quality won."},
+{t:"formula",f:"Effective CPC = (Second-highest bid ÷ Your quality score) × 100. Higher quality score = lower actual CPC.",note:"Quality is not just an abstract number. Every CTR and CVR point you improve lowers your real cost."},
+{t:"mistake",items:[
+"Believing the highest bid always wins — it does not, because the quality factor multiplies in",
+"Chasing a higher bid to fix a low-placement problem when the real problem is a weak listing or a poor CTR history",
+"Stopping the campaign to 'reset' a bad relevance score — this also resets any accumulated quality, and you will start over from zero",
+"Reading a low CPC as a sign of a good campaign — low CPC with zero conversions is a quiet, expensive failure"
+]},
+{t:"tip",x:"If a campaign is overpaying, do not raise the bid first. Check the listing quality, then the search-term relevance, then the historical CTR. The bid is usually the last dial to touch."}
 ]},
 {id:"m2l3",title:"Spend, Sales, CPC, CTR, Conversion",mins:7,blocks:[
-{t:"goal",x:"Compute the core traffic and conversion metrics and know what each one proves."},
-{t:"formula",f:"CPC = Spend ÷ Clicks",note:"Average you paid for one click. Lower is not always better — cheap clicks with no sales lose money."},
-{t:"formula",f:"CTR = Clicks ÷ Impressions × 100",note:"How often viewers click your ad. Hook signal — affected by relevance and offer appeal."},
-{t:"formula",f:"Conversion rate = Orders ÷ Clicks × 100",note:"How often clicks become attributed orders. Listing-quality signal."},
+{t:"goal",x:"Compute the core traffic and conversion metrics and know what each one proves on its own."},
+{t:"p",x:"Every PPC report is built from three counts: spend, sales, and the number of clicks and impressions between them. The metrics are ratios of those counts, and each ratio answers exactly one question. The trap is treating them as a single score. CTR, CVR, and ACOS each measure a different link in the chain; a metric can be great while the business loses money, and a metric can be bad while the business is healthy."},
+{t:"p",x:"The chain in order: an impression is a chance to be seen; CTR is how often that chance turns into a click; the click costs CPC × Clicks in spend; CVR is how often a click becomes an order; the order is the sale. Reading the chain left to right, a problem anywhere stops everything to the right of it. Reading it right to left, sales is what matters, and every other metric exists to explain why sales is what it is."},
+{t:"formula",f:"CPC = Spend ÷ Clicks",note:"Average paid per click. Lower is not always better — cheap clicks with no sales lose money. Always read CPC alongside CVR."},
+{t:"formula",f:"CTR = Clicks ÷ Impressions × 100",note:"How often viewers click your ad. Hook signal. A low CTR means the ad creative, the price, or the relevance is not earning the click."},
+{t:"formula",f:"CVR = Orders ÷ Clicks × 100",note:"How often a click becomes an attributed order. Listing-quality signal. A low CVR with a strong CTR is a listing problem, not an ad problem."},
 {t:"diagram",kind:"funnel",title:"The click funnel",items:[["Impressions",100],["Clicks",20],["Add to cart",4],["Orders",2]]},
-{t:"tip",x:"Each metric answers one question. CTR answers 'do I look clickable?'. CVR answers 'does the listing convert?'. Don't read a CTR drop as a CVR problem."}
+{t:"mistake",items:[
+"Reading a CTR drop as a CVR problem — they are different steps; diagnose the step that moved",
+"Optimizing CTR to 10% on a search term that never converts — you have built a leaky bucket",
+"Comparing CTR across placements without adjusting for position bias — top-of-search CTR is naturally higher",
+"Treating CPC as 'the cost of the bid' — CPC is the result of the auction, not the bid you set"
+]},
+{t:"tip",x:"When a number goes wrong, walk the chain left to right. Where did the line break? Then fix that step. Don't 'lower the bid' when the actual problem is a weak listing converting at 3%."}
 ]},
 {id:"m2l4",title:"ACOS, ROAS, TACoS, and Break-Even",mins:8,blocks:[
-{t:"goal",x:"Compute ACOS, ROAS, TACoS, and break-even ACOS, and know what each proves."},
-{t:"formula",f:"ACOS = Spend ÷ Ad Sales × 100",note:"Ad spend as a percentage of attributed ad revenue. Compare to your margin, not to a target."},
-{t:"formula",f:"ROAS = Ad Sales ÷ Spend",note:"Dollars back per ad dollar. ROAS = 1 ÷ ACOS. If ACOS is 25%, ROAS is 4.0."},
-{t:"formula",f:"TACoS = Ad Spend ÷ Total Sales × 100",note:"Ad spend relative to total revenue. Shows whether ads are lifting the whole business."},
-{t:"formula",f:"Break-even ACOS = Pre-ad contribution margin × 100",note:"The maximum ACOS before ads consume pre-ad profit. A 30% margin means 30% ACOS is the break-even line."},
+{t:"goal",x:"Compute ACOS, ROAS, TACoS, and break-even ACOS, and know what each metric can and cannot tell you."},
+{t:"p",x:"ACOS, ROAS, and TACoS are three ratios of the same two numbers — ad spend and ad sales — but they answer different questions. ACOS asks 'is the ad profitable on its own?'. ROAS asks the same question inverted: 'how many dollars back per ad dollar?'. TACoS asks 'are ads lifting the whole business, including organic sales?'. The most common PPC mistake is to pick one of these as 'the' metric and ignore the others."},
+{t:"p",x:"The fourth number — break-even ACOS — is the most important one and the most often skipped. Break-even ACOS is your pre-ad contribution margin, expressed as a percentage. It is the highest ACOS you can run at without losing pre-ad profit on the attributed sales. A product with 30% contribution margin has a 30% break-even ACOS; running at 25% ACOS is profitable, running at 40% is not. The break-even line is the only line that actually matters, and it is unique to each product."},
+{t:"formula",f:"ACOS = Ad Spend ÷ Ad Sales × 100",note:"Ad spend as a percentage of ad revenue. Compare to your margin, not to a target number. A 25% ACOS is great at 40% margin and a disaster at 10% margin."},
+{t:"formula",f:"ROAS = Ad Sales ÷ Ad Spend",note:"Dollars back per ad dollar. ROAS = 1 ÷ ACOS. ACOS of 25% means ROAS of 4.0. Same information as ACOS, different shape."},
+{t:"formula",f:"TACoS = Ad Spend ÷ Total Sales × 100",note:"Ad spend relative to total revenue. Shows whether ads are lifting the whole business, including organic. Falling TACoS at stable spend is growth; rising TACoS at stable spend is dependency."},
+{t:"formula",f:"Break-even ACOS = Pre-ad contribution margin × 100",note:"The maximum ACOS before ads consume pre-ad profit. 30% margin = 30% break-even ACOS. Above this line, every sale loses money before overhead."},
 {t:"table",head:["Metric","Formula","What it proves","What it does NOT prove"],rows:[
-["ACOS","Spend ÷ Sales","Whether ad sales are profitable on their own","Whether the product is profitable overall"],
-["ROAS","Sales ÷ Spend","How many dollars back per ad dollar","Whether the product is profitable"],
-["TACoS","Spend ÷ Total Sales","Whether ads lift the whole business","Whether the ad sales themselves are profitable"],
-["Break-even ACOS","Margin × 100","The ACOS ceiling for profitability","What the right bid or budget should be"]
+["ACOS","Spend ÷ Ad Sales","Whether ad sales are profitable on their own","Whether the product is profitable overall, or whether organic is paying the bills"],
+["ROAS","Ad Sales ÷ Spend","How many dollars back per ad dollar","Anything beyond the per-ad-dollar return"],
+["TACoS","Spend ÷ Total Sales","Whether ads lift the whole business, organic included","Whether the ad sales themselves are profitable"],
+["Break-even ACOS","Margin × 100","The ACOS ceiling for profitability","What the right bid or budget should be — that is a separate decision"]
 ]},
-{t:"tip",x:"Lower ACOS is not always better if it destroys profitable volume or conflicts with launch goals. A 60% ACOS during launch is fine; a 60% ACOS at maturity is a problem."}
+{t:"example",x:"Bamboo Cutting Board: $24.99 price, $9.00 landed cost, $3.75 referral fee, $2.50 FBA fee. Pre-ad margin = $24.99 - $15.25 = $9.74, or 39%. Break-even ACOS = 39%. The campaign is at 28% ACOS. Profitable by 11 points. If margin drops to 25% next year (new FBA rates), break-even is 25% and the same campaign is now unprofitable. The line moves; the campaign does not need to."},
+{t:"mistake",items:[
+"Targeting an 'ACOS under 20%' across the board — this is not a real target, it is a vanity number, and it depends on margin",
+"Reading TACoS as 'ACOS for the business' — TACoS includes organic sales and so falls as a business grows even with the same ACOS",
+"Confusing break-even ACOS with profit — running at break-even ACOS means zero contribution from ads, not profit",
+"Lowering ACOS by pausing profitable keywords — the campaign looks better on paper while the business loses volume"
+]},
+{t:"tip",x:"Before changing a bid or budget, write down the product's pre-ad margin and the break-even ACOS. If your current ACOS is below it, the dial to turn is growth, not efficiency."}
 ]},
 {id:"m2l5",title:"Attribution Windows and Leading vs Lagging",mins:6,blocks:[
 {t:"goal",x:"Explain why two reports show different numbers, and which metrics are leading versus lagging."},
-{t:"p",x:"Amazon attributes an order to an ad if the shopper clicked within an attribution window (typically 7 days for SP). Two reports can show the same numbers and disagree because their windows or filters are different."},
-{t:"list",items:[
-"Impressions, clicks, and CTR are leading indicators — they change within hours",
-"Add-to-carts, sales, and ACOS are lagging indicators — they can take 7–14 days to settle",
-"Always compare the same date range, attribution logic, and currency",
-"Trust the report with the wider window for decision-making, the narrower for speed"
+{t:"p",x:"An attribution window is the period during which a click can be 'credited' for a sale. For Sponsored Products, the standard window is 7 days: if a shopper clicks your ad today and buys the same product six days later, that sale is attributed to today's click. Different ad types have different windows, and reports can be filtered to narrower windows. This is why the same campaign can show different sales numbers in two different reports."},
+{t:"p",x:"Leading indicators change fast. Impressions, clicks, and CTR respond within hours — they reflect what shoppers are doing today and what the auction is doing right now. Lagging indicators change slowly. Sales, orders, ACOS, and TACoS depend on the attribution window closing and on shopper behavior over days. A campaign you turned off this morning may still produce attributed sales for the next week. A campaign you turned on this morning will look weak for the next week even if it is performing well today."},
+{t:"split",a:{title:"Trust the lagging",items:[
+"Sales, orders, and ACOS at 7+ days",
+"Comparing week-over-week and month-over-month",
+"Break-even and margin-based decisions",
+"Diagnosing a 4-week trend"
+]},b:{title:"Use the leading",items:[
+"Impressions, clicks, CTR inside a day",
+"Diagnosing a sudden traffic drop or spike",
+"Bid changes — see if the auction responded",
+"Budget pacing — did the campaign serve all day?"
+]}},
+{t:"mistake",items:[
+"Reading day-1 ACOS as 'this is how the campaign is doing' — it is how the campaign is doing today, and today is the noisiest day",
+"Comparing today's sales to last week's — the windows don't match",
+"Turning off a campaign on day 2 because sales look weak — the 7-day window hasn't closed yet",
+"Trusting real-time reports for budget decisions — they undercount everything that hasn't closed the window"
 ]},
-{t:"split",a:{title:"Trust the lagging",items:["Sales and ACOS at 7+ days","Comparing weeks, not days"]},b:{title:"Use the leading",items:["Click and CTR trends inside a day","Diagnosing a sudden drop"]}}
+{t:"tip",x:"For every decision, ask: 'Is this a leading or lagging metric?'. If the answer is leading, use it for diagnosis only. If the answer is lagging, use it for action."}
 ]},
 {id:"m2l6",title:"Data Sufficiency: Don't Decide from Tiny Samples",mins:6,blocks:[
-{t:"goal",x:"Recognize when a data sample is too small to support a confident decision."},
-{t:"p",x:"A search term with 3 clicks and 1 sale is not 'profitable' — it is 3 clicks. A campaign with 200 impressions and no sales is not 'failing' — it is too early. Decisions from tiny samples create loud lies."},
+{t:"goal",x:"Recognize when a data sample is too small to support a confident decision, and what to do instead."},
+{t:"p",x:"A search term with 3 clicks and 1 sale is not 'profitable'. It is 3 clicks. A campaign with 200 impressions and no sales is not 'failing'. It is too early. The smallest samples produce the loudest stories, and PPC dashboards happily display them as if they were facts. Acting on tiny samples is the single most common way new managers wreck an account."},
+{t:"p",x:"The fix is a confidence rule: how many clicks do you need before a number is real? There is no universal answer, because search volume and conversion rate both vary by category. But a workable rule of thumb: under 10 clicks, the number is noise; 10–30, it is a signal worth watching but not yet worth acting on; 30+, it is a trend you can trust; 100+, it is a fact about that target. The same rule applies to impressions for CTR: a 4% CTR on 25 impressions is not the same statement as a 4% CTR on 2,500."},
 {t:"table",head:["Sample size","Confidence","Action"],rows:[
-["Under 10 clicks","Low","Watch. Don't act."],
-["10–30 clicks","Medium","One careful change, give it a week."],
-["30+ clicks","High","Trust the trend. Act on it."],
-["100+ clicks","Very high","Treat as a fact about that target."]
+["Under 10 clicks","Low","Watch. Don't act. Note the search term, leave the campaign alone."],
+["10–30 clicks","Medium","One careful change. Give it a week before the next change."],
+["30+ clicks","High","Trust the trend. Act on it: pause, bid, harvest, restructure."],
+["100+ clicks","Very high","Treat as a fact about that target. Build your strategy around it."]
 ]},
-{t:"example",x:"3 clicks, 1 sale → ACOS shown as 33% but the next 30 clicks could easily drop the average. A 60% ACOS on 30+ clicks is a real signal."},
-{t:"tip",x:"When in doubt, give it one more week. Under-reacting beats over-reacting in PPC."}
+{t:"example",x:"A new search term 'eco bamboo board' shows 3 clicks, 1 sale, ACOS 22%. It looks like a winner. The next 30 clicks: zero sales, ACOS 84%. The 22% was a fluke on a tiny sample. With 33 clicks, the real ACOS settles near 70% and the term gets paused. A manager who acted on the 3-click number would have scaled into a loss."},
+{t:"mistake",items:[
+"Pausing a search term on 2 clicks because it has not converted — it has not had a chance yet",
+"Promoting a search term on 1 sale out of 3 clicks — that 1 sale is a sample of one, and a sample of one is not a trend",
+"Changing bids daily because the numbers move — daily moves are noise on small samples",
+"Reporting ACOS to a client from 48 hours of data — the window hasn't closed"
+]},
+{t:"tip",x:"When in doubt, give it one more week. Under-reacting beats over-reacting in PPC, because the cost of waiting a week is small and the cost of acting on noise is real money."}
 ]}
-],
+]},
 quiz:[
 {q:"If margin is 25%, break-even ACOS is…",o:["75%","25%","50%","10%"],a:1,e:"Break-even ACOS equals the margin."},
 {q:"Which is a lagging indicator?",o:["Impressions","Clicks","ACOS","CTR"],a:2,e:"Sales and ACOS need 7+ days to settle."},
