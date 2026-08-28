@@ -120,6 +120,145 @@
         clicks: 38, spend: 49.4, sales: 98.8, orders: 3, expectedAction: 'lower_bid', expectedConfidence: 'medium',
         evidence: 'There are conversions, but 50% ACOS is materially above the 35% target and the sample is not yet large.',
         feedback: 'Keep the relevant demand alive, but lower the bid and inspect the search-term mix before deciding whether the phrase deserves more budget.'
+      },
+      {
+        id: 'new-profitable-exact', target: 'stainless water bottle exact', matchType: 'Exact', bid: 0.85,
+        clicks: 45, spend: 38.25, sales: 135, orders: 9, expectedAction: 'raise_bid', expectedConfidence: 'medium',
+        evidence: 'ACOS is 28.3% with 9 orders from 45 clicks. The keyword is profitable with room to grow.',
+        feedback: 'This is a proven winner with efficient spend. Consider a modest bid increase to capture more volume while monitoring ACOS.'
+      },
+      {
+        id: 'low-volume-broad', target: 'kids insulated lunch bag broad', matchType: 'Broad', bid: 0.75,
+        clicks: 12, spend: 9, sales: 0, orders: 0, expectedAction: 'hold_bid', expectedConfidence: 'low',
+        evidence: 'Only 12 clicks with no conversions. The data is insufficient to make a confident bid decision.',
+        feedback: 'This needs more data. Hold the bid and wait for at least 30-50 clicks before deciding whether to raise, lower, or pause.'
+      }
+    ]
+  };
+
+  var BID_DECISIONS_BEGINNER_SCENARIO = {
+    id: 'bid-decisions-beginner',
+    version: '1.0.0',
+    rubricVersion: '1.0.0',
+    policyVersion: PpcDecisionPolicy.VERSION,
+    title: 'Bid Decisions - Beginner',
+    difficulty: 'beginner',
+    passingScore: 75,
+    targetAcos: 35,
+    actions: ACTIONS,
+    confidenceLevels: CONFIDENCE_LEVELS,
+    rows: [
+      {
+        id: 'simple-winner-exact',
+        target: 'water bottle',
+        matchType: 'Exact',
+        bid: 1.0,
+        clicks: 100,
+        spend: 80,
+        sales: 320,
+        orders: 20,
+        expectedAction: 'raise_bid',
+        expectedConfidence: 'high',
+        evidence: 'ACOS is 25% with 20 orders from 100 clicks. Strong conversion rate and profitable ACOS.',
+        feedback: 'This is a clear winner. Raise the bid to capture more of this high-quality traffic while keeping an eye on ACOS.'
+      },
+      {
+        id: 'high-spend-no-sales',
+        target: 'cheap lunch box',
+        matchType: 'Broad',
+        bid: 0.9,
+        clicks: 50,
+        spend: 45,
+        sales: 0,
+        orders: 0,
+        expectedAction: 'investigate_pause',
+        expectedConfidence: 'high',
+        evidence: '50 clicks with $45 spend and zero orders. This is wasted spend that needs immediate attention.',
+        feedback: 'This keyword has enough clicks to prove it is not working. Investigate the search terms or pause the keyword to stop the bleed.'
+      },
+      {
+        id: 'moderate-acos-phrase',
+        target: 'school lunch bag',
+        matchType: 'Phrase',
+        bid: 1.2,
+        clicks: 70,
+        spend: 84,
+        sales: 210,
+        orders: 10,
+        expectedAction: 'lower_bid',
+        expectedConfidence: 'medium',
+        evidence: 'ACOS is 40% with 10 orders. Above the 35% target, so pressure reduction is needed.',
+        feedback: 'This is converting but above target ACOS. Lower the bid to improve efficiency while maintaining some volume.'
+      },
+      {
+        id: 'thin-data-new',
+        target: 'insulated container',
+        matchType: 'Broad',
+        bid: 0.8,
+        clicks: 15,
+        spend: 12,
+        sales: 0,
+        orders: 0,
+        expectedAction: 'hold_bid',
+        expectedConfidence: 'low',
+        evidence: 'Only 15 clicks is not enough to determine if this keyword is good or bad.',
+        feedback: 'This needs more data. Hold the bid and wait for more clicks before making any changes.'
+      },
+      {
+        id: 'strong-performer-exact',
+        target: 'stainless steel bottle',
+        matchType: 'Exact',
+        bid: 1.1,
+        clicks: 85,
+        spend: 76.5,
+        sales: 340,
+        orders: 24,
+        expectedAction: 'raise_bid',
+        expectedConfidence: 'high',
+        evidence: 'ACOS is 22.5% with 24 orders. Excellent performance with room for more volume.',
+        feedback: 'This is a strong performer. Raise the bid carefully to capture more of this efficient, high-converting traffic.'
+      },
+      {
+        id: 'borderline-converter',
+        target: 'lunch container set',
+        matchType: 'Phrase',
+        bid: 1.0,
+        clicks: 40,
+        spend: 40,
+        sales: 100,
+        orders: 5,
+        expectedAction: 'lower_bid',
+        expectedConfidence: 'medium',
+        evidence: 'ACOS is 40% with only 5 orders. Above target and needs efficiency improvement.',
+        feedback: 'This is converting but at 40% ACOS, it is above your target. Lower the bid to reduce ACOS while keeping the keyword active.'
+      },
+      {
+        id: 'no-data-yet',
+        target: 'kids drink bottle',
+        matchType: 'Broad',
+        bid: 0.7,
+        clicks: 8,
+        spend: 5.6,
+        sales: 0,
+        orders: 0,
+        expectedAction: 'hold_bid',
+        expectedConfidence: 'low',
+        evidence: 'Only 8 clicks with no conversions. Insufficient data to make a confident decision.',
+        feedback: 'Not enough data yet. Hold the bid and collect more information before taking action.'
+      },
+      {
+        id: 'high-volume-winner',
+        target: 'reusable water bottle',
+        matchType: 'Exact',
+        bid: 0.95,
+        clicks: 120,
+        spend: 96,
+        sales: 480,
+        orders: 30,
+        expectedAction: 'raise_bid',
+        expectedConfidence: 'high',
+        evidence: 'ACOS is 20% with 30 orders from 120 clicks. Exceptional performance worth scaling.',
+        feedback: 'This is an outstanding performer with low ACOS and high order volume. Raise the bid to capture more of this valuable traffic.'
       }
     ]
   };
@@ -138,6 +277,17 @@
       orders: row.orders,
       acos: acos,
       targetAcos: BID_DECISIONS_SCENARIO.targetAcos
+    });
+    row.expectedAction = POLICY_TO_SIMULATOR_ACTION[policyAction];
+  });
+
+  BID_DECISIONS_BEGINNER_SCENARIO.rows.forEach(function (row) {
+    var acos = row.sales ? (row.spend / row.sales) * 100 : 0;
+    var policyAction = PpcDecisionPolicy.recommendBidAction({
+      clicks: row.clicks,
+      orders: row.orders,
+      acos: acos,
+      targetAcos: BID_DECISIONS_BEGINNER_SCENARIO.targetAcos
     });
     row.expectedAction = POLICY_TO_SIMULATOR_ACTION[policyAction];
   });
@@ -229,6 +379,7 @@
 
   return {
     BID_DECISIONS_SCENARIO: BID_DECISIONS_SCENARIO,
+    BID_DECISIONS_BEGINNER_SCENARIO: BID_DECISIONS_BEGINNER_SCENARIO,
     ACTIONS: ACTIONS,
     CONFIDENCE_LEVELS: CONFIDENCE_LEVELS,
     calculateBidMetrics: calculateBidMetrics,
