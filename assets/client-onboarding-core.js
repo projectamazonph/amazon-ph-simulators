@@ -99,10 +99,94 @@
     ]
   };
 
+  var CLIENT_ONBOARDING_BEGINNER_SCENARIO = {
+    id: 'client-onboarding-beginner',
+    version: '1.0.0',
+    rubricVersion: '1.0.0',
+    title: 'Client Onboarding - Beginner',
+    difficulty: 'beginner',
+    kicker: 'Beginner VA workflow simulator',
+    description: 'Practice identifying essential onboarding elements for a smooth client handoff.',
+    passingScore: 75,
+    primaryLabel: 'Onboarding move',
+    secondaryLabel: 'Requirement level',
+    primaryOptions: PRIMARY_OPTIONS,
+    secondaryOptions: SECONDARY_OPTIONS,
+    summary: {
+      excellent: 'Strong onboarding fundamentals. You identified all critical launch blockers and essential context.',
+      passing: 'Good onboarding judgment. Review missed items and ensure blockers are clearly separated from nice-to-haves.',
+      needsPractice: 'Keep practicing onboarding. Missing essential access or goals will cause problems later.'
+    },
+    rows: [
+      {
+        id: 'no-ads-access',
+        title: 'Cannot access Sponsored Ads',
+        signal: 'Client provided login credentials but the VA cannot see any Sponsored Products campaigns in Seller Central.',
+        metrics: { access: 'None', campaigns: '0 visible', role: 'Restricted' },
+        expectedPrimary: 'request_ads_access',
+        expectedSecondary: 'blocker',
+        evidence: 'Without Sponsored Ads access, the VA cannot create, edit, or monitor any campaigns.',
+        feedback: 'This is a hard blocker. Request the specific Ads access needed before any campaign work can begin.'
+      },
+      {
+        id: 'no-budget-info',
+        title: 'No budget allocation provided',
+        signal: 'Client wants to launch campaigns but has not specified daily or monthly budget limits.',
+        metrics: { budget: 'Undefined', priority: 'Unknown', risk: 'Overspend' },
+        expectedPrimary: 'define_primary_kpi',
+        expectedSecondary: 'blocker',
+        evidence: 'Budget limits are essential to prevent overspending and to set proper bid levels.',
+        feedback: 'Define budget constraints before launching. Without limits, campaigns can spend uncontrolled amounts.'
+      },
+      {
+        id: 'missing-product-details',
+        title: 'Basic product information missing',
+        signal: 'VA has access but knows nothing about the product: price, margin, category, or target audience.',
+        metrics: { price: 'Unknown', margin: 'Unknown', category: 'Unknown' },
+        expectedPrimary: 'collect_product_brief',
+        expectedSecondary: 'needed',
+        evidence: 'Product details are needed to create relevant targeting and set appropriate bids.',
+        feedback: 'Collect basic product information. You cannot optimize what you do not understand.'
+      },
+      {
+        id: 'no-reporting-preferences',
+        title: 'Client wants reports but no format specified',
+        signal: 'Client says they want weekly reports but has not defined format, metrics, or delivery method.',
+        metrics: { format: 'Unspecified', frequency: 'Weekly', cadence: 'Unclear' },
+        expectedPrimary: 'define_primary_kpi',
+        expectedSecondary: 'needed',
+        evidence: 'Reporting preferences must be defined to ensure the VA delivers useful information.',
+        feedback: 'Clarify reporting requirements upfront. This prevents rework and ensures the client gets actionable insights.'
+      },
+      {
+        id: 'unclear-approval-process',
+        title: 'Who approves changes?',
+        signal: 'Client has not specified who needs to approve bid changes, budget increases, or campaign launches.',
+        metrics: { approver: 'Unidentified', changes: 'All types', risk: 'Unauthorized changes' },
+        expectedPrimary: 'set_approval_rules',
+        expectedSecondary: 'needed',
+        evidence: 'Clear approval processes prevent unauthorized changes and scope creep.',
+        feedback: 'Define approval workflows before making changes. Know who can authorize what type of modification.'
+      },
+      {
+        id: 'missing-competitor-info',
+        title: 'No competitor context',
+        signal: 'Client has not shared information about main competitors or how they want to position against them.',
+        metrics: { competitors: 'Unknown', positioning: 'Unclear', differentiation: 'Missing' },
+        expectedPrimary: 'collect_product_brief',
+        expectedSecondary: 'nice_to_have',
+        evidence: 'Competitor context helps with positioning but is not essential for initial launch.',
+        feedback: 'While helpful, competitor information is not a blocker. Focus on getting the basics first, then refine positioning.'
+      }
+    ]
+  };
+
   var simulator = DecisionSimulatorCore.createDecisionSimulator(CLIENT_ONBOARDING_SCENARIO);
+  var beginnerSimulator = DecisionSimulatorCore.createDecisionSimulator(CLIENT_ONBOARDING_BEGINNER_SCENARIO);
 
   return {
     CLIENT_ONBOARDING_SCENARIO: CLIENT_ONBOARDING_SCENARIO,
+    CLIENT_ONBOARDING_BEGINNER_SCENARIO: CLIENT_ONBOARDING_BEGINNER_SCENARIO,
     PRIMARY_OPTIONS: PRIMARY_OPTIONS,
     SECONDARY_OPTIONS: SECONDARY_OPTIONS,
     gradeAttempt: simulator.gradeAttempt

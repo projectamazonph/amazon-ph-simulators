@@ -83,10 +83,74 @@
     ]
   };
 
+  var CAPSTONE_SEQUENCE_BEGINNER_SCENARIO = {
+    id: 'capstone-sequence-beginner',
+    version: '1.0.0',
+    rubricVersion: '1.0.0',
+    title: 'Capstone Sequence - Beginner',
+    difficulty: 'beginner',
+    kicker: 'Beginner capstone simulator',
+    description: 'Practice the fundamental workflow stages from research through client reporting.',
+    passingScore: 75,
+    primaryLabel: 'Capstone decision',
+    secondaryLabel: 'Stage',
+    primaryOptions: PRIMARY_OPTIONS,
+    secondaryOptions: SECONDARY_OPTIONS,
+    summary: {
+      excellent: 'Strong capstone fundamentals. You correctly identified each stage and its purpose.',
+      passing: 'Good capstone judgment. Review missed stages to ensure the workflow stays in order.',
+      needsPractice: 'Keep practicing the sequence. Each stage builds on the previous one.'
+    },
+    rows: [
+      {
+        id: 'keyword-research-first',
+        title: 'Starting a new account',
+        signal: 'Client provides product ASIN but no keyword research has been done yet.',
+        metrics: { phase: 'Starting', inputs: 'ASIN only', gap: 'Keyword research' },
+        expectedPrimary: 'choose_relevant_keywords',
+        expectedSecondary: 'research',
+        evidence: 'Keyword research is the foundation. Without it, campaigns will target the wrong queries.',
+        feedback: 'Always start with keyword research. Understanding what buyers search for is essential before building campaigns.'
+      },
+      {
+        id: 'campaign-build-second',
+        title: 'Keywords ready, time to build',
+        signal: 'Keyword list is complete and approved. Now it is time to create the campaign structure.',
+        metrics: { phase: 'Build ready', inputs: 'Keyword list', goal: 'Campaign creation' },
+        expectedPrimary: 'build_clean_structure',
+        expectedSecondary: 'setup',
+        evidence: 'With keywords identified, the next step is building campaigns that organize and control those targets.',
+        feedback: 'Build campaigns after research. Structure campaigns around the keyword themes you have identified.'
+      },
+      {
+        id: 'early-optimization',
+        title: 'First week data available',
+        signal: 'Campaigns have been running for a week and have enough data to make initial optimization decisions.',
+        metrics: { phase: 'Week 1', data: 'Available', action: 'Initial optimization' },
+        expectedPrimary: 'reduce_waste_harvest_winners',
+        expectedSecondary: 'optimize',
+        evidence: 'Early optimization focuses on stopping obvious waste and scaling early winners.',
+        feedback: 'Start optimization by cutting waste and harvesting winners. This protects budget while growing what works.'
+      },
+      {
+        id: 'client-report-final',
+        title: 'Time for client update',
+        signal: 'Optimizations are complete and it is time to communicate results to the client.',
+        metrics: { phase: 'Report due', audience: 'Client', need: 'Communication' },
+        expectedPrimary: 'send_evidence_summary',
+        expectedSecondary: 'report',
+        evidence: 'Client reporting completes the cycle by explaining what was done and why.',
+        feedback: 'Always report to the client. They need to understand the work performed and the results achieved.'
+      }
+    ]
+  };
+
   var simulator = DecisionSimulatorCore.createDecisionSimulator(CAPSTONE_SEQUENCE_SCENARIO);
+  var beginnerSimulator = DecisionSimulatorCore.createDecisionSimulator(CAPSTONE_SEQUENCE_BEGINNER_SCENARIO);
 
   return {
     CAPSTONE_SEQUENCE_SCENARIO: CAPSTONE_SEQUENCE_SCENARIO,
+    CAPSTONE_SEQUENCE_BEGINNER_SCENARIO: CAPSTONE_SEQUENCE_BEGINNER_SCENARIO,
     PRIMARY_OPTIONS: PRIMARY_OPTIONS,
     SECONDARY_OPTIONS: SECONDARY_OPTIONS,
     gradeAttempt: simulator.gradeAttempt
