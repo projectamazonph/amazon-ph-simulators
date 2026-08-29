@@ -126,7 +126,104 @@
         brandImpressions: 2080, brandClicks: 156, brandCartAdds: 19, brandPurchases: 2,
         expectedDiagnosis: 'fix_listing_conversion', expectedFollowUp: 'audit_pdp',
         evidence: 'Exposure and clicks are substantial, but purchase rate is weak. The price promise and product positioning may not match the query.',
-        feedback: 'Do not buy more exposure yet. Check price competitiveness, offer fit, and whether the product actually satisfies the “cheap” intent.'
+        feedback: 'Do not buy more exposure yet. Check price competitiveness, offer fit, and whether the product actually satisfies the \u201ccheap\u201d intent.'
+      },
+      {
+        id: 'reusable-water-bottle', query: 'reusable water bottle for kids', queryVolume: 15000, marketPurchases: 800,
+        brandImpressions: 3000, brandClicks: 240, brandCartAdds: 48, brandPurchases: 36,
+        expectedDiagnosis: 'scale_visibility', expectedFollowUp: 'increase_coverage',
+        evidence: 'The brand converts at 15% click-to-purchase rate, far above market average. Impression share is only 20%, indicating room for growth.',
+        feedback: 'This query proves strong conversion. Expand coverage to capture more of the available demand while maintaining the proven conversion quality.'
+      },
+      {
+        id: 'eco-friendly-container', query: 'eco friendly food container', queryVolume: 11000, marketPurchases: 450,
+        brandImpressions: 880, brandClicks: 66, brandCartAdds: 8, brandPurchases: 3,
+        expectedDiagnosis: 'fix_listing_conversion', expectedFollowUp: 'audit_pdp',
+        evidence: 'Brand gets clicks but only 4.5% convert to purchases. The product may not clearly communicate its eco-friendly value proposition.',
+        feedback: 'Traffic quality is good but conversion is weak. Audit the listing to ensure eco-friendly features are prominently displayed and the offer is competitive.'
+      }
+    ]
+  };
+
+  var SQP_STUDIO_BEGINNER_SCENARIO = {
+    id: 'sqp-studio-beginner',
+    version: '1.0.0',
+    rubricVersion: '1.0.0',
+    title: 'SQP Studio - Beginner',
+    difficulty: 'beginner',
+    passingScore: 75,
+    diagnoses: DIAGNOSES,
+    followUps: FOLLOW_UPS,
+    queries: [
+      {
+        id: 'water-bottle-simple',
+        query: 'water bottle',
+        queryVolume: 50000,
+        marketPurchases: 5000,
+        brandImpressions: 10000,
+        brandClicks: 500,
+        brandCartAdds: 100,
+        brandPurchases: 80,
+        expectedDiagnosis: 'scale_visibility',
+        expectedFollowUp: 'increase_coverage',
+        evidence: 'Strong conversion rate of 16% from clicks to purchases, but only 20% impression share. The product converts well when seen.',
+        feedback: 'This is a clear visibility gap. The query has massive volume and your product converts well. Increase coverage to capture more of this demand.'
+      },
+      {
+        id: 'lunch-bag-basic',
+        query: 'lunch bag',
+        queryVolume: 30000,
+        marketPurchases: 3000,
+        brandImpressions: 15000,
+        brandClicks: 300,
+        brandCartAdds: 45,
+        brandPurchases: 15,
+        expectedDiagnosis: 'fix_listing_conversion',
+        expectedFollowUp: 'audit_pdp',
+        evidence: 'Good impression share at 50%, but only 5% of clicks result in purchases. Shoppers are interested but not converting.',
+        feedback: 'The listing is getting traffic but not closing sales. Review your product images, price, description, and whether you\u2019re meeting the basic expectations for a lunch bag.'
+      },
+      {
+        id: 'snack-container-new',
+        query: 'snack container',
+        queryVolume: 20000,
+        marketPurchases: 2000,
+        brandImpressions: 2000,
+        brandClicks: 100,
+        brandCartAdds: 10,
+        brandPurchases: 5,
+        expectedDiagnosis: 'watch_data_limit',
+        expectedFollowUp: 'collect_more_data',
+        evidence: 'Only 100 clicks and 5 purchases. The data is too limited to make confident optimization decisions.',
+        feedback: 'This query needs more data. Keep it running and collect at least 200-300 clicks before making structural changes to bids or targeting.'
+      },
+      {
+        id: 'food-storage-low',
+        query: 'food storage',
+        queryVolume: 40000,
+        marketPurchases: 4000,
+        brandImpressions: 20000,
+        brandClicks: 800,
+        brandCartAdds: 50,
+        brandPurchases: 10,
+        expectedDiagnosis: 'reduce_waste',
+        expectedFollowUp: 'tighten_targeting',
+        evidence: 'High traffic with 800 clicks but only 1.25% conversion rate. The broad query is attracting unqualified traffic.',
+        feedback: 'This query is generating a lot of interest but few sales. Tighten your targeting with more specific keywords or negative terms to filter out irrelevant searches.'
+      },
+      {
+        id: 'kids-meal-prep', query: 'meal prep for kids', queryVolume: 18000, marketPurchases: 1800,
+        brandImpressions: 9000, brandClicks: 270, brandCartAdds: 54, brandPurchases: 45,
+        expectedDiagnosis: 'scale_visibility', expectedFollowUp: 'increase_coverage',
+        evidence: 'Excellent 16.7% click-to-purchase conversion, but only 50% impression share. Strong performance with room to grow.',
+        feedback: 'When your product is found, it converts exceptionally well. Increase your bid or expand match types to capture more of this high-quality demand.'
+      },
+      {
+        id: 'bento-style-box', query: 'bento box style', queryVolume: 12000, marketPurchases: 1200,
+        brandImpressions: 6000, brandClicks: 120, brandCartAdds: 18, brandPurchases: 6,
+        expectedDiagnosis: 'fix_listing_conversion', expectedFollowUp: 'audit_pdp',
+        evidence: 'Decent traffic at 50% impression share, but only 5% conversion. The \u2018bento box style\u2019 query may not align with your actual product.',
+        feedback: 'Your product is getting visibility but the specific query may not match what you\u2019re selling. Review whether your listing clearly shows the bento-style features shoppers expect.'
       }
     ]
   };
@@ -213,6 +310,7 @@
 
   return {
     SQP_STUDIO_SCENARIO: SQP_STUDIO_SCENARIO,
+    SQP_STUDIO_BEGINNER_SCENARIO: SQP_STUDIO_BEGINNER_SCENARIO,
     DIAGNOSES: DIAGNOSES,
     FOLLOW_UPS: FOLLOW_UPS,
     calculateQueryMetrics: calculateQueryMetrics,
