@@ -22,7 +22,7 @@ test('Fontsource pages allow jsDelivr stylesheet and font origins in CSP', () =>
     return html.includes('assets/fonts.css');
   });
 
-  assert.equal(pages.length, 23);
+  assert.equal(pages.length, 25);
   for (const file of pages) {
     const html = fs.readFileSync(file, 'utf8');
     assert.match(html, /style-src[^>]*https:\/\/cdn\.jsdelivr\.net/, path.relative(root, file));
