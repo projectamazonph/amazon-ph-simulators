@@ -174,3 +174,109 @@ test('mobile shell keeps navigation out of header flow and groups footer links',
     assert.match(shell, new RegExp(`data-label="${label}"`));
   });
 });
+
+/* ──────────────────────────────────────────────────────────
+   Priority 5 regression guard — skin.css must not reintroduce
+   hard-coded hex overrides on body.pha-skin
+   ────────────────────────────────────────────────────────── */
+test('skin.css routes every pha-skin override through central tokens', () => {
+  const css = read('assets/skin.css');
+  const skinBlock = css.match(/body\.pha-skin\s*\{[\s\S]*?\n\}/)?.[0] || '';
+  assert.match(skinBlock, /background:\s*var\(--c-bg\)/);
+  assert.match(skinBlock, /color:\s*var\(--c-ink\)/);
+  // font-family is in the body.pha-skin, body.pha-skin * block, so check full css
+  assert.match(css, /font-family:\s*var\(--font-body\)/);
+  assert.doesNotMatch(skinBlock, /#[0-9a-f]{3,8}/i, 'skin.css body.pha-skin must not contain hard-coded hex');
+});
+
+/* ──────────────────────────────────────────────────────────
+   Priority 3 — PPC Coach Tailwind config must align with the
+   central token system (no parallel colour definitions)
+   ────────────────────────────────────────────────────────── */
+test('ppc-coach tailwind config aligns navy palette and fonts with central tokens', () => {
+  const html = read('ppc-coach.html');
+  const config = html.match(/tailwind\.config\s*=\s*\{[\s\S]*?\}\};/)?.[0] || '';
+
+  // navy palette must match --c-navy-1 / --c-navy-2 / --c-navy-3
+  assert.match(config, /navy:\{[^}]*DEFAULT:'#0F1419'[^}]*\}/);
+  assert.match(config, /navy:\{[^}]*800:'#131921'[^}]*\}/);
+  assert.match(config, /navy:\{[^}]*700:'#232F3E'[^}]*\}/);
+
+  // brand 500 must equal --c-orange
+  assert.match(config, /brand:\{[^}]*500:'#FF9900'[^}]*\}/);
+
+  // font families must reference token variables, not legacy stacks
+  assert.match(config, /sans:\['var\(--font-body\)'/);
+  assert.match(config, /display:\['var\(--font-disp\)'/);
+
+  // box-shadow must use --c-navy-1 rgb (15,17,17), not the old (15,23,42)
+  assert.doesNotMatch(config, /rgba\(15,23,42/);
+
+  // body must not use arbitrary hex background values
+  assert.doesNotMatch(html, /class="[^"]*bg-\[#/);
+});
+
+test('ppc-coach module data references CSS variables, not hard-coded hex', () => {
+  const html = read('ppc-coach.html');
+
+  // Module colour entries must use CSS variable references
+  assert.doesNotMatch(html, /color:"#0EA5E9"/);
+  assert.doesNotMatch(html, /color:"#10B981"/);
+  assert.doesNotMatch(html, /color:"#8B5CF6"/);
+  assert.doesNotMatch(html, /color:"#EC4899"/);
+  assert.doesNotMatch(html, /color:"#EF4444"/);
+  assert.doesNotMatch(html, /color:"#F59E0B"/);
+
+  // Verify the CSS variable references exist
+  assert.match(html, /color:"var\(--c-orange\)"/);
+  assert.match(html, /color:"var\(--mc-blue\)"/);
+  assert.match(html, /color:"var\(--mc-emerald\)"/);
+  assert.match(html, /color:"var\(--mc-violet\)"/);
+  assert.match(html, /color:"var\(--mc-pink\)"/);
+  assert.match(html, /color:"var\(--c-red\)"/);
+  assert.match(html, /color:"var\(--c-amber\)"/);
+
+  // Gradient must use color-mix, not hex+opacity trick
+  assert.doesNotMatch(html, /m\.color\+'18/);
+  assert.match(html, /color-mix\(in srgb,/);
+
+  // Funnel diagram must use token references, not hex
+  assert.doesNotMatch(html, /cols=\["#FF9900"/);
+  assert.match(html, /cols=\["var\(--c-chart-1\)"/);
+
+  // Chart data must use token references
+  assert.doesNotMatch(html, /backgroundColor:\["#FF9900","#E2E8F0"\]/);
+  assert.match(html, /backgroundColor:\["var\(--c-orange\)","var\(--c-border-2\)"\]/);
+
+  // Final exam colour must use token
+  assert.match(html, /color:"var\(--c-navy-1\)"/);
+});
+
+test('ppc-coach.css bridges tailwind utilities through token variables', () => {
+  const css = read('assets/ppc-coach.css');
+
+  // Module colour custom properties must be defined in :root
+  assert.match(css, /--mc-blue:\s*#0EA5E9/);
+  assert.match(css, /--mc-emerald:\s*#10B981/);
+  assert.match(css, /--mc-violet:\s*#8B5CF6/);
+  assert.match(css, /--mc-pink:\s*#EC4899/);
+
+  // key Tailwind-to-token bridge rules
+  assert.match(css, /\.bg-navy\s*\{[^}]*var\(--c-navy-1\)/);
+  assert.match(css, /\.text-navy\s*\{[^}]*var\(--c-navy-1\)/);
+  assert.match(css, /\.bg-brand-500\s*\{[^}]*var\(--c-orange\)/);
+  assert.match(css, /\.text-slate-800\s*\{[^}]*var\(--c-navy-2\)/);
+  assert.match(css, /\.bg-emerald-50\s*\{[^}]*var\(--c-green-bg\)/);
+  assert.match(css, /\.text-red-600\s*\{[^}]*var\(--c-red-text\)/);
+
+  // font tokens bridged
+  assert.match(css, /\.font-sans\s*\{[^}]*var\(--font-body\)/);
+  assert.match(css, /\.font-display\s*\{[^}]*var\(--font-disp\)/);
+
+  // No hard-coded hex in component styles (only in :root module definitions)
+  const rootBlock = css.match(/:root\s*\{[\s\S]*?\n\}/)?.[0] || '';
+  assert.match(rootBlock, /--mc-blue:\s*#0EA5E9/);
+  const componentStyles = css.replace(/:root\s*\{[\s\S]*?\n\}/, '');
+  const hexInComponents = componentStyles.match(/#[0-9A-Fa-f]{6}/g);
+  assert.strictEqual(hexInComponents, null, 'ppc-coach.css component styles must not hard-code hex');
+});
