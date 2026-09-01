@@ -634,7 +634,7 @@ body.pha-skin [class*="trainee"] * {
 body.pha-skin [class*="trainee"] [class*="lvl"],
 body.pha-skin [class*="trainee"] [class*="xp"],
 body.pha-skin [class*="trainee"] [class*="lbl"] {
-  color: #B8C4D1 !important;
+  color: var(--c-shell-dim) !important;
 }
 
 /* Common tool labels — make sure uppercase small labels stay readable */
@@ -1281,30 +1281,30 @@ body.pha-skin [style*="background:#13"] {
    are light blue-grays that fall below 4.5:1 on the light surface.
    Override them at the root scope when wrapped in pha-skin. */
 body.pha-skin {
-  --ink: #131A21;        /* deep ink for primary text */
-  --dim: #45566A;        /* 4.5:1+ on F7F8FA — readable helper text */
-  --faint: #6B7B8E;      /* hints + meta */
-  --line: #DCE2EA;       /* borders */
-  --line2: #C7CFD9;      /* subtle dividers */
+  --ink: var(--c-ink);        /* deep ink for primary text */
+  --dim: var(--c-sub);        /* 4.5:1+ on F7F8FA — readable helper text */
+  --faint: var(--c-faint);    /* hints + meta */
+  --line: var(--c-border-2);  /* borders */
+  --line2: var(--c-border);    /* subtle dividers */
 }
 
 /* search-triage "HABITS / TRAPS" panels: the body text used --dim
    which was too light. Force solid readable colors. */
 body.pha-skin .dd-col li {
-  color: #2B3947 !important;  /* 4.5:1+ on FFFFFF */
+  color: var(--c-navy-4) !important;  /* 4.5:1+ on FFFFFF */
 }
 body.pha-skin .dd-col li b {
-  color: #0B1F33 !important;  /* brand ink for emphasis */
+  color: var(--c-navy-1) !important;  /* brand ink for emphasis */
 }
 body.pha-skin .dd-col h3 {
-  color: #0B1F33 !important;
+  color: var(--c-navy-1) !important;
 }
 
 /* search-triage "Game Plan" panel: previously too dim.
    Keep subtle (it's helper text) but make it pass 3:1 minimum. */
 body.pha-skin .game-plan,
 body.pha-skin [class*="plan"] {
-  color: #4A5868 !important;
+  color: var(--c-sub) !important;
 }
 
 /* buybox-dojo side-foot "Trainee" panel + rank badges:
