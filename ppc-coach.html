@@ -10,10 +10,10 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
 tailwind.config = { theme: { extend: {
-  fontFamily: { sans:['Inter','sans-serif'], display:['"Space Grotesk"','sans-serif'] },
+  fontFamily: { sans:['var(--font-body)','sans-serif'], display:['var(--font-disp)','sans-serif'] },
   colors: { brand:{50:'#FFF7E6',100:'#FFEBC2',200:'#FFD685',400:'#FFB84D',500:'#FF9900',600:'#E68A00',700:'#B36B00'},
-            navy:{DEFAULT:'#0F172A',800:'#1E293B',700:'#334155'} },
-  boxShadow: { card:'0 1px 2px rgba(15,23,42,.06), 0 8px 24px rgba(15,23,42,.07)' }
+            navy:{DEFAULT:'#0F1419',800:'#131921',700:'#232F3E'} },
+  boxShadow: { card:'0 1px 2px rgba(15,17,17,.06), 0 8px 24px rgba(15,17,17,.16)' }
 }}};
 </script>
 
@@ -260,7 +260,7 @@ tailwind.config = { theme: { extend: {
 }</script>
   <!-- PHA_DISCOVERY_END -->
 </head>
-<body class="bg-[#F4F5FA] font-sans text-slate-800 antialiased" data-pha-tool="ppc-coach">
+<body class="bg-slate-50 font-sans text-slate-800 antialiased" data-pha-tool="ppc-coach">
 <div class="flex min-h-screen">
 
   <aside id="sidebar" class="fixed z-40 inset-y-0 left-0 w-64 bg-navy text-slate-300 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
@@ -348,7 +348,7 @@ function updateTopbar(){ const L=levelFor(state.xp); document.getElementById("xp
 const LESSON_ID_MIGRATION={"m0l1":"m1l1","m0l2":"m1l3","m0l3":"m1l4","m1l1":"m2l1","m1l2":"m2l2","m1l3":"m2l3","m2l1":"m2l4","m2l2":"m2l4","m2l3":"m2l5","m2l4":"m2l6","m3l1":"m3l1","m3l2":"m3l2","m3l3":"m3l4","m4l1":"m4l1","m4l2":"m4l2","m4l3":"m4l2","m4l4":"m4l4","m5l1":"m1l2","m5l2":"m1l3","m5l3":"m10l2","m6l1":"m5l3","m6l2":"m6l2","m6l3":"m6l4","m7l1":"m8l1","m7l2":"m6l4","m7l3":"m8l6","m8l1":"m9l1","m8l2":"m9l3","m8l3":"m9l5","m9l1":"m11l1","m9l2":"m11l2","m9l3":"m2l6","m10l1":"m12l1","m10l2":"m12l2","m10l3":"m10l2","m10l4":"m10l3","m11l1":"m12l5","m11l2":"m12l5","m11l3":"m11l6","m11l4":"m12l6"};
 function migrateState(){ try{ const old=JSON.parse(localStorage.getItem("ppccoach.doneBackup")||"null"); if(!old){ localStorage.setItem("ppccoach.doneBackup",JSON.stringify(state.done)); const newDone=[]; state.done.forEach(id=>{ const mapped=LESSON_ID_MIGRATION[id]||id; if(!newDone.includes(mapped)) newDone.push(mapped); }); state.done=newDone; saveState(); } }catch(e){} }
 const MODULES=[
-{title:"Amazon Advertising Foundations",icon:"🛒",color:"#FF9900",img:IMG.market,desc:"Marketplace basics, ad types, the listing, and why retail readiness comes first.",
+{title:"Amazon Advertising Foundations",icon:"🛒",color:"var(--c-orange)",img:IMG.market,desc:"Marketplace basics, ad types, the listing, and why retail readiness comes first.",
 lessons:[
 {id:"m1l1",title:"What is the Amazon Marketplace?",mins:5,blocks:[
 {t:"goal",x:"Build the mental model of Amazon as a marketplace (not a store), explain who the seller is, and show why paid ads are only one piece of the system."},
@@ -421,7 +421,7 @@ quiz:[
 {q:"Sponsored Products are best for…",o:["Brand lift","Single-product promotion in search and on product pages","Retargeting","Off-Amazon display"],a:1,e:"SP is the default starting ad type."}
 ]},
 
-{title:"PPC Language, Metrics, and Math",icon:"💰",color:"#0EA5E9",img:IMG.coach,desc:"Clicks, sales, ACOS, ROAS, and the danger of small samples.",
+{title:"PPC Language, Metrics, and Math",icon:"💰",color:"var(--mc-blue)",img:IMG.coach,desc:"Clicks, sales, ACOS, ROAS, and the danger of small samples.",
 lessons:[
 {id:"m2l1",title:"Pay Per Click in Plain Words",mins:5,blocks:[
 {t:"goal",x:"Explain the basic flow of a PPC click and the metric terms that follow it."},
@@ -546,7 +546,7 @@ quiz:[
 {q:"10 clicks on a search term is enough to…",o:["Pause the campaign","Trust the ACOS completely","Decide cautiously, give it a week","Negate it"],a:2,e:"Small samples create loud lies."}
 ]},
 
-{title:"Campaign Structure and Naming",icon:"🏗️",color:"#10B981",img:IMG.builder,desc:"The hierarchy, naming standards, portfolios, and budget isolation.",
+{title:"Campaign Structure and Naming",icon:"🏗️",color:"var(--mc-emerald)",img:IMG.builder,desc:"The hierarchy, naming standards, portfolios, and budget isolation.",
 lessons:[
 {id:"m3l1",title:"The Hierarchy: Campaign, Ad Group, Targeting",mins:6,blocks:[
 {t:"goal",x:"Trace any target back to its campaign, ad group, and product, and explain what lives at each level."},
@@ -641,7 +641,7 @@ quiz:[
 {q:"A portfolio is best for…",o:["Hiding campaigns","Grouping campaigns by objective or product line","Increasing bids","Replacing ad groups"],a:1,e:"Portfolios are folders for shared reporting and budget views."}
 ]},
 
-{title:"Keyword Research and Search Intent",icon:"🔍",color:"#8B5CF6",img:IMG.lab,desc:"Seed keywords, modifiers, intent, clustering, and Brand Analytics.",
+{title:"Keyword Research and Search Intent",icon:"🔍",color:"var(--mc-violet)",img:IMG.lab,desc:"Seed keywords, modifiers, intent, clustering, and Brand Analytics.",
 lessons:[
 {id:"m4l1",title:"Keyword vs Search Term",mins:5,blocks:[
 {t:"goal",x:"Tell keywords from search terms, and explain why the distinction is the most important data concept in PPC."},
@@ -736,7 +736,7 @@ quiz:[
 {q:"Prioritize…",o:["Volume over relevance","Relevance over volume","The longest keyword","Negatives first"],a:1,e:"High-volume irrelevant terms burn budget."}
 ]},
 
-{title:"Automatic Targeting",icon:"🤖",color:"#EC4899",img:IMG.console,desc:"Four auto groups, bid segmentation, and reading the search-term report.",
+{title:"Automatic Targeting",icon:"🤖",color:"var(--mc-pink)",img:IMG.console,desc:"Four auto groups, bid segmentation, and reading the search-term report.",
 lessons:[
 {id:"m5l1",title:"The Four Auto Groups",mins:6,blocks:[
 {t:"goal",x:"Name the four automatic-targeting groups, and explain what each one actually targets and what it is good for."},
@@ -907,7 +907,7 @@ quiz:[
 {q:"A safe launch bid is…",o:["3× the suggested bid","Around the suggested bid, slightly below","Zero","Whatever wins top of search"],a:1,e:"No data means no justification for a high bid."}
 ]},
 
-{title:"Product Targeting",icon:"📦",color:"#0EA5E9",img:IMG.market,desc:"ASIN and category targeting, defensive plays, and the retail-readiness check.",
+{title:"Product Targeting",icon:"📦",color:"var(--mc-blue)",img:IMG.market,desc:"ASIN and category targeting, defensive plays, and the retail-readiness check.",
 lessons:[
 {id:"m7l1",title:"ASIN Targeting vs Category Targeting",mins:6,blocks:[
 {t:"goal",x:"Pick between targeting individual ASINs and targeting a whole category, and explain the trade-off in spend, intent, and risk."},
@@ -992,7 +992,7 @@ quiz:[
 {q:"Before ASIN-targeting a competitor, you should compare…",o:["Color only","Price, rating, reviews, images, offer","Reviews only","Bid only"],a:1,e:"Five signals, not one."}
 ]},
 
-{title:"Bidding, Placements, and Budgets",icon:"💸",color:"#EF4444",img:IMG.deck,desc:"Dynamic bids, placements, effective exposure, and budget pacing.",
+{title:"Bidding, Placements, and Budgets",icon:"💸",color:"var(--c-red)",img:IMG.deck,desc:"Dynamic bids, placements, effective exposure, and budget pacing.",
 lessons:[
 {id:"m8l1",title:"Budget Basics",mins:5,blocks:[
 {t:"goal",x:"Set a daily budget that supports learning without overcommitting, and explain why 'budget' is a cap, not a target."},
@@ -1102,7 +1102,7 @@ quiz:[
 {q:"A campaign is out of budget. You should first…",o:["Raise the budget","Check whether it is profitable","Pause it","Double the bid"],a:1,e:"Out of budget is not automatically a budget problem."}
 ]},
 
-{title:"Search-Term Analysis and Negatives",icon:"🕵️",color:"#0EA5E9",img:IMG.triage,desc:"Targeting vs search-term report, harvesting, and click thresholds.",
+{title:"Search-Term Analysis and Negatives",icon:"🕵️",color:"var(--mc-blue)",img:IMG.triage,desc:"Targeting vs search-term report, harvesting, and click thresholds.",
 lessons:[
 {id:"m9l1",title:"Reading the Search Term Report",mins:6,blocks:[
 {t:"goal",x:"Read a search-term report and tell winners from wasters from maybes, and explain the four patterns that cover 90% of decisions."},
@@ -1201,7 +1201,7 @@ quiz:[
 {q:"Negative phrase blocks…",o:["The single term","Any search containing the phrase","The campaign","The placement"],a:1,e:"Phrase negatives are cluster-level blocks."}
 ]},
 
-{title:"Performance Diagnosis",icon:"🔬",color:"#10B981",img:IMG.console,desc:"Diagnose the cause before changing bids, budgets, targeting, or listings.",
+{title:"Performance Diagnosis",icon:"🔬",color:"var(--mc-emerald)",img:IMG.console,desc:"Diagnose the cause before changing bids, budgets, targeting, or listings.",
 lessons:[
 {id:"m10l1",title:"Diagnostic Order: Delivery → Engagement → Conversion → Economics",mins:6,blocks:[
 {t:"goal",x:"Use a fixed diagnostic order before changing anything, and explain why the order itself is the value."},
@@ -1295,7 +1295,7 @@ quiz:[
 {q:"A change log should record…",o:["The bid","Reason, old, new, expected, review date","Only successful changes","The date only"],a:1,e:"Five things, every change."}
 ]},
 
-{title:"Optimization, Scaling, and Operating Rhythm",icon:"🔁",color:"#8B5CF6",img:IMG.deck,desc:"The weekly cycle, scaling without inflating marginal ACOS, and the change log.",
+{title:"Optimization, Scaling, and Operating Rhythm",icon:"🔁",color:"var(--mc-violet)",img:IMG.deck,desc:"The weekly cycle, scaling without inflating marginal ACOS, and the change log.",
 lessons:[
 {id:"m11l1",title:"The Weekly Routine",mins:5,blocks:[
 {t:"goal",x:"Run the same weekly routine every week, and explain why the routine is the value rather than the data."},
@@ -1408,7 +1408,7 @@ quiz:[
 {q:"One change at a time exists to…",o:["Slow you down","Let you know which variable worked","Save clicks","Help Amazon"],a:1,e:"One variable, one verdict."}
 ]},
 
-{title:"Reporting, Strategy, and Capstone",icon:"📣",color:"#F59E0B",img:IMG.report,desc:"Reports, business metrics, the 30/60/90 roadmap, and the capstone defense.",
+{title:"Reporting, Strategy, and Capstone",icon:"📣",color:"var(--c-amber)",img:IMG.report,desc:"Reports, business metrics, the 30/60/90 roadmap, and the capstone defense.",
 lessons:[
 {id:"m12l1",title:"The Simple Report Structure",mins:5,blocks:[
 {t:"goal",x:"Write a one-page weekly report in a fixed order, and explain why the structure is the same every week regardless of what the data is."},
@@ -1644,7 +1644,7 @@ function renderBlock(b){
  if(b.t==="split") return '<div class="grid md:grid-cols-2 gap-3"><div class="rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-sm text-emerald-800"><b class="block mb-2">✅ '+b.a.title+'</b><ul class="space-y-1.5">'+b.a.items.map(i=>'<li>• '+i+'</li>').join("")+'</ul></div><div class="rounded-xl bg-red-50 border border-red-200 p-4 text-sm text-red-700"><b class="block mb-2">🚫 '+b.b.title+'</b><ul class="space-y-1.5">'+b.b.items.map(i=>'<li>• '+i+'</li>').join("")+'</ul></div></div>';
  if(b.t==="diagram"){
    if(b.kind==="flow") return '<div class="rounded-2xl bg-slate-50 border border-slate-200 p-5"><div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">📊 '+b.title+'</div><div class="flex flex-col items-center">'+b.steps.map((s,i)=>'<div class="diagstep w-full max-w-sm rounded-xl bg-white border-2 border-navy/10 px-4 py-2.5 text-sm font-semibold text-navy text-center shadow-sm"><span class="text-brand-500 mr-1.5">'+(i+1)+'.</span>'+s+'</div>'+(i<b.steps.length-1?'<div class="text-slate-300 text-lg leading-none my-1">▼</div>':"")).join("")+'</div></div>';
-   if(b.kind==="funnel"){ const cols=["#FF9900","#FFB84D","#0EA5E9","#10B981"]; return '<div class="rounded-2xl bg-slate-50 border border-slate-200 p-5"><div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">📊 '+b.title+'</div><div class="space-y-2">'+b.items.map((it,i)=>'<div class="funnelbar mx-auto rounded-lg px-3 py-2 text-center text-xs font-bold text-white" style="width:'+it[1]+'%;min-width:140px;background:'+cols[i%4]+';animation-delay:'+(i*0.12)+'s">'+it[0]+'</div>').join("")+'</div><div class="text-[11px] text-slate-400 mt-3 text-center">Width = relative volume. Every stage leaks; find the biggest leak.</div></div>'; }
+   if(b.kind==="funnel"){ const cols=["var(--c-chart-1)","var(--c-orange-h)","var(--c-chart-2)","var(--c-chart-3)"]; return '<div class="rounded-2xl bg-slate-50 border border-slate-200 p-5"><div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">📊 '+b.title+'</div><div class="space-y-2">'+b.items.map((it,i)=>'<div class="funnelbar mx-auto rounded-lg px-3 py-2 text-center text-xs font-bold text-white" style="width:'+it[1]+'%;min-width:140px;background:'+cols[i%4]+';animation-delay:'+(i*0.12)+'s">'+it[0]+'</div>').join("")+'</div><div class="text-[11px] text-slate-400 mt-3 text-center">Width = relative volume. Every stage leaks; find the biggest leak.</div></div>'; }
    if(b.kind==="tree") return '<div class="rounded-2xl bg-slate-50 border border-slate-200 p-5"><div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">📊 '+b.title+'</div><div class="space-y-1.5">'+b.nodes.map(n=>{ const lv=n[0]; const style=lv===0?'bg-navy text-white':lv===1?'bg-white text-navy border border-slate-300':'bg-brand-50 text-brand-700 border border-brand-200'; return '<div class="'+style+' rounded-lg px-3 py-2 text-xs font-semibold shadow-sm" style="margin-left:'+(lv*26)+'px;max-width:'+(100-lv*12)+'%">'+(lv===0?'📁 ':lv===1?'🗂️ ':'🏷️ ')+n[1]+'</div>'; }).join("")+'</div></div>';
  }
  if(b.t==="recall"){
@@ -1680,7 +1680,7 @@ RENDER.dashboard=function(){
  '<div class="bg-white rounded-2xl p-6 shadow-card flex flex-col items-center"><h3 class="font-display font-bold text-navy self-start mb-2">Overall</h3><div class="relative w-44 h-44"><canvas id="dashDonut"></canvas><div class="absolute inset-0 flex flex-col items-center justify-center"><div class="font-display font-bold text-2xl text-navy">'+pct+'%</div><div class="text-[11px] text-slate-400 font-semibold">complete</div></div></div><div class="text-xs text-slate-500 mt-3 text-center">Lessons + quizzes + practice = <b>Competent Manager</b>.</div></div>'+
  '<div class="xl:col-span-4 bg-white rounded-2xl p-6 shadow-card"><h3 class="font-display font-bold text-navy mb-4">Badges</h3><div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">'+badges.map(b=>'<div class="rounded-xl border '+(b.earned?'border-brand-200 bg-brand-50':'border-slate-200 bg-slate-50 opacity-50')+' p-4 text-center"><div class="text-2xl '+(b.earned?'':'grayscale')+'">'+b.icon+'</div><div class="text-xs font-bold text-navy mt-2">'+b.name+'</div><div class="text-[10px] text-slate-500 mt-1">'+b.hint+'</div></div>').join("")+'</div></div></div>';
  if(dashChart){dashChart.destroy();dashChart=null;}
- dashChart=new Chart(document.getElementById("dashDonut"),{type:"doughnut",data:{labels:["Done","Remaining"],datasets:[{data:[doneCount,TOTAL_LESSONS-doneCount],backgroundColor:["#FF9900","#E2E8F0"],borderWidth:0,cutout:"75%"}]},options:{plugins:{legend:{display:false}}}});
+ dashChart=new Chart(document.getElementById("dashDonut"),{type:"doughnut",data:{labels:["Done","Remaining"],datasets:[{data:[doneCount,TOTAL_LESSONS-doneCount],backgroundColor:["var(--c-orange)","var(--c-border-2)"],borderWidth:0,cutout:"75%"}]},options:{plugins:{legend:{display:false}}}});
 };
 
 RENDER.lessons=function(){
@@ -1714,7 +1714,7 @@ function renderLessonReader(el){
  const last=li===m.lessons.length-1;
  el.innerHTML='<button type="button" onclick="openModule('+mi+')" class="text-sm font-bold text-slate-500 hover:text-navy mb-4">← Module '+(mi+1)+' · '+m.title+'</button>'+
  '<div class="bg-white rounded-2xl shadow-card overflow-hidden">'+
- '<div class="p-6 md:p-8 border-b border-slate-100" style="background:linear-gradient(135deg,'+m.color+'18,transparent)"><div class="flex items-center gap-5">'+(m.img?'<img src="'+m.img+'" class="w-16 h-16 rounded-2xl object-cover border border-slate-200 hidden sm:block" alt="">':'')+'<div><div class="text-xs font-bold uppercase tracking-widest" style="color:'+m.color+'">Module '+(mi+1)+' · Lesson '+(li+1)+' of '+m.lessons.length+'</div><h2 class="font-display font-bold text-2xl text-navy mt-1">'+l.title+'</h2><div class="text-xs text-slate-400 mt-1 font-semibold">⏱ '+l.mins+' min · '+l.blocks.length+' blocks '+(done?'· <span class="text-emerald-600">✓ completed</span>':'')+'</div></div></div><div class="h-1.5 mt-5 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full rounded-full" style="width:'+Math.round(((li+ (done?1:0))/m.lessons.length)*100)+'%;background:'+m.color+'"></div></div></div>'+
+ '<div class="p-6 md:p-8 border-b border-slate-100" style="background:linear-gradient(135deg,color-mix(in srgb,'+m.color+',transparent 88%),transparent)"><div class="flex items-center gap-5">'+(m.img?'<img src="'+m.img+'" class="w-16 h-16 rounded-2xl object-cover border border-slate-200 hidden sm:block" alt="">':'')+'<div><div class="text-xs font-bold uppercase tracking-widest" style="color:'+m.color+'">Module '+(mi+1)+' · Lesson '+(li+1)+' of '+m.lessons.length+'</div><h2 class="font-display font-bold text-2xl text-navy mt-1">'+l.title+'</h2><div class="text-xs text-slate-400 mt-1 font-semibold">⏱ '+l.mins+' min · '+l.blocks.length+' blocks '+(done?'· <span class="text-emerald-600">✓ completed</span>':'')+'</div></div></div><div class="h-1.5 mt-5 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full rounded-full" style="width:'+Math.round(((li+ (done?1:0))/m.lessons.length)*100)+'%;background:'+m.color+'"></div></div></div>'+
  '<div class="p-6 md:p-8 lessonblock space-y-5 max-w-3xl">'+l.blocks.map(renderBlock).join("")+'</div>'+
  '<div class="px-6 md:px-8 py-5 bg-slate-50 flex flex-wrap items-center gap-3">'+(done?'<span class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 font-bold text-sm px-4 py-2.5 rounded-xl">✓ Completed</span>':'<button type="button" onclick="markComplete(\''+l.id+'\')" class="pop bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-5 py-2.5 rounded-xl transition">Mark complete · +20 XP</button>')+(last?'<button type="button" onclick="takeQuiz(\'m'+mi+'\')" class="bg-navy hover:bg-navy-800 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition">🧠 Take Module Quiz →</button>':(nxt?'<button type="button" onclick="openLesson('+nxt.mi+','+nxt.li+')" class="bg-navy hover:bg-navy-800 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition">Next lesson →</button>':''))+'<button type="button" onclick="showView(\'quiz\')" class="ml-auto text-sm font-bold text-slate-500 hover:text-navy">Quiz Arena →</button></div></div>';
 }
@@ -1812,7 +1812,7 @@ window.genReport=function(){ const c=window._rCalc; if(!c)return;
 window.copyReport=function(){ if(!window._rText){toast("Generate the report first.","warn");return;} if(navigator.clipboard) navigator.clipboard.writeText(window._rText); toast("Report copied to clipboard.","info"); };
 
 /* ---------- Quiz Arena (module quizzes + final exam) ---------- */
-function quizDefs(){ return MODULES.map((m,i)=>({id:"m"+i,title:"Module "+(i+1)+" · "+m.title,icon:m.icon,color:m.color,questions:m.quiz})).concat([{id:"final",title:"FINAL EXAM · Competent Manager",icon:"🏆",color:"#0F172A",questions:FINAL_EXAM}]); }
+function quizDefs(){ return MODULES.map((m,i)=>({id:"m"+i,title:"Module "+(i+1)+" · "+m.title,icon:m.icon,color:m.color,questions:m.quiz})).concat([{id:"final",title:"FINAL EXAM · Competent Manager",icon:"🏆",color:"var(--c-navy-1)",questions:FINAL_EXAM}]); }
 window.takeQuiz=function(id){ const def=quizDefs().find(d=>d.id===id); qz={id:def.id,title:def.title,icon:def.icon,questions:def.questions,idx:0,score:0,locked:false}; showView("quiz"); };
 RENDER.quiz=function(){
  const el=document.getElementById("view-quiz");
