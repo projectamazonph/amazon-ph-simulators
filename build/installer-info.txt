@@ -6,8 +6,20 @@ Train the VAs who run Amazon PPC for a living.
 ABOUT THIS APP
 --------------
 SimGrid is a student-facing Amazon PPC training app from Project Amazon PH
-Academy. It includes twelve practical simulators, PPC Coach lessons, guided
-practice, scoring, feedback, and a simulator roadmap.
+Academy. It ships fully offline and includes:
+
+- Twelve hands-on simulators (AdConsole Pro, Keyword Lab, Search Term Triage,
+  SQP Studio, Bid Decisions, Campaign Architect, Account Audit, Client
+  Onboarding, Capstone, Bulk File Simulator, BuyBox Dojo, Pacing Deck), plus
+  the PPC Profitability Lab.
+- The PPC Coach guided syllabus (12 modules, M0-M11) with guided practice,
+  scoring, and feedback.
+- The in-app Module Decks viewer: 144 teaching slides (12 per module, M0-M11).
+- Coach Tools and the Resource Library: practice worksheets, scenario cards,
+  operating templates, facilitation and assessment assets, and the complete
+  library/asset-pack ZIP bundles.
+- Learn & Docs: student guide, feature docs, handouts, and printable
+  checklists and formula sheets.
 
 INSTALLATION
 ------------
@@ -15,8 +27,9 @@ This is a per-user installation. You may choose the installation folder on the
 next screen. Administrator access is not normally required.
 
 The app does not require Node.js, Python, or a separate web server after it is
-installed. Some fonts, charts, and other external resources require an internet
-connection.
+installed. All lessons, simulators, teaching decks, and downloadable practice
+files above are bundled with the installer and work offline. Some fonts,
+charts, and other external resources require an internet connection.
 
 WINDOWS SMARTSCREEN
 -------------------

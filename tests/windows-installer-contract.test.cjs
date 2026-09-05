@@ -20,7 +20,7 @@ test('Windows packaging includes every runtime directory used by the app', () =>
   const packageJson = JSON.parse(read('package.json'));
   const files = packageJson.build.files;
 
-  for (const requiredPattern of ['index.html', '*.html', 'assets/**/*', 'learn/**/*', 'desktop/main.cjs', 'package.json']) {
+  for (const requiredPattern of ['index.html', '*.html', 'assets/**/*', 'learn/**/*', 'coach-decks/**/*', 'downloads/**/*', 'desktop/main.cjs', 'package.json']) {
     assert.ok(files.includes(requiredPattern), `build.files must include ${requiredPattern}`);
   }
   assert.equal(packageJson.build.win.target[0].target, 'nsis');
