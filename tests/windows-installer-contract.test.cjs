@@ -16,6 +16,24 @@ test('Windows desktop package has a runnable Electron entrypoint', () => {
   assert.match(read(main), /dialog\.showErrorBox/);
 });
 
+test('Every module required by the Electron main process ships in the installer', () => {
+  const packageJson = JSON.parse(read('package.json'));
+  const main = read(packageJson.main);
+  const runtimeDeps = packageJson.dependencies || {};
+  const devDeps = packageJson.devDependencies || {};
+
+  // Bare-specifier requires in main.cjs must resolve inside app.asar, so they
+  // must be production dependencies (devDependencies are pruned at pack time).
+  // 'electron' itself is exempt: the runtime provides it.
+  const required = [...main.matchAll(/require\('([^'./][^']*)'\)/g)].map((m) => m[1]);
+  assert.ok(required.length > 0, 'expected at least one bare-specifier require in main process');
+  for (const name of required) {
+    if (name === 'electron' || name.startsWith('node:')) continue;
+    assert.ok(runtimeDeps[name], `${name} must be a runtime dependency to ship in app.asar`);
+    assert.ok(!devDeps[name], `${name} must not be left in devDependencies (pruned at pack time)`);
+  }
+});
+
 test('Windows packaging includes every runtime directory used by the app', () => {
   const packageJson = JSON.parse(read('package.json'));
   const files = packageJson.build.files;
