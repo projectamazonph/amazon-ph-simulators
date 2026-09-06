@@ -1,7 +1,7 @@
 {
   "name": "amazon-ph-simulators",
   "productName": "Project Amazon PH Academy SimGrid",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Desktop wrapper for the Project Amazon PH Academy PPC simulators.",
   "homepage": "https://projectamazonph.github.io/amazon-ph-simulators/",
   "author": "Project Amazon PH Academy",
@@ -15,10 +15,12 @@
     "dist:win": "electron-builder --win nsis --publish never",
     "dist:win:portable": "electron-builder --win portable"
   },
+  "dependencies": {
+    "electron-updater": "^6.6.2"
+  },
   "devDependencies": {
     "electron": "^43.4.0",
-    "electron-builder": "^26.15.3",
-    "electron-updater": "^6.6.2"
+    "electron-builder": "^26.15.3"
   },
   "build": {
     "appId": "com.projectamazonph.simgrid",
