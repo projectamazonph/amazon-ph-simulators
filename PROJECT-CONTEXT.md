@@ -49,6 +49,8 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
 - `tests/csp-fontsource.test.cjs` pins the 24 self-hosted faces, resolves each `url()` the way a
   browser does, checks woff2 magic bytes, forbids any network URL in `assets/fonts.css`, budgets the
   directory at 600 KB, and requires latin-ext range coverage per family.
+- `tests/app-icon.test.cjs` parses both ICO containers, requires the 16–256 size ladder, asserts the
+  favicon and installer icon are the same bytes, and checks `build.win.icon` points at a real file.
 - Most other tests are **regex-on-file-content** contracts. They prove text patterns, not
   that a page runs. A green suite is necessary, not sufficient.
 - CI: `deploy.yml` runs **no tests** — Pages ships whatever is on `master`. The suite runs in
@@ -75,9 +77,22 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   `assets/fonts.css` then held the last remote dependency: 12 Fontsource `@import`s from jsDelivr,
   measured at 12–21 requests per page. Those are now 24 inlined `@font-face` rules over
   self-hosted woff2 in `assets/fonts/files/` (**446,316 bytes**), latin + latin-ext only.
-  **A cold-cache headless-Edge sweep of all five heavy pages now reports `remoteHosts: {}` — the
-  app makes zero network requests.** Do not reintroduce a remote URL into `assets/fonts.css`;
+  **A cold-cache headless-Edge sweep of all five heavy pages now reports `remoteHosts: {}`, zero
+  broken images, and no 404s** — the app makes no network requests at all. Cold payload per page:
+  PPC Coach 1,018 KB, BuyBox Dojo 362 KB, hub 245 KB, AdConsole 539 KB, Bulk File 1,252 KB (the last
+  two dominated by SheetJS/Chart.js). Do not reintroduce a remote URL into `assets/fonts.css`;
   `tests/csp-fontsource.test.cjs` and `tests/simulator-layout-genome.test.cjs` both forbid it.
+- **The installer had no product icon.** `build.win.icon` was unset and there was no `.ico` in the
+  repo, so the taskbar, Start-menu shortcut and installed-apps list all rendered the stock Electron
+  icon on a paid training product. `favicon.ico` (web) and `build/icon.ico` (installer) are now
+  generated from the 1024px logo master with 7 PNG-compressed entries (16/24/32/48/64/128/256) and
+  are byte-identical; `tests/app-icon.test.cjs` pins that. It also fixes the only console 404 the
+  pages had: Chromium auto-requests `/favicon.ico` and only `ppc-coach.html` declared an icon.
+- **The one remaining console error on every page is real but not fixable in place**: `frame-ancestors`
+  inside a `<meta>` CSP is ignored by browsers, so the click-jacking directive has never applied.
+  GitHub Pages cannot send response headers, so enforcing it needs either Electron's
+  `session.webRequest.onHeadersReceived` in `desktop/main.cjs` or dropping the dead directive from
+  all 25 pages. Both are security-adjacent, so neither was done silently.
 - **latin-ext must stay.** Exactly two codepoints are declared by no other vendored subset, and
   both matter here: `Ā` (U+0100) and the peso sign `₱` (U+20B1). `œ` and `†` are also inside the
   latin range and do **not** justify latin-ext — an earlier draft of this file claimed they did.
