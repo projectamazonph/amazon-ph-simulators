@@ -70,8 +70,10 @@ listing.html         # Tool: BuyBox Dojo
 Each tool page keeps its HTML structure and behavior in the page, while presentation is
 externalized into shared and simulator-specific stylesheets. The pages originated as
 standalone chat-export prototypes, but the design-system pass removed page-level style
-blocks and centralized brand fonts. Third-party libraries (Chart.js in `ad-console.html`,
-SheetJS in `bulk-file.html`) remain page-specific CDN dependencies.
+blocks and centralized brand fonts. Third-party browser libraries are **vendored** into
+`assets/vendor/` (Tailwind Play CDN, Chart.js, SheetJS) so the Electron installer works offline;
+`tests/vendor-assets.test.cjs` pins their hashes and fails on any new remote `<script src>`.
+Brand fonts are still fetched from jsDelivr by `assets/fonts.css` and degrade gracefully offline.
 
 ### How the unification (shell + skin) works
 

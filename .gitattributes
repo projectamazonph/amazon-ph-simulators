@@ -1,0 +1,4 @@
+# Vendored browser libraries are pinned by tests/vendor-assets.test.cjs on byte size and
+# SHA-256, so they must stay byte-identical in every checkout. Without this rule,
+# core.autocrlf=true rewrites them to CRLF on Windows and the pin fails as a false alarm.
+assets/vendor/*.js -text

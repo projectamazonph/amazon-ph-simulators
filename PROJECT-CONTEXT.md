@@ -24,7 +24,7 @@ paid product; a page that needs network to render is a defect there, not a nice-
   `ppc-coach` (a teaching companion, not a simulator). "Twelve tools" in `CLAUDE.md` and "~15
   simulator pages" elsewhere both refer to this same set.
 - `assets/` holds 58 files; 25 of them are `.js`.
-- 31 test files in `tests/` (314 tests, `node --test tests/*.test.cjs`).
+- 32 test files in `tests/` (317 tests, `node --test tests/*.test.cjs`).
 - Course content exists in three places: inline `MODULES` in `ppc-coach.html`,
   `assets/curriculum-manifest.js` (12 modules, `m0`..`m11`), and `coach-decks/`.
 
@@ -41,6 +41,9 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   closed on a suspiciously small scan, so it cannot pass by finding nothing.
 - `tests/coach-curriculum-alignment.test.cjs` extracts the `MODULES` literal from
   `ppc-coach.html` and pins it to the manifest.
+- `tests/vendor-assets.test.cjs` pins the size and SHA-256 of each file in `assets/vendor/` and
+  fails if any page adds a remote `<script src>`. Upgrading a library means editing the hash in
+  both that test and `assets/vendor/README.md`.
 - Most other tests are **regex-on-file-content** contracts. They prove text patterns, not
   that a page runs. A green suite is necessary, not sufficient.
 - CI: `deploy.yml` runs **no tests** — Pages ships whatever is on `master`. The suite runs in
@@ -55,11 +58,14 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
 - `MODULES` references the page global `IMG`; it is not a standalone pure literal.
 - `tests/csp-fontsource.test.cjs` asserts **exactly 25** pages containing `assets/fonts.css`.
   Adding or removing any HTML file anywhere in the tree can break it — including scratch files.
-- Remote dependencies that break offline: runtime Tailwind CDN on **22** HTML files,
-  third-party images on `image.qwenlm.ai` on **22** files, pinned Chart.js on 2 files,
-  jsDelivr fonts on 25. Vendoring these is the main desktop-first optimization, and it is a
-  supply-chain decision — the Tailwind Play CDN is a dev-time JIT, so copying it into the
-  installer is not automatically correct.
+- **Offline / remote dependencies** (measured, not assumed): only **2** pages actually loaded the
+  Tailwind Play CDN as a `<script>` (`ppc-coach.html`, `ad-console.html`), and only **1** loaded
+  SheetJS (`bulk-file.html`) — those three libraries are now vendored in `assets/vendor/`.
+  22 HTML files still *name* `cdn.tailwindcss.com`, but only inside their CSP `script-src` /
+  `style-src` lists: leftover permissions, not dependencies. Do not read a CSP mention as a load.
+  Still remote: `assets/fonts.css` (12 `@import`s of Fontsource CSS from jsDelivr) and
+  third-party images on `image.qwenlm.ai` (37 references across 22 files, including the logo) —
+  both are the remaining desktop-offline work, and both are bigger than a find-and-replace.
 - `desktop/main.cjs` and `assets/coach-security.js` need security review before changes.
   `master` is protected: branch + PR, checks green, one approval.
 
