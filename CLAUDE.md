@@ -8,9 +8,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Amazon PPC training simulators under one brand. Each tool teaches/tests a different Amazon
 Seller Central / Ads workflow (ad console, keyword research, search-term triage, bulk file
 upload, listing optimization, budget pacing). It's plain HTML/CSS/JS — no framework, no
-build step, no package manager, no backend.
+build step, no backend. `package.json` exists only for the test suite (`npm test`) and the
+Electron packaging; nothing needs compiling before deploy.
 
 Live GitHub Pages site: https://projectamazonph.github.io/amazon-ph-simulators/
+
+**Shared baseline for agent sessions: read [PROJECT-CONTEXT.md](PROJECT-CONTEXT.md)** for the
+verified inventory, the limits of each quality gate, and the known hazards (large inline data
+literals, positional quiz IDs, file-count-pinned tests). Keep it current when those change.
 
 ## Running the site
 
