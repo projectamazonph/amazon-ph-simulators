@@ -91,6 +91,14 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   the build at this commit logs no such line. `/favicon.ico` also serves `200 image/x-icon`.
   Note that headless Chromium never requests a favicon at all, so this fix is visible in the
   Windows shell and the installer, **not** in a console-error sweep.
+- **SheetJS was loaded eagerly by the page that needed it least.** The 945 KB bundle sat in
+  `bulk-file.html`’s `<head>` and the whole library was used by two lines of the file-upload
+  handler, so every learner who only read the lesson or pressed "Load sample" paid for it. It is
+  injected on demand now. Measured twice with the same cold-cache probe: **1,354 KB → 493 KB**
+  (20 → 19 requests) and `tests/vendor-assets.test.cjs` fails if the head tag returns. The proof
+  that deferral did not break uploads runs in a real browser: `XLSX` is `undefined` before the
+  handler, the loader resolves to 0.20.2, a CSV buffer parses to 2 rows with `bid: 0.55` as a
+  number, and a second call returns the same promise instead of injecting the script twice.
 - **The one remaining console error on every page is real but not fixable in place**: `frame-ancestors`
   inside a `<meta>` CSP is ignored by browsers, so the click-jacking directive has never applied.
   GitHub Pages cannot send response headers, so enforcing it needs either Electron's

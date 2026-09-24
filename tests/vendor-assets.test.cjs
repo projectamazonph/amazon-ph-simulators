@@ -79,3 +79,31 @@ test('no page loads a browser library from a remote script URL', () => {
   // pull code from them, because an offline installer must not depend on somebody else's uptime.
   assert.deepEqual(offenders, [], `${offenders.length} page(s) still load scripts over the network`);
 });
+
+// SheetJS is the heaviest thing in the app: 945,578 bytes, three quarters of the Bulk File page’s
+// 1,252 KB cold payload. The page needs it in exactly one place — parsing a file the learner
+// picked — but the tag sat in <head>, so every visitor paid for it, including the ones who only
+// read the lesson. It is now injected on demand. This test exists because nothing else in the
+// suite notices if someone puts the tag back: the page still works either way.
+test('the 945 KB SheetJS bundle is injected on demand, not loaded in head', () => {
+  const rel = 'bulk-file.html';
+  const html = fs.readFileSync(path.join(root, rel), 'utf8');
+
+  // An eager tag in this page is the regression being prevented.
+  const eagerTag = /<script\b[^>]*\bsrc\s*=\s*["']assets\/vendor\/xlsx\.full\.min\.js["'][^>]*>/i;
+  assert.ok(!eagerTag.test(html), `${rel} must not load SheetJS from a <script> tag`);
+
+  // The replacement must really be a loader for the vendored artifact, not a remote URL.
+  assert.match(html, /function loadSheetJS\(\)/, `${rel} lost its on-demand loader`);
+  assert.match(
+    html,
+    /s\.src\s*=\s*["']assets\/vendor\/xlsx\.full\.min\.js["']/,
+    `${rel} loader no longer points at the vendored artifact`
+  );
+
+  // Usage must be sequenced after the await, or the global is undefined when first touched.
+  const awaited = html.indexOf('XLSX=await loadSheetJS()');
+  const firstUse = html.indexOf('XLSX.read(');
+  assert.ok(awaited > 0, `${rel} never awaits the loader`);
+  assert.ok(firstUse > awaited, `${rel} uses XLSX before the loader is awaited`);
+});
