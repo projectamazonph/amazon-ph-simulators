@@ -143,6 +143,13 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   `new vm.Script(code, { filename })`. `node --check` on a temp `.cjs` also works; note its
   error's first stack line is `file:line` **without** a column.
 - `vm.Script` only *parses*; it never runs, so page globals stay out of it.
+- **The `file://` probe is the desktop condition; localhost is not.** Load
+  `file:///D:/Projects/amazon-ph-simulators/<page>.html` in the same headless Edge and re-run the
+  interaction, because a page has no http origin there and CSP `script-src 'self'` is judged
+  differently. This is the only way to catch a change that breaks the installed app while the
+  GitHub Pages site keeps working. At `99a98ad`: bulk-file makes 18 requests, all `file:`, none
+  failed, 7 font faces loaded, 0 broken images, and the on-demand SheetJS injection is permitted —
+  `window.XLSX` is `undefined` until the handler runs, then resolves to 0.20.2 and parses a CSV.
 - Live check in the in-app browser: expect **zero** console errors, then drive one real
   interaction (open a module, open a lesson). Screenshots alone are not evidence — query the
   rendered text.
