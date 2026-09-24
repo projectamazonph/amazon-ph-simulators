@@ -86,8 +86,11 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   repo, so the taskbar, Start-menu shortcut and installed-apps list all rendered the stock Electron
   icon on a paid training product. `favicon.ico` (web) and `build/icon.ico` (installer) are now
   generated from the 1024px logo master with 7 PNG-compressed entries (16/24/32/48/64/128/256) and
-  are byte-identical; `tests/app-icon.test.cjs` pins that. It also fixes the only console 404 the
-  pages had: Chromium auto-requests `/favicon.ico` and only `ppc-coach.html` declared an icon.
+  are byte-identical; `tests/app-icon.test.cjs` pins that. The measurable proof is in CI: the build
+  before this commit logged `default Electron icon is used reason=application icon is not set`, and
+  the build at this commit logs no such line. `/favicon.ico` also serves `200 image/x-icon`.
+  Note that headless Chromium never requests a favicon at all, so this fix is visible in the
+  Windows shell and the installer, **not** in a console-error sweep.
 - **The one remaining console error on every page is real but not fixable in place**: `frame-ancestors`
   inside a `<meta>` CSP is ignored by browsers, so the click-jacking directive has never applied.
   GitHub Pages cannot send response headers, so enforcing it needs either Electron's
@@ -107,9 +110,10 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   unfetched faces: the suite was green and only a page load showed `localFontRequests: 0`.
 - **`m.img ? … : …` guards hide missing art.** See the artwork-keys hazard above; same failure
   shape as the font paths — a guard that turns "absent" into "quietly nothing".
-- **There is no favicon in this repo.** Only `ppc-coach.html` declares `rel="icon"`, so Chromium
-  auto-requests `/favicon.ico`, gets a 404, and logs a console error on the other 18 root pages.
-  It is a real red line in every browser check until each page links an icon.
+- **Only 2 of the 25 root pages declare `rel="icon"`** — `keyword-lab.html` an inline SVG data URI,
+  `ppc-coach.html` `assets/img/logo.png`. Every other page relies on the browser requesting
+  `/favicon.ico` from the site root, which now resolves (the file is committed). Do not look for
+  this in headless measurements: headless Edge issued 18 requests on the hub and none was a favicon.
 - **Artwork keys can be silently dead.** `ppc-coach.html` built module art paths as
   `img:IMG.<key>` against keys the `IMG` map never declared (`builder`, `lab`, `console`, `deck`,
   `triage`, `report`). The renderer guards with `m.img ? … : …`, so nothing threw and nothing
