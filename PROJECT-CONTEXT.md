@@ -46,6 +46,9 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   both that test and `assets/vendor/README.md`.
 - `tests/local-image-assets.test.cjs` bans third-party artwork URLs, keeps `assets/img/` inside a
   400 KB budget, and pins `IMG` key liveness in both directions (see Known hazards).
+- `tests/csp-fontsource.test.cjs` pins the 24 self-hosted faces, resolves each `url()` the way a
+  browser does, checks woff2 magic bytes, forbids any network URL in `assets/fonts.css`, budgets the
+  directory at 600 KB, and requires latin-ext range coverage per family.
 - Most other tests are **regex-on-file-content** contracts. They prove text patterns, not
   that a page runs. A green suite is necessary, not sufficient.
 - CI: `deploy.yml` runs **no tests** — Pages ships whatever is on `master`. The suite runs in
@@ -69,9 +72,29 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   `ppc-coach.html`, 4 in `listing.html`), each a ~1 MB 1024×1024 PNG — **14,318.6 KB** total,
   which no offline installer can tolerate. It is now self-hosted in `assets/img/` as **248,260
   bytes** (98.3% smaller), re-encoded with ffmpeg/libwebp; see `assets/img/README.md`.
-  The **only** remaining remote dependency is `assets/fonts.css`: 12 Fontsource `@import`s from
-  jsDelivr, which a headless-Edge sweep measured at 12–21 requests per page. Until those are
-  vendored, every page needs a network to render its type.
+  `assets/fonts.css` then held the last remote dependency: 12 Fontsource `@import`s from jsDelivr,
+  measured at 12–21 requests per page. Those are now 24 inlined `@font-face` rules over
+  self-hosted woff2 in `assets/fonts/files/` (**446,316 bytes**), latin + latin-ext only.
+  **A cold-cache headless-Edge sweep of all five heavy pages now reports `remoteHosts: {}` — the
+  app makes zero network requests.** Do not reintroduce a remote URL into `assets/fonts.css`;
+  `tests/csp-fontsource.test.cjs` and `tests/simulator-layout-genome.test.cjs` both forbid it.
+- **latin-ext must stay.** Exactly two codepoints are declared by no other vendored subset, and
+  both matter here: `Ā` (U+0100) and the peso sign `₱` (U+20B1). `œ` and `†` are also inside the
+  latin range and do **not** justify latin-ext — an earlier draft of this file claimed they did.
+  Verified twice: parsed from the declared `unicode-range`s, then confirmed against the renderer's
+  actual font list. That second check found the ranges and the files disagree about `₱`: it is
+  drawn by Archivo and IBM Plex Mono but **not** by PT Sans or Barlow Condensed, so peso amounts in
+  body text use a system font. Not a vendoring regression — the same Fontsource 5.1.0 files came
+  from jsDelivr before. See `assets/fonts/README.md`.
+- **Font `url()` resolves against the stylesheet, not the repo root.** `assets/fonts.css` lives in
+  `assets/` while its files live in `assets/fonts/files/`, so the correct prefix is
+  `url(./fonts/files/…)`. Writing Fontsource's own `./files/…` layout produced 24 silently
+  unfetched faces: the suite was green and only a page load showed `localFontRequests: 0`.
+- **`m.img ? … : …` guards hide missing art.** See the artwork-keys hazard above; same failure
+  shape as the font paths — a guard that turns "absent" into "quietly nothing".
+- **There is no favicon in this repo.** Only `ppc-coach.html` declares `rel="icon"`, so Chromium
+  auto-requests `/favicon.ico`, gets a 404, and logs a console error on the other 18 root pages.
+  It is a real red line in every browser check until each page links an icon.
 - **Artwork keys can be silently dead.** `ppc-coach.html` built module art paths as
   `img:IMG.<key>` against keys the `IMG` map never declared (`builder`, `lab`, `console`, `deck`,
   `triage`, `report`). The renderer guards with `m.img ? … : …`, so nothing threw and nothing
@@ -100,8 +123,14 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   and drive `http://127.0.0.1:9222` with `fetch` + the global `WebSocket` in Node — no npm
   install, no approval. `Runtime.evaluate` gives decoded/broken image counts, `document.fonts.status`,
   load timings, and per-host request counts; that is the only way to prove an image actually decodes.
-  Read `transferSize` cold: a second sweep against the same profile is cache-warm and reports
-  near-zero bytes for files it already fetched.
+  **You must send `Network.setCacheDisabled` and use a fresh `--user-data-dir`.** The first two
+  sweeps here were invalid: a persistent profile served the previous `fonts.css` from disk cache, so
+  the page still showed 12 jsDelivr requests after the remote imports had been deleted, and the
+  second run's byte totals were cache-warm near-zero.
+- To ask *which font drew a glyph*, don't compare element widths — generic-family mapping makes
+  that unreliable across pages. Use `DOM.getDocument` + `DOM.querySelector` +
+  `CSS.getPlatformFontsForNode`, which returns real rendered families with `isCustomFont` and glyph
+  counts. That is how the peso-sign coverage gap above was found rather than assumed.
 
 ## Session state worth knowing (2026-09-24)
 

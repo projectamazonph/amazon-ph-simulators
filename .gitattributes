@@ -7,3 +7,7 @@ assets/vendor/*.js -text
 # Never line-ending converted, never diffed as text.
 assets/img/*.png binary
 assets/img/*.webp binary
+
+# Self-hosted brand fonts (tests/csp-fontsource.test.cjs checks the wOF2 magic bytes and the
+# total weight). Line-ending conversion would corrupt these and they are meaningless as diffs.
+assets/fonts/files/*.woff2 binary
