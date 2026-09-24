@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PPC Coach | Amazon PPC Learning Path for Virtual Assistants</title>
-<link rel="icon" href="https://image.qwenlm.ai/public_source/d80161d4-a539-4d7d-ad02-e4820ce49448/1454586fe-d415-465f-b36d-1ccd28255660.png">
+<link rel="icon" href="assets/img/logo.png">
 <script src="assets/vendor/tailwind-play.js"></script>
 <script src="assets/vendor/chart.umd.min.js"></script>
 <script>
@@ -265,7 +265,7 @@ tailwind.config = { theme: { extend: {
 
   <aside id="sidebar" class="fixed z-40 inset-y-0 left-0 w-64 bg-navy text-slate-300 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
     <div class="flex items-center gap-3 px-5 py-5 border-b border-white/10">
-      <img src="https://image.qwenlm.ai/public_source/d80161d4-a539-4d7d-ad02-e4820ce49448/1454586fe-d415-465f-b36d-1ccd28255660.png" class="w-10 h-10 rounded-xl bg-white p-1" alt="logo">
+      <img src="assets/img/logo.png" class="w-10 h-10 rounded-xl bg-white p-1" alt="logo">
       <div><div class="font-display font-bold text-white text-lg leading-none">PPC Coach</div>
       <div class="text-[11px] text-slate-400 mt-1">Amazon PPC Teaching Companion</div></div>
     </div>
@@ -312,15 +312,15 @@ tailwind.config = { theme: { extend: {
 <script>
 /* ================= CORE ================= */
 const IMG = {
-  logo:"https://image.qwenlm.ai/public_source/d80161d4-a539-4d7d-ad02-e4820ce49448/1454586fe-d415-465f-b36d-1ccd28255660.png",
-  hero:"https://image.qwenlm.ai/public_source/d80161d4-a539-4d7d-ad02-e4820ce49448/1a8d96df3-20f4-4e5b-b56d-d1705f5f0e80.png",
-  coach:"https://image.qwenlm.ai/public_source/d80161d4-a539-4d7d-ad02-e4820ce49448/163fc5120-0387-4fd1-abba-76a434d9ee25.png",
-  market:"https://image.qwenlm.ai/public_source/d80161d4-a539-4d7d-ad02-e4820ce49448/126c76305-a39a-4c76-864f-ae21beb3a914.png",
-  auction:"https://image.qwenlm.ai/public_source/d80161d4-a539-4d7d-ad02-e4820ce49448/1ddc9c1b1-fec5-46f3-8fee-ea240684f102.png",
-  listing:"https://image.qwenlm.ai/public_source/d80161d4-a539-4d7d-ad02-e4820ce49448/167723db7-b9e5-4e70-8eff-4ce3a8ce7fd2.png",
-  keywords:"https://image.qwenlm.ai/public_source/d80161d4-a539-4d7d-ad02-e4820ce49448/1f06a5489-3268-46c5-8b53-dc262e22550d.png",
-  reporting:"https://image.qwenlm.ai/public_source/d80161d4-a539-4d7d-ad02-e4820ce49448/149aeccd5-72e3-43a9-b827-5f3dd32c25f7.png",
-  va:"https://image.qwenlm.ai/public_source/d80161d4-a539-4d7d-ad02-e4820ce49448/1229de91a-190a-4ff7-a7c6-1bd7a0300077.png"
+  logo:"assets/img/logo.png",
+  hero:"assets/img/course-hero.webp",
+  coach:"assets/img/course-coach.webp",
+  market:"assets/img/course-market.webp",
+  lab:"assets/img/course-keywords.webp",
+  deck:"assets/img/course-auction.webp",
+  report:"assets/img/course-reporting.webp",
+  listing:"assets/img/course-listing.webp",
+  va:"assets/img/course-va.webp"
 };
 const LEVELS=[{xp:0,name:"Trainee"},{xp:100,name:"PPC Learner"},{xp:250,name:"PPC Helper"},{xp:450,name:"Junior Assistant"},{xp:700,name:"Campaign Assistant"},{xp:1000,name:"Competent Manager"}];
 const ASSESSMENT_BANDS="Module pass 70% · Simulator proficiency 75% · Supervised readiness 85%";
@@ -493,7 +493,7 @@ quiz:[
 {q:"10 clicks on a search term is enough to…",o:["Pause the campaign","Trust the ACOS completely","Decide cautiously, give it a week","Negate it"],a:2,e:"Small samples create loud lies."}
 ]},
 
-{title:"Campaign Structure and Naming",icon:"🏗️",color:"var(--mc-emerald)",img:IMG.builder,desc:"The hierarchy, naming standards, portfolios, and budget isolation.",
+{title:"Campaign Structure and Naming",icon:"🏗️",color:"var(--mc-emerald)",desc:"The hierarchy, naming standards, portfolios, and budget isolation.",
 lessons:[
 {id:"m3l1",title:"The Hierarchy: Campaign, Ad Group, Targeting",mins:6,blocks:[
 {t:"goal",x:"Trace any target back to its campaign, ad group, and product."},
@@ -584,7 +584,7 @@ quiz:[
 {q:"Prioritize…",o:["Volume over relevance","Relevance over volume","The longest keyword","Negatives first"],a:1,e:"High-volume irrelevant terms burn budget."}
 ]},
 
-{title:"Automatic Targeting",icon:"🤖",color:"var(--mc-pink)",img:IMG.console,desc:"Four auto groups, bid segmentation, and reading the search-term report.",
+{title:"Automatic Targeting",icon:"🤖",color:"var(--mc-pink)",desc:"Four auto groups, bid segmentation, and reading the search-term report.",
 lessons:[
 {id:"m5l1",title:"The Four Auto Groups",mins:6,blocks:[
 {t:"goal",x:"Name the four automatic-targeting groups and what each one does."},
@@ -625,7 +625,7 @@ quiz:[
 {q:"When a manual Exact wins, you should…",o:["Delete the auto campaign","Negate the term in auto, keep auto running","Raise the auto bid","Pause the manual campaign"],a:1,e:"Negatives in auto let manual own the term."}
 ]},
 
-{title:"Manual Keyword Targeting",icon:"🎯",color:"var(--mc-blue)",img:IMG.console,desc:"Match types in practice, research vs performance, and launch bids.",
+{title:"Manual Keyword Targeting",icon:"🎯",color:"var(--mc-blue)",desc:"Match types in practice, research vs performance, and launch bids.",
 lessons:[
 {id:"m6l1",title:"Match Types in Practice",mins:6,blocks:[
 {t:"goal",x:"Pick a match type based on the data you have, not on a default."},
@@ -748,7 +748,7 @@ quiz:[
 {q:"A campaign is out of budget. You should first…",o:["Raise the budget","Check whether it is profitable","Pause it","Double the bid"],a:1,e:"Out of budget is not automatically a budget problem."}
 ]},
 
-{title:"Search-Term Analysis and Negatives",icon:"🕵️",color:"var(--mc-blue)",img:IMG.triage,desc:"Targeting vs search-term report, harvesting, and click thresholds.",
+{title:"Search-Term Analysis and Negatives",icon:"🕵️",color:"var(--mc-blue)",desc:"Targeting vs search-term report, harvesting, and click thresholds.",
 lessons:[
 {id:"m9l1",title:"Reading the Search Term Report",mins:6,blocks:[
 {t:"goal",x:"Read a search-term report and tell winners from wasters from maybes."},
@@ -801,7 +801,7 @@ quiz:[
 {q:"Negative phrase blocks…",o:["The single term","Any search containing the phrase","The campaign","The placement"],a:1,e:"Phrase negatives are cluster-level blocks."}
 ]},
 
-{title:"Performance Diagnosis",icon:"🔬",color:"var(--mc-emerald)",img:IMG.console,desc:"Diagnose the cause before changing bids, budgets, targeting, or listings.",
+{title:"Performance Diagnosis",icon:"🔬",color:"var(--mc-emerald)",desc:"Diagnose the cause before changing bids, budgets, targeting, or listings.",
 lessons:[
 {id:"m10l1",title:"Diagnostic Order: Delivery → Engagement → Conversion → Economics",mins:6,blocks:[
 {t:"goal",x:"Use a fixed diagnostic order before changing anything."},

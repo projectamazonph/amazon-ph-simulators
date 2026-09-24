@@ -2,3 +2,8 @@
 # SHA-256, so they must stay byte-identical in every checkout. Without this rule,
 # core.autocrlf=true rewrites them to CRLF on Windows and the pin fails as a false alarm.
 assets/vendor/*.js -text
+
+# Self-hosted raster art (tests/local-image-assets.test.cjs budgets its total weight).
+# Never line-ending converted, never diffed as text.
+assets/img/*.png binary
+assets/img/*.webp binary

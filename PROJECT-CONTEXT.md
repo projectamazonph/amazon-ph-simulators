@@ -44,6 +44,8 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
 - `tests/vendor-assets.test.cjs` pins the size and SHA-256 of each file in `assets/vendor/` and
   fails if any page adds a remote `<script src>`. Upgrading a library means editing the hash in
   both that test and `assets/vendor/README.md`.
+- `tests/local-image-assets.test.cjs` bans third-party artwork URLs, keeps `assets/img/` inside a
+  400 KB budget, and pins `IMG` key liveness in both directions (see Known hazards).
 - Most other tests are **regex-on-file-content** contracts. They prove text patterns, not
   that a page runs. A green suite is necessary, not sufficient.
 - CI: `deploy.yml` runs **no tests** — Pages ships whatever is on `master`. The suite runs in
@@ -63,9 +65,19 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   SheetJS (`bulk-file.html`) — those three libraries are now vendored in `assets/vendor/`.
   22 HTML files still *name* `cdn.tailwindcss.com`, but only inside their CSP `script-src` /
   `style-src` lists: leftover permissions, not dependencies. Do not read a CSP mention as a load.
-  Still remote: `assets/fonts.css` (12 `@import`s of Fontsource CSS from jsDelivr) and
-  third-party images on `image.qwenlm.ai` (37 references across 22 files, including the logo) —
-  both are the remaining desktop-offline work, and both are bigger than a find-and-replace.
+  Artwork was hot-linked from `image.qwenlm.ai` at 13 unique URLs / 15 real references (11 in
+  `ppc-coach.html`, 4 in `listing.html`), each a ~1 MB 1024×1024 PNG — **14,318.6 KB** total,
+  which no offline installer can tolerate. It is now self-hosted in `assets/img/` as **248,260
+  bytes** (98.3% smaller), re-encoded with ffmpeg/libwebp; see `assets/img/README.md`.
+  The **only** remaining remote dependency is `assets/fonts.css`: 12 Fontsource `@import`s from
+  jsDelivr, which a headless-Edge sweep measured at 12–21 requests per page. Until those are
+  vendored, every page needs a network to render its type.
+- **Artwork keys can be silently dead.** `ppc-coach.html` built module art paths as
+  `img:IMG.<key>` against keys the `IMG` map never declared (`builder`, `lab`, `console`, `deck`,
+  `triage`, `report`). The renderer guards with `m.img ? … : …`, so nothing threw and nothing
+  displayed: 9 module headers shipped with no illustration for the entire life of the product,
+  while 5 declared images were never read. `tests/local-image-assets.test.cjs` now asserts both
+  directions of that contract. When adding module art, add the key to `IMG` *and* the `img:` field.
 - `desktop/main.cjs` and `assets/coach-security.js` need security review before changes.
   `master` is protected: branch + PR, checks green, one approval.
 
@@ -81,6 +93,15 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
 - To compare against `master`: `git worktree add --detach <path> HEAD`. `git archive | tar`
   fails through PowerShell pipes. **Never nest a worktree inside this repo** — the HTML-walking
   tests count files tree-wide and will double-count or report a HEAD defect as a new one.
+- **Real-browser measurement**: `chrome-devtools-mcp` has no usable browser here (no Chrome
+  installed; Edge is at `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`) and the
+  in-app browser tool cannot execute JavaScript or report network entries. What works is raw CDP:
+  launch `msedge.exe --headless=new --remote-debugging-port=9222 --user-data-dir=<repo>\.tmp-edge-profile`
+  and drive `http://127.0.0.1:9222` with `fetch` + the global `WebSocket` in Node — no npm
+  install, no approval. `Runtime.evaluate` gives decoded/broken image counts, `document.fonts.status`,
+  load timings, and per-host request counts; that is the only way to prove an image actually decodes.
+  Read `transferSize` cold: a second sweep against the same profile is cache-warm and reports
+  near-zero bytes for files it already fetched.
 
 ## Session state worth knowing (2026-09-24)
 
