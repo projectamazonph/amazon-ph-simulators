@@ -77,11 +77,17 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   `assets/fonts.css` then held the last remote dependency: 12 Fontsource `@import`s from jsDelivr,
   measured at 12–21 requests per page. Those are now 24 inlined `@font-face` rules over
   self-hosted woff2 in `assets/fonts/files/` (**446,316 bytes**), latin + latin-ext only.
-  **A cold-cache headless-Edge sweep of all five heavy pages now reports `remoteHosts: {}`, zero
-  broken images, and no 404s** — the app makes no network requests at all. Cold payload per page:
-  PPC Coach 1,018 KB, BuyBox Dojo 362 KB, hub 245 KB, AdConsole 539 KB, Bulk File 1,252 KB (the last
-  two dominated by SheetJS/Chart.js). Do not reintroduce a remote URL into `assets/fonts.css`;
-  `tests/csp-fontsource.test.cjs` and `tests/simulator-layout-genome.test.cjs` both forbid it.
+  **A cold-cache headless-Edge sweep of the five heavy pages now makes zero network requests.**
+  Every response is either `127.0.0.1:8080` or an inline `data:` URI — and a `data:` URL has an
+  empty host, so a naive `new URL(r.url).host` filter reports it as a remote hit. No 404s, no
+  broken images. Cold payload at `6482936`, summed from `Network.loadingFinished.encodedDataLength`:
+  hub 274 KB · PPC Coach 1,070 KB · BuyBox Dojo 482 KB · AdConsole 680 KB · Bulk File 416 KB.
+  AdConsole is dominated by the 407 KB Tailwind Play runtime; Bulk File no longer pulls SheetJS at
+  all until a file is picked. This probe has real run-to-run noise — the same Bulk File page read
+  493 KB minutes earlier on the same instrument — so treat roughly ±80 KB as the floor and always
+  compare two states measured back to back, never across days.
+  Do not reintroduce a remote URL into `assets/fonts.css`; `tests/csp-fontsource.test.cjs` and
+  `tests/simulator-layout-genome.test.cjs` both forbid it.
 - **The installer had no product icon.** `build.win.icon` was unset and there was no `.ico` in the
   repo, so the taskbar, Start-menu shortcut and installed-apps list all rendered the stock Electron
   icon on a paid training product. `favicon.ico` (web) and `build/icon.ico` (installer) are now
