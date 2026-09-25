@@ -51,8 +51,17 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   directory at 600 KB, and requires latin-ext range coverage per family.
 - `tests/app-icon.test.cjs` parses both ICO containers, requires the 16–256 size ladder, asserts the
   favicon and installer icon are the same bytes, and checks `build.win.icon` points at a real file.
-- Most other tests are **regex-on-file-content** contracts. They prove text patterns, not
-  that a page runs. A green suite is necessary, not sufficient.
+- `tests/desktop-smoke.test.cjs` is the only gate that **runs** a page: it launches headless
+  Edge/Chrome and loads all 20 root product pages over `file://`, failing on an uncaught exception,
+  a failed subresource request, any response ≥400, an undecodable image, a page that declares font
+  faces but loads none, or console noise outside the two documented known issues. It **skips rather
+  than fails when no browser is found**, so CI runners stay green and this machine is where it
+  bites; set `PHASM_BROWSER=<path>` to point it, `PHASM_NO_SMOKE=1` to silence it. Proven to fail
+  by injecting an uncaught throw, a missing file and a broken image into one page.
+  The 196 static pages under coach-decks/ and learn/ are deliberately out of scope, and the
+  whole suite now takes about 38s locally (CI skips this gate, so it stays near 12s).
+- The rest of the suite is **regex-on-file-content** contracts. They prove text patterns, not that
+  a page runs — which is exactly how a `SyntaxError` in the flagship course survived four weeks.
 - CI: `deploy.yml` runs **no tests** — Pages ships whatever is on `master`. The suite runs in
   `build-windows-installer.yml` and the new `test.yml`.
 
@@ -122,12 +131,19 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   `assets/` while its files live in `assets/fonts/files/`, so the correct prefix is
   `url(./fonts/files/…)`. Writing Fontsource's own `./files/…` layout produced 24 silently
   unfetched faces: the suite was green and only a page load showed `localFontRequests: 0`.
+- **Which population is a page count describing?** On this machine `Get-ChildItem -Filter *.html`
+  over the repo root returns **25**, but the root product page count is **20**: five undeletable
+  `.tmp-*.html` scratch stubs live in the root (this machine blocks `Remove-Item`), and a listing
+  cannot tell them apart. Separately, `tests/csp-fontsource.test.cjs` pins **25** — pages *tree-wide*
+  that link `assets/fonts.css`, a different set again. Every HTML walker in `tests/` skips
+  dot-prefixed entries; a count quoted without saying so is how a wrong number got committed here.
 - **`m.img ? … : …` guards hide missing art.** See the artwork-keys hazard above; same failure
   shape as the font paths — a guard that turns "absent" into "quietly nothing".
-- **Only 2 of the 25 root pages declare `rel="icon"`** — `keyword-lab.html` an inline SVG data URI,
-  `ppc-coach.html` `assets/img/logo.png`. Every other page relies on the browser requesting
-  `/favicon.ico` from the site root, which now resolves (the file is committed). Do not look for
-  this in headless measurements: headless Edge issued 18 requests on the hub and none was a favicon.
+- **Only 2 of the 20 root product pages declare `rel="icon"`** — `keyword-lab.html` an inline SVG
+  data URI, `ppc-coach.html` `assets/img/logo.png`. The other 18 rely on the browser
+  requesting `/favicon.ico` from the site root, which now resolves because the file is
+  committed. Do not look for this in headless measurements: headless Edge issued 18 requests
+  on the hub and none of them was a favicon.
 - **Artwork keys can be silently dead.** `ppc-coach.html` built module art paths as
   `img:IMG.<key>` against keys the `IMG` map never declared (`builder`, `lab`, `console`, `deck`,
   `triage`, `report`). The renderer guards with `m.img ? … : …`, so nothing threw and nothing
