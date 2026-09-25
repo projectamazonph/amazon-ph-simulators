@@ -115,6 +115,18 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   ICO header from the PNG payloads already in the file, never re-encode the artwork. The installer proof
   stays in CI: the build before the icon commit logged `default Electron icon is used reason=application
   icon is not set`, and the build at that commit logs no such line.
+
+- **The favicon conclusion above is true at an origin root and false on this project's GitHub
+  Pages URL.** Probed live on `projectamazonph.github.io`: a page with no `<link rel="icon">` makes
+  the browser request `https://projectamazonph.github.io/favicon.ico` — the **domain root**, outside
+  `/amazon-ph-simulators/` — which 404s, then the failure is negative-cached so later pages in the
+  same session stop asking. Consequences, all measured: the hub logged `404 …/favicon.ico` as a real
+  console error on the deployed site, the 5,978 B ICO is never fetched there at all (so the 21 % saving
+  applies to origin-root deployments, not to this URL today), and only the two pages that declare an
+  icon get one — `ppc-coach.html` by relative path and `keyword-lab.html` by inline data URI. The fix is
+  a one-line relative `<link rel="icon" href="favicon.ico">` on the 18 pages that lack one; not applied
+  silently because it touches every product page and the byte-identity rationale in
+  `tests/app-icon.test.cjs` predates it.
 - **SheetJS was loaded eagerly by the page that needed it least.** The 945 KB bundle sat in
   `bulk-file.html`’s `<head>` and the whole library was used by two lines of the file-upload
   handler, so every learner who only read the lesson or pressed "Load sample" paid for it. It is
