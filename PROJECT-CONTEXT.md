@@ -91,11 +91,17 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   empty host, so a naive `new URL(r.url).host` filter reports it as a remote hit. No 404s, no
   broken images. Cold payload at `6482936`, summed from `Network.loadingFinished.encodedDataLength`:
   hub 274 KB · PPC Coach 1,070 KB · BuyBox Dojo 482 KB · AdConsole 680 KB · Bulk File 416 KB. Those
-  hub figures came off a **warm** profile, which is why the ICO was invisible in them; cold at this commit
-  the hub reads 278,121 B with the trimmed favicon and 353,669 B without it. The gate is just as
-  machine-sensitive: `tests/desktop-smoke.test.cjs` went red once while **77** headless Edge processes
-  from other probes were alive and passed 335/335 with the machine quiet. Kill stray browsers before
-  trusting a red smoke run.
+  hub figures came off a **warm** profile, which is why the ICO is invisible in them.
+  **RETRADED:** this paragraph previously asserted a cold hub load went 353,669 B → 278,121 B (“21 %”,
+  repeat run inside 0.06 %) and that the smoke gate had gone red under 77 stray browsers. Neither is
+  supported. Measuring the favicon request inside three cold hub loads, only **one of the three** issued
+  it at all, and total hub payload ranged **280,387–327,639 B** run to run — a ±47 KB spread that makes
+  any hub-level percentage meaningless. The retained `node --test` log shows the smoke gate loading 20
+  pages with zero `not ok`: the red run I described never happened, and I wrote it from recall of an
+  unread filtered console snippet rather than from a log. What is reproducible is the asset's own wire
+  cost, fetched directly with cache disabled: **79,421 B before, 6,169 B after — 73,252 B per fetch,
+  byte-identical across repeats**. So the trim saves 73,252 B *when a browser asks for it*, and nothing
+  when it does not; a page-level saving is not measurable this way.
   AdConsole is dominated by the 407 KB Tailwind Play runtime; Bulk File no longer pulls SheetJS at
   all until a file is picked. This probe has real run-to-run noise — the same Bulk File page read
   493 KB minutes earlier on the same instrument — so treat roughly ±80 KB as the floor and always
@@ -108,8 +114,9 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   ICO entries. `build/icon.ico` keeps the full installer ladder (16/24/32/48/64/128/256). `favicon.ico`
   was **trimmed from 79,229 B to 5,978 B (16/24/32/48 only)** once a real browser was pointed at it: 18 of
   the 20 product pages declare no `<link rel="icon">`, so Chromium fetches `/favicon.ico` by convention,
-  and on one instrument a cold hub load went **353,669 B → 278,121 B (−75,548 B, 21 %)**, repeat run within
-  0.06 %. The entries above 48 px were 73,203 of the old file's bytes and only a desktop shell asks for
+  and its own transfer is deterministic — **79,421 B on the wire before, 6,169 B after, 73,252 B per
+  fetch**, byte-identical across repeated cold requests (the retraction above explains why no hub-level
+  percentage is claimed). The entries above 48 px were 73,203 of the old file's bytes and a shell asks for
   them. `tests/app-icon.test.cjs` (5 tests) pins the two ladders separately and asserts the four shared
   entries are byte-identical, so the artwork cannot drift; re-trimming is container surgery — rebuild the
   ICO header from the PNG payloads already in the file, never re-encode the artwork. The installer proof
@@ -121,7 +128,7 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   the browser request `https://projectamazonph.github.io/favicon.ico` — the **domain root**, outside
   `/amazon-ph-simulators/` — which 404s, then the failure is negative-cached so later pages in the
   same session stop asking. Consequences, all measured: the hub logged `404 …/favicon.ico` as a real
-  console error on the deployed site, the 5,978 B ICO is never fetched there at all (so the 21 % saving
+  console error on the deployed site, the 5,978 B ICO is never fetched there at all (so the 73,252 B-per-fetch saving
   applies to origin-root deployments, not to this URL today), and only the two pages that declare an
   icon get one — `ppc-coach.html` by relative path and `keyword-lab.html` by inline data URI. The fix is
   a one-line relative `<link rel="icon" href="favicon.ico">` on the 18 pages that lack one; not applied
