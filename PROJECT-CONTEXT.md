@@ -49,8 +49,9 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
 - `tests/csp-fontsource.test.cjs` pins the 24 self-hosted faces, resolves each `url()` the way a
   browser does, checks woff2 magic bytes, forbids any network URL in `assets/fonts.css`, budgets the
   directory at 600 KB, and requires latin-ext range coverage per family.
-- `tests/app-icon.test.cjs` parses both ICO containers, requires the 16–256 size ladder, asserts the
-  favicon and installer icon are the same bytes, and checks `build.win.icon` points at a real file.
+- `tests/app-icon.test.cjs` parses both ICO containers, requires the installer's 16–256 ladder and the
+  favicon's 16–48 ladder, asserts the four shared entries are byte-identical, requires every root product
+  page to declare a page-relative icon, and checks `build.win.icon` points at a real file.
 - `tests/desktop-smoke.test.cjs` is the only gate that **runs** a page: it launches headless
   Edge/Chrome and loads all 20 root product pages over `file://`, failing on an uncaught exception,
   a failed subresource request, any response ≥400, an undecodable image, a page that declares font
@@ -112,12 +113,11 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   repo, so the taskbar, Start-menu shortcut and installed-apps list all rendered the stock Electron
   icon on a paid training product. Both files are generated from the 1024px logo master as PNG-compressed
   ICO entries. `build/icon.ico` keeps the full installer ladder (16/24/32/48/64/128/256). `favicon.ico`
-  was **trimmed from 79,229 B to 5,978 B (16/24/32/48 only)** once a real browser was pointed at it: 18 of
-  the 20 product pages declare no `<link rel="icon">`, so Chromium fetches `/favicon.ico` by convention,
-  and its own transfer is deterministic — **79,421 B on the wire before, 6,169 B after, 73,252 B per
-  fetch**, byte-identical across repeated cold requests (the retraction above explains why no hub-level
-  percentage is claimed). The entries above 48 px were 73,203 of the old file's bytes and a shell asks for
-  them. `tests/app-icon.test.cjs` (5 tests) pins the two ladders separately and asserts the four shared
+  was **trimmed from 79,229 B to 5,978 B (16/24/32/48 only)** once a real browser was pointed at it: the
+  pages fetch `/favicon.ico` by convention, and its own transfer is deterministic — **79,421 B on the wire
+  before, 6,169 B after, 73,252 B per fetch**, byte-identical across repeated cold requests (the retraction
+  above explains why no hub-level percentage is claimed). The entries above 48 px were 73,203 of the old
+  file's bytes and a shell asks for them. `tests/app-icon.test.cjs` pins the two ladders separately and asserts the four shared
   entries are byte-identical, so the artwork cannot drift; re-trimming is container surgery — rebuild the
   ICO header from the PNG payloads already in the file, never re-encode the artwork. The installer proof
   stays in CI: the build before the icon commit logged `default Electron icon is used reason=application
@@ -131,9 +131,14 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   console error on the deployed site, the 5,978 B ICO is never fetched there at all (so the 73,252 B-per-fetch saving
   applies to origin-root deployments, not to this URL today), and only the two pages that declare an
   icon get one — `ppc-coach.html` by relative path and `keyword-lab.html` by inline data URI. The fix is
-  a one-line relative `<link rel="icon" href="favicon.ico">` on the 18 pages that lack one; not applied
-  silently because it touches every product page and the byte-identity rationale in
-  `tests/app-icon.test.cjs` predates it.
+  a one-line relative `<link rel="icon" href="favicon.ico">` on the 18 pages that lack one, and that has
+  since shipped: all 20 root pages now declare an icon, so the 73,252 B saving applies to this URL too.
+  **This also reversed a packaging premise.** `favicon.ico` was deliberately kept out of the Electron
+  `build.files` list on the belief that a `file://` page never asks for one — but that belief came from the
+  same warm-profile probe, and a fresh-profile `file://` test shows a *declared* icon **is** fetched there.
+  The ICO is therefore now packaged (`package.json` → `build.files` includes `"favicon.ico"`), which is
+  affordable only because it was trimmed first. The packaged-app fetch is inferred from that `file://`
+  measurement, not observed inside an installed app: no verification here launches the installer.
 - **SheetJS was loaded eagerly by the page that needed it least.** The 945 KB bundle sat in
   `bulk-file.html`’s `<head>` and the whole library was used by two lines of the file-upload
   handler, so every learner who only read the lesson or pressed "Load sample" paid for it. It is
@@ -167,11 +172,14 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   dot-prefixed entries; a count quoted without saying so is how a wrong number got committed here.
 - **`m.img ? … : …` guards hide missing art.** See the artwork-keys hazard above; same failure
   shape as the font paths — a guard that turns "absent" into "quietly nothing".
-- **Only 2 of the 20 root product pages declare `rel="icon"`** — `keyword-lab.html` an inline SVG
-  data URI, `ppc-coach.html` `assets/img/logo.png`. The other 18 rely on the browser
-  requesting `/favicon.ico` from the site root, which now resolves because the file is
-  committed. Do not look for this in headless measurements: headless Edge issued 18 requests
-  on the hub and none of them was a favicon.
+- **An icon href must be page-relative, never root-relative.** All 20 root product pages now
+  declare `rel="icon"`: `keyword-lab.html` an inline SVG data URI, `ppc-coach.html`
+  `assets/img/logo.png`, the other 18 `favicon.ico` written without a leading slash. On
+  `https://projectamazonph.github.io/amazon-ph-simulators/` the file lives in a *subpath*, so
+  `/favicon.ico` resolves to the domain root and 404s — which is exactly what the 18 undeclared
+  pages did in the open browser before this shipped. `tests/app-icon.test.cjs` now fails any
+  declared icon whose non-`data:` href starts with `/`. Also do not read absence of a favicon
+  request as evidence: a **warm** headless profile answers "already cached", not "not requested".
 - **Artwork keys can be silently dead.** `ppc-coach.html` built module art paths as
   `img:IMG.<key>` against keys the `IMG` map never declared (`builder`, `lab`, `console`, `deck`,
   `triage`, `report`). The renderer guards with `m.img ? … : …`, so nothing threw and nothing

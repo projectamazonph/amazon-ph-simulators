@@ -80,10 +80,47 @@ test('the installer config points at the icon that is actually shipped', () => {
   assert.ok(fs.existsSync(path.join(root, pkg.build.win.icon)), 'build.win.icon names a missing file');
 });
 
-// Nothing in a file:// session can request favicon.ico, so shipping it inside the app is dead
-// weight; the tab icon in the installed app comes from the executable instead.
-test('the favicon is not packaged into the app where nothing can request it', () => {
+// Every root product page must DECLARE an icon, not rely on the browser's default request.
+// Two reasons, both measured on this repo rather than assumed:
+//   1. The undeclared default resolves against the ORIGIN ROOT, so on a project-pages URL
+//      (https://host/<repo>/index.html) it asks for https://host/favicon.ico and 404s. Observed
+//      live on projectamazonph.github.io. A declared href is resolved against the page instead.
+//   2. Whether the default request fires at all proved unreliable: in a 3-run cold A/B it happened
+//      in one run. A declared link is a request the page controls.
+test('every root product page declares its own icon, with a page-relative href', () => {
+  const pages = fs
+    .readdirSync(root)
+    .filter((f) => f.endsWith('.html') && !f.startsWith('.'))
+    .sort();
+  assert.ok(pages.length >= 20, `only ${pages.length} root product pages found — the population itself changed`);
+
+  const missing = [];
+  const rootAbsolute = [];
+  for (const f of pages) {
+    const html = fs.readFileSync(path.join(root, f), 'utf8');
+    const line = html.split(/\r?\n/).find((l) => /<link[^>]+rel=["']icon["']/i.test(l));
+    if (!line) {
+      missing.push(f);
+      continue;
+    }
+    const href = (line.match(/href=["']([^"']+)["']/i) || [])[1];
+    // data: URIs are self-contained; anything else must be relative so it resolves under the base path.
+    if (href && !href.startsWith('data:') && href.startsWith('/')) rootAbsolute.push(`${f} -> ${href}`);
+  }
+  // Name the population in every failure: "N of M" without M is how a wrong page count got committed here.
+  assert.deepEqual(missing, [], `${missing.length} of ${pages.length} root product pages declare no icon and fall back to an origin-root request`);
+  assert.deepEqual(rootAbsolute, [], `${rootAbsolute.length} of ${pages.length} root product pages use a root-absolute icon href, which breaks on a project-pages subpath`);
+});
+
+// A *declared* <link rel="icon"> is fetched even from a file:// page — measured: index.html over
+// file:// issues `favicon.ico -> 200` once the link exists, while the undeclared default never fires
+// there. Now that every product page declares the icon, the installed app has to ship it or each page
+// load carries a broken subresource. This is where the trim pays off: 5,978 B rather than the 79,229 B
+// the installer's ladder would have cost to do the same job.
+test('the declared favicon ships with the app, and stays small enough to be worth it', () => {
   const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
-  assert.ok(!pkg.build.files.includes('favicon.ico'), 'favicon.ico belongs to the web surface only');
+  assert.ok(pkg.build.files.includes('favicon.ico'), 'every page declares the icon, so file:// will request it');
   assert.ok(pkg.build.files.includes('assets/**/*'), 'assets must still ship (fonts and art live there)');
+  const bytes = fs.statSync(WEB_ICON).size;
+  assert.ok(bytes <= WEB_BUDGET, `packaged favicon is ${bytes} B, over the ${WEB_BUDGET} budget`);
 });
