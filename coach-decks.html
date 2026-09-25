@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https://private-us-east-1.manuscdn.com https://projectamazonph.github.io; font-src 'self' data: https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://projectamazonph.github.io; font-src 'self' data:; connect-src 'self'; form-action 'self'">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amazon PPC Teaching Deck Viewer | Project Amazon PH Academy</title>
@@ -245,7 +245,7 @@
 <body>
   <main class="deck-viewer-main">
     <header class="deck-viewer-header">
-      <a class="deck-back" href="coach-tools.html">← Coach Tools</a>
+      <a class="deck-back" href="coach-tools.html">â† Coach Tools</a>
       <div class="deck-viewer-title"><span class="deck-kicker">Final animated module series</span><h1 id="deckTitle">Amazon Basics</h1></div>
       <label class="deck-select-label">Module deck
         <select id="deckSelect" aria-label="Select module teaching deck"></select>
@@ -255,14 +255,14 @@
       <div class="deck-stage" id="deckStage"><iframe id="deckFrame" title="Teaching slide" scrolling="no"></iframe></div>
     </section>
     <nav class="deck-controls" aria-label="Slide controls">
-      <button id="prevSlide" type="button">← Previous</button>
+      <button id="prevSlide" type="button">â† Previous</button>
       <div class="deck-progress"><span id="slideCounter">Slide 1 of 12</span><div class="deck-progress-track"><span id="deckProgress"></span></div></div>
-      <button id="nextSlide" type="button">Next →</button>
+      <button id="nextSlide" type="button">Next â†’</button>
     </nav>
-    <p class="deck-help">Use <kbd>←</kbd> and <kbd>→</kbd> to navigate. The teaching tools and downloadable worksheets are in <a href="coach-tools.html#downloads">Coach Tools</a>.</p>
+    <p class="deck-help">Use <kbd>â†</kbd> and <kbd>â†’</kbd> to navigate. The teaching tools and downloadable worksheets are in <a href="coach-tools.html#downloads">Coach Tools</a>.</p>
   </main>
   <footer class="pha-footer" data-pha-footer-version="2">
-    <div class="pha-foot-brand"><a class="pha-foot-home" href="index.html"><b>PROJECT AMAZON PH</b><span>Academy · SimGrid</span></a><small>Practical Amazon PPC learning for Filipino virtual assistants.</small><div class="pha-foot-discovery"><a href="llms.txt">AI site guide</a><span aria-hidden="true">·</span><a href="sitemap.xml">Site map</a></div></div>
+    <div class="pha-foot-brand"><a class="pha-foot-home" href="index.html"><b>PROJECT AMAZON PH</b><span>Academy Â· SimGrid</span></a><small>Practical Amazon PPC learning for Filipino virtual assistants.</small><div class="pha-foot-discovery"><a href="llms.txt">AI site guide</a><span aria-hidden="true">Â·</span><a href="sitemap.xml">Site map</a></div></div>
     <nav class="pha-foot-links" aria-label="Learn" data-label="Learn"><a href="ppc-coach.html">PPC Coach</a><a href="learn/guide.html">Student Guide</a><a href="coach-decks.html">Module Decks</a></nav>
     <nav class="pha-foot-links" aria-label="Practice" data-label="Practice"><a href="index.html#simulator-library">Simulator Library</a><a href="campaign-architect.html">Campaign Architect</a><a href="account-audit.html">Account Audit</a></nav>
     <nav class="pha-foot-links" aria-label="Coach" data-label="Coach"><a href="coach-tools.html">Coach Tools</a><a href="coach-resource-library.html">Resource Library</a><a href="learn/index.html">Learning Docs</a></nav>
@@ -271,7 +271,7 @@
   </footer>
   <script src="coach-decks/module-decks.js"></script>
   <script>
-    const decks = Object.fromEntries((window.ModuleDecks || []).map(module => [module.id, { title: `Module ${module.number} · ${module.title}`, folder: `modules/${module.id}`, files: module.files, number: module.number }]));
+    const decks = Object.fromEntries((window.ModuleDecks || []).map(module => [module.id, { title: `Module ${module.number} Â· ${module.title}`, folder: `modules/${module.id}`, files: module.files, number: module.number }]));
     const legacyDecks = { 1: 'm0', 2: 'm3', 3: 'm6', 4: 'm9' };
     const params = new URLSearchParams(window.location.search);
     const requestedDeck = params.get('module') || legacyDecks[params.get('deck')];
@@ -286,7 +286,7 @@
     Object.entries(decks).forEach(([id, deck]) => {
       const option = document.createElement('option');
       option.value = id;
-      option.textContent = `M${String(deck.number).padStart(2, '0')} · ${deck.title.split(' · ')[1]}`;
+      option.textContent = `M${String(deck.number).padStart(2, '0')} Â· ${deck.title.split(' Â· ')[1]}`;
       select.appendChild(option);
     });
     function renderSlide() {

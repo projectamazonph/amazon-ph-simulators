@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://cdn.sheetjs.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; img-src 'self' data: https://image.qwenlm.ai https://projectamazonph.github.io; font-src 'self' data: https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self'; form-action 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; form-action 'self'">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pacing Deck | Amazon PPC Budget Pacing Practice</title>
 <link rel="icon" href="favicon.ico">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
 
 <script src="assets/student-progress.js"></script>
 <script src="assets/simulator-attempt.js"></script>
@@ -253,12 +253,12 @@
 
 <header>
   <div class="brand">
-    <div class="wordmark">amazon<span class="ph">PH · PPC ACADEMY</span></div>
+    <div class="wordmark">amazon<span class="ph">PH Â· PPC ACADEMY</span></div>
     <svg width="132" height="14" viewBox="0 0 132 14" fill="none">
       <path d="M4 3 C 34 12, 88 12, 118 4.5" stroke="#FF9900" stroke-width="2.6" stroke-linecap="round"/>
       <path d="M113 1 L121 4 L115 9.5" stroke="#FF9900" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
     </svg>
-    <small>PRACTICE SUITE · SIMULATOR 06</small>
+    <small>PRACTICE SUITE Â· SIMULATOR 06</small>
   </div>
   <nav class="suite">
     <span class="chip">01 CAMPAIGN BUILDER</span>
@@ -270,8 +270,8 @@
   </nav>
   <div class="hud">
     <span class="led" id="led"></span><span id="statusTxt">READY</span>
-    <span class="sep">·</span>DAY <b id="dayNum">000</b>
-    <span class="sep">·</span>BEST <b id="bestTxt">—</b>
+    <span class="sep">Â·</span>DAY <b id="dayNum">000</b>
+    <span class="sep">Â·</span>BEST <b id="bestTxt">â€”</b>
   </div>
 </header>
 
@@ -305,7 +305,7 @@
         <div class="slider-row" style="margin-top:9px">
           <input type="range" id="bidRange" min="0.40" max="3.00" step="0.05" value="1.00">
         </div>
-        <div class="sub-note" id="bidNote">MARKET AVG CPC $1.15 — YOU BID 87% OF MARKET</div>
+        <div class="sub-note" id="bidNote">MARKET AVG CPC $1.15 â€” YOU BID 87% OF MARKET</div>
       </div>
 
       <div class="ctl">
@@ -314,14 +314,14 @@
       </div>
 
       <div class="dp-wrap">
-        <div class="ctl-label">DAY-PARTING GRID — BID MULTIPLIER BY HOUR <span style="letter-spacing:.05em;color:var(--faint)">(drag to paint)</span></div>
+        <div class="ctl-label">DAY-PARTING GRID â€” BID MULTIPLIER BY HOUR <span style="letter-spacing:.05em;color:var(--faint)">(drag to paint)</span></div>
         <div id="dpGrid"></div>
         <div class="dp-legend">
-          <span><i style="background:rgba(233,59,59,.25)"></i>0× OFF</span>
-          <span><i style="background:#1B2530"></i>½×</span>
-          <span><i style="background:#22303F"></i>1×</span>
-          <span><i style="background:#8A5500"></i>1½×</span>
-          <span><i style="background:var(--orange)"></i>2×</span>
+          <span><i style="background:rgba(233,59,59,.25)"></i>0Ã— OFF</span>
+          <span><i style="background:#1B2530"></i>Â½Ã—</span>
+          <span><i style="background:#22303F"></i>1Ã—</span>
+          <span><i style="background:#8A5500"></i>1Â½Ã—</span>
+          <span><i style="background:var(--orange)"></i>2Ã—</span>
         </div>
         <div class="dp-summary" id="dpSummary" aria-live="polite"></div>
         <div class="presets">
@@ -333,11 +333,11 @@
       </div>
 
       <div class="runbar">
-        <button type="button" id="runBtn">▶ RUN THE DAY</button>
+        <button type="button" id="runBtn">â–¶ RUN THE DAY</button>
         <div class="seg" id="speedSeg">
-          <button type="button" data-speed="1" class="on">1×</button>
-          <button type="button" data-speed="2">2×</button>
-          <button type="button" data-speed="4">4×</button>
+          <button type="button" data-speed="1" class="on">1Ã—</button>
+          <button type="button" data-speed="2">2Ã—</button>
+          <button type="button" data-speed="4">4Ã—</button>
         </div>
         <button type="button" id="resetBtn">RESET</button>
       </div>
@@ -349,7 +349,7 @@
   <section class="panel stage">
     <div class="stage-top">
       <span class="badge" id="simBadge">READY</span>
-      <span style="font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--faint)">ONE DAY · 24 HOURS · ONE BUDGET</span>
+      <span style="font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--faint)">ONE DAY Â· 24 HOURS Â· ONE BUDGET</span>
       <span class="fc" id="fcTag">FORECAST: PH STANDARD</span>
     </div>
     <div class="stage-mid"><div id="dialWrap"></div></div>
@@ -357,14 +357,14 @@
       <div class="meter"><div class="m-lab">SPEND</div><div class="m-val" id="mSpend">$0.00</div></div>
       <div class="meter"><div class="m-lab">CLICKS</div><div class="m-val" id="mClicks">0</div></div>
       <div class="meter"><div class="m-lab">SALES</div><div class="m-val" id="mSales">0.0</div></div>
-      <div class="meter"><div class="m-lab">ACOS</div><div class="m-val" id="mAcos">—</div></div>
+      <div class="meter"><div class="m-lab">ACOS</div><div class="m-val" id="mAcos">â€”</div></div>
     </div>
     <div class="bbar-zone">
       <div class="bbar"><div class="bbar-fill" id="bbarFill"></div></div>
       <div class="bbar-txt"><span>BUDGET REMAINING <b id="bbarLeft">$40.00</b></span><span id="bbarPct">100%</span></div>
     </div>
     <div class="chart-wrap">
-      <div class="chart-title">CUMULATIVE SPEND vs BUDGET CAP &nbsp;·&nbsp; HOURLY PACING STRIP BELOW &nbsp;·&nbsp; DOTTED = DEMAND FORECAST</div>
+      <div class="chart-title">CUMULATIVE SPEND vs BUDGET CAP &nbsp;Â·&nbsp; HOURLY PACING STRIP BELOW &nbsp;Â·&nbsp; DOTTED = DEMAND FORECAST</div>
       <svg id="chartSvg" viewBox="0 0 760 262" preserveAspectRatio="xMidYMid meet"></svg>
       <div class="chart-tip" id="chartTip"></div>
     </div>
@@ -379,14 +379,14 @@
     <div class="log-body" id="logBody"></div>
     <div class="cheat">
       <b>SHIFT CHEAT SHEET</b><br>
-      MARKET AVG CPC <i>$1.15</i> · TARGET ACOS <i>≤ 30%</i><br>
-      PEAK BUYING WINDOW <i>7–10 PM</i> · AOV <i>$26.50</i><br>
-      OVERNIGHT CVR ≈ <i>⅓ OF DAYTIME</i>
+      MARKET AVG CPC <i>$1.15</i> Â· TARGET ACOS <i>â‰¤ 30%</i><br>
+      PEAK BUYING WINDOW <i>7â€“10 PM</i> Â· AOV <i>$26.50</i><br>
+      OVERNIGHT CVR â‰ˆ <i>â…“ OF DAYTIME</i>
     </div>
   </aside>
 </main>
 
-<footer>PROJECT AMAZON PH · PRACTICE SUITE <i>06</i> — PACING DECK · TRAINING SANDBOX · NO LIVE ACCOUNTS, NO REAL SPEND</footer>
+<footer>PROJECT AMAZON PH Â· PRACTICE SUITE <i>06</i> â€” PACING DECK Â· TRAINING SANDBOX Â· NO LIVE ACCOUNTS, NO REAL SPEND</footer>
 
 <!-- ============ DEBRIEF ============ -->
 <div class="debrief" id="debrief" hidden>
@@ -408,24 +408,24 @@
           <div class="stat"><div class="s-lab">SPEND</div><div class="s-val" id="stSpend" style="color:var(--orange)">$0</div></div>
           <div class="stat"><div class="s-lab">SALES</div><div class="s-val" id="stSales" style="color:var(--green)">0</div></div>
           <div class="stat"><div class="s-lab">CLICKS</div><div class="s-val" id="stClicks" style="color:var(--blue)">0</div></div>
-          <div class="stat"><div class="s-lab">ACOS</div><div class="s-val" id="stAcos">—</div></div>
+          <div class="stat"><div class="s-lab">ACOS</div><div class="s-val" id="stAcos">â€”</div></div>
           <div class="stat"><div class="s-lab">BUDGET USED</div><div class="s-val" id="stUsed">0%</div></div>
-          <div class="stat"><div class="s-lab">ADS WENT DARK</div><div class="s-val" id="stDark" style="font-size:17px">—</div></div>
+          <div class="stat"><div class="s-lab">ADS WENT DARK</div><div class="s-val" id="stDark" style="font-size:17px">â€”</div></div>
         </div>
         <div class="cmp">
           <h4>YOU vs THE INSTRUCTOR</h4>
-          <div class="cmp-sub">Same budget, same base bid — a different clock.</div>
+          <div class="cmp-sub">Same budget, same base bid â€” a different clock.</div>
           <div class="bar-row"><span class="bl">YOUR RUN</span><div class="bar-track"><div class="bar-fill bf-you" id="bfYou"></div></div><span class="bv" id="bvYou">0</span></div>
           <div class="bar-row"><span class="bl">INSTRUCTOR</span><div class="bar-track"><div class="bar-fill bf-inst" id="bfInst"></div></div><span class="bv" id="bvInst">0</span></div>
-          <div class="note">INSTRUCTOR PATTERN: NEAR-ZERO OVERNIGHT · 2× FROM 8–11 PM</div>
+          <div class="note">INSTRUCTOR PATTERN: NEAR-ZERO OVERNIGHT Â· 2Ã— FROM 8â€“11 PM</div>
         </div>
         <div id="dbMissed"></div>
         <ul class="lessons" id="dbLessons"></ul>
       </div>
     </div>
     <div class="db-actions">
-      <button type="button" id="btnRerun">↻ RUN IT BACK</button>
-      <button type="button" id="btnOwl">☾ LOAD NIGHT OWL &amp; RERUN</button>
+      <button type="button" id="btnRerun">â†» RUN IT BACK</button>
+      <button type="button" id="btnOwl">â˜¾ LOAD NIGHT OWL &amp; RERUN</button>
       <button type="button" id="btnClose">CLOSE &amp; TUNE</button>
     </div>
   </div>
@@ -436,9 +436,9 @@
 const MARKET_CPC=1.15, CTR=0.0045, BASE_CVR=0.12, AOV=26.50, DAILY_IMP=52000;
 const CVR_F=[0.35,0.30,0.28,0.28,0.30,0.40,0.55,0.75,0.95,1.05,1.00,0.95,0.90,0.85,0.85,0.90,1.00,1.15,1.35,1.60,1.65,1.50,1.15,0.70];
 const PROFILES={
- standard:{name:'PH STANDARD',desc:'Philippine weekday curve — twin peaks, evening-heavy',w:[2,1.5,1,1,1.5,2.5,4,6,8,9.5,9,7.5,6.5,6,6.5,7,7.5,8.5,9.5,10,9,6.5,4.5,3]},
+ standard:{name:'PH STANDARD',desc:'Philippine weekday curve â€” twin peaks, evening-heavy',w:[2,1.5,1,1,1.5,2.5,4,6,8,9.5,9,7.5,6.5,6,6.5,7,7.5,8.5,9.5,10,9,6.5,4.5,3]},
   weekend:{name:'WEEKEND',desc:'Lazy midday plateau, long evening tail',w:[3,2.5,2,1.5,1.5,2,3,4.5,6,7.5,8.5,9,8.5,8,8,8.5,9,9.5,10,9.5,8.5,7,5.5,4]},
-  deal:{name:'DEAL DAY',desc:'Lightning deals — midnight + evening spikes',w:[9,5,3,2,2,3,4,5,6,7,7.5,8,9.5,9,8.5,9,9.5,10.5,11.5,12.5,11,9,7,6]},
+  deal:{name:'DEAL DAY',desc:'Lightning deals â€” midnight + evening spikes',w:[9,5,3,2,2,3,4,5,6,7,7.5,8,9.5,9,8.5,9,9.5,10.5,11.5,12.5,11,9,7,6]},
 };
 Object.values(PROFILES).forEach(p=>p.tw=p.w.reduce((a,b)=>a+b,0));
 const INSTRUCTOR=[0,0,0,0,0,0,.35,.35,.35,.35,.35,.35,.5,.5,.5,.6,.6,.6,1.2,1.2,2,2,2,1.25];
@@ -449,7 +449,7 @@ const PRESETS={
   off:Array(24).fill(0),
 };
 const LEVELS=[0,0.5,1,1.5,2];
-const LBL={0:'0×',0.5:'½×',1:'1×',1.5:'1½×',2:'2×'};
+const LBL={0:'0Ã—',0.5:'Â½Ã—',1:'1Ã—',1.5:'1Â½Ã—',2:'2Ã—'};
 const winRate=eff=>eff<=0?0:Math.max(0.06,Math.min(0.93,0.55*Math.pow(eff/MARKET_CPC,1.2)));
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const pad2=n=>String(n).padStart(2,'0');
@@ -482,12 +482,12 @@ const TIPS=[
  'A BUDGET THAT DIES AT NOON MEANS YOUR LISTING DOESN\'T EXIST AFTER NOON',
  'ROUGHLY HALF OF DAILY CONVERSIONS LAND BETWEEN 6PM AND 11PM',
  'DAY-PARTING = TELLING YOUR BIDS WHEN TO FIGHT',
- 'SECOND-PRICE AUCTION: YOU PAY ≈ THE SECOND-HIGHEST BID + $0.01, NOT YOUR MAX',
- 'ACOS = AD SPEND ÷ AD REVENUE · KEEP IT UNDER TARGET',
- 'OVERNIGHT CLICKS CONVERT AT ~⅓ OF THE DAYTIME RATE — CHEAP TRAFFIC ISN\'T ALWAYS GOOD TRAFFIC',
+ 'SECOND-PRICE AUCTION: YOU PAY â‰ˆ THE SECOND-HIGHEST BID + $0.01, NOT YOUR MAX',
+ 'ACOS = AD SPEND Ã· AD REVENUE Â· KEEP IT UNDER TARGET',
+ 'OVERNIGHT CLICKS CONVERT AT ~â…“ OF THE DAYTIME RATE â€” CHEAP TRAFFIC ISN\'T ALWAYS GOOD TRAFFIC',
  'WATCH THE PACING, NOT JUST THE ACOS',
 ];
-const tickHtml=TIPS.map(t=>`<span><i>◆</i>&nbsp;&nbsp;${t}</span>`).join('');
+const tickHtml=TIPS.map(t=>`<span><i>â—†</i>&nbsp;&nbsp;${t}</span>`).join('');
 $('tickerInner').innerHTML=tickHtml+tickHtml;
 
 /* ================= LOG ================= */
@@ -517,14 +517,14 @@ function buildDial(){
   let html='<circle cx="170" cy="170" r="150" fill="none" stroke="#2A3543" stroke-width="1"/>';
   for(let h=0;h<24;h++){
     const a0=h*15-90-7.5+1.4,a1=h*15-90+7.5-1.4;
-    html+=`<path class="seg-arc" data-h="${h}" d="${segPath(112,140,a0,a1)}" stroke-width="1"><title>Project Amazon PH Academy — Pacing Deck</title></path>`;
+    html+=`<path class="seg-arc" data-h="${h}" d="${segPath(112,140,a0,a1)}" stroke-width="1"><title>Project Amazon PH Academy â€” Pacing Deck</title></path>`;
     html+=`<path class="use-arc" data-h="${h}" d="${segPath(96,105,a0,a1)}" opacity="0"/>`;
   }
   const lab=[[0,'12A'],[90,'6A'],[180,'12P'],[270,'6P']];
   lab.forEach(([a,t])=>{const[x,y]=polar(156,a-90);html+=`<text class="dial-tick" x="${f1(x)}" y="${f1(y+3)}">${t}</text>`;});
   html+=`<g id="handG"><line x1="170" y1="170" x2="170" y2="76" stroke="#FF9900" stroke-width="3" stroke-linecap="round" style="filter:drop-shadow(0 0 5px rgba(255,153,0,.8))"/></g>`;
   html+=`<circle cx="170" cy="170" r="6" fill="#FF9900"/><circle cx="170" cy="170" r="2.5" fill="#131921"/>`;
-  html+=`<text class="dial-lab" x="170" y="136">STORE TIME · 24H</text>`;
+  html+=`<text class="dial-lab" x="170" y="136">STORE TIME Â· 24H</text>`;
   html+=`<text class="dial-time" id="dialTime" x="170" y="182">00:00</text>`;
   html+=`<text class="dial-lab" x="170" y="202">BUDGET LEFT</text>`;
   html+=`<text class="dial-val" id="dialSubVal" x="170" y="222">$40.00</text>`;
@@ -543,7 +543,7 @@ function paintDialMults(){
     el.setAttribute('fill',MULT_FILL[m]);
     el.setAttribute('stroke',MULT_STROKE[m]);
     el.style.opacity=1;
-    el.querySelector('title').textContent=`${fmtH(h)} — ${LBL[m]}`;
+    el.querySelector('title').textContent=`${fmtH(h)} â€” ${LBL[m]}`;
   });
 }
 function setHand(hours,animate,ms){
@@ -643,14 +643,14 @@ function chartHover(e){
   const h=Math.max(0,Math.min(23,Math.floor((px-ML)/BW)));
   hoverCol.setAttribute('x',X(h));hoverCol.style.opacity=1;
   const r=S.hourly[h];
-  let html=`<b>${fmtH(h)}–${fmtH((h+1)%24)}</b><br>`;
+  let html=`<b>${fmtH(h)}â€“${fmtH((h+1)%24)}</b><br>`;
   if(r){
-    html+=`SPEND ${fmt$(r.spend)} · CLICKS ${Math.round(r.clicks)}<br>SALES ${r.sales.toFixed(1)}`;
-    if(r.mode==='paused')html+=`<br><span class="dark">PAUSED BY SCHEDULE (0×)</span>`;
-    else if(r.mode==='dead')html+=`<br><span class="dark">BUDGET DEAD — WANTED TO RUN</span>`;
+    html+=`SPEND ${fmt$(r.spend)} Â· CLICKS ${Math.round(r.clicks)}<br>SALES ${r.sales.toFixed(1)}`;
+    if(r.mode==='paused')html+=`<br><span class="dark">PAUSED BY SCHEDULE (0Ã—)</span>`;
+    else if(r.mode==='dead')html+=`<br><span class="dark">BUDGET DEAD â€” WANTED TO RUN</span>`;
     else if(r.capped)html+=`<br><span class="dark">CAPPED BY BUDGET</span>`;
   }else{
-    html+=`MULT ${LBL[S.mults[h]]} · <span style="color:var(--faint)">awaiting run</span>`;
+    html+=`MULT ${LBL[S.mults[h]]} Â· <span style="color:var(--faint)">awaiting run</span>`;
   }
   chartTip.innerHTML=html;
   chartTip.style.opacity=1;
@@ -712,7 +712,7 @@ function refreshCells(){for(let h=0;h<24;h++)refreshCell(h);updateDpSummary();}
 function updateDpSummary(){
   const paused=S.mults.filter(m=>m===0).length;
   const avg=(S.mults.reduce((a,b)=>a+b,0)/24).toFixed(2);
-  dpSummary.textContent=`${paused}H PAUSED · AVG MULTIPLIER ${avg}×`;
+  dpSummary.textContent=`${paused}H PAUSED Â· AVG MULTIPLIER ${avg}Ã—`;
 }
 function applyPreset(key){
   S.mults=PRESETS[key].slice();
@@ -738,7 +738,7 @@ bidRange.addEventListener('input',()=>{
   bidVal.innerHTML='$'+S.bid.toFixed(2)+'<small>/ CLICK</small>';
   sliderFill(bidRange);
   const pct=Math.round(S.bid/MARKET_CPC*100);
-  bidNote.textContent=`MARKET AVG CPC $1.15 — YOU BID ${pct}% OF MARKET`;
+  bidNote.textContent=`MARKET AVG CPC $1.15 â€” YOU BID ${pct}% OF MARKET`;
   bidNote.className='sub-note'+(pct<70?' warn':pct>130?' hot':'');
 });
 function buildProfiles(){
@@ -806,14 +806,14 @@ function fullSim(mults,budget,bid,profile,cap=true){
 function setStatus(mode){
   led.className='led'+(mode==='live'?' live':mode==='done'?' done':'');
   statusTxt.textContent=mode==='live'?'LIVE':mode==='done'?'COMPLETE':'READY';
-  simBadge.textContent=mode==='live'?'● SIMULATING':mode==='done'?'DAY COMPLETE':'READY';
+  simBadge.textContent=mode==='live'?'â— SIMULATING':mode==='done'?'DAY COMPLETE':'READY';
   simBadge.className='badge'+(mode==='live'?' live':mode==='done'?' done':'');
 }
 function lockUI(v){
   controlsPanel.classList.toggle('locked',v);
   runBtn.disabled=v;
   runBtn.classList.toggle('running',v);
-  runBtn.textContent=v?'◈ DAY IN PROGRESS…':S.done?'▶ RUN IT BACK':'▶ RUN THE DAY';
+  runBtn.textContent=v?'â—ˆ DAY IN PROGRESSâ€¦':S.done?'â–¶ RUN IT BACK':'â–¶ RUN THE DAY';
 }
 async function runDay(){
   if(S.running)return;
@@ -821,7 +821,7 @@ async function runDay(){
   S.running=true;S.cancelled=false;S.done=false;S.day++;
   dayNum.textContent=pad2(S.day).padStart(3,'0');
   lockUI(true);setStatus('live');
-  log('sys','',`— DAY ${pad2(S.day).padStart(3,'0')} · BUDGET $${S.budget} · BASE BID $${S.bid.toFixed(2)} · ${PROFILES[S.profile].name} —`);
+  log('sys','',`â€” DAY ${pad2(S.day).padStart(3,'0')} Â· BUDGET $${S.budget} Â· BASE BID $${S.bid.toFixed(2)} Â· ${PROFILES[S.profile].name} â€”`);
   log('info','00:00',`Day live. ${fmt$(S.budget)} loaded into the campaign.`);
   const tickMs=()=>1000/S.speed;
   for(let h=0;h<24;h++){
@@ -868,17 +868,17 @@ function dimFutureSegs(h){
   }
 }
 function hourEvents(h,r){
-  if(r.mode==='paused'&&S.prevMode!=='paused')log('info',fmtH(h),'Schedule pause (0×) — ads benched, no spend, no impressions.');
+  if(r.mode==='paused'&&S.prevMode!=='paused')log('info',fmtH(h),'Schedule pause (0Ã—) â€” ads benched, no spend, no impressions.');
   if(r.mode==='dead'&&S.prevMode!=='dead'){
-    log('alert',fmtH(h),`⚠ BUDGET EXHAUSTED — ads dark for the remaining ${23-h} hour${23-h===1?'':'s'}.`);
+    log('alert',fmtH(h),`âš  BUDGET EXHAUSTED â€” ads dark for the remaining ${23-h} hour${23-h===1?'':'s'}.`);
     alertFx.classList.remove('on');void alertFx.offsetWidth;alertFx.classList.add('on');
   }
-  if(!S.warn50&&S.spend>=S.budget*0.5&&S.exhaustedAt===null){S.warn50=true;log('warn',fmtH(h+1),'Half the budget is gone — '+fmt$(S.budgetLeft)+' left for the rest of the day.');}
-  if(!S.warn80&&S.spend>=S.budget*0.8&&S.exhaustedAt===null){S.warn80=true;log('warn',fmtH(h+1),'80% burned. Pacing check — the peak window is still ahead.');}
-  if(h===18)log('info',fmtH(h),'Evening rush building…');
-  if(h===19&&S.exhaustedAt===null)log('sale',fmtH(h),'PEAK WINDOW OPEN (7–10 PM) — full strength on the board.');
-  if(h===19&&S.exhaustedAt!==null)log('alert',fmtH(h),'Peak window open — and your ads are dark.');
-  if(r.sales>=1.2)log('sale',fmtH(h+1),`+${r.sales.toFixed(1)} sales this hour${r.capped?' (capped by budget — demand exceeded spend)':''}.`);
+  if(!S.warn50&&S.spend>=S.budget*0.5&&S.exhaustedAt===null){S.warn50=true;log('warn',fmtH(h+1),'Half the budget is gone â€” '+fmt$(S.budgetLeft)+' left for the rest of the day.');}
+  if(!S.warn80&&S.spend>=S.budget*0.8&&S.exhaustedAt===null){S.warn80=true;log('warn',fmtH(h+1),'80% burned. Pacing check â€” the peak window is still ahead.');}
+  if(h===18)log('info',fmtH(h),'Evening rush buildingâ€¦');
+  if(h===19&&S.exhaustedAt===null)log('sale',fmtH(h),'PEAK WINDOW OPEN (7â€“10 PM) â€” full strength on the board.');
+  if(h===19&&S.exhaustedAt!==null)log('alert',fmtH(h),'Peak window open â€” and your ads are dark.');
+  if(r.sales>=1.2)log('sale',fmtH(h+1),`+${r.sales.toFixed(1)} sales this hour${r.capped?' (capped by budget â€” demand exceeded spend)':''}.`);
   S.prevMode=r.mode;
 }
 
@@ -888,7 +888,7 @@ function renderReadouts(){
   mClicks.textContent=Math.round(S.clicks);
   mSales.textContent=S.sales.toFixed(1);
   const acos=S.revenue>0?S.spend/S.revenue:null;
-  if(acos===null){mAcos.textContent='—';mAcos.className='m-val';}
+  if(acos===null){mAcos.textContent='â€”';mAcos.className='m-val';}
   else{
     mAcos.textContent=Math.round(acos*100)+'%';
     mAcos.className='m-val '+(acos<=0.30?'good':'bad');
@@ -914,7 +914,7 @@ function resetDay(announce){
   renderChart();renderReadouts();
   if(!S.running)setStatus('ready');
   lockUI(false);
-  if(announce)log('info','--:--','Board reset. Parameters held — tune and run again.');
+  if(announce)log('info','--:--','Board reset. Parameters held â€” tune and run again.');
 }
 resetBtn.addEventListener('click',()=>{
   if(S.running){S.cancelled=true;return;}
@@ -935,7 +935,7 @@ function showDebrief(){
   const score=Math.round(Math.min(1,0.5*pace+0.2*util+0.15*acosS+0.15*cov)*100);
   const grade=score>=86?'A':score>=70?'B':score>=52?'C':score>=35?'D':'F';
 
-  $('dbDay').textContent='SIM DAY '+pad2(S.day).padStart(3,'0')+' · '+PROFILES[S.profile].name;
+  $('dbDay').textContent='SIM DAY '+pad2(S.day).padStart(3,'0')+' Â· '+PROFILES[S.profile].name;
   const box=$('stampBox');
   box.className='g'+grade;
   box.style.animation='none';void box.offsetWidth;box.style.animation='';
@@ -943,11 +943,11 @@ function showDebrief(){
   $('dbScore').innerHTML=`SCORE <b>${score}</b> / 100`;
 
   const verdicts={
-    A:'Textbook pacing. You saved your firepower for the evening rush — and it paid off.',
+    A:'Textbook pacing. You saved your firepower for the evening rush â€” and it paid off.',
     B:'Strong run. A little more discipline in the dead hours and you\'ll match the target pattern.',
-    C:'You left the auction early. The day\'s biggest buyers shop 7–10 PM — you weren\'t there.',
+    C:'You left the auction early. The day\'s biggest buyers shop 7â€“10 PM â€” you weren\'t there.',
     D:'The budget burned before the buyers showed up. Rethink WHEN you want to be visible.',
-    F:'No spend, no sales. A paused campaign is the safest campaign — and the most useless one.',
+    F:'No spend, no sales. A paused campaign is the safest campaign â€” and the most useless one.',
   };
   $('dbVerdict').textContent=S.spend===0
     ?'Zero spend. Zero sales. You never entered a single auction all day.'
@@ -956,7 +956,7 @@ function showDebrief(){
   $('stSpend').textContent=fmt$(S.spend);
   $('stSales').textContent=S.sales.toFixed(1);
   $('stClicks').textContent=Math.round(S.clicks);
-  $('stAcos').textContent=S.revenue>0?Math.round(acos*100)+'%':'—';
+  $('stAcos').textContent=S.revenue>0?Math.round(acos*100)+'%':'â€”';
   $('stAcos').style.color=S.revenue>0?(acos<=0.3?'var(--green)':'var(--red)'):'var(--dim)';
   $('stUsed').textContent=Math.round(util*100)+'%';
   $('stDark').textContent=S.exhaustedAt!==null?fmtH(S.exhaustedAt+1):(S.spend>0?'NEVER':'ALL DAY');
@@ -972,37 +972,37 @@ function showDebrief(){
 
   const missedEl=$('dbMissed');
   if(S.spend===0){
-    missedEl.className='';missedEl.innerHTML='YOU SKIPPED THE ENTIRE DAY — '+shadow.sales.toFixed(1)+' SALES WORTH OF DEMAND WENT TO YOUR COMPETITORS.';
+    missedEl.className='';missedEl.innerHTML='YOU SKIPPED THE ENTIRE DAY â€” '+shadow.sales.toFixed(1)+' SALES WORTH OF DEMAND WENT TO YOUR COMPETITORS.';
   }else if(missed>=1){
     missedEl.className='';
-    missedEl.innerHTML=`≈<b>${missed.toFixed(1)} SALES</b> WORTH OF DEMAND ARRIVED WHILE YOUR ADS WERE DARK — SAME KEYWORDS, SAME LISTING, ZERO VISIBILITY.`;
+    missedEl.innerHTML=`â‰ˆ<b>${missed.toFixed(1)} SALES</b> WORTH OF DEMAND ARRIVED WHILE YOUR ADS WERE DARK â€” SAME KEYWORDS, SAME LISTING, ZERO VISIBILITY.`;
   }else{
     missedEl.className='good';
-    missedEl.innerHTML='FULL-DAY COVERAGE — YOUR BUDGET LASTED THE DISTANCE. NOTHING LEFT ON THE TABLE BY PACING.';
+    missedEl.innerHTML='FULL-DAY COVERAGE â€” YOUR BUDGET LASTED THE DISTANCE. NOTHING LEFT ON THE TABLE BY PACING.';
   }
 
   const lessons=[];
   const overnight=S.hourly.slice(0,6).reduce((a,r)=>a+r.spend,0);
   const peakSales=S.hourly.slice(18,22).reduce((a,r)=>a+r.sales,0);
   if(S.exhaustedAt!==null&&S.exhaustedAt<17)
-    lessons.push(`Went dark at <b>${fmtH(S.exhaustedAt+1)}</b> — the 7–10 PM peak, where conversion runs 1.5× daytime levels, happened without you.`);
+    lessons.push(`Went dark at <b>${fmtH(S.exhaustedAt+1)}</b> â€” the 7â€“10 PM peak, where conversion runs 1.5Ã— daytime levels, happened without you.`);
   if(S.spend>0&&overnight/S.spend>0.15)
-    lessons.push(`<b>${Math.round(overnight/S.spend*100)}%</b> of your spend landed between 12AM–6AM, where shoppers convert at roughly a third of the daytime rate.`);
+    lessons.push(`<b>${Math.round(overnight/S.spend*100)}%</b> of your spend landed between 12AMâ€“6AM, where shoppers convert at roughly a third of the daytime rate.`);
   if(S.sales>0&&peakSales/S.sales<0.4)
-    lessons.push(`Only <b>${Math.round(peakSales/S.sales*100)}%</b> of your sales landed in the 6–10 PM peak window — your budget wasn't pointed at the money hours.`);
+    lessons.push(`Only <b>${Math.round(peakSales/S.sales*100)}%</b> of your sales landed in the 6â€“10 PM peak window â€” your budget wasn't pointed at the money hours.`);
   if(S.revenue>0&&acos>0.35)
-    lessons.push(`ACOS landed at <b>${Math.round(acos*100)}%</b> against a 30% target — you paid for clicks that didn't convert.`);
+    lessons.push(`ACOS landed at <b>${Math.round(acos*100)}%</b> against a 30% target â€” you paid for clicks that didn't convert.`);
   if(util<0.7&&S.spend>0)
-    lessons.push(`Only <b>${Math.round(util*100)}%</b> of the budget deployed — bids too timid to win the auctions you entered.`);
+    lessons.push(`Only <b>${Math.round(util*100)}%</b> of the budget deployed â€” bids too timid to win the auctions you entered.`);
   if(S.exhaustedAt===null&&util>=0.9)
-    lessons.push('Full-day coverage with the budget spent to the last cent — that\'s the pacing pattern to repeat.');
+    lessons.push('Full-day coverage with the budget spent to the last cent â€” that\'s the pacing pattern to repeat.');
   if(score>=86)
     lessons.push('You covered the peak window at full strength. <b>Log this multiplier pattern</b> and reuse it on the live account.');
   if(lessons.length===0)
-    lessons.push('Compare your grid against the target pattern: near-zero overnight, building through the day, 2× from 8–11 PM.');
+    lessons.push('Compare your grid against the target pattern: near-zero overnight, building through the day, 2Ã— from 8â€“11 PM.');
   $('dbLessons').innerHTML=lessons.slice(0,4).map(l=>`<li>${l}</li>`).join('');
 
-  if(!S.best||score>S.best.score){S.best={score,grade};bestTxt.textContent=grade+'·'+score;}
+  if(!S.best||score>S.best.score){S.best={score,grade};bestTxt.textContent=grade+'Â·'+score;}
   const progressStore=StudentProgress.createLocalProgressStore();
   progressStore.recordAttempt(SimulatorAttempt.buildAttemptRecord({
     scenario:{id:'pacing-deck',version:'1.0.0',rubricVersion:'1.0.0'},
@@ -1015,7 +1015,7 @@ function hideDebrief(){debrief.hidden=true;}
 $('btnClose').addEventListener('click',hideDebrief);
 $('dbBackdrop').addEventListener('click',hideDebrief);
 $('btnRerun').addEventListener('click',()=>{hideDebrief();runDay();});
-$('btnOwl').addEventListener('click',()=>{hideDebrief();applyPreset('owl');log('info','--:--','Night Owl pattern loaded: off overnight, 2× from 8–11 PM.');runDay();});
+$('btnOwl').addEventListener('click',()=>{hideDebrief();applyPreset('owl');log('info','--:--','Night Owl pattern loaded: off overnight, 2Ã— from 8â€“11 PM.');runDay();});
 
 /* ================= INIT ================= */
 buildDial();
@@ -1024,7 +1024,7 @@ buildGrid();
 buildProfiles();
 sliderFill(budgetRange);sliderFill(bidRange);
 renderReadouts();
-log('sys','', '— PACING DECK ONLINE —');
+log('sys','', 'â€” PACING DECK ONLINE â€”');
 log('info','--:--','Set your budget, bid and day-parting grid, then run the day. The market opens at 00:00.');
 </script>
 </body>

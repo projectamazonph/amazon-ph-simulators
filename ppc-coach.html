@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://cdn.sheetjs.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; img-src 'self' data: https://image.qwenlm.ai https://projectamazonph.github.io; font-src 'self' data: https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self'; form-action 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; form-action 'self'">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PPC Coach | Amazon PPC Learning Path for Virtual Assistants</title>
@@ -285,8 +285,8 @@ tailwind.config = { theme: { extend: {
         <button type="button" id="burger" class="lg:hidden p-2 rounded-lg hover:bg-slate-100" aria-label="menu"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
         <h1 id="pageTitle" class="font-display font-bold text-lg md:text-xl text-navy">Dashboard</h1>
         <div class="ml-auto flex items-center gap-2">
-          <span id="xpPill" class="hidden sm:inline-flex text-xs font-bold bg-brand-50 text-brand-700 border border-brand-200 rounded-full px-3 py-1.5">⚡ 0 XP</span>
-          <span id="lvlPill" class="inline-flex text-xs font-bold bg-navy text-white rounded-full px-3 py-1.5">🎓 Trainee</span>
+          <span id="xpPill" class="hidden sm:inline-flex text-xs font-bold bg-brand-50 text-brand-700 border border-brand-200 rounded-full px-3 py-1.5">âš¡ 0 XP</span>
+          <span id="lvlPill" class="inline-flex text-xs font-bold bg-navy text-white rounded-full px-3 py-1.5">ðŸŽ“ Trainee</span>
           <button type="button" id="resetBtn" title="Reset all progress" class="p-2 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h14M6 6V4a1 1 0 011-1h6a1 1 0 011 1v2m2 0v10a2 2 0 01-2 2H6a2 2 0 01-2-2V6"/></svg></button>
         </div>
       </div>
@@ -323,7 +323,7 @@ const IMG = {
   va:"assets/img/course-va.webp"
 };
 const LEVELS=[{xp:0,name:"Trainee"},{xp:100,name:"PPC Learner"},{xp:250,name:"PPC Helper"},{xp:450,name:"Junior Assistant"},{xp:700,name:"Campaign Assistant"},{xp:1000,name:"Competent Manager"}];
-const ASSESSMENT_BANDS="Module pass 70% · Simulator proficiency 75% · Supervised readiness 85%";
+const ASSESSMENT_BANDS="Module pass 70% Â· Simulator proficiency 75% Â· Supervised readiness 85%";
 const SKEY="ppcCoachState_v2";
 const SIMHUB_BRIDGE_PARAMS=new URLSearchParams(window.location.search);
 function publishSimHubQuizReceipt(quizId,score){
@@ -338,9 +338,9 @@ let state=loadState();
 function loadState(){ try{const s=JSON.parse(localStorage.getItem(SKEY)); if(s) return s;}catch(e){} return {xp:0,done:[],quizScores:{},trainerBest:0,trainerDone:false,builderBest:0,builderDone:false,reportDone:false,coachAsked:false}; }
 function save(){ localStorage.setItem(SKEY,JSON.stringify(state)); }
 function levelFor(xp){ let i=0; for(let k=0;k<LEVELS.length;k++){ if(xp>=LEVELS[k].xp) i=k; } const cur=LEVELS[i],next=LEVELS[i+1]||null; return {i,name:cur.name,next,pct:next?Math.min(100,Math.round((xp-cur.xp)/(next.xp-cur.xp)*100)):100}; }
-function toast(msg,type){ const root=document.getElementById("toastRoot"); const c={xp:"bg-navy text-white",level:"bg-emerald-600 text-white",info:"bg-white text-navy border border-slate-200",warn:"bg-red-600 text-white"}; const el=document.createElement("div"); el.className="toast rounded-xl shadow-card px-4 py-3 text-sm font-semibold flex items-center gap-2 "+(c[type]||c.info); el.append(document.createTextNode(type==="xp"?"⚡":type==="level"?"🎉":type==="warn"?"⚠️":"")); const text=document.createElement("span"); text.textContent=msg; el.append(text); root.appendChild(el); setTimeout(()=>{el.style.transition="all .4s";el.style.opacity="0";el.style.transform="translateX(40px)";setTimeout(()=>el.remove(),400);},3400); }
-function addXp(n,why){ const b=levelFor(state.xp).i; state.xp+=n; save(); toast("+"+n+" XP · "+why,"xp"); const a=levelFor(state.xp); if(a.i>b) setTimeout(()=>toast("Level up! You are now "+a.name,"level"),450); updateTopbar(); }
-function updateTopbar(){ const L=levelFor(state.xp); document.getElementById("xpPill").textContent="⚡ "+state.xp+" XP"; document.getElementById("lvlPill").textContent="🎓 "+L.name; document.getElementById("sideLevel").textContent=L.name; document.getElementById("sideXpBar").style.width=L.pct+"%"; document.getElementById("sideXpTxt").textContent=L.next?state.xp+" / "+L.next.xp+" XP to "+L.next.name:state.xp+" XP · Top level!"; }
+function toast(msg,type){ const root=document.getElementById("toastRoot"); const c={xp:"bg-navy text-white",level:"bg-emerald-600 text-white",info:"bg-white text-navy border border-slate-200",warn:"bg-red-600 text-white"}; const el=document.createElement("div"); el.className="toast rounded-xl shadow-card px-4 py-3 text-sm font-semibold flex items-center gap-2 "+(c[type]||c.info); el.append(document.createTextNode(type==="xp"?"âš¡":type==="level"?"ðŸŽ‰":type==="warn"?"âš ï¸":"")); const text=document.createElement("span"); text.textContent=msg; el.append(text); root.appendChild(el); setTimeout(()=>{el.style.transition="all .4s";el.style.opacity="0";el.style.transform="translateX(40px)";setTimeout(()=>el.remove(),400);},3400); }
+function addXp(n,why){ const b=levelFor(state.xp).i; state.xp+=n; save(); toast("+"+n+" XP Â· "+why,"xp"); const a=levelFor(state.xp); if(a.i>b) setTimeout(()=>toast("Level up! You are now "+a.name,"level"),450); updateTopbar(); }
+function updateTopbar(){ const L=levelFor(state.xp); document.getElementById("xpPill").textContent="âš¡ "+state.xp+" XP"; document.getElementById("lvlPill").textContent="ðŸŽ“ "+L.name; document.getElementById("sideLevel").textContent=L.name; document.getElementById("sideXpBar").style.width=L.pct+"%"; document.getElementById("sideXpTxt").textContent=L.next?state.xp+" / "+L.next.xp+" XP to "+L.next.name:state.xp+" XP Â· Top level!"; }
 
 /* ================= COURSE CONTENT (12 modules, 60 lessons, 12 module quizzes + final exam) ================= */
 // Lesson ID map migrated from prior structure on 2026-08-26.
@@ -348,21 +348,21 @@ function updateTopbar(){ const L=levelFor(state.xp); document.getElementById("xp
 const LESSON_ID_MIGRATION={"m0l1":"m1l1","m0l2":"m1l3","m0l3":"m1l4","m1l1":"m2l1","m1l2":"m2l2","m1l3":"m2l3","m2l1":"m2l4","m2l2":"m2l4","m2l3":"m2l5","m2l4":"m2l6","m3l1":"m3l1","m3l2":"m3l2","m3l3":"m3l4","m4l1":"m4l1","m4l2":"m4l2","m4l3":"m4l2","m4l4":"m4l4","m5l1":"m1l2","m5l2":"m1l3","m5l3":"m10l2","m6l1":"m5l3","m6l2":"m6l2","m6l3":"m6l4","m7l1":"m8l1","m7l2":"m6l4","m7l3":"m8l6","m8l1":"m9l1","m8l2":"m9l3","m8l3":"m9l5","m9l1":"m11l1","m9l2":"m11l2","m9l3":"m2l6","m10l1":"m12l1","m10l2":"m12l2","m10l3":"m10l2","m10l4":"m10l3","m11l1":"m12l5","m11l2":"m12l5","m11l3":"m11l6","m11l4":"m12l6"};
 function migrateState(){ try{ const old=JSON.parse(localStorage.getItem("ppccoach.doneBackup")||"null"); if(!old){ localStorage.setItem("ppccoach.doneBackup",JSON.stringify(state.done)); const newDone=[]; state.done.forEach(id=>{ const mapped=LESSON_ID_MIGRATION[id]||id; if(!newDone.includes(mapped)) newDone.push(mapped); }); state.done=newDone; saveState(); } }catch(e){} }
 const MODULES=[
-{title:"Amazon Advertising Foundations",icon:"🛒",color:"var(--c-orange)",img:IMG.market,desc:"Marketplace basics, ad types, the listing, and why retail readiness comes first.",
+{title:"Amazon Advertising Foundations",icon:"ðŸ›’",color:"var(--c-orange)",img:IMG.market,desc:"Marketplace basics, ad types, the listing, and why retail readiness comes first.",
 lessons:[
 {id:"m1l1",title:"What is the Amazon Marketplace?",mins:5,blocks:[
 {t:"goal",x:"Build the mental model of Amazon as a marketplace (not a store), explain who the seller is, and show why paid ads are only one piece of the system."},
-{t:"p",x:"Amazon is a marketplace, not a store. A store is owned and stocked by one company; you walk in, you see what they decided to put on the shelves, and you buy it or you leave. A marketplace is a building that anyone can rent shelf space in. The building charges rent, attracts the foot traffic, and runs the cash registers. The seller — your client, your future employer, or one day you — pays for the shelf, ships the inventory into Amazon's warehouses, and competes with every other seller on the same page for the shopper's attention."},
-{t:"p",x:"This is the single most important fact about Amazon for a PPC manager: shoppers come to search, not to browse. They have typed something into the search bar. They are not looking at the home page. They are not scrolling categories for fun. They have a problem or a want, and they want the answer in the next 30 seconds. Every product detail page is a search result, not a destination — and the search results page is a paid auction, even when the rows say 'Sponsored' only on a few of them."},
-{t:"p",x:"Most sellers never meet a customer. There is no in-person interaction, no chance to recover a bad first impression with a friendly smile, no physical display that 'just feels right'. The listing is the entire product experience. Photos, title, bullets, price, reviews, stock — that is the product. If the listing is weak, the seller has a weak product, no matter how good the actual item in the box is."},
-{t:"example",x:"Bamboo Cutting Board, $24.99. A shopper searches 'bamboo cutting board large' on her phone. Amazon shows 8 rows: 4 sponsored (labeled 'Sponsored'), 4 organic. She clicks row 3 — a sponsored ad. She lands on a product page with 5 photos, a 4.6-star rating, and 312 reviews. The price is shown next to a $19.99 competitor. She adds to cart. The seller pays Amazon a referral fee (about 15% of $24.99 = $3.75) and pays the seller who clicked the ad roughly $0.85. Net to the seller: $20.39 before cost of goods. The marketplace owns the shopper, owns the page, and took a fee for matching them. The seller owns the listing, the inventory, the reviews, and the ad that earned the click."},
+{t:"p",x:"Amazon is a marketplace, not a store. A store is owned and stocked by one company; you walk in, you see what they decided to put on the shelves, and you buy it or you leave. A marketplace is a building that anyone can rent shelf space in. The building charges rent, attracts the foot traffic, and runs the cash registers. The seller â€” your client, your future employer, or one day you â€” pays for the shelf, ships the inventory into Amazon's warehouses, and competes with every other seller on the same page for the shopper's attention."},
+{t:"p",x:"This is the single most important fact about Amazon for a PPC manager: shoppers come to search, not to browse. They have typed something into the search bar. They are not looking at the home page. They are not scrolling categories for fun. They have a problem or a want, and they want the answer in the next 30 seconds. Every product detail page is a search result, not a destination â€” and the search results page is a paid auction, even when the rows say 'Sponsored' only on a few of them."},
+{t:"p",x:"Most sellers never meet a customer. There is no in-person interaction, no chance to recover a bad first impression with a friendly smile, no physical display that 'just feels right'. The listing is the entire product experience. Photos, title, bullets, price, reviews, stock â€” that is the product. If the listing is weak, the seller has a weak product, no matter how good the actual item in the box is."},
+{t:"example",x:"Bamboo Cutting Board, $24.99. A shopper searches 'bamboo cutting board large' on her phone. Amazon shows 8 rows: 4 sponsored (labeled 'Sponsored'), 4 organic. She clicks row 3 â€” a sponsored ad. She lands on a product page with 5 photos, a 4.6-star rating, and 312 reviews. The price is shown next to a $19.99 competitor. She adds to cart. The seller pays Amazon a referral fee (about 15% of $24.99 = $3.75) and pays the seller who clicked the ad roughly $0.85. Net to the seller: $20.39 before cost of goods. The marketplace owns the shopper, owns the page, and took a fee for matching them. The seller owns the listing, the inventory, the reviews, and the ad that earned the click."},
 {t:"p",x:"Your job as a PPC manager is to buy visibility. The listing's job is to earn the sale. These are two different jobs, owned by two different parts of the business, and they have to win together. A great ad into a weak listing wastes money; a great listing with no ad sits invisible next to a competitor who is buying the top of the page. PPC is the lever that connects a finished product to the shopper who is actively looking for it."},
-{t:"formula",f:"Amazon = marketplace + listing + ads. The marketplace brings the shopper. The listing earns the sale. The ad buys the click that connects them.",note:"A 15% referral fee and a 5–10% FBA fee are normal. Plan your margin against gross revenue, not against price."},
+{t:"formula",f:"Amazon = marketplace + listing + ads. The marketplace brings the shopper. The listing earns the sale. The ad buys the click that connects them.",note:"A 15% referral fee and a 5â€“10% FBA fee are normal. Plan your margin against gross revenue, not against price."},
 {t:"mistake",items:[
-"Treating Amazon like a store the seller controls end-to-end — they do not control the page, the search algorithm, or the buyer's first impression",
-"Reading 'Sponsored' rows as different from 'organic' rows — they are both auction results, and the shopper does not care which is which",
-"Believing a great product is enough — Amazon does not surface great products that nobody clicks; ads are part of how great gets found",
-"Skipping the listing because the product is 'obviously good' — the shopper has 30 seconds and 7 other options; the listing does the convincing"
+"Treating Amazon like a store the seller controls end-to-end â€” they do not control the page, the search algorithm, or the buyer's first impression",
+"Reading 'Sponsored' rows as different from 'organic' rows â€” they are both auction results, and the shopper does not care which is which",
+"Believing a great product is enough â€” Amazon does not surface great products that nobody clicks; ads are part of how great gets found",
+"Skipping the listing because the product is 'obviously good' â€” the shopper has 30 seconds and 7 other options; the listing does the convincing"
 ]},
 {t:"tip",x:"Open Amazon in your browser. Pick any product category. Notice how many of the first 8 results say 'Sponsored'. Notice how different each listing is. That page is the battlefield your ads will be fighting on."}
 ]},
@@ -379,53 +379,53 @@ lessons:[
 {id:"m1l3",title:"Retail-Readiness Checklist",mins:7,blocks:[
 {t:"goal",x:"Score a product's retail readiness and decide whether PPC pressure is safe before you turn on a campaign."},
 {t:"p",x:"PPC does not create demand. It borrows demand that already exists on Amazon and steers it to a listing. If the listing is not ready to convert that borrowed demand, every click you buy is a small loan with no repayment: money leaves, no sale arrives. The retail-readiness checklist is the simple scorecard you run before you spend anything."},
-{t:"p",x:"The reason readiness matters more than bid strategy is the auction math. Amazon charges you for every click, but only a fraction of clicks become orders. If your listing converts 2% of clicks and your competitor's converts 8%, the competitor pays four times your CPC and still walks away with more profit. The auction is not a bid contest — it is a profitability contest, and the listing does most of the work."},
+{t:"p",x:"The reason readiness matters more than bid strategy is the auction math. Amazon charges you for every click, but only a fraction of clicks become orders. If your listing converts 2% of clicks and your competitor's converts 8%, the competitor pays four times your CPC and still walks away with more profit. The auction is not a bid contest â€” it is a profitability contest, and the listing does most of the work."},
 {t:"table",head:["Item","What a pass looks like","What a fail looks like"],rows:[
-["Title","Reads naturally. Main keyword in the first 60 characters. Clear size, count, or use case in the first 90.","Buried under symbols (®, ™, ‼), vague ('Best Thing Ever'), or stacks 5 keywords and reads like a search-term dump."],
-["Images","7+ images. Pure white main image, 1500×1500 minimum, plus 3+ lifestyle or scale images.","3 images or fewer, low resolution, lifestyle missing, or the main image is not pure white (it gets suppressed)."],
-["Price","Within ±15% of the median for the category at this quality tier.","Far above every comparable offer, or far below (which signals low quality and tanks conversion)."],
+["Title","Reads naturally. Main keyword in the first 60 characters. Clear size, count, or use case in the first 90.","Buried under symbols (Â®, â„¢, â€¼), vague ('Best Thing Ever'), or stacks 5 keywords and reads like a search-term dump."],
+["Images","7+ images. Pure white main image, 1500Ã—1500 minimum, plus 3+ lifestyle or scale images.","3 images or fewer, low resolution, lifestyle missing, or the main image is not pure white (it gets suppressed)."],
+["Price","Within Â±15% of the median for the category at this quality tier.","Far above every comparable offer, or far below (which signals low quality and tanks conversion)."],
 ["Inventory","14+ days of cover at current sales velocity, with restock confirmed.","Under 7 days of cover, going out of stock in the next reorder, or already stockout-suppressed."],
 ["Buy Box","Owned, with 95%+ of recent orders routed to you.","Shared with no control, suppressed, or 0% Buy Box for the past week."],
-["Reviews","4.0+ stars, 25+ reviews, with the most recent reviews in the past 90 days.","Below 4.0, fewer than 10 reviews, or the most recent batch is 1–2 stars."],
+["Reviews","4.0+ stars, 25+ reviews, with the most recent reviews in the past 90 days.","Below 4.0, fewer than 10 reviews, or the most recent batch is 1â€“2 stars."],
 ["Parent ASIN / variations","Listed under a parent with healthy siblings (the page has more to buy).","Standalone ASIN, or a parent whose siblings are all stockout-suppressed."],
 ["Brand & content","Brand Registry active, A+ Content live (if registered), and a working brand store.","No brand story, no A+, no store, or all three are placeholders."]
 ]},
-{t:"p",x:"Score each row as Pass, Watch, or Fail. Watch means 'it works but it is fragile' — a 3.8-star average, 4 days of cover, or a price sitting 16% above the median. Fail means 'do not turn on ads yet'."},
-{t:"example",x:"Bamboo Cutting Board, your first test product. Title: 'Bamboo Cutting Board, Large 16×12 with Deep Juice Groove, Eco-Friendly' — Pass (keyword front, attributes clear, no symbol spam). Images: 8, with a pure white main and 5 lifestyle shots — Pass. Price: $24.99, median for the category is $22–28 — Pass. Inventory: 9 days of cover, restock 12 days out — Watch (Fail in 2 weeks if restock slips). Buy Box: 100% owned — Pass. Reviews: 4.6 stars, 312 reviews, most recent 5 days ago — Pass. Parent: 3 sibling sizes, all in stock — Pass. Brand: not registered, no A+ — Watch. Result: 6 Pass, 2 Watch, 0 Fail. Safe to spend up to ~$30/day while you fix the inventory and brand content. Do not push to $100/day until the inventory and brand are Pass."},
-{t:"formula",f:"If any row is Fail → fix it before spending. If two or more rows are Watch → cap daily budget at $20–30 until they harden. If all rows are Pass → you can scale with confidence.",note:"The checklist is a gate, not a wishlist. A 'Watch' is permission to spend carefully, not permission to scale."},
+{t:"p",x:"Score each row as Pass, Watch, or Fail. Watch means 'it works but it is fragile' â€” a 3.8-star average, 4 days of cover, or a price sitting 16% above the median. Fail means 'do not turn on ads yet'."},
+{t:"example",x:"Bamboo Cutting Board, your first test product. Title: 'Bamboo Cutting Board, Large 16Ã—12 with Deep Juice Groove, Eco-Friendly' â€” Pass (keyword front, attributes clear, no symbol spam). Images: 8, with a pure white main and 5 lifestyle shots â€” Pass. Price: $24.99, median for the category is $22â€“28 â€” Pass. Inventory: 9 days of cover, restock 12 days out â€” Watch (Fail in 2 weeks if restock slips). Buy Box: 100% owned â€” Pass. Reviews: 4.6 stars, 312 reviews, most recent 5 days ago â€” Pass. Parent: 3 sibling sizes, all in stock â€” Pass. Brand: not registered, no A+ â€” Watch. Result: 6 Pass, 2 Watch, 0 Fail. Safe to spend up to ~$30/day while you fix the inventory and brand content. Do not push to $100/day until the inventory and brand are Pass."},
+{t:"formula",f:"If any row is Fail â†’ fix it before spending. If two or more rows are Watch â†’ cap daily budget at $20â€“30 until they harden. If all rows are Pass â†’ you can scale with confidence.",note:"The checklist is a gate, not a wishlist. A 'Watch' is permission to spend carefully, not permission to scale."},
 {t:"mistake",items:[
 "Scoring the listing on vibes instead of the rows ('It looks fine to me' is not a Pass)",
-"Treating price as the only readiness signal — a great price on a 3.5-star listing still loses money to a slightly worse price on a 4.6-star listing",
+"Treating price as the only readiness signal â€” a great price on a 3.5-star listing still loses money to a slightly worse price on a 4.6-star listing",
 "Ranking the most 'fixable' Fail as a Pass because you plan to fix it next week (the fix is not in the account yet; the check has to be honest)",
-"Running ads on a stockout-suppressed ASIN 'just to keep the data warm' — there is no data to keep, and Amazon's quality score drops the listing further"
+"Running ads on a stockout-suppressed ASIN 'just to keep the data warm' â€” there is no data to keep, and Amazon's quality score drops the listing further"
 ]},
 {t:"tip",x:"Run the checklist on three ASINs from your training data this week. Score each honestly. For every Fail, write a one-sentence fix. The fix is your first project; the ads come after."}
 ]},
 {id:"m1l4",title:"Paid, Organic, and the Buy Box",mins:6,blocks:[
 {t:"goal",x:"Explain organic vs paid sales, what the Buy Box is, and why PPC feeds both."},
-{t:"p",x:"Organic sales are sales the listing earns on its own — usually because of good rank, reviews, and relevance. Paid sales are sales the listing earns because an ad was clicked. Total sales is the sum."},
-{t:"p",x:"The Buy Box is the box on a product page that says 'Add to Cart'. Most ads assume the seller owns the Buy Box. If the seller does not own it, clicks are wasted — there is no Buy Box to add to."},
+{t:"p",x:"Organic sales are sales the listing earns on its own â€” usually because of good rank, reviews, and relevance. Paid sales are sales the listing earns because an ad was clicked. Total sales is the sum."},
+{t:"p",x:"The Buy Box is the box on a product page that says 'Add to Cart'. Most ads assume the seller owns the Buy Box. If the seller does not own it, clicks are wasted â€” there is no Buy Box to add to."},
 {t:"tip",x:"Ads buy visibility. The listing earns the sale. The best PPC work makes the listing more visible to the right shoppers, so organic and paid both grow."},
 {t:"split",a:{title:"Do",items:["Track total sales, not just ad sales","Check the Buy Box first when something is off"]},b:{title:"Don't",items:["Read ACOS as a verdict on the listing","Run ads on a product without Buy Box ownership"]}}
 ]},
 {id:"m1l5",title:"Lab: Shopper Journey and Readiness Audit",mins:5,blocks:[
 {t:"goal",x:"Map a shopper from search to purchase and score a product's readiness."},
-{t:"p",x:"Trace a shopper: types a search → sees search results → clicks an ad or organic result → lands on a product page → reads, scrolls, looks at reviews → adds to cart → checks out. Every step leaks shoppers; ads buy traffic into the top of the funnel, the listing converts them at the bottom."},
+{t:"p",x:"Trace a shopper: types a search â†’ sees search results â†’ clicks an ad or organic result â†’ lands on a product page â†’ reads, scrolls, looks at reviews â†’ adds to cart â†’ checks out. Every step leaks shoppers; ads buy traffic into the top of the funnel, the listing converts them at the bottom."},
 {t:"example",x:"Bamboo Cutting Board. A shopper searches 'bamboo cutting board'. Sees search results. Clicks an ad. Lands on the listing. Sees 4.6 stars and 200+ reviews. Adds to cart. PPC bought the click, the listing earned the cart."},
 {t:"tip",x:"Run the retail-readiness checklist on one ASIN in your account or training data. If any line is a fail, that is your first project before you touch any campaign."}
 ]}
 ],
 quiz:[
 {q:"Why start with retail readiness?",o:["It is required by Amazon","PPC cannot fix a weak offer","Listings are easier to change","It improves ad reach"],a:1,e:"Ads buy visibility, the listing earns the sale."},
-{q:"The Buy Box is…",o:["An ad placement","The Add-to-Cart area on a product page","A keyword research tool","A bid"],a:1,e:"If you do not own it, clicks are wasted."},
-{q:"Sponsored Products are best for…",o:["Brand lift","Single-product promotion in search and on product pages","Retargeting","Off-Amazon display"],a:1,e:"SP is the default starting ad type."}
+{q:"The Buy Box isâ€¦",o:["An ad placement","The Add-to-Cart area on a product page","A keyword research tool","A bid"],a:1,e:"If you do not own it, clicks are wasted."},
+{q:"Sponsored Products are best forâ€¦",o:["Brand lift","Single-product promotion in search and on product pages","Retargeting","Off-Amazon display"],a:1,e:"SP is the default starting ad type."}
 ]},
 
-{title:"PPC Language, Metrics, and Math",icon:"💰",color:"var(--mc-blue)",img:IMG.coach,desc:"Clicks, sales, ACOS, ROAS, and the danger of small samples.",
+{title:"PPC Language, Metrics, and Math",icon:"ðŸ’°",color:"var(--mc-blue)",img:IMG.coach,desc:"Clicks, sales, ACOS, ROAS, and the danger of small samples.",
 lessons:[
 {id:"m2l1",title:"Pay Per Click in Plain Words",mins:5,blocks:[
 {t:"goal",x:"Explain the basic flow of a PPC click and the metric terms that follow it."},
-{t:"p",x:"The seller bids a maximum cost per click. The ad is shown for free (impression). When a shopper clicks, the seller pays — but not necessarily the bid amount. The seller pays the smallest amount needed to beat the next competitor, which is usually much less than the bid."},
+{t:"p",x:"The seller bids a maximum cost per click. The ad is shown for free (impression). When a shopper clicks, the seller pays â€” but not necessarily the bid amount. The seller pays the smallest amount needed to beat the next competitor, which is usually much less than the bid."},
 {t:"diagram",kind:"flow",title:"From ad to sale",steps:["Impression (free)","Click (seller pays)","Landing page view","Add to cart","Order (sale)"]},
 {t:"tip",x:"CPC is the average you paid per click, not the bid. A $1.00 bid often shows as a $0.40 CPC because the auction clears below the bid."}
 ]},
@@ -443,23 +443,23 @@ lessons:[
 ]},
 {id:"m2l3",title:"Spend, Sales, CPC, CTR, Conversion",mins:7,blocks:[
 {t:"goal",x:"Compute the core traffic and conversion metrics and know what each one proves."},
-{t:"formula",f:"CPC = Spend ÷ Clicks",note:"Average you paid for one click. Lower is not always better — cheap clicks with no sales lose money."},
-{t:"formula",f:"CTR = Clicks ÷ Impressions × 100",note:"How often viewers click your ad. Hook signal — affected by relevance and offer appeal."},
-{t:"formula",f:"Conversion rate = Orders ÷ Clicks × 100",note:"How often clicks become attributed orders. Listing-quality signal."},
+{t:"formula",f:"CPC = Spend Ã· Clicks",note:"Average you paid for one click. Lower is not always better â€” cheap clicks with no sales lose money."},
+{t:"formula",f:"CTR = Clicks Ã· Impressions Ã— 100",note:"How often viewers click your ad. Hook signal â€” affected by relevance and offer appeal."},
+{t:"formula",f:"Conversion rate = Orders Ã· Clicks Ã— 100",note:"How often clicks become attributed orders. Listing-quality signal."},
 {t:"diagram",kind:"funnel",title:"The click funnel",items:[["Impressions",100],["Clicks",20],["Add to cart",4],["Orders",2]]},
 {t:"tip",x:"Each metric answers one question. CTR answers 'do I look clickable?'. CVR answers 'does the listing convert?'. Don't read a CTR drop as a CVR problem."}
 ]},
 {id:"m2l4",title:"ACOS, ROAS, TACoS, and Break-Even",mins:8,blocks:[
 {t:"goal",x:"Compute ACOS, ROAS, TACoS, and break-even ACOS, and know what each proves."},
-{t:"formula",f:"ACOS = Spend ÷ Ad Sales × 100",note:"Ad spend as a percentage of attributed ad revenue. Compare to your margin, not to a target."},
-{t:"formula",f:"ROAS = Ad Sales ÷ Spend",note:"Dollars back per ad dollar. ROAS = 1 ÷ ACOS. If ACOS is 25%, ROAS is 4.0."},
-{t:"formula",f:"TACoS = Ad Spend ÷ Total Sales × 100",note:"Ad spend relative to total revenue. Shows whether ads are lifting the whole business."},
-{t:"formula",f:"Break-even ACOS = Pre-ad contribution margin × 100",note:"The maximum ACOS before ads consume pre-ad profit. A 30% margin means 30% ACOS is the break-even line."},
+{t:"formula",f:"ACOS = Spend Ã· Ad Sales Ã— 100",note:"Ad spend as a percentage of attributed ad revenue. Compare to your margin, not to a target."},
+{t:"formula",f:"ROAS = Ad Sales Ã· Spend",note:"Dollars back per ad dollar. ROAS = 1 Ã· ACOS. If ACOS is 25%, ROAS is 4.0."},
+{t:"formula",f:"TACoS = Ad Spend Ã· Total Sales Ã— 100",note:"Ad spend relative to total revenue. Shows whether ads are lifting the whole business."},
+{t:"formula",f:"Break-even ACOS = Pre-ad contribution margin Ã— 100",note:"The maximum ACOS before ads consume pre-ad profit. A 30% margin means 30% ACOS is the break-even line."},
 {t:"table",head:["Metric","Formula","What it proves","What it does NOT prove"],rows:[
-["ACOS","Spend ÷ Sales","Whether ad sales are profitable on their own","Whether the product is profitable overall"],
-["ROAS","Sales ÷ Spend","How many dollars back per ad dollar","Whether the product is profitable"],
-["TACoS","Spend ÷ Total Sales","Whether ads lift the whole business","Whether the ad sales themselves are profitable"],
-["Break-even ACOS","Margin × 100","The ACOS ceiling for profitability","What the right bid or budget should be"]
+["ACOS","Spend Ã· Sales","Whether ad sales are profitable on their own","Whether the product is profitable overall"],
+["ROAS","Sales Ã· Spend","How many dollars back per ad dollar","Whether the product is profitable"],
+["TACoS","Spend Ã· Total Sales","Whether ads lift the whole business","Whether the ad sales themselves are profitable"],
+["Break-even ACOS","Margin Ã— 100","The ACOS ceiling for profitability","What the right bid or budget should be"]
 ]},
 {t:"tip",x:"Lower ACOS is not always better if it destroys profitable volume or conflicts with launch goals. A 60% ACOS during launch is fine; a 60% ACOS at maturity is a problem."}
 ]},
@@ -467,8 +467,8 @@ lessons:[
 {t:"goal",x:"Explain why two reports show different numbers, and which metrics are leading versus lagging."},
 {t:"p",x:"Amazon attributes an order to an ad if the shopper clicked within an attribution window (typically 7 days for SP). Two reports can show the same numbers and disagree because their windows or filters are different."},
 {t:"list",items:[
-"Impressions, clicks, and CTR are leading indicators — they change within hours",
-"Add-to-carts, sales, and ACOS are lagging indicators — they can take 7–14 days to settle",
+"Impressions, clicks, and CTR are leading indicators â€” they change within hours",
+"Add-to-carts, sales, and ACOS are lagging indicators â€” they can take 7â€“14 days to settle",
 "Always compare the same date range, attribution logic, and currency",
 "Trust the report with the wider window for decision-making, the narrower for speed"
 ]},
@@ -476,32 +476,32 @@ lessons:[
 ]},
 {id:"m2l6",title:"Data Sufficiency: Don't Decide from Tiny Samples",mins:6,blocks:[
 {t:"goal",x:"Recognize when a data sample is too small to support a confident decision."},
-{t:"p",x:"A search term with 3 clicks and 1 sale is not 'profitable' — it is 3 clicks. A campaign with 200 impressions and no sales is not 'failing' — it is too early. Decisions from tiny samples create loud lies."},
+{t:"p",x:"A search term with 3 clicks and 1 sale is not 'profitable' â€” it is 3 clicks. A campaign with 200 impressions and no sales is not 'failing' â€” it is too early. Decisions from tiny samples create loud lies."},
 {t:"table",head:["Sample size","Confidence","Action"],rows:[
 ["Under 10 clicks","Low","Watch. Don't act."],
-["10–30 clicks","Medium","One careful change, give it a week."],
+["10â€“30 clicks","Medium","One careful change, give it a week."],
 ["30+ clicks","High","Trust the trend. Act on it."],
 ["100+ clicks","Very high","Treat as a fact about that target."]
 ]},
-{t:"example",x:"3 clicks, 1 sale → ACOS shown as 33% but the next 30 clicks could easily drop the average. A 60% ACOS on 30+ clicks is a real signal."},
+{t:"example",x:"3 clicks, 1 sale â†’ ACOS shown as 33% but the next 30 clicks could easily drop the average. A 60% ACOS on 30+ clicks is a real signal."},
 {t:"tip",x:"When in doubt, give it one more week. Under-reacting beats over-reacting in PPC."}
 ]}
 ],
 quiz:[
-{q:"If margin is 25%, break-even ACOS is…",o:["75%","25%","50%","10%"],a:1,e:"Break-even ACOS equals the margin."},
+{q:"If margin is 25%, break-even ACOS isâ€¦",o:["75%","25%","50%","10%"],a:1,e:"Break-even ACOS equals the margin."},
 {q:"Which is a lagging indicator?",o:["Impressions","Clicks","ACOS","CTR"],a:2,e:"Sales and ACOS need 7+ days to settle."},
-{q:"10 clicks on a search term is enough to…",o:["Pause the campaign","Trust the ACOS completely","Decide cautiously, give it a week","Negate it"],a:2,e:"Small samples create loud lies."}
+{q:"10 clicks on a search term is enough toâ€¦",o:["Pause the campaign","Trust the ACOS completely","Decide cautiously, give it a week","Negate it"],a:2,e:"Small samples create loud lies."}
 ]},
 
-{title:"Campaign Structure and Naming",icon:"🏗️",color:"var(--mc-emerald)",desc:"The hierarchy, naming standards, portfolios, and budget isolation.",
+{title:"Campaign Structure and Naming",icon:"ðŸ—ï¸",color:"var(--mc-emerald)",desc:"The hierarchy, naming standards, portfolios, and budget isolation.",
 lessons:[
 {id:"m3l1",title:"The Hierarchy: Campaign, Ad Group, Targeting",mins:6,blocks:[
 {t:"goal",x:"Trace any target back to its campaign, ad group, and product."},
 {t:"diagram",kind:"tree",title:"Sponsored Products hierarchy",nodes:[
 [0,"Campaign (holds budget, bidding, placements)"],
 [1,"Ad group (holds products and targeting)"],
-[2,"Product A · Bid $0.80 · Match Exact"],
-[2,"Product B · Bid $0.95 · Match Phrase"]
+[2,"Product A Â· Bid $0.80 Â· Match Exact"],
+[2,"Product B Â· Bid $0.95 Â· Match Phrase"]
 ]},
 {t:"p",x:"Campaign is where budget and bid strategy live. Ad group is where products and targeting share an audience. The target is the keyword or ASIN you are bidding on."},
 {t:"tip",x:"If you cannot trace a target back to a campaign and a product, the structure is too messy to optimize."}
@@ -514,9 +514,9 @@ lessons:[
 ]},
 {id:"m3l3",title:"One-ASIN vs Multi-ASIN, Portfolios, Cannibalization Myths",mins:6,blocks:[
 {t:"goal",x:"Decide when to use a one-ASIN campaign, when to combine, and when to use a portfolio."},
-{t:"p",x:"One-ASIN campaigns give clean reporting and tight control — recommended for beginners. Multi-ASIN campaigns save time when ASINs are similar in margin and performance."},
+{t:"p",x:"One-ASIN campaigns give clean reporting and tight control â€” recommended for beginners. Multi-ASIN campaigns save time when ASINs are similar in margin and performance."},
 {t:"p",x:"Portfolios are folders across campaigns. Use them to group by objective (defense, growth, brand) or by product line. They make budget and reporting easier across many campaigns."},
-{t:"tip",x:"Cannibalization between your own ads is mostly a myth for beginners. Worry about it when you have three campaigns bidding on the same keyword with significant overlap and contradictory bids — not before."}
+{t:"tip",x:"Cannibalization between your own ads is mostly a myth for beginners. Worry about it when you have three campaigns bidding on the same keyword with significant overlap and contradictory bids â€” not before."}
 ]},
 {id:"m3l4",title:"Budget Isolation and Match-Type Separation",mins:7,blocks:[
 {t:"goal",x:"Use match-type separation and budget isolation to keep learning clean."},
@@ -531,12 +531,12 @@ lessons:[
 ]}
 ],
 quiz:[
-{q:"Match-type separation means…",o:["One campaign per match type","All match types in one ad group","No match types","Negatives only"],a:0,e:"Separation keeps the data clean per match."},
-{q:"A good campaign name answers…",o:["The date only","Ad type, match, product, purpose","The budget","The CPC"],a:1,e:"A name should make the campaign self-explanatory."},
-{q:"A portfolio is best for…",o:["Hiding campaigns","Grouping campaigns by objective or product line","Increasing bids","Replacing ad groups"],a:1,e:"Portfolios are folders for shared reporting and budget views."}
+{q:"Match-type separation meansâ€¦",o:["One campaign per match type","All match types in one ad group","No match types","Negatives only"],a:0,e:"Separation keeps the data clean per match."},
+{q:"A good campaign name answersâ€¦",o:["The date only","Ad type, match, product, purpose","The budget","The CPC"],a:1,e:"A name should make the campaign self-explanatory."},
+{q:"A portfolio is best forâ€¦",o:["Hiding campaigns","Grouping campaigns by objective or product line","Increasing bids","Replacing ad groups"],a:1,e:"Portfolios are folders for shared reporting and budget views."}
 ]},
 
-{title:"Keyword Research and Search Intent",icon:"🔍",color:"var(--mc-violet)",img:IMG.lab,desc:"Seed keywords, modifiers, intent, clustering, and Brand Analytics.",
+{title:"Keyword Research and Search Intent",icon:"ðŸ”",color:"var(--mc-violet)",img:IMG.lab,desc:"Seed keywords, modifiers, intent, clustering, and Brand Analytics.",
 lessons:[
 {id:"m4l1",title:"Keyword vs Search Term",mins:5,blocks:[
 {t:"goal",x:"Tell keywords from search terms, and explain why the distinction matters."},
@@ -567,24 +567,24 @@ lessons:[
 ]},
 {id:"m4l4",title:"Volume vs Relevance, Brand Analytics, Clustering",mins:8,blocks:[
 {t:"goal",x:"Prioritize relevance over estimated volume, and cluster terms by intent."},
-{t:"p",x:"Search volume tells you how many shoppers search. Relevance tells you whether they will buy your product. A high-volume irrelevant term is more dangerous than a low-volume relevant one — it burns budget."},
+{t:"p",x:"Search volume tells you how many shoppers search. Relevance tells you whether they will buy your product. A high-volume irrelevant term is more dangerous than a low-volume relevant one â€” it burns budget."},
 {t:"list",items:[
 "Amazon suggestions: autocomplete and 'related searches' on the search page",
 "Brand Analytics: search-term and market-basket data (needs Brand Registry)",
 "Prior search-term reports: your own data is the best predictor",
 "Competitor observation: what do the top 3 competitors target?"
 ]},
-{t:"p",x:"Cluster by intent, not by spelling. Group terms by what the shopper wants — a long cutting board, a gift, an eco option. Then decide which cluster deserves the most budget."},
+{t:"p",x:"Cluster by intent, not by spelling. Group terms by what the shopper wants â€” a long cutting board, a gift, an eco option. Then decide which cluster deserves the most budget."},
 {t:"tip",x:"A term with no estimated volume is not a useless term. If it is in your search-term report with sales, it is real."}
 ]}
 ],
 quiz:[
-{q:"A search term is…",o:["Your keyword","What the customer typed","A bid","A budget"],a:1,e:"Customer language, not yours."},
-{q:"Exact match is…",o:["Character-for-character literal","A tight match with close variants","Random","Only plurals"],a:1,e:"Exact is tight, not strict."},
-{q:"Prioritize…",o:["Volume over relevance","Relevance over volume","The longest keyword","Negatives first"],a:1,e:"High-volume irrelevant terms burn budget."}
+{q:"A search term isâ€¦",o:["Your keyword","What the customer typed","A bid","A budget"],a:1,e:"Customer language, not yours."},
+{q:"Exact match isâ€¦",o:["Character-for-character literal","A tight match with close variants","Random","Only plurals"],a:1,e:"Exact is tight, not strict."},
+{q:"Prioritizeâ€¦",o:["Volume over relevance","Relevance over volume","The longest keyword","Negatives first"],a:1,e:"High-volume irrelevant terms burn budget."}
 ]},
 
-{title:"Automatic Targeting",icon:"🤖",color:"var(--mc-pink)",desc:"Four auto groups, bid segmentation, and reading the search-term report.",
+{title:"Automatic Targeting",icon:"ðŸ¤–",color:"var(--mc-pink)",desc:"Four auto groups, bid segmentation, and reading the search-term report.",
 lessons:[
 {id:"m5l1",title:"The Four Auto Groups",mins:6,blocks:[
 {t:"goal",x:"Name the four automatic-targeting groups and what each one does."},
@@ -600,7 +600,7 @@ lessons:[
 {t:"goal",x:"Set a different bid for each auto group based on its job."},
 {t:"p",x:"Start with the close-match group at your normal bid, loose match lower, substitutes lower, complements low. As data comes in, raise the bid on whichever group is producing sales and lower the bid on the rest."},
 {t:"example",x:"Close $0.80, Loose $0.50, Substitutes $0.60, Complements $0.30. After two weeks, if close and substitutes are profitable, raise those; lower the rest."},
-{t:"tip",x:"If a group produces nothing in 14 days, do not pause it — that is research, not a verdict. Lower its bid and keep watching."}
+{t:"tip",x:"If a group produces nothing in 14 days, do not pause it â€” that is research, not a verdict. Lower its bid and keep watching."}
 ]},
 {id:"m5l3",title:"Auto as Research: Reading the Report",mins:6,blocks:[
 {t:"goal",x:"Read the search-term report from an auto campaign and decide what to do with each term."},
@@ -616,16 +616,16 @@ lessons:[
 "Now the manual campaign owns the term cleanly",
 "Auto continues to discover new terms"
 ]},
-{t:"tip",x:"Overlap is not a bug — it is how you graduate a discovered term into a controlled campaign. The negatives are the tool, not a problem to avoid."}
+{t:"tip",x:"Overlap is not a bug â€” it is how you graduate a discovered term into a controlled campaign. The negatives are the tool, not a problem to avoid."}
 ]}
 ],
 quiz:[
-{q:"The 'substitutes' auto group targets…",o:["Customers searching for your brand","Competitor products similar to yours","Random terms","Top of search only"],a:1,e:"Substitutes is competitive research."},
-{q:"Best practice for auto bids by group is…",o:["Same bid for all groups","Different bids, tuned over time","Zero on all","Highest on loose match"],a:1,e:"Each group has a different job."},
-{q:"When a manual Exact wins, you should…",o:["Delete the auto campaign","Negate the term in auto, keep auto running","Raise the auto bid","Pause the manual campaign"],a:1,e:"Negatives in auto let manual own the term."}
+{q:"The 'substitutes' auto group targetsâ€¦",o:["Customers searching for your brand","Competitor products similar to yours","Random terms","Top of search only"],a:1,e:"Substitutes is competitive research."},
+{q:"Best practice for auto bids by group isâ€¦",o:["Same bid for all groups","Different bids, tuned over time","Zero on all","Highest on loose match"],a:1,e:"Each group has a different job."},
+{q:"When a manual Exact wins, you shouldâ€¦",o:["Delete the auto campaign","Negate the term in auto, keep auto running","Raise the auto bid","Pause the manual campaign"],a:1,e:"Negatives in auto let manual own the term."}
 ]},
 
-{title:"Manual Keyword Targeting",icon:"🎯",color:"var(--mc-blue)",desc:"Match types in practice, research vs performance, and launch bids.",
+{title:"Manual Keyword Targeting",icon:"ðŸŽ¯",color:"var(--mc-blue)",desc:"Match types in practice, research vs performance, and launch bids.",
 lessons:[
 {id:"m6l1",title:"Match Types in Practice",mins:6,blocks:[
 {t:"goal",x:"Pick a match type based on the data you have, not on a default."},
@@ -634,7 +634,7 @@ lessons:[
 ]},
 {id:"m6l2",title:"Research vs Performance Campaigns",mins:6,blocks:[
 {t:"goal",x:"Run research and performance in separate campaigns with different jobs."},
-{t:"p",x:"A research campaign's job is discovery — auto and Broad with small bids, separate budget, separate naming. A performance campaign's job is control — Phrase and Exact, with bid rules tied to ACOS targets."},
+{t:"p",x:"A research campaign's job is discovery â€” auto and Broad with small bids, separate budget, separate naming. A performance campaign's job is control â€” Phrase and Exact, with bid rules tied to ACOS targets."},
 {t:"tip",x:"Mixing research and performance in one campaign makes both worse. The performance campaign gets polluted by research noise; the research campaign gets starved by performance spend."}
 ]},
 {id:"m6l3",title:"Single-Keyword vs Grouped Ad Groups",mins:6,blocks:[
@@ -648,10 +648,10 @@ lessons:[
 ]},
 {id:"m6l4",title:"Launch Bids and Placement Expectations",mins:6,blocks:[
 {t:"goal",x:"Set a safe launch bid and know what to expect in week 1."},
-{t:"p",x:"A safe launch bid is around the suggested bid Amazon shows, or slightly below. Do not start above it — you have no data to justify a high bid yet. Expect the first week to produce mostly learning, not profit."},
+{t:"p",x:"A safe launch bid is around the suggested bid Amazon shows, or slightly below. Do not start above it â€” you have no data to justify a high bid yet. Expect the first week to produce mostly learning, not profit."},
 {t:"list",items:[
-"Day 1–3: low impressions, low clicks, almost no orders",
-"Day 4–7: search-term report starts to look like real shopper language",
+"Day 1â€“3: low impressions, low clicks, almost no orders",
+"Day 4â€“7: search-term report starts to look like real shopper language",
 "Week 2: you have enough data to make one careful change",
 "Week 4: structure decisions are starting to compound"
 ]},
@@ -660,15 +660,15 @@ lessons:[
 ],
 quiz:[
 {q:"Best default for a beginner with no data?",o:["Exact only","Phrase or Exact","Broad only","No targeting"],a:1,e:"Tight enough to learn, loose enough to discover."},
-{q:"Research and performance campaigns should be…",o:["Mixed together","Separate, with different jobs","The same campaign","Paired with the same budget"],a:1,e:"Separation keeps the data clean."},
-{q:"A safe launch bid is…",o:["3× the suggested bid","Around the suggested bid, slightly below","Zero","Whatever wins top of search"],a:1,e:"No data means no justification for a high bid."}
+{q:"Research and performance campaigns should beâ€¦",o:["Mixed together","Separate, with different jobs","The same campaign","Paired with the same budget"],a:1,e:"Separation keeps the data clean."},
+{q:"A safe launch bid isâ€¦",o:["3Ã— the suggested bid","Around the suggested bid, slightly below","Zero","Whatever wins top of search"],a:1,e:"No data means no justification for a high bid."}
 ]},
 
-{title:"Product Targeting",icon:"📦",color:"var(--mc-blue)",img:IMG.market,desc:"ASIN and category targeting, defensive plays, and the retail-readiness check.",
+{title:"Product Targeting",icon:"ðŸ“¦",color:"var(--mc-blue)",img:IMG.market,desc:"ASIN and category targeting, defensive plays, and the retail-readiness check.",
 lessons:[
 {id:"m7l1",title:"ASIN Targeting vs Category Targeting",mins:6,blocks:[
 {t:"goal",x:"Pick between targeting individual ASINs and targeting a whole category."},
-{t:"p",x:"ASIN targeting is precise — you choose the exact product your ad appears next to. Category targeting is broad — your ad appears on any product in a chosen department. ASIN targeting is usually the safer starting point."},
+{t:"p",x:"ASIN targeting is precise â€” you choose the exact product your ad appears next to. Category targeting is broad â€” your ad appears on any product in a chosen department. ASIN targeting is usually the safer starting point."},
 {t:"split",a:{title:"Use ASIN targeting for",items:["Specific competitors","Defending a category position","Cross-sell on complementary ASINs"]},b:{title:"Use category targeting for",items:["Quick, broad coverage","Discovery in a new category","Scale where individual ASINs are not yet known"]}}
 ]},
 {id:"m7l2",title:"Competitor, Defensive, Cross-Sell, Complementary",mins:7,blocks:[
@@ -683,28 +683,28 @@ lessons:[
 ]},
 {id:"m7l3",title:"Retail-Readiness Comparison and Risk of Stronger Offers",mins:6,blocks:[
 {t:"goal",x:"Reject product targets where the offer is unlikely to win."},
-{t:"p",x:"Before targeting a competitor ASIN, compare five things: price, rating, review count, image quality, and offer. If you lose on three of five, the click becomes a comparison shopper for the competitor — you paid for the click and the competitor got the sale."},
+{t:"p",x:"Before targeting a competitor ASIN, compare five things: price, rating, review count, image quality, and offer. If you lose on three of five, the click becomes a comparison shopper for the competitor â€” you paid for the click and the competitor got the sale."},
 {t:"example",x:"Your product: $24.99, 4.5 stars, 150 reviews. Competitor: $19.99, 4.7 stars, 4,000 reviews. You are likely the comparison; the click is wasted."},
 {t:"tip",x:"Target competitors where you are roughly comparable. Use category targeting to cast a wider net when you are still building the offer."}
 ]},
 {id:"m7l4",title:"Lab: Product-Targeting Matrix",mins:6,blocks:[
 {t:"goal",x:"Build an ASIN target list and a category target list with rationale."},
-{t:"p",x:"For one product, build two lists. List A: 5–10 ASINs you would target, with one-line rationale each. List B: 1–2 category nodes you would target, with one-line rationale. For each, score on price, rating, reviews, image, and offer. Reject any target where you lose on three or more."},
+{t:"p",x:"For one product, build two lists. List A: 5â€“10 ASINs you would target, with one-line rationale each. List B: 1â€“2 category nodes you would target, with one-line rationale. For each, score on price, rating, reviews, image, and offer. Reject any target where you lose on three or more."},
 {t:"tip",x:"The list is not done when it is long. It is done when every entry has a reason and a comparator score."}
 ]}
 ],
 quiz:[
-{q:"Product targeting on a stronger offer usually…",o:["Wins on the click","Pays for the competitor's comparison shopper","Improves TACoS","Beats organic"],a:1,e:"You pay for the click, the competitor gets the sale."},
-{q:"Defensive product targeting is bidding on…",o:["Competitor ASINs","Your own brand and ASINs","Categories only","Top of search only"],a:1,e:"Defensive = protect your own pages."},
-{q:"Before ASIN-targeting a competitor, you should compare…",o:["Color only","Price, rating, reviews, images, offer","Reviews only","Bid only"],a:1,e:"Five signals, not one."}
+{q:"Product targeting on a stronger offer usuallyâ€¦",o:["Wins on the click","Pays for the competitor's comparison shopper","Improves TACoS","Beats organic"],a:1,e:"You pay for the click, the competitor gets the sale."},
+{q:"Defensive product targeting is bidding onâ€¦",o:["Competitor ASINs","Your own brand and ASINs","Categories only","Top of search only"],a:1,e:"Defensive = protect your own pages."},
+{q:"Before ASIN-targeting a competitor, you should compareâ€¦",o:["Color only","Price, rating, reviews, images, offer","Reviews only","Bid only"],a:1,e:"Five signals, not one."}
 ]},
 
-{title:"Bidding, Placements, and Budgets",icon:"💸",color:"var(--c-red)",img:IMG.deck,desc:"Dynamic bids, placements, effective exposure, and budget pacing.",
+{title:"Bidding, Placements, and Budgets",icon:"ðŸ’¸",color:"var(--c-red)",img:IMG.deck,desc:"Dynamic bids, placements, effective exposure, and budget pacing.",
 lessons:[
 {id:"m8l1",title:"Budget Basics",mins:5,blocks:[
 {t:"goal",x:"Set a daily budget that supports learning without overcommitting."},
-{t:"p",x:"Daily budget is the cap, not the target. Set it high enough to get enough clicks to learn (a beginner campaign needs at least 10–20 clicks per day per cluster) and low enough that a bad week does not blow the account."},
-{t:"tip",x:"If a profitable campaign is out of budget by 9am, the budget is too low, not the campaign. But first confirm the campaign is actually profitable — 'out of budget' is not automatically a budget problem."}
+{t:"p",x:"Daily budget is the cap, not the target. Set it high enough to get enough clicks to learn (a beginner campaign needs at least 10â€“20 clicks per day per cluster) and low enough that a bad week does not blow the account."},
+{t:"tip",x:"If a profitable campaign is out of budget by 9am, the budget is too low, not the campaign. But first confirm the campaign is actually profitable â€” 'out of budget' is not automatically a budget problem."}
 ]},
 {id:"m8l2",title:"Top of Search, Rest of Search, Product Pages",mins:6,blocks:[
 {t:"goal",x:"Explain the three placements and what each is worth."},
@@ -717,24 +717,24 @@ lessons:[
 ]},
 {id:"m8l3",title:"Placement Adjustments and Effective Bid Exposure",mins:7,blocks:[
 {t:"goal",x:"Compute the effective bid after a placement adjustment."},
-{t:"formula",f:"Effective bid = base bid × (1 + placement adjustment)",note:"A 50% top-of-search adjustment on a $0.80 base bid = $1.20 effective at top of search."},
-{t:"example",x:"Base $0.60. Top of Search +100% → effective $1.20. Product Pages +0% → effective $0.60."},
+{t:"formula",f:"Effective bid = base bid Ã— (1 + placement adjustment)",note:"A 50% top-of-search adjustment on a $0.80 base bid = $1.20 effective at top of search."},
+{t:"example",x:"Base $0.60. Top of Search +100% â†’ effective $1.20. Product Pages +0% â†’ effective $0.60."},
 {t:"p",x:"A placement adjustment is a multiplier on the base bid, applied only when the ad wins that placement. It is the most direct way to express 'I value this placement more.'"},
 {t:"tip",x:"Set placement adjustments based on data, not on intuition. Run a placement report for 14 days first."}
 ]},
 {id:"m8l4",title:"Dynamic Bids: Down Only / Up and Down / Fixed",mins:6,blocks:[
 {t:"goal",x:"Pick the right bid strategy for the campaign's job."},
 {t:"table",head:["Strategy","Behavior","Use for"],rows:[
-["Dynamic bids — down only","Amazon lowers your bid when a click is unlikely to convert","Defensive. Safe default for beginners."],
-["Dynamic bids — up and down","Amazon raises and lowers your bid based on conversion likelihood","Growth. Use when you have conversion data and want more volume."],
+["Dynamic bids â€” down only","Amazon lowers your bid when a click is unlikely to convert","Defensive. Safe default for beginners."],
+["Dynamic bids â€” up and down","Amazon raises and lowers your bid based on conversion likelihood","Growth. Use when you have conversion data and want more volume."],
 ["Fixed bids","Your bid is the bid, period","Strict control. Use for tight, manual control."]
 ]},
 {t:"tip",x:"Beginners should default to 'down only' for the first 4 weeks. Move to 'up and down' only after the campaign has 30+ conversions."}
 ]},
-{id:"m8l5",title:"Budget Pacing and 'Out of Budget ≠ Budget Problem'",mins:6,blocks:[
+{id:"m8l5",title:"Budget Pacing and 'Out of Budget â‰  Budget Problem'",mins:6,blocks:[
 {t:"goal",x:"Diagnose why a campaign is out of budget before raising the budget."},
-{t:"p",x:"Three reasons a campaign can be out of budget: (1) the campaign is profitable and capped — raise the budget; (2) the campaign is unprofitable and burning — lower bids or add negatives; (3) the day is front-loaded — pacing will fix it."},
-{t:"split",a:{title:"Raise the budget when",items:["ACOS is below margin and stable","The campaign hits budget by 4–6pm","You have 14+ days of clean data"]},b:{title:"Don't raise the budget when",items:["ACOS is above margin","The campaign just launched","Spend is being driven by irrelevant terms"]}}
+{t:"p",x:"Three reasons a campaign can be out of budget: (1) the campaign is profitable and capped â€” raise the budget; (2) the campaign is unprofitable and burning â€” lower bids or add negatives; (3) the day is front-loaded â€” pacing will fix it."},
+{t:"split",a:{title:"Raise the budget when",items:["ACOS is below margin and stable","The campaign hits budget by 4â€“6pm","You have 14+ days of clean data"]},b:{title:"Don't raise the budget when",items:["ACOS is above margin","The campaign just launched","Spend is being driven by irrelevant terms"]}}
 ]},
 {id:"m8l6",title:"Bid Change Walkthrough (Worked)",mins:6,blocks:[
 {t:"goal",x:"Walk through a bid change with reason, old, new, expected, review date."},
@@ -743,12 +743,12 @@ lessons:[
 ]}
 ],
 quiz:[
-{q:"Top of Search placement adjustment is…",o:["A flat fee","A multiplier on the base bid","A budget","A negative"],a:1,e:"Placement adjustment multiplies the base bid."},
+{q:"Top of Search placement adjustment isâ€¦",o:["A flat fee","A multiplier on the base bid","A budget","A negative"],a:1,e:"Placement adjustment multiplies the base bid."},
 {q:"Beginner default bid strategy?",o:["Up and down","Down only","Fixed at max","No bid"],a:1,e:"Down only is the safe default for the first 4 weeks."},
-{q:"A campaign is out of budget. You should first…",o:["Raise the budget","Check whether it is profitable","Pause it","Double the bid"],a:1,e:"Out of budget is not automatically a budget problem."}
+{q:"A campaign is out of budget. You should firstâ€¦",o:["Raise the budget","Check whether it is profitable","Pause it","Double the bid"],a:1,e:"Out of budget is not automatically a budget problem."}
 ]},
 
-{title:"Search-Term Analysis and Negatives",icon:"🕵️",color:"var(--mc-blue)",desc:"Targeting vs search-term report, harvesting, and click thresholds.",
+{title:"Search-Term Analysis and Negatives",icon:"ðŸ•µï¸",color:"var(--mc-blue)",desc:"Targeting vs search-term report, harvesting, and click thresholds.",
 lessons:[
 {id:"m9l1",title:"Reading the Search Term Report",mins:6,blocks:[
 {t:"goal",x:"Read a search-term report and tell winners from wasters from maybes."},
@@ -770,7 +770,7 @@ lessons:[
 {t:"p",x:"A click threshold is the minimum clicks you want before making a confident call. Common thresholds: 10 clicks for a 'maybe' to be judged, 30 clicks for a verdict. Below the threshold, you are reading noise."},
 {t:"table",head:["Clicks","Confidence","Action"],rows:[
 ["Under 10","Low","Watch. Do not act."],
-["10–30","Medium","One careful change, give it a week."],
+["10â€“30","Medium","One careful change, give it a week."],
 ["30+","High","Trust the trend. Act on it."]
 ]},
 {t:"mistake",items:[
@@ -782,7 +782,7 @@ lessons:[
 {id:"m9l4",title:"Negative Exact vs Negative Phrase",mins:5,blocks:[
 {t:"goal",x:"Pick the right negative match type for the situation."},
 {t:"p",x:"Negative exact blocks the single term. Negative phrase blocks the phrase and any search that contains it. Use negative exact for surgical blocking; use negative phrase for a cluster of irrelevant searches."},
-{t:"example",x:"'free bamboo board' is irrelevant → negative exact. 'free cutting board' (any free) → negative phrase."}
+{t:"example",x:"'free bamboo board' is irrelevant â†’ negative exact. 'free cutting board' (any free) â†’ negative phrase."}
 ]},
 {id:"m9l5",title:"The Harvesting Workflow",mins:6,blocks:[
 {t:"goal",x:"Run a weekly harvesting loop that ends in a clean change log."},
@@ -796,30 +796,30 @@ lessons:[
 ]}
 ],
 quiz:[
-{q:"Search-term report shows…",o:["Keywords you targeted","What the customer typed","Bids","Budgets"],a:1,e:"Customer language, not yours."},
-{q:"Under 10 clicks on a term means…",o:["Negate it","Trust the ACOS","Watch, do not act","Raise the bid"],a:2,e:"Below the threshold, it is noise."},
-{q:"Negative phrase blocks…",o:["The single term","Any search containing the phrase","The campaign","The placement"],a:1,e:"Phrase negatives are cluster-level blocks."}
+{q:"Search-term report showsâ€¦",o:["Keywords you targeted","What the customer typed","Bids","Budgets"],a:1,e:"Customer language, not yours."},
+{q:"Under 10 clicks on a term meansâ€¦",o:["Negate it","Trust the ACOS","Watch, do not act","Raise the bid"],a:2,e:"Below the threshold, it is noise."},
+{q:"Negative phrase blocksâ€¦",o:["The single term","Any search containing the phrase","The campaign","The placement"],a:1,e:"Phrase negatives are cluster-level blocks."}
 ]},
 
-{title:"Performance Diagnosis",icon:"🔬",color:"var(--mc-emerald)",desc:"Diagnose the cause before changing bids, budgets, targeting, or listings.",
+{title:"Performance Diagnosis",icon:"ðŸ”¬",color:"var(--mc-emerald)",desc:"Diagnose the cause before changing bids, budgets, targeting, or listings.",
 lessons:[
-{id:"m10l1",title:"Diagnostic Order: Delivery → Engagement → Conversion → Economics",mins:6,blocks:[
+{id:"m10l1",title:"Diagnostic Order: Delivery â†’ Engagement â†’ Conversion â†’ Economics",mins:6,blocks:[
 {t:"goal",x:"Use a fixed diagnostic order before changing anything."},
 {t:"diagram",kind:"flow",title:"Diagnostic order",steps:["Delivery (impressions, budget, targeting)","Engagement (CTR, hook quality)","Conversion (CVR, listing relevance)","Economics (ACOS, margin, contribution)"]},
 {t:"p",x:"Always start at delivery. If impressions are too low, the rest of the funnel does not exist. Only move to engagement when delivery is healthy. Only move to conversion when engagement is healthy. Economics is the verdict, not the first stop."},
 {t:"tip",x:"The most common beginner mistake is starting at economics ('ACOS is high, cut bid') without checking the stages above it."}
 ]},
 {id:"m10l2",title:"Low Impressions, Low CTR, High CPC",mins:7,blocks:[
-{t:"goal",x:"Diagnose the top of the funnel — delivery and engagement."},
+{t:"goal",x:"Diagnose the top of the funnel â€” delivery and engagement."},
 {t:"table",head:["Symptom","First check","Then"],rows:[
 ["Low impressions","Campaign active? Approved? Budget?","Bid too low, targeting too narrow"],
 ["Low CTR","Image, price, title","Hook signal; ad creative; relevance"],
 ["High CPC","Bid too high","Auction competition; quality score"]
 ]},
-{t:"split",a:{title:"Healthy",items:["Stable impressions, stable CTR","CTR above the category benchmark","CPC near the suggested bid"]},b:{title:"Unhealthy",items:["Impressions dropping week over week","CTR below 0.3%","CPC above the suggested bid by 2×"]}}
+{t:"split",a:{title:"Healthy",items:["Stable impressions, stable CTR","CTR above the category benchmark","CPC near the suggested bid"]},b:{title:"Unhealthy",items:["Impressions dropping week over week","CTR below 0.3%","CPC above the suggested bid by 2Ã—"]}}
 ]},
 {id:"m10l3",title:"Low CVR, High ACOS, Sales Drop",mins:7,blocks:[
-{t:"goal",x:"Diagnose the bottom of the funnel — conversion and economics."},
+{t:"goal",x:"Diagnose the bottom of the funnel â€” conversion and economics."},
 {t:"table",head:["Symptom","First check","Then"],rows:[
 ["Low CVR","Listing + term relevance","Negatives, listing pass, price check"],
 ["High ACOS","CPC vs CVR","Lower bid, tighten match, or both"],
@@ -831,7 +831,7 @@ lessons:[
 {id:"m10l4",title:"Traffic-Quality vs Offer-Quality Problems",mins:6,blocks:[
 {t:"goal",x:"Tell a targeting problem from an offer problem."},
 {t:"p",x:"Traffic-quality problem: the wrong shoppers are clicking. Fix with negatives, tighter match, or different keywords. Offer-quality problem: the right shoppers are clicking but not buying. Fix with the listing, price, images, or reviews."},
-{t:"example",x:"Many clicks, no sales, with irrelevant search terms → traffic-quality. Many clicks, no sales, with relevant search terms → offer-quality."},
+{t:"example",x:"Many clicks, no sales, with irrelevant search terms â†’ traffic-quality. Many clicks, no sales, with relevant search terms â†’ offer-quality."},
 {t:"tip",x:"Read the search-term report at the same time as the listing. The combination tells you which problem you have."}
 ]},
 {id:"m10l5",title:"Lab: Root-Cause Tree for Six Cases",mins:8,blocks:[
@@ -843,11 +843,11 @@ lessons:[
 ],
 quiz:[
 {q:"First step in any diagnosis?",o:["Cut the bid","Check delivery (impressions, budget, targeting)","Pause the campaign","Add negatives"],a:1,e:"Always start at delivery."},
-{q:"High clicks, no sales, irrelevant search terms suggests…",o:["Offer-quality problem","Traffic-quality problem","Budget problem","Placement problem"],a:1,e:"Wrong shoppers, fix with targeting."},
-{q:"A change log should record…",o:["The bid","Reason, old, new, expected, review date","Only successful changes","The date only"],a:1,e:"Five things, every change."}
+{q:"High clicks, no sales, irrelevant search terms suggestsâ€¦",o:["Offer-quality problem","Traffic-quality problem","Budget problem","Placement problem"],a:1,e:"Wrong shoppers, fix with targeting."},
+{q:"A change log should recordâ€¦",o:["The bid","Reason, old, new, expected, review date","Only successful changes","The date only"],a:1,e:"Five things, every change."}
 ]},
 
-{title:"Optimization, Scaling, and Operating Rhythm",icon:"🔁",color:"var(--mc-violet)",img:IMG.deck,desc:"The weekly cycle, scaling without inflating marginal ACOS, and the change log.",
+{title:"Optimization, Scaling, and Operating Rhythm",icon:"ðŸ”",color:"var(--mc-violet)",img:IMG.deck,desc:"The weekly cycle, scaling without inflating marginal ACOS, and the change log.",
 lessons:[
 {id:"m11l1",title:"The Weekly Routine",mins:5,blocks:[
 {t:"goal",x:"Run the same weekly routine every week."},
@@ -868,12 +868,12 @@ lessons:[
 {t:"diagram",kind:"tree",title:"Bid change tree",nodes:[
 [0,"Bid review"],
 [1,"ACOS below margin and stable?"],
-[2,"Yes: raise 10–15%, log, review 7 days"],
+[2,"Yes: raise 10â€“15%, log, review 7 days"],
 [2,"No: ACOS above margin?"],
-[2,"Above: cut 10–15%, log, review 7 days"],
+[2,"Above: cut 10â€“15%, log, review 7 days"],
 [2,"At margin: hold and watch for another week"]
 ]},
-{t:"tip",x:"A 10–15% change is small enough to be safe, large enough to learn. Anything more is gambling."}
+{t:"tip",x:"A 10â€“15% change is small enough to be safe, large enough to learn. Anything more is gambling."}
 ]},
 {id:"m11l4",title:"Budget Reallocation and Placement Optimization",mins:7,blocks:[
 {t:"goal",x:"Reallocate budget to where the data says it works."},
@@ -881,14 +881,14 @@ lessons:[
 {t:"list",items:[
 "Identify the campaign with the worst ACOS at meaningful spend",
 "Identify the campaign with the best ACOS at meaningful spend",
-"Move 20–30% of the worst campaign's budget to the best one",
+"Move 20â€“30% of the worst campaign's budget to the best one",
 "Log the move, watch for two weeks, repeat if it holds"
 ]},
 {t:"tip",x:"Reallocation is more powerful than raising total budget. The first dollar in a campaign is more expensive than the fifth."}
 ]},
 {id:"m11l5",title:"Scaling Winners Without Inflating Marginal ACOS",mins:7,blocks:[
 {t:"goal",x:"Scale a winning campaign in a way that holds the marginal ACOS."},
-{t:"p",x:"Scaling means adding budget or raising bids. Every new click is more expensive than the last, because the easy wins were already taken. The marginal ACOS — the ACOS of the most recent click — tells you when to stop."},
+{t:"p",x:"Scaling means adding budget or raising bids. Every new click is more expensive than the last, because the easy wins were already taken. The marginal ACOS â€” the ACOS of the most recent click â€” tells you when to stop."},
 {t:"split",a:{title:"Safe to scale when",items:["Marginal ACOS is still under margin","Conversion rate is stable","The auction is not saturated"]},b:{title:"Stop scaling when",items:["Marginal ACOS rises above margin","Conversion rate is dropping","Top of search is becoming crowded"]}}
 ]},
 {id:"m11l6",title:"Change Log, Guardrails, Rollback Conditions",mins:6,blocks:[
@@ -899,21 +899,21 @@ lessons:[
 ]}
 ],
 quiz:[
-{q:"Scaling means…",o:["Adding total budget always","Adding budget or bids where the data supports it","Pausing losing campaigns","Lowering bids"],a:1,e:"Scale where the data says it works."},
-{q:"A rollback condition is…",o:["A date to delete the campaign","A rule that triggers a revert","A bid cap","A budget cut"],a:1,e:"Always write the condition before saving."},
-{q:"One change at a time exists to…",o:["Slow you down","Let you know which variable worked","Save clicks","Help Amazon"],a:1,e:"One variable, one verdict."}
+{q:"Scaling meansâ€¦",o:["Adding total budget always","Adding budget or bids where the data supports it","Pausing losing campaigns","Lowering bids"],a:1,e:"Scale where the data says it works."},
+{q:"A rollback condition isâ€¦",o:["A date to delete the campaign","A rule that triggers a revert","A bid cap","A budget cut"],a:1,e:"Always write the condition before saving."},
+{q:"One change at a time exists toâ€¦",o:["Slow you down","Let you know which variable worked","Save clicks","Help Amazon"],a:1,e:"One variable, one verdict."}
 ]},
 
-{title:"Reporting, Strategy, and Capstone",icon:"📣",color:"var(--c-amber)",img:IMG.report,desc:"Reports, business metrics, the 30/60/90 roadmap, and the capstone defense.",
+{title:"Reporting, Strategy, and Capstone",icon:"ðŸ“£",color:"var(--c-amber)",img:IMG.report,desc:"Reports, business metrics, the 30/60/90 roadmap, and the capstone defense.",
 lessons:[
 {id:"m12l1",title:"The Simple Report Structure",mins:5,blocks:[
 {t:"goal",x:"Write a one-page weekly report in a fixed order."},
 {t:"list",items:[
 "Numbers: spend, sales, ACOS, ROAS, clicks, orders, CTR, CVR",
 "Trend: vs last week, plus or minus X%",
-"What worked: 1–2 examples",
+"What worked: 1â€“2 examples",
 "What did not work: 1 honest paragraph",
-"Next steps: 2–3 bullets, in the next 7 days",
+"Next steps: 2â€“3 bullets, in the next 7 days",
 "Prepared by: name, date"
 ]},
 {t:"tip",x:"The structure is the same every week. The numbers change, the structure does not."}
@@ -962,43 +962,43 @@ lessons:[
 "Translate metrics into owner language without hiding bad news",
 "End with measurable next steps and the next review date"
 ]},
-{t:"p",x:"The capstone brings it all together: a product brief, unit economics, a campaign portfolio, search-term analysis, a 30-day plan, a one-page report, and a 7–10 minute defense (recorded or written). Pass level for supervised work is 85%+."},
-{t:"tip",x:"Capstone rubric: commercial objective 10% · targeting relevance 20% · structure 15% · bids and budgets 15% · diagnosis 20% · optimization plan 10% · communication 10%."}
+{t:"p",x:"The capstone brings it all together: a product brief, unit economics, a campaign portfolio, search-term analysis, a 30-day plan, a one-page report, and a 7â€“10 minute defense (recorded or written). Pass level for supervised work is 85%+."},
+{t:"tip",x:"Capstone rubric: commercial objective 10% Â· targeting relevance 20% Â· structure 15% Â· bids and budgets 15% Â· diagnosis 20% Â· optimization plan 10% Â· communication 10%."}
 ]}
 ],
 quiz:[
-{q:"A good report ends with…",o:["Raw data only","Measurable next steps","An apology","A joke"],a:1,e:"Steps reassure; data informs."},
-{q:"PPC metrics answer…",o:["Did the product grow?","Did the ad do its job?","Did the customer like the brand?","Is the Buy Box owned?"],a:1,e:"PPC is one slice of business."},
+{q:"A good report ends withâ€¦",o:["Raw data only","Measurable next steps","An apology","A joke"],a:1,e:"Steps reassure; data informs."},
+{q:"PPC metrics answerâ€¦",o:["Did the product grow?","Did the ad do its job?","Did the customer like the brand?","Is the Buy Box owned?"],a:1,e:"PPC is one slice of business."},
 {q:"Capstone pass level for supervised work?",o:["50%","70%","85%+","100%"],a:2,e:"85%+ means ready for supervised client work."}
 ]}
 ];
 const TOTAL_LESSONS=MODULES.reduce((a,m)=>a+m.lessons.length,0);
 
 const FINAL_EXAM=[
-{q:"PPC stands for…",o:["Pay Per Click","Pay Per Customer","Price Per Click","Pay Per Conversion"],a:0,e:"You pay per click."},
-{q:"The seller pays when…",o:["The ad shows","A shopper clicks","A shopper buys","Monthly"],a:1,e:"Clicks cost money; impressions are free."},
-{q:"ACOS formula?",o:["Sales ÷ Spend × 100","Spend ÷ Sales × 100","Clicks ÷ Impressions","Orders ÷ Clicks"],a:1,e:"Spend ÷ Sales × 100."},
-{q:"Spend 20, sales 100. ACOS?",o:["20%","80%","5%","50%"],a:0,e:"20 ÷ 100 × 100 = 20%."},
+{q:"PPC stands forâ€¦",o:["Pay Per Click","Pay Per Customer","Price Per Click","Pay Per Conversion"],a:0,e:"You pay per click."},
+{q:"The seller pays whenâ€¦",o:["The ad shows","A shopper clicks","A shopper buys","Monthly"],a:1,e:"Clicks cost money; impressions are free."},
+{q:"ACOS formula?",o:["Sales Ã· Spend Ã— 100","Spend Ã· Sales Ã— 100","Clicks Ã· Impressions","Orders Ã· Clicks"],a:1,e:"Spend Ã· Sales Ã— 100."},
+{q:"Spend 20, sales 100. ACOS?",o:["20%","80%","5%","50%"],a:0,e:"20 Ã· 100 Ã— 100 = 20%."},
 {q:"Margin 30%. Break-even ACOS?",o:["70%","30%","3%","130%"],a:1,e:"Break-even equals margin."},
-{q:"A search term is…",o:["Your keyword","What the customer typed","A bid","A budget"],a:1,e:"Customer's words, not yours."},
+{q:"A search term isâ€¦",o:["Your keyword","What the customer typed","A bid","A budget"],a:1,e:"Customer's words, not yours."},
 {q:"Most control?",o:["Broad","Phrase","Exact","Auto"],a:2,e:"Exact = tight matches."},
-{q:"Irrelevant clicks pouring in. You…",o:["Raise bids","Add negatives","Add budget","Pause account"],a:1,e:"Negatives stop the leak."},
-{q:"Many clicks, no sales. First check…",o:["Listing and term relevance","The logo","Naming","Time zone"],a:0,e:"Page or targeting is leaking."},
-{q:"ROAS formula?",o:["Sales ÷ Spend","Spend ÷ Sales","Clicks ÷ Spend","Sales ÷ Clicks"],a:0,e:"Dollars back per ad dollar."},
+{q:"Irrelevant clicks pouring in. Youâ€¦",o:["Raise bids","Add negatives","Add budget","Pause account"],a:1,e:"Negatives stop the leak."},
+{q:"Many clicks, no sales. First checkâ€¦",o:["Listing and term relevance","The logo","Naming","Time zone"],a:0,e:"Page or targeting is leaking."},
+{q:"ROAS formula?",o:["Sales Ã· Spend","Spend Ã· Sales","Clicks Ã· Spend","Sales Ã· Clicks"],a:0,e:"Dollars back per ad dollar."},
 {q:"Daily budget lives at which level?",o:["Keyword","Ad group","Campaign","Account"],a:2,e:"Campaign level."},
-{q:"Auto campaigns are mainly for…",o:["Scaling","Research","Branding","Punishing rivals"],a:1,e:"They discover search terms."},
-{q:"TACoS compares ad spend to…",o:["Ad sales only","Total revenue","Clicks","Impressions"],a:1,e:"The whole business, including organic."},
-{q:"A report should always end with…",o:["A joke","Next steps","Raw data only","An apology"],a:1,e:"Steps reassure the client."},
-{q:"The one-change rule exists so that…",o:["You work slower","You know what worked","Amazon likes it","Bids drop"],a:1,e:"One variable, one verdict."}
+{q:"Auto campaigns are mainly forâ€¦",o:["Scaling","Research","Branding","Punishing rivals"],a:1,e:"They discover search terms."},
+{q:"TACoS compares ad spend toâ€¦",o:["Ad sales only","Total revenue","Clicks","Impressions"],a:1,e:"The whole business, including organic."},
+{q:"A report should always end withâ€¦",o:["A joke","Next steps","Raw data only","An apology"],a:1,e:"Steps reassure the client."},
+{q:"The one-change rule exists so thatâ€¦",o:["You work slower","You know what worked","Amazon likes it","Bids drop"],a:1,e:"One variable, one verdict."}
 ];
 
 /* ================= GLOSSARY / TRAINER / BUILDER / COACH / COHORT (unchanged core) ================= */
 const GLOSSARY=[
 {t:"Impression",d:"The ad was shown to a shopper. No click needed."},{t:"Click",d:"A shopper clicked your ad. This is what you pay for."},
-{t:"CPC",d:"Cost Per Click. Spend ÷ Clicks. The average price of one click."},{t:"CTR",d:"Click-Through Rate. Clicks ÷ Impressions. How often viewers click."},
+{t:"CPC",d:"Cost Per Click. Spend Ã· Clicks. The average price of one click."},{t:"CTR",d:"Click-Through Rate. Clicks Ã· Impressions. How often viewers click."},
 {t:"Bid",d:"The most you are willing to pay for one click."},{t:"Budget",d:"The daily limit a campaign can spend."},
-{t:"Conversion Rate",d:"Orders ÷ Clicks. How often a click becomes a sale."},{t:"ACOS",d:"Advertising Cost of Sales. Spend ÷ Sales × 100. Lower is usually better."},
-{t:"ROAS",d:"Return on Ad Spend. Sales ÷ Spend. Higher is better."},{t:"TACoS",d:"Ad spend compared to TOTAL revenue. Shows how ads help the whole business."},
+{t:"Conversion Rate",d:"Orders Ã· Clicks. How often a click becomes a sale."},{t:"ACOS",d:"Advertising Cost of Sales. Spend Ã· Sales Ã— 100. Lower is usually better."},
+{t:"ROAS",d:"Return on Ad Spend. Sales Ã· Spend. Higher is better."},{t:"TACoS",d:"Ad spend compared to TOTAL revenue. Shows how ads help the whole business."},
 {t:"Break-even ACOS",d:"Your profit margin. The highest ACOS before ads lose money."},{t:"Keyword",d:"The word or phrase YOU choose to target."},
 {t:"Search Term",d:"The words the CUSTOMER actually typed."},{t:"Match Type",d:"How loosely Amazon matches your keyword: broad, phrase, exact."},
 {t:"Broad Match",d:"Loosest match. High reach, low control."},{t:"Phrase Match",d:"Searches containing your phrase. Middle control."},
@@ -1012,7 +1012,7 @@ const GLOSSARY=[
 const TRAINER_PRODUCT={name:"Bamboo Cutting Board",price:24.99,margin:30,budget:20};
 const TRAINER_ROWS=[
 {term:"bamboo cutting board",clicks:14,spend:13.5,sales:75,orders:3,exp:"exact",why:"Strong sales and ACOS about 18%, below the 30% break-even. Move to Exact to control it."},
-{term:"bamboo chopping board",clicks:9,spend:8.1,sales:50,orders:2,exp:"exact",why:"ACOS about 16% and clearly relevant. A winner — move to Exact."},
+{term:"bamboo chopping board",clicks:9,spend:8.1,sales:50,orders:2,exp:"exact",why:"ACOS about 16% and clearly relevant. A winner â€” move to Exact."},
 {term:"large bamboo cutting board",clicks:6,spend:5.4,sales:25,orders:1,exp:"watch",why:"One sale on 6 clicks is promising but thin. Watch it until the signal is repeatable before harvesting."},
 {term:"cutting board for kitchen",clicks:11,spend:9.9,sales:25,orders:1,exp:"lower",why:"Relevant, but ACOS about 40% is above the 30% margin. Lower the bid, do not kill it."},
 {term:"plastic cutting board",clicks:8,spend:7.2,sales:0,orders:0,exp:"negative",why:"Wrong material. Every click is wasted. Add as negative."},
@@ -1021,34 +1021,34 @@ const TRAINER_ROWS=[
 {term:"wooden cutting board",clicks:10,spend:9.0,sales:25,orders:1,exp:"lower",why:"Relevant material but ACOS about 36% is above margin. Lower the bid and re-check."},
 {term:"bamboo serving tray",clicks:4,spend:3.2,sales:0,orders:0,exp:"watch",why:"Only 4 clicks. Too little data to judge. Watch it next week."},
 {term:"organic bamboo board",clicks:3,spend:2.4,sales:25,orders:1,exp:"watch",why:"One sale on 3 clicks is not enough proof to scale. Keep watching and protect against a lucky-sale decision."}];
-const TRAINER_OPTS=[{v:"",label:"— choose action —"},{v:"exact",label:"Move to Exact Match"},{v:"negative",label:"Add as Negative"},{v:"lower",label:"Lower the Bid"},{v:"watch",label:"Watch — Need More Data"}];
+const TRAINER_OPTS=[{v:"",label:"â€” choose action â€”"},{v:"exact",label:"Move to Exact Match"},{v:"negative",label:"Add as Negative"},{v:"lower",label:"Lower the Bid"},{v:"watch",label:"Watch â€” Need More Data"}];
 
 const BUILDER_PRODUCTS=[{name:"Bamboo Cutting Board",price:24.99,margin:30},{name:"Stainless Garlic Press",price:14.99,margin:35},{name:"Cork Yoga Mat",price:39.99,margin:40}];
 const BAD_WORDS=["plastic","glass","free","wholesale","cheap","knife","bulk","used"];
 
 const COACH_RULES=[
-{k:["acos"],t:"ACOS in plain words",a:"ACOS = Spend ÷ Sales × 100. It tells you how much of your ad sales went to paying for ads. Example: spend 20, sales 100 gives ACOS 20%. Rule of thumb: if ACOS is below your profit margin, the ads are likely profitable. If above, they likely lose money."},
-{k:["roas"],t:"ROAS in plain words",a:"ROAS = Sales ÷ Spend. It is the mirror of ACOS. A ROAS of 5 means every ad dollar brought 5 dollars back. Higher is better."},
-{k:["tacos"],t:"TACoS in plain words",a:"TACoS = Ad Spend ÷ Total Revenue × 100. Unlike ACOS, it compares ad spend to your whole business, including organic sales. A falling TACoS means ads are building a brand, not just renting sales."},
+{k:["acos"],t:"ACOS in plain words",a:"ACOS = Spend Ã· Sales Ã— 100. It tells you how much of your ad sales went to paying for ads. Example: spend 20, sales 100 gives ACOS 20%. Rule of thumb: if ACOS is below your profit margin, the ads are likely profitable. If above, they likely lose money."},
+{k:["roas"],t:"ROAS in plain words",a:"ROAS = Sales Ã· Spend. It is the mirror of ACOS. A ROAS of 5 means every ad dollar brought 5 dollars back. Higher is better."},
+{k:["tacos"],t:"TACoS in plain words",a:"TACoS = Ad Spend Ã· Total Revenue Ã— 100. Unlike ACOS, it compares ad spend to your whole business, including organic sales. A falling TACoS means ads are building a brand, not just renting sales."},
 {k:["no sales","clicks but no"],t:"Clicks but no sales",a:"Shoppers click but do not buy. Check in order: 1) Are the search terms relevant? 2) Is the price competitive? 3) Are reviews strong? 4) Is the main image clear? 5) Is stock available? Irrelevant terms get negatives. A weak page gets fixed before more spend."},
 {k:["negative"],t:"Negative keywords",a:"A negative keyword tells Amazon: do not show my ad for this. Use it when a search term gets clicks but can never buy your product (wrong material, wrong use, free, wholesale). Review the search term report weekly and block wasters."},
 {k:["bid","bidding"],t:"Bid rules for beginners",a:"Raise bids on keywords with good sales and ACOS below margin. Lower bids on relevant keywords with ACOS above margin. Negate irrelevant ones. Change one thing at a time, then wait about a week before judging."},
-{k:["budget"],t:"Budget basics",a:"Budget is your daily limit. If a profitable campaign runs out of budget by noon, you are missing sales — raise it. If a campaign is unprofitable, fix targeting before adding budget. Beginners often start with 10 to 25 per day per campaign."},
+{k:["budget"],t:"Budget basics",a:"Budget is your daily limit. If a profitable campaign runs out of budget by noon, you are missing sales â€” raise it. If a campaign is unprofitable, fix targeting before adding budget. Beginners often start with 10 to 25 per day per campaign."},
 {k:["match","broad","phrase","exact"],t:"Match types",a:"Broad = loose, high reach, low control. Phrase = searches containing your phrase. Exact = very close matches only, most control. Beginners lean on Exact for control and use Auto or Broad only to discover new terms."},
 {k:["search term"],t:"Search term mining",a:"Download the report, sort by spend, mark winners (sales + good ACOS) and wasters (high clicks, no sales, irrelevant). Move winners to Exact, add wasters as negatives, watch the maybes. Weekly. That loop is the job."},
 {k:["listing","convert","conversion","image","review"],t:"Listing readiness",a:"PPC cannot fix a weak page. Check: clear main image, competitive price, enough reviews, good rating, clear title and bullets, stock and Buy Box. If 100 clicks bring 1 sale, suspect the page or the targeting before the ads."},
 {k:["impression","not showing","no impressions"],t:"Low impressions",a:"Check in order: campaign active and approved? Bid too low to win? Budget too small? Targeting too narrow? Product relevant to the keywords? Raise the bid slightly first, then re-check after a few days."},
 {k:["report"],t:"A simple weekly report",a:"Include: spend, sales, ACOS, clicks, orders, conversion, what worked, what did not, and next steps. Explain in plain words. Practice in the Report Builder tool."},
 {k:["start","beginner","new product","launch"],t:"Starting safely",a:"For a new product: fix the listing first, then run a small Auto campaign for research plus an Exact campaign with long-tail keywords. Keep budgets small. Goal one is learning what converts, not scaling."},
-{k:["cpc"],t:"CPC",a:"CPC = Cost Per Click = Spend ÷ Clicks. If spend is 20 and clicks are 20, your average CPC is 1 dollar."},
-{k:["ctr"],t:"CTR",a:"CTR = Clicks ÷ Impressions × 100. Low CTR usually points to the main image, price or title — the hook."}];
+{k:["cpc"],t:"CPC",a:"CPC = Cost Per Click = Spend Ã· Clicks. If spend is 20 and clicks are 20, your average CPC is 1 dollar."},
+{k:["ctr"],t:"CTR",a:"CTR = Clicks Ã· Impressions Ã— 100. Low CTR usually points to the main image, price or title â€” the hook."}];
 
 const COHORT=[
 {name:"Maria G.",lvl:"Junior Assistant",prog:72,xp:480,weak:"Bid strategy",last:"Today",status:"on"},
 {name:"John O.",lvl:"PPC Helper",prog:41,xp:210,weak:"Money math",last:"2 days ago",status:"risk"},
 {name:"Aisha K.",lvl:"Campaign Assistant",prog:65,xp:610,weak:"Client reporting",last:"Today",status:"on"},
 {name:"Diego R.",lvl:"PPC Learner",prog:28,xp:120,weak:"Match types",last:"5 days ago",status:"risk"},
-{name:"Lin W.",lvl:"Junior Assistant",prog:80,xp:540,weak:"—",last:"Today",status:"star"},
+{name:"Lin W.",lvl:"Junior Assistant",prog:80,xp:540,weak:"â€”",last:"Today",status:"star"},
 {name:"Tunde A.",lvl:"PPC Helper",prog:55,xp:300,weak:"Negatives routine",last:"Yesterday",status:"on"},
 {name:"Sara M.",lvl:"Trainee",prog:12,xp:40,weak:"Basics",last:"1 week ago",status:"risk"},
 {name:"Pavel S.",lvl:"PPC Helper",prog:49,xp:260,weak:"Search term mining",last:"3 days ago",status:"on"}];
@@ -1080,22 +1080,22 @@ function closeSidebar(){document.getElementById("sidebar").classList.add("-trans
 /* ================= BLOCK RENDERER ================= */
 function renderBlock(b){
  if(b.t==="p") return '<p class="lessonprose">'+b.x+'</p>';
- if(b.t==="goal") return '<div class="flex gap-3 rounded-xl bg-brand-50 border border-brand-200 p-4 text-sm text-brand-700"><span class="text-lg">🎯</span><span><b>In this lesson:</b> '+b.x+'</span></div>';
- if(b.t==="list") return '<ul class="space-y-2">'+b.items.map(i=>'<li class="flex gap-2 text-[15px] text-slate-600"><span class="text-brand-500 font-bold">•</span>'+i+'</li>').join("")+'</ul>';
+ if(b.t==="goal") return '<div class="flex gap-3 rounded-xl bg-brand-50 border border-brand-200 p-4 text-sm text-brand-700"><span class="text-lg">ðŸŽ¯</span><span><b>In this lesson:</b> '+b.x+'</span></div>';
+ if(b.t==="list") return '<ul class="space-y-2">'+b.items.map(i=>'<li class="flex gap-2 text-[15px] text-slate-600"><span class="text-brand-500 font-bold">â€¢</span>'+i+'</li>').join("")+'</ul>';
  if(b.t==="table") return '<div class="overflow-x-auto rounded-xl border border-slate-200"><table><thead><tr>'+b.head.map(h=>'<th>'+h+'</th>').join("")+'</tr></thead><tbody>'+b.rows.map(r=>'<tr>'+r.map(c=>'<td>'+c+'</td>').join("")+'</tr>').join("")+'</tbody></table></div>';
- if(b.t==="tip") return '<div class="flex gap-3 rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm text-amber-800"><span>💡</span><span><b>Coach tip:</b> '+b.x+'</span></div>';
- if(b.t==="example") return '<div class="flex gap-3 rounded-xl bg-sky-50 border border-sky-200 p-4 text-sm text-sky-800"><span>🧪</span><span><b>Example:</b> '+b.x+'</span></div>';
+ if(b.t==="tip") return '<div class="flex gap-3 rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm text-amber-800"><span>ðŸ’¡</span><span><b>Coach tip:</b> '+b.x+'</span></div>';
+ if(b.t==="example") return '<div class="flex gap-3 rounded-xl bg-sky-50 border border-sky-200 p-4 text-sm text-sky-800"><span>ðŸ§ª</span><span><b>Example:</b> '+b.x+'</span></div>';
  if(b.t==="formula") return '<div class="rounded-2xl border-2 border-navy/10 bg-white p-5 text-center shadow-sm"><div class="font-display font-bold text-lg md:text-xl text-navy">'+b.f+'</div><div class="text-xs text-slate-500 mt-1.5">'+b.note+'</div></div>';
- if(b.t==="mistake") return '<div class="rounded-xl bg-red-50 border border-red-200 p-4 text-sm text-red-700"><b class="flex items-center gap-2 mb-2">⚠️ Common mistakes</b><ul class="space-y-1.5">'+b.items.map(i=>'<li class="flex gap-2"><span>✕</span>'+i+'</li>').join("")+'</ul></div>';
- if(b.t==="split") return '<div class="grid md:grid-cols-2 gap-3"><div class="rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-sm text-emerald-800"><b class="block mb-2">✅ '+b.a.title+'</b><ul class="space-y-1.5">'+b.a.items.map(i=>'<li>• '+i+'</li>').join("")+'</ul></div><div class="rounded-xl bg-red-50 border border-red-200 p-4 text-sm text-red-700"><b class="block mb-2">🚫 '+b.b.title+'</b><ul class="space-y-1.5">'+b.b.items.map(i=>'<li>• '+i+'</li>').join("")+'</ul></div></div>';
+ if(b.t==="mistake") return '<div class="rounded-xl bg-red-50 border border-red-200 p-4 text-sm text-red-700"><b class="flex items-center gap-2 mb-2">âš ï¸ Common mistakes</b><ul class="space-y-1.5">'+b.items.map(i=>'<li class="flex gap-2"><span>âœ•</span>'+i+'</li>').join("")+'</ul></div>';
+ if(b.t==="split") return '<div class="grid md:grid-cols-2 gap-3"><div class="rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-sm text-emerald-800"><b class="block mb-2">âœ… '+b.a.title+'</b><ul class="space-y-1.5">'+b.a.items.map(i=>'<li>â€¢ '+i+'</li>').join("")+'</ul></div><div class="rounded-xl bg-red-50 border border-red-200 p-4 text-sm text-red-700"><b class="block mb-2">ðŸš« '+b.b.title+'</b><ul class="space-y-1.5">'+b.b.items.map(i=>'<li>â€¢ '+i+'</li>').join("")+'</ul></div></div>';
  if(b.t==="diagram"){
-   if(b.kind==="flow") return '<div class="rounded-2xl bg-slate-50 border border-slate-200 p-5"><div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">📊 '+b.title+'</div><div class="flex flex-col items-center">'+b.steps.map((s,i)=>'<div class="diagstep w-full max-w-sm rounded-xl bg-white border-2 border-navy/10 px-4 py-2.5 text-sm font-semibold text-navy text-center shadow-sm"><span class="text-brand-500 mr-1.5">'+(i+1)+'.</span>'+s+'</div>'+(i<b.steps.length-1?'<div class="text-slate-300 text-lg leading-none my-1">▼</div>':"")).join("")+'</div></div>';
-   if(b.kind==="funnel"){ const cols=["var(--c-chart-1)","var(--c-orange-h)","var(--c-chart-2)","var(--c-chart-3)"]; return '<div class="rounded-2xl bg-slate-50 border border-slate-200 p-5"><div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">📊 '+b.title+'</div><div class="space-y-2">'+b.items.map((it,i)=>'<div class="funnelbar mx-auto rounded-lg px-3 py-2 text-center text-xs font-bold text-white" style="width:'+it[1]+'%;min-width:140px;background:'+cols[i%4]+';animation-delay:'+(i*0.12)+'s">'+it[0]+'</div>').join("")+'</div><div class="text-[11px] text-slate-400 mt-3 text-center">Width = relative volume. Every stage leaks; find the biggest leak.</div></div>'; }
-   if(b.kind==="tree") return '<div class="rounded-2xl bg-slate-50 border border-slate-200 p-5"><div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">📊 '+b.title+'</div><div class="space-y-1.5">'+b.nodes.map(n=>{ const lv=n[0]; const style=lv===0?'bg-navy text-white':lv===1?'bg-white text-navy border border-slate-300':'bg-brand-50 text-brand-700 border border-brand-200'; return '<div class="'+style+' rounded-lg px-3 py-2 text-xs font-semibold shadow-sm" style="margin-left:'+(lv*26)+'px;max-width:'+(100-lv*12)+'%">'+(lv===0?'📁 ':lv===1?'🗂️ ':'🏷️ ')+n[1]+'</div>'; }).join("")+'</div></div>';
+   if(b.kind==="flow") return '<div class="rounded-2xl bg-slate-50 border border-slate-200 p-5"><div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">ðŸ“Š '+b.title+'</div><div class="flex flex-col items-center">'+b.steps.map((s,i)=>'<div class="diagstep w-full max-w-sm rounded-xl bg-white border-2 border-navy/10 px-4 py-2.5 text-sm font-semibold text-navy text-center shadow-sm"><span class="text-brand-500 mr-1.5">'+(i+1)+'.</span>'+s+'</div>'+(i<b.steps.length-1?'<div class="text-slate-300 text-lg leading-none my-1">â–¼</div>':"")).join("")+'</div></div>';
+   if(b.kind==="funnel"){ const cols=["var(--c-chart-1)","var(--c-orange-h)","var(--c-chart-2)","var(--c-chart-3)"]; return '<div class="rounded-2xl bg-slate-50 border border-slate-200 p-5"><div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">ðŸ“Š '+b.title+'</div><div class="space-y-2">'+b.items.map((it,i)=>'<div class="funnelbar mx-auto rounded-lg px-3 py-2 text-center text-xs font-bold text-white" style="width:'+it[1]+'%;min-width:140px;background:'+cols[i%4]+';animation-delay:'+(i*0.12)+'s">'+it[0]+'</div>').join("")+'</div><div class="text-[11px] text-slate-400 mt-3 text-center">Width = relative volume. Every stage leaks; find the biggest leak.</div></div>'; }
+   if(b.kind==="tree") return '<div class="rounded-2xl bg-slate-50 border border-slate-200 p-5"><div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">ðŸ“Š '+b.title+'</div><div class="space-y-1.5">'+b.nodes.map(n=>{ const lv=n[0]; const style=lv===0?'bg-navy text-white':lv===1?'bg-white text-navy border border-slate-300':'bg-brand-50 text-brand-700 border border-brand-200'; return '<div class="'+style+' rounded-lg px-3 py-2 text-xs font-semibold shadow-sm" style="margin-left:'+(lv*26)+'px;max-width:'+(100-lv*12)+'%">'+(lv===0?'ðŸ“ ':lv===1?'ðŸ—‚ï¸ ':'ðŸ·ï¸ ')+n[1]+'</div>'; }).join("")+'</div></div>';
  }
  if(b.t==="recall"){
    const id="recall-"+Math.random().toString(36).slice(2,9);
-   return '<div class="rounded-xl bg-navy-800 border-2 border-brand-500 p-4 text-sm"><div class="flex items-start gap-3"><span class="text-lg shrink-0">🧠</span><div class="flex-1 min-w-0"><div class="font-bold text-brand-400">Your turn — answer from memory before scrolling.</div><div class="text-slate-200 mt-1.5">'+b.q+'</div><button type="button" onclick="document.getElementById(\''+id+'\').classList.remove(\'hidden\');this.classList.add(\'hidden\')" class="mt-3 text-xs font-bold text-brand-400 hover:text-brand-300 underline">Reveal answer</button><div id="'+id+'" class="hidden mt-3 rounded-lg bg-white border border-brand-500/30 p-3 text-slate-700"><b class="text-navy">Answer:</b> '+b.a+'</div></div></div></div>';
+   return '<div class="rounded-xl bg-navy-800 border-2 border-brand-500 p-4 text-sm"><div class="flex items-start gap-3"><span class="text-lg shrink-0">ðŸ§ </span><div class="flex-1 min-w-0"><div class="font-bold text-brand-400">Your turn â€” answer from memory before scrolling.</div><div class="text-slate-200 mt-1.5">'+b.q+'</div><button type="button" onclick="document.getElementById(\''+id+'\').classList.remove(\'hidden\');this.classList.add(\'hidden\')" class="mt-3 text-xs font-bold text-brand-400 hover:text-brand-300 underline">Reveal answer</button><div id="'+id+'" class="hidden mt-3 rounded-lg bg-white border border-brand-500/30 p-3 text-slate-700"><b class="text-navy">Answer:</b> '+b.a+'</div></div></div></div>';
  }
  return "";
 }
@@ -1103,12 +1103,12 @@ function renderBlock(b){
 /* ================= RENDERERS ================= */
 const RENDER={};
 function getBadges(){ return [
- {icon:"🎯",name:"First Steps",hint:"Finish 1 lesson",earned:state.done.length>=1},
- {icon:"🧮",name:"Math Whiz",hint:"80%+ on Final Exam",earned:(state.quizScores.final||0)>=80},
- {icon:"🕵️",name:"Waste Hunter",hint:"70%+ in term trainer",earned:state.trainerBest>=70},
- {icon:"🏗️",name:"Architect",hint:"70+ in campaign builder",earned:state.builderBest>=70},
- {icon:"✍️",name:"Storyteller",hint:"Generate a report",earned:state.reportDone},
- {icon:"💬",name:"Curious Mind",hint:"Ask the AI coach",earned:state.coachAsked}]; }
+ {icon:"ðŸŽ¯",name:"First Steps",hint:"Finish 1 lesson",earned:state.done.length>=1},
+ {icon:"ðŸ§®",name:"Math Whiz",hint:"80%+ on Final Exam",earned:(state.quizScores.final||0)>=80},
+ {icon:"ðŸ•µï¸",name:"Waste Hunter",hint:"70%+ in term trainer",earned:state.trainerBest>=70},
+ {icon:"ðŸ—ï¸",name:"Architect",hint:"70+ in campaign builder",earned:state.builderBest>=70},
+ {icon:"âœï¸",name:"Storyteller",hint:"Generate a report",earned:state.reportDone},
+ {icon:"ðŸ’¬",name:"Curious Mind",hint:"Ask the AI coach",earned:state.coachAsked}]; }
 
 RENDER.dashboard=function(){
  const el=document.getElementById("view-dashboard");
@@ -1117,12 +1117,12 @@ RENDER.dashboard=function(){
  const quizzesTaken=Object.keys(state.quizScores).length, quizzesPassed=Object.values(state.quizScores).filter(v=>v>=70).length;
  const badges=getBadges();
  el.innerHTML='<div class="grid gap-6 xl:grid-cols-4">'+
- '<div class="xl:col-span-4 relative overflow-hidden rounded-2xl bg-navy text-white shadow-card"><div class="relative z-10 p-6 md:p-8 max-w-xl"><div class="text-brand-400 text-xs font-bold tracking-widest uppercase">Teaching companion</div><h2 class="font-display font-bold text-2xl md:text-3xl mt-2">Welcome back, future PPC Manager 👋</h2><p class="text-slate-300 text-sm mt-2">60 plain-words lessons, 12 module quizzes, a final exam, and four practice simulators. From zero to competent VA manager.</p><div class="mt-5"><div class="flex justify-between text-xs font-semibold text-slate-300 mb-1"><span>'+L.name+'</span><span>'+(L.next?L.next.name+" at "+L.next.xp+" XP":"Top level")+'</span></div><div class="h-3 rounded-full bg-white/15 overflow-hidden"><div class="bar h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-400" style="width:'+L.pct+'%"></div></div></div><div class="flex flex-wrap gap-2 mt-5"><button type="button" onclick="showView(\'lessons\')" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-4 py-2.5 rounded-xl transition">📚 '+(next?"Continue learning":"Review lessons")+'</button><button type="button" onclick="showView(\'quiz\')" class="bg-white/10 hover:bg-white/20 font-bold text-sm px-4 py-2.5 rounded-xl transition">🧠 Quiz Arena</button><button type="button" onclick="showView(\'trainer\')" class="bg-white/10 hover:bg-white/20 font-bold text-sm px-4 py-2.5 rounded-xl transition">🕵️ Practice search terms</button><button type="button" onclick="showView(\'coach\')" class="bg-white/10 hover:bg-white/20 font-bold text-sm px-4 py-2.5 rounded-xl transition">💬 Ask the coach</button></div></div><img src="'+IMG.hero+'" alt="" class="absolute right-0 bottom-0 h-full w-auto max-w-none opacity-90 hidden md:block pointer-events-none" style="mask-image:linear-gradient(to right,transparent,black 30%)"></div>'+
+ '<div class="xl:col-span-4 relative overflow-hidden rounded-2xl bg-navy text-white shadow-card"><div class="relative z-10 p-6 md:p-8 max-w-xl"><div class="text-brand-400 text-xs font-bold tracking-widest uppercase">Teaching companion</div><h2 class="font-display font-bold text-2xl md:text-3xl mt-2">Welcome back, future PPC Manager ðŸ‘‹</h2><p class="text-slate-300 text-sm mt-2">60 plain-words lessons, 12 module quizzes, a final exam, and four practice simulators. From zero to competent VA manager.</p><div class="mt-5"><div class="flex justify-between text-xs font-semibold text-slate-300 mb-1"><span>'+L.name+'</span><span>'+(L.next?L.next.name+" at "+L.next.xp+" XP":"Top level")+'</span></div><div class="h-3 rounded-full bg-white/15 overflow-hidden"><div class="bar h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-400" style="width:'+L.pct+'%"></div></div></div><div class="flex flex-wrap gap-2 mt-5"><button type="button" onclick="showView(\'lessons\')" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-4 py-2.5 rounded-xl transition">ðŸ“š '+(next?"Continue learning":"Review lessons")+'</button><button type="button" onclick="showView(\'quiz\')" class="bg-white/10 hover:bg-white/20 font-bold text-sm px-4 py-2.5 rounded-xl transition">ðŸ§  Quiz Arena</button><button type="button" onclick="showView(\'trainer\')" class="bg-white/10 hover:bg-white/20 font-bold text-sm px-4 py-2.5 rounded-xl transition">ðŸ•µï¸ Practice search terms</button><button type="button" onclick="showView(\'coach\')" class="bg-white/10 hover:bg-white/20 font-bold text-sm px-4 py-2.5 rounded-xl transition">ðŸ’¬ Ask the coach</button></div></div><img src="'+IMG.hero+'" alt="" class="absolute right-0 bottom-0 h-full w-auto max-w-none opacity-90 hidden md:block pointer-events-none" style="mask-image:linear-gradient(to right,transparent,black 30%)"></div>'+
  '<div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Course progress</div><div class="font-display font-bold text-3xl text-navy mt-2">'+pct+'%</div><div class="text-xs text-slate-500 mt-1">'+doneCount+' of '+TOTAL_LESSONS+' lessons</div><div class="h-2.5 mt-4 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full bg-emerald-500 rounded-full" style="width:'+pct+'%"></div></div></div>'+
- '<div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Total XP</div><div class="font-display font-bold text-3xl text-brand-600 mt-2">⚡ '+state.xp+'</div><div class="text-xs text-slate-500 mt-1">Level: '+L.name+'</div><div class="h-2.5 mt-4 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full bg-brand-500 rounded-full" style="width:'+L.pct+'%"></div></div></div>'+
- '<div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Quizzes</div><div class="font-display font-bold text-3xl text-navy mt-2">'+quizzesPassed+'<span class="text-base text-slate-400">/'+(MODULES.length+1)+' passed</span></div><div class="text-xs text-slate-500 mt-1">'+quizzesTaken+' taken · pass mark 70%</div><div class="h-2.5 mt-4 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full bg-sky-500 rounded-full" style="width:'+Math.round(quizzesPassed/(MODULES.length+1)*100)+'%"></div></div></div>'+
- '<div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Practice bests</div><div class="mt-3 space-y-2 text-sm font-semibold"><div class="flex justify-between"><span class="text-slate-500">🕵️ Search terms</span><span class="text-navy">'+state.trainerBest+'%</span></div><div class="flex justify-between"><span class="text-slate-500">🏗️ Campaign build</span><span class="text-navy">'+state.builderBest+'/100</span></div><div class="flex justify-between"><span class="text-slate-500">🧠 Final exam</span><span class="text-navy">'+(state.quizScores.final||0)+'%</span></div></div></div>'+
- '<div class="xl:col-span-3 bg-white rounded-2xl p-6 shadow-card"><div class="flex items-center justify-between mb-4"><h3 class="font-display font-bold text-navy">Module progress</h3><button type="button" onclick="showView(\'lessons\')" class="text-xs font-bold text-brand-600 hover:text-brand-700">Open lessons →</button></div><div class="grid md:grid-cols-2 gap-x-8 gap-y-3">'+MODULES.map((m,i)=>{const d=m.lessons.filter(l=>state.done.includes(l.id)).length;const p=Math.round(d/m.lessons.length*100);return '<div><div class="flex justify-between text-xs font-semibold mb-1"><span class="text-slate-600">'+m.icon+' M'+(i+1)+' · '+m.title+'</span><span class="text-slate-400">'+d+'/'+m.lessons.length+'</span></div><div class="h-2 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full rounded-full" style="width:'+p+'%;background:'+m.color+'"></div></div></div>';}).join("")+'</div></div>'+
+ '<div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Total XP</div><div class="font-display font-bold text-3xl text-brand-600 mt-2">âš¡ '+state.xp+'</div><div class="text-xs text-slate-500 mt-1">Level: '+L.name+'</div><div class="h-2.5 mt-4 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full bg-brand-500 rounded-full" style="width:'+L.pct+'%"></div></div></div>'+
+ '<div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Quizzes</div><div class="font-display font-bold text-3xl text-navy mt-2">'+quizzesPassed+'<span class="text-base text-slate-400">/'+(MODULES.length+1)+' passed</span></div><div class="text-xs text-slate-500 mt-1">'+quizzesTaken+' taken Â· pass mark 70%</div><div class="h-2.5 mt-4 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full bg-sky-500 rounded-full" style="width:'+Math.round(quizzesPassed/(MODULES.length+1)*100)+'%"></div></div></div>'+
+ '<div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Practice bests</div><div class="mt-3 space-y-2 text-sm font-semibold"><div class="flex justify-between"><span class="text-slate-500">ðŸ•µï¸ Search terms</span><span class="text-navy">'+state.trainerBest+'%</span></div><div class="flex justify-between"><span class="text-slate-500">ðŸ—ï¸ Campaign build</span><span class="text-navy">'+state.builderBest+'/100</span></div><div class="flex justify-between"><span class="text-slate-500">ðŸ§  Final exam</span><span class="text-navy">'+(state.quizScores.final||0)+'%</span></div></div></div>'+
+ '<div class="xl:col-span-3 bg-white rounded-2xl p-6 shadow-card"><div class="flex items-center justify-between mb-4"><h3 class="font-display font-bold text-navy">Module progress</h3><button type="button" onclick="showView(\'lessons\')" class="text-xs font-bold text-brand-600 hover:text-brand-700">Open lessons â†’</button></div><div class="grid md:grid-cols-2 gap-x-8 gap-y-3">'+MODULES.map((m,i)=>{const d=m.lessons.filter(l=>state.done.includes(l.id)).length;const p=Math.round(d/m.lessons.length*100);return '<div><div class="flex justify-between text-xs font-semibold mb-1"><span class="text-slate-600">'+m.icon+' M'+(i+1)+' Â· '+m.title+'</span><span class="text-slate-400">'+d+'/'+m.lessons.length+'</span></div><div class="h-2 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full rounded-full" style="width:'+p+'%;background:'+m.color+'"></div></div></div>';}).join("")+'</div></div>'+
  '<div class="bg-white rounded-2xl p-6 shadow-card flex flex-col items-center"><h3 class="font-display font-bold text-navy self-start mb-2">Overall</h3><div class="relative w-44 h-44"><canvas id="dashDonut"></canvas><div class="absolute inset-0 flex flex-col items-center justify-center"><div class="font-display font-bold text-2xl text-navy">'+pct+'%</div><div class="text-[11px] text-slate-400 font-semibold">complete</div></div></div><div class="text-xs text-slate-500 mt-3 text-center">Lessons + quizzes + practice = <b>Competent Manager</b>.</div></div>'+
  '<div class="xl:col-span-4 bg-white rounded-2xl p-6 shadow-card"><h3 class="font-display font-bold text-navy mb-4">Badges</h3><div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">'+badges.map(b=>'<div class="rounded-xl border '+(b.earned?'border-brand-200 bg-brand-50':'border-slate-200 bg-slate-50 opacity-50')+' p-4 text-center"><div class="text-2xl '+(b.earned?'':'grayscale')+'">'+b.icon+'</div><div class="text-xs font-bold text-navy mt-2">'+b.name+'</div><div class="text-[10px] text-slate-500 mt-1">'+b.hint+'</div></div>').join("")+'</div></div></div>';
  if(dashChart){dashChart.destroy();dashChart=null;}
@@ -1133,7 +1133,7 @@ RENDER.lessons=function(){
  const el=document.getElementById("view-lessons");
  if(lessonCtx.lesson!==null){renderLessonReader(el);return;}
  if(lessonCtx.module!==null){renderModule(el);return;}
- el.innerHTML='<div class="mb-5"><h2 class="font-display font-bold text-xl text-navy">The path from zero to manager</h2><p class="text-sm text-slate-500 mt-1">12 modules · '+TOTAL_LESSONS+' lessons · a quiz after every module · a final exam at the end. Finish lessons for XP, then prove it in the quizzes.</p><p class="text-xs font-bold text-brand-700 mt-2">'+ASSESSMENT_BANDS+'</p></div><div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">'+MODULES.map((m,i)=>{const d=m.lessons.filter(l=>state.done.includes(l.id)).length;const p=Math.round(d/m.lessons.length*100);const qb=state.quizScores["m"+i];return '<button type="button" onclick="openModule('+i+')" class="statcard text-left bg-white rounded-2xl p-5 shadow-card border-t-4" style="border-color:'+m.color+'"><div class="flex items-start justify-between"><span class="text-3xl">'+m.icon+'</span><span class="text-[11px] font-bold px-2 py-1 rounded-full '+(p===100?'bg-emerald-100 text-emerald-700':'bg-slate-100 text-slate-500')+'">'+d+'/'+m.lessons.length+'</span></div><div class="font-display font-bold text-navy mt-3">Module '+(i+1)+' · '+m.title+'</div><div class="text-xs text-slate-500 mt-1">'+m.desc+'</div><div class="flex items-center gap-2 mt-3 text-[10px] font-bold">'+(qb!==undefined?'<span class="px-2 py-0.5 rounded-full '+(qb>=70?'bg-emerald-100 text-emerald-700':'bg-amber-100 text-amber-700')+'">Quiz '+qb+'%</span>':'<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-400">Quiz pending</span>')+'</div><div class="h-1.5 mt-3 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full rounded-full" style="width:'+p+'%;background:'+m.color+'"></div></div></button>';}).join("")+'</div>';
+ el.innerHTML='<div class="mb-5"><h2 class="font-display font-bold text-xl text-navy">The path from zero to manager</h2><p class="text-sm text-slate-500 mt-1">12 modules Â· '+TOTAL_LESSONS+' lessons Â· a quiz after every module Â· a final exam at the end. Finish lessons for XP, then prove it in the quizzes.</p><p class="text-xs font-bold text-brand-700 mt-2">'+ASSESSMENT_BANDS+'</p></div><div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">'+MODULES.map((m,i)=>{const d=m.lessons.filter(l=>state.done.includes(l.id)).length;const p=Math.round(d/m.lessons.length*100);const qb=state.quizScores["m"+i];return '<button type="button" onclick="openModule('+i+')" class="statcard text-left bg-white rounded-2xl p-5 shadow-card border-t-4" style="border-color:'+m.color+'"><div class="flex items-start justify-between"><span class="text-3xl">'+m.icon+'</span><span class="text-[11px] font-bold px-2 py-1 rounded-full '+(p===100?'bg-emerald-100 text-emerald-700':'bg-slate-100 text-slate-500')+'">'+d+'/'+m.lessons.length+'</span></div><div class="font-display font-bold text-navy mt-3">Module '+(i+1)+' Â· '+m.title+'</div><div class="text-xs text-slate-500 mt-1">'+m.desc+'</div><div class="flex items-center gap-2 mt-3 text-[10px] font-bold">'+(qb!==undefined?'<span class="px-2 py-0.5 rounded-full '+(qb>=70?'bg-emerald-100 text-emerald-700':'bg-amber-100 text-amber-700')+'">Quiz '+qb+'%</span>':'<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-400">Quiz pending</span>')+'</div><div class="h-1.5 mt-3 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full rounded-full" style="width:'+p+'%;background:'+m.color+'"></div></div></button>';}).join("")+'</div>';
 };
 window.openModule=function(i){lessonCtx={module:i,lesson:null};RENDER.lessons();};
 window.backToModules=function(){lessonCtx={module:null,lesson:null};RENDER.lessons();};
@@ -1143,32 +1143,32 @@ function renderModulePractice(moduleId){
  const curriculumModule=CurriculumManifest.getModule(moduleId);
  if(!curriculumModule||!curriculumModule.practice.length)return "";
  const practiceProgressStore=StudentProgress.createLocalProgressStore();
- return '<div class="mt-4 bg-brand-50 border border-brand-200 rounded-2xl p-5 shadow-card"><div class="text-xs font-bold uppercase tracking-widest text-brand-700">Assigned simulator practice</div><div class="grid sm:grid-cols-2 gap-3 mt-3">'+curriculumModule.practice.map(a=>{const simulator=CurriculumManifest.getSimulator(a.simulatorId);const progress=practiceProgressStore.getSimulatorProgress(a.simulatorId);const view=ProgressPresentation.describe(progress);return '<a href="'+simulator.file+'" class="statcard bg-white border border-brand-200 rounded-xl p-4"><span class="block font-display font-bold text-navy">'+simulator.title+'</span><span class="block text-xs text-slate-500 mt-1">Target: '+a.minimumScore+'%'+(a.required?' · Required':' · Optional')+'</span><span class="inline-flex mt-3 px-2 py-1 rounded-full text-[10px] font-bold bg-brand-50 text-brand-700 border border-brand-200">'+view.label+' · '+view.detail+'</span><span class="block text-xs font-bold text-brand-700 mt-3">Open simulator →</span></a>';}).join("")+'</div></div>';
+ return '<div class="mt-4 bg-brand-50 border border-brand-200 rounded-2xl p-5 shadow-card"><div class="text-xs font-bold uppercase tracking-widest text-brand-700">Assigned simulator practice</div><div class="grid sm:grid-cols-2 gap-3 mt-3">'+curriculumModule.practice.map(a=>{const simulator=CurriculumManifest.getSimulator(a.simulatorId);const progress=practiceProgressStore.getSimulatorProgress(a.simulatorId);const view=ProgressPresentation.describe(progress);return '<a href="'+simulator.file+'" class="statcard bg-white border border-brand-200 rounded-xl p-4"><span class="block font-display font-bold text-navy">'+simulator.title+'</span><span class="block text-xs text-slate-500 mt-1">Target: '+a.minimumScore+'%'+(a.required?' Â· Required':' Â· Optional')+'</span><span class="inline-flex mt-3 px-2 py-1 rounded-full text-[10px] font-bold bg-brand-50 text-brand-700 border border-brand-200">'+view.label+' Â· '+view.detail+'</span><span class="block text-xs font-bold text-brand-700 mt-3">Open simulator â†’</span></a>';}).join("")+'</div></div>';
 }
 
 function renderModule(el){
  const i=lessonCtx.module,m=MODULES[i],qb=state.quizScores["m"+i];
- el.innerHTML='<button type="button" onclick="backToModules()" class="text-sm font-bold text-slate-500 hover:text-navy mb-4">← All modules</button>'+
- '<div class="bg-white rounded-2xl shadow-card overflow-hidden"><div class="relative p-6 md:p-8 border-l-8" style="border-color:'+m.color+'"><div class="flex flex-wrap items-center gap-6"><div class="flex-1 min-w-[220px]"><div class="text-3xl">'+m.icon+'</div><h2 class="font-display font-bold text-xl text-navy mt-2">Module '+(i+1)+' · '+m.title+'</h2><p class="text-sm text-slate-500 mt-1">'+m.desc+'</p></div>'+(m.img?'<img src="'+m.img+'" class="w-36 h-36 rounded-2xl object-cover border border-slate-200 hidden md:block" alt="">':'')+'</div></div></div>'+
- '<div class="mt-4 space-y-3">'+m.lessons.map((l,li)=>{const done=state.done.includes(l.id);return '<button type="button" onclick="openLesson('+i+','+li+')" class="w-full statcard bg-white rounded-2xl p-4 shadow-card flex items-center gap-4 text-left"><span class="w-9 h-9 shrink-0 rounded-full flex items-center justify-center font-bold text-sm '+(done?'bg-emerald-100 text-emerald-600':'bg-slate-100 text-slate-400')+'">'+(done?'✓':li+1)+'</span><span class="flex-1"><span class="block font-bold text-navy text-sm">'+l.title+'</span><span class="block text-xs text-slate-400 mt-0.5">⏱ '+l.mins+' min · '+l.blocks.length+' learning blocks</span></span><span class="text-slate-300 text-xl">→</span></button>';}).join("")+'</div>'+
- '<div class="mt-4 bg-navy text-white rounded-2xl p-5 shadow-card flex flex-wrap items-center gap-4"><span class="text-2xl">🧠</span><div class="flex-1 min-w-[200px]"><div class="font-display font-bold">Module '+(i+1)+' quiz · '+m.quiz.length+' questions</div><div class="text-xs text-slate-300 mt-1">'+(qb!==undefined?'Best score: '+qb+'%':'Not taken yet. Pass at 70% to prove the module.')+'</div></div><button type="button" onclick="takeQuiz(\'m'+i+'\')" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-5 py-2.5 rounded-xl transition">'+(qb!==undefined?'Retake quiz':'Take quiz')+'</button></div>'+renderModulePractice("m"+i);
+ el.innerHTML='<button type="button" onclick="backToModules()" class="text-sm font-bold text-slate-500 hover:text-navy mb-4">â† All modules</button>'+
+ '<div class="bg-white rounded-2xl shadow-card overflow-hidden"><div class="relative p-6 md:p-8 border-l-8" style="border-color:'+m.color+'"><div class="flex flex-wrap items-center gap-6"><div class="flex-1 min-w-[220px]"><div class="text-3xl">'+m.icon+'</div><h2 class="font-display font-bold text-xl text-navy mt-2">Module '+(i+1)+' Â· '+m.title+'</h2><p class="text-sm text-slate-500 mt-1">'+m.desc+'</p></div>'+(m.img?'<img src="'+m.img+'" class="w-36 h-36 rounded-2xl object-cover border border-slate-200 hidden md:block" alt="">':'')+'</div></div></div>'+
+ '<div class="mt-4 space-y-3">'+m.lessons.map((l,li)=>{const done=state.done.includes(l.id);return '<button type="button" onclick="openLesson('+i+','+li+')" class="w-full statcard bg-white rounded-2xl p-4 shadow-card flex items-center gap-4 text-left"><span class="w-9 h-9 shrink-0 rounded-full flex items-center justify-center font-bold text-sm '+(done?'bg-emerald-100 text-emerald-600':'bg-slate-100 text-slate-400')+'">'+(done?'âœ“':li+1)+'</span><span class="flex-1"><span class="block font-bold text-navy text-sm">'+l.title+'</span><span class="block text-xs text-slate-400 mt-0.5">â± '+l.mins+' min Â· '+l.blocks.length+' learning blocks</span></span><span class="text-slate-300 text-xl">â†’</span></button>';}).join("")+'</div>'+
+ '<div class="mt-4 bg-navy text-white rounded-2xl p-5 shadow-card flex flex-wrap items-center gap-4"><span class="text-2xl">ðŸ§ </span><div class="flex-1 min-w-[200px]"><div class="font-display font-bold">Module '+(i+1)+' quiz Â· '+m.quiz.length+' questions</div><div class="text-xs text-slate-300 mt-1">'+(qb!==undefined?'Best score: '+qb+'%':'Not taken yet. Pass at 70% to prove the module.')+'</div></div><button type="button" onclick="takeQuiz(\'m'+i+'\')" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-5 py-2.5 rounded-xl transition">'+(qb!==undefined?'Retake quiz':'Take quiz')+'</button></div>'+renderModulePractice("m"+i);
 }
 
 function renderLessonReader(el){
  const mi=lessonCtx.module,li=lessonCtx.lesson,m=MODULES[mi],l=m.lessons[li],done=state.done.includes(l.id);
  let nxt=null; if(li+1<m.lessons.length) nxt={mi,li:li+1}; else if(mi+1<MODULES.length) nxt={mi:mi+1,li:0};
  const last=li===m.lessons.length-1;
- el.innerHTML='<button type="button" onclick="openModule('+mi+')" class="text-sm font-bold text-slate-500 hover:text-navy mb-4">← Module '+(mi+1)+' · '+m.title+'</button>'+
+ el.innerHTML='<button type="button" onclick="openModule('+mi+')" class="text-sm font-bold text-slate-500 hover:text-navy mb-4">â† Module '+(mi+1)+' Â· '+m.title+'</button>'+
  '<div class="bg-white rounded-2xl shadow-card overflow-hidden">'+
- '<div class="p-6 md:p-8 border-b border-slate-100" style="background:linear-gradient(135deg,color-mix(in srgb,'+m.color+',transparent 88%),transparent)"><div class="flex items-center gap-5">'+(m.img?'<img src="'+m.img+'" class="w-16 h-16 rounded-2xl object-cover border border-slate-200 hidden sm:block" alt="">':'')+'<div><div class="text-xs font-bold uppercase tracking-widest" style="color:'+m.color+'">Module '+(mi+1)+' · Lesson '+(li+1)+' of '+m.lessons.length+'</div><h2 class="font-display font-bold text-2xl text-navy mt-1">'+l.title+'</h2><div class="text-xs text-slate-400 mt-1 font-semibold">⏱ '+l.mins+' min · '+l.blocks.length+' blocks '+(done?'· <span class="text-emerald-600">✓ completed</span>':'')+'</div></div></div><div class="h-1.5 mt-5 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full rounded-full" style="width:'+Math.round(((li+ (done?1:0))/m.lessons.length)*100)+'%;background:'+m.color+'"></div></div></div>'+
+ '<div class="p-6 md:p-8 border-b border-slate-100" style="background:linear-gradient(135deg,color-mix(in srgb,'+m.color+',transparent 88%),transparent)"><div class="flex items-center gap-5">'+(m.img?'<img src="'+m.img+'" class="w-16 h-16 rounded-2xl object-cover border border-slate-200 hidden sm:block" alt="">':'')+'<div><div class="text-xs font-bold uppercase tracking-widest" style="color:'+m.color+'">Module '+(mi+1)+' Â· Lesson '+(li+1)+' of '+m.lessons.length+'</div><h2 class="font-display font-bold text-2xl text-navy mt-1">'+l.title+'</h2><div class="text-xs text-slate-400 mt-1 font-semibold">â± '+l.mins+' min Â· '+l.blocks.length+' blocks '+(done?'Â· <span class="text-emerald-600">âœ“ completed</span>':'')+'</div></div></div><div class="h-1.5 mt-5 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full rounded-full" style="width:'+Math.round(((li+ (done?1:0))/m.lessons.length)*100)+'%;background:'+m.color+'"></div></div></div>'+
  '<div class="p-6 md:p-8 lessonblock space-y-5 max-w-3xl">'+l.blocks.map(renderBlock).join("")+'</div>'+
- '<div class="px-6 md:px-8 py-5 bg-slate-50 flex flex-wrap items-center gap-3">'+(done?'<span class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 font-bold text-sm px-4 py-2.5 rounded-xl">✓ Completed</span>':'<button type="button" onclick="markComplete(\''+l.id+'\')" class="pop bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-5 py-2.5 rounded-xl transition">Mark complete · +20 XP</button>')+(last?'<button type="button" onclick="takeQuiz(\'m'+mi+'\')" class="bg-navy hover:bg-navy-800 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition">🧠 Take Module Quiz →</button>':(nxt?'<button type="button" onclick="openLesson('+nxt.mi+','+nxt.li+')" class="bg-navy hover:bg-navy-800 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition">Next lesson →</button>':''))+'<button type="button" onclick="showView(\'quiz\')" class="ml-auto text-sm font-bold text-slate-500 hover:text-navy">Quiz Arena →</button></div></div>';
+ '<div class="px-6 md:px-8 py-5 bg-slate-50 flex flex-wrap items-center gap-3">'+(done?'<span class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 font-bold text-sm px-4 py-2.5 rounded-xl">âœ“ Completed</span>':'<button type="button" onclick="markComplete(\''+l.id+'\')" class="pop bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-5 py-2.5 rounded-xl transition">Mark complete Â· +20 XP</button>')+(last?'<button type="button" onclick="takeQuiz(\'m'+mi+'\')" class="bg-navy hover:bg-navy-800 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition">ðŸ§  Take Module Quiz â†’</button>':(nxt?'<button type="button" onclick="openLesson('+nxt.mi+','+nxt.li+')" class="bg-navy hover:bg-navy-800 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition">Next lesson â†’</button>':''))+'<button type="button" onclick="showView(\'quiz\')" class="ml-auto text-sm font-bold text-slate-500 hover:text-navy">Quiz Arena â†’</button></div></div>';
 }
 window.markComplete=function(id){ if(!state.done.includes(id)){ state.done.push(id); save(); addXp(20,"Lesson complete"); } RENDER.lessons(); updateTopbar(); };
 
 RENDER.glossary=function(){
  const el=document.getElementById("view-glossary");
- el.innerHTML='<div class="flex flex-wrap items-end justify-between gap-3 mb-5"><div><h2 class="font-display font-bold text-xl text-navy">Plain-words glossary</h2><p class="text-sm text-slate-500 mt-1">'+GLOSSARY.length+' terms, explained like a human. Click a card to copy.</p></div><input id="glossSearch" oninput="filterGloss()" placeholder="Search a term… e.g. ACOS" class="w-full sm:w-72 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></div><div id="glossGrid" class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4"></div>';
+ el.innerHTML='<div class="flex flex-wrap items-end justify-between gap-3 mb-5"><div><h2 class="font-display font-bold text-xl text-navy">Plain-words glossary</h2><p class="text-sm text-slate-500 mt-1">'+GLOSSARY.length+' terms, explained like a human. Click a card to copy.</p></div><input id="glossSearch" oninput="filterGloss()" placeholder="Search a termâ€¦ e.g. ACOS" class="w-full sm:w-72 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></div><div id="glossGrid" class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4"></div>';
  paintGloss("");
 };
 window.filterGloss=function(){paintGloss(document.getElementById("glossSearch").value.toLowerCase());};
@@ -1179,18 +1179,18 @@ window.copyGloss=function(btn){ const t=btn.dataset.txt; if(navigator.clipboard)
 /* ---------- Trainer ---------- */
 RENDER.trainer=function(){
  const el=document.getElementById("view-trainer");
- el.innerHTML='<div class="grid lg:grid-cols-3 gap-4 mb-5"><div class="lg:col-span-2 bg-white rounded-2xl p-5 shadow-card"><h2 class="font-display font-bold text-lg text-navy">🕵️ Weekly search term review</h2><p class="text-sm text-slate-500 mt-1">The most important job of a PPC manager. Choose an action per term. Margin is <b>'+TRAINER_PRODUCT.margin+'%</b>, so break-even ACOS is <b>'+TRAINER_PRODUCT.margin+'%</b>.</p></div><div class="bg-navy text-white rounded-2xl p-5 shadow-card"><div class="text-xs text-slate-400 font-bold uppercase">Practice product</div><div class="font-display font-bold mt-1">'+TRAINER_PRODUCT.name+'</div><div class="text-sm text-slate-300 mt-1">Price $'+TRAINER_PRODUCT.price+' · Margin '+TRAINER_PRODUCT.margin+'% · Budget $'+TRAINER_PRODUCT.budget+'/day</div><div class="text-xs text-brand-400 mt-2 font-semibold">Best score: '+state.trainerBest+'%</div></div></div>'+
- '<div class="bg-white rounded-2xl shadow-card overflow-hidden"><div class="overflow-x-auto"><table class="w-full text-sm min-w-[760px]"><thead><tr class="bg-navy text-white text-left"><th class="px-4 py-3">Search term</th><th class="px-4 py-3">Clicks</th><th class="px-4 py-3">Spend</th><th class="px-4 py-3">Sales</th><th class="px-4 py-3">ACOS</th><th class="px-4 py-3 w-56">Your action</th></tr></thead><tbody>'+TRAINER_ROWS.map((r,i)=>{const acos=r.sales>0?Math.round(r.spend/r.sales*100)+"%":"—";return '<tr class="border-b border-slate-100"><td class="px-4 py-3 font-semibold text-navy">'+r.term+'</td><td class="px-4 py-3">'+r.clicks+'</td><td class="px-4 py-3">$'+r.spend.toFixed(2)+'</td><td class="px-4 py-3">'+(r.sales>0?"$"+r.sales:"—")+'</td><td class="px-4 py-3 font-bold '+(r.sales===0?'text-red-500':(parseInt(acos)>TRAINER_PRODUCT.margin?'text-amber-600':'text-emerald-600'))+'">'+acos+'</td><td class="px-4 py-3"><select data-i="'+i+'" class="tr-select w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">'+TRAINER_OPTS.map(o=>'<option value="'+o.v+'">'+o.label+'</option>').join("")+'</select></td></tr>';}).join("")+'</tbody></table></div><div class="p-4 bg-slate-50 flex flex-wrap gap-3 items-center"><button type="button" onclick="gradeTrainer()" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-6 py-2.5 rounded-xl transition">Grade my decisions</button><button type="button" onclick="showView(\'trainer\')" class="text-sm font-bold text-slate-500 hover:text-navy">Reset</button><span class="text-xs text-slate-400 ml-auto">First graded attempt earns 5 XP per correct decision.</span></div><div id="trainerResult" class="hidden p-5 border-t border-slate-100"></div></div>';
+ el.innerHTML='<div class="grid lg:grid-cols-3 gap-4 mb-5"><div class="lg:col-span-2 bg-white rounded-2xl p-5 shadow-card"><h2 class="font-display font-bold text-lg text-navy">ðŸ•µï¸ Weekly search term review</h2><p class="text-sm text-slate-500 mt-1">The most important job of a PPC manager. Choose an action per term. Margin is <b>'+TRAINER_PRODUCT.margin+'%</b>, so break-even ACOS is <b>'+TRAINER_PRODUCT.margin+'%</b>.</p></div><div class="bg-navy text-white rounded-2xl p-5 shadow-card"><div class="text-xs text-slate-400 font-bold uppercase">Practice product</div><div class="font-display font-bold mt-1">'+TRAINER_PRODUCT.name+'</div><div class="text-sm text-slate-300 mt-1">Price $'+TRAINER_PRODUCT.price+' Â· Margin '+TRAINER_PRODUCT.margin+'% Â· Budget $'+TRAINER_PRODUCT.budget+'/day</div><div class="text-xs text-brand-400 mt-2 font-semibold">Best score: '+state.trainerBest+'%</div></div></div>'+
+ '<div class="bg-white rounded-2xl shadow-card overflow-hidden"><div class="overflow-x-auto"><table class="w-full text-sm min-w-[760px]"><thead><tr class="bg-navy text-white text-left"><th class="px-4 py-3">Search term</th><th class="px-4 py-3">Clicks</th><th class="px-4 py-3">Spend</th><th class="px-4 py-3">Sales</th><th class="px-4 py-3">ACOS</th><th class="px-4 py-3 w-56">Your action</th></tr></thead><tbody>'+TRAINER_ROWS.map((r,i)=>{const acos=r.sales>0?Math.round(r.spend/r.sales*100)+"%":"â€”";return '<tr class="border-b border-slate-100"><td class="px-4 py-3 font-semibold text-navy">'+r.term+'</td><td class="px-4 py-3">'+r.clicks+'</td><td class="px-4 py-3">$'+r.spend.toFixed(2)+'</td><td class="px-4 py-3">'+(r.sales>0?"$"+r.sales:"â€”")+'</td><td class="px-4 py-3 font-bold '+(r.sales===0?'text-red-500':(parseInt(acos)>TRAINER_PRODUCT.margin?'text-amber-600':'text-emerald-600'))+'">'+acos+'</td><td class="px-4 py-3"><select data-i="'+i+'" class="tr-select w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">'+TRAINER_OPTS.map(o=>'<option value="'+o.v+'">'+o.label+'</option>').join("")+'</select></td></tr>';}).join("")+'</tbody></table></div><div class="p-4 bg-slate-50 flex flex-wrap gap-3 items-center"><button type="button" onclick="gradeTrainer()" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-6 py-2.5 rounded-xl transition">Grade my decisions</button><button type="button" onclick="showView(\'trainer\')" class="text-sm font-bold text-slate-500 hover:text-navy">Reset</button><span class="text-xs text-slate-400 ml-auto">First graded attempt earns 5 XP per correct decision.</span></div><div id="trainerResult" class="hidden p-5 border-t border-slate-100"></div></div>';
 };
 window.gradeTrainer=function(){
  const sels=[...document.querySelectorAll(".tr-select")]; let correct=0,rowsHtml="";
- try{ sels.forEach(s=>{ const i=+s.dataset.i,r=TRAINER_ROWS[i],pick=s.value; if(!pick){toast("Choose an action for every row first.","warn");throw new Error("incomplete");} const ok=pick===r.exp; if(ok)correct++; const pl=TRAINER_OPTS.find(o=>o.v===pick).label, xl=TRAINER_OPTS.find(o=>o.v===r.exp).label; rowsHtml+='<div class="flex gap-3 rounded-xl p-3 '+(ok?'bg-emerald-50 border border-emerald-200':'bg-red-50 border border-red-200')+'"><span class="text-lg">'+(ok?'✅':'❌')+'</span><div class="text-sm"><b class="text-navy">'+r.term+'</b> — you chose <b>'+pl+'</b>.'+(ok?'':' Best action: <b>'+xl+'</b>.')+' <span class="text-slate-500">'+r.why+'</span></div></div>'; }); }catch(e){ return; }
+ try{ sels.forEach(s=>{ const i=+s.dataset.i,r=TRAINER_ROWS[i],pick=s.value; if(!pick){toast("Choose an action for every row first.","warn");throw new Error("incomplete");} const ok=pick===r.exp; if(ok)correct++; const pl=TRAINER_OPTS.find(o=>o.v===pick).label, xl=TRAINER_OPTS.find(o=>o.v===r.exp).label; rowsHtml+='<div class="flex gap-3 rounded-xl p-3 '+(ok?'bg-emerald-50 border border-emerald-200':'bg-red-50 border border-red-200')+'"><span class="text-lg">'+(ok?'âœ…':'âŒ')+'</span><div class="text-sm"><b class="text-navy">'+r.term+'</b> â€” you chose <b>'+pl+'</b>.'+(ok?'':' Best action: <b>'+xl+'</b>.')+' <span class="text-slate-500">'+r.why+'</span></div></div>'; }); }catch(e){ return; }
  const score=Math.round(correct/TRAINER_ROWS.length*100), res=document.getElementById("trainerResult");
  res.classList.remove("hidden");
  res.innerHTML='<div class="flex flex-wrap items-center gap-4 mb-4"><div class="pop w-20 h-20 rounded-2xl flex items-center justify-center font-display font-bold text-2xl text-white '+(score>=70?'bg-emerald-500':'bg-amber-500')+'">'+score+'%</div><div><div class="font-display font-bold text-navy">'+correct+' of '+TRAINER_ROWS.length+' correct</div><div class="text-sm text-slate-500">'+(score>=90?"Manager-level judgment. Excellent!":score>=70?"Solid! Review the misses below.":"Good practice. Read the reasons and try again.")+'</div></div></div><div class="space-y-2 max-h-96 overflow-y-auto pr-1">'+rowsHtml+'</div>';
  res.scrollIntoView({behavior:"smooth",block:"nearest"});
  if(!state.trainerDone){ state.trainerDone=true; state.trainerBest=Math.max(state.trainerBest,score); save(); addXp(correct*5,"Search term trainer"); }
- else { if(score>state.trainerBest){state.trainerBest=score;save();toast("New best score: "+score+"%","info");} else toast("Practice round — best stays "+state.trainerBest+"%","info"); }
+ else { if(score>state.trainerBest){state.trainerBest=score;save();toast("New best score: "+score+"%","info");} else toast("Practice round â€” best stays "+state.trainerBest+"%","info"); }
  updateTopbar();
 };
 
@@ -1199,10 +1199,10 @@ let kwRows=[],negRows=[];
 RENDER.builder=function(){
  kwRows=[];negRows=[];
  const el=document.getElementById("view-builder");
- el.innerHTML='<div class="grid lg:grid-cols-3 gap-4"><div class="lg:col-span-2 space-y-4"><div class="bg-white rounded-2xl p-6 shadow-card space-y-4"><h2 class="font-display font-bold text-lg text-navy">🏗️ Build a starter campaign</h2><div class="grid sm:grid-cols-3 gap-3"><label class="text-xs font-bold text-slate-500">Product<select id="bProduct" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">'+BUILDER_PRODUCTS.map((p,i)=>'<option value="'+i+'">'+p.name+' — $'+p.price+' · '+p.margin+'% margin</option>').join("")+'</select></label><label class="text-xs font-bold text-slate-500">Campaign name<input id="bName" placeholder="SP | Exact | Bamboo Board | Core" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></label><label class="text-xs font-bold text-slate-500">Daily budget ($)<input id="bBudget" type="number" min="1" value="20" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></label></div></div>'+
+ el.innerHTML='<div class="grid lg:grid-cols-3 gap-4"><div class="lg:col-span-2 space-y-4"><div class="bg-white rounded-2xl p-6 shadow-card space-y-4"><h2 class="font-display font-bold text-lg text-navy">ðŸ—ï¸ Build a starter campaign</h2><div class="grid sm:grid-cols-3 gap-3"><label class="text-xs font-bold text-slate-500">Product<select id="bProduct" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">'+BUILDER_PRODUCTS.map((p,i)=>'<option value="'+i+'">'+p.name+' â€” $'+p.price+' Â· '+p.margin+'% margin</option>').join("")+'</select></label><label class="text-xs font-bold text-slate-500">Campaign name<input id="bName" placeholder="SP | Exact | Bamboo Board | Core" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></label><label class="text-xs font-bold text-slate-500">Daily budget ($)<input id="bBudget" type="number" min="1" value="20" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></label></div></div>'+
  '<div class="bg-white rounded-2xl p-6 shadow-card"><h3 class="font-display font-bold text-navy mb-3">Keywords</h3><div class="grid sm:grid-cols-[1fr_130px_100px_auto] gap-2"><input id="kwText" placeholder="keyword, e.g. bamboo cutting board" class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"><select id="kwMatch" class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-semibold"><option value="Exact">Exact</option><option value="Phrase">Phrase</option><option value="Broad">Broad</option></select><input id="kwBid" type="number" step="0.05" value="1.00" class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm"><button type="button" onclick="addKw()" class="bg-navy text-white font-bold text-sm px-4 rounded-xl hover:bg-navy-800 transition">Add</button></div><div id="kwList" class="mt-3 space-y-2"></div></div>'+
  '<div class="bg-white rounded-2xl p-6 shadow-card"><h3 class="font-display font-bold text-navy mb-3">Negative keywords</h3><div class="grid sm:grid-cols-[1fr_auto] gap-2"><input id="negText" placeholder="negative word, e.g. plastic" class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"><button type="button" onclick="addNeg()" class="bg-red-500 text-white font-bold text-sm px-4 rounded-xl hover:bg-red-600 transition">Add</button></div><div id="negList" class="mt-3 flex flex-wrap gap-2"></div></div></div>'+
- '<div class="space-y-4"><div class="bg-white rounded-2xl p-6 shadow-card"><h3 class="font-display font-bold text-navy mb-2">Estimate</h3><div id="bEstimate" class="text-sm text-slate-600 space-y-1"></div></div><button type="button" onclick="scoreCampaign()" class="w-full bg-brand-500 hover:bg-brand-600 text-navy font-bold py-3.5 rounded-2xl transition shadow-card">Score my campaign</button><div id="bResult" class="bg-white rounded-2xl p-6 shadow-card hidden"></div><div class="bg-navy text-white rounded-2xl p-5 text-sm"><div class="font-bold text-brand-400 mb-2">Grading rules</div><ul class="space-y-1.5 text-slate-300 text-xs"><li>• Clear self-explaining name (10)</li><li>• Starter budget $10–$50 (10)</li><li>• 2+ Exact keywords (20)</li><li>• Bids inside $0.50–$1.50 (20)</li><li>• 2+ negatives (20)</li><li>• No irrelevant keywords (20)</li></ul></div></div></div>';
+ '<div class="space-y-4"><div class="bg-white rounded-2xl p-6 shadow-card"><h3 class="font-display font-bold text-navy mb-2">Estimate</h3><div id="bEstimate" class="text-sm text-slate-600 space-y-1"></div></div><button type="button" onclick="scoreCampaign()" class="w-full bg-brand-500 hover:bg-brand-600 text-navy font-bold py-3.5 rounded-2xl transition shadow-card">Score my campaign</button><div id="bResult" class="bg-white rounded-2xl p-6 shadow-card hidden"></div><div class="bg-navy text-white rounded-2xl p-5 text-sm"><div class="font-bold text-brand-400 mb-2">Grading rules</div><ul class="space-y-1.5 text-slate-300 text-xs"><li>â€¢ Clear self-explaining name (10)</li><li>â€¢ Starter budget $10â€“$50 (10)</li><li>â€¢ 2+ Exact keywords (20)</li><li>â€¢ Bids inside $0.50â€“$1.50 (20)</li><li>â€¢ 2+ negatives (20)</li><li>â€¢ No irrelevant keywords (20)</li></ul></div></div></div>';
  paintBuilderLists();updateEstimate();
  ["kwText","kwMatch","kwBid","negText"].forEach(id=>document.getElementById(id).addEventListener("input",updateEstimate));
  document.getElementById("bBudget").addEventListener("input",updateEstimate);
@@ -1212,11 +1212,11 @@ window.rmKw=function(i){kwRows.splice(i,1);paintBuilderLists();updateEstimate();
 window.addNeg=function(){const t=document.getElementById("negText").value.trim().toLowerCase();if(!t){toast("Type a negative word first.","warn");return;}negRows.push(t);document.getElementById("negText").value="";paintBuilderLists();};
 window.rmNeg=function(i){negRows.splice(i,1);paintBuilderLists();};
 function paintBuilderLists(){
- document.getElementById("kwList").innerHTML=kwRows.length?kwRows.map((k,i)=>'<div class="flex items-center gap-2 rounded-xl bg-slate-50 border border-slate-200 px-3 py-2 text-sm"><span class="font-semibold text-navy flex-1">'+k.t+'</span><span class="text-[10px] font-bold px-2 py-0.5 rounded-full '+(k.m==='Exact'?'bg-emerald-100 text-emerald-700':k.m==='Phrase'?'bg-sky-100 text-sky-700':'bg-amber-100 text-amber-700')+'">'+k.m+'</span><span class="text-xs font-bold text-slate-500">$'+k.b.toFixed(2)+'</span><button type="button" onclick="rmKw('+i+')" class="text-slate-300 hover:text-red-500 font-bold">✕</button></div>').join(""):'<div class="text-xs text-slate-400">No keywords yet. Add at least two Exact keywords.</div>';
- document.getElementById("negList").innerHTML=negRows.length?negRows.map((n,i)=>'<span class="inline-flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 text-xs font-bold px-3 py-1.5 rounded-full">🚫 '+n+'<button type="button" onclick="rmNeg('+i+')" class="hover:text-red-900">✕</button></span>').join(""):'<div class="text-xs text-slate-400">No negatives yet. What searches can NEVER buy this product?</div>';
+ document.getElementById("kwList").innerHTML=kwRows.length?kwRows.map((k,i)=>'<div class="flex items-center gap-2 rounded-xl bg-slate-50 border border-slate-200 px-3 py-2 text-sm"><span class="font-semibold text-navy flex-1">'+k.t+'</span><span class="text-[10px] font-bold px-2 py-0.5 rounded-full '+(k.m==='Exact'?'bg-emerald-100 text-emerald-700':k.m==='Phrase'?'bg-sky-100 text-sky-700':'bg-amber-100 text-amber-700')+'">'+k.m+'</span><span class="text-xs font-bold text-slate-500">$'+k.b.toFixed(2)+'</span><button type="button" onclick="rmKw('+i+')" class="text-slate-300 hover:text-red-500 font-bold">âœ•</button></div>').join(""):'<div class="text-xs text-slate-400">No keywords yet. Add at least two Exact keywords.</div>';
+ document.getElementById("negList").innerHTML=negRows.length?negRows.map((n,i)=>'<span class="inline-flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 text-xs font-bold px-3 py-1.5 rounded-full">ðŸš« '+n+'<button type="button" onclick="rmNeg('+i+')" class="hover:text-red-900">âœ•</button></span>').join(""):'<div class="text-xs text-slate-400">No negatives yet. What searches can NEVER buy this product?</div>';
 }
 function updateEstimate(){ const el=document.getElementById("bEstimate"); if(!el)return; const budget=parseFloat(document.getElementById("bBudget").value)||0; const avg=kwRows.length?kwRows.reduce((a,k)=>a+k.b,0)/kwRows.length:0; const clicks=avg>0?Math.floor(budget/avg):0;
- el.innerHTML='<div class="flex justify-between"><span>Daily budget</span><b>$'+budget.toFixed(2)+'</b></div><div class="flex justify-between"><span>Average bid</span><b>'+(avg?"$"+avg.toFixed(2):"—")+'</b></div><div class="flex justify-between"><span>Max clicks/day</span><b>'+(clicks||"—")+'</b></div><div class="flex justify-between"><span>Keywords / Negatives</span><b>'+kwRows.length+' / '+negRows.length+'</b></div>'; }
+ el.innerHTML='<div class="flex justify-between"><span>Daily budget</span><b>$'+budget.toFixed(2)+'</b></div><div class="flex justify-between"><span>Average bid</span><b>'+(avg?"$"+avg.toFixed(2):"â€”")+'</b></div><div class="flex justify-between"><span>Max clicks/day</span><b>'+(clicks||"â€”")+'</b></div><div class="flex justify-between"><span>Keywords / Negatives</span><b>'+kwRows.length+' / '+negRows.length+'</b></div>'; }
 window.scoreCampaign=function(){
  const pi=+document.getElementById("bProduct").value,prod=BUILDER_PRODUCTS[pi],name=document.getElementById("bName").value.trim(),budget=parseFloat(document.getElementById("bBudget").value)||0;
  const checks=[];
@@ -1224,13 +1224,13 @@ window.scoreCampaign=function(){
  checks.push({label:"Starter budget between $10 and $50",pass:budget>=10&&budget<=50,note:"Beginners learn best with small, controlled budgets."});
  const exacts=kwRows.filter(k=>k.m==="Exact").length;
  checks.push({label:"At least 2 Exact keywords",pass:exacts>=2,note:"Exact gives beginners control. You have "+exacts+" Exact keyword(s)."});
- checks.push({label:"All bids inside $0.50–$1.50",pass:kwRows.length>0&&kwRows.every(k=>k.b>=0.5&&k.b<=1.5),note:"Safe starter range for this practice product."});
+ checks.push({label:"All bids inside $0.50â€“$1.50",pass:kwRows.length>0&&kwRows.every(k=>k.b>=0.5&&k.b<=1.5),note:"Safe starter range for this practice product."});
  checks.push({label:"At least 2 negative keywords",pass:negRows.length>=2,note:"Negatives protect your budget from day one."});
  const badKw=kwRows.filter(k=>BAD_WORDS.some(w=>k.t.toLowerCase().includes(w)));
  checks.push({label:"No irrelevant keywords",pass:kwRows.length>0&&badKw.length===0,note:badKw.length?"These look irrelevant: "+badKw.map(k=>k.t).join(", "):"All keywords look relevant."});
  const score=checks.reduce((a,c)=>a+(c.pass?(c.label.startsWith("At least")||c.label.startsWith("All bids")||c.label.startsWith("No irrelevant")?20:10):0),0);
  const res=document.getElementById("bResult"); res.classList.remove("hidden");
- res.innerHTML='<div class="flex items-center gap-3 mb-4"><div class="pop w-16 h-16 rounded-2xl flex items-center justify-center font-display font-bold text-xl text-white '+(score>=70?'bg-emerald-500':'bg-amber-500')+'">'+score+'</div><div class="font-display font-bold text-navy">'+(score>=90?"Beautiful structure.":score>=70?"Solid starter campaign!":"Needs work — see notes.")+'</div></div><div class="space-y-2">'+checks.map(c=>'<div class="flex gap-2 text-xs rounded-lg p-2.5 '+(c.pass?'bg-emerald-50 text-emerald-700':'bg-red-50 text-red-600')+'"><span>'+(c.pass?'✅':'❌')+'</span><span><b>'+c.label+'.</b> '+(c.pass?'':c.note)+'</span></div>').join("")+'</div>';
+ res.innerHTML='<div class="flex items-center gap-3 mb-4"><div class="pop w-16 h-16 rounded-2xl flex items-center justify-center font-display font-bold text-xl text-white '+(score>=70?'bg-emerald-500':'bg-amber-500')+'">'+score+'</div><div class="font-display font-bold text-navy">'+(score>=90?"Beautiful structure.":score>=70?"Solid starter campaign!":"Needs work â€” see notes.")+'</div></div><div class="space-y-2">'+checks.map(c=>'<div class="flex gap-2 text-xs rounded-lg p-2.5 '+(c.pass?'bg-emerald-50 text-emerald-700':'bg-red-50 text-red-600')+'"><span>'+(c.pass?'âœ…':'âŒ')+'</span><span><b>'+c.label+'.</b> '+(c.pass?'':c.note)+'</span></div>').join("")+'</div>';
  if(!state.builderDone){ state.builderDone=true; state.builderBest=Math.max(state.builderBest,score); save(); if(score>=70) addXp(40,"Campaign built"); else toast("Score 70+ to earn the builder XP.","info"); }
  else if(score>state.builderBest){ state.builderBest=score; save(); toast("New best build: "+score+"/100","info"); }
  updateTopbar();
@@ -1239,18 +1239,18 @@ window.scoreCampaign=function(){
 /* ---------- Report ---------- */
 RENDER.report=function(){
  const el=document.getElementById("view-report");
- el.innerHTML='<div class="grid lg:grid-cols-2 gap-5"><div class="bg-white rounded-2xl p-6 shadow-card space-y-4"><h2 class="font-display font-bold text-lg text-navy">📊 Weekly report builder</h2><p class="text-sm text-slate-500">Type the week\'s numbers. The app calculates metrics and drafts a client-ready report.</p><div class="grid grid-cols-2 sm:grid-cols-3 gap-3">'+[["rSpend","Spend ($)","210"],["rSales","Ad sales ($)","950"],["rClicks","Clicks","180"],["rImp","Impressions","4200"],["rOrders","Orders","19"],["rMargin","Margin (%)","30"]].map(f=>'<label class="text-xs font-bold text-slate-500">'+f[1]+'<input id="'+f[0]+'" type="number" value="'+f[2]+'" oninput="calcReport()" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></label>').join("")+'</div><div id="rMetrics" class="grid grid-cols-3 gap-2"></div><div class="space-y-3"><label class="text-xs font-bold text-slate-500 block">What worked<textarea id="rWins" rows="2" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">Exact keyword produced steady sales. Auto campaign found a new winning search term.</textarea></label><label class="text-xs font-bold text-slate-500 block">Problems<textarea id="rIssues" rows="2" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">Irrelevant search terms consumed part of the budget.</textarea></label><label class="text-xs font-bold text-slate-500 block">Next steps<textarea id="rNext" rows="2" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">Add negatives for irrelevant terms. Move the new winner to Exact. Watch bids on high-ACOS keywords.</textarea></label></div><div class="flex gap-3"><button type="button" onclick="genReport()" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-5 py-2.5 rounded-xl transition">Generate report</button><button type="button" onclick="copyReport()" class="bg-navy text-white font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-navy-800 transition">Copy to clipboard</button></div></div><div class="bg-white rounded-2xl shadow-card overflow-hidden flex flex-col"><div class="bg-navy text-white px-6 py-4 font-display font-bold">Client-ready preview</div><pre id="rPreview" class="flex-1 p-6 text-[13px] leading-6 text-slate-600 whitespace-pre-wrap font-sans">Fill in the numbers and press "Generate report".</pre></div></div>';
+ el.innerHTML='<div class="grid lg:grid-cols-2 gap-5"><div class="bg-white rounded-2xl p-6 shadow-card space-y-4"><h2 class="font-display font-bold text-lg text-navy">ðŸ“Š Weekly report builder</h2><p class="text-sm text-slate-500">Type the week\'s numbers. The app calculates metrics and drafts a client-ready report.</p><div class="grid grid-cols-2 sm:grid-cols-3 gap-3">'+[["rSpend","Spend ($)","210"],["rSales","Ad sales ($)","950"],["rClicks","Clicks","180"],["rImp","Impressions","4200"],["rOrders","Orders","19"],["rMargin","Margin (%)","30"]].map(f=>'<label class="text-xs font-bold text-slate-500">'+f[1]+'<input id="'+f[0]+'" type="number" value="'+f[2]+'" oninput="calcReport()" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></label>').join("")+'</div><div id="rMetrics" class="grid grid-cols-3 gap-2"></div><div class="space-y-3"><label class="text-xs font-bold text-slate-500 block">What worked<textarea id="rWins" rows="2" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">Exact keyword produced steady sales. Auto campaign found a new winning search term.</textarea></label><label class="text-xs font-bold text-slate-500 block">Problems<textarea id="rIssues" rows="2" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">Irrelevant search terms consumed part of the budget.</textarea></label><label class="text-xs font-bold text-slate-500 block">Next steps<textarea id="rNext" rows="2" class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">Add negatives for irrelevant terms. Move the new winner to Exact. Watch bids on high-ACOS keywords.</textarea></label></div><div class="flex gap-3"><button type="button" onclick="genReport()" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-5 py-2.5 rounded-xl transition">Generate report</button><button type="button" onclick="copyReport()" class="bg-navy text-white font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-navy-800 transition">Copy to clipboard</button></div></div><div class="bg-white rounded-2xl shadow-card overflow-hidden flex flex-col"><div class="bg-navy text-white px-6 py-4 font-display font-bold">Client-ready preview</div><pre id="rPreview" class="flex-1 p-6 text-[13px] leading-6 text-slate-600 whitespace-pre-wrap font-sans">Fill in the numbers and press "Generate report".</pre></div></div>';
  calcReport();
 };
 window.calcReport=function(){ const g=id=>parseFloat(document.getElementById(id).value)||0; const spend=g("rSpend"),sales=g("rSales"),clicks=g("rClicks"),imp=g("rImp"),orders=g("rOrders"),margin=g("rMargin");
  const acos=sales>0?(spend/sales*100):null,roas=spend>0?(sales/spend):0,cpc=clicks>0?spend/clicks:0,ctr=imp>0?clicks/imp*100:0,cvr=clicks>0?orders/clicks*100:0;
  const el=document.getElementById("rMetrics"); const card=(l,v,tone)=>'<div class="rounded-xl p-3 text-center border '+tone+'"><div class="text-[10px] font-bold uppercase text-slate-400">'+l+'</div><div class="font-display font-bold text-sm mt-0.5">'+v+'</div></div>';
- el.innerHTML=card("ACOS",acos===null?"—":acos.toFixed(0)+"%",acos===null?"border-slate-200 bg-slate-50 text-slate-500":(acos<=margin?"border-emerald-200 bg-emerald-50 text-emerald-700":"border-red-200 bg-red-50 text-red-600"))+card("ROAS",roas.toFixed(1)+"x","border-slate-200 bg-slate-50 text-navy")+card("CPC","$"+cpc.toFixed(2),"border-slate-200 bg-slate-50 text-navy")+card("CTR",ctr.toFixed(1)+"%","border-slate-200 bg-slate-50 text-navy")+card("CVR",cvr.toFixed(1)+"%","border-slate-200 bg-slate-50 text-navy")+card("Break-even",margin+"%","border-brand-200 bg-brand-50 text-brand-700");
+ el.innerHTML=card("ACOS",acos===null?"â€”":acos.toFixed(0)+"%",acos===null?"border-slate-200 bg-slate-50 text-slate-500":(acos<=margin?"border-emerald-200 bg-emerald-50 text-emerald-700":"border-red-200 bg-red-50 text-red-600"))+card("ROAS",roas.toFixed(1)+"x","border-slate-200 bg-slate-50 text-navy")+card("CPC","$"+cpc.toFixed(2),"border-slate-200 bg-slate-50 text-navy")+card("CTR",ctr.toFixed(1)+"%","border-slate-200 bg-slate-50 text-navy")+card("CVR",cvr.toFixed(1)+"%","border-slate-200 bg-slate-50 text-navy")+card("Break-even",margin+"%","border-brand-200 bg-brand-50 text-brand-700");
  window._rCalc={acos,roas,cpc,ctr,cvr,spend,sales,clicks,orders,margin};
 };
 window.genReport=function(){ const c=window._rCalc; if(!c)return;
- const verdict=c.acos===null?"No sales recorded — review targeting and the listing before spending more.":(c.acos<=c.margin?"ACOS is below break-even ("+c.margin+"%), so the week looks profitable.":"ACOS is above break-even ("+c.margin+"%), so we must cut waste and adjust bids.");
- const txt="WEEKLY PPC REPORT\n-----------------\nSpend: $"+c.spend.toFixed(0)+"\nAd Sales: $"+c.sales.toFixed(0)+"\nACOS: "+(c.acos===null?"—":c.acos.toFixed(0)+"%")+" (break-even "+c.margin+"%)\nROAS: "+c.roas.toFixed(1)+"x\nClicks: "+c.clicks+" | Orders: "+c.orders+"\nCTR: "+c.ctr.toFixed(1)+"% | Conversion: "+c.cvr.toFixed(1)+"% | CPC: $"+c.cpc.toFixed(2)+"\n\nSummary: "+verdict+"\n\nWhat worked:\n- "+(document.getElementById("rWins").value||"—")+"\n\nProblems:\n- "+(document.getElementById("rIssues").value||"—")+"\n\nNext steps:\n- "+(document.getElementById("rNext").value||"—")+"\n\nPrepared by: Your PPC Assistant";
+ const verdict=c.acos===null?"No sales recorded â€” review targeting and the listing before spending more.":(c.acos<=c.margin?"ACOS is below break-even ("+c.margin+"%), so the week looks profitable.":"ACOS is above break-even ("+c.margin+"%), so we must cut waste and adjust bids.");
+ const txt="WEEKLY PPC REPORT\n-----------------\nSpend: $"+c.spend.toFixed(0)+"\nAd Sales: $"+c.sales.toFixed(0)+"\nACOS: "+(c.acos===null?"â€”":c.acos.toFixed(0)+"%")+" (break-even "+c.margin+"%)\nROAS: "+c.roas.toFixed(1)+"x\nClicks: "+c.clicks+" | Orders: "+c.orders+"\nCTR: "+c.ctr.toFixed(1)+"% | Conversion: "+c.cvr.toFixed(1)+"% | CPC: $"+c.cpc.toFixed(2)+"\n\nSummary: "+verdict+"\n\nWhat worked:\n- "+(document.getElementById("rWins").value||"â€”")+"\n\nProblems:\n- "+(document.getElementById("rIssues").value||"â€”")+"\n\nNext steps:\n- "+(document.getElementById("rNext").value||"â€”")+"\n\nPrepared by: Your PPC Assistant";
  document.getElementById("rPreview").textContent=txt; window._rText=txt;
  if(!state.reportDone){state.reportDone=true;save();addXp(15,"Report generated");} else toast("Report updated.","info");
  updateTopbar();
@@ -1258,24 +1258,24 @@ window.genReport=function(){ const c=window._rCalc; if(!c)return;
 window.copyReport=function(){ if(!window._rText){toast("Generate the report first.","warn");return;} if(navigator.clipboard) navigator.clipboard.writeText(window._rText); toast("Report copied to clipboard.","info"); };
 
 /* ---------- Quiz Arena (module quizzes + final exam) ---------- */
-function quizDefs(){ return MODULES.map((m,i)=>({id:"m"+i,title:"Module "+(i+1)+" · "+m.title,icon:m.icon,color:m.color,questions:m.quiz})).concat([{id:"final",title:"FINAL EXAM · Competent Manager",icon:"🏆",color:"var(--c-navy-1)",questions:FINAL_EXAM}]); }
+function quizDefs(){ return MODULES.map((m,i)=>({id:"m"+i,title:"Module "+(i+1)+" Â· "+m.title,icon:m.icon,color:m.color,questions:m.quiz})).concat([{id:"final",title:"FINAL EXAM Â· Competent Manager",icon:"ðŸ†",color:"var(--c-navy-1)",questions:FINAL_EXAM}]); }
 window.takeQuiz=function(id){ const def=quizDefs().find(d=>d.id===id); qz={id:def.id,title:def.title,icon:def.icon,questions:def.questions,idx:0,score:0,locked:false}; showView("quiz"); };
 RENDER.quiz=function(){
  const el=document.getElementById("view-quiz");
  if(qz){ paintQuizPlayer(el); return; }
  const defs=quizDefs();
- el.innerHTML='<div class="mb-5"><h2 class="font-display font-bold text-xl text-navy">Quiz Arena</h2><p class="text-sm text-slate-500 mt-1">A quiz after every module, plus a 15-question Final Exam. Pass mark 70%. First attempts earn 5 XP per correct answer.</p></div><div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">'+defs.map(d=>{ const best=state.quizScores[d.id]; return '<div class="statcard bg-white rounded-2xl p-5 shadow-card border-t-4" style="border-color:'+d.color+'"><div class="flex items-start justify-between"><span class="text-3xl">'+d.icon+'</span>'+(best!==undefined?'<span class="text-[11px] font-bold px-2 py-1 rounded-full '+(best>=70?'bg-emerald-100 text-emerald-700':'bg-amber-100 text-amber-700')+'">Best '+best+'%</span>':'<span class="text-[11px] font-bold px-2 py-1 rounded-full bg-slate-100 text-slate-400">Not taken</span>')+'</div><div class="font-display font-bold text-navy mt-3 text-sm">'+d.title+'</div><div class="text-xs text-slate-400 mt-1">'+d.questions.length+' questions · pass 70%</div><button type="button" onclick="takeQuiz(\''+d.id+'\')" class="mt-4 w-full '+(d.id==='final'?'bg-navy text-white hover:bg-navy-800':'bg-brand-50 text-brand-700 hover:bg-brand-100 border border-brand-200')+' font-bold text-sm py-2.5 rounded-xl transition">'+(best!==undefined?'Retake':'Start')+'</button></div>'; }).join("")+'</div>';
+ el.innerHTML='<div class="mb-5"><h2 class="font-display font-bold text-xl text-navy">Quiz Arena</h2><p class="text-sm text-slate-500 mt-1">A quiz after every module, plus a 15-question Final Exam. Pass mark 70%. First attempts earn 5 XP per correct answer.</p></div><div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">'+defs.map(d=>{ const best=state.quizScores[d.id]; return '<div class="statcard bg-white rounded-2xl p-5 shadow-card border-t-4" style="border-color:'+d.color+'"><div class="flex items-start justify-between"><span class="text-3xl">'+d.icon+'</span>'+(best!==undefined?'<span class="text-[11px] font-bold px-2 py-1 rounded-full '+(best>=70?'bg-emerald-100 text-emerald-700':'bg-amber-100 text-amber-700')+'">Best '+best+'%</span>':'<span class="text-[11px] font-bold px-2 py-1 rounded-full bg-slate-100 text-slate-400">Not taken</span>')+'</div><div class="font-display font-bold text-navy mt-3 text-sm">'+d.title+'</div><div class="text-xs text-slate-400 mt-1">'+d.questions.length+' questions Â· pass 70%</div><button type="button" onclick="takeQuiz(\''+d.id+'\')" class="mt-4 w-full '+(d.id==='final'?'bg-navy text-white hover:bg-navy-800':'bg-brand-50 text-brand-700 hover:bg-brand-100 border border-brand-200')+' font-bold text-sm py-2.5 rounded-xl transition">'+(best!==undefined?'Retake':'Start')+'</button></div>'; }).join("")+'</div>';
 };
 function paintQuizPlayer(el){
  if(qz.idx>=qz.questions.length){
   const pct=Math.round(qz.score/qz.questions.length*100), first=state.quizScores[qz.id]===undefined;
-  el.innerHTML='<div class="max-w-xl mx-auto bg-white rounded-2xl p-8 shadow-card text-center"><div class="pop mx-auto w-24 h-24 rounded-3xl flex items-center justify-center font-display font-bold text-3xl text-white '+(pct>=70?'bg-emerald-500':'bg-amber-500')+'">'+pct+'%</div><h2 class="font-display font-bold text-xl text-navy mt-4">'+qz.icon+' '+qz.score+' of '+qz.questions.length+' correct</h2><p class="text-sm text-slate-500 mt-2">'+(pct>=90?"Outstanding — manager material.":pct>=70?"Passed! Solid understanding.":"Review the module lessons and retry.")+'</p><div class="flex justify-center gap-3 mt-6"><button type="button" onclick="takeQuiz(\''+qz.id+'\')" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-5 py-2.5 rounded-xl">Retry</button><button type="button" onclick="qz=null;showView(\'quiz\')" class="bg-slate-100 hover:bg-slate-200 text-navy font-bold text-sm px-5 py-2.5 rounded-xl">Back to Arena</button></div></div>';
-  if(first){ state.quizScores[qz.id]=pct; save(); addXp(qz.score*(qz.id==='final'?4:5),"Quiz: "+qz.title.split("·")[0].trim()); }
+  el.innerHTML='<div class="max-w-xl mx-auto bg-white rounded-2xl p-8 shadow-card text-center"><div class="pop mx-auto w-24 h-24 rounded-3xl flex items-center justify-center font-display font-bold text-3xl text-white '+(pct>=70?'bg-emerald-500':'bg-amber-500')+'">'+pct+'%</div><h2 class="font-display font-bold text-xl text-navy mt-4">'+qz.icon+' '+qz.score+' of '+qz.questions.length+' correct</h2><p class="text-sm text-slate-500 mt-2">'+(pct>=90?"Outstanding â€” manager material.":pct>=70?"Passed! Solid understanding.":"Review the module lessons and retry.")+'</p><div class="flex justify-center gap-3 mt-6"><button type="button" onclick="takeQuiz(\''+qz.id+'\')" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold text-sm px-5 py-2.5 rounded-xl">Retry</button><button type="button" onclick="qz=null;showView(\'quiz\')" class="bg-slate-100 hover:bg-slate-200 text-navy font-bold text-sm px-5 py-2.5 rounded-xl">Back to Arena</button></div></div>';
+  if(first){ state.quizScores[qz.id]=pct; save(); addXp(qz.score*(qz.id==='final'?4:5),"Quiz: "+qz.title.split("Â·")[0].trim()); }
   else if(pct>state.quizScores[qz.id]){ state.quizScores[qz.id]=pct; save(); toast("New best: "+pct+"%","info"); }
   publishSimHubQuizReceipt(qz.id,pct); updateTopbar(); return;
  }
  const q=qz.questions[qz.idx];
- el.innerHTML='<div class="max-w-2xl mx-auto"><div class="flex items-center justify-between mb-3 text-xs font-bold text-slate-400"><span>'+qz.icon+' '+qz.title+'</span><span>Q '+(qz.idx+1)+'/'+qz.questions.length+' · Score '+qz.score+'</span></div><div class="h-2 rounded-full bg-slate-200 overflow-hidden mb-5"><div class="bar h-full bg-brand-500" style="width:'+((qz.idx/qz.questions.length)*100)+'%"></div></div><div class="bg-white rounded-2xl p-6 md:p-8 shadow-card"><h2 class="font-display font-bold text-lg text-navy">'+q.q+'</h2><div class="mt-5 space-y-2.5">'+q.o.map((o,i)=>'<button type="button" onclick="answerQuiz('+i+')" class="quizopt w-full text-left rounded-xl border-2 border-slate-200 hover:border-brand-400 hover:bg-brand-50 px-4 py-3 text-sm font-semibold text-slate-600 transition">'+o+'</button>').join("")+'</div><div id="quizFb" class="hidden mt-5 rounded-xl p-4 text-sm"></div><div class="mt-5 text-right"><button type="button" id="quizNext" onclick="qz.idx++;qz.locked=false;paintQuizPlayer(document.getElementById(\'view-quiz\'))" class="hidden bg-navy text-white font-bold text-sm px-6 py-2.5 rounded-xl hover:bg-navy-800 transition">Next →</button></div></div></div>';
+ el.innerHTML='<div class="max-w-2xl mx-auto"><div class="flex items-center justify-between mb-3 text-xs font-bold text-slate-400"><span>'+qz.icon+' '+qz.title+'</span><span>Q '+(qz.idx+1)+'/'+qz.questions.length+' Â· Score '+qz.score+'</span></div><div class="h-2 rounded-full bg-slate-200 overflow-hidden mb-5"><div class="bar h-full bg-brand-500" style="width:'+((qz.idx/qz.questions.length)*100)+'%"></div></div><div class="bg-white rounded-2xl p-6 md:p-8 shadow-card"><h2 class="font-display font-bold text-lg text-navy">'+q.q+'</h2><div class="mt-5 space-y-2.5">'+q.o.map((o,i)=>'<button type="button" onclick="answerQuiz('+i+')" class="quizopt w-full text-left rounded-xl border-2 border-slate-200 hover:border-brand-400 hover:bg-brand-50 px-4 py-3 text-sm font-semibold text-slate-600 transition">'+o+'</button>').join("")+'</div><div id="quizFb" class="hidden mt-5 rounded-xl p-4 text-sm"></div><div class="mt-5 text-right"><button type="button" id="quizNext" onclick="qz.idx++;qz.locked=false;paintQuizPlayer(document.getElementById(\'view-quiz\'))" class="hidden bg-navy text-white font-bold text-sm px-6 py-2.5 rounded-xl hover:bg-navy-800 transition">Next â†’</button></div></div></div>';
 }
 window.answerQuiz=function(i){
  if(!qz||qz.locked)return; qz.locked=true;
@@ -1289,10 +1289,10 @@ window.answerQuiz=function(i){
 };
 
 /* ---------- Coach ---------- */
-let coachMsgs=[{who:"coach",text:"Hi! I am your PPC coach. Ask me anything in plain words — ACOS, bids, negatives, why you get clicks but no sales. I explain with simple examples."}];
+let coachMsgs=[{who:"coach",text:"Hi! I am your PPC coach. Ask me anything in plain words â€” ACOS, bids, negatives, why you get clicks but no sales. I explain with simple examples."}];
 RENDER.coach=function(){
  const el=document.getElementById("view-coach");
- el.innerHTML='<div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-card overflow-hidden flex flex-col" style="height:calc(100vh - 140px);min-height:480px"><div class="flex items-center gap-3 bg-navy text-white px-5 py-4"><img src="'+IMG.coach+'" class="w-10 h-10 rounded-full bg-white p-0.5" alt="coach"><div><div class="font-display font-bold">Coach Bot</div><div class="text-[11px] text-emerald-400 font-semibold">● Always on · plain-words mode</div></div></div><div id="chatBox" class="flex-1 overflow-y-auto p-5 space-y-4 bg-slate-50"></div><div class="p-4 bg-white border-t border-slate-100"><div class="flex flex-wrap gap-2 mb-3">'+["What is ACOS?","Clicks but no sales — why?","When should I add a negative keyword?","My campaign has no impressions","How do I start a new product?"].map(c=>'<button type="button" onclick="sendCoach(\x27'+c+'\x27)" class="text-[11px] font-bold bg-brand-50 text-brand-700 border border-brand-200 rounded-full px-3 py-1.5 hover:bg-brand-100 transition">'+c+'</button>').join("")+'</div><div class="flex gap-2"><input id="coachInput" onkeydown="if(event.key===\x27Enter\x27)sendCoach()" placeholder="Ask in plain words…" class="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"><button type="button" onclick="sendCoach()" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold px-5 rounded-xl transition">Send</button></div></div></div>';
+ el.innerHTML='<div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-card overflow-hidden flex flex-col" style="height:calc(100vh - 140px);min-height:480px"><div class="flex items-center gap-3 bg-navy text-white px-5 py-4"><img src="'+IMG.coach+'" class="w-10 h-10 rounded-full bg-white p-0.5" alt="coach"><div><div class="font-display font-bold">Coach Bot</div><div class="text-[11px] text-emerald-400 font-semibold">â— Always on Â· plain-words mode</div></div></div><div id="chatBox" class="flex-1 overflow-y-auto p-5 space-y-4 bg-slate-50"></div><div class="p-4 bg-white border-t border-slate-100"><div class="flex flex-wrap gap-2 mb-3">'+["What is ACOS?","Clicks but no sales â€” why?","When should I add a negative keyword?","My campaign has no impressions","How do I start a new product?"].map(c=>'<button type="button" onclick="sendCoach(\x27'+c+'\x27)" class="text-[11px] font-bold bg-brand-50 text-brand-700 border border-brand-200 rounded-full px-3 py-1.5 hover:bg-brand-100 transition">'+c+'</button>').join("")+'</div><div class="flex gap-2"><input id="coachInput" onkeydown="if(event.key===\x27Enter\x27)sendCoach()" placeholder="Ask in plain wordsâ€¦" class="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"><button type="button" onclick="sendCoach()" class="bg-brand-500 hover:bg-brand-600 text-navy font-bold px-5 rounded-xl transition">Send</button></div></div></div>';
  paintChat();
 };
 function escapeHtml(value){ return String(value).replace(/[&<>"']/g, char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char])); }
@@ -1305,16 +1305,16 @@ window.sendCoach=function(fixed){ const input=document.getElementById("coachInpu
  box.insertAdjacentHTML("beforeend",'<div id="typing" class="chatmsg flex gap-3"><img src="'+IMG.coach+'" class="w-8 h-8 rounded-full bg-white border border-slate-200" alt=""><div class="bg-white border border-slate-200 rounded-2xl px-4 py-3 flex gap-1.5 items-center"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div></div>');
  box.scrollTop=box.scrollHeight;
  setTimeout(()=>{ const t=document.getElementById("typing"); if(t)t.remove(); const r=coachReply(text); coachMsgs.push({who:"coach",title:r.t,text:r.a}); paintChat(); },700); };
-function coachReply(text){ const q=text.toLowerCase(); for(const r of COACH_RULES){ if(r.k.some(k=>q.includes(k))) return r; } return {t:"Let us break it down",a:"Almost every PPC problem is one of four leaks: not enough impressions (bid or budget), not enough clicks (image, price, title), not enough sales (listing, reviews, wrong terms), or too much cost (bids and negatives). Tell me which number looks wrong — or ask about ACOS, bids, negatives, match types or reporting."}; }
+function coachReply(text){ const q=text.toLowerCase(); for(const r of COACH_RULES){ if(r.k.some(k=>q.includes(k))) return r; } return {t:"Let us break it down",a:"Almost every PPC problem is one of four leaks: not enough impressions (bid or budget), not enough clicks (image, price, title), not enough sales (listing, reviews, wrong terms), or too much cost (bids and negatives). Tell me which number looks wrong â€” or ask about ACOS, bids, negatives, match types or reporting."}; }
 
 /* ---------- Cohort ---------- */
 RENDER.cohort=function(){
  const el=document.getElementById("view-cohort");
  const avg=Math.round(COHORT.reduce((a,s)=>a+s.prog,0)/COHORT.length), risk=COHORT.filter(s=>s.status==="risk").length, star=COHORT.reduce((a,s)=>s.prog>a.prog?s:a);
- el.innerHTML='<div class="grid sm:grid-cols-3 gap-4 mb-5"><div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase">Cohort average</div><div class="font-display font-bold text-3xl text-navy mt-1">'+avg+'%</div><div class="h-2 mt-3 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full bg-brand-500" style="width:'+avg+'%"></div></div></div><div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase">Students at risk</div><div class="font-display font-bold text-3xl text-red-500 mt-1">'+risk+'</div><div class="text-xs text-slate-500 mt-2">Inactive 3+ days or stuck under 30%</div></div><div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase">Top performer</div><div class="font-display font-bold text-2xl text-emerald-600 mt-1">🏆 '+star.name+'</div><div class="text-xs text-slate-500 mt-2">'+star.prog+'% · '+star.xp+' XP</div></div></div>'+
- '<div class="bg-white rounded-2xl shadow-card overflow-hidden"><div class="flex flex-wrap items-center gap-3 p-5 border-b border-slate-100"><h2 class="font-display font-bold text-navy">Students</h2><input id="cohortSearch" oninput="filterCohort()" placeholder="Search student…" class="ml-auto w-full sm:w-64 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></div><div class="overflow-x-auto"><table class="w-full text-sm min-w-[720px]" id="cohortTable"><thead><tr class="bg-slate-50 text-left text-xs text-slate-400 uppercase"><th class="px-5 py-3">Student</th><th class="px-5 py-3">Level</th><th class="px-5 py-3 w-56">Progress</th><th class="px-5 py-3">XP</th><th class="px-5 py-3">Weak area</th><th class="px-5 py-3">Last active</th><th class="px-5 py-3">Status</th></tr></thead><tbody>'+cohortRows(COHORT)+'</tbody></table></div><div class="p-4 bg-slate-50 text-xs text-slate-400">💡 Teaching tip: run the <b>Search Term Trainer</b> live in class and let students defend their decisions out loud — judgment grows faster than button-clicking.</div></div>';
+ el.innerHTML='<div class="grid sm:grid-cols-3 gap-4 mb-5"><div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase">Cohort average</div><div class="font-display font-bold text-3xl text-navy mt-1">'+avg+'%</div><div class="h-2 mt-3 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full bg-brand-500" style="width:'+avg+'%"></div></div></div><div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase">Students at risk</div><div class="font-display font-bold text-3xl text-red-500 mt-1">'+risk+'</div><div class="text-xs text-slate-500 mt-2">Inactive 3+ days or stuck under 30%</div></div><div class="statcard bg-white rounded-2xl p-5 shadow-card"><div class="text-xs font-bold text-slate-400 uppercase">Top performer</div><div class="font-display font-bold text-2xl text-emerald-600 mt-1">ðŸ† '+star.name+'</div><div class="text-xs text-slate-500 mt-2">'+star.prog+'% Â· '+star.xp+' XP</div></div></div>'+
+ '<div class="bg-white rounded-2xl shadow-card overflow-hidden"><div class="flex flex-wrap items-center gap-3 p-5 border-b border-slate-100"><h2 class="font-display font-bold text-navy">Students</h2><input id="cohortSearch" oninput="filterCohort()" placeholder="Search studentâ€¦" class="ml-auto w-full sm:w-64 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></div><div class="overflow-x-auto"><table class="w-full text-sm min-w-[720px]" id="cohortTable"><thead><tr class="bg-slate-50 text-left text-xs text-slate-400 uppercase"><th class="px-5 py-3">Student</th><th class="px-5 py-3">Level</th><th class="px-5 py-3 w-56">Progress</th><th class="px-5 py-3">XP</th><th class="px-5 py-3">Weak area</th><th class="px-5 py-3">Last active</th><th class="px-5 py-3">Status</th></tr></thead><tbody>'+cohortRows(COHORT)+'</tbody></table></div><div class="p-4 bg-slate-50 text-xs text-slate-400">ðŸ’¡ Teaching tip: run the <b>Search Term Trainer</b> live in class and let students defend their decisions out loud â€” judgment grows faster than button-clicking.</div></div>';
 };
-function cohortRows(list){ return list.map(s=>{ const st=s.status==="star"?'<span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700">STAR</span>':s.status==="risk"?'<span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-red-100 text-red-600">AT RISK</span>':'<span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-sky-100 text-sky-700">ON TRACK</span>'; return '<tr class="border-b border-slate-100 hover:bg-slate-50"><td class="px-5 py-3.5 font-bold text-navy">'+s.name+'</td><td class="px-5 py-3.5 text-slate-500">'+s.lvl+'</td><td class="px-5 py-3.5"><div class="flex items-center gap-2"><div class="flex-1 h-2 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full bg-brand-500" style="width:'+s.prog+'%"></div></div><span class="text-xs font-bold text-slate-500">'+s.prog+'%</span></div></td><td class="px-5 py-3.5 font-semibold text-slate-600">⚡'+s.xp+'</td><td class="px-5 py-3.5 text-slate-500">'+s.weak+'</td><td class="px-5 py-3.5 text-slate-500">'+s.last+'</td><td class="px-5 py-3.5">'+st+'</td></tr>'; }).join(""); }
+function cohortRows(list){ return list.map(s=>{ const st=s.status==="star"?'<span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700">STAR</span>':s.status==="risk"?'<span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-red-100 text-red-600">AT RISK</span>':'<span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-sky-100 text-sky-700">ON TRACK</span>'; return '<tr class="border-b border-slate-100 hover:bg-slate-50"><td class="px-5 py-3.5 font-bold text-navy">'+s.name+'</td><td class="px-5 py-3.5 text-slate-500">'+s.lvl+'</td><td class="px-5 py-3.5"><div class="flex items-center gap-2"><div class="flex-1 h-2 rounded-full bg-slate-100 overflow-hidden"><div class="bar h-full bg-brand-500" style="width:'+s.prog+'%"></div></div><span class="text-xs font-bold text-slate-500">'+s.prog+'%</span></div></td><td class="px-5 py-3.5 font-semibold text-slate-600">âš¡'+s.xp+'</td><td class="px-5 py-3.5 text-slate-500">'+s.weak+'</td><td class="px-5 py-3.5 text-slate-500">'+s.last+'</td><td class="px-5 py-3.5">'+st+'</td></tr>'; }).join(""); }
 window.filterCohort=function(){ const q=document.getElementById("cohortSearch").value.toLowerCase(); document.querySelector("#cohortTable tbody").innerHTML=cohortRows(COHORT.filter(s=>s.name.toLowerCase().includes(q))); };
 
 /* ================= BOOT ================= */
@@ -1324,7 +1324,7 @@ document.getElementById("resetBtn").addEventListener("click",()=>{ if(confirm("R
 buildNav(); updateTopbar(); showView("dashboard");
 (function(){
   // Deep-link: ../ppc-coach.html#m1 .. #m12 opens that module in the Lessons view.
-  // Also #m1l1 .. opens a specific lesson. Additive — runs after first render.
+  // Also #m1l1 .. opens a specific lesson. Additive â€” runs after first render.
   function applyHash(){
     var h=location.hash||"";
     var m=h.match(/^#m(\d+)(?:l(\d+))?$/i);

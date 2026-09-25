@@ -148,14 +148,33 @@ test('exactly 25 pages load the shared font stylesheet', () => {
   assert.equal(pages.length, 25, `expected 25 pages linking assets/fonts.css, found ${pages.length}`);
 });
 
-// Retained on purpose: the 25 pages still name jsDelivr and the Google font hosts inside their CSP
-// style-src / font-src. After vendoring those are unused permissions rather than dependencies, and
-// removing them is a separate hardening change with its own review - see PROJECT-CONTEXT.md.
-test('pages keep their existing font CSP until the hardening change', () => {
+// CSP hardening shipped in PR #60: unused CDN allowances (cdn.tailwindcss.com, cdn.jsdelivr.net,
+// cdn.sheetjs.com, fonts.googleapis.com, fonts.gstatic.com, image.qwenlm.ai, manuscdn.com) are
+// stripped from all 25 pages. Only 'self', data:, and projectamazonph.github.io (coach-decks only)
+// remain as allowed sources.
+test('CSP is narrowed: no unused CDN hosts remain in any page', () => {
+  const REMOVED_HOSTS = [
+    'cdn.tailwindcss.com', 'cdn.jsdelivr.net', 'cdn.sheetjs.com',
+    'fonts.googleapis.com', 'fonts.gstatic.com', 'image.qwenlm.ai', 'manuscdn.com',
+    'private-us-east-1',
+  ];
   const pages = htmlFiles(root).filter((file) => fs.readFileSync(file, 'utf8').includes('assets/fonts.css'));
   assert.equal(pages.length, 25);
   for (const file of pages) {
     const html = fs.readFileSync(file, 'utf8');
+    for (const host of REMOVED_HOSTS) {
+      assert.equal(
+        html.includes(host), false,
+        `${path.relative(root, file)}: unused CDN host "${host}" should not appear in CSP`
+      );
+    }
+    // font-src must still include 'self' (self-hosted fonts)
     assert.match(html, /font-src[^>]*'self'/, path.relative(root, file));
+    // font-src and connect-src must not be merged without a semicolon
+    // A correctly-formed CSP has: font-src 'self' data:; connect-src 'self'
+    // A broken one has: font-src 'self' data: connect-src 'self' (no semicolon)
+    const mergedBroken = /font-src[^;]*data: connect-src/i.test(html); // space between data: and connect-src = broken
+    assert.equal(mergedBroken, false,
+      `${path.relative(root, file)}: font-src and connect-src must not be merged without semicolon`);
   }
 });

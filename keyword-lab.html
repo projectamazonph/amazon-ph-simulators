@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://cdn.sheetjs.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; img-src 'self' data: https://image.qwenlm.ai https://projectamazonph.github.io; font-src 'self' data: https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self'; form-action 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; form-action 'self'">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Keyword Lab | Amazon PPC Keyword Research Simulator</title>
@@ -275,17 +275,17 @@
 <section class="console">
   <div class="wrap console-grid">
     <div>
-      <div class="eyebrow">PROJECT AMAZON PH · TRAINING CONSOLE <span style="color:#33517A">//</span> NO REAL BUDGET REQUIRED</div>
+      <div class="eyebrow">PROJECT AMAZON PH Â· TRAINING CONSOLE <span style="color:#33517A">//</span> NO REAL BUDGET REQUIRED</div>
       <h1 class="h1">Win the auction<br><span class="hl">before you spend</span><br>a single cent.</h1>
       <p class="lede">Keyword Lab is where you learn to bid without spending. Every bid is fake. Every mistake is free. Build the instincts that keep your launch budget from going up in smoke.</p>
       <div class="stat-chips">
-        <span class="schip">▸ 6 PLAYBOOKS</span>
-        <span class="schip">▸ 16 GRADED DRILLS</span>
-        <span class="schip">▸ SEARCH-TERM AUDITS</span>
-        <span class="schip">▸ 12-QUESTION EXAM</span>
+        <span class="schip">â–¸ 6 PLAYBOOKS</span>
+        <span class="schip">â–¸ 16 GRADED DRILLS</span>
+        <span class="schip">â–¸ SEARCH-TERM AUDITS</span>
+        <span class="schip">â–¸ 12-QUESTION EXAM</span>
       </div>
       <div class="cta-row">
-        <button type="button" class="btn btn-brand" onclick="switchTab('sim')">Start Simulating →</button>
+        <button type="button" class="btn btn-brand" onclick="switchTab('sim')">Start Simulating â†’</button>
         <button type="button" class="btn btn-ghost" style="font-size:13px;padding:12px 20px" onclick="switchTab('practice')">HIT THE DRILLS</button>
       </div>
     </div>
@@ -298,7 +298,7 @@
         <div class="pulse-bars" id="pulseBars"></div>
         <div class="auc-block">
           <div class="mono-xs" style="color:#8CA3BD">CURRENT AUCTION</div>
-          <div class="auc-line" id="aucLine">garlic press — winning bid <span style="color:var(--brand)">$0.84</span></div>
+          <div class="auc-line" id="aucLine">garlic press â€” winning bid <span style="color:var(--brand)">$0.84</span></div>
         </div>
       </div>
     </div>
@@ -307,19 +307,19 @@
 
 <nav class="tabnav">
   <div class="wrap tabnav-in">
-    <button type="button" class="tab-btn active" data-tab="sim" onclick="switchTab('sim')">⚙ Simulator</button>
-    <button type="button" class="tab-btn" data-tab="academy" onclick="switchTab('academy')">📖 Academy</button>
-    <button type="button" class="tab-btn" data-tab="playbook" onclick="switchTab('playbook')">📦 Playbooks</button>
-    <button type="button" class="tab-btn" data-tab="practice" onclick="switchTab('practice')">🎯 Practice</button>
-    <button type="button" class="tab-btn" data-tab="quiz" onclick="switchTab('quiz')">🏆 Exam</button>
+    <button type="button" class="tab-btn active" data-tab="sim" onclick="switchTab('sim')">âš™ Simulator</button>
+    <button type="button" class="tab-btn" data-tab="academy" onclick="switchTab('academy')">ðŸ“– Academy</button>
+    <button type="button" class="tab-btn" data-tab="playbook" onclick="switchTab('playbook')">ðŸ“¦ Playbooks</button>
+    <button type="button" class="tab-btn" data-tab="practice" onclick="switchTab('practice')">ðŸŽ¯ Practice</button>
+    <button type="button" class="tab-btn" data-tab="quiz" onclick="switchTab('quiz')">ðŸ† Exam</button>
   </div>
 </nav>
 
 <main class="wrap">
 
 <section id="tab-sim">
-  <div class="sec-head rv"><span class="sec-num">01</span><h2 class="sec-title">The Simulator</h2><div class="sec-rule"></div><span class="sec-tag">SPEND $0 · LEARN EVERYTHING</span></div>
-  <div class="tipbar rv"><span class="star">💡</span><span id="coachTip">Coach tip: start by loading a Playbook if you are not sure which keywords to test. Then change one variable at a time — bid, match type, budget — and watch what moves.</span></div>
+  <div class="sec-head rv"><span class="sec-num">01</span><h2 class="sec-title">The Simulator</h2><div class="sec-rule"></div><span class="sec-tag">SPEND $0 Â· LEARN EVERYTHING</span></div>
+  <div class="tipbar rv"><span class="star">ðŸ’¡</span><span id="coachTip">Coach tip: start by loading a Playbook if you are not sure which keywords to test. Then change one variable at a time â€” bid, match type, budget â€” and watch what moves.</span></div>
 
   <div class="grid3" style="margin-bottom:26px">
     <div class="card pad rv">
@@ -369,7 +369,7 @@
       <div class="mod-head"><span class="mod-chip" style="background:rgba(255,153,0,.12);color:var(--brandink)">C</span><span class="mod-title">Market</span></div>
       <div class="stack">
         <div><label class="lbl">Competition</label>
-          <select class="sel" id="competition"><option value="low">Low — few sellers</option><option value="medium" selected>Medium — moderate</option><option value="high">High — saturated</option></select></div>
+          <select class="sel" id="competition"><option value="low">Low â€” few sellers</option><option value="medium" selected>Medium â€” moderate</option><option value="high">High â€” saturated</option></select></div>
         <div><label class="lbl">Season</label>
           <select class="sel" id="season"><option value="normal">Normal</option><option value="peak">Peak (Q4)</option><option value="low">Off-season</option></select></div>
         <div><label class="lbl">Avg category CPC $</label><input class="inp mono" type="number" id="avgCPC" value="0.85" step="0.05" min="0.10"></div>
@@ -390,18 +390,18 @@
       </div>
     </div>
     <div class="kw-entry">
-      <input class="inp grow" type="text" id="keywordInput" placeholder="Type a keyword… e.g. garlic press, garlic mincer, kitchen gadget" onkeypress="if(event.key==='Enter')addKeyword()">
+      <input class="inp grow" type="text" id="keywordInput" placeholder="Type a keywordâ€¦ e.g. garlic press, garlic mincer, kitchen gadget" onkeypress="if(event.key==='Enter')addKeyword()">
       <select class="sel sel-w" id="keywordMatchType"><option value="exact">Exact</option><option value="phrase">Phrase</option><option value="broad">Broad</option></select>
       <input class="inp mono bid-w" type="number" id="keywordBid" value="0.75" step="0.05" min="0.10" title="Bid $">
       <select class="sel sel-w" id="keywordRelevance"><option value="high">High relevance</option><option value="medium">Medium relevance</option><option value="low">Low relevance</option></select>
       <button type="button" class="btn btn-ink" onclick="addKeyword()">Add</button>
     </div>
-    <p class="fine">TIP: relevance = how closely the search intent matches YOUR product. Be honest — this is where students bleed money.</p>
+    <p class="fine">TIP: relevance = how closely the search intent matches YOUR product. Be honest â€” this is where students bleed money.</p>
   </div>
 
   <div class="card pad rv" style="margin-bottom:22px">
     <div class="negbar">
-      <div><span class="mod-title" style="font-size:16px">⛔ Negative Keywords</span> <span class="fine" style="margin:0">— suppresses any target containing these</span></div>
+      <div><span class="mod-title" style="font-size:16px">â›” Negative Keywords</span> <span class="fine" style="margin:0">â€” suppresses any target containing these</span></div>
       <div style="display:flex;gap:8px;margin-left:auto">
         <input class="inp" style="width:200px" type="text" id="globalNegInput" placeholder="e.g. cheap, free, used" onkeypress="if(event.key==='Enter')addGlobalNeg()">
         <button type="button" class="btn btn-sm" style="background:var(--loss);color:#fff" onclick="addGlobalNeg()">Negate</button>
@@ -424,7 +424,7 @@
   <div class="grid4" style="margin-bottom:26px">
     <div class="card metric-card lift rv"><div class="mono-xs">EST. AD SPEND</div><div class="metric-val" id="mSpend">$0.00</div><div class="metric-sub">over <span id="mDays">7</span> days</div></div>
     <div class="card metric-card lift rv"><div class="mono-xs">EST. AD REVENUE</div><div class="metric-val" id="mRevenue">$0.00</div><div class="metric-sub"><span id="mOrders">0</span> orders</div></div>
-    <div class="card metric-card lift rv"><div class="mono-xs">OVERALL ACOS</div><div class="metric-val" id="mAcos">—</div><div class="metric-sub">break-even: <span id="mTarget">74%</span></div></div>
+    <div class="card metric-card lift rv"><div class="mono-xs">OVERALL ACOS</div><div class="metric-val" id="mAcos">â€”</div><div class="metric-sub">break-even: <span id="mTarget">74%</span></div></div>
     <div class="card metric-card lift rv"><div class="mono-xs">NET PROFIT (ADS + COGS)</div><div class="metric-val" id="mProfit">$0.00</div><div class="metric-sub">the only number that matters</div></div>
   </div>
 
@@ -432,25 +432,25 @@
     <div class="card pad rv"><span class="mod-title">Funnel by Keyword</span><div class="chart-box" style="margin-top:14px" id="perfChart"></div></div>
     <div class="card pad rv"><span class="mod-title">Spend vs Revenue</span><div class="chart-box" style="margin-top:14px" id="srChart"></div></div>
   </div>
-  <div class="card pad rv" style="margin-bottom:26px"><span class="mod-title">Daily Pacing</span> <span class="fine" style="margin:0">— dashed line = daily budget</span><div id="paceChart" style="margin-top:10px"></div></div>
+  <div class="card pad rv" style="margin-bottom:26px"><span class="mod-title">Daily Pacing</span> <span class="fine" style="margin:0">â€” dashed line = daily budget</span><div id="paceChart" style="margin-top:10px"></div></div>
 
   <div class="card pad rv">
-    <span class="mod-title" style="font-size:17px">🧠 Coach Readout</span>
+    <span class="mod-title" style="font-size:17px">ðŸ§  Coach Readout</span>
     <div id="recsBox" style="margin-top:14px;display:flex;flex-direction:column;gap:11px"></div>
   </div>
 </section>
 
 <section id="tab-academy" hidden>
-  <div class="sec-head rv"><span class="sec-num">02</span><h2 class="sec-title">The Academy</h2><div class="sec-rule"></div><span class="sec-tag">6 MODULES · READ IN ORDER</span></div>
+  <div class="sec-head rv"><span class="sec-num">02</span><h2 class="sec-title">The Academy</h2><div class="sec-rule"></div><span class="sec-tag">6 MODULES Â· READ IN ORDER</span></div>
   <p class="sec-sub rv">Short, practical, no fluff. Each module ends with something you can touch. Come back to these while you experiment in the Simulator.</p>
 
   <details class="card module rv" open>
-    <summary><span class="chev">▶</span><span class="mod-num">M1</span><span class="mod-name">How the Amazon Auction Actually Works</span><span class="mod-min">4 MIN</span></summary>
+    <summary><span class="chev">â–¶</span><span class="mod-num">M1</span><span class="mod-name">How the Amazon Auction Actually Works</span><span class="mod-min">4 MIN</span></summary>
     <div class="mod-body">
-      <p>Amazon runs an auction for every search, in milliseconds. Your <strong>bid</strong> is the most you are willing to pay per click — not what you actually pay. Amazon charges just enough to beat the advertiser below you (second-price auction), so a $1.00 bid often costs around $0.70.</p>
-      <p>Winning is not only about money. <strong>Ad placement = bid × relevance × expected CTR.</strong> A highly relevant listing with a great main image can beat a lazy listing bidding 2× more. This is why fixing your listing before scaling ads is not optional — it is math.</p>
+      <p>Amazon runs an auction for every search, in milliseconds. Your <strong>bid</strong> is the most you are willing to pay per click â€” not what you actually pay. Amazon charges just enough to beat the advertiser below you (second-price auction), so a $1.00 bid often costs around $0.70.</p>
+      <p>Winning is not only about money. <strong>Ad placement = bid Ã— relevance Ã— expected CTR.</strong> A highly relevant listing with a great main image can beat a lazy listing bidding 2Ã— more. This is why fixing your listing before scaling ads is not optional â€” it is math.</p>
       <div class="tool">
-        <div class="tool-title">🔬 INSTRUMENT: BID → PLACEMENT</div>
+        <div class="tool-title">ðŸ”¬ INSTRUMENT: BID â†’ PLACEMENT</div>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
           <input type="range" id="aucBid" min="0.10" max="3.00" step="0.05" value="0.75" oninput="runAuctionDemo()" style="flex:1;min-width:200px" aria-label="Auction demo bid">
           <span class="mono" style="font-weight:700;font-size:18px;width:64px" id="aucBidVal">$0.75</span>
@@ -471,7 +471,7 @@
   </details>
 
   <details class="card module rv">
-    <summary><span class="chev">▶</span><span class="mod-num">M2</span><span class="mod-name">Match Types, With Live Examples</span><span class="mod-min">5 MIN</span></summary>
+    <summary><span class="chev">â–¶</span><span class="mod-num">M2</span><span class="mod-name">Match Types, With Live Examples</span><span class="mod-min">5 MIN</span></summary>
     <div class="mod-body">
       <div class="grid3" style="gap:13px">
         <div style="border:2px solid var(--steel);border-radius:7px;padding:15px"><b style="font-family:var(--disp);color:var(--orange)">BROAD</b><p style="font-size:12.5px;line-height:1.6;margin-top:6px">Fires on synonyms, related searches, variations in any order. Maximum discovery, minimum control. Your data-gathering net.</p></div>
@@ -479,7 +479,7 @@
         <div style="border:2px solid var(--steel);border-radius:7px;padding:15px"><b style="font-family:var(--disp);color:var(--data)">EXACT</b><p style="font-size:12.5px;line-height:1.6;margin-top:6px">Fires on your keyword and very close variants (plurals, minor misspellings). Maximum control. Where proven winners live.</p></div>
       </div>
       <div class="tool">
-        <div class="tool-title">🔬 INSTRUMENT: WILL MY AD FIRE? — YOUR KEYWORD IS "GARLIC PRESS"</div>
+        <div class="tool-title">ðŸ”¬ INSTRUMENT: WILL MY AD FIRE? â€” YOUR KEYWORD IS "GARLIC PRESS"</div>
         <select class="sel" style="max-width:340px" id="mdSelect" onchange="runMatchDemo()">
           <option>garlic press</option><option>garlic presses</option><option>stainless garlic press</option>
           <option>garlic press stainless steel</option><option>press for garlic</option><option>garlic mincer</option>
@@ -488,15 +488,15 @@
         <div class="md-badges" id="mdOut"></div>
         <p class="fine" id="mdNote" style="margin-top:10px;font-size:12.5px;color:#475569"></p>
       </div>
-      <div class="coach"><strong>The classic workflow:</strong> discover in Broad/Auto → find converting search terms → graduate them into Exact campaigns → negate the junk. This is called <em>harvesting</em>, and it is 80% of PPC skill.</div>
+      <div class="coach"><strong>The classic workflow:</strong> discover in Broad/Auto â†’ find converting search terms â†’ graduate them into Exact campaigns â†’ negate the junk. This is called <em>harvesting</em>, and it is 80% of PPC skill.</div>
     </div>
   </details>
 
   <details class="card module rv">
-    <summary><span class="chev">▶</span><span class="mod-num">M3</span><span class="mod-name">ACOS, Break-Even, and Max CPC Math</span><span class="mod-min">6 MIN</span></summary>
+    <summary><span class="chev">â–¶</span><span class="mod-num">M3</span><span class="mod-name">ACOS, Break-Even, and Max CPC Math</span><span class="mod-min">6 MIN</span></summary>
     <div class="mod-body">
-      <p><strong>ACOS = Ad Spend ÷ Ad Revenue × 100.</strong> If you spend $10 to make $40 in sales, ACOS is 25%. The number to compare it against is your <strong>break-even ACOS</strong> — your profit margin before ads. ACOS below margin = profitable. Above = bleeding.</p>
-      <p><strong>TACOS = Ad Spend ÷ TOTAL Revenue (ads + organic).</strong> It reveals whether ads are growing the whole business or just renting sales. Healthy listings trend TACOS downward over time as organic rank improves.</p>
+      <p><strong>ACOS = Ad Spend Ã· Ad Revenue Ã— 100.</strong> If you spend $10 to make $40 in sales, ACOS is 25%. The number to compare it against is your <strong>break-even ACOS</strong> â€” your profit margin before ads. ACOS below margin = profitable. Above = bleeding.</p>
+      <p><strong>TACOS = Ad Spend Ã· TOTAL Revenue (ads + organic).</strong> It reveals whether ads are growing the whole business or just renting sales. Healthy listings trend TACOS downward over time as organic rank improves.</p>
       <div class="calc-grid">
         <div class="calc">
           <div class="tool-title">BREAK-EVEN ACOS</div>
@@ -515,56 +515,56 @@
           <div class="tool-title">ACOS READOUT</div>
           <label class="lbl">Spend $</label><input class="inp" type="number" id="ro_spend" value="18" step="0.5" oninput="runCalculators()">
           <label class="lbl">Revenue $</label><input class="inp" type="number" id="ro_rev" value="72" step="0.5" oninput="runCalculators()">
-          <div class="calc-out"><span style="color:#64748B">ACOS:</span> <strong class="big" id="ro_out">25%</strong><br><span style="font-size:11.5px" id="ro_verdict">✅ On target at 25% goal</span></div>
+          <div class="calc-out"><span style="color:#64748B">ACOS:</span> <strong class="big" id="ro_out">25%</strong><br><span style="font-size:11.5px" id="ro_verdict">âœ… On target at 25% goal</span></div>
         </div>
       </div>
-      <div class="coach"><strong>Memorize this:</strong> Max CPC = Price × Target ACOS × Conversion Rate. Every bid above that number is a donation to Amazon.</div>
+      <div class="coach"><strong>Memorize this:</strong> Max CPC = Price Ã— Target ACOS Ã— Conversion Rate. Every bid above that number is a donation to Amazon.</div>
     </div>
   </details>
 
   <details class="card module rv">
-    <summary><span class="chev">▶</span><span class="mod-num">M4</span><span class="mod-name">The Keyword Research Workflow</span><span class="mod-min">5 MIN</span></summary>
+    <summary><span class="chev">â–¶</span><span class="mod-num">M4</span><span class="mod-name">The Keyword Research Workflow</span><span class="mod-min">5 MIN</span></summary>
     <div class="mod-body">
       <ol>
-        <li><span class="step-num">01</span><div><strong>Seed.</strong> List 5–10 words a buyer would actually type. Your title, competitor titles, your brain. "garlic press", "garlic mincer", "garlic crusher".</div></li>
+        <li><span class="step-num">01</span><div><strong>Seed.</strong> List 5â€“10 words a buyer would actually type. Your title, competitor titles, your brain. "garlic press", "garlic mincer", "garlic crusher".</div></li>
         <li><span class="step-num">02</span><div><strong>Expand.</strong> Add modifiers: material ("stainless steel"), audience ("for arthritic hands"), use case ("for ginger"), bundle ("set of 2"). Long-tail = cheaper clicks, higher intent.</div></li>
         <li><span class="step-num">03</span><div><strong>Score.</strong> Judge every keyword on three axes: <em>volume</em> (is there demand?), <em>relevance</em> (does the intent match my product?), <em>competition</em> (can my budget afford it?). Two of three is a maybe. One of three is a no.</div></li>
         <li><span class="step-num">04</span><div><strong>Structure.</strong> Group by intent. One ad group per tight theme. High-volume head terms get their own exact campaign so they cannot swallow the budget.</div></li>
-        <li><span class="step-num">05</span><div><strong>Iterate.</strong> After 7–14 days, the search term report tells you the truth. Harvest winners to Exact. Negate losers. Repeat weekly.</div></li>
+        <li><span class="step-num">05</span><div><strong>Iterate.</strong> After 7â€“14 days, the search term report tells you the truth. Harvest winners to Exact. Negate losers. Repeat weekly.</div></li>
       </ol>
       <div class="coach"><strong>Coach tip:</strong> relevance beats volume. 200 clicks from "cheap garlic press free shipping" converts worse than 8 clicks from "stainless garlic press heavy duty".</div>
     </div>
   </details>
 
   <details class="card module rv">
-    <summary><span class="chev">▶</span><span class="mod-num">M5</span><span class="mod-name">Negative Keywords: The Profit Lever</span><span class="mod-min">4 MIN</span></summary>
+    <summary><span class="chev">â–¶</span><span class="mod-num">M5</span><span class="mod-name">Negative Keywords: The Profit Lever</span><span class="mod-min">4 MIN</span></summary>
     <div class="mod-body">
       <p>Broad and phrase match will happily show your garlic press ad for "garlic powder" and charge you for the click. Negative keywords block specific search terms from triggering your ads. It is the single fastest way to cut ACOS without touching bids.</p>
       <div class="sample">
-        <div style="color:#8CA3BD;margin-bottom:9px">SAMPLE SEARCH TERM REPORT — broad "yoga mat", day 1–7</div>
+        <div style="color:#8CA3BD;margin-bottom:9px">SAMPLE SEARCH TERM REPORT â€” broad "yoga mat", day 1â€“7</div>
         <div class="srow head"><span>TERM</span><span class="r">CLICKS</span><span class="r">SPEND</span><span class="r">ORDERS</span></div>
         <div class="srow"><span>yoga mat</span><span class="r">40</span><span class="r">$32.10</span><span class="r g">6</span></div>
         <div class="srow"><span>thick yoga mat</span><span class="r">25</span><span class="r">$20.40</span><span class="r g">4</span></div>
-        <div class="srow bad"><span>yoga pants ⛔</span><span class="r">30</span><span class="r">$27.60</span><span class="r">0</span></div>
-        <div class="srow bad"><span>yoga block ⛔</span><span class="r">18</span><span class="r">$15.20</span><span class="r">0</span></div>
-        <div style="color:#8CA3BD;margin-top:9px">The ⛔ rows are pure waste: $42.80 — about 40% of this campaign's spend.</div>
+        <div class="srow bad"><span>yoga pants â›”</span><span class="r">30</span><span class="r">$27.60</span><span class="r">0</span></div>
+        <div class="srow bad"><span>yoga block â›”</span><span class="r">18</span><span class="r">$15.20</span><span class="r">0</span></div>
+        <div style="color:#8CA3BD;margin-top:9px">The â›” rows are pure waste: $42.80 â€” about 40% of this campaign's spend.</div>
       </div>
       <p>Now do it yourself: open the Simulator, add a <strong>Broad</strong> keyword, click <strong>TERMS</strong> on its row, and negate the junk. Watch ACOS drop in real time. Then try Exercise 1 in Practice.</p>
     </div>
   </details>
 
   <details class="card module rv">
-    <summary><span class="chev">▶</span><span class="mod-num">M6</span><span class="mod-name">Campaign Structure &amp; Diagnostics</span><span class="mod-min">5 MIN</span></summary>
+    <summary><span class="chev">â–¶</span><span class="mod-num">M6</span><span class="mod-name">Campaign Structure &amp; Diagnostics</span><span class="mod-min">5 MIN</span></summary>
     <div class="mod-body">
       <div class="struct">
-        <div class="folder">📁 SP — Garlic Press (Auto)</div><div class="sub">└ discovery, $15/day, bids −20% suggested</div>
-        <div class="folder">📁 SP — Garlic Press (Broad Research)</div><div class="sub">└ 10–15 broad terms, harvesting weekly</div>
-        <div class="folder">📁 SP — Garlic Press (Exact Winners)</div><div class="sub">└ only proven converters, aggressive bids</div>
-        <div class="folder">📁 SP — Garlic Press (Defense)</div><div class="sub">└ own brand + own ASINs</div>
+        <div class="folder">ðŸ“ SP â€” Garlic Press (Auto)</div><div class="sub">â”” discovery, $15/day, bids âˆ’20% suggested</div>
+        <div class="folder">ðŸ“ SP â€” Garlic Press (Broad Research)</div><div class="sub">â”” 10â€“15 broad terms, harvesting weekly</div>
+        <div class="folder">ðŸ“ SP â€” Garlic Press (Exact Winners)</div><div class="sub">â”” only proven converters, aggressive bids</div>
+        <div class="folder">ðŸ“ SP â€” Garlic Press (Defense)</div><div class="sub">â”” own brand + own ASINs</div>
       </div>
-      <p>When a campaign underperforms, diagnose the funnel stage — do not just "lower the bid":</p>
+      <p>When a campaign underperforms, diagnose the funnel stage â€” do not just "lower the bid":</p>
       <div class="tool">
-        <div class="tool-title">🔬 INSTRUMENT: SYMPTOM → FIX</div>
+        <div class="tool-title">ðŸ”¬ INSTRUMENT: SYMPTOM â†’ FIX</div>
         <div class="diag-row">
           <button type="button" class="diag-btn" onclick="runDiag('imp')">Low impressions</button>
           <button type="button" class="diag-btn" onclick="runDiag('ctr')">High impressions, low CTR</button>
@@ -577,15 +577,15 @@
   </details>
 
   <div style="margin-top:40px" class="rv">
-    <span class="mod-title" style="font-size:19px">Glossary</span> <span class="fine" style="margin:0">— the vocabulary of the auction floor</span>
-    <div style="margin:14px 0"><input class="inp" style="max-width:320px" type="text" id="gSearch" placeholder="Search terms…" oninput="renderGlossary()"></div>
+    <span class="mod-title" style="font-size:19px">Glossary</span> <span class="fine" style="margin:0">â€” the vocabulary of the auction floor</span>
+    <div style="margin:14px 0"><input class="inp" style="max-width:320px" type="text" id="gSearch" placeholder="Search termsâ€¦" oninput="renderGlossary()"></div>
     <div class="gloss-grid" id="gGrid"></div>
   </div>
 </section>
 
 <section id="tab-playbook" hidden>
-  <div class="sec-head rv"><span class="sec-num">03</span><h2 class="sec-title">Sample Playbooks</h2><div class="sec-rule"></div><span class="sec-tag">6 BUILDS · LOAD · BREAK · LEARN</span></div>
-  <p class="sec-sub rv">Six real-world campaign builds — from a $10/day bootstrap to a Q4 blitz. Load one into the Simulator, study why each keyword earned its spot, read the trap, then change things and see what breaks.</p>
+  <div class="sec-head rv"><span class="sec-num">03</span><h2 class="sec-title">Sample Playbooks</h2><div class="sec-rule"></div><span class="sec-tag">6 BUILDS Â· LOAD Â· BREAK Â· LEARN</span></div>
+  <p class="sec-sub rv">Six real-world campaign builds â€” from a $10/day bootstrap to a Q4 blitz. Load one into the Simulator, study why each keyword earned its spot, read the trap, then change things and see what breaks.</p>
   <div class="pb-filter rv">
     <button type="button" class="pb-fbtn on" onclick="filterPB('all',this)">ALL (6)</button>
     <button type="button" class="pb-fbtn" onclick="filterPB('BEGINNER',this)">BEGINNER</button>
@@ -596,13 +596,13 @@
 </section>
 
 <section id="tab-practice" hidden>
-  <div class="sec-head rv"><span class="sec-num">04</span><h2 class="sec-title">Practice Floor</h2><div class="sec-rule"></div><span class="sec-tag">16 DRILLS · XP ON FIRST PASS</span></div>
-  <p class="sec-sub rv">Sixteen drills covering the full PPC skill tree: audits, bid math, auction pricing, TACOS, match-type mechanics, harvesting, structure, diagnostics, budget allocation, and the weekly optimization rhythm. Make your calls, then check yourself — the explanations matter more than the score.</p>
+  <div class="sec-head rv"><span class="sec-num">04</span><h2 class="sec-title">Practice Floor</h2><div class="sec-rule"></div><span class="sec-tag">16 DRILLS Â· XP ON FIRST PASS</span></div>
+  <p class="sec-sub rv">Sixteen drills covering the full PPC skill tree: audits, bid math, auction pricing, TACOS, match-type mechanics, harvesting, structure, diagnostics, budget allocation, and the weekly optimization rhythm. Make your calls, then check yourself â€” the explanations matter more than the score.</p>
   <div id="practiceArea"></div>
 </section>
 
 <section id="tab-quiz" hidden>
-  <div class="sec-head rv"><span class="sec-num">05</span><h2 class="sec-title">Certification Exam</h2><div class="sec-rule"></div><span class="sec-tag">12 QUESTIONS · 80% TO PASS</span></div>
+  <div class="sec-head rv"><span class="sec-num">05</span><h2 class="sec-title">Certification Exam</h2><div class="sec-rule"></div><span class="sec-tag">12 QUESTIONS Â· 80% TO PASS</span></div>
   <div class="quiz-wrap" id="quizBox"></div>
 </section>
 
@@ -620,8 +620,8 @@
       </div>
     </div>
     <div class="foot-notes">
-      Practice simulator — all numbers are modeled estimates, not marketplace data.<br>
-      Self-contained file · your XP and best score save locally in this browser.
+      Practice simulator â€” all numbers are modeled estimates, not marketplace data.<br>
+      Self-contained file Â· your XP and best score save locally in this browser.
     </div>
   </div>
 </footer>
@@ -629,7 +629,7 @@
 <div id="toastBox"></div>
 
 <script>
-/* ════════════════════ DATA ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• DATA â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 var KEYWORD_DB = {
   'garlic press':{vol:45000,comp:.8},'garlic mincer':{vol:18000,comp:.6},'garlic crusher':{vol:22000,comp:.7},
   'garlic press stainless steel':{vol:12000,comp:.5},'garlic press rocker':{vol:8000,comp:.4},'kitchen gadget':{vol:90000,comp:.9},
@@ -655,105 +655,105 @@ var UNRELATED = ['press on nails','french press coffee maker','air fryer liner',
 var LEVELS = [{xp:0,name:'ROOKIE'},{xp:100,name:'SCOUT'},{xp:250,name:'ANALYST'},{xp:500,name:'STRATEGIST'},{xp:850,name:'SNIPER'},{xp:1300,name:'PPC MASTER'}];
 
 var PLAYBOOKS = [
-  { id:'garlic', name:'Garlic Press Launch', diff:'BEGINNER', diffBg:'#4ADE80', market:'Kitchen · medium competition',
+  { id:'garlic', name:'Garlic Press Launch', diff:'BEGINNER', diffBg:'#4ADE80', market:'Kitchen Â· medium competition',
     budget:30, price:24.99, cost:6.50, days:7, comp:'medium', season:'normal', cpc:0.85, lq:3, cat:'kitchen',
-    expect:'18–30%', negs:[],
+    expect:'18â€“30%', negs:[],
     pitch:'The textbook launch: exact matches on proven head terms, one broad net for discovery, tight budget discipline.',
-    notes:['Exact on the 3 head terms — you know the intent, you want control.','One broad "kitchen gadget" net at a capped bid — pure discovery, expect waste, harvest weekly.','Long-tail exact on "garlic press stainless steel" — cheaper CPC, higher intent.','Phrase on "garlic crusher" — same intent, different vocabulary, medium control.','Nothing irrelevant. Relevance is high on 80%+ of rows.'],
-    trap:'Falling in love with "kitchen gadget" because the clicks look cheap. It is a browsing term — harvest from it, never scale it.',
+    notes:['Exact on the 3 head terms â€” you know the intent, you want control.','One broad "kitchen gadget" net at a capped bid â€” pure discovery, expect waste, harvest weekly.','Long-tail exact on "garlic press stainless steel" â€” cheaper CPC, higher intent.','Phrase on "garlic crusher" â€” same intent, different vocabulary, medium control.','Nothing irrelevant. Relevance is high on 80%+ of rows.'],
+    trap:'Falling in love with "kitchen gadget" because the clicks look cheap. It is a browsing term â€” harvest from it, never scale it.',
     kws:[['garlic press','exact',0.85,'high'],['garlic mincer','exact',0.70,'high'],['garlic crusher','phrase',0.75,'high'],
          ['garlic press stainless steel','exact',0.65,'high'],['kitchen gadget','broad',1.00,'medium'],['herb grinder','phrase',0.60,'medium']] },
-  { id:'yoga', name:'Yoga Mat — Red Ocean', diff:'ADVANCED', diffBg:'#F87171', market:'Fitness · saturated market',
+  { id:'yoga', name:'Yoga Mat â€” Red Ocean', diff:'ADVANCED', diffBg:'#F87171', market:'Fitness Â· saturated market',
     budget:40, price:29.99, cost:9.00, days:7, comp:'high', season:'normal', cpc:1.35, lq:4, cat:'fitness',
-    expect:'30–45% · mine first, profit later', negs:['pants','block','cushion'],
+    expect:'30â€“45% Â· mine first, profit later', negs:['pants','block','cushion'],
     pitch:'A shark tank. Head terms are $1.50+ clicks owned by giants. The play: long-tail precision and ruthless negatives.',
-    notes:['Skip "yoga mat" as exact — the CPC will eat you alive. Use broad only, as a term-mining operation.','Own the long tail: "thick yoga mat", "yoga mat with strap" — intent is specific, competition is thinner.','Three negatives pre-loaded: "pants", "block", "cushion" — the classic waste terms in this niche.','"non slip yoga mat" is your quiet killer — buyers who type this already know what they want.','Higher listing quality assumed — in saturated markets your images do the bidding for you.'],
-    trap:'Bidding "yoga mat" exact at $1.90 to "defend rank". You are not defending anything — you are funding your competitors\u2019 margins.',
+    notes:['Skip "yoga mat" as exact â€” the CPC will eat you alive. Use broad only, as a term-mining operation.','Own the long tail: "thick yoga mat", "yoga mat with strap" â€” intent is specific, competition is thinner.','Three negatives pre-loaded: "pants", "block", "cushion" â€” the classic waste terms in this niche.','"non slip yoga mat" is your quiet killer â€” buyers who type this already know what they want.','Higher listing quality assumed â€” in saturated markets your images do the bidding for you.'],
+    trap:'Bidding "yoga mat" exact at $1.90 to "defend rank". You are not defending anything â€” you are funding your competitors\u2019 margins.',
     kws:[['yoga mat','broad',1.10,'medium'],['thick yoga mat','exact',1.25,'high'],['yoga mat with strap','exact',1.05,'high'],
          ['exercise mat','phrase',1.00,'medium'],['non slip yoga mat','exact',1.15,'high']] },
-  { id:'glove', name:'Left-Handed Golf Glove — Niche Sniper', diff:'INTERMEDIATE', diffBg:'#FF9900', market:'Golf · low competition',
+  { id:'glove', name:'Left-Handed Golf Glove â€” Niche Sniper', diff:'INTERMEDIATE', diffBg:'#FF9900', market:'Golf Â· low competition',
     budget:20, price:14.99, cost:3.80, days:7, comp:'low', season:'normal', cpc:0.55, lq:3, cat:'fitness',
-    expect:'12–22%', negs:[],
-    pitch:'Tiny pond, big fish. Low search volume but almost no competition — exact matches and patience win here.',
-    notes:['Exact-heavy: in a niche this small, every dollar should target known intent.','"golf glove" stays broad on purpose — most searchers will not specify "left handed", so you mine for them.','Low CPCs mean your budget stretches: watch the pacing chart stay under cap.','Long-tail exact on "left handed golf glove men" — the money phrase.','Reinvest rule: first profitable week buys one new keyword, not a bid increase.'],
-    trap:'Impatience. Low volume means some days bring zero clicks. Do not panic-bid upward — the clicks come to those who hold position.',
+    expect:'12â€“22%', negs:[],
+    pitch:'Tiny pond, big fish. Low search volume but almost no competition â€” exact matches and patience win here.',
+    notes:['Exact-heavy: in a niche this small, every dollar should target known intent.','"golf glove" stays broad on purpose â€” most searchers will not specify "left handed", so you mine for them.','Low CPCs mean your budget stretches: watch the pacing chart stay under cap.','Long-tail exact on "left handed golf glove men" â€” the money phrase.','Reinvest rule: first profitable week buys one new keyword, not a bid increase.'],
+    trap:'Impatience. Low volume means some days bring zero clicks. Do not panic-bid upward â€” the clicks come to those who hold position.',
     kws:[['left handed golf glove','exact',0.60,'high'],['left handed golf glove men','exact',0.55,'high'],
          ['golf glove','broad',0.50,'medium'],['golf gloves for men','phrase',0.55,'medium']] },
-  { id:'serum', name:'Vitamin C Serum — Brand + Category Split', diff:'INTERMEDIATE', diffBg:'#FF9900', market:'Beauty · high competition',
+  { id:'serum', name:'Vitamin C Serum â€” Brand + Category Split', diff:'INTERMEDIATE', diffBg:'#FF9900', market:'Beauty Â· high competition',
     budget:45, price:18.99, cost:4.20, days:7, comp:'high', season:'normal', cpc:1.45, lq:4, cat:'beauty',
-    expect:'18–28%', negs:['diy','recipe','powder'],
+    expect:'18â€“28%', negs:['diy','recipe','powder'],
     pitch:'A two-front war: defend your brand name from poachers, and snipe the long-tail category terms the giants cannot be bothered to bid.',
-    notes:['"zen glow serum" exact at a low bid — your own brand. Clicks should be nearly free and convert at 20%+.','"vitamin c serum" stays broad-only — the head term CPC is brutal, so use it strictly as a mining operation.','Own the modifiers: "for dark spots" and "with hyaluronic acid" carry specific intent and thinner competition.','Three negatives pre-loaded: "diy", "recipe", "powder" — home-mixers will never buy a bottled serum.','Watch TACOS, not just ACOS — brand defense can look "expensive" while quietly protecting your organic conversions.'],
-    trap:'Pouring budget into "face serum" ($1.60 clicks, vague intent) while your own brand name sits undefended. Competitors poaching your brand traffic convert at 3× your rate.',
+    notes:['"zen glow serum" exact at a low bid â€” your own brand. Clicks should be nearly free and convert at 20%+.','"vitamin c serum" stays broad-only â€” the head term CPC is brutal, so use it strictly as a mining operation.','Own the modifiers: "for dark spots" and "with hyaluronic acid" carry specific intent and thinner competition.','Three negatives pre-loaded: "diy", "recipe", "powder" â€” home-mixers will never buy a bottled serum.','Watch TACOS, not just ACOS â€” brand defense can look "expensive" while quietly protecting your organic conversions.'],
+    trap:'Pouring budget into "face serum" ($1.60 clicks, vague intent) while your own brand name sits undefended. Competitors poaching your brand traffic convert at 3Ã— your rate.',
     kws:[['zen glow serum','exact',0.55,'high'],['vitamin c serum','broad',1.20,'medium'],
          ['vitamin c serum for dark spots','exact',1.35,'high'],['vitamin c serum with hyaluronic acid','exact',1.25,'high'],
          ['brightening face serum','phrase',1.10,'medium']] },
-  { id:'q4', name:'Wireless Keyboard — Q4 Blitz', diff:'ADVANCED', diffBg:'#F87171', market:'Electronics · peak season',
+  { id:'q4', name:'Wireless Keyboard â€” Q4 Blitz', diff:'ADVANCED', diffBg:'#F87171', market:'Electronics Â· peak season',
     budget:80, price:49.99, cost:16.50, days:7, comp:'high', season:'peak', cpc:1.60, lq:4, cat:'electronics',
-    expect:'28–40% · acceptable if margin holds', negs:['cheap','under 10','used'],
-    pitch:'Peak season. CPCs are inflated 25–40% and everyone is fighting for the same head terms. Strategy: do not fight where it is expensive — fight where it converts.',
-    notes:['Exact-only core — by Q4 you should already know your converters from months of search-term data.','"wireless keyboard for mac" and "slim wireless keyboard": specific intent beats generic holiday traffic.','Bids sit ~15% above suggested to win top-of-search during peak hours — watch the pacing chart daily.','Budget is doubled versus normal season. Q4 volume justifies it, but only on proven terms.','Three negatives pre-loaded: "cheap", "under 10", "used" — gift season attracts bargain hunters.'],
-    trap:'Chasing "keyboard" or "wireless keyboard" at $2.50+ CPC in December. You are not buying sales — you are buying impressions from Santa.',
+    expect:'28â€“40% Â· acceptable if margin holds', negs:['cheap','under 10','used'],
+    pitch:'Peak season. CPCs are inflated 25â€“40% and everyone is fighting for the same head terms. Strategy: do not fight where it is expensive â€” fight where it converts.',
+    notes:['Exact-only core â€” by Q4 you should already know your converters from months of search-term data.','"wireless keyboard for mac" and "slim wireless keyboard": specific intent beats generic holiday traffic.','Bids sit ~15% above suggested to win top-of-search during peak hours â€” watch the pacing chart daily.','Budget is doubled versus normal season. Q4 volume justifies it, but only on proven terms.','Three negatives pre-loaded: "cheap", "under 10", "used" â€” gift season attracts bargain hunters.'],
+    trap:'Chasing "keyboard" or "wireless keyboard" at $2.50+ CPC in December. You are not buying sales â€” you are buying impressions from Santa.',
     kws:[['wireless keyboard for mac','exact',1.85,'high'],['slim wireless keyboard','exact',1.70,'high'],
          ['wireless keyboard and mouse combo','exact',1.75,'high'],['bluetooth keyboard for ipad','phrase',1.50,'medium'],
          ['mechanical wireless keyboard','broad',1.60,'medium']] },
-  { id:'dog', name:'Dog Bed — $10/Day Bootstrapper', diff:'BEGINNER', diffBg:'#4ADE80', market:'Pets · low competition',
+  { id:'dog', name:'Dog Bed â€” $10/Day Bootstrapper', diff:'BEGINNER', diffBg:'#4ADE80', market:'Pets Â· low competition',
     budget:10, price:32.99, cost:9.80, days:14, comp:'low', season:'normal', cpc:0.50, lq:3, cat:'pets',
-    expect:'15–25%', negs:[],
-    pitch:'Ten dollars a day is a real budget — if you refuse to spread it. Three ultra long-tail exact matches, nothing else. Every click has a job.',
-    notes:['Only 3 keywords — all exact, all three-plus words, all high intent.','"orthopedic dog bed large breed": the buyer knows exactly what they want. So do you.','Bids sit below suggested CPC — with low competition you still win rest-of-search placements for pennies.','14-day window: micro budgets need time to accumulate statistically meaningful clicks. Do not judge on day 3.','Reinvest rule: the first profitable week buys one more long-tail term — not a bid increase.'],
+    expect:'15â€“25%', negs:[],
+    pitch:'Ten dollars a day is a real budget â€” if you refuse to spread it. Three ultra long-tail exact matches, nothing else. Every click has a job.',
+    notes:['Only 3 keywords â€” all exact, all three-plus words, all high intent.','"orthopedic dog bed large breed": the buyer knows exactly what they want. So do you.','Bids sit below suggested CPC â€” with low competition you still win rest-of-search placements for pennies.','14-day window: micro budgets need time to accumulate statistically meaningful clicks. Do not judge on day 3.','Reinvest rule: the first profitable week buys one more long-tail term â€” not a bid increase.'],
     trap:'Spreading $10 across 10 keywords and getting 2 clicks a day on each. That is not data, that is noise. Concentration beats coverage at micro budgets.',
     kws:[['orthopedic dog bed large breed','exact',0.55,'high'],['washable dog bed for crate','exact',0.50,'high'],
          ['calming dog bed small','exact',0.48,'high']] }
 ];
 
 var QUIZ = [
-  {q:'ACOS stands for…', o:['Advertising Cost of Sales','Average Cost per Sale','Ad Conversion Optimization Score','Amazon Cost of Spending'], a:0,
-   e:"Advertising Cost of Sales = ad spend ÷ ad revenue. It is the headline efficiency metric for PPC."},
-  {q:'The correct ACOS formula is:', o:['Revenue ÷ Spend × 100','Spend ÷ Revenue × 100','Clicks ÷ Impressions × 100','Spend ÷ Clicks'], a:1,
+  {q:'ACOS stands forâ€¦', o:['Advertising Cost of Sales','Average Cost per Sale','Ad Conversion Optimization Score','Amazon Cost of Spending'], a:0,
+   e:"Advertising Cost of Sales = ad spend Ã· ad revenue. It is the headline efficiency metric for PPC."},
+  {q:'The correct ACOS formula is:', o:['Revenue Ã· Spend Ã— 100','Spend Ã· Revenue Ã— 100','Clicks Ã· Impressions Ã— 100','Spend Ã· Clicks'], a:1,
    e:'Spend over revenue. $10 spend on $40 revenue = 25% ACOS.'},
   {q:'Which match type gives you the MOST control over which searches trigger your ad?', o:['Broad','Phrase','Exact','Auto'], a:2,
-   e:'Exact match fires only on your keyword and very close variants — maximum control, minimum reach.'},
+   e:'Exact match fires only on your keyword and very close variants â€” maximum control, minimum reach.'},
   {q:'Broad match can show your ad for:', o:['Only your exact keyword','Synonyms, related searches, and word-order variations','Only misspellings','Only your brand name'], a:1,
-   e:'Broad is the widest net — great for discovery, dangerous without negative keywords.'},
+   e:'Broad is the widest net â€” great for discovery, dangerous without negative keywords.'},
   {q:'Negative keywords do what?', o:['Lower your bid automatically','Pause your campaign at night','Prevent your ad showing for searches containing them','Reduce your product price'], a:2,
    e:'They block wasted impressions and clicks on terms that will never convert for you.'},
   {q:'You bid $1.00. What will you most likely pay per click?', o:['Exactly $1.00','More than $1.00','Less than $1.00','$0.10 flat'], a:2,
-   e:'Amazon runs a second-price auction — you pay just enough to beat the advertiser below you.'},
-  {q:'Your ACOS is 48% and your profit margin before ads is 35%. You are…', o:['Profitable on ad sales','Breaking even','Losing money on ad sales','Growing organic rank'], a:2,
+   e:'Amazon runs a second-price auction â€” you pay just enough to beat the advertiser below you.'},
+  {q:'Your ACOS is 48% and your profit margin before ads is 35%. You areâ€¦', o:['Profitable on ad sales','Breaking even','Losing money on ad sales','Growing organic rank'], a:2,
    e:'ACOS above break-even margin means every ad sale costs more than it returns in gross profit.'},
-  {q:'TACOS differs from ACOS because it uses:', o:['Only organic revenue','Total revenue — ads plus organic','Clicks instead of spend','Impressions instead of clicks'], a:1,
-   e:'TACOS = spend ÷ total revenue. Falling TACOS over time means ads are lifting the whole listing.'},
+  {q:'TACOS differs from ACOS because it uses:', o:['Only organic revenue','Total revenue â€” ads plus organic','Clicks instead of spend','Impressions instead of clicks'], a:1,
+   e:'TACOS = spend Ã· total revenue. Falling TACOS over time means ads are lifting the whole listing.'},
   {q:'A brand-new product with zero data should usually start with:', o:['Exact match only on one keyword','No ads until reviews exist','Auto or broad campaigns for discovery','Maximum bids on the biggest keywords'], a:2,
    e:'You need search-term data first. Discover broadly, then harvest proven terms into exact campaigns.'},
-  {q:'CTR is calculated as:', o:['Impressions ÷ Clicks','Clicks ÷ Impressions','Orders ÷ Clicks','Spend ÷ Clicks'], a:1,
+  {q:'CTR is calculated as:', o:['Impressions Ã· Clicks','Clicks Ã· Impressions','Orders Ã· Clicks','Spend Ã· Clicks'], a:1,
    e:'Clicks divided by impressions. It measures how compelling your ad looks in the results.'},
   {q:'High impressions but a 0.1% CTR. The first things to fix are:', o:['Your bid and budget','Main image, price, title, and reviews','Your negative keywords','The backend search terms field'], a:1,
-   e:'People see you and skip you — that is an ad-facing problem: image, price, title, star rating.'},
-  {q:'You should "harvest" a search term from broad into exact when it…', o:['Gets any impressions','Has spent your full budget','Proves it converts at an acceptable ACOS','Appears in your title'], a:2,
-   e:'Graduate terms with real conversion evidence — usually after 10+ clicks and a workable ACOS.'}
+   e:'People see you and skip you â€” that is an ad-facing problem: image, price, title, star rating.'},
+  {q:'You should "harvest" a search term from broad into exact when itâ€¦', o:['Gets any impressions','Has spent your full budget','Proves it converts at an acceptable ACOS','Appears in your title'], a:2,
+   e:'Graduate terms with real conversion evidence â€” usually after 10+ clicks and a workable ACOS.'}
 ];
 
 var GLOSSARY = [
-  ['ACOS','Advertising Cost of Sales. Spend ÷ ad revenue × 100.'],
-  ['TACOS','Total ACOS. Spend ÷ ALL revenue (organic + ads).'],
-  ['CPC','Cost per click — what you actually pay, usually below your bid.'],
-  ['CTR','Click-through rate. Clicks ÷ impressions.'],
-  ['CVR','Conversion rate. Orders ÷ clicks.'],
+  ['ACOS','Advertising Cost of Sales. Spend Ã· ad revenue Ã— 100.'],
+  ['TACOS','Total ACOS. Spend Ã· ALL revenue (organic + ads).'],
+  ['CPC','Cost per click â€” what you actually pay, usually below your bid.'],
+  ['CTR','Click-through rate. Clicks Ã· impressions.'],
+  ['CVR','Conversion rate. Orders Ã· clicks.'],
   ['Bid','Your max willingness to pay per click. Not what you pay.'],
   ['Impressions','Times your ad appeared in search results.'],
-  ['Search Term','What the shopper actually typed — different from your keyword.'],
+  ['Search Term','What the shopper actually typed â€” different from your keyword.'],
   ['Negative Keyword','A term you block from triggering your ads.'],
   ['Long-tail','3+ word phrases: lower volume, higher intent, cheaper clicks.'],
   ['Harvesting','Moving converting search terms from broad/auto into exact campaigns.'],
-  ['Ad Rank','Your auction position — driven by bid × relevance × expected CTR.'],
+  ['Ad Rank','Your auction position â€” driven by bid Ã— relevance Ã— expected CTR.'],
   ['Break-even ACOS','Your pre-ad profit margin. ACOS above it = losing money.'],
   ['Auto Campaign','Amazon picks the search terms. A discovery machine.'],
   ['Exact / Phrase / Broad','The three manual match types, from most to least control.'],
-  ['ROAS','Return on ad spend. Revenue ÷ spend — the inverse of ACOS.']
+  ['ROAS','Return on ad spend. Revenue Ã· spend â€” the inverse of ACOS.']
 ];
 
-/* ════════════════════ STATE & UTILS ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• STATE & UTILS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 var keywords = [], listingQuality = 3, globalNegs = [], expanded = {};
 var nextId = 1;
 var exDone = {};
@@ -763,19 +763,19 @@ function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
 function money(v){ return '$' + v.toFixed(2); }
 function kfmt(v){ return v >= 1000 ? (v/1000).toFixed(1).replace('.0','') + 'k' : String(v); }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function short(s){ return s.length > 16 ? s.slice(0,16) + '…' : s; }
+function short(s){ return s.length > 16 ? s.slice(0,16) + 'â€¦' : s; }
 function hashStr(s){ var h = 1779033703 ^ s.length; for(var i=0;i<s.length;i++){ h = Math.imul(h ^ s.charCodeAt(i), 3432918353); h = h<<13 | h>>>19; } return h>>>0; }
 function rng(seed){ return function(){ seed|=0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed>>>15, 1|seed); t = t + Math.imul(t ^ t>>>7, 61|t) ^ t; return ((t ^ t>>>14)>>>0)/4294967296; }; }
 function pick(arr,r){ return arr[Math.floor(r()*arr.length)]; }
 
-/* ════════════════════ XP SYSTEM ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• XP SYSTEM â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 var XP = 0;
 try { XP = parseInt(localStorage.getItem('kwlab_xp') || '0', 10) || 0; } catch(e){}
 function addXP(n, reason){
   XP += n;
   try { localStorage.setItem('kwlab_xp', String(XP)); } catch(e){}
   renderXP();
-  toast('+' + n + ' XP — ' + reason, 'xp');
+  toast('+' + n + ' XP â€” ' + reason, 'xp');
 }
 function renderXP(){
   var lvl = LEVELS[0], next = null;
@@ -804,15 +804,15 @@ function confetti(){
   }
 }
 
-/* ════════════════════ AMBIENT ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• AMBIENT â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function buildTicker(){
   var keys = Object.keys(KEYWORD_DB).slice(0,16);
   var items = keys.map(function(k){
     var bid = (0.4 + Math.random()*1.4).toFixed(2);
     var up = Math.random() > 0.45;
-    return '<span><span style="color:#8CA3BD">' + k + '</span> <span class="' + (up?'tk-up':'tk-down') + '">$' + bid + (up?' ▲':' ▼') + '</span></span>';
-  }).join('<span class="tk-sep">◆</span>');
-  var half = '<span class="tk-brand">KEYWORD LAB · PROJECT AMAZON PH</span><span class="tk-sep">◆</span>' + items + '<span class="tk-sep">◆</span>';
+    return '<span><span style="color:#8CA3BD">' + k + '</span> <span class="' + (up?'tk-up':'tk-down') + '">$' + bid + (up?' â–²':' â–¼') + '</span></span>';
+  }).join('<span class="tk-sep">â—†</span>');
+  var half = '<span class="tk-brand">KEYWORD LAB Â· PROJECT AMAZON PH</span><span class="tk-sep">â—†</span>' + items + '<span class="tk-sep">â—†</span>';
   $('tickerTrack').innerHTML = '<span class="ticker-half">' + half + '</span><span class="ticker-half" aria-hidden="true">' + half + '</span>';
 }
 function buildPulse(){
@@ -828,11 +828,11 @@ function buildPulse(){
     for(var j=0;j<bars.length;j++){ bars[j].style.height = (15 + Math.random()*82) + '%'; }
   }, 900);
   var lines = [
-    'garlic press — winning bid <span style="color:var(--brand)">$0.84</span>',
-    'yoga mat — 3 advertisers above you <span style="color:#F87171">$1.62</span>',
-    'left handed golf glove — cheap clicks <span style="color:#4ADE80">$0.41</span>',
-    'vitamin c serum — brand term defended <span style="color:#4ADE80">$0.55</span>',
-    'thick yoga mat — long-tail converting <span style="color:#4ADE80">14% ACOS</span>'
+    'garlic press â€” winning bid <span style="color:var(--brand)">$0.84</span>',
+    'yoga mat â€” 3 advertisers above you <span style="color:#F87171">$1.62</span>',
+    'left handed golf glove â€” cheap clicks <span style="color:#4ADE80">$0.41</span>',
+    'vitamin c serum â€” brand term defended <span style="color:#4ADE80">$0.55</span>',
+    'thick yoga mat â€” long-tail converting <span style="color:#4ADE80">14% ACOS</span>'
   ];
   var li = 0;
   setInterval(function(){
@@ -842,7 +842,7 @@ function buildPulse(){
   }, 2400);
 }
 
-/* ════════════════════ TABS & REVEALS ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• TABS & REVEALS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function switchTab(name){
   var btns = document.querySelectorAll('.tab-btn');
   for(var i=0;i<btns.length;i++){ btns[i].classList.toggle('active', btns[i].getAttribute('data-tab') === name); }
@@ -860,7 +860,7 @@ function bindReveals(){
   for(var i=0;i<els.length;i++){ io.observe(els[i]); }
 }
 
-/* ════════════════════ CONFIG ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CONFIG â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function cfg(){
   return {
     price: parseFloat($('productPrice').value) || 24.99,
@@ -877,7 +877,7 @@ var COMP_REACH = {low:1.25, medium:1, high:.72};
 var SEASON_F = {normal:1, peak:1.4, low:.7};
 var MATCH_MULT = {broad:3.5, phrase:2, exact:1};
 
-/* ════════════════════ SIMULATION ENGINE ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• SIMULATION ENGINE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function suppressed(kw){
   var k = kw.keyword.toLowerCase();
   for(var i=0;i<globalNegs.length;i++){ if(k.indexOf(globalNegs[i]) !== -1) return true; }
@@ -956,7 +956,7 @@ function simulateKeyword(kw){
           top:top, rest:rest, pages:pages, daily:daily, dailyOrders:dailyOrders, wasteRemoved:wasteRemoved, sugg:+sugg.toFixed(2)};
 }
 
-/* ════════════════════ SEARCH TERM GENERATOR ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• SEARCH TERM GENERATOR â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function genTerms(kw){
   var r = rng(hashStr(kw.keyword + '~terms'));
   var base = kw.keyword.toLowerCase();
@@ -988,7 +988,7 @@ function ensureTerms(){
   }
 }
 
-/* ════════════════════ KEYWORD MANAGEMENT ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• KEYWORD MANAGEMENT â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function addKeyword(){
   var v = $('keywordInput').value.trim();
   if(!v) return;
@@ -1057,7 +1057,7 @@ function renderGlobalNegs(){
     return;
   }
   box.innerHTML = globalNegs.map(function(n){
-    return '<span class="neg-chip">⛔ ' + esc(n) + ' <button type="button" onclick="removeGlobalNeg(\'' + n + '\')">✕</button></span>';
+    return '<span class="neg-chip">â›” ' + esc(n) + ' <button type="button" onclick="removeGlobalNeg(\'' + n + '\')">âœ•</button></span>';
   }).join('');
 }
 function addSuggestedKeywords(){
@@ -1078,7 +1078,7 @@ function addSuggestedKeywords(){
   refresh();
 }
 
-/* ════════════════════ TABLE RENDER ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• TABLE RENDER â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function renderTable(){
   var tb = $('keywordTable');
   renderGlobalNegs();
@@ -1119,8 +1119,8 @@ function renderTable(){
       + '<td class="mono-cell">' + money(s.spend) + '</td>'
       + '<td class="mono-cell ' + acosCls + '" style="font-weight:700">' + (s.acos >= 999 ? 'N/A' : s.acos + '%') + '</td>'
       + '<td><span class="mono ' + scoreCls + '" style="font-weight:700">' + s.score + '</span><div class="scorebar"><div class="scorefill" style="width:' + s.score + '%;background:' + barCol + '"></div></div></td>'
-      + '<td><button type="button" class="terms-btn' + (isOpen ? ' open' : '') + '" onclick="toggleTerms(' + kw.id + ')">TERMS ' + (isOpen ? '▴' : '▾') + '</button></td>'
-      + '<td><button type="button" class="del-btn" onclick="removeKeyword(' + kw.id + ')">✕</button></td>'
+      + '<td><button type="button" class="terms-btn' + (isOpen ? ' open' : '') + '" onclick="toggleTerms(' + kw.id + ')">TERMS ' + (isOpen ? 'â–´' : 'â–¾') + '</button></td>'
+      + '<td><button type="button" class="del-btn" onclick="removeKeyword(' + kw.id + ')">âœ•</button></td>'
       + '</tr>';
 
     if(isOpen){
@@ -1129,30 +1129,30 @@ function renderTable(){
         var tSpend = +(s.rawSpend * t.w).toFixed(2);
         var tClicks = Math.round(s.clicks * t.w);
         var tOrders = t.relevant ? Math.round(s.orders * t.w * 1.15) : 0;
-        var tAcos = tOrders > 0 ? Math.round((tSpend / (tOrders * c.price)) * 100) + '%' : '∞';
+        var tAcos = tOrders > 0 ? Math.round((tSpend / (tOrders * c.price)) * 100) + '%' : 'âˆž';
         var neg = !!kw.negated[t.term];
         return '<tr class="' + (neg ? 'st-neg' : '') + '">'
           + '<td>' + esc(t.term) + (t.relevant ? '' : '<span class="irr-tag">IRRELEVANT</span>') + '</td>'
           + '<td>' + tClicks + '</td><td>' + money(tSpend) + '</td><td>' + tOrders + '</td><td>' + tAcos + '</td>'
-          + '<td><button type="button" class="negate-btn' + (neg ? ' done' : '') + '" onclick="negateTerm(' + kw.id + ',\'' + t.term.replace(/'/g, "\\'") + '\')">' + (neg ? 'NEGATED ✓' : '⛔ NEGATE') + '</button></td></tr>';
+          + '<td><button type="button" class="negate-btn' + (neg ? ' done' : '') + '" onclick="negateTerm(' + kw.id + ',\'' + t.term.replace(/'/g, "\\'") + '\')">' + (neg ? 'NEGATED âœ“' : 'â›” NEGATE') + '</button></td></tr>';
       }).join('');
       html += '<tr class="exp-tr"><td colspan="14"><div class="exp">'
-        + '<div><div class="mono-xs" style="margin-bottom:9px">SEARCH TERM REPORT — WHAT SHOPPERS ACTUALLY TYPED</div>'
+        + '<div><div class="mono-xs" style="margin-bottom:9px">SEARCH TERM REPORT â€” WHAT SHOPPERS ACTUALLY TYPED</div>'
         + '<table class="st-tbl"><thead><tr><th>SEARCH TERM</th><th>CLICKS</th><th>SPEND</th><th>ORDERS</th><th>ACOS</th><th>ACTION</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
         + '<div class="exp-side">'
         + '<div class="mono-xs">PLACEMENT MIX</div>'
         + '<div class="place-bar"><div class="p-top" style="width:' + s.top + '%">' + s.top + '%</div><div class="p-rest" style="width:' + s.rest + '%">' + s.rest + '%</div><div class="p-page" style="width:' + s.pages + '%">' + s.pages + '%</div></div>'
-        + '<div class="mono-xs" style="letter-spacing:.05em">■ top of search · ■ rest of search · ■ product pages</div>'
+        + '<div class="mono-xs" style="letter-spacing:.05em">â–  top of search Â· â–  rest of search Â· â–  product pages</div>'
         + '<div class="mono" style="font-size:12px">Suggested bid: <strong>$' + s.sugg + '</strong></div>'
-        + (s.wasteRemoved > 0 ? '<div class="waste-note">WASTE REMOVED: ' + money(s.wasteRemoved) + ' ✓</div>' : '')
-        + (kw.matchType === 'exact' ? '<div class="fine" style="margin:0">Exact match: search terms ≈ your keyword. Little to negate here.</div>' : '')
+        + (s.wasteRemoved > 0 ? '<div class="waste-note">WASTE REMOVED: ' + money(s.wasteRemoved) + ' âœ“</div>' : '')
+        + (kw.matchType === 'exact' ? '<div class="fine" style="margin:0">Exact match: search terms â‰ˆ your keyword. Little to negate here.</div>' : '')
         + '</div></div></td></tr>';
     }
   });
   tb.innerHTML = html;
 }
 
-/* ════════════════════ METRICS ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• METRICS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function countTo(el, target, prefix, decimals){
   var start = parseFloat(el.getAttribute('data-v') || '0');
   el.setAttribute('data-v', target);
@@ -1179,7 +1179,7 @@ function updateMetrics(results){
   $('mTarget').textContent = margin.toFixed(0) + '%';
   var mA = $('mAcos');
   if(results.length === 0){
-    mA.textContent = '—'; mA.style.color = '#94A3B8';
+    mA.textContent = 'â€”'; mA.style.color = '#94A3B8';
   } else {
     countTo(mA, acos, '', 1);
     setTimeout(function(){ mA.textContent = acos.toFixed(1) + '%'; }, 520);
@@ -1188,7 +1188,7 @@ function updateMetrics(results){
   return {spend:spend, revenue:revenue, orders:orders, profit:profit, acos:acos, margin:margin};
 }
 
-/* ════════════════════ CHARTS ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CHARTS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function legendHTML(series){
   return '<div class="lgd">' + series.map(function(s){
     return '<span><span class="lgd-dot" style="background:' + s.color + '"></span>' + s.name + '</span>';
@@ -1228,8 +1228,8 @@ function paceSVG(spend, rev, budget, days){
   s += '<text x="' + (W-R) + '" y="' + (Y(budget)-6) + '" text-anchor="end" style="fill:#0B1F33;font-weight:600">budget $' + budget + '</text>';
   s += '<polyline class="pl pl-rev" points="' + pts(rev) + '"/>';
   s += '<polyline class="pl pl-sp" points="' + pts(spend) + '"/>';
-  rev.forEach(function(v, i){ s += '<circle class="dot-rev" cx="' + X(i) + '" cy="' + Y(v) + '" r="3.5"><title>Project Amazon PH Academy — Keyword Lab</title></circle>'; });
-  spend.forEach(function(v, i){ s += '<circle class="dot-sp" cx="' + X(i) + '" cy="' + Y(v) + '" r="3.5"><title>Project Amazon PH Academy — Keyword Lab</title></circle>'; });
+  rev.forEach(function(v, i){ s += '<circle class="dot-rev" cx="' + X(i) + '" cy="' + Y(v) + '" r="3.5"><title>Project Amazon PH Academy â€” Keyword Lab</title></circle>'; });
+  spend.forEach(function(v, i){ s += '<circle class="dot-sp" cx="' + X(i) + '" cy="' + Y(v) + '" r="3.5"><title>Project Amazon PH Academy â€” Keyword Lab</title></circle>'; });
   for(var d=0; d<days; d++){ s += '<text x="' + X(d) + '" y="' + (H-10) + '" text-anchor="middle">D' + (d+1) + '</text>'; }
   s += '</svg>';
   return legendHTML([{name:'Daily Spend', color:'var(--loss)'},{name:'Daily Revenue', color:'var(--profit)'},{name:'Budget Cap', color:'var(--ink)'}]) + s;
@@ -1264,7 +1264,7 @@ function renderCharts(results){
   pace.innerHTML = paceSVG(spend, rev, c.budget, c.days);
 }
 
-/* ════════════════════ RECOMMENDATIONS ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• RECOMMENDATIONS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function updateRecs(results, agg){
   var box = $('recsBox');
   if(results.length === 0){
@@ -1274,42 +1274,42 @@ function updateRecs(results, agg){
   var recs = [];
   var sorted = results.slice().sort(function(a,b){ return b.sim.score - a.sim.score; });
   var winners = sorted.filter(function(r){ return r.sim.score >= 60; });
-  if(winners.length) recs.push(['good', '🎯 <strong>Keepers:</strong> "' + winners.slice(0,3).map(function(r){ return esc(r.kw.keyword); }).join('", "') + '" balance relevance, volume and ACOS. These earn bid increases.']);
+  if(winners.length) recs.push(['good', 'ðŸŽ¯ <strong>Keepers:</strong> "' + winners.slice(0,3).map(function(r){ return esc(r.kw.keyword); }).join('", "') + '" balance relevance, volume and ACOS. These earn bid increases.']);
   var bleeders = results.filter(function(r){ return r.sim.acos > 50 && r.sim.acos < 999 && r.sim.spend > 5; });
-  if(bleeders.length) recs.push(['bad', '🩸 <strong>Bleeding:</strong> "' + bleeders.map(function(r){ return esc(r.kw.keyword); }).join('", "') + '" run ACOS above 50%. Cut bids, tighten match type, or pause.']);
+  if(bleeders.length) recs.push(['bad', 'ðŸ©¸ <strong>Bleeding:</strong> "' + bleeders.map(function(r){ return esc(r.kw.keyword); }).join('", "') + '" run ACOS above 50%. Cut bids, tighten match type, or pause.']);
   var dead = results.filter(function(r){ return r.sim.orders === 0 && r.sim.spend > 3; });
-  if(dead.length) recs.push(['bad', '💀 <strong>Zero conversions:</strong> "' + dead.map(function(r){ return esc(r.kw.keyword); }).join('", "') + '" spent ' + money(dead.reduce(function(a,r){ return a + r.sim.spend; }, 0)) + ' with no orders. Check relevance honestly — is the search intent really your product?']);
+  if(dead.length) recs.push(['bad', 'ðŸ’€ <strong>Zero conversions:</strong> "' + dead.map(function(r){ return esc(r.kw.keyword); }).join('", "') + '" spent ' + money(dead.reduce(function(a,r){ return a + r.sim.spend; }, 0)) + ' with no orders. Check relevance honestly â€” is the search intent really your product?']);
   var wasteTotal = 0;
   results.forEach(function(r){
     if(r.kw.terms && r.kw.matchType !== 'exact'){
       r.kw.terms.forEach(function(t){ if(!t.relevant && !r.kw.negated[t.term]) wasteTotal += r.sim.rawSpend * t.w; });
     }
   });
-  if(wasteTotal > 2) recs.push(['warn', '⛔ <strong>Free money on the table:</strong> roughly ' + money(wasteTotal) + ' of spend is going to irrelevant search terms you have not negated yet. Open the TERMS reports and cut the waste.']);
+  if(wasteTotal > 2) recs.push(['warn', 'â›” <strong>Free money on the table:</strong> roughly ' + money(wasteTotal) + ' of spend is going to irrelevant search terms you have not negated yet. Open the TERMS reports and cut the waste.']);
   var capped = results.filter(function(r){ return r.sim.capped; });
-  if(capped.length) recs.push(['warn', '🧱 <strong>Budget-capped:</strong> "' + capped.map(function(r){ return esc(r.kw.keyword); }).join('", "') + '" hit the daily budget. Raise budget or shift spend away from weaker terms.']);
+  if(capped.length) recs.push(['warn', 'ðŸ§± <strong>Budget-capped:</strong> "' + capped.map(function(r){ return esc(r.kw.keyword); }).join('", "') + '" hit the daily budget. Raise budget or shift spend away from weaker terms.']);
   var lowRel = results.filter(function(r){ return r.kw.relevance === 'low' && r.sim.spend > 2; });
-  if(lowRel.length) recs.push(['bad', '🚫 <strong>Relevance mismatch:</strong> "' + lowRel.map(function(r){ return esc(r.kw.keyword); }).join('", "') + '" target low-intent searches for your product. This is the #1 beginner leak.']);
-  if(agg.revenue > 0 && agg.acos > agg.margin) recs.push(['bad', '📉 <strong>ACOS ' + agg.acos.toFixed(1) + '% beats your ' + agg.margin.toFixed(0) + '% margin.</strong> Every ad sale loses money. Focus budget on exact-match, high-relevance terms only.']);
-  else if(agg.revenue > 0) recs.push(['good', '✅ <strong>ACOS ' + agg.acos.toFixed(1) + '% vs ' + agg.margin.toFixed(0) + '% break-even.</strong> You are in the green. Now scale what works, one variable at a time.']);
+  if(lowRel.length) recs.push(['bad', 'ðŸš« <strong>Relevance mismatch:</strong> "' + lowRel.map(function(r){ return esc(r.kw.keyword); }).join('", "') + '" target low-intent searches for your product. This is the #1 beginner leak.']);
+  if(agg.revenue > 0 && agg.acos > agg.margin) recs.push(['bad', 'ðŸ“‰ <strong>ACOS ' + agg.acos.toFixed(1) + '% beats your ' + agg.margin.toFixed(0) + '% margin.</strong> Every ad sale loses money. Focus budget on exact-match, high-relevance terms only.']);
+  else if(agg.revenue > 0) recs.push(['good', 'âœ… <strong>ACOS ' + agg.acos.toFixed(1) + '% vs ' + agg.margin.toFixed(0) + '% break-even.</strong> You are in the green. Now scale what works, one variable at a time.']);
   var broads = results.filter(function(r){ return r.kw.matchType === 'broad'; });
-  if(broads.length && results.length > 3) recs.push(['info', '🌾 <strong>Harvest check:</strong> any broad term converting under 25% ACOS should graduate into its own exact campaign. That is the whole game.']);
-  if(results.length < 4) recs.push(['info', '📝 <strong>Thin list.</strong> ' + results.length + ' target' + (results.length > 1 ? 's' : '') + ' is a start — add long-tail variations (material, audience, use-case) to widen the net.']);
+  if(broads.length && results.length > 3) recs.push(['info', 'ðŸŒ¾ <strong>Harvest check:</strong> any broad term converting under 25% ACOS should graduate into its own exact campaign. That is the whole game.']);
+  if(results.length < 4) recs.push(['info', 'ðŸ“ <strong>Thin list.</strong> ' + results.length + ' target' + (results.length > 1 ? 's' : '') + ' is a start â€” add long-tail variations (material, audience, use-case) to widen the net.']);
   var cls = {good:'rec rec-good', bad:'rec rec-bad', warn:'rec rec-warn', info:'rec rec-info'};
   box.innerHTML = recs.slice(0,6).map(function(r){ return '<div class="' + cls[r[0]] + '">' + r[1] + '</div>'; }).join('');
 }
 function updateCoach(results, agg){
   var el = $('coachTip');
   if(results.length === 0){
-    el.textContent = "Coach tip: start by loading a Playbook if you are not sure which keywords to test. Then change one variable at a time — bid, match type, budget — and watch what moves.";
+    el.textContent = "Coach tip: start by loading a Playbook if you are not sure which keywords to test. Then change one variable at a time â€” bid, match type, budget â€” and watch what moves.";
   } else if(agg.profit < 0){
-    el.textContent = "Coach tip: you are underwater. That is fine — this is what the Lab is for. Find the two worst ACOS rows and fix them first, then re-run.";
+    el.textContent = "Coach tip: you are underwater. That is fine â€” this is what the Lab is for. Find the two worst ACOS rows and fix them first, then re-run.";
   } else if(results.some(function(r){ return r.kw.terms && r.kw.matchType !== 'exact' && r.kw.terms.some(function(t){ return !t.relevant && !r.kw.negated[t.term]; }); })){
-    el.textContent = "Coach tip: there is un-negated waste in your search term reports. Click TERMS on the flagged rows — it is the cheapest ACOS improvement you will ever make.";
+    el.textContent = "Coach tip: there is un-negated waste in your search term reports. Click TERMS on the flagged rows â€” it is the cheapest ACOS improvement you will ever make.";
   } else if(agg.revenue > 0 && agg.acos <= agg.margin * 0.6){
     el.textContent = "Coach tip: this structure prints. In a real campaign this is where you raise budgets 20% every few days and keep harvesting broad winners into exact.";
   } else {
-    el.textContent = "Coach tip: profitable, but thin. Try switching one broad keyword to phrase, or nudging a winner's bid up $0.10 — small moves, big signal.";
+    el.textContent = "Coach tip: profitable, but thin. Try switching one broad keyword to phrase, or nudging a winner's bid up $0.10 â€” small moves, big signal.";
   }
 }
 function refresh(){
@@ -1326,7 +1326,7 @@ function refresh(){
   }
 }
 
-/* ════════════════════ CONFIG UI ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CONFIG UI â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function setListingQuality(n){
   listingQuality = n;
   var btns = $('listingQuality').querySelectorAll('button');
@@ -1342,15 +1342,15 @@ function setDefaultMatch(t){
 }
 function updateMarketInsight(){
   var map = {
-    'low-normal':'Low competition, normal season. Ideal training conditions — moderate bids win top placements.',
+    'low-normal':'Low competition, normal season. Ideal training conditions â€” moderate bids win top placements.',
     'low-peak':'Low competition in peak season. Rare gift: aggressive bids capture outsized share.',
-    'low-low':'Off-season, low competition. Clicks are cheap — perfect time to build keyword history.',
+    'low-low':'Off-season, low competition. Clicks are cheap â€” perfect time to build keyword history.',
     'medium-normal':'Moderate competition with average CPCs. Long-tail exact matches are your cheapest path to first sales.',
-    'medium-peak':'Peak season, moderate competition. CPCs inflate ~20% — protect budget for proven converters.',
+    'medium-peak':'Peak season, moderate competition. CPCs inflate ~20% â€” protect budget for proven converters.',
     'medium-low':'Off-season dip. Slightly cheaper clicks; good window to test riskier broad terms.',
     'high-normal':'Saturated market. Expect to pay near your full bid. Long-tail and exact match are survival tools.',
     'high-peak':'Worst-case pricing: saturated + Q4. Only bid on terms with proven conversion data.',
-    'high-low':'Saturated but quiet season. CPCs soften slightly — still expensive, still demands precision.'
+    'high-low':'Saturated but quiet season. CPCs soften slightly â€” still expensive, still demands precision.'
   };
   $('marketInsight').textContent = map[$('competition').value + '-' + $('season').value] || map['medium-normal'];
 }
@@ -1379,19 +1379,19 @@ function exportResults(){
   toast('CSV exported', 'good');
 }
 
-/* ════════════════════ PLAYBOOKS ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• PLAYBOOKS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function renderPlaybooks(){
   $('pbGrid').innerHTML = PLAYBOOKS.map(function(p){
     var tgt = ((p.price - p.cost) / p.price * 100).toFixed(0);
-    var negChip = p.negs.length ? '<span class="pb-stat neg">⛔ ' + p.negs.length + ' pre-loaded negatives</span>' : '';
+    var negChip = p.negs.length ? '<span class="pb-stat neg">â›” ' + p.negs.length + ' pre-loaded negatives</span>' : '';
     return '<div class="card pb-card lift rv" data-diff="' + p.diff + '">'
       + '<div class="pb-head"><div class="pb-top"><span class="pb-diff" style="background:' + p.diffBg + '">' + p.diff + '</span><span class="pb-kw">' + p.kws.length + ' KW</span></div>'
       + '<div class="pb-name">' + p.name + '</div><div class="pb-mkt">' + p.market + '</div></div>'
       + '<div class="pb-body"><p class="pb-pitch">' + p.pitch + '</p>'
-      + '<ul class="pb-notes">' + p.notes.map(function(n){ return '<li><span class="tick">▸</span><span>' + n + '</span></li>'; }).join('') + '</ul>'
-      + '<div class="pb-trap"><b>⚠ THE TRAP:</b> ' + p.trap + '</div>'
+      + '<ul class="pb-notes">' + p.notes.map(function(n){ return '<li><span class="tick">â–¸</span><span>' + n + '</span></li>'; }).join('') + '</ul>'
+      + '<div class="pb-trap"><b>âš  THE TRAP:</b> ' + p.trap + '</div>'
       + '<div class="pb-stats"><span class="pb-stat">$' + p.budget + '/day</span><span class="pb-stat">' + p.days + ' days</span><span class="pb-stat">break-even ' + tgt + '%</span><span class="pb-stat hot">expect ' + p.expect + '</span>' + negChip + '</div></div>'
-      + '<div style="padding:0 20px 20px"><button type="button" class="btn btn-brand pb-load" onclick="loadPlaybook(\'' + p.id + '\')">Load into Simulator →</button></div></div>';
+      + '<div style="padding:0 20px 20px"><button type="button" class="btn btn-brand pb-load" onclick="loadPlaybook(\'' + p.id + '\')">Load into Simulator â†’</button></div></div>';
   }).join('');
   bindReveals();
 }
@@ -1424,7 +1424,7 @@ function loadPlaybook(id){
   switchTab('sim');
 }
 
-/* ════════════════════ PRACTICE ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• PRACTICE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 var EX1_TERMS = [
   {t:'yoga mat', clicks:40, spend:32.10, orders:6, neg:false, why:'Core term converting at 13% ACOS. Never touch it.'},
   {t:'thick yoga mat', clicks:25, spend:20.40, orders:4, neg:false, why:'Relevant long-tail, converting well. Keep.'},
@@ -1435,18 +1435,18 @@ var EX1_TERMS = [
   {t:'yoga mat with strap', clicks:12, spend:10.10, orders:1, neg:false, why:'Specific long-tail of your product. Keep.'}
 ];
 var EX4_DATA = [
-  {k:'wireless earbuds', clicks:210, spend:180, orders:9, acos:'62%', ans:'decrease', why:'ACOS 62% but it still converts — lower the bid before killing a term with real demand.'},
-  {k:'earbuds for running', clicks:60, spend:32, orders:8, acos:'13%', ans:'increase', why:'13% ACOS, far under target. This is your winner — feed it.'},
-  {k:'cheap earbuds under 5', clicks:95, spend:70, orders:0, acos:'∞', ans:'negate', why:'Bargain hunters who will never buy at your price. Negate "cheap" and "under 5".'},
-  {k:'bluetooth earbuds', clicks:15, spend:14, orders:0, acos:'∞', ans:'hold', why:'Relevant traffic with only 15 clicks is still emerging evidence. Hold, inspect the query mix, and collect more data.'}
+  {k:'wireless earbuds', clicks:210, spend:180, orders:9, acos:'62%', ans:'decrease', why:'ACOS 62% but it still converts â€” lower the bid before killing a term with real demand.'},
+  {k:'earbuds for running', clicks:60, spend:32, orders:8, acos:'13%', ans:'increase', why:'13% ACOS, far under target. This is your winner â€” feed it.'},
+  {k:'cheap earbuds under 5', clicks:95, spend:70, orders:0, acos:'âˆž', ans:'negate', why:'Bargain hunters who will never buy at your price. Negate "cheap" and "under 5".'},
+  {k:'bluetooth earbuds', clicks:15, spend:14, orders:0, acos:'âˆž', ans:'hold', why:'Relevant traffic with only 15 clicks is still emerging evidence. Hold, inspect the query mix, and collect more data.'}
 ];
 var EX5_DATA = [
-  {t:'garlic press stainless steel', clicks:34, spend:22.10, orders:6, harv:true, why:'34 clicks, ACOS 15% — proven converter. Graduate it.'},
-  {t:'garlic press', clicks:88, spend:70.40, orders:7, harv:false, why:'ACOS 40% at scale — keep it in broad with a lower bid. Do not lock a loser into exact.'},
-  {t:'professional garlic mincer', clicks:21, spend:13.40, orders:3, harv:true, why:'21 clicks, ACOS 17% — clears the 15+ click, sub-25% rule.'},
+  {t:'garlic press stainless steel', clicks:34, spend:22.10, orders:6, harv:true, why:'34 clicks, ACOS 15% â€” proven converter. Graduate it.'},
+  {t:'garlic press', clicks:88, spend:70.40, orders:7, harv:false, why:'ACOS 40% at scale â€” keep it in broad with a lower bid. Do not lock a loser into exact.'},
+  {t:'professional garlic mincer', clicks:21, spend:13.40, orders:3, harv:true, why:'21 clicks, ACOS 17% â€” clears the 15+ click, sub-25% rule.'},
   {t:'garlic press for ginger', clicks:9, spend:6.20, orders:1, harv:false, why:'One order on 9 clicks is a coin flip. Let it cook two more weeks.'},
   {t:'cheap garlic press', clicks:45, spend:31.50, orders:1, harv:false, why:'ACOS 124%. This is a negative keyword, not a harvest.'},
-  {t:'rocker garlic press', clicks:27, spend:17.30, orders:4, harv:true, why:'27 clicks, ACOS 17% — textbook harvest candidate.'}
+  {t:'rocker garlic press', clicks:27, spend:17.30, orders:4, harv:true, why:'27 clicks, ACOS 17% â€” textbook harvest candidate.'}
 ];
 var EX6_DATA = [
   {k:'yoga block', cvr:12, ans:0.72},
@@ -1454,25 +1454,25 @@ var EX6_DATA = [
   {k:'yoga blocks and straps set', cvr:5, ans:0.30}
 ];
 var EX7_DATA = [
-  {k:'thick yoga mat', info:'40 clicks · 7 orders · ACOS 14%', ans:'exact'},
-  {k:'gym mat', info:'untested — added yesterday', ans:'broad'},
+  {k:'thick yoga mat', info:'40 clicks Â· 7 orders Â· ACOS 14%', ans:'exact'},
+  {k:'gym mat', info:'untested â€” added yesterday', ans:'broad'},
   {k:'zenflow yoga mat', info:'your brand name + product', ans:'brand'},
-  {k:'exercise mat thick', info:'8 clicks · 1 order · 4 days of data', ans:'broad'},
-  {k:'yoga mat 6mm non slip', info:'25 clicks · 4 orders · ACOS 19%', ans:'exact'},
+  {k:'exercise mat thick', info:'8 clicks Â· 1 order Â· 4 days of data', ans:'broad'},
+  {k:'yoga mat 6mm non slip', info:'25 clicks Â· 4 orders Â· ACOS 19%', ans:'exact'},
   {k:'zenflow', info:'brand-only search', ans:'brand'}
 ];
 var EX8_DATA = [
-  {s:'12,400 impressions, 14 clicks, CTR 0.11%. Bid sits at the suggested CPC.', ans:'creative', why:'People see the ad and scroll past — the main image, price, or title is not earning the click.'},
+  {s:'12,400 impressions, 14 clicks, CTR 0.11%. Bid sits at the suggested CPC.', ans:'creative', why:'People see the ad and scroll past â€” the main image, price, or title is not earning the click.'},
   {s:'340 clicks, 3 orders, CVR 0.9%, ACOS 88%. Every search term is highly relevant.', ans:'listing', why:'Relevant traffic that will not buy means the detail page breaks the promise. Images, bullets, reviews, price.'},
   {s:'210 impressions in 7 days. Your bid: $0.40. Suggested bid: $1.10.', ans:'bid', why:'You are priced out of the auction. Raise the bid or accept that you are invisible.'},
   {s:'ACOS steady at 46% for two weeks. Margin before ads: 35%. Sales volume is fine.', ans:'margin', why:'ACOS above break-even margin means growth is costing you money. Cut bids and negate waste before scaling.'},
   {s:'Broad campaign: 38% of spend goes to "yoga pants" and "yoga block" style terms.', ans:'negatives', why:'Classic missing-negatives bleed. Block the junk terms and ACOS drops without touching a single bid.'}
 ];
 var EX9_DATA = [
-  {k:'Exact Winners — proven converters', lo:20, hi:25, why:'40–50% of budget to what already prints. This is your profit engine.'},
-  {k:'Broad Research — harvesting pipeline', lo:12, hi:16, why:'25–30% keeps the discovery pipeline full without letting it dominate.'},
-  {k:'Auto Discovery — raw term mining', lo:5, hi:8, why:'10–15% — enough to surface surprises, capped so it cannot eat the budget.'},
-  {k:'Brand Defense — your brand terms', lo:3, hi:5, why:'5–10% — brand traffic is cheap and converts; it does not need much fuel.'}
+  {k:'Exact Winners â€” proven converters', lo:20, hi:25, why:'40â€“50% of budget to what already prints. This is your profit engine.'},
+  {k:'Broad Research â€” harvesting pipeline', lo:12, hi:16, why:'25â€“30% keeps the discovery pipeline full without letting it dominate.'},
+  {k:'Auto Discovery â€” raw term mining', lo:5, hi:8, why:'10â€“15% â€” enough to surface surprises, capped so it cannot eat the budget.'},
+  {k:'Brand Defense â€” your brand terms', lo:3, hi:5, why:'5â€“10% â€” brand traffic is cheap and converts; it does not need much fuel.'}
 ];
 var EX10_DATA = [
   {spend:12.50, rev:50.00, ans:25},
@@ -1494,16 +1494,16 @@ var EX13_TERMS = [
   {t:'dog leash', fire:true, why:'Exact match to your phrase.'},
   {t:'retractable dog leash', fire:true, why:'Phrase intact with a word before.'},
   {t:'dog leash for training', fire:true, why:'Phrase intact with words after.'},
-  {t:'leash for dog', fire:false, why:'Words reordered — phrase must appear contiguous.'},
+  {t:'leash for dog', fire:false, why:'Words reordered â€” phrase must appear contiguous.'},
   {t:'dog leashes', fire:true, why:'Plural counts as a close variant.'},
   {t:'cat leash', fire:false, why:'Different subject entirely.'},
   {t:'dog collar and leash', fire:false, why:'"dog leash" never appears contiguously here.'},
   {t:'large dog leash', fire:true, why:'Phrase intact with a word before.'}
 ];
 var EX14_DATA = [
-  {price:25, cost:15, acos:30, ans:'profit', why:'Margin 40%, ACOS 30% — every ad sale keeps 10 points of profit.'},
-  {price:40, cost:26, acos:35, ans:'even', why:'Margin is exactly 35% — the ad sale pays for itself and nothing more.'},
-  {price:18, cost:12, acos:45, ans:'loss', why:'Margin 33%, ACOS 45% — bleeding 12 points on every ad sale.'},
+  {price:25, cost:15, acos:30, ans:'profit', why:'Margin 40%, ACOS 30% â€” every ad sale keeps 10 points of profit.'},
+  {price:40, cost:26, acos:35, ans:'even', why:'Margin is exactly 35% â€” the ad sale pays for itself and nothing more.'},
+  {price:18, cost:12, acos:45, ans:'loss', why:'Margin 33%, ACOS 45% â€” bleeding 12 points on every ad sale.'},
   {price:60, cost:48, acos:25, ans:'loss', why:'Margin is only 20%. Even a "clean" 25% ACOS loses money here.'}
 ];
 var EX15_DATA = [
@@ -1514,10 +1514,10 @@ var EX15_DATA = [
   {s:'Harvest converting terms into exact campaigns', rank:3}
 ];
 var EX16_OPTS = [
-  {k:'"coffee mug"', d:'180,000 vol/mo · CPC $1.45 · high relevance'},
-  {k:'"handmade ceramic coffee mug"', d:'1,900 vol/mo · CPC $0.48 · high relevance'},
-  {k:'"mug"', d:'400,000 vol/mo · CPC $1.90 · medium relevance'},
-  {k:'"ceramic mug wholesale"', d:'3,200 vol/mo · CPC $0.55 · low relevance'}
+  {k:'"coffee mug"', d:'180,000 vol/mo Â· CPC $1.45 Â· high relevance'},
+  {k:'"handmade ceramic coffee mug"', d:'1,900 vol/mo Â· CPC $0.48 Â· high relevance'},
+  {k:'"mug"', d:'400,000 vol/mo Â· CPC $1.90 Â· medium relevance'},
+  {k:'"ceramic mug wholesale"', d:'3,200 vol/mo Â· CPC $0.55 Â· low relevance'}
 ];
 
 function exHead(num, tag, tagStyle, title){
@@ -1533,7 +1533,7 @@ function renderPractice(){
   var area = $('practiceArea');
   var h = '';
 
-  /* EX.01 — Search Term Audit */
+  /* EX.01 â€” Search Term Audit */
   h += '<div class="card pad ex-card rv">' + exHead('EX.01','NEGATIVE KEYWORDS',TAG_RED,'Search Term Audit')
     + '<p class="ex-desc">You sell a <strong>standard 6mm yoga mat</strong>. This is your broad-match campaign\u2019s search term report after 7 days. Tick every term you would add as a <strong>negative keyword</strong>, then check yourself.</p>'
     + '<div class="tbl-wrap"><table class="ex-tbl"><thead><tr><th>SEARCH TERM</th><th>CLICKS</th><th>SPEND</th><th>ORDERS</th><th>NEGATE?</th><th style="text-align:left">VERDICT</th></tr></thead><tbody>';
@@ -1544,7 +1544,7 @@ function renderPractice(){
   });
   h += '</tbody></table></div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx1()">Check Answers</button><span class="score-line" id="ex1score"></span></div></div>';
 
-  /* EX.02 — Bid Math */
+  /* EX.02 â€” Bid Math */
   h += '<div class="card pad ex-card rv">' + exHead('EX.02','BID MATH',TAG_BLUE,'Calculate the Max Bid')
     + '<p class="ex-desc">Product price <strong>$29.99</strong>. All-in cost (COGS + FBA fees) <strong>$14.00</strong>. Target ACOS <strong>25%</strong>. Historical conversion rate <strong>10%</strong>. What is your maximum CPC?</p>'
     + '<div style="display:flex;flex-direction:column;gap:9px;max-width:340px;margin-bottom:6px">';
@@ -1552,52 +1552,52 @@ function renderPractice(){
     h += '<label class="q-opt"><input type="radio" name="ex2" value="' + i + '" style="accent-color:var(--ink)"><span class="mono" style="font-weight:700">' + o + '</span></label>';
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx2()">Check Answer</button><span class="score-line" id="ex2score"></span></div>'
-    + '<div class="whybox hidden" id="ex2why"><strong>The math:</strong> allowed spend per sale = $29.99 × 25% = <strong>$7.50</strong>. At a 10% conversion rate you need 10 clicks per sale, so max CPC = $7.50 ÷ 10 = <strong style="color:var(--brandink)">$0.75</strong>. (Side note: margin is 53%, so break-even ACOS is 53% — a 25% target leaves healthy profit.)</div></div>';
+    + '<div class="whybox hidden" id="ex2why"><strong>The math:</strong> allowed spend per sale = $29.99 Ã— 25% = <strong>$7.50</strong>. At a 10% conversion rate you need 10 clicks per sale, so max CPC = $7.50 Ã· 10 = <strong style="color:var(--brandink)">$0.75</strong>. (Side note: margin is 53%, so break-even ACOS is 53% â€” a 25% target leaves healthy profit.)</div></div>';
 
-  /* EX.03 — Match Types */
+  /* EX.03 â€” Match Types */
   var ex3s = [
     ['You just launched. Zero data. You need to discover which searches convert.', 'broad'],
     ['"garlic press stainless steel" already has 12 sales at 16% ACOS. Lock it down with maximum control.', 'exact'],
-    ['You want "running shoes" and variants like "red running shoes" — but NOT "running shorts".', 'phrase']
+    ['You want "running shoes" and variants like "red running shoes" â€” but NOT "running shorts".', 'phrase']
   ];
   h += '<div class="card pad ex-card rv">' + exHead('EX.03','MATCH TYPES',TAG_PUR,'Pick the Right Match Type')
     + '<div style="display:flex;flex-direction:column;gap:14px">';
   ex3s.forEach(function(s, i){
     h += '<div style="border:2px solid var(--steel);border-radius:7px;padding:15px"><p style="font-size:13.5px;margin-bottom:11px"><span class="mono" style="font-weight:700;color:var(--brandink);margin-right:8px">' + (i+1) + '.</span>' + s[0] + '</p>'
-      + '<select class="sel" style="max-width:200px" id="ex3s' + i + '"><option value="">— choose —</option><option value="broad">Broad</option><option value="phrase">Phrase</option><option value="exact">Exact</option></select>'
+      + '<select class="sel" style="max-width:200px" id="ex3s' + i + '"><option value="">â€” choose â€”</option><option value="broad">Broad</option><option value="phrase">Phrase</option><option value="exact">Exact</option></select>'
       + '<span class="fb" id="ex3f' + i + '" style="margin-left:10px"></span></div>';
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx3()">Check Answers</button><span class="score-line" id="ex3score"></span></div></div>';
 
-  /* EX.04 — Budget Triage */
+  /* EX.04 â€” Budget Triage */
   h += '<div class="card pad ex-card rv">' + exHead('EX.04','OPTIMIZATION',TAG_GRN,'Budget Triage')
     + '<p class="ex-desc">Earbuds listing, <strong>30% break-even margin</strong>, target ACOS 25%. Decide the action for each keyword.</p>'
     + '<div style="display:flex;flex-direction:column;gap:12px">';
   EX4_DATA.forEach(function(k, i){
     h += '<div style="border:2px solid var(--steel);border-radius:7px;padding:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">'
       + '<div style="flex:1;min-width:220px"><span class="mono" style="font-weight:700;font-size:13px">' + k.k + '</span>'
-      + '<div class="mono" style="font-size:10.5px;color:#64748B;margin-top:4px">' + k.clicks + ' clicks · $' + k.spend + ' spend · ' + k.orders + ' orders · ACOS ' + k.acos + '</div></div>'
-      + '<select class="sel" style="width:auto;min-width:170px" id="ex4s' + i + '"><option value="">— action —</option><option value="increase">Increase bid</option><option value="decrease">Decrease bid</option><option value="hold">Hold — collect data</option><option value="pause">Pause</option><option value="negate">Add negatives</option></select>'
+      + '<div class="mono" style="font-size:10.5px;color:#64748B;margin-top:4px">' + k.clicks + ' clicks Â· $' + k.spend + ' spend Â· ' + k.orders + ' orders Â· ACOS ' + k.acos + '</div></div>'
+      + '<select class="sel" style="width:auto;min-width:170px" id="ex4s' + i + '"><option value="">â€” action â€”</option><option value="increase">Increase bid</option><option value="decrease">Decrease bid</option><option value="hold">Hold â€” collect data</option><option value="pause">Pause</option><option value="negate">Add negatives</option></select>'
       + '<span class="fb" id="ex4f' + i + '" style="flex-basis:100%;font-weight:400"></span></div>';
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx4()">Check Answers</button><span class="score-line" id="ex4score"></span></div></div>';
 
-  /* EX.05 — Harvest or Pass */
+  /* EX.05 â€” Harvest or Pass */
   h += '<div class="card pad ex-card rv">' + exHead('EX.05','HARVESTING',TAG_AMB,'Harvest or Pass')
     + '<p class="ex-desc">Two weeks of data from your broad "garlic press" campaign. Your job: pick the search terms ready to graduate into their own <strong>exact-match campaign</strong>.</p>'
-    + '<div class="ex-rule">HARVEST RULE: 15+ clicks AND ACOS ≤ 25%</div>'
+    + '<div class="ex-rule">HARVEST RULE: 15+ clicks AND ACOS â‰¤ 25%</div>'
     + '<div class="tbl-wrap"><table class="ex-tbl"><thead><tr><th>SEARCH TERM</th><th>CLICKS</th><th>SPEND</th><th>ORDERS</th><th>ACOS</th><th>HARVEST?</th><th style="text-align:left">VERDICT</th></tr></thead><tbody>';
   EX5_DATA.forEach(function(t, i){
-    var acos = t.orders > 0 ? Math.round(t.spend / (t.orders * 24.99) * 100) + '%' : '∞';
+    var acos = t.orders > 0 ? Math.round(t.spend / (t.orders * 24.99) * 100) + '%' : 'âˆž';
     h += '<tr id="ex5r' + i + '"><td>' + t.t + '</td><td>' + t.clicks + '</td><td>$' + t.spend.toFixed(2) + '</td><td>' + t.orders + '</td><td>' + acos + '</td>'
       + '<td><input type="checkbox" id="ex5c' + i + '" style="accent-color:var(--profit)"></td><td style="text-align:left;font-family:var(--body)" id="ex5f' + i + '"></td></tr>';
   });
   h += '</tbody></table></div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx5()">Check Answers</button><span class="score-line" id="ex5score"></span></div></div>';
 
-  /* EX.06 — Max CPC Drill */
+  /* EX.06 â€” Max CPC Drill */
   h += '<div class="card pad ex-card rv">' + exHead('EX.06','BID MATH',TAG_BLUE,'Max CPC, Three Ways')
-    + '<p class="ex-desc">Yoga block listing at <strong>$19.99</strong>, target ACOS <strong>30%</strong>. Each keyword below converts at a different rate. Compute the max CPC for each — within $0.05 counts as correct.</p>'
-    + '<div class="ex-rule">MAX CPC = PRICE × TARGET ACOS × CVR</div>'
+    + '<p class="ex-desc">Yoga block listing at <strong>$19.99</strong>, target ACOS <strong>30%</strong>. Each keyword below converts at a different rate. Compute the max CPC for each â€” within $0.05 counts as correct.</p>'
+    + '<div class="ex-rule">MAX CPC = PRICE Ã— TARGET ACOS Ã— CVR</div>'
     + '<div style="display:flex;flex-direction:column;gap:12px">';
   EX6_DATA.forEach(function(d, i){
     h += '<div style="border:2px solid var(--steel);border-radius:7px;padding:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">'
@@ -1608,7 +1608,7 @@ function renderPractice(){
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx6()">Check Answers</button><span class="score-line" id="ex6score"></span></div></div>';
 
-  /* EX.07 — Structure Sort */
+  /* EX.07 â€” Structure Sort */
   h += '<div class="card pad ex-card rv">' + exHead('EX.07','CAMPAIGN STRUCTURE',TAG_PUR,'Sort the Keywords')
     + '<p class="ex-desc">Your brand is <strong>ZenFlow</strong>. File each keyword into the campaign where it belongs: <strong>Broad Research</strong> (data gathering), <strong>Exact Winners</strong> (proven converters), or <strong>Brand Defense</strong> (your own name).</p>'
     + '<div style="display:flex;flex-direction:column;gap:12px">';
@@ -1616,19 +1616,19 @@ function renderPractice(){
     h += '<div style="border:2px solid var(--steel);border-radius:7px;padding:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">'
       + '<div style="flex:1;min-width:220px"><span class="mono" style="font-weight:700;font-size:13px">' + d.k + '</span>'
       + '<div class="mono" style="font-size:10.5px;color:#64748B;margin-top:4px">' + d.info + '</div></div>'
-      + '<select class="sel" style="width:auto;min-width:180px" id="ex7s' + i + '"><option value="">— campaign —</option><option value="broad">Broad Research</option><option value="exact">Exact Winners</option><option value="brand">Brand Defense</option></select>'
+      + '<select class="sel" style="width:auto;min-width:180px" id="ex7s' + i + '"><option value="">â€” campaign â€”</option><option value="broad">Broad Research</option><option value="exact">Exact Winners</option><option value="brand">Brand Defense</option></select>'
       + '<span class="fb" id="ex7f' + i + '" style="min-width:120px"></span></div>';
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx7()">Check Answers</button><span class="score-line" id="ex7score"></span></div></div>';
 
-  /* EX.08 — Diagnostics */
+  /* EX.08 â€” Diagnostics */
   h += '<div class="card pad ex-card rv">' + exHead('EX.08','DIAGNOSTICS',TAG_GRN,'Name the Problem')
-    + '<p class="ex-desc">Five campaigns, five different pains. Diagnose each one — the fix is always different, and "lower the bid" is only right once.</p>'
+    + '<p class="ex-desc">Five campaigns, five different pains. Diagnose each one â€” the fix is always different, and "lower the bid" is only right once.</p>'
     + '<div style="display:flex;flex-direction:column;gap:12px">';
   EX8_DATA.forEach(function(d, i){
     h += '<div style="border:2px solid var(--steel);border-radius:7px;padding:14px">'
       + '<p style="font-size:13.5px;line-height:1.6;margin-bottom:11px"><span class="mono" style="font-weight:700;color:var(--brandink);margin-right:8px">' + (i+1) + '.</span>' + d.s + '</p>'
-      + '<select class="sel" style="max-width:290px" id="ex8s' + i + '"><option value="">— diagnosis —</option>'
+      + '<select class="sel" style="max-width:290px" id="ex8s' + i + '"><option value="">â€” diagnosis â€”</option>'
       + '<option value="bid">Bid / budget too low</option><option value="creative">Ad creative problem (CTR)</option>'
       + '<option value="listing">Detail page problem (CVR)</option><option value="negatives">Missing negative keywords</option>'
       + '<option value="margin">ACOS exceeds margin</option></select>'
@@ -1637,57 +1637,57 @@ function renderPractice(){
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx8()">Check Answers</button><span class="score-line" id="ex8score"></span></div></div>';
 
-  /* EX.09 — Budget Allocation */
+  /* EX.09 â€” Budget Allocation */
   h += '<div class="card pad ex-card rv">' + exHead('EX.09','BUDGET ALLOCATION',TAG_AMB,'Split the $50')
-    + '<p class="ex-desc">You manage a yoga mat account with <strong>$50/day</strong> across four campaigns. Allocate the budget — the total must equal exactly $50, and each campaign has a sane range.</p>'
+    + '<p class="ex-desc">You manage a yoga mat account with <strong>$50/day</strong> across four campaigns. Allocate the budget â€” the total must equal exactly $50, and each campaign has a sane range.</p>'
     + '<div style="display:flex;flex-direction:column">';
   EX9_DATA.forEach(function(d, i){
     h += '<div class="bud-row"><div style="flex:1;min-width:230px"><span style="font-weight:600;font-size:13.5px">' + d.k + '</span>'
-      + '<div class="mono" style="font-size:10.5px;color:#64748B;margin-top:3px">sane range: $' + d.lo + '–$' + d.hi + '/day</div></div>'
+      + '<div class="mono" style="font-size:10.5px;color:#64748B;margin-top:3px">sane range: $' + d.lo + 'â€“$' + d.hi + '/day</div></div>'
       + '<div style="display:flex;align-items:center;gap:8px"><span class="mono" style="font-weight:700">$</span><input class="bud-inp" type="number" step="1" min="0" max="50" id="ex9i' + i + '" value="0" oninput="ex9Sum()"></div>'
       + '<span class="fb" id="ex9f' + i + '" style="min-width:130px"></span></div>';
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx9()">Check Allocation</button>'
     + '<span class="score-line">TOTAL: <span id="ex9total" style="color:var(--loss)">$0</span> / $50</span><span class="score-line" id="ex9score"></span></div></div>';
 
-  /* EX.10 — ACOS Speed Math */
+  /* EX.10 â€” ACOS Speed Math */
   h += '<div class="card pad ex-card rv">' + exHead('EX.10','ACOS SPEED',TAG_BLUE,'ACOS in Ten Seconds')
-    + '<p class="ex-desc">In a live account you will compute ACOS dozens of times a week. Drill the reflex: <strong>spend ÷ revenue × 100</strong>. Enter each answer as a percentage — within 1 point counts.</p>'
+    + '<p class="ex-desc">In a live account you will compute ACOS dozens of times a week. Drill the reflex: <strong>spend Ã· revenue Ã— 100</strong>. Enter each answer as a percentage â€” within 1 point counts.</p>'
     + '<div style="display:flex;flex-direction:column;gap:12px">';
   EX10_DATA.forEach(function(d, i){
     h += '<div style="border:2px solid var(--steel);border-radius:7px;padding:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">'
-      + '<div style="flex:1;min-width:230px" class="mono" style2="font-size:13px"><span style="font-weight:700">$' + d.spend.toFixed(2) + '</span> <span style="color:#64748B">spend →</span> <span style="font-weight:700">$' + d.rev.toFixed(2) + '</span> <span style="color:#64748B">revenue</span></div>'
+      + '<div style="flex:1;min-width:230px" class="mono" style2="font-size:13px"><span style="font-weight:700">$' + d.spend.toFixed(2) + '</span> <span style="color:#64748B">spend â†’</span> <span style="font-weight:700">$' + d.rev.toFixed(2) + '</span> <span style="color:#64748B">revenue</span></div>'
       + '<div style="display:flex;align-items:center;gap:8px"><input class="bud-inp" type="number" step="0.1" min="0" id="ex10i' + i + '" placeholder="0"><span class="mono" style="font-weight:700">%</span></div>'
       + '<span class="fb" id="ex10f' + i + '" style="min-width:110px"></span></div>';
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx10()">Check Answers</button><span class="score-line" id="ex10score"></span></div></div>';
 
-  /* EX.11 — Second-Price Auction */
+  /* EX.11 â€” Second-Price Auction */
   h += '<div class="card pad ex-card rv">' + exHead('EX.11','AUCTION MATH',TAG_AMB,'What Do You Actually Pay?')
-    + '<p class="ex-desc">Amazon runs a <strong>second-price auction</strong>: you pay $0.01 more than the advertiser you beat — never more than your own bid. Calculate the real CPC for each scenario.</p>'
+    + '<p class="ex-desc">Amazon runs a <strong>second-price auction</strong>: you pay $0.01 more than the advertiser you beat â€” never more than your own bid. Calculate the real CPC for each scenario.</p>'
     + '<div style="display:flex;flex-direction:column;gap:12px">';
   EX11_DATA.forEach(function(d, i){
     h += '<div style="border:2px solid var(--steel);border-radius:7px;padding:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">'
-      + '<div style="flex:1;min-width:250px" class="mono"><span style="color:#64748B">your bid</span> <span style="font-weight:700">$' + d.bid.toFixed(2) + '</span> · <span style="color:#64748B">next-highest bid</span> <span style="font-weight:700">$' + d.next.toFixed(2) + '</span></div>'
+      + '<div style="flex:1;min-width:250px" class="mono"><span style="color:#64748B">your bid</span> <span style="font-weight:700">$' + d.bid.toFixed(2) + '</span> Â· <span style="color:#64748B">next-highest bid</span> <span style="font-weight:700">$' + d.next.toFixed(2) + '</span></div>'
       + '<div style="display:flex;align-items:center;gap:8px"><span class="mono" style="font-weight:700">$</span><input class="bud-inp" type="number" step="0.01" min="0" id="ex11i' + i + '" placeholder="0.00"></div>'
       + '<span class="fb" id="ex11f' + i + '" style="min-width:110px"></span></div>';
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx11()">Check Answers</button><span class="score-line" id="ex11score"></span></div>'
-    + '<div class="whybox"><strong>Why this matters:</strong> raising your bid often costs you nothing — you only pay more when the second-place bid moves up. This is also why bid management is not the same thing as cost management.</div></div>';
+    + '<div class="whybox"><strong>Why this matters:</strong> raising your bid often costs you nothing â€” you only pay more when the second-place bid moves up. This is also why bid management is not the same thing as cost management.</div></div>';
 
-  /* EX.12 — TACOS */
-  h += '<div class="card pad ex-card rv">' + exHead('EX.12','TACOS',TAG_PUR,'TACOS — The Bigger Picture')
-    + '<p class="ex-desc">TACOS = ad spend ÷ <strong>total revenue</strong> (ads + organic). The ad-revenue number below is a distractor — ignore it. Enter each answer as a percentage, within 1 point.</p>'
+  /* EX.12 â€” TACOS */
+  h += '<div class="card pad ex-card rv">' + exHead('EX.12','TACOS',TAG_PUR,'TACOS â€” The Bigger Picture')
+    + '<p class="ex-desc">TACOS = ad spend Ã· <strong>total revenue</strong> (ads + organic). The ad-revenue number below is a distractor â€” ignore it. Enter each answer as a percentage, within 1 point.</p>'
     + '<div style="display:flex;flex-direction:column;gap:12px">';
   EX12_DATA.forEach(function(d, i){
     h += '<div style="border:2px solid var(--steel);border-radius:7px;padding:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">'
-      + '<div style="flex:1;min-width:280px" class="mono"><span style="color:#64748B">spend</span> <span style="font-weight:700">$' + d.spend + '</span> · <span style="color:#64748B">total revenue</span> <span style="font-weight:700">$' + d.total.toLocaleString() + '</span> · <span style="color:#94A3B8">ad revenue $' + d.adRev + '</span></div>'
+      + '<div style="flex:1;min-width:280px" class="mono"><span style="color:#64748B">spend</span> <span style="font-weight:700">$' + d.spend + '</span> Â· <span style="color:#64748B">total revenue</span> <span style="font-weight:700">$' + d.total.toLocaleString() + '</span> Â· <span style="color:#94A3B8">ad revenue $' + d.adRev + '</span></div>'
       + '<div style="display:flex;align-items:center;gap:8px"><input class="bud-inp" type="number" step="0.1" min="0" id="ex12i' + i + '" placeholder="0"><span class="mono" style="font-weight:700">%</span></div>'
       + '<span class="fb" id="ex12f' + i + '" style="min-width:110px"></span></div>';
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx12()">Check Answers</button><span class="score-line" id="ex12score"></span></div></div>';
 
-  /* EX.13 — Phrase Match Mechanics */
+  /* EX.13 â€” Phrase Match Mechanics */
   h += '<div class="card pad ex-card rv">' + exHead('EX.13','PHRASE MECHANICS',TAG_RED,'Will Phrase Match Fire?')
     + '<p class="ex-desc">Your keyword is <strong>"dog leash"</strong> on <strong>phrase match</strong>. Tick every search below that would trigger your ad.</p>'
     + '<div class="ex-rule">RULE: PHRASE INTACT + WORDS ALLOWED BEFORE / AFTER + CLOSE VARIANTS</div>'
@@ -1698,32 +1698,32 @@ function renderPractice(){
   });
   h += '</tbody></table></div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx13()">Check Answers</button><span class="score-line" id="ex13score"></span></div></div>';
 
-  /* EX.14 — Break-Even Verdict */
+  /* EX.14 â€” Break-Even Verdict */
   h += '<div class="card pad ex-card rv">' + exHead('EX.14','BREAK-EVEN',TAG_GRN,'Profitable, Break-Even, or Losing?')
-    + '<p class="ex-desc">Compare the <strong>margin</strong> ((price − cost) ÷ price) against the <strong>ACOS</strong>. ACOS under margin = profitable, equal = break-even, over = losing.</p>'
+    + '<p class="ex-desc">Compare the <strong>margin</strong> ((price âˆ’ cost) Ã· price) against the <strong>ACOS</strong>. ACOS under margin = profitable, equal = break-even, over = losing.</p>'
     + '<div style="display:flex;flex-direction:column;gap:12px">';
   EX14_DATA.forEach(function(d, i){
     h += '<div style="border:2px solid var(--steel);border-radius:7px;padding:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">'
-      + '<div style="flex:1;min-width:250px" class="mono"><span style="color:#64748B">price</span> <span style="font-weight:700">$' + d.price + '</span> · <span style="color:#64748B">all-in cost</span> <span style="font-weight:700">$' + d.cost + '</span> · <span style="color:#64748B">ACOS</span> <span style="font-weight:700">' + d.acos + '%</span></div>'
-      + '<select class="sel" style="width:auto;min-width:160px" id="ex14s' + i + '"><option value="">— verdict —</option><option value="profit">Profitable</option><option value="even">Break-even</option><option value="loss">Losing</option></select>'
+      + '<div style="flex:1;min-width:250px" class="mono"><span style="color:#64748B">price</span> <span style="font-weight:700">$' + d.price + '</span> Â· <span style="color:#64748B">all-in cost</span> <span style="font-weight:700">$' + d.cost + '</span> Â· <span style="color:#64748B">ACOS</span> <span style="font-weight:700">' + d.acos + '%</span></div>'
+      + '<select class="sel" style="width:auto;min-width:160px" id="ex14s' + i + '"><option value="">â€” verdict â€”</option><option value="profit">Profitable</option><option value="even">Break-even</option><option value="loss">Losing</option></select>'
       + '<span class="fb" id="ex14f' + i + '" style="flex-basis:100%;font-weight:400"></span></div>';
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx14()">Check Answers</button><span class="score-line" id="ex14score"></span></div></div>';
 
-  /* EX.15 — Weekly Cycle Order */
+  /* EX.15 â€” Weekly Cycle Order */
   h += '<div class="card pad ex-card rv">' + exHead('EX.15','WEEKLY RHYTHM',TAG_AMB,'Order the Weekly Cycle')
-    + '<p class="ex-desc">Assign each step its correct position (1–5) in the weekly PPC optimization routine. Sequence matters — negating before harvesting keeps the data clean, and bids move last.</p>'
+    + '<p class="ex-desc">Assign each step its correct position (1â€“5) in the weekly PPC optimization routine. Sequence matters â€” negating before harvesting keeps the data clean, and bids move last.</p>'
     + '<div style="display:flex;flex-direction:column;gap:12px">';
   EX15_DATA.forEach(function(d, i){
     h += '<div style="border:2px solid var(--steel);border-radius:7px;padding:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">'
       + '<div style="flex:1;min-width:280px;font-size:13.5px;font-weight:600">' + d.s + '</div>'
-      + '<select class="sel" style="width:90px" id="ex15s' + i + '"><option value="">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>'
+      + '<select class="sel" style="width:90px" id="ex15s' + i + '"><option value="">â€”</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>'
       + '<span class="fb" id="ex15f' + i + '" style="min-width:80px"></span></div>';
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx15()">Check Order</button><span class="score-line" id="ex15score"></span></div>'
-    + '<div class="whybox"><strong>The rhythm:</strong> 1) pull the search term report → 2) negate the junk → 3) harvest the winners → 4) adjust bids on what remains → 5) review budgets, placements, and log notes. Same order, every week, forever.</div></div>';
+    + '<div class="whybox"><strong>The rhythm:</strong> 1) pull the search term report â†’ 2) negate the junk â†’ 3) harvest the winners â†’ 4) adjust bids on what remains â†’ 5) review budgets, placements, and log notes. Same order, every week, forever.</div></div>';
 
-  /* EX.16 — One Budget, One Shot */
+  /* EX.16 â€” One Budget, One Shot */
   h += '<div class="card pad ex-card rv">' + exHead('EX.16','STRATEGY',TAG_GRN,'One Budget, One Shot')
     + '<p class="ex-desc">You are launching a <strong>handmade ceramic coffee mug at $16</strong> with ~55% margin and <strong>$15/day</strong> total budget. Zero data, zero reviews momentum. Which keyword do you put your first dollar on?</p>'
     + '<div style="display:flex;flex-direction:column;gap:9px;max-width:560px;margin-bottom:6px">';
@@ -1731,7 +1731,7 @@ function renderPractice(){
     h += '<label class="q-opt" style="flex-direction:column;align-items:flex-start;gap:5px"><span style="display:flex;align-items:center;gap:10px;width:100%"><input type="radio" name="ex16" value="' + i + '" style="accent-color:var(--ink)"><span class="mono" style="font-weight:700">' + o.k + '</span></span><span class="mono" style="font-size:11px;color:#64748B;padding-left:26px">' + o.d + '</span></label>';
   });
   h += '</div><div class="check-row"><button type="button" class="btn btn-ink" onclick="checkEx16()">Check Answer</button><span class="score-line" id="ex16score"></span></div>'
-    + '<div class="whybox hidden" id="ex16why"><strong>The call:</strong> "handmade ceramic coffee mug" — low volume, cheap CPC, and the searcher already wants exactly what you sell. At $15/day you cannot afford $1.45–$1.90 head-term clicks (roughly 8–10 clicks a day, gone by lunch), and "wholesale" is B2B intent that will never buy one mug. Small budgets win the long tail first — then reinvest.</div></div>';
+    + '<div class="whybox hidden" id="ex16why"><strong>The call:</strong> "handmade ceramic coffee mug" â€” low volume, cheap CPC, and the searcher already wants exactly what you sell. At $15/day you cannot afford $1.45â€“$1.90 head-term clicks (roughly 8â€“10 clicks a day, gone by lunch), and "wholesale" is B2B intent that will never buy one mug. Small budgets win the long tail first â€” then reinvest.</div></div>';
 
   area.innerHTML = h;
   bindReveals();
@@ -1748,17 +1748,17 @@ function checkEx1(){
   EX1_TERMS.forEach(function(t, i){
     var ok = $('ex1c' + i).checked === t.neg;
     if(ok) score++;
-    $('ex1f' + i).innerHTML = (ok ? '<span style="color:var(--profit)">✓</span> ' : '<span style="color:var(--loss)">✗</span> ') + '<span class="why">' + t.why + '</span>';
+    $('ex1f' + i).innerHTML = (ok ? '<span style="color:var(--profit)">âœ“</span> ' : '<span style="color:var(--loss)">âœ—</span> ') + '<span class="why">' + t.why + '</span>';
     $('ex1r' + i).className = ok ? 'row-good' : 'row-bad';
   });
-  $('ex1score').innerHTML = score + '/7 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 7 ? '— flawless audit.' : score >= 5 ? '— solid. Re-read the misses.' : '— review Module 9 and try again.') + '</span>';
+  $('ex1score').innerHTML = score + '/7 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 7 ? 'â€” flawless audit.' : score >= 5 ? 'â€” solid. Re-read the misses.' : 'â€” review Module 9 and try again.') + '</span>';
   if(!exDone.ex1){ exDone.ex1 = true; addXP(score*3, 'search term audit completed'); }
 }
 function checkEx2(){
   var sel = document.querySelector('input[name="ex2"]:checked');
   if(!sel){ toast('Pick an answer first', 'bad'); return; }
   var ok = sel.value === '0';
-  $('ex2score').innerHTML = ok ? '<span style="color:var(--profit)">✓ Correct — $0.75</span>' : '<span style="color:var(--loss)">✗ Not quite — it is $0.75</span>';
+  $('ex2score').innerHTML = ok ? '<span style="color:var(--profit)">âœ“ Correct â€” $0.75</span>' : '<span style="color:var(--loss)">âœ— Not quite â€” it is $0.75</span>';
   $('ex2why').classList.remove('hidden');
   if(!exDone.ex2){ exDone.ex2 = true; addXP(ok ? 25 : 10, 'bid math drill'); }
 }
@@ -1767,9 +1767,9 @@ function checkEx3(){
   ans.forEach(function(a, i){
     var ok = $('ex3s' + i).value === a;
     if(ok) score++;
-    $('ex3f' + i).innerHTML = ok ? '<span style="color:var(--profit)">✓ correct</span>' : '<span style="color:var(--loss)">✗ not quite</span>';
+    $('ex3f' + i).innerHTML = ok ? '<span style="color:var(--profit)">âœ“ correct</span>' : '<span style="color:var(--loss)">âœ— not quite</span>';
   });
-  $('ex3score').innerHTML = score + '/3 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 3 ? '— you speak match type fluently.' : '— review Module 4.') + '</span>';
+  $('ex3score').innerHTML = score + '/3 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 3 ? 'â€” you speak match type fluently.' : 'â€” review Module 4.') + '</span>';
   if(!exDone.ex3){ exDone.ex3 = true; addXP(score*8, 'match type drill'); }
 }
 function checkEx4(){
@@ -1777,9 +1777,9 @@ function checkEx4(){
   EX4_DATA.forEach(function(k, i){
     var ok = $('ex4s' + i).value === k.ans;
     if(ok) score++;
-    $('ex4f' + i).innerHTML = (ok ? '<span style="color:var(--profit);font-weight:700">✓</span> ' : '<span style="color:var(--loss);font-weight:700">✗ → ' + k.ans + '</span> ') + '<span class="why">' + k.why + '</span>';
+    $('ex4f' + i).innerHTML = (ok ? '<span style="color:var(--profit);font-weight:700">âœ“</span> ' : '<span style="color:var(--loss);font-weight:700">âœ— â†’ ' + k.ans + '</span> ') + '<span class="why">' + k.why + '</span>';
   });
-  $('ex4score').innerHTML = score + '/4 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 4 ? '— portfolio manager material.' : '— re-read the reasoning above.') + '</span>';
+  $('ex4score').innerHTML = score + '/4 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 4 ? 'â€” portfolio manager material.' : 'â€” re-read the reasoning above.') + '</span>';
   if(!exDone.ex4){ exDone.ex4 = true; addXP(score*6, 'budget triage drill'); }
 }
 function checkEx5(){
@@ -1787,10 +1787,10 @@ function checkEx5(){
   EX5_DATA.forEach(function(t, i){
     var ok = $('ex5c' + i).checked === t.harv;
     if(ok) score++;
-    $('ex5f' + i).innerHTML = (ok ? '<span style="color:var(--profit)">✓</span> ' : '<span style="color:var(--loss)">✗</span> ') + '<span class="why">' + t.why + '</span>';
+    $('ex5f' + i).innerHTML = (ok ? '<span style="color:var(--profit)">âœ“</span> ' : '<span style="color:var(--loss)">âœ—</span> ') + '<span class="why">' + t.why + '</span>';
     $('ex5r' + i).className = ok ? 'row-good' : 'row-bad';
   });
-  $('ex5score').innerHTML = score + '/6 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 6 ? '— clean harvest. Exact campaigns loaded.' : score >= 4 ? '— close. Trust the rule, not your gut.' : '— the rule exists for a reason: 15+ clicks, ACOS ≤ 25%.') + '</span>';
+  $('ex5score').innerHTML = score + '/6 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 6 ? 'â€” clean harvest. Exact campaigns loaded.' : score >= 4 ? 'â€” close. Trust the rule, not your gut.' : 'â€” the rule exists for a reason: 15+ clicks, ACOS â‰¤ 25%.') + '</span>';
   if(!exDone.ex5){ exDone.ex5 = true; addXP(score*4, 'harvest drill completed'); }
 }
 function checkEx6(){
@@ -1799,9 +1799,9 @@ function checkEx6(){
     var v = parseFloat($('ex6i' + i).value);
     var ok = !isNaN(v) && Math.abs(v - d.ans) <= 0.05;
     if(ok) score++;
-    $('ex6f' + i).innerHTML = ok ? '<span style="color:var(--profit)">✓ $' + d.ans.toFixed(2) + '</span>' : '<span style="color:var(--loss)">✗ → $' + d.ans.toFixed(2) + '</span>';
+    $('ex6f' + i).innerHTML = ok ? '<span style="color:var(--profit)">âœ“ $' + d.ans.toFixed(2) + '</span>' : '<span style="color:var(--loss)">âœ— â†’ $' + d.ans.toFixed(2) + '</span>';
   });
-  $('ex6score').innerHTML = score + '/3 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 3 ? '— you can now bid with a calculator, not a feeling.' : '— remember: $19.99 × 30% × CVR.') + '</span>';
+  $('ex6score').innerHTML = score + '/3 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 3 ? 'â€” you can now bid with a calculator, not a feeling.' : 'â€” remember: $19.99 Ã— 30% Ã— CVR.') + '</span>';
   if(!exDone.ex6){ exDone.ex6 = true; addXP(score*8, 'max CPC drill completed'); }
 }
 function checkEx7(){
@@ -1811,9 +1811,9 @@ function checkEx7(){
     var v = $('ex7s' + i).value;
     var ok = v === d.ans;
     if(ok) score++;
-    $('ex7f' + i).innerHTML = ok ? '<span style="color:var(--profit)">✓ correct</span>' : '<span style="color:var(--loss)">✗ → ' + names[d.ans] + '</span>';
+    $('ex7f' + i).innerHTML = ok ? '<span style="color:var(--profit)">âœ“ correct</span>' : '<span style="color:var(--loss)">âœ— â†’ ' + names[d.ans] + '</span>';
   });
-  $('ex7score').innerHTML = score + '/6 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 6 ? '— structure is second nature now.' : '— converters go to exact, experiments go to broad, your name stays yours.') + '</span>';
+  $('ex7score').innerHTML = score + '/6 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 6 ? 'â€” structure is second nature now.' : 'â€” converters go to exact, experiments go to broad, your name stays yours.') + '</span>';
   if(!exDone.ex7){ exDone.ex7 = true; addXP(score*4, 'structure sort completed'); }
 }
 function checkEx8(){
@@ -1821,10 +1821,10 @@ function checkEx8(){
   EX8_DATA.forEach(function(d, i){
     var ok = $('ex8s' + i).value === d.ans;
     if(ok) score++;
-    $('ex8f' + i).innerHTML = ok ? '<span style="color:var(--profit)">✓</span>' : '<span style="color:var(--loss)">✗</span>';
+    $('ex8f' + i).innerHTML = ok ? '<span style="color:var(--profit)">âœ“</span>' : '<span style="color:var(--loss)">âœ—</span>';
     $('ex8w' + i).innerHTML = ok ? '<span style="color:var(--profit)">Exactly: </span>' + d.why : '<span style="color:var(--loss)">The call: </span>' + d.why;
   });
-  $('ex8score').innerHTML = score + '/5 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 5 ? '— diagnostic instincts: online.' : score >= 3 ? '— decent. Funnel stage first, fix second.' : '— walk the funnel: impressions → CTR → CVR → margin.') + '</span>';
+  $('ex8score').innerHTML = score + '/5 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 5 ? 'â€” diagnostic instincts: online.' : score >= 3 ? 'â€” decent. Funnel stage first, fix second.' : 'â€” walk the funnel: impressions â†’ CTR â†’ CVR â†’ margin.') + '</span>';
   if(!exDone.ex8){ exDone.ex8 = true; addXP(score*5, 'diagnostics drill completed'); }
 }
 function checkEx9(){
@@ -1837,13 +1837,13 @@ function checkEx9(){
     var inp = $('ex9i' + i);
     inp.classList.remove('bud-ok','bud-no');
     inp.classList.add(ok ? 'bud-ok' : 'bud-no');
-    $('ex9f' + i).innerHTML = ok ? '<span style="color:var(--profit)">✓ in range</span>' : '<span style="color:var(--loss)">✗ ' + d.why + '</span>';
+    $('ex9f' + i).innerHTML = ok ? '<span style="color:var(--profit)">âœ“ in range</span>' : '<span style="color:var(--loss)">âœ— ' + d.why + '</span>';
   });
   if(total !== 50){
-    $('ex9score').innerHTML = '<span style="color:var(--loss)">Total is $' + total + ' — it must be exactly $50.</span>';
+    $('ex9score').innerHTML = '<span style="color:var(--loss)">Total is $' + total + ' â€” it must be exactly $50.</span>';
     return;
   }
-  $('ex9score').innerHTML = score + '/4 in range <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 4 ? '— textbook allocation. Feed the winners, cap the experiments.' : '— winners get the most fuel, discovery gets a leash.') + '</span>';
+  $('ex9score').innerHTML = score + '/4 in range <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 4 ? 'â€” textbook allocation. Feed the winners, cap the experiments.' : 'â€” winners get the most fuel, discovery gets a leash.') + '</span>';
   if(!exDone.ex9){ exDone.ex9 = true; addXP(score*6, 'budget allocation completed'); }
 }
 function checkEx10(){
@@ -1852,9 +1852,9 @@ function checkEx10(){
     var v = parseFloat($('ex10i' + i).value);
     var ok = !isNaN(v) && Math.abs(v - d.ans) <= 1;
     if(ok) score++;
-    $('ex10f' + i).innerHTML = ok ? '<span style="color:var(--profit)">✓ ' + d.ans + '%</span>' : '<span style="color:var(--loss)">✗ → ' + d.ans + '%</span>';
+    $('ex10f' + i).innerHTML = ok ? '<span style="color:var(--profit)">âœ“ ' + d.ans + '%</span>' : '<span style="color:var(--loss)">âœ— â†’ ' + d.ans + '%</span>';
   });
-  $('ex10score').innerHTML = score + '/4 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 4 ? '— reflex locked. Spend ÷ revenue × 100, no hesitation.' : '— slow down: spend ÷ revenue × 100.') + '</span>';
+  $('ex10score').innerHTML = score + '/4 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 4 ? 'â€” reflex locked. Spend Ã· revenue Ã— 100, no hesitation.' : 'â€” slow down: spend Ã· revenue Ã— 100.') + '</span>';
   if(!exDone.ex10){ exDone.ex10 = true; addXP(score*4, 'ACOS speed drill completed'); }
 }
 function checkEx11(){
@@ -1863,9 +1863,9 @@ function checkEx11(){
     var v = parseFloat($('ex11i' + i).value);
     var ok = !isNaN(v) && Math.abs(v - d.ans) <= 0.011;
     if(ok) score++;
-    $('ex11f' + i).innerHTML = ok ? '<span style="color:var(--profit)">✓ $' + d.ans.toFixed(2) + '</span>' : '<span style="color:var(--loss)">✗ → $' + d.ans.toFixed(2) + '</span>';
+    $('ex11f' + i).innerHTML = ok ? '<span style="color:var(--profit)">âœ“ $' + d.ans.toFixed(2) + '</span>' : '<span style="color:var(--loss)">âœ— â†’ $' + d.ans.toFixed(2) + '</span>';
   });
-  $('ex11score').innerHTML = score + '/3 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 3 ? '— second-price logic: mastered.' : '— you pay next-highest bid + $0.01, capped at your own bid.') + '</span>';
+  $('ex11score').innerHTML = score + '/3 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 3 ? 'â€” second-price logic: mastered.' : 'â€” you pay next-highest bid + $0.01, capped at your own bid.') + '</span>';
   if(!exDone.ex11){ exDone.ex11 = true; addXP(score*8, 'auction math completed'); }
 }
 function checkEx12(){
@@ -1875,9 +1875,9 @@ function checkEx12(){
     var ans = d.spend / d.total * 100;
     var ok = !isNaN(v) && Math.abs(v - ans) <= 1;
     if(ok) score++;
-    $('ex12f' + i).innerHTML = ok ? '<span style="color:var(--profit)">✓ ' + Math.round(ans) + '%</span>' : '<span style="color:var(--loss)">✗ → ' + Math.round(ans) + '%</span>';
+    $('ex12f' + i).innerHTML = ok ? '<span style="color:var(--profit)">âœ“ ' + Math.round(ans) + '%</span>' : '<span style="color:var(--loss)">âœ— â†’ ' + Math.round(ans) + '%</span>';
   });
-  $('ex12score').innerHTML = score + '/3 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 3 ? '— TACOS reads clean. Ad revenue is noise here.' : '— TACOS ignores ad revenue: spend ÷ TOTAL revenue.') + '</span>';
+  $('ex12score').innerHTML = score + '/3 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 3 ? 'â€” TACOS reads clean. Ad revenue is noise here.' : 'â€” TACOS ignores ad revenue: spend Ã· TOTAL revenue.') + '</span>';
   if(!exDone.ex12){ exDone.ex12 = true; addXP(score*6, 'TACOS drill completed'); }
 }
 function checkEx13(){
@@ -1885,10 +1885,10 @@ function checkEx13(){
   EX13_TERMS.forEach(function(t, i){
     var ok = $('ex13c' + i).checked === t.fire;
     if(ok) score++;
-    $('ex13f' + i).innerHTML = (ok ? '<span style="color:var(--profit)">✓</span> ' : '<span style="color:var(--loss)">✗</span> ') + '<span class="why">' + t.why + '</span>';
+    $('ex13f' + i).innerHTML = (ok ? '<span style="color:var(--profit)">âœ“</span> ' : '<span style="color:var(--loss)">âœ—</span> ') + '<span class="why">' + t.why + '</span>';
     $('ex13r' + i).className = ok ? 'row-good' : 'row-bad';
   });
-  $('ex13score').innerHTML = score + '/8 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 8 ? '— phrase match has no secrets from you.' : score >= 6 ? '— close. Contiguity is the whole rule.' : '— phrase must appear intact; order and adjacency matter.') + '</span>';
+  $('ex13score').innerHTML = score + '/8 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 8 ? 'â€” phrase match has no secrets from you.' : score >= 6 ? 'â€” close. Contiguity is the whole rule.' : 'â€” phrase must appear intact; order and adjacency matter.') + '</span>';
   if(!exDone.ex13){ exDone.ex13 = true; addXP(score*3, 'phrase mechanics completed'); }
 }
 function checkEx14(){
@@ -1897,9 +1897,9 @@ function checkEx14(){
     var v = $('ex14s' + i).value;
     var ok = v === d.ans;
     if(ok) score++;
-    $('ex14f' + i).innerHTML = (ok ? '<span style="color:var(--profit);font-weight:700">✓</span> ' : '<span style="color:var(--loss);font-weight:700">✗</span> ') + '<span class="why">' + d.why + '</span>';
+    $('ex14f' + i).innerHTML = (ok ? '<span style="color:var(--profit);font-weight:700">âœ“</span> ' : '<span style="color:var(--loss);font-weight:700">âœ—</span> ') + '<span class="why">' + d.why + '</span>';
   });
-  $('ex14score').innerHTML = score + '/4 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 4 ? '— margin math is now instinct.' : '— compute margin first, THEN compare ACOS. Never judge ACOS alone.') + '</span>';
+  $('ex14score').innerHTML = score + '/4 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 4 ? 'â€” margin math is now instinct.' : 'â€” compute margin first, THEN compare ACOS. Never judge ACOS alone.') + '</span>';
   if(!exDone.ex14){ exDone.ex14 = true; addXP(score*5, 'break-even verdicts completed'); }
 }
 function checkEx15(){
@@ -1908,21 +1908,21 @@ function checkEx15(){
     var v = parseInt($('ex15s' + i).value, 10);
     var ok = v === d.rank;
     if(ok) score++;
-    $('ex15f' + i).innerHTML = ok ? '<span style="color:var(--profit)">✓ #' + d.rank + '</span>' : '<span style="color:var(--loss)">✗ #' + d.rank + '</span>';
+    $('ex15f' + i).innerHTML = ok ? '<span style="color:var(--profit)">âœ“ #' + d.rank + '</span>' : '<span style="color:var(--loss)">âœ— #' + d.rank + '</span>';
   });
-  $('ex15score').innerHTML = score + '/5 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 5 ? '— weekly rhythm locked in.' : '— clean the data first (negate), capture winners (harvest), tune bids last.') + '</span>';
+  $('ex15score').innerHTML = score + '/5 <span style="color:#94A3B8;font-weight:400;font-size:12px">' + (score === 5 ? 'â€” weekly rhythm locked in.' : 'â€” clean the data first (negate), capture winners (harvest), tune bids last.') + '</span>';
   if(!exDone.ex15){ exDone.ex15 = true; addXP(score*4, 'weekly cycle completed'); }
 }
 function checkEx16(){
   var sel = document.querySelector('input[name="ex16"]:checked');
   if(!sel){ toast('Pick a keyword first', 'bad'); return; }
   var ok = sel.value === '1';
-  $('ex16score').innerHTML = ok ? '<span style="color:var(--profit)">✓ Correct — the long tail wins small budgets</span>' : '<span style="color:var(--loss)">✗ Not the best call — see the reasoning</span>';
+  $('ex16score').innerHTML = ok ? '<span style="color:var(--profit)">âœ“ Correct â€” the long tail wins small budgets</span>' : '<span style="color:var(--loss)">âœ— Not the best call â€” see the reasoning</span>';
   $('ex16why').classList.remove('hidden');
   if(!exDone.ex16){ exDone.ex16 = true; addXP(ok ? 20 : 5, 'strategy call completed'); }
 }
 
-/* ════════════════════ QUIZ ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• QUIZ â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 var quiz = {state:'intro', i:0, score:0, answered:false};
 function bestScore(){ try { return parseInt(localStorage.getItem('kwlab_best') || '-1', 10); } catch(e){ return -1; } }
 function renderQuiz(){
@@ -1930,15 +1930,15 @@ function renderQuiz(){
   if(quiz.state === 'intro'){
     var b = bestScore();
     box.innerHTML = '<div class="card quiz-card q-center rv">'
-      + '<div class="q-emoji">🏆</div>'
-      + '<div><span class="q-brandchip">PROJECT AMAZON PH · CERTIFICATION</span></div>'
+      + '<div class="q-emoji">ðŸ†</div>'
+      + '<div><span class="q-brandchip">PROJECT AMAZON PH Â· CERTIFICATION</span></div>'
       + '<h3 style="font-family:var(--disp);font-size:24px;margin-bottom:9px">The Keyword Lab Exam</h3>'
-      + '<p style="font-size:14px;color:#475569;max-width:440px;margin:0 auto 22px;line-height:1.65">12 questions. No timer, unlimited retakes. Score <strong>80%+</strong> to pass — and more importantly, to know you are ready to manage a real budget.</p>'
+      + '<p style="font-size:14px;color:#475569;max-width:440px;margin:0 auto 22px;line-height:1.65">12 questions. No timer, unlimited retakes. Score <strong>80%+</strong> to pass â€” and more importantly, to know you are ready to manage a real budget.</p>'
       + '<div style="display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-bottom:24px">'
       + '<span class="schip" style="background:#fff;border-color:var(--steel);color:#475569">12 QUESTIONS</span>'
       + '<span class="schip" style="background:#fff;border-color:var(--steel);color:#475569">PASS: 80%</span>'
-      + '<span class="schip" style="background:#fff;border-color:var(--steel);color:#475569">BEST: ' + (b >= 0 ? b + '/12' : '—') + '</span></div>'
-      + '<button type="button" class="btn btn-brand" style="font-size:16px;padding:14px 30px" onclick="startQuiz()">Begin Exam →</button></div>';
+      + '<span class="schip" style="background:#fff;border-color:var(--steel);color:#475569">BEST: ' + (b >= 0 ? b + '/12' : 'â€”') + '</span></div>'
+      + '<button type="button" class="btn btn-brand" style="font-size:16px;padding:14px 30px" onclick="startQuiz()">Begin Exam â†’</button></div>';
     bindReveals();
     return;
   }
@@ -1946,12 +1946,12 @@ function renderQuiz(){
     var b2 = bestScore();
     var pass = quiz.score >= 10;
     box.innerHTML = '<div class="card quiz-card q-center">'
-      + '<div class="q-emoji">' + (pass ? '🎉' : '📚') + '</div>'
+      + '<div class="q-emoji">' + (pass ? 'ðŸŽ‰' : 'ðŸ“š') + '</div>'
       + '<div class="mono-xs" style="margin-bottom:6px">FINAL SCORE</div>'
       + '<div class="q-score" style="color:' + (pass ? 'var(--profit)' : 'var(--loss)') + '">' + quiz.score + '<span>/12</span></div>'
-      + '<p style="font-family:var(--disp);font-weight:700;font-size:18px;margin:14px 0 7px">' + (pass ? 'PASSED — Keyword Lab certified. You are auction-ready.' : 'Not yet — and that is the point of the Lab.') + '</p>'
+      + '<p style="font-family:var(--disp);font-weight:700;font-size:18px;margin:14px 0 7px">' + (pass ? 'PASSED â€” Keyword Lab certified. You are auction-ready.' : 'Not yet â€” and that is the point of the Lab.') + '</p>'
       + '<p style="font-size:13.5px;color:#475569;max-width:460px;margin:0 auto;line-height:1.65">' + (pass ? 'You beat the house. Go load a Playbook and stress-test your instincts in the Simulator.' : 'Review the Academy modules tied to your misses, then retake it. Mastery means understanding why each answer is right.') + '</p>'
-      + (quiz.score > b2 ? '<div><span class="q-best">★ NEW PERSONAL BEST</span></div>' : '')
+      + (quiz.score > b2 ? '<div><span class="q-best">â˜… NEW PERSONAL BEST</span></div>' : '')
       + '<div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">'
       + '<button type="button" class="btn btn-ink" onclick="startQuiz()">Retake Exam</button>'
       + '<button type="button" class="btn" style="background:#fff;border:2px solid var(--steel);color:var(--ink)" onclick="switchTab(\'academy\')">Back to Academy</button></div></div>';
@@ -1966,7 +1966,7 @@ function renderQuiz(){
     h += '<button type="button" class="q-opt" id="qo' + i + '" onclick="answerQuiz(' + i + ')"><span class="key">' + String.fromCharCode(65+i) + '</span>' + o + '</button>';
   });
   h += '</div><div class="q-fb hidden" id="qFeedback" aria-live="polite"></div>'
-    + '<div style="text-align:right;margin-top:18px"><button type="button" class="btn btn-ink hidden" id="qNext" onclick="nextQuiz()">' + (quiz.i === 11 ? 'See Results →' : 'Next Question →') + '</button></div></div>';
+    + '<div style="text-align:right;margin-top:18px"><button type="button" class="btn btn-ink hidden" id="qNext" onclick="nextQuiz()">' + (quiz.i === 11 ? 'See Results â†’' : 'Next Question â†’') + '</button></div></div>';
   box.innerHTML = h;
 }
 function startQuiz(){ quiz = {state:'run', i:0, score:0, answered:false}; renderQuiz(); }
@@ -1985,7 +1985,7 @@ function answerQuiz(i){
   });
   var fb = $('qFeedback');
   fb.className = 'q-fb ' + (ok ? 'good' : 'bad');
-  fb.innerHTML = '<strong style="color:' + (ok ? 'var(--profit)' : 'var(--loss)') + '">' + (ok ? '✓ Correct.' : '✗ Incorrect — the answer is ' + String.fromCharCode(65+q.a) + '.') + '</strong> ' + q.e;
+  fb.innerHTML = '<strong style="color:' + (ok ? 'var(--profit)' : 'var(--loss)') + '">' + (ok ? 'âœ“ Correct.' : 'âœ— Incorrect â€” the answer is ' + String.fromCharCode(65+q.a) + '.') + '</strong> ' + q.e;
   $('qNext').classList.remove('hidden');
 }
 function nextQuiz(){
@@ -2003,7 +2003,7 @@ function nextQuiz(){
   renderQuiz();
 }
 
-/* ════════════════════ ACADEMY INSTRUMENTS ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• ACADEMY INSTRUMENTS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function runAuctionDemo(){
   var bid = parseFloat($('aucBid').value) || 0.10;
   $('aucBidVal').textContent = money(bid);
@@ -2019,24 +2019,24 @@ function runAuctionDemo(){
   $('aucProbVal').textContent = prob + '%';
   $('aucProbBar').style.width = prob + '%';
   $('aucNote').textContent = ratio >= 1
-    ? 'Suggested bid for this niche: $0.85. You are at or above it — strong shot at top-of-search placements.'
-    : 'Suggested bid for this niche: $0.85. You are bidding below it — expect mostly rest-of-search and product-page placements.';
+    ? 'Suggested bid for this niche: $0.85. You are at or above it â€” strong shot at top-of-search placements.'
+    : 'Suggested bid for this niche: $0.85. You are bidding below it â€” expect mostly rest-of-search and product-page placements.';
 }
 function runMatchDemo(){
   var v = $('mdSelect').value;
   var rules = {
-    'garlic press':{b:1,p:1,e:1,n:'Exact hit — all three match types fire.'},
-    'garlic presses':{b:1,p:1,e:1,n:'Plurals count as "close variants" — exact still fires.'},
+    'garlic press':{b:1,p:1,e:1,n:'Exact hit â€” all three match types fire.'},
+    'garlic presses':{b:1,p:1,e:1,n:'Plurals count as "close variants" â€” exact still fires.'},
     'stainless garlic press':{b:1,p:1,e:0,n:'Your phrase appears intact, so phrase fires. Word order changed, so exact does not.'},
     'garlic press stainless steel':{b:1,p:1,e:0,n:'Phrase allows extra words AFTER your phrase. Exact does not.'},
-    'press for garlic':{b:1,p:0,e:0,n:'Words split apart — phrase needs the phrase intact. Only broad fires.'},
-    'garlic mincer':{b:1,p:0,e:0,n:'Synonym — only broad match reaches this. Great discovery term.'},
-    'rock garlic press':{b:1,p:1,e:0,n:'Extra word BEFORE your phrase — phrase still fires.'},
+    'press for garlic':{b:1,p:0,e:0,n:'Words split apart â€” phrase needs the phrase intact. Only broad fires.'},
+    'garlic mincer':{b:1,p:0,e:0,n:'Synonym â€” only broad match reaches this. Great discovery term.'},
+    'rock garlic press':{b:1,p:1,e:0,n:'Extra word BEFORE your phrase â€” phrase still fires.'},
     'garlic bread maker':{b:1,p:0,e:0,n:'Broad will chase this and waste money. This is exactly why you need negative keywords like "bread".'}
   };
   var r = rules[v] || rules['garlic press'];
   function badge(on, label, cls){
-    return '<span class="md-badge ' + (on ? cls : '') + '">' + (on ? '✓ ' : '✗ ') + label + '</span>';
+    return '<span class="md-badge ' + (on ? cls : '') + '">' + (on ? 'âœ“ ' : 'âœ— ') + label + '</span>';
   }
   $('mdOut').innerHTML = badge(r.b, 'BROAD FIRES', 'md-on-b') + badge(r.p, 'PHRASE FIRES', 'md-on-p') + badge(r.e, 'EXACT FIRES', 'md-on-e');
   $('mdNote').textContent = r.n;
@@ -2053,14 +2053,14 @@ function runCalculators(){
   var ro = $('ro_out');
   ro.textContent = acos.toFixed(1) + '%';
   ro.style.color = acos <= 25 ? 'var(--profit)' : acos <= 40 ? 'var(--brandink)' : 'var(--loss)';
-  $('ro_verdict').textContent = acos <= 25 ? '✅ On target at 25% goal' : acos <= 40 ? '⚠️ Above target — trim bids or negate waste' : '🚨 Bleeding — stop and diagnose';
+  $('ro_verdict').textContent = acos <= 25 ? 'âœ… On target at 25% goal' : acos <= 40 ? 'âš ï¸ Above target â€” trim bids or negate waste' : 'ðŸš¨ Bleeding â€” stop and diagnose';
 }
 function runDiag(sym){
   var map = {
-    imp:'<strong>Low impressions?</strong> Your bid is too low to win auctions, your budget is capped early, or your keywords are too long-tail/niche.<br>▸ Raise bids toward the suggested CPC<br>▸ Check the daily budget is not exhausted by noon<br>▸ Add broader match types to widen reach',
-    ctr:'<strong>Seen but ignored?</strong> That is an ad-facing problem, not a bidding one.<br>▸ Main image: is it readable at thumbnail size?<br>▸ Price vs the neighbors on page one<br>▸ Star rating and review count gap<br>▸ Title clarity — does it promise what they searched?',
-    cvr:'<strong>Clicks but no sales?</strong> The click sold the promise; the listing broke it.<br>▸ Image stack and A+ content quality<br>▸ Bullets answering real objections<br>▸ Price competitiveness on the detail page<br>▸ Check search terms — you may be attracting the wrong intent (add negatives)',
-    acos:'<strong>Sales but ACOS too high?</strong> You are paying too much for each conversion.<br>▸ Negate wasteful search terms first — cheapest fix<br>▸ Lower bids on high-ACOS exact terms 10–20%<br>▸ Move spend toward converting long-tail terms<br>▸ Verify the target ACOS is even achievable at your margin'
+    imp:'<strong>Low impressions?</strong> Your bid is too low to win auctions, your budget is capped early, or your keywords are too long-tail/niche.<br>â–¸ Raise bids toward the suggested CPC<br>â–¸ Check the daily budget is not exhausted by noon<br>â–¸ Add broader match types to widen reach',
+    ctr:'<strong>Seen but ignored?</strong> That is an ad-facing problem, not a bidding one.<br>â–¸ Main image: is it readable at thumbnail size?<br>â–¸ Price vs the neighbors on page one<br>â–¸ Star rating and review count gap<br>â–¸ Title clarity â€” does it promise what they searched?',
+    cvr:'<strong>Clicks but no sales?</strong> The click sold the promise; the listing broke it.<br>â–¸ Image stack and A+ content quality<br>â–¸ Bullets answering real objections<br>â–¸ Price competitiveness on the detail page<br>â–¸ Check search terms â€” you may be attracting the wrong intent (add negatives)',
+    acos:'<strong>Sales but ACOS too high?</strong> You are paying too much for each conversion.<br>â–¸ Negate wasteful search terms first â€” cheapest fix<br>â–¸ Lower bids on high-ACOS exact terms 10â€“20%<br>â–¸ Move spend toward converting long-tail terms<br>â–¸ Verify the target ACOS is even achievable at your margin'
   };
   $('diagOut').innerHTML = map[sym] || 'Pick a symptom above.';
 }
@@ -2072,7 +2072,7 @@ function renderGlossary(){
     : '<p style="font-size:13px;color:#94A3B8">No matches.</p>';
 }
 
-/* ════════════════════ INIT ════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• INIT â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function init(){
   buildTicker();
   buildPulse();
