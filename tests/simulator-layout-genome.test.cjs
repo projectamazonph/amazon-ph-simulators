@@ -37,10 +37,15 @@ test('all twelve simulators load the shared interaction foundation', () => {
   ].forEach((page) => assert.match(read(page), /assets\/simulator-foundation\.css/, page));
 });
 
-test('shared fonts use Fontsource CDN and never Google Fonts', () => {
+test('shared fonts are self-hosted Fontsource files, never Google Fonts', () => {
   const fonts = read('assets/fonts.css');
-  assert.match(fonts, /cdn\.jsdelivr\.net\/npm\/@fontsource/);
+  // Delivery changed when the desktop installer became the priority surface: the twelve remote
+  // Fontsource @imports are now 24 inlined @font-face rules over assets/fonts/files/. What has to
+  // stay true is the provenance (Fontsource, not Google) and that the file needs no network.
+  assert.doesNotMatch(fonts, /https?:\/\//, 'assets/fonts.css must not reach the network');
   assert.doesNotMatch(fonts, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
+  assert.match(fonts, /Fontsource/, 'assets/fonts.css should record its Fontsource provenance');
+  assert.equal((fonts.match(/@font-face/g) || []).length, 24, 'expected 24 self-hosted faces');
 });
 
 test('BuyBox Dojo seeds its simulation runs for replayable results', () => {

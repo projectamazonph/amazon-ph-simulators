@@ -660,10 +660,10 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 function debounce(fn,ms){let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms);}}
 
 const IMG={
- bamboo:'https://image.qwenlm.ai/public_source/8fbdce4c-47bb-4564-b6bc-20e4aa839d8d/187539bf3-9f8e-4ac5-a181-7646d57f9089.png',
- bottle:'https://image.qwenlm.ai/public_source/8fbdce4c-47bb-4564-b6bc-20e4aa839d8d/1638d8f66-c22b-4350-8c4b-a4f1bb1320d5.png',
- lamp:'https://image.qwenlm.ai/public_source/8fbdce4c-47bb-4564-b6bc-20e4aa839d8d/1b4cb5815-dcfa-4708-aad9-33499627ec4d.png',
- yoga:'https://image.qwenlm.ai/public_source/8fbdce4c-47bb-4564-b6bc-20e4aa839d8d/1cac479fe-20bb-4816-8f4d-34c76e0afd51.png'
+ bamboo:'assets/img/product-bamboo.webp',
+ bottle:'assets/img/product-bottle.webp',
+ lamp:'assets/img/product-lamp.webp',
+ yoga:'assets/img/product-yoga.webp'
 };
 
 const BANNED=[['best seller','claim'],['#1','claim'],['top rated','claim'],['no.1','claim'],['guarantee','restricted'],['warranty','restricted'],['free shipping','prohibited'],['sale','prohibited'],['discount','prohibited'],['bonus','prohibited'],['cheap','off-brand'],['money back','restricted'],['buy now','prohibited'],['amazing','fluff'],['100%','claim']];

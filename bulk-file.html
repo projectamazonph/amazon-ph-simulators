@@ -5,7 +5,6 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Bulk File Simulator | Amazon PPC Bulk Operations Practice</title>
-<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 <script src="assets/student-progress.js"></script>
 <script src="assets/simulator-attempt.js"></script>
 
@@ -1453,9 +1452,26 @@ document.getElementById("loadUpdate").addEventListener("click",()=>run(normalize
 document.getElementById("dlTemplate").addEventListener("click",()=>download("amazon-sp-bulk-template.csv",toCSV([])));
 document.getElementById("dlSample").addEventListener("click",()=>download("amazon-sp-bulk-sample.csv",toCSV(normalizeRows(SAMPLE_ROWS))));
 document.getElementById("dlBroken").addEventListener("click",()=>download("amazon-sp-bulk-broken-exercise.csv",toCSV(normalizeRows(BROKEN_ROWS))));
+// SheetJS is 945 KB and only two lines need it, both in this handler. Injecting it here means a
+// learner who never uploads a file never downloads it; under file:// the request is a local read.
+let sheetPromise=null;
+function loadSheetJS(){
+  if(sheetPromise)return sheetPromise;
+  sheetPromise=new Promise((res,rej)=>{
+    if(window.XLSX)return res(window.XLSX);
+    const s=document.createElement("script");
+    s.src="assets/vendor/xlsx.full.min.js";
+    s.onload=()=>window.XLSX?res(window.XLSX):rej(new Error("SheetJS evaluated but XLSX is undefined"));
+    s.onerror=()=>rej(new Error("SheetJS request failed"));
+    document.head.appendChild(s);
+  });
+  return sheetPromise;
+}
 document.getElementById("file").addEventListener("change",async e=>{
   const f=e.target.files[0];if(!f)return;
-  if(typeof XLSX==="undefined"){alert("SheetJS failed to load. Check your connection or use the CSV samples.");return;}
+  let XLSX;
+  try{XLSX=await loadSheetJS();}
+  catch(err){alert("The spreadsheet reader could not load. Use a .csv sample instead.");return;}
   const wb=XLSX.read(await f.arrayBuffer());
   const json=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{defval:""});
   run(normalizeRows(json),"upload");

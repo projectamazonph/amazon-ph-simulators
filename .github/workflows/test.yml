@@ -3,9 +3,8 @@ name: Test suite
 on:
   push:
     branches: [master]
-  # Deliberately unfiltered: stacked pull requests target feature branches, and a gate that
-  # only fires against master lets exactly the work-in-progress merges skip the suite.
   pull_request:
+    branches: [master]
   workflow_dispatch:
 
 permissions:

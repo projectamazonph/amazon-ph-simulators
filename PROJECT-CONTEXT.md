@@ -24,7 +24,7 @@ paid product; a page that needs network to render is a defect there, not a nice-
   `ppc-coach` (a teaching companion, not a simulator). "Twelve tools" in `CLAUDE.md` and "~15
   simulator pages" elsewhere both refer to this same set.
 - `assets/` holds 58 files; 25 of them are `.js`.
-- 31 test files in `tests/` (314 tests, `node --test tests/*.test.cjs`).
+- 32 test files in `tests/` (317 tests, `node --test tests/*.test.cjs`).
 - Course content exists in three places: inline `MODULES` in `ppc-coach.html`,
   `assets/curriculum-manifest.js` (12 modules, `m0`..`m11`), and `coach-decks/`.
 
@@ -41,8 +41,27 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   closed on a suspiciously small scan, so it cannot pass by finding nothing.
 - `tests/coach-curriculum-alignment.test.cjs` extracts the `MODULES` literal from
   `ppc-coach.html` and pins it to the manifest.
-- Most other tests are **regex-on-file-content** contracts. They prove text patterns, not
-  that a page runs. A green suite is necessary, not sufficient.
+- `tests/vendor-assets.test.cjs` pins the size and SHA-256 of each file in `assets/vendor/` and
+  fails if any page adds a remote `<script src>`. Upgrading a library means editing the hash in
+  both that test and `assets/vendor/README.md`.
+- `tests/local-image-assets.test.cjs` bans third-party artwork URLs, keeps `assets/img/` inside a
+  400 KB budget, and pins `IMG` key liveness in both directions (see Known hazards).
+- `tests/csp-fontsource.test.cjs` pins the 24 self-hosted faces, resolves each `url()` the way a
+  browser does, checks woff2 magic bytes, forbids any network URL in `assets/fonts.css`, budgets the
+  directory at 600 KB, and requires latin-ext range coverage per family.
+- `tests/app-icon.test.cjs` parses both ICO containers, requires the 16–256 size ladder, asserts the
+  favicon and installer icon are the same bytes, and checks `build.win.icon` points at a real file.
+- `tests/desktop-smoke.test.cjs` is the only gate that **runs** a page: it launches headless
+  Edge/Chrome and loads all 20 root product pages over `file://`, failing on an uncaught exception,
+  a failed subresource request, any response ≥400, an undecodable image, a page that declares font
+  faces but loads none, or console noise outside the two documented known issues. It **skips rather
+  than fails when no browser is found**, so CI runners stay green and this machine is where it
+  bites; set `PHASM_BROWSER=<path>` to point it, `PHASM_NO_SMOKE=1` to silence it. Proven to fail
+  by injecting an uncaught throw, a missing file and a broken image into one page.
+  The 196 static pages under coach-decks/ and learn/ are deliberately out of scope, and the
+  whole suite now takes about 38s locally (CI skips this gate, so it stays near 12s).
+- The rest of the suite is **regex-on-file-content** contracts. They prove text patterns, not that
+  a page runs — which is exactly how a `SyntaxError` in the flagship course survived four weeks.
 - CI: `deploy.yml` runs **no tests** — Pages ships whatever is on `master`. The suite runs in
   `build-windows-installer.yml` and the new `test.yml`.
 
@@ -55,11 +74,91 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
 - `MODULES` references the page global `IMG`; it is not a standalone pure literal.
 - `tests/csp-fontsource.test.cjs` asserts **exactly 25** pages containing `assets/fonts.css`.
   Adding or removing any HTML file anywhere in the tree can break it — including scratch files.
-- Remote dependencies that break offline: runtime Tailwind CDN on **22** HTML files,
-  third-party images on `image.qwenlm.ai` on **22** files, pinned Chart.js on 2 files,
-  jsDelivr fonts on 25. Vendoring these is the main desktop-first optimization, and it is a
-  supply-chain decision — the Tailwind Play CDN is a dev-time JIT, so copying it into the
-  installer is not automatically correct.
+- **Offline / remote dependencies** (measured, not assumed): only **2** pages actually loaded the
+  Tailwind Play CDN as a `<script>` (`ppc-coach.html`, `ad-console.html`), and only **1** loaded
+  SheetJS (`bulk-file.html`) — those three libraries are now vendored in `assets/vendor/`.
+  22 HTML files still *name* `cdn.tailwindcss.com`, but only inside their CSP `script-src` /
+  `style-src` lists: leftover permissions, not dependencies. Do not read a CSP mention as a load.
+  Artwork was hot-linked from `image.qwenlm.ai` at 13 unique URLs / 15 real references (11 in
+  `ppc-coach.html`, 4 in `listing.html`), each a ~1 MB 1024×1024 PNG — **14,318.6 KB** total,
+  which no offline installer can tolerate. It is now self-hosted in `assets/img/` as **248,260
+  bytes** (98.3% smaller), re-encoded with ffmpeg/libwebp; see `assets/img/README.md`.
+  `assets/fonts.css` then held the last remote dependency: 12 Fontsource `@import`s from jsDelivr,
+  measured at 12–21 requests per page. Those are now 24 inlined `@font-face` rules over
+  self-hosted woff2 in `assets/fonts/files/` (**446,316 bytes**), latin + latin-ext only.
+  **A cold-cache headless-Edge sweep of the five heavy pages now makes zero network requests.**
+  Every response is either `127.0.0.1:8080` or an inline `data:` URI — and a `data:` URL has an
+  empty host, so a naive `new URL(r.url).host` filter reports it as a remote hit. No 404s, no
+  broken images. Cold payload at `6482936`, summed from `Network.loadingFinished.encodedDataLength`:
+  hub 274 KB · PPC Coach 1,070 KB · BuyBox Dojo 482 KB · AdConsole 680 KB · Bulk File 416 KB. Those
+  hub figures came off a **warm** profile, which is why the ICO was invisible in them; cold at this commit
+  the hub reads 278,121 B with the trimmed favicon and 353,669 B without it. The gate is just as
+  machine-sensitive: `tests/desktop-smoke.test.cjs` went red once while **77** headless Edge processes
+  from other probes were alive and passed 335/335 with the machine quiet. Kill stray browsers before
+  trusting a red smoke run.
+  AdConsole is dominated by the 407 KB Tailwind Play runtime; Bulk File no longer pulls SheetJS at
+  all until a file is picked. This probe has real run-to-run noise — the same Bulk File page read
+  493 KB minutes earlier on the same instrument — so treat roughly ±80 KB as the floor and always
+  compare two states measured back to back, never across days.
+  Do not reintroduce a remote URL into `assets/fonts.css`; `tests/csp-fontsource.test.cjs` and
+  `tests/simulator-layout-genome.test.cjs` both forbid it.
+- **The installer had no product icon.** `build.win.icon` was unset and there was no `.ico` in the
+  repo, so the taskbar, Start-menu shortcut and installed-apps list all rendered the stock Electron
+  icon on a paid training product. Both files are generated from the 1024px logo master as PNG-compressed
+  ICO entries. `build/icon.ico` keeps the full installer ladder (16/24/32/48/64/128/256). `favicon.ico`
+  was **trimmed from 79,229 B to 5,978 B (16/24/32/48 only)** once a real browser was pointed at it: 18 of
+  the 20 product pages declare no `<link rel="icon">`, so Chromium fetches `/favicon.ico` by convention,
+  and on one instrument a cold hub load went **353,669 B → 278,121 B (−75,548 B, 21 %)**, repeat run within
+  0.06 %. The entries above 48 px were 73,203 of the old file's bytes and only a desktop shell asks for
+  them. `tests/app-icon.test.cjs` (5 tests) pins the two ladders separately and asserts the four shared
+  entries are byte-identical, so the artwork cannot drift; re-trimming is container surgery — rebuild the
+  ICO header from the PNG payloads already in the file, never re-encode the artwork. The installer proof
+  stays in CI: the build before the icon commit logged `default Electron icon is used reason=application
+  icon is not set`, and the build at that commit logs no such line.
+- **SheetJS was loaded eagerly by the page that needed it least.** The 945 KB bundle sat in
+  `bulk-file.html`’s `<head>` and the whole library was used by two lines of the file-upload
+  handler, so every learner who only read the lesson or pressed "Load sample" paid for it. It is
+  injected on demand now. Measured twice with the same cold-cache probe: **1,354 KB → 493 KB**
+  (20 → 19 requests) and `tests/vendor-assets.test.cjs` fails if the head tag returns. The proof
+  that deferral did not break uploads runs in a real browser: `XLSX` is `undefined` before the
+  handler, the loader resolves to 0.20.2, a CSV buffer parses to 2 rows with `bid: 0.55` as a
+  number, and a second call returns the same promise instead of injecting the script twice.
+- **The one remaining console error on every page is real but not fixable in place**: `frame-ancestors`
+  inside a `<meta>` CSP is ignored by browsers, so the click-jacking directive has never applied.
+  GitHub Pages cannot send response headers, so enforcing it needs either Electron's
+  `session.webRequest.onHeadersReceived` in `desktop/main.cjs` or dropping the dead directive from
+  all 25 pages. Both are security-adjacent, so neither was done silently.
+- **latin-ext must stay.** Exactly two codepoints are declared by no other vendored subset, and
+  both matter here: `Ā` (U+0100) and the peso sign `₱` (U+20B1). `œ` and `†` are also inside the
+  latin range and do **not** justify latin-ext — an earlier draft of this file claimed they did.
+  Verified twice: parsed from the declared `unicode-range`s, then confirmed against the renderer's
+  actual font list. That second check found the ranges and the files disagree about `₱`: it is
+  drawn by Archivo and IBM Plex Mono but **not** by PT Sans or Barlow Condensed, so peso amounts in
+  body text use a system font. Not a vendoring regression — the same Fontsource 5.1.0 files came
+  from jsDelivr before. See `assets/fonts/README.md`.
+- **Font `url()` resolves against the stylesheet, not the repo root.** `assets/fonts.css` lives in
+  `assets/` while its files live in `assets/fonts/files/`, so the correct prefix is
+  `url(./fonts/files/…)`. Writing Fontsource's own `./files/…` layout produced 24 silently
+  unfetched faces: the suite was green and only a page load showed `localFontRequests: 0`.
+- **Which population is a page count describing?** On this machine `Get-ChildItem -Filter *.html`
+  over the repo root returns **25**, but the root product page count is **20**: five undeletable
+  `.tmp-*.html` scratch stubs live in the root (this machine blocks `Remove-Item`), and a listing
+  cannot tell them apart. Separately, `tests/csp-fontsource.test.cjs` pins **25** — pages *tree-wide*
+  that link `assets/fonts.css`, a different set again. Every HTML walker in `tests/` skips
+  dot-prefixed entries; a count quoted without saying so is how a wrong number got committed here.
+- **`m.img ? … : …` guards hide missing art.** See the artwork-keys hazard above; same failure
+  shape as the font paths — a guard that turns "absent" into "quietly nothing".
+- **Only 2 of the 20 root product pages declare `rel="icon"`** — `keyword-lab.html` an inline SVG
+  data URI, `ppc-coach.html` `assets/img/logo.png`. The other 18 rely on the browser
+  requesting `/favicon.ico` from the site root, which now resolves because the file is
+  committed. Do not look for this in headless measurements: headless Edge issued 18 requests
+  on the hub and none of them was a favicon.
+- **Artwork keys can be silently dead.** `ppc-coach.html` built module art paths as
+  `img:IMG.<key>` against keys the `IMG` map never declared (`builder`, `lab`, `console`, `deck`,
+  `triage`, `report`). The renderer guards with `m.img ? … : …`, so nothing threw and nothing
+  displayed: 9 module headers shipped with no illustration for the entire life of the product,
+  while 5 declared images were never read. `tests/local-image-assets.test.cjs` now asserts both
+  directions of that contract. When adding module art, add the key to `IMG` *and* the `img:` field.
 - `desktop/main.cjs` and `assets/coach-security.js` need security review before changes.
   `master` is protected: branch + PR, checks green, one approval.
 
@@ -69,12 +168,34 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   `new vm.Script(code, { filename })`. `node --check` on a temp `.cjs` also works; note its
   error's first stack line is `file:line` **without** a column.
 - `vm.Script` only *parses*; it never runs, so page globals stay out of it.
+- **The `file://` probe is the desktop condition; localhost is not.** Load
+  `file:///D:/Projects/amazon-ph-simulators/<page>.html` in the same headless Edge and re-run the
+  interaction, because a page has no http origin there and CSP `script-src 'self'` is judged
+  differently. This is the only way to catch a change that breaks the installed app while the
+  GitHub Pages site keeps working. At `99a98ad`: bulk-file makes 18 requests, all `file:`, none
+  failed, 7 font faces loaded, 0 broken images, and the on-demand SheetJS injection is permitted —
+  `window.XLSX` is `undefined` until the handler runs, then resolves to 0.20.2 and parses a CSV.
 - Live check in the in-app browser: expect **zero** console errors, then drive one real
   interaction (open a module, open a lesson). Screenshots alone are not evidence — query the
   rendered text.
 - To compare against `master`: `git worktree add --detach <path> HEAD`. `git archive | tar`
   fails through PowerShell pipes. **Never nest a worktree inside this repo** — the HTML-walking
   tests count files tree-wide and will double-count or report a HEAD defect as a new one.
+- **Real-browser measurement**: `chrome-devtools-mcp` has no usable browser here (no Chrome
+  installed; Edge is at `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`) and the
+  in-app browser tool cannot execute JavaScript or report network entries. What works is raw CDP:
+  launch `msedge.exe --headless=new --remote-debugging-port=9222 --user-data-dir=<repo>\.tmp-edge-profile`
+  and drive `http://127.0.0.1:9222` with `fetch` + the global `WebSocket` in Node — no npm
+  install, no approval. `Runtime.evaluate` gives decoded/broken image counts, `document.fonts.status`,
+  load timings, and per-host request counts; that is the only way to prove an image actually decodes.
+  **You must send `Network.setCacheDisabled` and use a fresh `--user-data-dir`.** The first two
+  sweeps here were invalid: a persistent profile served the previous `fonts.css` from disk cache, so
+  the page still showed 12 jsDelivr requests after the remote imports had been deleted, and the
+  second run's byte totals were cache-warm near-zero.
+- To ask *which font drew a glyph*, don't compare element widths — generic-family mapping makes
+  that unreliable across pages. Use `DOM.getDocument` + `DOM.querySelector` +
+  `CSS.getPlatformFontsForNode`, which returns real rendered families with `isCustomFont` and glyph
+  counts. That is how the peso-sign coverage gap above was found rather than assumed.
 
 ## Session state worth knowing (2026-09-24)
 
