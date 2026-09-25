@@ -152,6 +152,16 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   GitHub Pages cannot send response headers, so enforcing it needs either Electron's
   `session.webRequest.onHeadersReceived` in `desktop/main.cjs` or dropping the dead directive from
   all 25 pages. Both are security-adjacent, so neither was done silently.
+- **CSP hardening shipped in #60.** All 25 pages that carry a `<meta http-equiv="Content-Security-Policy">` tag
+  had 10 unused CDN origins removed: `cdn.tailwindcss.com`, `cdn.jsdelivr.net`, `cdn.sheetjs.com`,
+  `fonts.googleapis.com`, `fonts.gstatic.com`, `image.qwenlm.ai`, `manuscdn.com` (five aliases).
+  Each was listed in `script-src`/`style-src`/`img-src` but never called at runtime. Final state
+  across all 25 pages: `font-src 'self' data:`, `script-src 'self' 'unsafe-inline'`,
+  `style-src 'self' 'unsafe-inline'`, `img-src 'self' data:` — plus `img-src https://projectamazonph.github.io`
+  on `coach-decks.html` only (the real project-origin asset CDN). `frame-ancestors 'none'` left
+  intact on all 25; see the hazard above. `tests/csp-fontsource.test.cjs` asserts no removed host
+  appears in any page and that no directive merges occurred during the rewrite.
+
 - **latin-ext must stay.** Exactly two codepoints are declared by no other vendored subset, and
   both matter here: `Ā` (U+0100) and the peso sign `₱` (U+20B1). `œ` and `†` are also inside the
   latin range and do **not** justify latin-ext — an earlier draft of this file claimed they did.
@@ -224,13 +234,22 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   `CSS.getPlatformFontsForNode`, which returns real rendered families with `isCustomFont` and glyph
   counts. That is how the peso-sign coverage gap above was found rather than assumed.
 
-## Session state worth knowing (2026-09-24)
+## Session state worth knowing (2026-09-25)
 
 - `ppc-coach.html` was completely dead at `master` (`SyntaxError`, first broken at `1f032ce`,
-  ~4 weeks and 6 commits) while the suite stayed green. Repaired by splicing the last-known-good
-  data literal from `d73ad02` into HEAD's renderer.
-- Enriched lesson prose from the corrupted versions (416 blocks vs the 235 shipped) is archived
-  at `docs/recovered/ppc-coach-modules-corrupted-2026-09-24.txt`. Decision: ship the Aug-27
-  prose now, recover the enriched prose deliberately later — do not hand-patch the archive.
-- Scratch `.tmp-*` files in the repo root are undeleted leftovers, not product files. Do not
-  commit them; this machine's safety policy blocks `Remove-Item` and `mavis-trash`.
+  ~4 weeks and 6 commits) while the suite stayed green. Repaired in #58 by splicing the last-known-good
+  data literal from `d73ad02` into HEAD's renderer. Verified live at `1a9e2e4`: 12 modules rendering,
+  zero console errors, no uncaught exceptions.
+- Four-agent analysis (architect/developer/QA/PM) run on the refine sprint concluded `ppc-coach.html`
+  was broken — all four lenses independently reported parse errors. Live browser probe disproved all
+  four. The parse-error conclusion came from incorrect extraction assumptions about the page's inline
+  script structure.
+- Scratch `.tmp-*` files in the repo root are not product files. A `.tmp-archive-2026-09-25/` dir
+  accumulates them; the active `.gitignore` (added at `ae4aad2`) excludes all `.tmp-*` paths so
+  they cannot accidentally be committed. This machine's safety policy blocks `Remove-Item` and
+  `mavis-trash`; use `Move-Item` to the archive dir instead.
+- PRs #55–#60 all merged: `fe27ba8` (#55 icon bullets), `3a58566` (#56 merge-commit repair),
+  `6e49343` (#57 favicon subpath), `1a9e2e4` (#58 ppc-coach repair + retracted false claims),
+  `6bb23e7` (#59 favicon on all 20 pages + packaged), `da4a8e6` (#60 CSP hardening — strips
+  10 unused CDN allowances from 25 pages, test updated to assert no unused hosts remain).
+  `master` at `da4a8e6`; origin confirmed in sync.
