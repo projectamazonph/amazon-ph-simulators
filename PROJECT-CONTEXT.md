@@ -90,7 +90,12 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   Every response is either `127.0.0.1:8080` or an inline `data:` URI — and a `data:` URL has an
   empty host, so a naive `new URL(r.url).host` filter reports it as a remote hit. No 404s, no
   broken images. Cold payload at `6482936`, summed from `Network.loadingFinished.encodedDataLength`:
-  hub 274 KB · PPC Coach 1,070 KB · BuyBox Dojo 482 KB · AdConsole 680 KB · Bulk File 416 KB.
+  hub 274 KB · PPC Coach 1,070 KB · BuyBox Dojo 482 KB · AdConsole 680 KB · Bulk File 416 KB. Those
+  hub figures came off a **warm** profile, which is why the ICO was invisible in them; cold at this commit
+  the hub reads 278,121 B with the trimmed favicon and 353,669 B without it. The gate is just as
+  machine-sensitive: `tests/desktop-smoke.test.cjs` went red once while **77** headless Edge processes
+  from other probes were alive and passed 335/335 with the machine quiet. Kill stray browsers before
+  trusting a red smoke run.
   AdConsole is dominated by the 407 KB Tailwind Play runtime; Bulk File no longer pulls SheetJS at
   all until a file is picked. This probe has real run-to-run noise — the same Bulk File page read
   493 KB minutes earlier on the same instrument — so treat roughly ±80 KB as the floor and always
@@ -99,13 +104,17 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   `tests/simulator-layout-genome.test.cjs` both forbid it.
 - **The installer had no product icon.** `build.win.icon` was unset and there was no `.ico` in the
   repo, so the taskbar, Start-menu shortcut and installed-apps list all rendered the stock Electron
-  icon on a paid training product. `favicon.ico` (web) and `build/icon.ico` (installer) are now
-  generated from the 1024px logo master with 7 PNG-compressed entries (16/24/32/48/64/128/256) and
-  are byte-identical; `tests/app-icon.test.cjs` pins that. The measurable proof is in CI: the build
-  before this commit logged `default Electron icon is used reason=application icon is not set`, and
-  the build at this commit logs no such line. `/favicon.ico` also serves `200 image/x-icon`.
-  Note that headless Chromium never requests a favicon at all, so this fix is visible in the
-  Windows shell and the installer, **not** in a console-error sweep.
+  icon on a paid training product. Both files are generated from the 1024px logo master as PNG-compressed
+  ICO entries. `build/icon.ico` keeps the full installer ladder (16/24/32/48/64/128/256). `favicon.ico`
+  was **trimmed from 79,229 B to 5,978 B (16/24/32/48 only)** once a real browser was pointed at it: 18 of
+  the 20 product pages declare no `<link rel="icon">`, so Chromium fetches `/favicon.ico` by convention,
+  and on one instrument a cold hub load went **353,669 B → 278,121 B (−75,548 B, 21 %)**, repeat run within
+  0.06 %. The entries above 48 px were 73,203 of the old file's bytes and only a desktop shell asks for
+  them. `tests/app-icon.test.cjs` (5 tests) pins the two ladders separately and asserts the four shared
+  entries are byte-identical, so the artwork cannot drift; re-trimming is container surgery — rebuild the
+  ICO header from the PNG payloads already in the file, never re-encode the artwork. The installer proof
+  stays in CI: the build before the icon commit logged `default Electron icon is used reason=application
+  icon is not set`, and the build at that commit logs no such line.
 - **SheetJS was loaded eagerly by the page that needed it least.** The 945 KB bundle sat in
   `bulk-file.html`’s `<head>` and the whole library was used by two lines of the file-upload
   handler, so every learner who only read the lesson or pressed "Load sample" paid for it. It is

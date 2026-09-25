@@ -12,6 +12,7 @@ assets/img/*.webp binary
 # total weight). Line-ending conversion would corrupt these and they are meaningless as diffs.
 assets/fonts/files/*.woff2 binary
 
-# Product icon for the browser tab and the Windows installer (tests/app-icon.test.cjs parses the
-# ICO container and requires the 16-256 size ladder). An EOL rewrite would corrupt it.
+# Product icons (tests/app-icon.test.cjs parses both ICO containers): build/icon.ico must keep the
+# installer's 16-256 ladder, favicon.ico stops at 48 because a browser fetches it unprompted. An EOL
+# rewrite would corrupt either, and both are meaningless as text diffs.
 *.ico binary
