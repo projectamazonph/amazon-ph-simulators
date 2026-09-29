@@ -201,6 +201,23 @@ body[data-pha-tool] textarea {
   font-size: 16px; /* prevent iOS zoom on focus */
 }
 
+/* WCAG 2.5.8 minimum target size: checkboxes, radios and native range
+   sliders must expose at least a 24x24px hit area. */
+body.pha-skin input[type="checkbox"],
+body.pha-skin input[type="radio"],
+body[data-pha-tool] input[type="checkbox"],
+body[data-pha-tool] input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  min-width: 24px;
+  min-height: 24px;
+}
+body.pha-skin input[type="range"],
+body[data-pha-tool] input[type="range"] {
+  min-height: 24px;
+  min-width: 44px;
+}
+
 /* ---------- utility: .stack-mobile ----------
    Wrap any block to force 1-col layout at <768px regardless of
    its native grid/flex template. */
@@ -380,6 +397,14 @@ body[data-pha-tool] textarea {
     display: inline-flex;
     align-items: center;
   }
+  .pha-footer .pha-foot-discovery {
+    gap: 14px;
+  }
+  .pha-footer .pha-foot-discovery a {
+    min-height: var(--tap);
+    display: inline-flex;
+    align-items: center;
+  }
   .pha-footer .pha-foot-meta {
     grid-column: 1 / -1;
     margin-left: 0;
@@ -423,6 +448,15 @@ body[data-pha-tool] textarea {
     font-size: 11px;
   }
   .pha-ribbon .pipe { display: none; }
+
+  /* simulator back-to-hub links reach the 44px touch target */
+  .sim-page a[href="index.html"],
+  .bd-back,
+  .ds-back {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tap);
+  }
 
   /* legacy page shells: keep native rails and content inside the mobile viewport */
   body.pha-skin .shell {
