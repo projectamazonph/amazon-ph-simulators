@@ -12,8 +12,9 @@ Academy. It ships fully offline and includes:
   SQP Studio, Bid Decisions, Campaign Architect, Account Audit, Client
   Onboarding, Capstone, Bulk File Simulator, BuyBox Dojo, Pacing Deck), plus
   the PPC Profitability Lab.
-- The PPC Coach guided syllabus (12 modules, M0-M11) with guided practice,
-  scoring, and feedback.
+- The PPC Coach guided syllabus: 12 modules (M0-M11), 60 lessons, each ending
+  with a guided "Your next step" practice prompt and a check-yourself
+  question, plus module quizzes and feedback.
 - The in-app Module Decks viewer: 144 teaching slides (12 per module, M0-M11).
 - Coach Tools and the Resource Library: practice worksheets, scenario cards,
   operating templates, facilitation and assessment assets, and the complete
