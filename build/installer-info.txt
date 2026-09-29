@@ -19,6 +19,10 @@ Academy. It ships fully offline and includes:
 - Coach Tools and the Resource Library: practice worksheets, scenario cards,
   operating templates, facilitation and assessment assets, and the complete
   library/asset-pack ZIP bundles.
+- VA Start Here onboarding: a warm English-Tagalog guided tour of every
+  section of the app (hub, coach, all twelve simulators, decks, tools, and
+  docs), each with a practical worked example, plus the searchable
+  25-term quick glossary.
 - Learn & Docs: student guide, feature docs, handouts, and printable
   checklists and formula sheets.
 
