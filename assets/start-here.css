@@ -294,6 +294,18 @@
   color: var(--c-navy-2);
 }
 
+.tour-example {
+  margin: 8px 0 0;
+  padding: 12px 14px;
+  background: var(--c-orange-tint);
+  border-left: 4px solid var(--c-amber);
+  font-size: 14px;
+}
+
+.tour-example strong {
+  color: var(--c-navy-2);
+}
+
 .glossary-controls {
   display: flex;
   flex-wrap: wrap;
