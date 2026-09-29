@@ -574,7 +574,7 @@
             btn.textContent = hintText.classList.contains('hidden') ? 'Show Hint' : 'Hide Hint';
         }
 
-        // Centralized event delegation â€” no inline onclick handlers.
+        // Centralized event delegation — no inline onclick handlers.
         // Matches the data-act dispatch pattern used across all simulators.
         document.addEventListener('click', function (e) {
             var act = e.target.closest('[data-act]');

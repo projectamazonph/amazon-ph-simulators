@@ -93,3 +93,35 @@ test('ppc-coach lessons and quizzes are complete enough to grade', () => {
   assert.equal(totalLessons, 60, 'the course copy promises 60 lessons');
   assert.equal(totalQuestions, modules.length * 3, 'one quiz set per module, same size');
 });
+
+/* ================= LESSON AIDS ================= */
+
+test('every lesson ends with a "Your next step" aid and a check-yourself question', () => {
+  const modules = readCoachModules();
+  modules.forEach((module) => {
+    module.lessons.forEach((lesson) => {
+      const last = lesson.blocks[lesson.blocks.length - 1];
+      assert.equal(
+        last.t,
+        'next',
+        `lesson ${lesson.id} must end with a "next" block so the teaching standard's direction rule holds`
+      );
+      assert.ok(last.x && last.x.length > 20, `lesson ${lesson.id} next-step prompt is too thin to act on`);
+      assert.ok(last.q && last.q.length > 10, `lesson ${lesson.id} needs a retrieval question in its next block`);
+      assert.equal(
+        lesson.blocks.filter((b) => b.t === 'next').length,
+        1,
+        `lesson ${lesson.id} should carry exactly one next block`
+      );
+    });
+  });
+});
+
+test('the block renderer knows the next-block type', () => {
+  assert.match(html, /b\.t==="next"/, 'renderBlock must render the "next" aid');
+  assert.match(
+    html,
+    /Your next step:/,
+    'the next block renders a visible "Your next step" label'
+  );
+});

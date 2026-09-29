@@ -236,6 +236,22 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
 
 ## Session state worth knowing (2026-09-25)
 
+- **Nineteen pages shipped double-encoded text (mojibake) to learners.** UTF-8 punctuation and
+  emoji had been re-encoded as Latin-1/cp1252 at some earlier save, so learners literally read
+  `â€"` instead of `—` and `ðŸŽ“` instead of 🎓 across ppc-coach lesson text, hub cards, and 17 other
+  pages. Repaired with a byte-run state machine (ftfy handled most of it; `âš¡`→`⚡` and similar
+  needed a custom pass because ftfy's plan stops at some mixed runs). All 19 files verified
+  encoding-only against HEAD; `ppc-coach.html` additionally gained the lesson aids below.
+  New gate: `tests/mojibake-guard.test.cjs` fails any HTML page tree-wide containing mojibake
+  markers, so a bad re-save cannot ship silently again.
+- **Every one of the 60 lessons now ends with a "Your next step" aid.** `beginner_teaching_standard.md`
+  requires each lesson to end with a visible next-step prompt and a retrieval question, but only
+  about 20 of 60 lessons carried one. Added a `next` block type to `renderBlock` (emerald callout:
+  "Your next step" + "Check yourself" retrieval question) and appended one tailored block to all
+  60 lessons. `tests/coach-curriculum-alignment.test.cjs` now pins the contract: last block is
+  `next`, exactly one per lesson, prompt > 20 chars, question > 10 chars, and the renderer handles
+  the type.
+
 - `ppc-coach.html` was completely dead at `master` (`SyntaxError`, first broken at `1f032ce`,
   ~4 weeks and 6 commits) while the suite stayed green. Repaired in #58 by splicing the last-known-good
   data literal from `d73ad02` into HEAD's renderer. Verified live at `1a9e2e4`: 12 modules rendering,
