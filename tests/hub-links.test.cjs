@@ -12,7 +12,7 @@ function assertSimulatorSlot({ name, file, id, category }) {
   const shell = read('assets/shell.js');
 
   const escapedFile = file.replace('.', '\\.');
-  const categoryPattern = new RegExp('<span>Online<\\/span><span class="ver">v1\\.0<\\/span><span class="cat">' + category + '<\\/span>');
+  const categoryPattern = new RegExp('<span class="cat">' + category + '<\\/span><span class="pha-tcard-cta">Open simulator \\u2192<\\/span>');
 
   assert.match(index, new RegExp('href="' + escapedFile + '"'));
   assert.match(index, new RegExp(name));
