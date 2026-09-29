@@ -227,6 +227,73 @@
   line-height: 1.5;
 }
 
+.site-tour {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tour-card {
+  padding: 21px;
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-top: 4px solid var(--c-orange);
+}
+
+.tour-card:hover,
+.tour-card:focus-within {
+  border-color: var(--c-orange);
+  outline: 3px solid rgba(255, 153, 0, 0.18);
+}
+
+.tour-step {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background: var(--c-navy-2);
+  color: var(--c-amber);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.tour-card h3 {
+  margin: 0 0 8px;
+  color: var(--c-ink-2);
+  font-size: 20px;
+  line-height: 1.15;
+}
+
+.tour-where {
+  margin: 0 0 10px;
+  font-size: 13px;
+}
+
+.tour-where a {
+  color: var(--c-amber);
+  font-weight: 800;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.tour-card p {
+  margin: 0 0 8px;
+  color: var(--c-sub);
+  line-height: 1.45;
+}
+
+.tour-when {
+  padding-top: 4px;
+  border-top: 1px dashed var(--c-border);
+  font-size: 14px;
+}
+
+.tour-when strong {
+  color: var(--c-navy-2);
+}
+
 .glossary-controls {
   display: flex;
   flex-wrap: wrap;
@@ -372,6 +439,10 @@
 
   .first-session {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .site-tour {
+    grid-template-columns: 1fr;
   }
 }
 
