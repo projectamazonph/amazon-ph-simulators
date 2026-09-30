@@ -4,8 +4,8 @@ A multi-page webapp that consolidates twelve live Amazon PPC training simulators
 
 > Train the VAs who run Amazon PPC for a living.
 
-Built from the eight chat-export JSONs in `../`. The extracted simulators now share
-one design-system cascade: central brand tokens, simulator-specific layout CSS, the
+Originally extracted from chat-export prototypes; every page now shares one
+design-system cascade: central brand tokens, simulator-specific layout CSS, the
 unified skin, and the common application shell.
 
 ## Current platform status
@@ -15,7 +15,8 @@ unified skin, and the common application shell.
 - Shared versioned attempt history surfaces Not started, In progress, Passed, best score, and attempt count in Coach and the hub.
 - One tested beginner PPC policy aligns evidence bands, negatives, bid changes, and budget scaling across lessons and simulators.
 - Scenario-bank infrastructure preserves stable simulator progress while recording the selected scenario and rubric versions; Campaign Architect and Account Audit now ship selectable beginner and intermediate packs.
-- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **95 passing tests**.
+- The hub hero gives new learners one primary call to action (Start PPC Coach) and shows returning learners a live progress summary ("X of 12 simulators passed") from the shared attempt history.
+- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **338 passing tests** plus a real-browser desktop smoke gate.
 
 ## Design-system architecture
 
@@ -38,8 +39,9 @@ to persistence, escaping, progress recording, focus, reduced motion, and respons
 interaction primitives; they do not define simulator layout.
 
 The shared shell also resolves nested documentation paths, provides mobile navigation,
-maintains 44px touch targets, respects reduced-motion preferences, and inserts a
-keyboard-accessible skip link. Interactive buttons declare their behavior explicitly,
+maintains 44px touch targets and WCAG 2.5.8 minimum sizes on sliders, checkboxes,
+and links, respects reduced-motion preferences, and inserts a keyboard-accessible
+skip link. Interactive buttons declare their behavior explicitly,
 and all brand typography is delivered through the shared font tokens.
 
 ## Product context
@@ -117,7 +119,7 @@ The project is a plain static webapp and also ships as a Windows desktop app.
 
 ### Windows installer
 
-Download `SimGrid-Setup-1.0.3.exe` from the GitHub Actions artifact or the
+Download `SimGrid-Setup-1.2.4.exe` from the GitHub Actions artifact or the
 published release and run it. The installer is per-user, creates a Start Menu
 entry and desktop shortcut, and does not require administrator access by default.
 
@@ -129,8 +131,8 @@ the app.
 | Item | Detail |
 |---|---|
 | App name | Project Amazon PH Academy SimGrid |
-| Current release | `1.0.3` |
-| Installer | `SimGrid-Setup-1.0.3.exe` |
+| Current release | `1.2.4` |
+| Installer | `SimGrid-Setup-1.2.4.exe` |
 | Platform | Windows 10/11, 64-bit |
 | Install type | Per-user; administrator access is not normally required |
 | App identity | `com.projectamazonph.simgrid` |
@@ -190,21 +192,15 @@ not automatically synchronized between different computers or browser profiles.
 | SmartScreen warning | Verify the download source and file checksum; use a signed release when available. |
 | Update is not offered | Confirm the app is packaged, connected to the internet, and the new release includes `latest.yml`. |
 | Progress is missing | Confirm you are using the same Windows account and app identity; do not clear the `%APPDATA%` folder. |
-| External fonts or charts are missing | Connect to the internet; some resources are loaded from CDNs. |
+| External fonts or charts are missing | Rare: all fonts, chart, spreadsheet, and image assets are bundled locally, so the app works fully offline. Reinstall if files were removed. |
 
 ### Run from source
 
 Open the static site three ways:
 
-```powershell
-# 1. Just double-click
-explorer "D:\Web Project\Simulators\webapp\index.html"
-
-# 2. Or via PowerShell
-Start-Process "D:\Web Project\Simulators\webapp\index.html"
-
-# 3. Or serve it (recommended for full font fidelity)
-cd "D:\Web Project\Simulators\webapp"
+```bash
+# 1. Open index.html directly in a browser, or
+# 2. Serve the repo root (recommended for full font fidelity)
 python -m http.server 8080
 # then open http://localhost:8080/
 ```
@@ -218,7 +214,7 @@ Install Node.js 22.12 or newer, then run these commands from the repository root
 ```powershell
 npm install
 npm run start       # launch the desktop wrapper
-npm run dist:win   # create release\SimGrid-Setup-1.0.3.exe
+npm run dist:win   # create release\SimGrid-Setup-1.2.4.exe
 ```
 
 The `Build Windows Installer` workflow in
@@ -249,9 +245,9 @@ the reset controls inside SimGrid will still remove progress.
 
 The wrapper loads the same local HTML, CSS, JavaScript, and learning materials as
 the browser version. Student progress continues to use the browser's local storage,
-now scoped to the installed SimGrid app. The pages still use their existing CDN
-font, chart, spreadsheet, and image references, so an internet connection is needed
-for those external resources when they are not already cached.
+now scoped to the installed SimGrid app. All fonts, vendored libraries (Tailwind,
+Chart.js, SheetJS), and artwork are bundled locally, so the installed app works
+fully offline with zero network requests on a cold page load.
 
 ---
 
@@ -259,7 +255,12 @@ for those external resources when they are not already cached.
 
 | # | Page | File | What it does |
 |---|------|------|--------------|
-| — | **Hub** | `index.html` | Control grid - links to all live tools, simulator roadmap, mission panel, principles |
+| — | **Hub** | `index.html` | Redesigned landing page: hero with guided-path CTA and live progress summary, simulator library, learning resources, and operating principles |
+| — | **VA Start Here** | `start-here.html` | Zero-background onboarding: first-30-minutes plan, plain-English quick glossary with search and filters, safe first lessons, and a Fil-English guided tour of every site section |
+| — | **PPC Profitability Lab** | `ppc-profitability-lab.html` | Profitability simulator connecting clicks, CPC, margins, and volume to real net-profit decisions |
+| — | **Learn & Docs** | `learn/index.html` | Curriculum hub: 12-module overview, student guide, feature docs, handouts, and downloads |
+| — | **Coach Tools** | `coach-tools.html` | Instructor kit: animated teaching decks per module plus debrief aids and downloadable templates |
+| — | **Coach Resource Library** | `coach-resource-library.html` | Downloadable workbooks, module field kits, and classroom assets |
 | — | **Simulator Roadmap** | `planned-simulators.html` | Roadmap copied from `va-project-ph` docs 36-42 for imported simulator builds |
 | 1 | **AdConsole Pro** | `ad-console.html` | Amazon Sponsored Ads console replica — campaigns, ad groups, keywords, search terms, hour-by-hour auction simulation |
 | 2 | **Keyword Lab** | `keyword-lab.html` | Keyword research training: playbooks, practice drills, search-term audits, 12-question certification exam |
