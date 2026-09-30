@@ -11,7 +11,7 @@ Two surfaces from one static tree — no framework, no build step, no backend:
 
 1. **GitHub Pages** — `.github/workflows/deploy.yml` publishes the repo root on every push
    to `master`.
-2. **Windows installer** — Electron + NSIS, `desktop/main.cjs`, version `1.2.3`,
+2. **Windows installer** — Electron + NSIS, `desktop/main.cjs`, version `1.2.4`,
    packaged by `package.json` `build.files`.
 
 **Current product priority: desktop/offline first, then mobile web.** The installer is the
