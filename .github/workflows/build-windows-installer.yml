@@ -7,7 +7,7 @@ on:
       - "v*.*.*"
   pull_request:
     branches: [master]
-  workflow_dispatch:
+  workflow_dispatch: 
 
 permissions:
   contents: write
@@ -18,10 +18,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22.12
           cache: npm
@@ -45,7 +45,7 @@ jobs:
 
       - name: Upload installer artifact
         if: github.event_name != 'push' || !startsWith(github.ref, 'refs/tags/')
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: simgrid-windows-installer
           path: |
@@ -56,7 +56,7 @@ jobs:
 
       - name: Publish GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: Project Amazon PH Academy SimGrid ${{ github.ref_name }}
           generate_release_notes: true
