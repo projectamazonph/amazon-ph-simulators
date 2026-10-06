@@ -11,7 +11,7 @@ unified skin, and the common application shell.
 ## Current platform status
 
 - **12 live simulators** plus PPC Coach and the curriculum roadmap.
-- **12 PPC Coach modules / 60 lessons / 36 quiz items / 1 capstone**, with manifest-driven simulator assignments.
+- **12 PPC Coach modules / 66 lessons / 36 quiz items / 1 capstone**, with manifest-driven simulator assignments.
 - Shared versioned attempt history surfaces Not started, In progress, Passed, best score, and attempt count in Coach and the hub.
 - One tested beginner PPC policy aligns evidence bands, negatives, bid changes, and budget scaling across lessons and simulators.
 - Scenario-bank infrastructure preserves stable simulator progress while recording the selected scenario and rubric versions; Campaign Architect and Account Audit now ship selectable beginner and intermediate packs.

@@ -244,7 +244,7 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   encoding-only against HEAD; `ppc-coach.html` additionally gained the lesson aids below.
   New gate: `tests/mojibake-guard.test.cjs` fails any HTML page tree-wide containing mojibake
   markers, so a bad re-save cannot ship silently again.
-- **Every one of the 60 lessons now ends with a "Your next step" aid.** `beginner_teaching_standard.md`
+- **Every one of the 66 lessons now ends with a "Your next step" aid.** `beginner_teaching_standard.md`
   requires each lesson to end with a visible next-step prompt and a retrieval question, but only
   about 20 of 60 lessons carried one. Added a `next` block type to `renderBlock` (emerald callout:
   "Your next step" + "Check yourself" retrieval question) and appended one tailored block to all
@@ -269,3 +269,12 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   `6bb23e7` (#59 favicon on all 20 pages + packaged), `da4a8e6` (#60 CSP hardening — strips
   10 unused CDN allowances from 25 pages, test updated to assert no unused hosts remain).
   `master` at `da4a8e6`; origin confirmed in sync.
+
+- **Six simulator-workflow lab lessons added (course now 66 lessons).** Modules 4, 8 (two),
+  9, 10, and 12 each gained an in-depth "Lab" lesson teaching the workflow of a simulator
+  assigned to that module: SQP Studio (m4l5), Pacing Deck (m8l7), Bid Decisions (m8l8),
+  Bulk File (m9l7), Account Audit (m10l6), and Client Onboarding (m12l7). The lessons
+  follow the shared PPC policy thresholds (10/20/40 click bands, ±15%/+10% bid moves,
+  10-20% budget raises) and the beginner teaching standard. `tests/coach-curriculum-alignment
+  .test.cjs` now pins 66 lessons; index.html, start-here.html, learn/, and README.md copy
+  updated to match.
