@@ -278,3 +278,7 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   10-20% budget raises) and the beginner teaching standard. `tests/coach-curriculum-alignment
   .test.cjs` now pins 66 lessons; index.html, start-here.html, learn/, and README.md copy
   updated to match.
+  `tests/coach-curriculum-alignment.test.cjs` now pins 71 lessons; index.html, start-here.html, learn/ (index, guide,
+  features), README.md, site-guide.md, and llms.txt copy updated to match. The student guide (learn/guide.html) now
+  schedules the lab lessons inside its six-week plan, the resource library explains the teach-lab-simulate order, and
+  the facilitator retrieval-practice bank includes one retrieval prompt per lab lesson.
