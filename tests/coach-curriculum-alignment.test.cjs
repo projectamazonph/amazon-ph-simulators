@@ -90,7 +90,7 @@ test('ppc-coach lessons and quizzes are complete enough to grade', () => {
   });
 
   // The page advertises this shape to learners; keep the copy honest.
-  assert.equal(totalLessons, 66, 'the course copy promises 66 lessons');
+  assert.equal(totalLessons, 71, "the course copy promises 71 lessons");
   assert.equal(totalQuestions, modules.length * 3, 'one quiz set per module, same size');
 });
 
