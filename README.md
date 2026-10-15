@@ -15,7 +15,7 @@ unified skin, and the common application shell.
 - Shared versioned attempt history surfaces Not started, In progress, Passed, best score, and attempt count in Coach and the hub.
 - One tested beginner PPC policy aligns evidence bands, negatives, bid changes, and budget scaling across lessons and simulators.
 - Scenario-bank infrastructure preserves stable simulator progress while recording the selected scenario and rubric versions; Campaign Architect and Account Audit now ship selectable beginner and intermediate packs.
-- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **95 passing tests**.
+- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **339 tests (338 passing, 1 environment-dependent skip)** across 36 test files.
 
 ## Design-system architecture
 
