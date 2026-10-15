@@ -4,8 +4,9 @@
 **Repository:** `projectamazonph/amazon-ph-simulators`  
 **Live site:** https://projectamazonph.github.io/amazon-ph-simulators/
 **Baseline:** `master` after PR #27 (`3f844bea`)
-**Current delivery:** UI remake, accessibility foundation, curriculum/progress contracts, and shared PPC policy merged; 96 regression tests passing
+**Current delivery:** UI remake, accessibility foundation, curriculum/progress contracts, and shared PPC policy merged; regression suite now 339 tests (338 passing, 1 environment-dependent skip)
 **Status:** Active implementation plan — Phases 1–3 complete; Phase 4 scenario-bank foundation complete, content expansion remains active
+**Reconciled 2026-10-15:** every simulator now has a dedicated Coach lesson (71 lessons, pinned by `tests/coach-curriculum-alignment.test.cjs`), so the former “simulator lacks formal lesson” curriculum gap is closed; remaining open items are Phase 4 scenario depth, capstone artifact persistence, and the roadmap simulators below.
 
 ## Delivery update
 

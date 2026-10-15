@@ -3,7 +3,7 @@
 Purpose: let a new session start from verified facts instead of re-deriving them.
 Keep this file short and correct; if a claim below stops matching the repo, fix it here.
 
-Last reconciled against the working tree: 2026-09-24.
+Last reconciled against the working tree: 2026-10-15.
 
 ## What ships
 
@@ -24,7 +24,8 @@ paid product; a page that needs network to render is a defect there, not a nice-
   `ppc-coach` (a teaching companion, not a simulator). "Twelve tools" in `CLAUDE.md` and "~15
   simulator pages" elsewhere both refer to this same set.
 - `assets/` holds 58 files; 25 of them are `.js`.
-- 32 test files in `tests/` (317 tests, `node --test tests/*.test.cjs`).
+- 36 test files in `tests/` (339 tests: 338 pass, 1 environment-dependent skip in
+  `tests/desktop-smoke.test.cjs` when no browser is available; `node --test tests/*.test.cjs`).
 - Course content exists in three places: inline `MODULES` in `ppc-coach.html`,
   `assets/curriculum-manifest.js` (12 modules, `m0`..`m11`), and `coach-decks/`.
 
@@ -270,11 +271,5 @@ node --test tests/*.test.cjs     # npm test fails under PowerShell (stderr notic
   10 unused CDN allowances from 25 pages, test updated to assert no unused hosts remain).
   `master` at `da4a8e6`; origin confirmed in sync.
 
-- **Eleven simulator-workflow lab lessons added (course now 71 lessons) — every simulator now has a lesson.** Modules 1, 3, 4 (two), 5 (two), 8 (two), 9, 10, and 12 each gained an in-depth "Lab" lesson teaching the workflow of a simulator assigned to that module: BuyBox Dojo (m1l6), Campaign Architect (m3l5), SQP Studio (m4l5), Keyword Lab (m4l6), Search Term Triage (m5l5), AdConsole Pro (m5l6), Pacing Deck (m8l7), Bid Decisions (m8l8), Bulk File (m9l7), Account Audit (m10l6), and Client Onboarding (m12l7) — all twelve simulators including Capstone Sequence (covered by m12l6) now have dedicated lesson material. The lessons follow the shared PPC policy thresholds (10/20/40 click bands, ±15%/+10% bid moves, 10-20% budget raises) and the beginner teaching standard. `tests/coach-curriculum-alignment.test.cjs` now pins 73 lessons; index.html, start-here.html, learn/, and README.md copy updated to match. Modules 4, 8 (two),
-  9, 10, and 12 each gained an in-depth "Lab" lesson teaching the workflow of a simulator
-  assigned to that module: SQP Studio (m4l5), Pacing Deck (m8l7), Bid Decisions (m8l8),
-  Bulk File (m9l7), Account Audit (m10l6), and Client Onboarding (m12l7). The lessons
-  follow the shared PPC policy thresholds (10/20/40 click bands, ±15%/+10% bid moves,
-  10-20% budget raises) and the beginner teaching standard. `tests/coach-curriculum-alignment
-  .test.cjs` now pins 66 lessons; index.html, start-here.html, learn/, and README.md copy
-  updated to match.
+- **Eleven simulator-workflow lab lessons added (course now 71 lessons) — every simulator now has a lesson.** Modules 1, 3, 4 (two), 5 (two), 8 (two), 9, 10, and 12 each gained an in-depth "Lab" lesson teaching the workflow of a simulator assigned to that module: BuyBox Dojo (m1l6), Campaign Architect (m3l5), SQP Studio (m4l5), Keyword Lab (m4l6), Search Term Triage (m5l5), AdConsole Pro (m5l6), Pacing Deck (m8l7), Bid Decisions (m8l8), Bulk File (m9l7), Account Audit (m10l6), and Client Onboarding (m12l7) — all twelve simulators including Capstone Sequence (covered by m12l6) now have dedicated lesson material. The lessons follow the shared PPC policy thresholds (10/20/40 click bands, ±15%/+10% bid moves, 10-20% budget raises) and the beginner teaching standard. `tests/coach-curriculum-alignment.test.cjs` now pins 71 lessons; index.html, start-here.html, learn/, and README.md copy updated to match.
+  (An earlier draft's partially-overwritten duplicate text referencing 66/73-lesson baselines was removed here.)
