@@ -114,10 +114,14 @@ body.nav-mini #content::before{inset:58px 0 0 58px}
 .btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:6px}
 .btn-xs{height:26px;padding:0 9px;font-size:11.5px;border-radius:5px}
 
-.inp,.sel,.tarea{height:34px;border:1px solid #8A939B;border-radius:7px;padding:0 10px;background:#fff;outline:none;transition:.13s;width:100%;min-width:0}
+/* Form controls: scope the select skin to actual <select> elements. `.sel` is also
+   the selected-state class on cards (.pcard.sel, .tcard.sel, .radioc.sel); styling
+   the bare class collapsed those cards to the 34px control height and made their
+   content overlap the surrounding layout. */
+.inp,select.sel,.tarea{height:34px;border:1px solid #8A939B;border-radius:7px;padding:0 10px;background:#fff;outline:none;transition:.13s;width:100%;min-width:0}
 .tarea{height:auto;padding:8px 10px;resize:vertical}
-.inp:focus,.sel:focus,.tarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,153,0,.28)}
-.sel{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23565959' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
+.inp:focus,select.sel:focus,.tarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,153,0,.28)}
+select.sel{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23565959' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
 label.fld{display:block;font-family:var(--font-disp);font-size:12px;font-weight:600;color:#3B4149;margin:0 0 5px}
 .fhint{font-size:11.5px;color:var(--faint);margin-top:4px}
 .rsel{height:34px;border:1px solid var(--border);border-radius:7px;padding:0 30px 0 10px;background:#fff;font-size:13px;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23565959' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;transition:.13s}
@@ -146,6 +150,10 @@ input[type=range]{accent-color:var(--orange-d);height:26px;cursor:pointer}
 
 .twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .twrap>.tbl{min-width:680px}
+/* 14-column tables (Campaigns) need real width; without it the browser squeezes
+   the campaign-name cell to a few characters and wraps it over four lines. */
+.twrap>.tbl.wide{min-width:1200px}
+.tbl.wide td{white-space:nowrap}
 .tbl.nomw{min-width:0!important}
 table.tbl{width:100%;border-collapse:collapse;font-size:13px}
 .tbl thead th{background:#F0F2F2;font-family:var(--font-disp);font-size:11.5px;font-weight:600;letter-spacing:.4px;color:var(--sub);text-transform:uppercase;text-align:left;padding:9px 12px;border-bottom:1px solid var(--border2);white-space:nowrap;position:sticky;top:0;z-index:5;user-select:none}
@@ -198,7 +206,7 @@ body.running .livechip::before{animation:pulse 1.4s infinite}
 
 .fbar{display:flex;gap:10px;align-items:center;padding:12px 16px;flex-wrap:wrap}
 .fbar .inp{max-width:250px}
-.fbar .sel{width:auto;min-width:130px}
+.fbar select.sel{width:auto;min-width:130px}
 .fcount{font-size:12.5px;color:var(--sub);margin-left:auto}
 .bulkbar{display:flex;align-items:center;gap:8px;background:#FFF9EF;border:1px solid #F2D3A0;border-radius:8px;padding:8px 14px;margin-bottom:12px;animation:riseIn .25s both;flex-wrap:wrap}
 .bulkbar b{font-family:var(--font-disp);font-size:13px;color:var(--c-amber-text)}
@@ -283,7 +291,8 @@ body.running .livechip::before{animation:pulse 1.4s infinite}
 .pcard.sel{border-color:var(--orange);background:#FFFBF4;box-shadow:0 0 0 2.5px rgba(255,153,0,.3)}
 .pcard .tick{position:absolute;top:8px;right:8px;width:19px;height:19px;border-radius:50%;background:var(--orange);color:var(--navy);display:none;place-items:center;font-size:11px;font-weight:700}
 .pcard.sel .tick{display:grid;animation:popIn .22s cubic-bezier(.2,.9,.3,1.3) both}
-.pcard b{font-size:13px;display:block;line-height:1.25}
+.pcard>div{min-width:0;flex:1}
+.pcard b{font-size:13px;display:block;line-height:1.25;overflow-wrap:anywhere;padding-right:20px}
 .pcard span{font-size:11.5px;color:var(--faint)}
 
 #simbar{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:linear-gradient(180deg,var(--navy2),var(--navy));color:#fff;border-radius:14px;display:flex;align-items:center;gap:14px;padding:9px 16px;box-shadow:0 10px 32px rgba(19,25,33,.5);z-index:80;border:1px solid var(--c-navy-4);max-width:calc(100vw - 20px)}
@@ -320,7 +329,7 @@ kbd{background:#1B242F;border:1px solid var(--c-navy-4);border-bottom-width:2px;
 .toast.out{animation:toastOut .25s both}
 @keyframes toastOut{to{opacity:0;transform:translateX(30px)}}
 
-#modal-root .mroot{position:fixed;inset:0;background:rgba(19,25,33,.55);z-index:120;display:grid;place-items:center;padding:20px;animation:fadeIn .18s both;backdrop-filter:blur(2px)}
+#modal-root .mroot{position:fixed;inset:0;background:rgba(19,25,33,.55);z-index:9500;display:grid;place-items:center;padding:20px;animation:fadeIn .18s both;backdrop-filter:blur(2px)}
 @keyframes fadeIn{from{opacity:0}}
 .modal{background:#fff;border-radius:10px;width:100%;max-width:640px;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.4);animation:popIn .24s cubic-bezier(.2,.9,.3,1.15) both;overflow:hidden;position:relative;border-top:3px solid var(--orange)}
 .modal.wide{max-width:860px}
@@ -387,6 +396,7 @@ kbd{background:#1B242F;border:1px solid var(--c-navy-4);border-bottom-width:2px;
 .kwrow>*{min-width:0}
 .kwrow select{height:29px;font-size:12px;padding-right:24px}
 .kwrow .inp{height:29px}
+.kwrow b{overflow-wrap:anywhere;line-height:1.3}
 .revrow{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--c-border-2);font-size:13px;flex-wrap:wrap}
 .revrow b{font-family:var(--font-disp)}
 .wel{display:grid;grid-template-columns:200px 1fr}
@@ -465,12 +475,12 @@ kbd{background:#1B242F;border:1px solid var(--c-navy-4);border-bottom-width:2px;
   #topbar{padding:0 10px;gap:8px}
   .logo-t{font-size:17px}
   .smile{width:40px}
-  .inp,.sel,.tarea,.rsel,.inline-edit{font-size:16px}
+  .inp,select.sel,.tarea,.rsel,.inline-edit{font-size:16px}
   .btn{height:38px}
   .btn-sm{height:33px}
   .btn-xs{height:30px}
   .rsel{height:38px}
-  .sel{min-width:0}
+  select.sel{min-width:0}
   .phead h1{font-size:20px}
   .phead-a{width:100%;justify-content:flex-start}
   .kpis{grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:9px}
@@ -486,7 +496,7 @@ kbd{background:#1B242F;border:1px solid var(--c-navy-4);border-bottom-width:2px;
   .ckb{width:18px;height:18px}
   .fbar{padding:10px 12px}
   .fbar .inp{max-width:none;flex:1 1 100%}
-  .fbar .sel{flex:1 1 40%}
+  .fbar select.sel{flex:1 1 40%}
   .fcount{margin-left:0;width:100%}
   .tab{padding:8px 12px;font-size:12.5px}
   .sumgrid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
@@ -521,6 +531,7 @@ kbd{background:#1B242F;border:1px solid var(--c-navy-4);border-bottom-width:2px;
   .tk-label{padding:8px 10px;letter-spacing:1px}
 }
 @media(max-width:560px){
+  .m-h .sub{flex:1 1 100%;order:3;margin-top:1px}
   .step>div{display:none}
   .pcard{padding:10px}
   .ptile.lg{width:40px;height:40px;font-size:20px}

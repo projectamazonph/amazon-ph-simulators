@@ -685,7 +685,14 @@ function toast(title,sub,type){
  $('#toasts').appendChild(t);
  setTimeout(()=>{t.classList.add('out');setTimeout(()=>t.remove(),260);},3600);
 }
-function openModal(html,wide){$('#modal-root').innerHTML='<div class="mroot" data-act="mroot"><div class="modal '+(wide?'wide':'')+'">'+html+'</div></div>';}
+function openModal(html,wide){
+ const root=$('#modal-root');
+ // shell.js wraps the tool body in .pha-skin-wrap, which creates its own
+ // stacking context (z-index:1); the fixed overlay must sit outside it or the
+ // 9000z shell topbar paints over the dialog header. Render modals at body level.
+ if(root.parentElement!==document.body)document.body.appendChild(root);
+ root.innerHTML='<div class="mroot" data-act="mroot"><div class="modal '+(wide?'wide':'')+'">'+html+'</div></div>';
+}
 function closeModal(){$('#modal-root').innerHTML='';wz=null;}
 function closeMenu(){$('#menu-root').innerHTML='';}
 document.addEventListener('mousedown',e=>{if(!e.target.closest('#menu-root .pop')&&!e.target.closest('[data-act="status-menu"]'))closeMenu();});
@@ -796,7 +803,7 @@ const MCOL={
  roas:{k:'roas',l:'ROAS',tip:'Return on Ad Spend = Sales ÷ Spend. Higher is better.',g:function(r){return r&&r.m?r.m.roas:0;}},
  ord:{k:'ord',l:'Orders',tip:'Attributed orders.',g:function(r){return r&&r.m?r.m.ord:0;}},
 };
-function buildTable(tid,cols,rows,rowHtml,defSort){
+function buildTable(tid,cols,rows,rowHtml,defSort,tableClass){
  rows=Array.isArray(rows)?rows.slice():[];
  const s=state.sort[tid]||(state.sort[tid]=defSort||{key:null,dir:-1});
  if(s.key){
@@ -811,7 +818,7 @@ function buildTable(tid,cols,rows,rowHtml,defSort){
   return'<th>'+(col.l||'')+'</th>';
  }).join('');
  const body=rows.map((r,i)=>{try{return rowHtml(r,i);}catch(err){console.error('row render',err);return'<tr><td colspan="'+cols.length+'"><div class="empty">Row render error</div></td></tr>';}}).join('');
- return'<div class="twrap"><table class="tbl"><thead><tr>'+th+'</tr></thead><tbody>'+(body||'<tr><td colspan="'+cols.length+'"><div class="empty"><span class="big">🔍</span>No rows match the current filters.</div></td></tr>')+'</tbody></table></div>';
+ return'<div class="twrap"><table class="tbl'+(tableClass?' '+tableClass:'')+'"><thead><tr>'+th+'</tr></thead><tbody>'+(body||'<tr><td colspan="'+cols.length+'"><div class="empty"><span class="big">🔍</span>No rows match the current filters.</div></td></tr>')+'</tbody></table></div>';
 }
 
 /* =====================================================================
@@ -1123,7 +1130,7 @@ function vCampaigns(){
    '<select class="sel" data-act="f-camp-tgt"><option value="">Targeting: All</option><option value="auto" '+(f.tgt==='auto'?'selected':'')+'>Automatic</option><option value="manual" '+(f.tgt==='manual'?'selected':'')+'>Manual</option></select>'+
    '<span class="fcount">Period: '+fmtDay(b.from)+' – '+fmtDay(b.to)+'</span>'+
   '</div></div>'+bulk+
-  '<div class="card rise d1">'+buildTable('camps',cols,rows,rowHtml,{key:'sp',dir:-1})+'</div>';
+  '<div class="card rise d1">'+buildTable('camps',cols,rows,rowHtml,{key:'sp',dir:-1},'wide')+'</div>';
 }
 
 function vCampaign(){
