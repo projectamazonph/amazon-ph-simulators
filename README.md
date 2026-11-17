@@ -15,7 +15,7 @@ unified skin, and the common application shell.
 - Shared versioned attempt history surfaces Not started, In progress, Passed, best score, and attempt count in Coach and the hub.
 - One tested beginner PPC policy aligns evidence bands, negatives, bid changes, and budget scaling across lessons and simulators.
 - Scenario-bank infrastructure preserves stable simulator progress while recording the selected scenario and rubric versions; Campaign Architect and Account Audit now ship selectable beginner and intermediate packs.
-- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **95 passing tests**.
+- `node --test tests/*.test.cjs` is the primary regression command; the current baseline is **343 passing tests** across 37 test files.
 
 ## Design-system architecture
 
@@ -442,7 +442,7 @@ Key implementation notes:
 
 ### PPC Coach — the teaching companion
 
-PPC Coach is the structured course inside SimGrid: **12 modules, 60 plain-language
+PPC Coach is the structured course inside SimGrid: **12 modules, 71 plain-language
 lessons, 12 module quizzes, a 15-question final exam, a glossary, four practice
 tools, an AI Coach, badges, XP, and a teacher cohort view**. The module sequence is
 intended to be followed in order.
